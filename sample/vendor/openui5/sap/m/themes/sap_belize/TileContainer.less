@@ -1,0 +1,34 @@
+/* ==================================== */
+/* CSS for control sap.m/TileContainer  */
+/* Belize theme                         */
+/* ==================================== */
+
+.sapMTC .sapMTCScroller .sapMTCInner {
+	color: @sapUiContentContrastIconColor;
+}
+
+.sapMTC.sapMTCEditable .sapMTile .sapMTCRemove {
+	background-color: @sapUiContentIconColor;
+	color: @sapUiContentContrastIconColor;
+}
+
+.sapMTC .sapMTCPager SPAN {
+	background-color: @sapUiContentNonInteractiveIconColor;
+}
+
+.sapMTC .sapMTCBlind {
+	background-color: @sapUiTileBackground;
+}
+
+.sapMTC .sapMTCPager SPAN.sapMTCActive {
+	background-color: @sapUiHighlight;
+}
+
+.sapMTC .sapMTCScroller:focus::before {
+	border: 1px dotted @sapUiContentFocusColor;
+	position: absolute;
+	top: -1px;
+	bottom: -1px;
+	left: -1px;
+	right: -1px;
+}

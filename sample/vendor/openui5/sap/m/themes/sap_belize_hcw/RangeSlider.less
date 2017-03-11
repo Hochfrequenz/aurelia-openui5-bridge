@@ -1,0 +1,81 @@
+/* ======================================= */
+/* CSS for sap.m.RangeSlider control       */
+/* ======================================= */
+.sapMSliderProgress {
+  width: auto;
+}
+
+.sapMSliderProgress:focus {
+  outline: none;
+}
+
+.sapMSliderProgress:focus:before {
+  border: 1px dotted @sapUiContentFocusColor;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
+  pointer-events: none;
+}
+
+.sapMSliderHandleTooltip {
+  display: inline-block;
+  position: absolute;
+}
+
+//----- RangeSlider Labels------------
+.sapMSliderLabels {
+  position: relative;
+  top: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.sapMSliderLabel {
+  align-self: flex-end;
+}
+
+.sapMSliderTooltipContainer {
+  display: flex;
+  position: absolute;
+  top: -3rem;
+  height: 2rem;
+  width: auto;
+  justify-content: space-between;
+  transition-property: left, right;
+  visibility: hidden;
+}
+
+//----- RangeSlider Input Labels------------
+.sapMSliderTooltipContainer .sapMInputBaseWidthPadding {
+  padding: 0;
+}
+
+.sapMSliderTooltipContainer {
+  .sapMInputBase {
+    height: inherit;
+  }
+  .sapMInputBaseInner {
+    height: inherit;
+    font-size: 0.75rem;
+    position: relative;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+.sapUiSizeCozy .sapMSliderTooltipContainer {
+  .sapMInputBase {
+    height: 3rem;
+    top: -1rem;
+    padding: 0.25rem 0;
+  }
+  .sapMInputBaseInner {
+    height: 2.5rem;
+  }
+}

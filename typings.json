@@ -1,0 +1,4 @@
+{
+  "name": "aurelia-openui5-bridge",
+  "main": "dist/aurelia-openui5-bridge.d.ts"
+}

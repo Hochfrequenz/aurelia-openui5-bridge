@@ -1,0 +1,33 @@
+/* ============================================== */
+/* CSS for control sap.m/WizardProgressNavigator  */
+/* Belize Plus theme                              */
+/* ============================================== */
+
+.sapMWizardProgressNav {
+	background: @sapUiObjectHeaderBackground;
+	border-bottom: solid 0.125rem lighten(@sapUiObjectHeaderBackground, 8);
+}
+
+.sapMWizardProgressNavStep:hover .sapMWizardProgressNavAnchorCircle {
+	background: darken(@sapUiObjectHeaderBackground, 5);
+}
+
+.sapMWizardProgressNavStep[data-sap-ui-wpn-step-current="true"] {
+	& .sapMWizardProgressNavAnchor::after {
+		background: @sapUiSelected;
+	}
+
+	& .sapMWizardProgressNavAnchorCircle {
+		background: @sapUiHighlight;
+	}
+}
+
+.sapMWizardProgressNavStep[data-sap-ui-wpn-step-active="true"] {
+	.sapMWizardProgressNavAnchorTitle {
+		color: lighten(@sapUiGroupTitleTextColor, 20);
+	}
+}
+
+.sapMWizardProgressNavAnchorTitle:hover {
+	color: lighten(@sapUiGroupTitleTextColor, 10);
+}

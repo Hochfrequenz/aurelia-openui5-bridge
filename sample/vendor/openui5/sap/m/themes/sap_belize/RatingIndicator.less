@@ -1,0 +1,129 @@
+/* ====================================== */
+/* CSS for control sap.m/RatingIndicator  */
+/* Belize theme                           */
+/* ====================================== */
+
+/* ===================================== */
+/* Less helper functions for gradients   */
+/* ===================================== */
+
+.sapMRIIcon { /* required for size calculation */
+	height: 1.375rem; /* default size */
+	overflow: hidden;
+}
+
+.sapMRIIconSel {
+	color: lighten(@sapUiAccent1, 5);
+}
+
+.sapMRIIconUnsel  {
+	color: darken(@sapUiContentForegroundColor, 25)
+}
+
+.sapMRIDisabled{
+    opacity: 0.5;
+	outline: none;
+	cursor: default;
+}
+
+html[data-sap-ui-browser^='ie10'] .sapMRIDisabled .sapMRIIconSel {
+	text-shadow: 0px 0px 0px @sapUiContentShadowColor;
+}
+
+.sapMRIIconHov {
+	color: @sapUiAccent1;
+}
+
+html[data-sap-ui-browser^='ie10'] .sapMRIIconHov {
+	text-shadow: 0px 0px 0px @sapUiContentShadowColor;
+}
+
+html[data-sap-ui-browser^='ie10'] .sapMRIIconUnsel {
+	text-shadow: 0px 0px 0px @sapUiContentShadowColor;
+}
+
+.sapMRI .sapUiIcon,
+.sapMRI .sapMImg {
+	padding-right: 0.25rem;
+}
+
+.sapMRI .sapUiIcon:last-child,
+.sapMRI .sapMImg:last-child {
+	padding-right: 0rem;
+}
+
+
+/* Custom focus outline */
+html.sap-desktop .sapMRI:focus:not(.sapMRIDisabled) {
+	outline: 1px dotted @sapUiContentFocusColor;
+	outline-offset: -1px;
+}
+
+/* IE ignores outline-offset. Use an overlay: */
+html[data-sap-ui-browser^="ie"].sap-desktop {
+	.sapMRI:focus {
+		outline: none;
+		position: relative;
+	}
+	.sapMRI:focus:not(.sapMRIDisabled)::before {
+		content: " ";
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		border: 1px dotted @sapUiContentFocusColor;
+	}
+}
+
+/* Compact mode */
+.sapUiSizeCompact .sapMRIIcon {
+	height: 1rem; /* default size for the compact mode */
+}
+
+/* Condensed mode */
+.sapUiSizeCondensed .sapUiTableCell .sapMRI .sapUiIcon,
+.sapUiSizeCondensed .sapUiTableCell .sapMRI .sapMImg{
+	vertical-align: top;
+}
+
+.sapUiSizeCondensed .sapMRI .sapUiIcon,
+.sapUiSizeCondensed .sapMRI .sapMImg{
+	padding-right: 0;
+}
+
+.sapMRI.sapUiRatingIndicatorXS {
+	.sapUiIcon, .sapMImg {
+		padding-right: @sapUiRIIconPaddingXS;
+		vertical-align: top;
+	}
+}
+
+.sapMRI.sapUiRatingIndicatorS {
+	.sapUiIcon, .sapMImg {
+		padding-right: @sapUiRIIconPaddingS;
+		vertical-align: top;
+	}
+}
+
+.sapMRI.sapUiRatingIndicatorM {
+	.sapUiIcon, .sapMImg {
+		padding-right: @sapUiRIIconPaddingM;
+		vertical-align: top;
+	}
+}
+
+.sapMRI.sapUiRatingIndicatorL {
+	.sapUiIcon, .sapMImg {
+		padding-right: @sapUiRIIconPaddingL;
+		vertical-align: top;
+	}
+}
+
+.sapMRI.sapUiRatingIndicatorXS, .sapMRI.sapUiRatingIndicatorS, .sapMRI.sapUiRatingIndicatorM,
+.sapMRI.sapUiRatingIndicatorL {
+	.sapUiIcon:last-child, .sapMImg:last-child {
+		padding-right: 0;
+	}
+}

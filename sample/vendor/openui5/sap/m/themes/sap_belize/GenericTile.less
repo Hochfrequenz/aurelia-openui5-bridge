@@ -1,0 +1,241 @@
+/* ================================== */
+/* CSS for control sap.m/GenericTile  */
+/* Belize theme                       */
+/* ================================== */
+
+.sapMGT.sapMGTBackgroundImage {
+	.sapMGTContent {
+		border-bottom-left-radius: 0.125rem;
+		border-bottom-right-radius: 0.125rem;
+	}
+}
+
+/************************ LINE MODE COZY ********************/
+
+.sapMGT.sapMGTLineMode {
+	transition: background 0.2s;
+	background: transparent;
+}
+
+.sap-desktop .sapMGT.sapMGTLineMode:not(.sapMGTDisabled):not(.sapMGTFailed) {
+	&:not(.sapMGTLineModePress):hover {
+		background: fade(@sapUiShellHoverBackground, 10);
+	}
+}
+
+.sapMGT.sapMGTLineMode:not(.sapMGTDisabled):not(.sapMGTFailed).sapMGTLineModePress {
+	background: fade(@sapUiShellHoverBackground, 12);
+}
+
+.sapMGT.sapMGTLineMode .sapMGTFocusDiv {
+	border-radius: 0;
+}
+
+.sapMGTLineMode .sapMGTLineModeFailedIcon {
+	cursor: pointer;
+	color: @sapUiContentNonInteractiveIconColor;
+	text-shadow: @sapUiShadowText;
+}
+
+.sapMGTLineMode.sapMGTDisabled {
+	opacity: 0.5;
+}
+
+.sapMGTLineMode.sapMGTFailed .sapMGTLineModeFailedIcon ~ *:not(.sapMGTStyleHelper) {
+	opacity: 0.5;
+}
+
+/************************ LINE MODE COMPACT *****************/
+
+.sap-desktop .sapUiSizeCompact .sapMGT.sapMGTLineMode:not(.sapMGTDisabled) {
+	&:focus .sapMGTLineStyleHelperInner:before{
+		content: "";
+		position: absolute;
+		top: 1px;
+		left: 1px;
+		bottom: 1px;
+		right: 1px;
+		box-sizing: border-box;
+		border: 1px dotted @sapUiContentFocusColor;
+	}
+
+	&:not(.sapMGTFailed):hover .sapMGTLineStyleHelperInner {
+		background: fade(@sapUiShellHoverBackground, 10);
+	}
+}
+
+.sapUiSizeCompact {
+	.sapMGT.sapMGTLineMode {
+		font-size: @sapMFontMediumSize;
+
+		& * {
+			font-size: @sapMFontMediumSize;
+		}
+
+		.sapMGTLineStyleHelper {
+			&:first-child:not(:only-child) .sapMGTLineStyleHelperInner {
+				margin-right: 0.125rem;
+			}
+
+			&:not(:first-child) .sapMGTLineStyleHelperInner {
+				margin: 0 0.125rem;
+			}
+			&:last-child .sapMGTLineStyleHelperInner {
+				margin-right: 0;
+			}
+
+			&:first-child .sapMGTLineStyleHelperInner {
+				border-top-left-radius: 0.2rem;
+				border-bottom-left-radius: 0.2rem;
+			}
+
+			&:last-child .sapMGTLineStyleHelperInner {
+				border-top-right-radius: 0.2rem;
+				border-bottom-right-radius: 0.2rem;
+			}
+		}
+
+		.sapMGTLineStyleHelperInner {
+			transition: background 0.2s;
+		}
+
+		&.sapMGTLineModePress:not(.sapMGTDisabled):not(.sapMGTFailed) {
+			&, &:hover {
+				.sapMGTLineStyleHelperInner {
+					background: fade(@sapUiShellHoverBackground, 12);
+				}
+			}
+		}
+	}
+}
+
+/************************************************************/
+
+.sapMGTHdrTxt > .sapMText {
+	color: @sapUiTileTitleTextColor;
+	font-weight: normal;
+	font-family: @sapUiFontFamily;
+	font-size: @sapMFontHeader5Size;
+}
+
+.sapMGTSubHdrTxt {
+	font-family: @sapUiFontFamily;
+	font-size: @sapMFontMediumSize;
+	font-weight: normal;
+	color: @sapUiTileTextColor;
+}
+
+.sapMGTLineMode .sapMGTHdrTxt {
+	color: @sapUiShellTextColor;
+	font-size: @sapMFontMediumSize;
+	text-shadow: @sapUiShadowText;
+}
+
+.sapMGTLineMode .sapMGTSubHdrTxt {
+	color: @sapUiTileTextColor;
+	font-size: @sapMFontMediumSize;
+	text-shadow: @sapUiShadowText;
+}
+
+.sapMGTHdrIconImage {
+	font-family: @sapUiFontHeaderFamily;
+	font-weight: @sapUiFontHeaderWeight;
+	color: @sapUiHighlight;
+}
+
+.sapMGT {
+	border: 1px solid @sapUiTileBorderColor;
+	box-shadow: @sapUiShadowLevel0;
+	background: @sapUiTileBackground;
+}
+
+.sapMGenericTileFtrFldTxt {
+	font-family: @sapUiFontFamily;
+	font-size: @sapMFontSmallSize;
+	color: @sapUiContentLabelColor;
+}
+
+.sapMGenericTileFtrFldIcn {
+	color: @sapUiContentLabelColor;
+}
+
+html.sap-desktop .sapMGTWithoutImageHoverOverlay,
+html.sap-desktop .sapMGTWithImageHoverOverlay {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	transition: background 0.2s;
+}
+
+html.sap-phone .sapMGTWithoutImageHoverOverlay,
+html.sap-phone .sapMGTWithImageHoverOverlay,
+html.sap-tablet .sapMGTWithoutImageHoverOverlay,
+html.sap-tablet .sapMGTWithImageHoverOverlay {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+}
+
+html.sap-desktop .sapMGTWithoutImageHoverOverlay.sapMGTPressActive,
+html.sap-phone .sapMGTWithoutImageHoverOverlay.sapMGTPressActive,
+html.sap-tablet .sapMGTWithoutImageHoverOverlay.sapMGTPressActive {
+	background: fade(@sapUiShellActiveBackground, 8) !important;
+}
+
+html.sap-desktop .sapMGTWithImageHoverOverlay.sapMGTPressActive,
+html.sap-phone .sapMGTWithImageHoverOverlay.sapMGTPressActive,
+html.sap-tablet .sapMGTWithImageHoverOverlay.sapMGTPressActive {
+	background: fade(@sapUiShellActiveBackground, 22) !important;
+}
+
+html.sap-desktop .sapMGT:hover .sapMGTWithoutImageHoverOverlay:not(.sapMGTWithoutImagePressActive) {
+	background: fade(@sapUiShellHoverBackground, 4);
+}
+
+html.sap-desktop .sapMGT:hover .sapMGTWithImageHoverOverlay:not(.sapMGTWithImagePressActive) {
+	background: fade(@sapUiShellHoverBackground, 18);
+}
+
+html.sap-desktop .sapMGT:focus .sapMGTFocusDiv {
+	border: 1px dotted @sapUiContentFocusColor;
+}
+
+html.sap-desktop .sapMGT.sapMGTBackgroundImage:focus .sapMGTFocusDiv {
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		border-radius: 0.125rem;
+		margin: -1px;
+		border: 1px dotted @sapUiContentContrastFocusColor;
+		z-index: 0;
+	}
+}
+
+html.sap-desktop .sapMGT:focus:not([tabindex]) {
+	border-color: transparent;
+}
+
+.sapMGTOverlay {
+	background-color: @sapUiTileBackground;
+}
+
+/* BREAKPOINT FOR SMALL PHONES */
+@media screen and (max-width: 374px) {
+	.sapMGTHdrTxt > .sapMText {
+		font-size: @sapMFontHeader6Size;
+	}
+
+	.sapMGTSubHdrTxt {
+		font-size: @sapMFontSmallSize;
+	}
+}
