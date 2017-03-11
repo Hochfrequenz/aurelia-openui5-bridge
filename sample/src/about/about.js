@@ -1,4 +1,11 @@
+import { Ui5ToastService } from 'aurelia-openui5-bridge';
+import { inject } from 'aurelia-dependency-injection';
+@inject(Ui5ToastService)
 export class About {
+  _toastService = null;
+  constructor(service) {
+    this._toastService = service;
+  }
   actors = [
     {
       'name': 'Bryan Cranston',
@@ -24,7 +31,7 @@ export class About {
     this.version = '0.24.0';
   }
   onTestPressed(e) {
-    alert("Test " + e);
+    this._toastService.show("Testmessage", 3000);
   }
   onSelectionChanged(e) {
     let selected = this.list.getSelected();

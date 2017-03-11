@@ -15,6 +15,7 @@ export class ConfigBuilder {
       .useContainer()
       .useHtml()
       .useButton()
+      .useTiles()
       
   }
 
@@ -38,6 +39,14 @@ export class ConfigBuilder {
     this.globalResources.push('./button/button');
     return this;
   }
+  useTiles(): ConfigBuilder {
+    this.globalResources.push('./generic-tile/generic-tile');
+    this.globalResources.push('./tile-container/tile-container');
+    this.globalResources.push('./tile-content/tile-content');
+    this.globalResources.push('./standard-tile/standard-tile');
+    return this;
+  }
+  
 
 
   /**

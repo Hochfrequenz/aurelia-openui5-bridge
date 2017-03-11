@@ -21,15 +21,14 @@ export class Ui5Button {
     this._button = new sap.m.Button({
       text: this.text,
       enabled: !getBooleanFromAttributeValue(this.disabled),
-      press: this.press!=null?this.press:this.defaultPress
+      press: this.press != null ? this.press : this.defaultPress
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._button, this.element);
     }
   }
-  defaultPress()
-  {
+  defaultPress() {
 
   }
   detached() {
