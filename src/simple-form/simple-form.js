@@ -42,6 +42,7 @@ export class Ui5SimpleForm {
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
+      attributeManager.addAttributes("ui5-container");
     }
     else {
       this._form.placeAt(this.element.parentElement);
