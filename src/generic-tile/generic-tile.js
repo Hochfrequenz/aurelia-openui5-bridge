@@ -11,18 +11,19 @@ export class Ui5GenericTile {
     @bindable() header = null;
     @bindable() subheader = null;
     @bindable() press = null;
+    @bindable() frameType = null;
     constructor(element) {
         this.element = element;
     }
     addChild(child, elem) {
         var path = $(elem).parentsUntil(this.element);
         if (path[0].localName == 'content')
-            this._tile.addContent(child);
+            this._tile.addTileContent(child);
     }
     removeChild(child, elem) {
         var path = $(elem).parentsUntil(this.element);
         if (path[0].localName == 'content')
-            this._tile.removeContent(child);
+            this._tile.removeTileContent(child);
     }
     defaultPress() {
 
@@ -32,9 +33,13 @@ export class Ui5GenericTile {
             {
                 header: this.header,
                 subheader: this.subheader,
-                press: this.press != null ? this.press : this.defaultPress
+                press: this.press != null ? this.press : this.defaultPress,
+                frameType : this.frameType
             }
         );
+        this._tile.addStyleClass('sapUiTinyMarginTop');
+        this._tile.addStyleClass('sapUiTinyMarginBegin');
+        
         $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tile, this.element);
     }
     detached() {
@@ -51,8 +56,13 @@ export class Ui5GenericTile {
         }
     }
     pressChanged(newValue) {
-        if (this._button !== null) {
-            this._button.attachPress(newValue);
+        if (this._tile !== null) {
+            this._tile.attachPress(newValue);
+        }
+    }
+    frameTypeChanged(newValue) {
+        if (this._tile !== null) {
+            this._tile.setFrameType(newValue);
         }
     }
 }

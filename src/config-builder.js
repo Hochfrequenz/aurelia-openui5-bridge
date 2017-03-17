@@ -16,7 +16,9 @@ export class ConfigBuilder {
       .useHtml()
       .useButton()
       .useTiles()
-      
+      .useGrid()
+      .useText()
+      .useWizard()      
   }
 
   usePage(): ConfigBuilder {
@@ -39,11 +41,29 @@ export class ConfigBuilder {
     this.globalResources.push('./button/button');
     return this;
   }
+  useGrid(): ConfigBuilder {
+    this.globalResources.push('./grid/grid');
+    return this;
+  }
+  useWizard(): ConfigBuilder {
+    this.globalResources.push('./wizard/wizard');
+    this.globalResources.push('./wizard-step/wizard-step');
+    return this;
+  }
+  useText(): ConfigBuilder {
+    this.globalResources.push('./text/text');
+    return this;
+  }
+  
   useTiles(): ConfigBuilder {
     this.globalResources.push('./generic-tile/generic-tile');
     this.globalResources.push('./tile-container/tile-container');
     this.globalResources.push('./tile-content/tile-content');
     this.globalResources.push('./standard-tile/standard-tile');
+    this.globalResources.push('./image-content/image-content');
+    this.globalResources.push('./numeric-content/numeric-content');
+    this.globalResources.push('./feed-content/feed-content');
+    this.globalResources.push('./slide-tile/slide-tile');
     return this;
   }
   

@@ -15,7 +15,7 @@ export class Ui5TileContent {
     addChild(child, elem) {
         var path = $(elem).parentsUntil(this.element);
         if (path[0].localName == 'content')
-            this._content.setContent(content);
+            this._content.setContent(child);
     }
     removeChild(child, elem) {
         var path = $(elem).parentsUntil(this.element);
@@ -23,7 +23,7 @@ export class Ui5TileContent {
             this._content.destroyContent(child);
     }
     attached() {
-        this._container = new sap.m.TileContent({
+        this._content = new sap.m.TileContent({
             footer: this.footer,
             unit: this.unit
         });

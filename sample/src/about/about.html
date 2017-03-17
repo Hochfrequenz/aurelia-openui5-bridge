@@ -8,17 +8,41 @@
       <div slot="contentLeft">
       </div>
 
-      <ui5-button slot="contentMiddle" text="Testbutton" press.call="onTestPressed()"></ui5-button>
+      <ui5-button slot="contentMiddle" text="Testbutton" press.call="onInstallation()"></ui5-button>
 
       <div slot="contentRight">
       </div>
 
     </ui5-bar>
-    <ui5-tile-container ui5-container slot="content">
+    <!--ui5-grid ui5-container slot="content">-->
+    <ui5-generic-tile slot="content" header="Testtile" subheader="unten drunter" press.call="onInstallation()">
+      <ui5-tile-content footer="test" unit="euro">
+        <ui5-image-content src="sap-icon://home-share"></ui5-image-content>
+      </ui5-tile-content>
+    </ui5-generic-tile>
+    <ui5-generic-tile slot="content" header="Testtile" subheader="unten drunter">
+      <ui5-tile-content footer="test" unit="euro">
+        <ui5-numeric-content icon="sap-icon://home-share" value.bind="testValue" value-color="Critical" indicator="Up"></ui5-numeric-content>
+      </ui5-tile-content>
+    </ui5-generic-tile>
+    <ui5-slide-tile ui5-container slot="content">
+      <ui5-generic-tile frame-type="TwoByOne" header="Testtile" subheader="unten drunter">
+        <ui5-tile-content footer="test" unit="euro">
+          <ui5-feed-content content-text="Ein bisserl Text" subheader="Noch ein Text" value.bind="testValue" value-color="Critical"></ui5-feed-content>
+        </ui5-tile-content>
+      </ui5-generic-tile>
+      <ui5-generic-tile frame-type="TwoByOne" header="Zweite Seite" subheader="unten drunter">
+        <ui5-tile-content>
+          <ui5-feed-content content-text="Ein bisserl Text" subheader="Noch ein Text" value.bind="testValue" value-color="Critical"></ui5-feed-content>
+        </ui5-tile-content>
+      </ui5-generic-tile>
+    </ui5-slide-tile>
+    <!--</ui5-grid>-->
+    <!--<ui5-tile-container ui5-container slot="content">
       <ui5-standard-tile title="Mein Test-Tile" icon="sap-icon://inbox" press.call="onTestPressed()">
       </ui5-standard-tile>
       <ui5-standard-tile title="Number" number="93" number-unit="%" info="Information" info-state="Success">
       </ui5-standard-tile>
-    </ui5-tile-container>
+    </ui5-tile-container>-->
   </ui5-page>
 </template>
