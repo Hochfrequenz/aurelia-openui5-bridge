@@ -1,0 +1,14 @@
+{
+    "errorMessages": {
+        "default": "${$displayName} ist ungültig.",
+        "required": "${$displayName} ist ein Pflichtfeld.",
+        "matches": "${$displayName} ist nicht korrekt formatiert.",
+        "email": "${$displayName} ist keine gültige Email-Adresse.",
+        "minLength": "${$displayName} muss mindestens ${$config.length} Zeichen lang sein.",
+        "maxLength": "${$displayName} darf nicht länger als ${$config.length} Zeichen sein.",
+        "minItems": "${$displayName} muss mindestens ${$config.count} Einträge haben.",
+        "maxItems": "${$displayName} darf nicht mehr als ${$config.count} Einträge haben.",
+        "equals": "${$displayName} muss gleich ${$config.expectedValue} sein."
+    },
+    "firstName": "Vorname"
+}

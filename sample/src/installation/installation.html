@@ -2,7 +2,24 @@
 	<ui5-page ui5-container>
 		<ui5-wizard slot="content">
 			<ui5-wizard-step ui5-container title="Start">
-				<ui5-text text="Schritt 1 zur Installation:"></ui5-text>
+			<!--	<ui5-text text="Schritt 1 zur Installation:"></ui5-text>-->
+				<ui5-text ui5-id="nameText" text.bind="name"></ui5-text>
+				<ui5-simple-form ui5-id='testForm' labelSpanL="4"
+			labelSpanM="12"
+			adjustLabelSpan="false"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="2"
+			columnsM="2"
+			layout="ResponsiveGridLayout"
+			editable = "true"
+			title="Address">
+			<ui5-title text="Allgemeines"></ui5-title>
+					<ui5-label ui5-id="nameLabel" text="${'firstName' | t}" label-for="nameInput">
+					</ui5-label>
+					<ui5-input ui5-layout ui5-id="nameInput" value.two-way="name & validate:rules" value-live-update="true"><ui5-grid-data slot="layoutData" span="L3 M4 S4"></ui5-grid-data></ui5-input>
+				</ui5-simple-form>
+				
 			</ui5-wizard-step>
 			<ui5-wizard-step ui5-container title="Ende">
 				<ui5-text text="Schritt 2 zur Installation:"></ui5-text>
@@ -11,3 +28,4 @@
 	</ui5-page>
 	
 </template>
+ 

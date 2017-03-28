@@ -8,6 +8,7 @@
       "aurelia-event-aggregator": "npm:aurelia-event-aggregator@^1.0.0-beta.1",
       "aurelia-framework": "npm:aurelia-framework@^1.0.0-beta.1.0.6",
       "aurelia-http-client": "npm:aurelia-http-client@^1.0.0-beta.1",
+      "aurelia-i18n": "npm:aurelia-i18n@^1.4.0",
       "aurelia-loader": "npm:aurelia-loader@^1.0.0-beta.1",
       "aurelia-logging": "npm:aurelia-logging@^1.0.0-beta.1",
       "aurelia-metadata": "npm:aurelia-metadata@^1.0.0-beta.1",

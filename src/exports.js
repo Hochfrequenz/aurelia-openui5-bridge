@@ -17,5 +17,11 @@ export * from './grid/grid';
 export * from './text/text';
 export * from './wizard/wizard';
 export * from './wizard-step/wizard-step';
+export * from './simple-form/simple-form';
+export * from './label/label';
+export * from './input/input';
+export * from './title/title';
+export * from './grid-data/grid-data';
+
 
 // build-index-remove end

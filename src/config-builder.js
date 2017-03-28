@@ -19,6 +19,11 @@ export class ConfigBuilder {
       .useGrid()
       .useText()
       .useWizard()      
+      .useForm()
+      .useLabel()
+      .useInput()
+      .useTitle()
+      .useLayoutData()
   }
 
   usePage(): ConfigBuilder {
@@ -66,7 +71,26 @@ export class ConfigBuilder {
     this.globalResources.push('./slide-tile/slide-tile');
     return this;
   }
-  
+  useForm(): ConfigBuilder {
+    this.globalResources.push('./simple-form/simple-form');
+    return this;
+  }
+  useLabel(): ConfigBuilder {
+    this.globalResources.push('./label/label');
+    return this;
+  }
+  useInput(): ConfigBuilder {
+    this.globalResources.push('./input/input');
+    return this;
+  }
+  useTitle(): ConfigBuilder {
+    this.globalResources.push('./title/title');
+    return this;
+  }
+  useLayoutData(): ConfigBuilder {
+    this.globalResources.push('./grid-data/grid-data');
+    return this;
+  }
 
 
   /**

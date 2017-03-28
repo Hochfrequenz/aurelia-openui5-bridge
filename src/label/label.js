@@ -8,7 +8,7 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 
 export class Ui5Label {
    _label = null;
-   @bindable() id = null;
+   @bindable() ui5Id = null;
    @bindable() labelFor = null;
    @bindable() text = null;
    @bindable() required = false;
@@ -30,28 +30,28 @@ export class Ui5Label {
     $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._label,this.element);  
   }
    textChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setText(newValue);
+    if (this._label !== null) {
+      this._label.setText(newValue);
     }
   }
   labelForChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setLabelFor(newValue);
+    if (this._label !== null) {
+      this._label.setLabelFor(newValue);
     }
   }
   requiredChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setRequired(getBooleanFromAttributeValue(newValue));
+    if (this._label !== null) {
+      this._label.setRequired(getBooleanFromAttributeValue(newValue));
     }
   }
   textAlignChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setTextAlign(newValue);
+    if (this._label !== null) {
+      this._label.setTextAlign(newValue);
     }
   }
   textDirectionChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setTextDirection(newValue);
+    if (this._label !== null) {
+      this._label.setTextDirection(newValue);
     }
   }
 }

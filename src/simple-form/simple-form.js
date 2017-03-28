@@ -6,15 +6,29 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @customElement('ui5-simple-form')
 @inject(Element)
 export class Ui5SimpleForm {
-  @bindable() id = null;
+  @bindable() ui5Id = null;
   @bindable() title = '';
   @bindable() maxContainerCols = 2;
   @bindable() minWidth = -1;
   @bindable() width = null;
   @bindable() editable = true;
-  @bindable() labelMinWidth = null;
+  @bindable() labelMinWidth = 192;
   @bindable() layout = 'ResponsiveLayout';
   @bindable() backgroundDesign = 'Translucent';
+  @bindable() labelSpanXL = -1;
+  @bindable() labelSpanL = 4;
+  @bindable() labelSpanM = 2;
+  @bindable() labelSpanS = 12;
+  @bindable() adjustLabelSpan = true;
+  @bindable() emptySpanXL = -1;
+  @bindable() emptySpanL = 0;
+  @bindable() emptySpanM = 0;
+  @bindable() emptySpanS = 0;
+  @bindable() singleContainerFullSize = false;
+  @bindable() breakpointXL = 1440;
+  @bindable() breakpointL = 1024;
+  @bindable() breakpointM = 600;
+
   _form = null;
   constructor(element) {
     this.element = element;
@@ -28,21 +42,34 @@ export class Ui5SimpleForm {
   }
   attached() {
     var attributeManager = new AttributeManager(this.element);
-    this._form = new sap.ui.layout.form.SimpleForm(this.id,{
+    this._form = new sap.ui.layout.form.SimpleForm(this.ui5Id, {
       title: this.title,
       editable: getBooleanFromAttributeValue(this.editable),
-      maxContainerCols: this.maxContainerCols,
-      minWidth: this.minWidth,
+      maxContainerCols: parseInt(this.maxContainerCols),
+      minWidth: parseInt(this.minWidth),
       width: this.width,
-      labelMinWidth: this.labelMinWidth,
+      labelMinWidth: parseInt(this.labelMinWidth),
       layout: this.layout,
-      backgroundDesign: this.backgroundDesign
+      backgroundDesign: this.backgroundDesign,
+      labelSpanXL: parseInt(this.labelSpanXL),
+      labelSpanL: parseInt(this.labelSpanL),
+      labelSpanM: parseInt(this.labelSpanM),
+      labelSpanS: parseInt(this.labelSpanS),
+      adjustLabelSpan: getBooleanFromAttributeValue(this.adjustLabelSpan),
+      emptySpanXL: parseInt(this.emptySpanXL),
+      emptySpanL: parseInt(this.emptySpanL),
+      emptySpanM: parseInt(this.emptySpanM),
+      emptySpanS: parseInt(this.emptySpanS),
+      singleContainerFullSize: getBooleanFromAttributeValue(this.singleContainerFullSize),
+      breakpointXL: parseInt(this.breakpointXL),
+      breakpointL: parseInt(this.breakpointL),
+      breakpointM: parseInt(this.breakpointM),
 
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
-      attributeManager.addAttributes("ui5-container");
+      attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
       this._form.placeAt(this.element.parentElement);
