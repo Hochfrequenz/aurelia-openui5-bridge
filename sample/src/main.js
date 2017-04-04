@@ -1,6 +1,8 @@
 // import 'materialize';
+
 import { I18N, Backend } from 'aurelia-i18n';
 import { ValidationMessageProvider } from 'aurelia-validation';
+
 //Configure Bluebird Promises.
 (Promise.config || P.config)({
   warnings: {

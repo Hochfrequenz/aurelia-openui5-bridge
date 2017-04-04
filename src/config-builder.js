@@ -1,4 +1,4 @@
-
+import {PLATFORM} from 'aurelia-pal';
 /**
 * Plugin configuration builder
 */
@@ -27,68 +27,68 @@ export class ConfigBuilder {
   }
 
   usePage(): ConfigBuilder {
-    this.globalResources.push('./page/page');
+    this.globalResources.push(PLATFORM.moduleName('./page/page'));
     return this;
   }
    useBar(): ConfigBuilder {
-    this.globalResources.push('./bar/bar');
+    this.globalResources.push(PLATFORM.moduleName('./bar/bar'));
     return this;
   }
   useContainer(): ConfigBuilder {
-    this.globalResources.push('./container/container');
+    this.globalResources.push(PLATFORM.moduleName('./container/container'));
     return this;
   }
    useHtml(): ConfigBuilder {
-    this.globalResources.push('./html/html');
+    this.globalResources.push(PLATFORM.moduleName('./html/html'));
     return this;
   }
   useButton(): ConfigBuilder {
-    this.globalResources.push('./button/button');
+    this.globalResources.push(PLATFORM.moduleName('./button/button'));
     return this;
   }
   useGrid(): ConfigBuilder {
-    this.globalResources.push('./grid/grid');
+    this.globalResources.push(PLATFORM.moduleName('./grid/grid'));
     return this;
   }
   useWizard(): ConfigBuilder {
-    this.globalResources.push('./wizard/wizard');
-    this.globalResources.push('./wizard-step/wizard-step');
+    this.globalResources.push(PLATFORM.moduleName('./wizard/wizard'));
+    this.globalResources.push(PLATFORM.moduleName('./wizard-step/wizard-step'));
     return this;
   }
   useText(): ConfigBuilder {
-    this.globalResources.push('./text/text');
+    this.globalResources.push(PLATFORM.moduleName('./text/text'));
     return this;
   }
   
   useTiles(): ConfigBuilder {
-    this.globalResources.push('./generic-tile/generic-tile');
-    this.globalResources.push('./tile-container/tile-container');
-    this.globalResources.push('./tile-content/tile-content');
-    this.globalResources.push('./standard-tile/standard-tile');
-    this.globalResources.push('./image-content/image-content');
-    this.globalResources.push('./numeric-content/numeric-content');
-    this.globalResources.push('./feed-content/feed-content');
-    this.globalResources.push('./slide-tile/slide-tile');
+    this.globalResources.push(PLATFORM.moduleName('./generic-tile/generic-tile'));
+    this.globalResources.push(PLATFORM.moduleName('./tile-container/tile-container'));
+    this.globalResources.push(PLATFORM.moduleName('./tile-content/tile-content'));
+    this.globalResources.push(PLATFORM.moduleName('./standard-tile/standard-tile'));
+    this.globalResources.push(PLATFORM.moduleName('./image-content/image-content'));
+    this.globalResources.push(PLATFORM.moduleName('./numeric-content/numeric-content'));
+    this.globalResources.push(PLATFORM.moduleName('./feed-content/feed-content'));
+    this.globalResources.push(PLATFORM.moduleName('./slide-tile/slide-tile'));
     return this;
   }
   useForm(): ConfigBuilder {
-    this.globalResources.push('./simple-form/simple-form');
+    this.globalResources.push(PLATFORM.moduleName('./simple-form/simple-form'));
     return this;
   }
   useLabel(): ConfigBuilder {
-    this.globalResources.push('./label/label');
+    this.globalResources.push(PLATFORM.moduleName('./label/label'));
     return this;
   }
   useInput(): ConfigBuilder {
-    this.globalResources.push('./input/input');
+    this.globalResources.push(PLATFORM.moduleName('./input/input'));
     return this;
   }
   useTitle(): ConfigBuilder {
-    this.globalResources.push('./title/title');
+    this.globalResources.push(PLATFORM.moduleName('./title/title'));
     return this;
   }
   useLayoutData(): ConfigBuilder {
-    this.globalResources.push('./grid-data/grid-data');
+    this.globalResources.push(PLATFORM.moduleName('./grid-data/grid-data'));
     return this;
   }
 

@@ -3,6 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.ConfigBuilder = undefined;
+
+var _aureliaPal = require('aurelia-pal');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -20,80 +23,80 @@ var ConfigBuilder = exports.ConfigBuilder = function () {
   };
 
   ConfigBuilder.prototype.usePage = function usePage() {
-    this.globalResources.push('./page/page');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./page/page'));
     return this;
   };
 
   ConfigBuilder.prototype.useBar = function useBar() {
-    this.globalResources.push('./bar/bar');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./bar/bar'));
     return this;
   };
 
   ConfigBuilder.prototype.useContainer = function useContainer() {
-    this.globalResources.push('./container/container');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./container/container'));
     return this;
   };
 
   ConfigBuilder.prototype.useHtml = function useHtml() {
-    this.globalResources.push('./html/html');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./html/html'));
     return this;
   };
 
   ConfigBuilder.prototype.useButton = function useButton() {
-    this.globalResources.push('./button/button');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./button/button'));
     return this;
   };
 
   ConfigBuilder.prototype.useGrid = function useGrid() {
-    this.globalResources.push('./grid/grid');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./grid/grid'));
     return this;
   };
 
   ConfigBuilder.prototype.useWizard = function useWizard() {
-    this.globalResources.push('./wizard/wizard');
-    this.globalResources.push('./wizard-step/wizard-step');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./wizard/wizard'));
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./wizard-step/wizard-step'));
     return this;
   };
 
   ConfigBuilder.prototype.useText = function useText() {
-    this.globalResources.push('./text/text');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./text/text'));
     return this;
   };
 
   ConfigBuilder.prototype.useTiles = function useTiles() {
-    this.globalResources.push('./generic-tile/generic-tile');
-    this.globalResources.push('./tile-container/tile-container');
-    this.globalResources.push('./tile-content/tile-content');
-    this.globalResources.push('./standard-tile/standard-tile');
-    this.globalResources.push('./image-content/image-content');
-    this.globalResources.push('./numeric-content/numeric-content');
-    this.globalResources.push('./feed-content/feed-content');
-    this.globalResources.push('./slide-tile/slide-tile');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./generic-tile/generic-tile'));
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./tile-container/tile-container'));
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./tile-content/tile-content'));
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./standard-tile/standard-tile'));
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./image-content/image-content'));
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./numeric-content/numeric-content'));
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./feed-content/feed-content'));
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./slide-tile/slide-tile'));
     return this;
   };
 
   ConfigBuilder.prototype.useForm = function useForm() {
-    this.globalResources.push('./simple-form/simple-form');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./simple-form/simple-form'));
     return this;
   };
 
   ConfigBuilder.prototype.useLabel = function useLabel() {
-    this.globalResources.push('./label/label');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./label/label'));
     return this;
   };
 
   ConfigBuilder.prototype.useInput = function useInput() {
-    this.globalResources.push('./input/input');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./input/input'));
     return this;
   };
 
   ConfigBuilder.prototype.useTitle = function useTitle() {
-    this.globalResources.push('./title/title');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./title/title'));
     return this;
   };
 
   ConfigBuilder.prototype.useLayoutData = function useLayoutData() {
-    this.globalResources.push('./grid-data/grid-data');
+    this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./grid-data/grid-data'));
     return this;
   };
 

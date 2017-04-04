@@ -1,4 +1,8 @@
 import {
+  PLATFORM,
+  DOM
+} from 'aurelia-pal';
+import {
   bindable,
   customAttribute,
   customElement,
@@ -27,9 +31,6 @@ import {
 import {
   EventAggregator
 } from 'aurelia-event-aggregator';
-import {
-  DOM
-} from 'aurelia-pal';
 export declare class ClickCounter {
   count: any;
   increment(): any;
@@ -95,18 +96,6 @@ export declare class MdBox {
   attached(): any;
   detached(): any;
 }
-
-// taken from: https://github.com/heruan/aurelia-breadcrumbs
-export declare class MdBreadcrumbs {
-  router: any;
-  constructor(element?: any, router?: any);
-  bind(): any;
-  routerChanged(): any;
-  navigate(navigationInstruction?: any): any;
-}
-export declare class InstructionFilterValueConverter {
-  toView(navigationInstructions?: any): any;
-}
 export declare class Ui5Button {
   disabled: any;
   floating: any;
@@ -129,6 +118,18 @@ export declare class MdCard {
   mdTitle: any;
   constructor(element?: any);
   attached(): any;
+}
+
+// taken from: https://github.com/heruan/aurelia-breadcrumbs
+export declare class MdBreadcrumbs {
+  router: any;
+  constructor(element?: any, router?: any);
+  bind(): any;
+  routerChanged(): any;
+  navigate(navigationInstruction?: any): any;
+}
+export declare class InstructionFilterValueConverter {
+  toView(navigationInstructions?: any): any;
 }
 
 // @customElement('md-carousel-item')
@@ -317,10 +318,6 @@ export declare class MdDatePicker {
   showErrortextChanged(): any;
   setErrorTextAttribute(): any;
 }
-export declare class Ui5Element {
-  addChild(child?: any, elem?: any): any;
-  attached(): any;
-}
 export declare class MdDropdownElement {
   static id: any;
   alignment: any;
@@ -351,6 +348,10 @@ export declare class MdDropdown {
   attached(): any;
   detached(): any;
   handleActivateElement(): any;
+}
+export declare class Ui5Element {
+  addChild(child?: any, elem?: any): any;
+  attached(): any;
 }
 export declare class MdFab {
   mdFixed: any;
@@ -716,6 +717,12 @@ export declare class MdRange {
   mdValue: any;
   constructor(element?: any);
 }
+export declare class MdScrollSpy {
+  target: any;
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
+}
 
 /* eslint no-new-func:0 */
 export declare class ScrollfirePatch {
@@ -731,12 +738,6 @@ export declare class MdScrollfire {
   targetId: any;
   constructor(element?: any);
   attached(): any;
-}
-export declare class MdScrollSpy {
-  target: any;
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
 }
 export declare class MdSelect {
   disabled: any;

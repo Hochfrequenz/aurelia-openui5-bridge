@@ -1,3 +1,4 @@
+import {PLATFORM,DOM} from 'aurelia-pal';
 import {bindable,customAttribute,customElement,noView,children,inlineView} from 'aurelia-templating';
 import {inject} from 'aurelia-dependency-injection';
 import {bindingMode,observable,BindingEngine,ObserverLocator} from 'aurelia-binding';
@@ -5,7 +6,6 @@ import {Router} from 'aurelia-router';
 import {TaskQueue} from 'aurelia-task-queue';
 import {getLogger} from 'aurelia-logging';
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {DOM} from 'aurelia-pal';
 
 export class ClickCounter {
   count = 0;
@@ -14,7 +14,6 @@ export class ClickCounter {
     this.count++;
   }
 }
-
 
 /**
 * Plugin configuration builder
@@ -44,68 +43,68 @@ export class ConfigBuilder {
   }
 
   usePage(): ConfigBuilder {
-    this.globalResources.push('./page/page');
+    this.globalResources.push(PLATFORM.moduleName('./page/page'));
     return this;
   }
    useBar(): ConfigBuilder {
-    this.globalResources.push('./bar/bar');
+    this.globalResources.push(PLATFORM.moduleName('./bar/bar'));
     return this;
   }
   useContainer(): ConfigBuilder {
-    this.globalResources.push('./container/container');
+    this.globalResources.push(PLATFORM.moduleName('./container/container'));
     return this;
   }
    useHtml(): ConfigBuilder {
-    this.globalResources.push('./html/html');
+    this.globalResources.push(PLATFORM.moduleName('./html/html'));
     return this;
   }
   useButton(): ConfigBuilder {
-    this.globalResources.push('./button/button');
+    this.globalResources.push(PLATFORM.moduleName('./button/button'));
     return this;
   }
   useGrid(): ConfigBuilder {
-    this.globalResources.push('./grid/grid');
+    this.globalResources.push(PLATFORM.moduleName('./grid/grid'));
     return this;
   }
   useWizard(): ConfigBuilder {
-    this.globalResources.push('./wizard/wizard');
-    this.globalResources.push('./wizard-step/wizard-step');
+    this.globalResources.push(PLATFORM.moduleName('./wizard/wizard'));
+    this.globalResources.push(PLATFORM.moduleName('./wizard-step/wizard-step'));
     return this;
   }
   useText(): ConfigBuilder {
-    this.globalResources.push('./text/text');
+    this.globalResources.push(PLATFORM.moduleName('./text/text'));
     return this;
   }
   
   useTiles(): ConfigBuilder {
-    this.globalResources.push('./generic-tile/generic-tile');
-    this.globalResources.push('./tile-container/tile-container');
-    this.globalResources.push('./tile-content/tile-content');
-    this.globalResources.push('./standard-tile/standard-tile');
-    this.globalResources.push('./image-content/image-content');
-    this.globalResources.push('./numeric-content/numeric-content');
-    this.globalResources.push('./feed-content/feed-content');
-    this.globalResources.push('./slide-tile/slide-tile');
+    this.globalResources.push(PLATFORM.moduleName('./generic-tile/generic-tile'));
+    this.globalResources.push(PLATFORM.moduleName('./tile-container/tile-container'));
+    this.globalResources.push(PLATFORM.moduleName('./tile-content/tile-content'));
+    this.globalResources.push(PLATFORM.moduleName('./standard-tile/standard-tile'));
+    this.globalResources.push(PLATFORM.moduleName('./image-content/image-content'));
+    this.globalResources.push(PLATFORM.moduleName('./numeric-content/numeric-content'));
+    this.globalResources.push(PLATFORM.moduleName('./feed-content/feed-content'));
+    this.globalResources.push(PLATFORM.moduleName('./slide-tile/slide-tile'));
     return this;
   }
   useForm(): ConfigBuilder {
-    this.globalResources.push('./simple-form/simple-form');
+    this.globalResources.push(PLATFORM.moduleName('./simple-form/simple-form'));
     return this;
   }
   useLabel(): ConfigBuilder {
-    this.globalResources.push('./label/label');
+    this.globalResources.push(PLATFORM.moduleName('./label/label'));
     return this;
   }
   useInput(): ConfigBuilder {
-    this.globalResources.push('./input/input');
+    this.globalResources.push(PLATFORM.moduleName('./input/input'));
     return this;
   }
   useTitle(): ConfigBuilder {
-    this.globalResources.push('./title/title');
+    this.globalResources.push(PLATFORM.moduleName('./title/title'));
     return this;
   }
   useLayoutData(): ConfigBuilder {
-    this.globalResources.push('./grid-data/grid-data');
+    this.globalResources.push(PLATFORM.moduleName('./grid-data/grid-data'));
     return this;
   }
 
@@ -294,57 +293,6 @@ export class MdBox {
   }
 }
 
-// taken from: https://github.com/heruan/aurelia-breadcrumbs
-
-@customElement('md-breadcrumbs')
-@inject(Element, Router)
-export class MdBreadcrumbs {
-  @bindable() router;
-
-  constructor(element, router) {
-    this.element = element;
-    this.aureliaRouter = router;
-    // this._childRouter = router;
-    // while (router.parent) {
-    //   router = router.parent;
-    // }
-    // this.router = router;
-  }
-
-  bind() {
-    if (!this.router) {
-      this.router = this.aureliaRouter;
-    }
-    let router = this.router;
-    this._childRouter = router;
-    while (router.parent) {
-      router = router.parent;
-    }
-    this.router = router;
-  }
-
-  routerChanged() {
-    // console.log('[breadcrumbs]', this.router);
-  }
-
-  navigate(navigationInstruction) {
-    this._childRouter.navigateToRoute(navigationInstruction.config.name);
-    // this.router.navigate(navigationInstruction.config.name);
-  }
-}
-
-export class InstructionFilterValueConverter {
-  toView(navigationInstructions) {
-    return navigationInstructions.filter(i => {
-      let result = false;
-      if (i.config.title) {
-        result = true;
-      }
-      return result;
-    });
-  }
-}
-
 @customElement('ui5-button')
 @inject(Element)
 export class Ui5Button {
@@ -422,6 +370,57 @@ export class MdCard {
   attached() {
     this.mdHorizontal = getBooleanFromAttributeValue(this.mdHorizontal);
     this.mdReveal = getBooleanFromAttributeValue(this.mdReveal);
+  }
+}
+
+// taken from: https://github.com/heruan/aurelia-breadcrumbs
+
+@customElement('md-breadcrumbs')
+@inject(Element, Router)
+export class MdBreadcrumbs {
+  @bindable() router;
+
+  constructor(element, router) {
+    this.element = element;
+    this.aureliaRouter = router;
+    // this._childRouter = router;
+    // while (router.parent) {
+    //   router = router.parent;
+    // }
+    // this.router = router;
+  }
+
+  bind() {
+    if (!this.router) {
+      this.router = this.aureliaRouter;
+    }
+    let router = this.router;
+    this._childRouter = router;
+    while (router.parent) {
+      router = router.parent;
+    }
+    this.router = router;
+  }
+
+  routerChanged() {
+    // console.log('[breadcrumbs]', this.router);
+  }
+
+  navigate(navigationInstruction) {
+    this._childRouter.navigateToRoute(navigationInstruction.config.name);
+    // this.router.navigate(navigationInstruction.config.name);
+  }
+}
+
+export class InstructionFilterValueConverter {
+  toView(navigationInstructions) {
+    return navigationInstructions.filter(i => {
+      let result = false;
+      if (i.config.title) {
+        result = true;
+      }
+      return result;
+    });
   }
 }
 
@@ -1174,17 +1173,6 @@ export class MdDatePicker {
   }
 }
 
-export class Ui5Element {
-    addChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
-        if (path[0].localName == 'layout')
-            this._input.setLayoutData(child);
-    }
-    attached()
-    {
-        
-    }
-}
 @customElement('md-dropdown')
 @inject(Element)
 export class MdDropdownElement {
@@ -1571,6 +1559,17 @@ export class MdDropdown {
   }
 }
 
+export class Ui5Element {
+    addChild(child, elem) {
+        var path = $(elem).parentsUntil(this.element);
+        if (path[0].localName == 'layout')
+            this._input.setLayoutData(child);
+    }
+    attached()
+    {
+        
+    }
+}
 @customElement('md-fab')
 @inject(Element)
 export class MdFab {
@@ -2873,6 +2872,23 @@ export class MdRange {
   }
 }
 
+@customAttribute('md-scrollspy')
+@inject(Element)
+export class MdScrollSpy {
+  @bindable() target;
+  constructor(element) {
+    this.element = element;
+  }
+
+  attached() {
+    $(this.target, this.element).scrollSpy();
+  }
+
+  detached() {
+    // destroy handler not available
+  }
+}
+
 /* eslint no-new-func:0 */
 export class ScrollfirePatch {
   static patched = false;
@@ -2965,23 +2981,6 @@ export class MdScrollfire {
         Materialize.scrollFire(options);
       }
     }
-  }
-}
-
-@customAttribute('md-scrollspy')
-@inject(Element)
-export class MdScrollSpy {
-  @bindable() target;
-  constructor(element) {
-    this.element = element;
-  }
-
-  attached() {
-    $(this.target, this.element).scrollSpy();
-  }
-
-  detached() {
-    // destroy handler not available
   }
 }
 
