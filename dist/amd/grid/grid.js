@@ -1,0 +1,107 @@
+define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (exports, _aureliaTemplating, _aureliaDependencyInjection, _attributeManager, _attributes) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.Ui5Grid = undefined;
+
+    function _initDefineProp(target, property, descriptor, context) {
+        if (!descriptor) return;
+        Object.defineProperty(target, property, {
+            enumerable: descriptor.enumerable,
+            configurable: descriptor.configurable,
+            writable: descriptor.writable,
+            value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+        });
+    }
+
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
+    }
+
+    function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+        var desc = {};
+        Object['ke' + 'ys'](descriptor).forEach(function (key) {
+            desc[key] = descriptor[key];
+        });
+        desc.enumerable = !!desc.enumerable;
+        desc.configurable = !!desc.configurable;
+
+        if ('value' in desc || desc.initializer) {
+            desc.writable = true;
+        }
+
+        desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+            return decorator(target, property, desc) || desc;
+        }, desc);
+
+        if (context && desc.initializer !== void 0) {
+            desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+            desc.initializer = undefined;
+        }
+
+        if (desc.initializer === void 0) {
+            Object['define' + 'Property'](target, property, desc);
+            desc = null;
+        }
+
+        return desc;
+    }
+
+    function _initializerWarningHelper(descriptor, context) {
+        throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+    }
+
+    var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
+
+    var Ui5Grid = exports.Ui5Grid = (_dec = (0, _aureliaTemplating.customElement)('ui5-grid'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+        function Ui5Grid(element) {
+            _classCallCheck(this, Ui5Grid);
+
+            this._grid = null;
+
+            _initDefineProp(this, 'defaultSpan', _descriptor, this);
+
+            this.element = element;
+        }
+
+        Ui5Grid.prototype.addChild = function addChild(child, elem) {
+            var path = $(elem).parentsUntil(this.element);
+            if (path[0].localName == 'content') this._grid.addContent(child);
+        };
+
+        Ui5Grid.prototype.removeChild = function removeChild(child, elem) {
+            var path = $(elem).parentsUntil(this.element);
+            if (path[0].localName == 'content') this._grid.removeContent(child);
+        };
+
+        Ui5Grid.prototype.defaultPress = function defaultPress() {};
+
+        Ui5Grid.prototype.attached = function attached() {
+            this._grid = new sap.ui.layout.Grid({
+                defaultSpan: this.defaultSpan
+            });
+            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._grid, this.element);
+        };
+
+        Ui5Grid.prototype.detached = function detached() {
+            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._grid, this.element);
+        };
+
+        Ui5Grid.prototype.defaultSpanChanged = function defaultSpanChanged(newValue) {
+            if (this._grid != null) {
+                this._grid.setDefaultSpan(newValue);
+            }
+        };
+
+        return Ui5Grid;
+    }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'defaultSpan', [_dec3], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    })), _class2)) || _class) || _class);
+});

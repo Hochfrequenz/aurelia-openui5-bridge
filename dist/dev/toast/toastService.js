@@ -3,7 +3,7 @@
 System.register([], function (_export, _context) {
   "use strict";
 
-  var MdToastService;
+  var Ui5ToastService;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -14,23 +14,26 @@ System.register([], function (_export, _context) {
   return {
     setters: [],
     execute: function () {
-      _export("MdToastService", MdToastService = function () {
-        function MdToastService() {
-          _classCallCheck(this, MdToastService);
+      _export("Ui5ToastService", Ui5ToastService = function () {
+        function Ui5ToastService() {
+          _classCallCheck(this, Ui5ToastService);
         }
 
-        MdToastService.prototype.show = function show(message, displayLength, className) {
+        Ui5ToastService.prototype.show = function show(message, displayLength) {
           return new Promise(function (resolve, reject) {
-            Materialize.toast(message, displayLength, className, function () {
-              resolve();
+            sap.m.MessageToast.show(message, {
+              duration: displayLength,
+              onClose: function onClose() {
+                resolve();
+              }
             });
           });
         };
 
-        return MdToastService;
+        return Ui5ToastService;
       }());
 
-      _export("MdToastService", MdToastService);
+      _export("Ui5ToastService", Ui5ToastService);
     }
   };
 });

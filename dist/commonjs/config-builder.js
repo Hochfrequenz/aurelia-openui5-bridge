@@ -3,9 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ConfigBuilder = undefined;
-
-var _dropdownFix = require('./dropdown/dropdown-fix');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -19,26 +16,26 @@ var ConfigBuilder = exports.ConfigBuilder = function () {
   }
 
   ConfigBuilder.prototype.useAll = function useAll() {
-    return this.useAutoComplete().useBadge().useBox().useBreadcrumbs().useButton().useCard().useCarousel().useCharacterCounter().useCheckbox().useChip().useCollapsible().useCollection().useColors().useDatePicker().useDropdown().useFab().useFile().useFooter().useInput().useModal().useNavbar().usePagination().useParallax().useProgress().usePushpin().useRadio().useRange().useScrollfire().useScrollSpy().useSelect().useSidenav().useSlider().useSwitch().useTabs().useTooltip().useTransitions().useWaves().useWell();
+    return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useTitle().useLayoutData();
   };
 
-  ConfigBuilder.prototype.useAutoComplete = function useAutoComplete() {
-    this.globalResources.push('./autocomplete/autocomplete');
+  ConfigBuilder.prototype.usePage = function usePage() {
+    this.globalResources.push('./page/page');
     return this;
   };
 
-  ConfigBuilder.prototype.useBadge = function useBadge() {
-    this.globalResources.push('./badge/badge');
+  ConfigBuilder.prototype.useBar = function useBar() {
+    this.globalResources.push('./bar/bar');
     return this;
   };
 
-  ConfigBuilder.prototype.useBox = function useBox() {
-    this.globalResources.push('./box/box');
+  ConfigBuilder.prototype.useContainer = function useContainer() {
+    this.globalResources.push('./container/container');
     return this;
   };
 
-  ConfigBuilder.prototype.useBreadcrumbs = function useBreadcrumbs() {
-    this.globalResources.push('./breadcrumbs/breadcrumbs');
+  ConfigBuilder.prototype.useHtml = function useHtml() {
+    this.globalResources.push('./html/html');
     return this;
   };
 
@@ -47,189 +44,56 @@ var ConfigBuilder = exports.ConfigBuilder = function () {
     return this;
   };
 
-  ConfigBuilder.prototype.useCarousel = function useCarousel() {
-    this.globalResources.push('./carousel/carousel');
-    this.globalResources.push('./carousel/carousel-item');
+  ConfigBuilder.prototype.useGrid = function useGrid() {
+    this.globalResources.push('./grid/grid');
     return this;
   };
 
-  ConfigBuilder.prototype.useCharacterCounter = function useCharacterCounter() {
-    this.globalResources.push('./char-counter/char-counter');
+  ConfigBuilder.prototype.useWizard = function useWizard() {
+    this.globalResources.push('./wizard/wizard');
+    this.globalResources.push('./wizard-step/wizard-step');
     return this;
   };
 
-  ConfigBuilder.prototype.useCard = function useCard() {
-    this.globalResources.push('./card/card');
+  ConfigBuilder.prototype.useText = function useText() {
+    this.globalResources.push('./text/text');
     return this;
   };
 
-  ConfigBuilder.prototype.useCheckbox = function useCheckbox() {
-    this.globalResources.push('./checkbox/checkbox');
+  ConfigBuilder.prototype.useTiles = function useTiles() {
+    this.globalResources.push('./generic-tile/generic-tile');
+    this.globalResources.push('./tile-container/tile-container');
+    this.globalResources.push('./tile-content/tile-content');
+    this.globalResources.push('./standard-tile/standard-tile');
+    this.globalResources.push('./image-content/image-content');
+    this.globalResources.push('./numeric-content/numeric-content');
+    this.globalResources.push('./feed-content/feed-content');
+    this.globalResources.push('./slide-tile/slide-tile');
     return this;
   };
 
-  ConfigBuilder.prototype.useChip = function useChip() {
-    this.globalResources.push('./chip/chip');
-    this.globalResources.push('./chip/chips');
+  ConfigBuilder.prototype.useForm = function useForm() {
+    this.globalResources.push('./simple-form/simple-form');
     return this;
   };
 
-  ConfigBuilder.prototype.useClickCounter = function useClickCounter() {
-    this.globalResources.push('./click-counter');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useCollapsible = function useCollapsible() {
-    this.globalResources.push('./collapsible/collapsible');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useCollection = function useCollection() {
-    this.globalResources.push('./collection/collection');
-    this.globalResources.push('./collection/collection-item');
-    this.globalResources.push('./collection/collection-header');
-    this.globalResources.push('./collection/md-collection-selector');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useColors = function useColors() {
-    this.globalResources.push('./colors/md-colors');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useDatePicker = function useDatePicker() {
-    this.globalResources.push('./datepicker/datepicker');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useDropdown = function useDropdown() {
-    this.globalResources.push('./dropdown/dropdown');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useDropdownFix = function useDropdownFix() {
-    (0, _dropdownFix.applyMaterializeDropdownFix)();
-    return this;
-  };
-
-  ConfigBuilder.prototype.useFab = function useFab() {
-    this.globalResources.push('./fab/fab');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useFile = function useFile() {
-    this.globalResources.push('./file/file');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useFooter = function useFooter() {
-    this.globalResources.push('./footer/footer');
+  ConfigBuilder.prototype.useLabel = function useLabel() {
+    this.globalResources.push('./label/label');
     return this;
   };
 
   ConfigBuilder.prototype.useInput = function useInput() {
     this.globalResources.push('./input/input');
-    this.globalResources.push('./input/input-prefix');
     return this;
   };
 
-  ConfigBuilder.prototype.useModal = function useModal() {
-    this.globalResources.push('./modal/modal');
-    this.globalResources.push('./modal/modal-trigger');
+  ConfigBuilder.prototype.useTitle = function useTitle() {
+    this.globalResources.push('./title/title');
     return this;
   };
 
-  ConfigBuilder.prototype.useNavbar = function useNavbar() {
-    this.globalResources.push('./navbar/navbar');
-    return this;
-  };
-
-  ConfigBuilder.prototype.usePagination = function usePagination() {
-    this.globalResources.push('./pagination/pagination');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useParallax = function useParallax() {
-    this.globalResources.push('./parallax/parallax');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useProgress = function useProgress() {
-    this.globalResources.push('./progress/progress');
-    return this;
-  };
-
-  ConfigBuilder.prototype.usePushpin = function usePushpin() {
-    this.globalResources.push('./pushpin/pushpin');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useRadio = function useRadio() {
-    this.globalResources.push('./radio/radio');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useRange = function useRange() {
-    this.globalResources.push('./range/range');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useScrollfire = function useScrollfire() {
-    this.globalResources.push('./scrollfire/scrollfire');
-    this.globalResources.push('./scrollfire/scrollfire-target');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useScrollSpy = function useScrollSpy() {
-    this.globalResources.push('./scrollspy/scrollspy');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useSelect = function useSelect() {
-    this.globalResources.push('./select/select');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useSidenav = function useSidenav() {
-    this.globalResources.push('./sidenav/sidenav');
-    this.globalResources.push('./sidenav/sidenav-collapse');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useSlider = function useSlider() {
-    this.globalResources.push('./slider/slider');
-
-    return this;
-  };
-
-  ConfigBuilder.prototype.useSwitch = function useSwitch() {
-    this.globalResources.push('./switch/switch');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useTabs = function useTabs() {
-    this.globalResources.push('./tabs/tabs');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useTooltip = function useTooltip() {
-    this.globalResources.push('./tooltip/tooltip');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useTransitions = function useTransitions() {
-    this.globalResources.push('./transitions/fadein-image');
-    this.globalResources.push('./transitions/staggered-list');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useWaves = function useWaves() {
-    this.globalResources.push('./waves/waves');
-    return this;
-  };
-
-  ConfigBuilder.prototype.useWell = function useWell() {
-    this.globalResources.push('./well/md-well.html');
+  ConfigBuilder.prototype.useLayoutData = function useLayoutData() {
+    this.globalResources.push('./grid-data/grid-data');
     return this;
   };
 

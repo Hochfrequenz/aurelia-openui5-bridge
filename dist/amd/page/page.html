@@ -1,0 +1,17 @@
+<template>
+    <div ref="page">
+        <header ref="header">
+         <slot name="header"></slot>
+        </header>
+        <subheader ref="subheader">
+            <slot name="subheader">
+            </slot>
+        </subheader>
+         <content ref="content">
+            <slot name="content"></slot>
+        </content>
+        <footer ref="foooter">
+            <slot name="footer"></slot>
+        </content>
+    </div>
+</template>

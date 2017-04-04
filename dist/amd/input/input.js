@@ -1,10 +1,10 @@
-define(['exports', 'aurelia-templating', 'aurelia-binding', 'aurelia-dependency-injection', 'aurelia-task-queue', '../common/attributes', './input-update-service', '../common/events'], function (exports, _aureliaTemplating, _aureliaBinding, _aureliaDependencyInjection, _aureliaTaskQueue, _attributes, _inputUpdateService, _events) {
+define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', '../input-base/input-base'], function (exports, _aureliaTemplating, _aureliaDependencyInjection, _attributeManager, _attributes, _inputBase) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.MdInput = undefined;
+  exports.Ui5Input = undefined;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -20,6 +20,48 @@ define(['exports', 'aurelia-templating', 'aurelia-binding', 'aurelia-dependency-
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
+  }
+
+  function _possibleConstructorReturn(self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  }
+
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -55,184 +97,607 @@ define(['exports', 'aurelia-templating', 'aurelia-binding', 'aurelia-dependency-
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _class3, _temp;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _dec34, _dec35, _dec36, _dec37, _dec38, _dec39, _dec40, _dec41, _dec42, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31, _descriptor32, _descriptor33, _descriptor34, _descriptor35, _descriptor36, _descriptor37, _descriptor38, _descriptor39, _descriptor40;
 
-  var MdInput = exports.MdInput = (_dec = (0, _aureliaTemplating.customElement)('md-input'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaTaskQueue.TaskQueue, _inputUpdateService.MdInputUpdateService), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)({
-    defaultBindingMode: _aureliaBinding.bindingMode.oneTime
-  }), _dec7 = (0, _aureliaTemplating.bindable)({
-    defaultBindingMode: _aureliaBinding.bindingMode.oneTime
-  }), _dec8 = (0, _aureliaTemplating.bindable)({
-    defaultBindingMode: _aureliaBinding.bindingMode.oneTime
-  }), _dec9 = (0, _aureliaTemplating.bindable)({
-    defaultBindingMode: _aureliaBinding.bindingMode.oneTime
-  }), _dec10 = (0, _aureliaTemplating.bindable)({
-    defaultBindingMode: _aureliaBinding.bindingMode.oneTime
-  }), _dec11 = (0, _aureliaTemplating.bindable)({
-    defaultBindingMode: _aureliaBinding.bindingMode.oneTime
-  }), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)({
-    defaultBindingMode: _aureliaBinding.bindingMode.twoWay
-  }), _dec(_class = _dec2(_class = (_class2 = (_temp = _class3 = function () {
-    function MdInput(element, taskQueue, updateService) {
-      _classCallCheck(this, MdInput);
+  var Ui5Input = exports.Ui5Input = (_dec = (0, _aureliaTemplating.customElement)('ui5-input'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaTemplating.bindable)(), _dec27 = (0, _aureliaTemplating.bindable)(), _dec28 = (0, _aureliaTemplating.bindable)(), _dec29 = (0, _aureliaTemplating.bindable)(), _dec30 = (0, _aureliaTemplating.bindable)(), _dec31 = (0, _aureliaTemplating.bindable)(), _dec32 = (0, _aureliaTemplating.bindable)(), _dec33 = (0, _aureliaTemplating.bindable)(), _dec34 = (0, _aureliaTemplating.bindable)(), _dec35 = (0, _aureliaTemplating.bindable)(), _dec36 = (0, _aureliaTemplating.bindable)(), _dec37 = (0, _aureliaTemplating.bindable)(), _dec38 = (0, _aureliaTemplating.bindable)(), _dec39 = (0, _aureliaTemplating.bindable)(), _dec40 = (0, _aureliaTemplating.bindable)(), _dec41 = (0, _aureliaTemplating.bindable)(), _dec42 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function (_Ui5InputBase) {
+    _inherits(Ui5Input, _Ui5InputBase);
 
-      _initDefineProp(this, 'mdLabel', _descriptor, this);
+    Ui5Input.prototype.addChild = function addChild(child, elem) {
+      var path = $(elem).parentsUntil(this.element);
+      _Ui5InputBase.prototype.addChild.call(this, child, elem);
+    };
 
-      _initDefineProp(this, 'mdBlurOnEnter', _descriptor2, this);
+    _createClass(Ui5Input, [{
+      key: 'UIElement',
+      get: function get() {
+        return this._input;
+      }
+    }]);
 
-      _initDefineProp(this, 'mdDisabled', _descriptor3, this);
+    function Ui5Input(element) {
+      _classCallCheck(this, Ui5Input);
 
-      _initDefineProp(this, 'mdPlaceholder', _descriptor4, this);
+      var _this = _possibleConstructorReturn(this, _Ui5InputBase.call(this, element));
 
-      _initDefineProp(this, 'mdTextArea', _descriptor5, this);
+      _this._input = null;
 
-      _initDefineProp(this, 'mdType', _descriptor6, this);
+      _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-      _initDefineProp(this, 'mdStep', _descriptor7, this);
+      _initDefineProp(_this, 'type', _descriptor2, _this);
 
-      _initDefineProp(this, 'mdValidate', _descriptor8, this);
+      _initDefineProp(_this, 'maxLength', _descriptor3, _this);
 
-      _initDefineProp(this, 'mdShowErrortext', _descriptor9, this);
+      _initDefineProp(_this, 'dateFormat', _descriptor4, _this);
 
-      _initDefineProp(this, 'mdValidateError', _descriptor10, this);
+      _initDefineProp(_this, 'showValueHelp', _descriptor5, _this);
 
-      _initDefineProp(this, 'mdValidateSuccess', _descriptor11, this);
+      _initDefineProp(_this, 'showSuggestion', _descriptor6, _this);
 
-      _initDefineProp(this, 'mdValue', _descriptor12, this);
+      _initDefineProp(_this, 'valueHelpOnly', _descriptor7, _this);
 
-      this._suspendUpdate = false;
+      _initDefineProp(_this, 'filterSuggests', _descriptor8, _this);
 
-      this.element = element;
-      this.taskQueue = taskQueue;
-      this.controlId = 'md-input-' + MdInput.id++;
-      this.updateService = updateService;
-      this.blurOnEnter = this.blurOnEnter.bind(this);
+      _initDefineProp(_this, 'maxSuggestionWidth', _descriptor9, _this);
+
+      _initDefineProp(_this, 'showTableSuggestionValueHelp', _descriptor10, _this);
+
+      _initDefineProp(_this, 'description', _descriptor11, _this);
+
+      _initDefineProp(_this, 'fieldWidth', _descriptor12, _this);
+
+      _initDefineProp(_this, 'valueLiveUpdate', _descriptor13, _this);
+
+      _initDefineProp(_this, 'selectedKey', _descriptor14, _this);
+
+      _initDefineProp(_this, 'textFormatMode', _descriptor15, _this);
+
+      _initDefineProp(_this, 'textFormatter', _descriptor16, _this);
+
+      _initDefineProp(_this, 'suggestionRowValidator', _descriptor17, _this);
+
+      _initDefineProp(_this, 'suggestionItems', _descriptor18, _this);
+
+      _initDefineProp(_this, 'suggestionColumns', _descriptor19, _this);
+
+      _initDefineProp(_this, 'suggestionRows', _descriptor20, _this);
+
+      _initDefineProp(_this, 'selectedItem', _descriptor21, _this);
+
+      _initDefineProp(_this, 'selectedRow', _descriptor22, _this);
+
+      _initDefineProp(_this, 'liveChange', _descriptor23, _this);
+
+      _initDefineProp(_this, 'valueHelpRequest', _descriptor24, _this);
+
+      _initDefineProp(_this, 'suggest', _descriptor25, _this);
+
+      _initDefineProp(_this, 'suggestionItemSelected', _descriptor26, _this);
+
+      _initDefineProp(_this, 'submit', _descriptor27, _this);
+
+      _initDefineProp(_this, 'value', _descriptor28, _this);
+
+      _initDefineProp(_this, 'width', _descriptor29, _this);
+
+      _initDefineProp(_this, 'enabled', _descriptor30, _this);
+
+      _initDefineProp(_this, 'valueState', _descriptor31, _this);
+
+      _initDefineProp(_this, 'name', _descriptor32, _this);
+
+      _initDefineProp(_this, 'placeholder', _descriptor33, _this);
+
+      _initDefineProp(_this, 'editable', _descriptor34, _this);
+
+      _initDefineProp(_this, 'valueStateText', _descriptor35, _this);
+
+      _initDefineProp(_this, 'showValueStateMessage', _descriptor36, _this);
+
+      _initDefineProp(_this, 'textAlign', _descriptor37, _this);
+
+      _initDefineProp(_this, 'textDirection', _descriptor38, _this);
+
+      _initDefineProp(_this, 'required', _descriptor39, _this);
+
+      _initDefineProp(_this, 'change', _descriptor40, _this);
+
+      _this.element = element;
+      return _this;
     }
 
-    MdInput.prototype.bind = function bind() {
-      this.mdTextArea = (0, _attributes.getBooleanFromAttributeValue)(this.mdTextArea);
-      this.mdShowErrortext = (0, _attributes.getBooleanFromAttributeValue)(this.mdShowErrortext);
-      this.mdBlurOnEnter = (0, _attributes.getBooleanFromAttributeValue)(this.mdBlurOnEnter);
+    Ui5Input.prototype.defaultFunc = function defaultFunc() {};
+
+    Ui5Input.prototype.attached = function attached() {
+      var attributeManager = new _attributeManager.AttributeManager(this.element);
+      this._input = new sap.m.Input(this.ui5Id, {
+        type: this.type,
+        maxLength: this.maxLength,
+        dateFormat: this.dateFormat,
+        showValueHelp: (0, _attributes.getBooleanFromAttributeValue)(this.showValueHelp),
+        showSuggestion: (0, _attributes.getBooleanFromAttributeValue)(this.showSuggestion),
+        valueHelpOnly: (0, _attributes.getBooleanFromAttributeValue)(this.valueHelpOnly),
+        filterSuggests: (0, _attributes.getBooleanFromAttributeValue)(this.filterSuggests),
+        maxSuggestionWidth: this.maxSuggestionWidth,
+        showTableSuggestionValueHelp: (0, _attributes.getBooleanFromAttributeValue)(this.showTableSuggestionValueHelp),
+        description: this.description,
+        fieldWidth: this.fieldWidth,
+        valueLiveUpdate: (0, _attributes.getBooleanFromAttributeValue)(this.valueLiveUpdate),
+        selectedKey: this.selectedKey,
+        textFormatMode: this.textFormatMode,
+        suggestionRowValidator: this.suggestionRowValidator,
+        suggestionItems: this.suggestionItems,
+        suggestionColumns: this.suggestionColumns,
+        suggestionRows: this.suggestionRows,
+        selectedItem: this.selectedItem,
+        selectedRow: this.selectedRow,
+        liveChange: this.liveChange,
+        valueHelpRequest: this.valueHelpRequest,
+        suggest: this.suggest,
+        suggestionItemSelected: this.suggestionItemSelected,
+        submit: this.submit,
+        value: this.value,
+        width: this.width,
+        enabled: (0, _attributes.getBooleanFromAttributeValue)(this.enabled),
+        valueState: this.valueState,
+        name: this.value,
+        placeholder: this.placeholder,
+        editable: (0, _attributes.getBooleanFromAttributeValue)(this.editable),
+        valueStateText: this.valueStateText,
+        showValueStateMessage: (0, _attributes.getBooleanFromAttributeValue)(this.showValueStateMessage),
+        textAlign: this.textAlign,
+        textDirection: this.textDirection,
+        required: (0, _attributes.getBooleanFromAttributeValue)(this.required),
+        change: this.change
+      });
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._input, this.element);
+      attributeManager.addAttributes({ "ui5-layout": '' });
+      var that = this;
+      this._input.attachChange(function (event) {
+        that.value = event.mParameters.value;
+      });
+      this._input.attachLiveChange(function (event) {
+        if ((0, _attributes.getBooleanFromAttributeValue)(that.valueLiveUpdate)) {
+          that.value = event.mParameters.value;
+        }
+      });
+      this._input.addEventDelegate(this.element);
+      _Ui5InputBase.prototype.attached.call(this);
     };
 
-    MdInput.prototype.attached = function attached() {
-      if ((0, _attributes.getBooleanFromAttributeValue)(this.mdValidate)) {
-        this.input.classList.add('validate');
-      }
-      if (this.mdValidateError) {
-        this.label.setAttribute('data-error', this.mdValidateError);
-      }
-      if (this.mdValidateSuccess) {
-        this.label.setAttribute('data-success', this.mdValidateSuccess);
-      }
-      if (this.mdPlaceholder) {
-        this.input.setAttribute('placeholder', this.mdPlaceholder);
-      }
-      if (this.mdShowErrortext) {
-        this.input.setAttribute('data-show-errortext', this.mdShowErrortext);
-      }
-      this.updateService.update();
-
-      if (this.mdType === 'time') {
-        $(this.input).siblings('label').addClass('active');
-      }
-      this.attachEventHandlers();
-    };
-
-    MdInput.prototype.detached = function detached() {
-      this.detachEventHandlers();
-    };
-
-    MdInput.prototype.blur = function blur() {
-      (0, _events.fireEvent)(this.element, 'blur');
-    };
-
-    MdInput.prototype.focus = function focus() {
-      (0, _events.fireEvent)(this.element, 'focus');
-    };
-
-    MdInput.prototype.mdValueChanged = function mdValueChanged() {
-      if (!$(this.input).is(':focus')) {
-        this.updateService.update();
-      }
-      if (this.mdTextArea) {
-        $(this.input).trigger('autoresize');
-      }
-    };
-
-    MdInput.prototype.attachEventHandlers = function attachEventHandlers() {
-      if (this.mdBlurOnEnter) {
-        this.element.addEventListener('keyup', this.blurOnEnter);
-      }
-    };
-
-    MdInput.prototype.detachEventHandlers = function detachEventHandlers() {
-      if (this.mdBlurOnEnter) {
-        this.element.removeEventListener('keyup', this.blurOnEnter);
-      }
-    };
-
-    MdInput.prototype.blurOnEnter = function blurOnEnter(e) {
-      if (e.keyCode && e.keyCode === 13) {
-        this.input.blur();
+    Ui5Input.prototype.typeChanged = function typeChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setType(newValue);
       }
     };
 
-    return MdInput;
-  }(), _class3.id = 0, _temp), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'mdLabel', [_dec3], {
+    Ui5Input.prototype.maxLengthChanged = function maxLengthChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setMaxLength(newValue);
+      }
+    };
+
+    Ui5Input.prototype.dateFormatChanged = function dateFormatChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setDateFormat(newValue);
+      }
+    };
+
+    Ui5Input.prototype.showValueHelpChanged = function showValueHelpChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setShowValueHelp((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.showSuggestionChanged = function showSuggestionChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setShowSuggestion((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.valueHelpOnlyChanged = function valueHelpOnlyChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setValueHelpOnly((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.filterSuggestsChanged = function filterSuggestsChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setFilterSuggests((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.maxSuggestionWidthChanged = function maxSuggestionWidthChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setMaxSuggestionWidth(newValue);
+      }
+    };
+
+    Ui5Input.prototype.showTableSuggestionValueHelpChanged = function showTableSuggestionValueHelpChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setTableSuggestionValueHelp((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.descriptionChanged = function descriptionChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setDescription(newValue);
+      }
+    };
+
+    Ui5Input.prototype.fieldWidthChanged = function fieldWidthChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setFieldWidth(newValue);
+      }
+    };
+
+    Ui5Input.prototype.valueLiveUpdateChanged = function valueLiveUpdateChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setValueLiveUpdate((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.selectedKeyChanged = function selectedKeyChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setSelectedKey(newValue);
+      }
+    };
+
+    Ui5Input.prototype.textFormatModeChanged = function textFormatModeChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setTextFormatMode(newValue);
+      }
+    };
+
+    Ui5Input.prototype.textFormatterChanged = function textFormatterChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setTextFormatter(newValue);
+      }
+    };
+
+    Ui5Input.prototype.suggestionRowValidatorChanged = function suggestionRowValidatorChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setSuggestionsRowValidator(newValue);
+      }
+    };
+
+    Ui5Input.prototype.suggestionItemsChanged = function suggestionItemsChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setSuggestionsItems(newValue);
+      }
+    };
+
+    Ui5Input.prototype.suggestionColumnsChanged = function suggestionColumnsChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setSuggestionsRowValidator(newValue);
+      }
+    };
+
+    Ui5Input.prototype.suggestionRowsChanged = function suggestionRowsChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setSuggestionsRowValidator(newValue);
+      }
+    };
+
+    Ui5Input.prototype.selectedItemChanged = function selectedItemChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setSelectedItem(newValue);
+      }
+    };
+
+    Ui5Input.prototype.selectedRowChanged = function selectedRowChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setSelectedRow(newValue);
+      }
+    };
+
+    Ui5Input.prototype.liveChangeChanged = function liveChangeChanged(newValue) {
+      if (this._input !== null) {
+        this._input.attachLiveChange(newValue);
+      }
+    };
+
+    Ui5Input.prototype.valueHelpRequestChanged = function valueHelpRequestChanged(newValue) {
+      if (this._input !== null) {
+        this._input.attachValueHelpRequest(newValue);
+      }
+    };
+
+    Ui5Input.prototype.suggestChanged = function suggestChanged(newValue) {
+      if (this._input !== null) {
+        this._input.attachSuggest(newValue);
+      }
+    };
+
+    Ui5Input.prototype.suggestionItemSelectedChanged = function suggestionItemSelectedChanged(newValue) {
+      if (this._input !== null) {
+        this._input.attachSuggestionItemSelected(newValue);
+      }
+    };
+
+    Ui5Input.prototype.submitChanged = function submitChanged(newValue) {
+      if (this._input !== null) {
+        this._input.attachSubmit(newValue);
+      }
+    };
+
+    Ui5Input.prototype.valueChanged = function valueChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setValue(newValue);
+      }
+    };
+
+    Ui5Input.prototype.widthChanged = function widthChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setWidth(newValue);
+      }
+    };
+
+    Ui5Input.prototype.enabledChanged = function enabledChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.valueStateChanged = function valueStateChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setValueState(newValue);
+      }
+    };
+
+    Ui5Input.prototype.nameChanged = function nameChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setName(newValue);
+      }
+    };
+
+    Ui5Input.prototype.placeholderChanged = function placeholderChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setPlaceholder(newValue);
+      }
+    };
+
+    Ui5Input.prototype.editableChanged = function editableChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setEditable((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.valueStateTextChanged = function valueStateTextChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setValueStateText(newValue);
+      }
+    };
+
+    Ui5Input.prototype.showValueStateMessageChanged = function showValueStateMessageChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setShowValueStateMessage((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.textAlignChanged = function textAlignChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setTextAlign(newValue);
+      }
+    };
+
+    Ui5Input.prototype.textDirectionChanged = function textDirectionChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setTextDirection(newValue);
+      }
+    };
+
+    Ui5Input.prototype.requiredChanged = function requiredChanged(newValue) {
+      if (this._input !== null) {
+        this._input.setRequired((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Input.prototype.changeChanged = function changeChanged(newValue) {
+      if (this._input !== null) {
+        this._input.attachChange(newValue);
+      }
+    };
+
+    return Ui5Input;
+  }(_inputBase.Ui5InputBase), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
     enumerable: true,
     initializer: function initializer() {
-      return '';
+      return null;
     }
-  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'mdBlurOnEnter', [_dec4], {
+  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 'Text';
+    }
+  }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'maxLength', [_dec5], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 0;
+    }
+  }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'dateFormat', [_dec6], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 'YYYY-MM-DD';
+    }
+  }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'showValueHelp', [_dec7], {
     enumerable: true,
     initializer: function initializer() {
       return false;
     }
-  }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'mdDisabled', [_dec5], {
+  }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'showSuggestion', [_dec8], {
     enumerable: true,
     initializer: function initializer() {
       return false;
     }
-  }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'mdPlaceholder', [_dec6], {
-    enumerable: true,
-    initializer: function initializer() {
-      return '';
-    }
-  }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'mdTextArea', [_dec7], {
+  }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'valueHelpOnly', [_dec9], {
     enumerable: true,
     initializer: function initializer() {
       return false;
     }
-  }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'mdType', [_dec8], {
-    enumerable: true,
-    initializer: function initializer() {
-      return 'text';
-    }
-  }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'mdStep', [_dec9], {
-    enumerable: true,
-    initializer: function initializer() {
-      return 'any';
-    }
-  }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'mdValidate', [_dec10], {
-    enumerable: true,
-    initializer: function initializer() {
-      return false;
-    }
-  }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'mdShowErrortext', [_dec11], {
+  }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'filterSuggests', [_dec10], {
     enumerable: true,
     initializer: function initializer() {
       return true;
     }
-  }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'mdValidateError', [_dec12], {
+  }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'maxSuggestionWidth', [_dec11], {
     enumerable: true,
-    initializer: null
-  }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'mdValidateSuccess', [_dec13], {
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'showTableSuggestionValueHelp', [_dec12], {
     enumerable: true,
-    initializer: null
-  }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'mdValue', [_dec14], {
+    initializer: function initializer() {
+      return true;
+    }
+  }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'description', [_dec13], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'fieldWidth', [_dec14], {
+    enumerable: true,
+    initializer: function initializer() {
+      return '50%';
+    }
+  }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'valueLiveUpdate', [_dec15], {
+    enumerable: true,
+    initializer: function initializer() {
+      return false;
+    }
+  }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'selectedKey', [_dec16], {
     enumerable: true,
     initializer: function initializer() {
       return '';
+    }
+  }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'textFormatMode', [_dec17], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 'Value';
+    }
+  }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'textFormatter', [_dec18], {
+    enumerable: true,
+    initializer: function initializer() {
+      return '';
+    }
+  }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'suggestionRowValidator', [_dec19], {
+    enumerable: true,
+    initializer: function initializer() {
+      return '';
+    }
+  }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'suggestionItems', [_dec20], {
+    enumerable: true,
+    initializer: function initializer() {
+      return [];
+    }
+  }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'suggestionColumns', [_dec21], {
+    enumerable: true,
+    initializer: function initializer() {
+      return [];
+    }
+  }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'suggestionRows', [_dec22], {
+    enumerable: true,
+    initializer: function initializer() {
+      return [];
+    }
+  }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'selectedItem', [_dec23], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'selectedRow', [_dec24], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'liveChange', [_dec25], {
+    enumerable: true,
+    initializer: function initializer() {
+      return this.defaultFunc;
+    }
+  }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'valueHelpRequest', [_dec26], {
+    enumerable: true,
+    initializer: function initializer() {
+      return this.defaultFunc;
+    }
+  }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'suggest', [_dec27], {
+    enumerable: true,
+    initializer: function initializer() {
+      return this.defaultFunc;
+    }
+  }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'suggestionItemSelected', [_dec28], {
+    enumerable: true,
+    initializer: function initializer() {
+      return this.defaultFunc;
+    }
+  }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'submit', [_dec29], {
+    enumerable: true,
+    initializer: function initializer() {
+      return this.defaultFunc;
+    }
+  }), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec30], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec31], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec32], {
+    enumerable: true,
+    initializer: function initializer() {
+      return true;
+    }
+  }), _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, 'valueState', [_dec33], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 'None';
+    }
+  }), _descriptor32 = _applyDecoratedDescriptor(_class2.prototype, 'name', [_dec34], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor33 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_dec35], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor34 = _applyDecoratedDescriptor(_class2.prototype, 'editable', [_dec36], {
+    enumerable: true,
+    initializer: function initializer() {
+      return true;
+    }
+  }), _descriptor35 = _applyDecoratedDescriptor(_class2.prototype, 'valueStateText', [_dec37], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor36 = _applyDecoratedDescriptor(_class2.prototype, 'showValueStateMessage', [_dec38], {
+    enumerable: true,
+    initializer: function initializer() {
+      return true;
+    }
+  }), _descriptor37 = _applyDecoratedDescriptor(_class2.prototype, 'textAlign', [_dec39], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 'Initial';
+    }
+  }), _descriptor38 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec40], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 'Inherit';
+    }
+  }), _descriptor39 = _applyDecoratedDescriptor(_class2.prototype, 'required', [_dec41], {
+    enumerable: true,
+    initializer: function initializer() {
+      return false;
+    }
+  }), _descriptor40 = _applyDecoratedDescriptor(_class2.prototype, 'change', [_dec42], {
+    enumerable: true,
+    initializer: function initializer() {
+      return this.defaultFunc;
     }
   })), _class2)) || _class) || _class);
 });

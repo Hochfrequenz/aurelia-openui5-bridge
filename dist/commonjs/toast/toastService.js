@@ -6,18 +6,21 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MdToastService = exports.MdToastService = function () {
-  function MdToastService() {
-    _classCallCheck(this, MdToastService);
+var Ui5ToastService = exports.Ui5ToastService = function () {
+  function Ui5ToastService() {
+    _classCallCheck(this, Ui5ToastService);
   }
 
-  MdToastService.prototype.show = function show(message, displayLength, className) {
+  Ui5ToastService.prototype.show = function show(message, displayLength) {
     return new Promise(function (resolve, reject) {
-      Materialize.toast(message, displayLength, className, function () {
-        resolve();
+      sap.m.MessageToast.show(message, {
+        duration: displayLength,
+        onClose: function onClose() {
+          resolve();
+        }
       });
     });
   };
 
-  return MdToastService;
+  return Ui5ToastService;
 }();

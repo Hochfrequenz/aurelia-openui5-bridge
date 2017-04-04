@@ -1,66 +1,55 @@
-import { bindable, customAttribute } from 'aurelia-templating';
+import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
 
-@customAttribute('md-button')
+@customElement('ui5-button')
 @inject(Element)
-export class MdButton {
+export class Ui5Button {
   @bindable() disabled = false;
-  @bindable() flat = false;
   @bindable() floating = false;
   @bindable() large = false;
-
+  @bindable() text = '';
+  @bindable() press = null;
+  _button = null;
   constructor(element) {
     this.attributeManager = new AttributeManager(element);
+    this.element = element;
   }
 
   attached() {
-    let classes = [];
+    this._button = new sap.m.Button({
+      text: this.text,
+      enabled: !getBooleanFromAttributeValue(this.disabled),
+      press: this.press != null ? this.press : this.defaultPress
+    });
 
-    if (getBooleanFromAttributeValue(this.flat)) {
-      classes.push('btn-flat');
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._button, this.element);
     }
-    if (getBooleanFromAttributeValue(this.floating)) {
-      classes.push('btn-floating');
-    }
-    if (getBooleanFromAttributeValue(this.large)) {
-      classes.push('btn-large');
-    }
-
-    if (classes.length === 0) {
-      classes.push('btn');
-    }
-
-    if (getBooleanFromAttributeValue(this.disabled)) {
-      classes.push('disabled');
-    }
-
-    if (!getBooleanFromAttributeValue(this.flat)) {
-      classes.push('accent');
-    }
-    this.attributeManager.addClasses(classes);
   }
+  defaultPress() {
 
+  }
   detached() {
-    this.attributeManager.removeClasses(['accent', 'btn', 'btn-flat', 'btn-large', 'disabled']);
+
   }
 
   disabledChanged(newValue) {
-    if (getBooleanFromAttributeValue(newValue)) {
-      this.attributeManager.addClasses('disabled');
-    } else {
-      this.attributeManager.removeClasses('disabled');
+    if (this._button !== null) {
+      this._button.setEnabled(!getBooleanFromAttributeValue(newValue));
     }
+
   }
 
-  flatChanged(newValue) {
-    if (getBooleanFromAttributeValue(newValue)) {
-      this.attributeManager.removeClasses(['btn', 'accent']);
-      this.attributeManager.addClasses('btn-flat');
-    } else {
-      this.attributeManager.removeClasses('btn-flat');
-      this.attributeManager.addClasses(['btn', 'accent']);
+  textChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setText(newValue);
+    }
+  }
+  pressChanged(newValue) {
+    if (this._button !== null) {
+      this._button.attachPress(newValue);
     }
   }
 }

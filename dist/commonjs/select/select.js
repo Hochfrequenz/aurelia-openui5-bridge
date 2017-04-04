@@ -17,15 +17,11 @@ var _aureliaTaskQueue = require('aurelia-task-queue');
 
 var _aureliaLogging = require('aurelia-logging');
 
-var LogManager = _interopRequireWildcard(_aureliaLogging);
-
 var _events = require('../common/events');
 
 var _attributes = require('../common/attributes');
 
 var _aureliaPal = require('aurelia-pal');
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -72,8 +68,8 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var MdSelect = exports.MdSelect = (_dec = (0, _aureliaDependencyInjection.inject)(Element, LogManager, _aureliaBinding.BindingEngine, _aureliaTaskQueue.TaskQueue), _dec2 = (0, _aureliaTemplating.customAttribute)('md-select'), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
-  function MdSelect(element, logManager, bindingEngine, taskQueue) {
+var MdSelect = exports.MdSelect = (_dec = (0, _aureliaDependencyInjection.inject)(Element, _aureliaBinding.BindingEngine, _aureliaTaskQueue.TaskQueue), _dec2 = (0, _aureliaTemplating.customAttribute)('md-select'), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+  function MdSelect(element, bindingEngine, taskQueue) {
     _classCallCheck(this, MdSelect);
 
     _initDefineProp(this, 'disabled', _descriptor, this);
@@ -96,7 +92,7 @@ var MdSelect = exports.MdSelect = (_dec = (0, _aureliaDependencyInjection.inject
     this.handleChangeFromViewModel = this.handleChangeFromViewModel.bind(this);
     this.handleChangeFromNativeSelect = this.handleChangeFromNativeSelect.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
-    this.log = LogManager.getLogger('md-select');
+    this.log = (0, _aureliaLogging.getLogger)('md-select');
     this.bindingEngine = bindingEngine;
   }
 

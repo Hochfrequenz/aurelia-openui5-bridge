@@ -4,62 +4,50 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _autocomplete = require('./autocomplete/autocomplete');
+var _page = require('./page/page');
 
-Object.keys(_autocomplete).forEach(function (key) {
+Object.keys(_page).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _autocomplete[key];
+      return _page[key];
     }
   });
 });
 
-var _badge = require('./badge/badge');
+var _bar = require('./bar/bar');
 
-Object.keys(_badge).forEach(function (key) {
+Object.keys(_bar).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _badge[key];
+      return _bar[key];
     }
   });
 });
 
-var _box = require('./box/box');
+var _container = require('./container/container');
 
-Object.keys(_box).forEach(function (key) {
+Object.keys(_container).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _box[key];
+      return _container[key];
     }
   });
 });
 
-var _breadcrumbs = require('./breadcrumbs/breadcrumbs');
+var _html = require('./html/html');
 
-Object.keys(_breadcrumbs).forEach(function (key) {
+Object.keys(_html).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _breadcrumbs[key];
-    }
-  });
-});
-
-var _instructionFilter = require('./breadcrumbs/instructionFilter');
-
-Object.keys(_instructionFilter).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _instructionFilter[key];
+      return _html[key];
     }
   });
 });
@@ -76,578 +64,98 @@ Object.keys(_button).forEach(function (key) {
   });
 });
 
-var _card = require('./card/card');
+var _tileContainer = require('./tile-container/tile-container');
 
-Object.keys(_card).forEach(function (key) {
+Object.keys(_tileContainer).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _card[key];
+      return _tileContainer[key];
     }
   });
 });
 
-var _carouselItem = require('./carousel/carousel-item');
+var _genericTile = require('./generic-tile/generic-tile');
 
-Object.keys(_carouselItem).forEach(function (key) {
+Object.keys(_genericTile).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _carouselItem[key];
+      return _genericTile[key];
     }
   });
 });
 
-var _carousel = require('./carousel/carousel');
+var _tileContent = require('./tile-content/tile-content');
 
-Object.keys(_carousel).forEach(function (key) {
+Object.keys(_tileContent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _carousel[key];
+      return _tileContent[key];
     }
   });
 });
 
-var _charCounter = require('./char-counter/char-counter');
+var _imageContent = require('./image-content/image-content');
 
-Object.keys(_charCounter).forEach(function (key) {
+Object.keys(_imageContent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _charCounter[key];
+      return _imageContent[key];
     }
   });
 });
 
-var _checkbox = require('./checkbox/checkbox');
+var _numericContent = require('./numeric-content/numeric-content');
 
-Object.keys(_checkbox).forEach(function (key) {
+Object.keys(_numericContent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _checkbox[key];
+      return _numericContent[key];
     }
   });
 });
 
-var _chip = require('./chip/chip');
+var _feedContent = require('./feed-content/feed-content');
 
-Object.keys(_chip).forEach(function (key) {
+Object.keys(_feedContent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _chip[key];
+      return _feedContent[key];
     }
   });
 });
 
-var _chips = require('./chip/chips');
+var _standardTile = require('./standard-tile/standard-tile');
 
-Object.keys(_chips).forEach(function (key) {
+Object.keys(_standardTile).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _chips[key];
+      return _standardTile[key];
     }
   });
 });
 
-var _collapsible = require('./collapsible/collapsible');
+var _slideTile = require('./slide-tile/slide-tile');
 
-Object.keys(_collapsible).forEach(function (key) {
+Object.keys(_slideTile).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _collapsible[key];
-    }
-  });
-});
-
-var _collectionHeader = require('./collection/collection-header');
-
-Object.keys(_collectionHeader).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _collectionHeader[key];
-    }
-  });
-});
-
-var _collectionItem = require('./collection/collection-item');
-
-Object.keys(_collectionItem).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _collectionItem[key];
-    }
-  });
-});
-
-var _collection = require('./collection/collection');
-
-Object.keys(_collection).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _collection[key];
-    }
-  });
-});
-
-var _mdCollectionSelector = require('./collection/md-collection-selector');
-
-Object.keys(_mdCollectionSelector).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _mdCollectionSelector[key];
-    }
-  });
-});
-
-var _colorValueConverters = require('./colors/colorValueConverters');
-
-Object.keys(_colorValueConverters).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _colorValueConverters[key];
-    }
-  });
-});
-
-var _mdColors = require('./colors/md-colors');
-
-Object.keys(_mdColors).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _mdColors[key];
-    }
-  });
-});
-
-var _attributeManager = require('./common/attributeManager');
-
-Object.keys(_attributeManager).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _attributeManager[key];
-    }
-  });
-});
-
-var _attributes = require('./common/attributes');
-
-Object.keys(_attributes).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _attributes[key];
-    }
-  });
-});
-
-var _constants = require('./common/constants');
-
-Object.keys(_constants).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _constants[key];
-    }
-  });
-});
-
-var _events = require('./common/events');
-
-Object.keys(_events).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _events[key];
-    }
-  });
-});
-
-var _datepickerDefaultParser = require('./datepicker/datepicker-default-parser');
-
-Object.keys(_datepickerDefaultParser).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _datepickerDefaultParser[key];
-    }
-  });
-});
-
-var _datepicker = require('./datepicker/datepicker');
-
-Object.keys(_datepicker).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _datepicker[key];
-    }
-  });
-});
-
-var _dropdownElement = require('./dropdown/dropdown-element');
-
-Object.keys(_dropdownElement).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _dropdownElement[key];
-    }
-  });
-});
-
-var _dropdown = require('./dropdown/dropdown');
-
-Object.keys(_dropdown).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _dropdown[key];
-    }
-  });
-});
-
-var _dropdownFix = require('./dropdown/dropdown-fix');
-
-Object.keys(_dropdownFix).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _dropdownFix[key];
-    }
-  });
-});
-
-var _fab = require('./fab/fab');
-
-Object.keys(_fab).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _fab[key];
-    }
-  });
-});
-
-var _file = require('./file/file');
-
-Object.keys(_file).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _file[key];
-    }
-  });
-});
-
-var _footer = require('./footer/footer');
-
-Object.keys(_footer).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _footer[key];
-    }
-  });
-});
-
-var _inputPrefix = require('./input/input-prefix');
-
-Object.keys(_inputPrefix).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _inputPrefix[key];
-    }
-  });
-});
-
-var _inputUpdateService = require('./input/input-update-service');
-
-Object.keys(_inputUpdateService).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _inputUpdateService[key];
-    }
-  });
-});
-
-var _input = require('./input/input');
-
-Object.keys(_input).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _input[key];
-    }
-  });
-});
-
-var _modal = require('./modal/modal');
-
-Object.keys(_modal).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _modal[key];
-    }
-  });
-});
-
-var _modalTrigger = require('./modal/modal-trigger');
-
-Object.keys(_modalTrigger).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _modalTrigger[key];
-    }
-  });
-});
-
-var _navbar = require('./navbar/navbar');
-
-Object.keys(_navbar).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _navbar[key];
-    }
-  });
-});
-
-var _pagination = require('./pagination/pagination');
-
-Object.keys(_pagination).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _pagination[key];
-    }
-  });
-});
-
-var _parallax = require('./parallax/parallax');
-
-Object.keys(_parallax).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _parallax[key];
-    }
-  });
-});
-
-var _progress = require('./progress/progress');
-
-Object.keys(_progress).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _progress[key];
-    }
-  });
-});
-
-var _pushpin = require('./pushpin/pushpin');
-
-Object.keys(_pushpin).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _pushpin[key];
-    }
-  });
-});
-
-var _radio = require('./radio/radio');
-
-Object.keys(_radio).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _radio[key];
-    }
-  });
-});
-
-var _range = require('./range/range');
-
-Object.keys(_range).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _range[key];
-    }
-  });
-});
-
-var _scrollfirePatch = require('./scrollfire/scrollfire-patch');
-
-Object.keys(_scrollfirePatch).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _scrollfirePatch[key];
-    }
-  });
-});
-
-var _scrollfireTarget = require('./scrollfire/scrollfire-target');
-
-Object.keys(_scrollfireTarget).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _scrollfireTarget[key];
-    }
-  });
-});
-
-var _scrollfire = require('./scrollfire/scrollfire');
-
-Object.keys(_scrollfire).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _scrollfire[key];
-    }
-  });
-});
-
-var _scrollspy = require('./scrollspy/scrollspy');
-
-Object.keys(_scrollspy).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _scrollspy[key];
-    }
-  });
-});
-
-var _select = require('./select/select');
-
-Object.keys(_select).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _select[key];
-    }
-  });
-});
-
-var _sidenavCollapse = require('./sidenav/sidenav-collapse');
-
-Object.keys(_sidenavCollapse).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _sidenavCollapse[key];
-    }
-  });
-});
-
-var _sidenav = require('./sidenav/sidenav');
-
-Object.keys(_sidenav).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _sidenav[key];
-    }
-  });
-});
-
-var _slider = require('./slider/slider');
-
-Object.keys(_slider).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _slider[key];
-    }
-  });
-});
-
-var _switch = require('./switch/switch');
-
-Object.keys(_switch).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _switch[key];
-    }
-  });
-});
-
-var _tabs = require('./tabs/tabs');
-
-Object.keys(_tabs).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _tabs[key];
+      return _slideTile[key];
     }
   });
 });
@@ -664,62 +172,110 @@ Object.keys(_toastService).forEach(function (key) {
   });
 });
 
-var _tooltip = require('./tooltip/tooltip');
+var _grid = require('./grid/grid');
 
-Object.keys(_tooltip).forEach(function (key) {
+Object.keys(_grid).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _tooltip[key];
+      return _grid[key];
     }
   });
 });
 
-var _fadeinImage = require('./transitions/fadein-image');
+var _text = require('./text/text');
 
-Object.keys(_fadeinImage).forEach(function (key) {
+Object.keys(_text).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _fadeinImage[key];
+      return _text[key];
     }
   });
 });
 
-var _staggeredList = require('./transitions/staggered-list');
+var _wizard = require('./wizard/wizard');
 
-Object.keys(_staggeredList).forEach(function (key) {
+Object.keys(_wizard).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _staggeredList[key];
+      return _wizard[key];
     }
   });
 });
 
-var _validationRenderer = require('./validation/validationRenderer');
+var _wizardStep = require('./wizard-step/wizard-step');
 
-Object.keys(_validationRenderer).forEach(function (key) {
+Object.keys(_wizardStep).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _validationRenderer[key];
+      return _wizardStep[key];
     }
   });
 });
 
-var _waves = require('./waves/waves');
+var _simpleForm = require('./simple-form/simple-form');
 
-Object.keys(_waves).forEach(function (key) {
+Object.keys(_simpleForm).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _waves[key];
+      return _simpleForm[key];
+    }
+  });
+});
+
+var _label = require('./label/label');
+
+Object.keys(_label).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _label[key];
+    }
+  });
+});
+
+var _input = require('./input/input');
+
+Object.keys(_input).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _input[key];
+    }
+  });
+});
+
+var _title = require('./title/title');
+
+Object.keys(_title).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _title[key];
+    }
+  });
+});
+
+var _gridData = require('./grid-data/grid-data');
+
+Object.keys(_gridData).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _gridData[key];
     }
   });
 });
