@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['./page/page', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './input/input', './title/title', './grid-data/grid-data'], function (_export, _context) {
+System.register(['./page/page', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './input/input', './title/title', './grid-data/grid-data', './common/init'], function (_export, _context) {
   "use strict";
 
   return {
@@ -188,6 +188,14 @@ System.register(['./page/page', './bar/bar', './container/container', './html/ht
       }
 
       _export(_exportObj23);
+    }, function (_commonInit) {
+      var _exportObj24 = {};
+
+      for (var _key24 in _commonInit) {
+        if (_key24 !== "default" && _key24 !== "__esModule") _exportObj24[_key24] = _commonInit[_key24];
+      }
+
+      _export(_exportObj24);
     }],
     execute: function () {}
   };

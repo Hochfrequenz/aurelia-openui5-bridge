@@ -23,6 +23,15 @@ export class Ui5Page {
     if (path[0].localName == 'footer')
       this._page.setFooter(child);
   }
+  removeChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    if (path[0].localName == 'subheader')
+      this._page.setSubHeader(child);
+    if (path[0].localName == 'content')
+      this._page.removeContent(child);
+    if (path[0].localName == 'footer')
+      this._page.setFooter(child);
+  }
   attached() {
     var attributeManager = new AttributeManager(this.element);
     var page = new sap.m.Page({

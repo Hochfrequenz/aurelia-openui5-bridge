@@ -22,6 +22,6 @@ export * from './label/label';
 export * from './input/input';
 export * from './title/title';
 export * from './grid-data/grid-data';
-
+export * from './common/init'
 
 // build-index-remove end

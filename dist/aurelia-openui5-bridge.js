@@ -293,6 +293,57 @@ export class MdBox {
   }
 }
 
+// taken from: https://github.com/heruan/aurelia-breadcrumbs
+
+@customElement('md-breadcrumbs')
+@inject(Element, Router)
+export class MdBreadcrumbs {
+  @bindable() router;
+
+  constructor(element, router) {
+    this.element = element;
+    this.aureliaRouter = router;
+    // this._childRouter = router;
+    // while (router.parent) {
+    //   router = router.parent;
+    // }
+    // this.router = router;
+  }
+
+  bind() {
+    if (!this.router) {
+      this.router = this.aureliaRouter;
+    }
+    let router = this.router;
+    this._childRouter = router;
+    while (router.parent) {
+      router = router.parent;
+    }
+    this.router = router;
+  }
+
+  routerChanged() {
+    // console.log('[breadcrumbs]', this.router);
+  }
+
+  navigate(navigationInstruction) {
+    this._childRouter.navigateToRoute(navigationInstruction.config.name);
+    // this.router.navigate(navigationInstruction.config.name);
+  }
+}
+
+export class InstructionFilterValueConverter {
+  toView(navigationInstructions) {
+    return navigationInstructions.filter(i => {
+      let result = false;
+      if (i.config.title) {
+        result = true;
+      }
+      return result;
+    });
+  }
+}
+
 @customElement('ui5-button')
 @inject(Element)
 export class Ui5Button {
@@ -370,57 +421,6 @@ export class MdCard {
   attached() {
     this.mdHorizontal = getBooleanFromAttributeValue(this.mdHorizontal);
     this.mdReveal = getBooleanFromAttributeValue(this.mdReveal);
-  }
-}
-
-// taken from: https://github.com/heruan/aurelia-breadcrumbs
-
-@customElement('md-breadcrumbs')
-@inject(Element, Router)
-export class MdBreadcrumbs {
-  @bindable() router;
-
-  constructor(element, router) {
-    this.element = element;
-    this.aureliaRouter = router;
-    // this._childRouter = router;
-    // while (router.parent) {
-    //   router = router.parent;
-    // }
-    // this.router = router;
-  }
-
-  bind() {
-    if (!this.router) {
-      this.router = this.aureliaRouter;
-    }
-    let router = this.router;
-    this._childRouter = router;
-    while (router.parent) {
-      router = router.parent;
-    }
-    this.router = router;
-  }
-
-  routerChanged() {
-    // console.log('[breadcrumbs]', this.router);
-  }
-
-  navigate(navigationInstruction) {
-    this._childRouter.navigateToRoute(navigationInstruction.config.name);
-    // this.router.navigate(navigationInstruction.config.name);
-  }
-}
-
-export class InstructionFilterValueConverter {
-  toView(navigationInstructions) {
-    return navigationInstructions.filter(i => {
-      let result = false;
-      if (i.config.title) {
-        result = true;
-      }
-      return result;
-    });
   }
 }
 
@@ -912,6 +912,17 @@ export function fireEvent(element: Element, name: string, data? = {}) {
 */
 export function fireMaterializeEvent(element: Element, name: string, data? = {}) {
   return fireEvent(element, `${constants.eventPrefix}${name}`, data);
+}
+
+
+/**
+* Initialize the plugin and respond with a promise
+*/
+export function initialize() {
+  new Promise(resolve => sap.ui.getCore().attachInit(() => {
+    new sap.m.BusyIndicator().placeAt("indicator");
+    resolve();
+  }));
 }
 
 // https://github.com/jonathantneal/closest/blob/master/closest.js
@@ -2379,6 +2390,42 @@ export class Ui5MessageStrip {
   }
 }
 
+@customElement('md-navbar')
+@inject(Element)
+export class MdNavbar {
+  @bindable({
+    defaultBindingMode: bindingMode.oneTime
+  }) mdFixed;
+  @bindable({
+    defaultBindingMode: bindingMode.oneTime
+  }) mdAutoHeight;
+  fixedAttributeManager;
+
+  constructor(element) {
+    this.element = element;
+  }
+
+  attached() {
+    this.fixedAttributeManager = new AttributeManager(this.fixedAnchor);
+    this.navAttributeManager = new AttributeManager(this.nav);
+    if (getBooleanFromAttributeValue(this.mdFixed)) {
+      this.fixedAttributeManager.addClasses('navbar-fixed');
+    }
+    if (getBooleanFromAttributeValue(this.mdAutoHeight)) {
+      this.navAttributeManager.addClasses('md-auto-height');
+    }
+  }
+
+  detached() {
+    if (getBooleanFromAttributeValue(this.mdFixed)) {
+      this.fixedAttributeManager.removeClasses('navbar-fixed');
+    }
+    if (getBooleanFromAttributeValue(this.mdAutoHeight)) {
+      this.navAttributeManager.addClasses('md-auto-height');
+    }
+  }
+}
+
 @customAttribute('md-modal-trigger')
 @inject(Element)
 export class MdModalTrigger {
@@ -2456,42 +2503,6 @@ export class MdModal {
 
   close() {
     $(this.element).modal('close');
-  }
-}
-
-@customElement('md-navbar')
-@inject(Element)
-export class MdNavbar {
-  @bindable({
-    defaultBindingMode: bindingMode.oneTime
-  }) mdFixed;
-  @bindable({
-    defaultBindingMode: bindingMode.oneTime
-  }) mdAutoHeight;
-  fixedAttributeManager;
-
-  constructor(element) {
-    this.element = element;
-  }
-
-  attached() {
-    this.fixedAttributeManager = new AttributeManager(this.fixedAnchor);
-    this.navAttributeManager = new AttributeManager(this.nav);
-    if (getBooleanFromAttributeValue(this.mdFixed)) {
-      this.fixedAttributeManager.addClasses('navbar-fixed');
-    }
-    if (getBooleanFromAttributeValue(this.mdAutoHeight)) {
-      this.navAttributeManager.addClasses('md-auto-height');
-    }
-  }
-
-  detached() {
-    if (getBooleanFromAttributeValue(this.mdFixed)) {
-      this.fixedAttributeManager.removeClasses('navbar-fixed');
-    }
-    if (getBooleanFromAttributeValue(this.mdAutoHeight)) {
-      this.navAttributeManager.addClasses('md-auto-height');
-    }
   }
 }
 
@@ -2872,23 +2883,6 @@ export class MdRange {
   }
 }
 
-@customAttribute('md-scrollspy')
-@inject(Element)
-export class MdScrollSpy {
-  @bindable() target;
-  constructor(element) {
-    this.element = element;
-  }
-
-  attached() {
-    $(this.target, this.element).scrollSpy();
-  }
-
-  detached() {
-    // destroy handler not available
-  }
-}
-
 /* eslint no-new-func:0 */
 export class ScrollfirePatch {
   static patched = false;
@@ -2981,6 +2975,23 @@ export class MdScrollfire {
         Materialize.scrollFire(options);
       }
     }
+  }
+}
+
+@customAttribute('md-scrollspy')
+@inject(Element)
+export class MdScrollSpy {
+  @bindable() target;
+  constructor(element) {
+    this.element = element;
+  }
+
+  attached() {
+    $(this.target, this.element).scrollSpy();
+  }
+
+  detached() {
+    // destroy handler not available
   }
 }
 

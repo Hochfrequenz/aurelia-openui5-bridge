@@ -96,6 +96,18 @@ export declare class MdBox {
   attached(): any;
   detached(): any;
 }
+
+// taken from: https://github.com/heruan/aurelia-breadcrumbs
+export declare class MdBreadcrumbs {
+  router: any;
+  constructor(element?: any, router?: any);
+  bind(): any;
+  routerChanged(): any;
+  navigate(navigationInstruction?: any): any;
+}
+export declare class InstructionFilterValueConverter {
+  toView(navigationInstructions?: any): any;
+}
 export declare class Ui5Button {
   disabled: any;
   floating: any;
@@ -118,18 +130,6 @@ export declare class MdCard {
   mdTitle: any;
   constructor(element?: any);
   attached(): any;
-}
-
-// taken from: https://github.com/heruan/aurelia-breadcrumbs
-export declare class MdBreadcrumbs {
-  router: any;
-  constructor(element?: any, router?: any);
-  bind(): any;
-  routerChanged(): any;
-  navigate(navigationInstruction?: any): any;
-}
-export declare class InstructionFilterValueConverter {
-  toView(navigationInstructions?: any): any;
 }
 
 // @customElement('md-carousel-item')
@@ -279,6 +279,11 @@ export declare function fireEvent(element: Element, name: string, data?: any): a
 * @param data Addition data to attach to an event
 */
 export declare function fireMaterializeEvent(element: Element, name: string, data?: any): any;
+
+/**
+* Initialize the plugin and respond with a promise
+*/
+export declare function initialize(): any;
 
 // https://github.com/jonathantneal/closest/blob/master/closest.js
 export declare function polyfillElementClosest(): any;
@@ -576,6 +581,14 @@ export declare class Ui5MessageStrip {
   attached(): any;
   textChanged(newValue?: any): any;
 }
+export declare class MdNavbar {
+  mdFixed: any;
+  mdAutoHeight: any;
+  fixedAttributeManager: any;
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
+}
 export declare class MdModalTrigger {
   dismissible: any;
   constructor(element?: any);
@@ -599,14 +612,6 @@ export declare class MdModal {
   onReady(modal?: any, trigger?: any): any;
   open(): any;
   close(): any;
-}
-export declare class MdNavbar {
-  mdFixed: any;
-  mdAutoHeight: any;
-  fixedAttributeManager: any;
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
 }
 export declare class Ui5NumericContent {
   icon: any;
@@ -717,12 +722,6 @@ export declare class MdRange {
   mdValue: any;
   constructor(element?: any);
 }
-export declare class MdScrollSpy {
-  target: any;
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
-}
 
 /* eslint no-new-func:0 */
 export declare class ScrollfirePatch {
@@ -738,6 +737,12 @@ export declare class MdScrollfire {
   targetId: any;
   constructor(element?: any);
   attached(): any;
+}
+export declare class MdScrollSpy {
+  target: any;
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
 }
 export declare class MdSelect {
   disabled: any;

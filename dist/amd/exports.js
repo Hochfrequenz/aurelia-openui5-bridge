@@ -1,4 +1,4 @@
-define(['exports', './page/page', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './input/input', './title/title', './grid-data/grid-data'], function (exports, _page, _bar, _container, _html, _button, _tileContainer, _genericTile, _tileContent, _imageContent, _numericContent, _feedContent, _standardTile, _slideTile, _toastService, _grid, _text, _wizard, _wizardStep, _simpleForm, _label, _input, _title, _gridData) {
+define(['exports', './page/page', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './input/input', './title/title', './grid-data/grid-data', './common/init'], function (exports, _page, _bar, _container, _html, _button, _tileContainer, _genericTile, _tileContent, _imageContent, _numericContent, _feedContent, _standardTile, _slideTile, _toastService, _grid, _text, _wizard, _wizardStep, _simpleForm, _label, _input, _title, _gridData, _init) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -208,6 +208,15 @@ define(['exports', './page/page', './bar/bar', './container/container', './html/
       enumerable: true,
       get: function () {
         return _gridData[key];
+      }
+    });
+  });
+  Object.keys(_init).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function () {
+        return _init[key];
       }
     });
   });
