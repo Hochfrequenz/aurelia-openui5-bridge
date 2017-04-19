@@ -70,6 +70,8 @@ export class Ui5Input extends Ui5InputBase {
   }
   attached() {
     var attributeManager = new AttributeManager(this.element);
+    if (this.ui5Id == null)
+      this.ui5Id = 'ui5input_'+$(this.element)[0].attributes['au-target-id'].value;
     this._input = new sap.m.Input(this.ui5Id, {
       type: this.type,
       maxLength: this.maxLength,

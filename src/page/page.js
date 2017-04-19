@@ -46,8 +46,17 @@ export class Ui5Page {
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._page, this.element);
     }
     else {
-      page.placeAt(this.element.parentElement);
+      this._page.placeAt(this.element.parentElement);
       attributeManager.addClasses("ui5-hide");
+    }
+  }
+  detached()
+  {
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
+    }
+    else {
+      this._page.destroy();
     }
   }
   titleChanged(newValue) {

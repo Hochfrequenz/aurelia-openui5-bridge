@@ -84,6 +84,13 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
     if (path[0].localName == 'footer') this._page.setFooter(child);
   };
 
+  Ui5Page.prototype.removeChild = function removeChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    if (path[0].localName == 'subheader') this._page.setSubHeader(child);
+    if (path[0].localName == 'content') this._page.removeContent(child);
+    if (path[0].localName == 'footer') this._page.setFooter(child);
+  };
+
   Ui5Page.prototype.attached = function attached() {
     var attributeManager = new _attributeManager.AttributeManager(this.element);
     var page = new sap.m.Page({
@@ -97,8 +104,16 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
     if ($(this.element).parents("[ui5-container]").length > 0) {
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._page, this.element);
     } else {
-      page.placeAt(this.element.parentElement);
+      this._page.placeAt(this.element.parentElement);
       attributeManager.addClasses("ui5-hide");
+    }
+  };
+
+  Ui5Page.prototype.detached = function detached() {
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
+    } else {
+      this._page.destroy();
     }
   };
 

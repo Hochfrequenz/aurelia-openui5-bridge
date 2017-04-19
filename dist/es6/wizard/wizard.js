@@ -19,8 +19,9 @@ export class Ui5Wizard {
   removeChild(child,elem)
   {
       var path = $(elem).parentsUntil(this.element);
-    if (path[0].localName == 'wizard')
-      this._wizard.removeStep(child);
+    //FIXME: Dynamic step removal is not supported by openui5 yet, will be removed with the wizard itself
+    //if (path[0].localName == 'wizard')
+     // this._wizard.removeStep(child);
   }
   attached() {
     this._wizard = new sap.m.Wizard();

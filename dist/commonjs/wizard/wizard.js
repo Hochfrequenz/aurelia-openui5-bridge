@@ -33,7 +33,6 @@ var Ui5Wizard = exports.Ui5Wizard = (_dec = (0, _aureliaTemplating.customElement
 
   Ui5Wizard.prototype.removeChild = function removeChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
-    if (path[0].localName == 'wizard') this._wizard.removeStep(child);
   };
 
   Ui5Wizard.prototype.attached = function attached() {

@@ -92,7 +92,21 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
         Ui5WizardStep.prototype.addChild = function addChild(child, elem) {
           var path = $(elem).parentsUntil(this.element);
-          if (path[0].localName == 'step') this._step.addContent(child);
+          for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            if (_isArray) {
+              if (_i >= _iterator.length) break;
+              elem = _iterator[_i++];
+            } else {
+              _i = _iterator.next();
+              if (_i.done) break;
+              elem = _i.value;
+            }
+
+            if (elem.localName == 'step') {
+              this._step.addContent(child);
+              break;
+            }
+          }
         };
 
         Ui5WizardStep.prototype.removeChild = function removeChild(child, elem) {

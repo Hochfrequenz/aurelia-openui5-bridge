@@ -121,6 +121,7 @@ var Ui5SimpleForm = exports.Ui5SimpleForm = (_dec = (0, _aureliaTemplating.custo
 
   Ui5SimpleForm.prototype.attached = function attached() {
     var attributeManager = new _attributeManager.AttributeManager(this.element);
+    if (this.ui5Id == null) this.ui5Id = 'ui5simple_form_' + $(this.element)[0].attributes['au-target-id'].value;
     this._form = new sap.ui.layout.form.SimpleForm(this.ui5Id, {
       title: this.title,
       editable: (0, _attributes.getBooleanFromAttributeValue)(this.editable),

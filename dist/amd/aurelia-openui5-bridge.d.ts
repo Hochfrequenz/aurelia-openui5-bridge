@@ -14,14 +14,14 @@ import {
   inject
 } from 'aurelia-dependency-injection';
 import {
+  Router
+} from 'aurelia-router';
+import {
   bindingMode,
   observable,
   BindingEngine,
   ObserverLocator
 } from 'aurelia-binding';
-import {
-  Router
-} from 'aurelia-router';
 import {
   TaskQueue
 } from 'aurelia-task-queue';
@@ -76,25 +76,10 @@ export declare class MdAutoComplete {
   refresh(): any;
   valuesChanged(newValue?: any): any;
 }
-export declare class MdBadge {
-  isNew: any;
-  caption: any;
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
-  newChanged(newValue?: any): any;
-  captionChanged(newValue?: any): any;
-}
 export declare class Ui5Bar {
   constructor(element?: any);
   addChild(child?: any, elem?: any): any;
   attached(): any;
-}
-export declare class MdBox {
-  caption: any;
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
 }
 
 // taken from: https://github.com/heruan/aurelia-breadcrumbs
@@ -121,6 +106,15 @@ export declare class Ui5Button {
   disabledChanged(newValue?: any): any;
   textChanged(newValue?: any): any;
   pressChanged(newValue?: any): any;
+}
+export declare class MdBadge {
+  isNew: any;
+  caption: any;
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
+  newChanged(newValue?: any): any;
+  captionChanged(newValue?: any): any;
 }
 export declare class MdCard {
   mdHorizontal: any;
@@ -209,26 +203,11 @@ export declare class MdCollapsible {
   accordionChanged(): any;
   buildCollapsibleOpenCloseCallbackHandler(handler?: any): any;
 }
-export declare class MdCollectionHeader {
-  constructor(element?: any);
-}
-export declare class MdCollectionItem {
-
-}
-export declare class MdCollection {
+export declare class MdBox {
+  caption: any;
   constructor(element?: any);
   attached(): any;
-  getSelected(): any;
-  clearSelection(): any;
-  selectAll(): any;
-}
-export declare class MdlListSelector {
-  item: any;
-  mdDisabled: any;
-  isSelected: any;
-  constructor(element?: any);
-  isSelectedChanged(newValue?: any): any;
-  mdDisabledChanged(newValue?: any): any;
+  detached(): any;
 }
 
 /* eslint-enable */
@@ -291,10 +270,6 @@ export declare class Ui5Container {
   constructor(element?: any);
   attached(): any;
   detached(): any;
-}
-export declare class Ui5Control extends Ui5Element {
-  addChild(child?: any, elem?: any): any;
-  attached(): any;
 }
 export declare class DatePickerDefaultParser {
   canParse(value?: any): any;
@@ -377,21 +352,26 @@ export declare class Ui5FeedContent {
   contentTextChanged(newValue?: any): any;
   subheaderChanged(newValue?: any): any;
 }
-export declare class MdFileInput {
-  mdCaption: any;
-  mdMultiple: any;
-  mdLabelValue: any;
-  disabled: any;
-  files: any;
+export declare class MdCollectionHeader {
+  constructor(element?: any);
+}
+export declare class MdCollectionItem {
+
+}
+export declare class MdCollection {
   constructor(element?: any);
   attached(): any;
-  detached(): any;
-  handleChangeFromNativeInput(): any;
+  getSelected(): any;
+  clearSelection(): any;
+  selectAll(): any;
 }
-export declare class MdFooter {
+export declare class MdlListSelector {
+  item: any;
+  mdDisabled: any;
+  isSelected: any;
   constructor(element?: any);
-  bind(): any;
-  unbind(): any;
+  isSelectedChanged(newValue?: any): any;
+  mdDisabledChanged(newValue?: any): any;
 }
 export declare class Ui5GenericTile {
   mode: any;
@@ -427,16 +407,16 @@ export declare class Ui5GridData {
   attached(): any;
   spanChanged(newValue?: any): any;
 }
-export declare class Ui5Html {
-  constructor(element?: any);
-  attached(): any;
-}
 export declare class Ui5ImageContent {
   src: any;
   constructor(element?: any);
   attached(): any;
   detached(): any;
   srcChanged(newValue?: any): any;
+}
+export declare class Ui5Html {
+  constructor(element?: any);
+  attached(): any;
 }
 export declare class Ui5Input extends Ui5InputBase {
   ui5Id: any;
@@ -524,6 +504,21 @@ export declare class Ui5Input extends Ui5InputBase {
   requiredChanged(newValue?: any): any;
   changeChanged(newValue?: any): any;
 }
+export declare class Ui5Label {
+  ui5Id: any;
+  labelFor: any;
+  text: any;
+  required: any;
+  textAlign: any;
+  textDirection: any;
+  constructor(element?: any);
+  attached(): any;
+  textChanged(newValue?: any): any;
+  labelForChanged(newValue?: any): any;
+  requiredChanged(newValue?: any): any;
+  textAlignChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
+}
 export declare class Ui5InputBase extends Ui5Control {
   value: any;
   width: any;
@@ -556,21 +551,6 @@ export declare class Ui5InputBase extends Ui5Control {
   requiredChanged(newValue?: any): any;
   changeChanged(newValue?: any): any;
 }
-export declare class Ui5Label {
-  ui5Id: any;
-  labelFor: any;
-  text: any;
-  required: any;
-  textAlign: any;
-  textDirection: any;
-  constructor(element?: any);
-  attached(): any;
-  textChanged(newValue?: any): any;
-  labelForChanged(newValue?: any): any;
-  requiredChanged(newValue?: any): any;
-  textAlignChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
-}
 export declare class Ui5MessageStrip {
   ui5Id: any;
   text: any;
@@ -580,14 +560,6 @@ export declare class Ui5MessageStrip {
   constructor(element?: any);
   attached(): any;
   textChanged(newValue?: any): any;
-}
-export declare class MdNavbar {
-  mdFixed: any;
-  mdAutoHeight: any;
-  fixedAttributeManager: any;
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
 }
 export declare class MdModalTrigger {
   dismissible: any;
@@ -613,6 +585,19 @@ export declare class MdModal {
   open(): any;
   close(): any;
 }
+export declare class MdFooter {
+  constructor(element?: any);
+  bind(): any;
+  unbind(): any;
+}
+export declare class MdNavbar {
+  mdFixed: any;
+  mdAutoHeight: any;
+  fixedAttributeManager: any;
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
+}
 export declare class Ui5NumericContent {
   icon: any;
   value: any;
@@ -635,7 +620,9 @@ export declare class Ui5Page {
   showNavButton: any;
   constructor(element?: any);
   addChild(child?: any, elem?: any): any;
+  removeChild(child?: any, elem?: any): any;
   attached(): any;
+  detached(): any;
   titleChanged(newValue?: any): any;
   showHeaderChanged(newValue?: any): any;
   showFooterChanged(newValue?: any): any;
@@ -664,11 +651,6 @@ export declare class MdPagination {
   mdVisiblePageLinksChanged(): any;
   generatePageLinks(): any;
 }
-export declare class MdParallax {
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
-}
 export declare class MdProgress {
   mdColor: any;
   mdPixelSize: any;
@@ -684,6 +666,11 @@ export declare class MdProgress {
   attached(): any;
   mdSizeChanged(newValue?: any): any;
   mdPixelSizeChanged(newValue?: any): any;
+}
+export declare class MdParallax {
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
 }
 export declare class MdPushpin {
   bottom: any;
@@ -1014,4 +1001,19 @@ export declare class Ui5WizardStep {
   defaultFunc(): any;
   attached(): any;
   detached(): any;
+}
+export declare class MdFileInput {
+  mdCaption: any;
+  mdMultiple: any;
+  mdLabelValue: any;
+  disabled: any;
+  files: any;
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
+  handleChangeFromNativeInput(): any;
+}
+export declare class Ui5Control extends Ui5Element {
+  addChild(child?: any, elem?: any): any;
+  attached(): any;
 }
