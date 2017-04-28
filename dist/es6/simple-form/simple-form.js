@@ -35,16 +35,16 @@ export class Ui5SimpleForm {
   }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
-    if (path[0].localName == 'toolbar')
-      this._form.setToolbar(child);
-    if (path[0].localName == 'content')
-      this._form.addContent(child);
+    for (elem of path) {
+      if (elem.localName == 'toolbar')
+        this._form.setToolbar(child);
+      if (elem.localName == 'content')
+        this._form.addContent(child);
+    }
   }
   attached() {
     var attributeManager = new AttributeManager(this.element);
-    if (this.ui5Id == null)
-      this.ui5Id = 'ui5simple_form_'+$(this.element)[0].attributes['au-target-id'].value;
-    this._form = new sap.ui.layout.form.SimpleForm(this.ui5Id, {
+    var params = {
       title: this.title,
       editable: getBooleanFromAttributeValue(this.editable),
       maxContainerCols: parseInt(this.maxContainerCols),
@@ -67,7 +67,11 @@ export class Ui5SimpleForm {
       breakpointL: parseInt(this.breakpointL),
       breakpointM: parseInt(this.breakpointM),
 
-    });
+    };
+    if (this.uiId5)
+      this._form = new sap.ui.layout.form.SimpleForm(this.ui5Id, params);
+    else
+      this._form = new sap.ui.layout.form.SimpleForm(params);
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);

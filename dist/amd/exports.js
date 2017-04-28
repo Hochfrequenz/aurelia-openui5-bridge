@@ -1,4 +1,4 @@
-define(['exports', './page/page', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './input/input', './title/title', './grid-data/grid-data', './common/init'], function (exports, _page, _bar, _container, _html, _button, _tileContainer, _genericTile, _tileContent, _imageContent, _numericContent, _feedContent, _standardTile, _slideTile, _toastService, _grid, _text, _wizard, _wizardStep, _simpleForm, _label, _input, _title, _gridData, _init) {
+define(['exports', './page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './input/input', './title/title', './grid-data/grid-data', './common/init', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout'], function (exports, _page, _shell, _bar, _container, _html, _button, _tileContainer, _genericTile, _tileContent, _imageContent, _numericContent, _feedContent, _standardTile, _slideTile, _toastService, _grid, _text, _wizard, _wizardStep, _simpleForm, _label, _input, _title, _gridData, _init, _form, _formContainer, _formElement, _responsiveGridLayout) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -10,6 +10,15 @@ define(['exports', './page/page', './bar/bar', './container/container', './html/
       enumerable: true,
       get: function () {
         return _page[key];
+      }
+    });
+  });
+  Object.keys(_shell).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function () {
+        return _shell[key];
       }
     });
   });
@@ -217,6 +226,42 @@ define(['exports', './page/page', './bar/bar', './container/container', './html/
       enumerable: true,
       get: function () {
         return _init[key];
+      }
+    });
+  });
+  Object.keys(_form).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function () {
+        return _form[key];
+      }
+    });
+  });
+  Object.keys(_formContainer).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function () {
+        return _formContainer[key];
+      }
+    });
+  });
+  Object.keys(_formElement).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function () {
+        return _formElement[key];
+      }
+    });
+  });
+  Object.keys(_responsiveGridLayout).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function () {
+        return _responsiveGridLayout[key];
       }
     });
   });

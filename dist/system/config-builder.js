@@ -31,6 +31,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
         ConfigBuilder.prototype.usePage = function usePage() {
           this.globalResources.push(PLATFORM.moduleName('./page/page'));
+          this.globalResources.push(PLATFORM.moduleName('./shell/shell'));
           return this;
         };
 
@@ -84,6 +85,10 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
         ConfigBuilder.prototype.useForm = function useForm() {
           this.globalResources.push(PLATFORM.moduleName('./simple-form/simple-form'));
+          this.globalResources.push(PLATFORM.moduleName('./form/form'));
+          this.globalResources.push(PLATFORM.moduleName('./form-container/form-container'));
+          this.globalResources.push(PLATFORM.moduleName('./form-element/form-element'));
+          this.globalResources.push(PLATFORM.moduleName('./responsive-grid-layout/responsive-grid-layout'));
           return this;
         };
 

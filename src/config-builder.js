@@ -22,12 +22,16 @@ export class ConfigBuilder {
       .useForm()
       .useLabel()
       .useInput()
+      .useDatePicker()
       .useTitle()
       .useLayoutData()
+      .useSelect()
+      .useTable()
   }
 
   usePage(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./page/page'));
+    this.globalResources.push(PLATFORM.moduleName('./shell/shell'));
     return this;
   }
    useBar(): ConfigBuilder {
@@ -73,6 +77,10 @@ export class ConfigBuilder {
   }
   useForm(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./simple-form/simple-form'));
+    this.globalResources.push(PLATFORM.moduleName('./form/form'));
+    this.globalResources.push(PLATFORM.moduleName('./form-container/form-container'));
+    this.globalResources.push(PLATFORM.moduleName('./form-element/form-element'));
+    this.globalResources.push(PLATFORM.moduleName('./responsive-grid-layout/responsive-grid-layout'));
     return this;
   }
   useLabel(): ConfigBuilder {
@@ -83,12 +91,29 @@ export class ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./input/input'));
     return this;
   }
+  useDatePicker(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./date-picker/date-picker'));
+    return this;
+  }
   useTitle(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./title/title'));
     return this;
   }
   useLayoutData(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./grid-data/grid-data'));
+    return this;
+  }
+  useSelect(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./select/select'));
+    this.globalResources.push(PLATFORM.moduleName('./list-item/list-item'));
+    return this;
+  }
+  useTable(): ConfigBuilder{
+    this.globalResources.push(PLATFORM.moduleName('./table/table'));
+    this.globalResources.push(PLATFORM.moduleName('./column/column'));
+    this.globalResources.push(PLATFORM.moduleName('./column-list-item/column-list-item'));
+    this.globalResources.push(PLATFORM.moduleName('./object-identifier/object-identifier'));
+    this.globalResources.push(PLATFORM.moduleName('./object-number/object-number'));    
     return this;
   }
 

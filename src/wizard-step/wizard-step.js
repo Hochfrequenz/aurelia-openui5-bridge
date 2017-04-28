@@ -28,8 +28,12 @@ export class Ui5WizardStep {
   }
   removeChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
-    if (path[0].localName == 'step')
-      this._step.removeContent(child);
+    for (elem of path) {
+      if (elem.localName == 'step') {
+        this._step.removeContent(child);
+        break;
+      }
+    }
   }
   defaultFunc() {
 

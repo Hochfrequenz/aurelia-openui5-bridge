@@ -28,6 +28,7 @@ export class ConfigBuilder {
 
   usePage(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./page/page'));
+    this.globalResources.push(PLATFORM.moduleName('./shell/shell'));
     return this;
   }
    useBar(): ConfigBuilder {
@@ -73,6 +74,10 @@ export class ConfigBuilder {
   }
   useForm(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./simple-form/simple-form'));
+    this.globalResources.push(PLATFORM.moduleName('./form/form'));
+    this.globalResources.push(PLATFORM.moduleName('./form-container/form-container'));
+    this.globalResources.push(PLATFORM.moduleName('./form-element/form-element'));
+    this.globalResources.push(PLATFORM.moduleName('./responsive-grid-layout/responsive-grid-layout'));
     return this;
   }
   useLabel(): ConfigBuilder {

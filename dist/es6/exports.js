@@ -1,5 +1,6 @@
 // build-index-remove start
 export * from './page/page';
+export * from './shell/shell';
 export * from './bar/bar';
 export * from './container/container';
 export * from './html/html';
@@ -23,5 +24,8 @@ export * from './input/input';
 export * from './title/title';
 export * from './grid-data/grid-data';
 export * from './common/init'
-
+export * from './form/form';
+export * from './form-container/form-container';
+export * from './form-element/form-element';
+export * from './responsive-grid-layout/responsive-grid-layout';
 // build-index-remove end

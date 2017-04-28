@@ -27,6 +27,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
 
     ConfigBuilder.prototype.usePage = function usePage() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./page/page'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./shell/shell'));
       return this;
     };
 
@@ -80,6 +81,10 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
 
     ConfigBuilder.prototype.useForm = function useForm() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./simple-form/simple-form'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./form/form'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./form-container/form-container'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./form-element/form-element'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./responsive-grid-layout/responsive-grid-layout'));
       return this;
     };
 

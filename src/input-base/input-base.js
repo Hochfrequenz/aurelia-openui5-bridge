@@ -7,7 +7,7 @@ import { Ui5Control } from '../control/control';
 @inject(Element)
 
 export class Ui5InputBase extends Ui5Control {
-  _input = null;
+  _picker = null;
 
   @bindable() value = null;
   @bindable() width = null;
@@ -38,68 +38,68 @@ export class Ui5InputBase extends Ui5Control {
     super.addChild(child, elem);
   }
   valueChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setValue(newValue);
+    if (this._picker !== null) {
+      this._picker.setValue(newValue);
     }
   }
   widthChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setWidth(newValue);
+    if (this._picker !== null) {
+      this._picker.setWidth(newValue);
     }
   }
   enabledChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setEnabled(getBooleanFromAttributeValue(newValue));
+    if (this._picker !== null) {
+      this._picker.setEnabled(getBooleanFromAttributeValue(newValue));
     }
   }
   valueStateChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setValueState(newValue);
+    if (this._picker !== null) {
+      this._picker.setValueState(newValue);
     }
   }
   nameChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setName(newValue);
+    if (this._picker !== null) {
+      this._picker.setName(newValue);
     }
   }
   placeholderChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setPlaceholder(newValue);
+    if (this._picker !== null) {
+      this._picker.setPlaceholder(newValue);
     }
   }
   editableChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setEditable(getBooleanFromAttributeValue(newValue));
+    if (this._picker !== null) {
+      this._picker.setEditable(getBooleanFromAttributeValue(newValue));
     }
   }
   valueStateTextChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setValueStateText(newValue);
+    if (this._picker !== null) {
+      this._picker.setValueStateText(newValue);
     }
   }
   showValueStateMessageChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));
+    if (this._picker !== null) {
+      this._picker.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));
     }
   }
   textAlignChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setTextAlign(newValue);
+    if (this._picker !== null) {
+      this._picker.setTextAlign(newValue);
     }
   }
   textDirectionChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setTextDirection(newValue);
+    if (this._picker !== null) {
+      this._picker.setTextDirection(newValue);
     }
   }
   requiredChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setRequired(getBooleanFromAttributeValue(newValue));
+    if (this._picker !== null) {
+      this._picker.setRequired(getBooleanFromAttributeValue(newValue));
     }
   }
   changeChanged(newValue) {
-    if (this._input !== null) {
-      this._input.attachChange(newValue);
+    if (this._picker !== null) {
+      this._picker.attachChange(newValue);
     }
   }
 }

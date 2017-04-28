@@ -209,8 +209,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
     Ui5Input.prototype.attached = function attached() {
       var attributeManager = new _attributeManager.AttributeManager(this.element);
-      if (this.ui5Id == null) this.ui5Id = 'ui5input_' + $(this.element)[0].attributes['au-target-id'].value;
-      this._input = new sap.m.Input(this.ui5Id, {
+      var params = {
         type: this.type,
         maxLength: this.maxLength,
         dateFormat: this.dateFormat,
@@ -249,7 +248,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         textDirection: this.textDirection,
         required: (0, _attributes.getBooleanFromAttributeValue)(this.required),
         change: this.change
-      });
+      };
+      if (this.ui5Id) this._input = new sap.m.Input(this.ui5Id, params);else this._input = new sap.m.Input(params);
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._input, this.element);
       attributeManager.addAttributes({ "ui5-layout": '' });
       var that = this;

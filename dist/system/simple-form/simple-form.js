@@ -122,14 +122,24 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
         Ui5SimpleForm.prototype.addChild = function addChild(child, elem) {
           var path = $(elem).parentsUntil(this.element);
-          if (path[0].localName == 'toolbar') this._form.setToolbar(child);
-          if (path[0].localName == 'content') this._form.addContent(child);
+          for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            if (_isArray) {
+              if (_i >= _iterator.length) break;
+              elem = _iterator[_i++];
+            } else {
+              _i = _iterator.next();
+              if (_i.done) break;
+              elem = _i.value;
+            }
+
+            if (elem.localName == 'toolbar') this._form.setToolbar(child);
+            if (elem.localName == 'content') this._form.addContent(child);
+          }
         };
 
         Ui5SimpleForm.prototype.attached = function attached() {
           var attributeManager = new AttributeManager(this.element);
-          if (this.ui5Id == null) this.ui5Id = 'ui5simple_form_' + $(this.element)[0].attributes['au-target-id'].value;
-          this._form = new sap.ui.layout.form.SimpleForm(this.ui5Id, {
+          var params = {
             title: this.title,
             editable: getBooleanFromAttributeValue(this.editable),
             maxContainerCols: parseInt(this.maxContainerCols),
@@ -152,7 +162,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             breakpointL: parseInt(this.breakpointL),
             breakpointM: parseInt(this.breakpointM)
 
-          });
+          };
+          if (this.uiId5) this._form = new sap.ui.layout.form.SimpleForm(this.ui5Id, params);else this._form = new sap.ui.layout.form.SimpleForm(params);
 
           if ($(this.element).parents("[ui5-container]").length > 0) {
             $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);

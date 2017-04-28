@@ -20,7 +20,7 @@ export class Ui5Text {
   attached() {
 
     this._text = new sap.m.Text({
-      text: this.text,
+      text: this.text!=null?this.text:this.element.innerText.trim(),
       wrapping: getBooleanFromAttributeValue(this.wrapping),
       textAlign: this.textAlign,
       maxLines: this.maxLines

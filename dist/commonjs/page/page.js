@@ -103,8 +103,10 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._page, this.element);
+      attributeManager.addAttributes({ "ui5-container": '' });
     } else {
       this._page.placeAt(this.element.parentElement);
+      attributeManager.addAttributes({ "ui5-container": '' });
       attributeManager.addClasses("ui5-hide");
     }
   };

@@ -52,14 +52,23 @@ export class Ui5Input extends Ui5InputBase {
   @bindable() required = false;
 
   @bindable() change = this.defaultFunc;
-  get UIElement()
-  {
+  get UIElement() {
     return this._input;
   }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     super.addChild(child, elem);
-    
+    for(elem of path)
+    {
+      if(elem.localName=='suggestion-item'){
+        this._input.addSuggestionItem(child);
+        break;
+      }
+      else if(elem.localName=='suggestion-row'){
+        this._input.addSuggestionRow(child);
+        break;
+      }
+    }
   }
   constructor(element) {
     super(element);
@@ -70,9 +79,7 @@ export class Ui5Input extends Ui5InputBase {
   }
   attached() {
     var attributeManager = new AttributeManager(this.element);
-    if (this.ui5Id == null)
-      this.ui5Id = 'ui5input_'+$(this.element)[0].attributes['au-target-id'].value;
-    this._input = new sap.m.Input(this.ui5Id, {
+    var params = {
       type: this.type,
       maxLength: this.maxLength,
       dateFormat: this.dateFormat,
@@ -94,8 +101,8 @@ export class Ui5Input extends Ui5InputBase {
       selectedItem: this.selectedItem,
       selectedRow: this.selectedRow,
       liveChange: this.liveChange,
-      valueHelpRequest: this.valueHelpRequest,
       suggest: this.suggest,
+      valueHelpRequest: this.valueHelpRequest,      
       suggestionItemSelected: this.suggestionItemSelected,
       submit: this.submit,
       value: this.value,
@@ -111,9 +118,14 @@ export class Ui5Input extends Ui5InputBase {
       textDirection: this.textDirection,
       required: getBooleanFromAttributeValue(this.required),
       change: this.change
-    });
+    };
+    if (this.ui5Id)
+      this._input = new sap.m.Input(this.ui5Id, params);
+    else
+      this._input = new sap.m.Input(params);
     $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._input, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
+    attributeManager.addAttributes({ "ui5-container": '' });
     var that = this;
     this._input.attachChange((event) => {
       that.value = event.mParameters.value;

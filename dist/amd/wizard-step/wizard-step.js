@@ -101,7 +101,21 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
     Ui5WizardStep.prototype.removeChild = function removeChild(child, elem) {
       var path = $(elem).parentsUntil(this.element);
-      if (path[0].localName == 'step') this._step.removeContent(child);
+      for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+        if (_isArray2) {
+          if (_i2 >= _iterator2.length) break;
+          elem = _iterator2[_i2++];
+        } else {
+          _i2 = _iterator2.next();
+          if (_i2.done) break;
+          elem = _i2.value;
+        }
+
+        if (elem.localName == 'step') {
+          this._step.removeContent(child);
+          break;
+        }
+      }
     };
 
     Ui5WizardStep.prototype.defaultFunc = function defaultFunc() {};
