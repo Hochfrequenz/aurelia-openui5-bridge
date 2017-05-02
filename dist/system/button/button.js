@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, Ui5Button;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, Ui5Button;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -67,7 +67,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
     }],
     execute: function () {
-      _export('Ui5Button', Ui5Button = (_dec = customElement('ui5-button'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5Button', Ui5Button = (_dec = customElement('ui5-button'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5Button(element) {
           _classCallCheck(this, Ui5Button);
 
@@ -81,6 +81,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           _initDefineProp(this, 'press', _descriptor5, this);
 
+          _initDefineProp(this, 'icon', _descriptor6, this);
+
           this._button = null;
 
           this.attributeManager = new AttributeManager(element);
@@ -90,6 +92,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         Ui5Button.prototype.attached = function attached() {
           this._button = new sap.m.Button({
             text: this.text,
+            icon: this.icon,
             enabled: !getBooleanFromAttributeValue(this.disabled),
             press: this.press != null ? this.press : this.defaultPress
           });
@@ -106,6 +109,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         Ui5Button.prototype.disabledChanged = function disabledChanged(newValue) {
           if (this._button !== null) {
             this._button.setEnabled(!getBooleanFromAttributeValue(newValue));
+          }
+        };
+
+        Ui5Button.prototype.iconChanged = function iconChanged(newValue) {
+          if (this._button !== null) {
+            this._button.setIcon(newValue);
           }
         };
 
@@ -143,6 +152,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           return '';
         }
       }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec7], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec8], {
         enumerable: true,
         initializer: function initializer() {
           return null;

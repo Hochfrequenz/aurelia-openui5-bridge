@@ -23,6 +23,7 @@ export * from './label/label';
 export * from './input/input';
 export * from './date-picker/date-picker';
 export * from './title/title';
+export * from './m-title/m-title';
 export * from './grid-data/grid-data';
 export * from './common/init'
 export * from './form/form';
@@ -36,8 +37,13 @@ export * from './column-list-item/column-list-item';
 export * from './table/table';
 export * from './object-identifier/object-identifier';
 export * from './object-number/object-number';
-
-
+export * from './tab-container/tab-container';
+export * from './tab-container-item/tab-container-item';
+export * from './vertical-layout/vertical-layout';
+export * from './icon-tab-filter/icon-tab-filter';
+export * from './icon-tab-bar/icon-tab-bar';
+export * from './overflow-toolbar/overflow-toolbar';
+export * from './toolbar-spacer/toolbar-spacer';
 
 
 // build-index-remove end

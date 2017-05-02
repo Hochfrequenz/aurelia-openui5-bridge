@@ -58,7 +58,17 @@ export class Ui5Input extends Ui5InputBase {
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     super.addChild(child, elem);
-
+    for(elem of path)
+    {
+      if(elem.localName=='suggestion-item'){
+        this._input.addSuggestionItem(child);
+        break;
+      }
+      else if(elem.localName=='suggestion-row'){
+        this._input.addSuggestionRow(child);
+        break;
+      }
+    }
   }
   constructor(element) {
     super(element);
@@ -91,8 +101,8 @@ export class Ui5Input extends Ui5InputBase {
       selectedItem: this.selectedItem,
       selectedRow: this.selectedRow,
       liveChange: this.liveChange,
-      valueHelpRequest: this.valueHelpRequest,
       suggest: this.suggest,
+      valueHelpRequest: this.valueHelpRequest,      
       suggestionItemSelected: this.suggestionItemSelected,
       submit: this.submit,
       value: this.value,
@@ -115,6 +125,7 @@ export class Ui5Input extends Ui5InputBase {
       this._input = new sap.m.Input(params);
     $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._input, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
+    attributeManager.addAttributes({ "ui5-container": '' });
     var that = this;
     this._input.attachChange((event) => {
       that.value = event.mParameters.value;

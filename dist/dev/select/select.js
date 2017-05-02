@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-binding', 'aurelia-dependency-injection', 'aurelia-task-queue', 'aurelia-logging', '../common/events', '../common/attributes', 'aurelia-pal'], function (_export, _context) {
+System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', '../input-base/input-base'], function (_export, _context) {
   "use strict";
 
-  var bindable, customAttribute, BindingEngine, inject, TaskQueue, getLogger, fireEvent, getBooleanFromAttributeValue, DOM, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, MdSelect;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, Ui5InputBase, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, Ui5Select;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -57,259 +57,320 @@ System.register(['aurelia-templating', 'aurelia-binding', 'aurelia-dependency-in
   return {
     setters: [function (_aureliaTemplating) {
       bindable = _aureliaTemplating.bindable;
-      customAttribute = _aureliaTemplating.customAttribute;
-    }, function (_aureliaBinding) {
-      BindingEngine = _aureliaBinding.BindingEngine;
+      customElement = _aureliaTemplating.customElement;
+      noView = _aureliaTemplating.noView;
     }, function (_aureliaDependencyInjection) {
       inject = _aureliaDependencyInjection.inject;
-    }, function (_aureliaTaskQueue) {
-      TaskQueue = _aureliaTaskQueue.TaskQueue;
-    }, function (_aureliaLogging) {
-      getLogger = _aureliaLogging.getLogger;
-    }, function (_commonEvents) {
-      fireEvent = _commonEvents.fireEvent;
+    }, function (_commonAttributeManager) {
+      AttributeManager = _commonAttributeManager.AttributeManager;
     }, function (_commonAttributes) {
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
-    }, function (_aureliaPal) {
-      DOM = _aureliaPal.DOM;
+    }, function (_inputBaseInputBase) {
+      Ui5InputBase = _inputBaseInputBase.Ui5InputBase;
     }],
     execute: function () {
-      _export('MdSelect', MdSelect = (_dec = inject(Element, BindingEngine, TaskQueue), _dec2 = customAttribute('md-select'), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
-        function MdSelect(element, bindingEngine, taskQueue) {
-          _classCallCheck(this, MdSelect);
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
 
-          _initDefineProp(this, 'disabled', _descriptor, this);
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
 
-          _initDefineProp(this, 'enableOptionObserver', _descriptor2, this);
+      _export('Ui5Select', Ui5Select = (_dec = customElement('ui5-select'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+        Ui5Select.prototype.addChild = function addChild(child, elem) {
+          var path = $(elem).parentsUntil(this.element);
+          for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            if (_isArray) {
+              if (_i >= _iterator.length) break;
+              elem = _iterator[_i++];
+            } else {
+              _i = _iterator.next();
+              if (_i.done) break;
+              elem = _i.value;
+            }
 
-          _initDefineProp(this, 'label', _descriptor3, this);
+            if (elem.localName == 'item') if (this._select.getItems().length == 0) this.selectedKey = child.mProperties.key;
+            this._select.addItem(child);
 
-          _initDefineProp(this, 'showErrortext', _descriptor4, this);
+            break;
+          }
+        };
 
-          this._suspendUpdate = false;
-          this.subscriptions = [];
-          this.input = null;
-          this.dropdownMutationObserver = null;
-          this.optionsMutationObserver = null;
-          this._taskqueueRunning = false;
+        _createClass(Ui5Select, [{
+          key: 'UIElement',
+          get: function get() {
+            return this._select;
+          }
+        }]);
+
+        function Ui5Select(element) {
+          _classCallCheck(this, Ui5Select);
+
+          this._select = null;
+
+          _initDefineProp(this, 'ui5Id', _descriptor, this);
+
+          _initDefineProp(this, 'name', _descriptor2, this);
+
+          _initDefineProp(this, 'width', _descriptor3, this);
+
+          _initDefineProp(this, 'maxWidth', _descriptor4, this);
+
+          _initDefineProp(this, 'enabled', _descriptor5, this);
+
+          _initDefineProp(this, 'selectedKey', _descriptor6, this);
+
+          _initDefineProp(this, 'selectedItemId', _descriptor7, this);
+
+          _initDefineProp(this, 'icon', _descriptor8, this);
+
+          _initDefineProp(this, 'type', _descriptor9, this);
+
+          _initDefineProp(this, 'autoAdjustWidth', _descriptor10, this);
+
+          _initDefineProp(this, 'valueState', _descriptor11, this);
+
+          _initDefineProp(this, 'valueStateText', _descriptor12, this);
+
+          _initDefineProp(this, 'showSecondaryValues', _descriptor13, this);
+
+          _initDefineProp(this, 'forceSelection', _descriptor14, this);
+
+          _initDefineProp(this, 'items', _descriptor15, this);
+
+          _initDefineProp(this, 'selectedItem', _descriptor16, this);
+
+          _initDefineProp(this, 'change', _descriptor17, this);
 
           this.element = element;
-          this.taskQueue = taskQueue;
-          this.handleChangeFromViewModel = this.handleChangeFromViewModel.bind(this);
-          this.handleChangeFromNativeSelect = this.handleChangeFromNativeSelect.bind(this);
-          this.handleBlur = this.handleBlur.bind(this);
-          this.log = getLogger('md-select');
-          this.bindingEngine = bindingEngine;
         }
 
-        MdSelect.prototype.attached = function attached() {
-          var _this = this;
+        Ui5Select.prototype.defaultFunc = function defaultFunc() {};
 
-          this.taskQueue.queueTask(function () {
-            _this.createMaterialSelect(false);
-
-            if (_this.label) {
-              var wrapper = $(_this.element).parent('.select-wrapper');
-              var div = $('<div class="input-field"></div>');
-              var va = _this.element.attributes.getNamedItem('validate');
-              if (va) {
-                div.attr(va.name, va.label);
-              }
-              wrapper.wrap(div);
-              $('<label>' + _this.label + '</label>').insertAfter(wrapper);
-            }
+        Ui5Select.prototype.attached = function attached() {
+          var attributeManager = new AttributeManager(this.element);
+          var params = {
+            name: this.name,
+            width: this.width,
+            maxWidth: this.maxWidth,
+            enabled: getBooleanFromAttributeValue(this.enabled),
+            selectedKey: this.selectedKey,
+            selectedItemId: this.selectedItemId,
+            icon: this.icon,
+            type: this.type,
+            autoAdjustWidth: getBooleanFromAttributeValue(this.autoAdjustWidth),
+            textAlign: this.textAlign,
+            textDirection: this.textDirection,
+            valueState: this.valueState,
+            valueStateText: this.valueStateText,
+            showSecondaryValues: getBooleanFromAttributeValue(this.showSecondaryValues),
+            forceSelection: getBooleanFromAttributeValue(this.forceSelection),
+            items: this.items,
+            selectedItem: this.selectedItem,
+            change: this.change
+          };
+          if (this.ui5Id) this._select = new sap.m.Select(this.ui5Id, params);else this._select = new sap.m.Select(params);
+          $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._select, this.element);
+          attributeManager.addAttributes({ "ui5-container": '' });
+          var that = this;
+          this._select.attachChange(function (event) {
+            that.selectedItem = event.mParameters.selectedItem;
+            that.selectedKey = event.mParameters.selectedItem.mProperties.key;
           });
-          this.subscriptions.push(this.bindingEngine.propertyObserver(this.element, 'value').subscribe(this.handleChangeFromViewModel));
 
-
-          $(this.element).on('change', this.handleChangeFromNativeSelect);
+          this._select.addEventDelegate(this.element);
         };
 
-        MdSelect.prototype.detached = function detached() {
-          $(this.element).off('change', this.handleChangeFromNativeSelect);
-          this.observeVisibleDropdownContent(false);
-          this.observeOptions(false);
-          this.dropdownMutationObserver = null;
-          $(this.element).material_select('destroy');
-          this.subscriptions.forEach(function (sub) {
-            return sub.dispose();
-          });
-        };
-
-        MdSelect.prototype.refresh = function refresh() {
-          var _this2 = this;
-
-          this.taskQueue.queueTask(function () {
-            _this2.createMaterialSelect(true);
-          });
-        };
-
-        MdSelect.prototype.disabledChanged = function disabledChanged(newValue) {
-          this.toggleControl(newValue);
-        };
-
-        MdSelect.prototype.showErrortextChanged = function showErrortextChanged() {
-          this.setErrorTextAttribute();
-        };
-
-        MdSelect.prototype.setErrorTextAttribute = function setErrorTextAttribute() {
-          var input = this.element.parentElement.querySelector('input.select-dropdown');
-          if (!input) return;
-          this.log.debug('showErrortextChanged: ' + this.showErrortext);
-          input.setAttribute('data-show-errortext', getBooleanFromAttributeValue(this.showErrortext));
-        };
-
-        MdSelect.prototype.notifyBindingEngine = function notifyBindingEngine() {
-          this.log.debug('selectedOptions changed', arguments);
-        };
-
-        MdSelect.prototype.handleChangeFromNativeSelect = function handleChangeFromNativeSelect() {
-          if (!this._suspendUpdate) {
-            this.log.debug('handleChangeFromNativeSelect', this.element.value, $(this.element).val());
-            this._suspendUpdate = true;
-            fireEvent(this.element, 'change');
-            this._suspendUpdate = false;
+        Ui5Select.prototype.nameChanged = function nameChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setName(newValue);
           }
         };
 
-        MdSelect.prototype.handleChangeFromViewModel = function handleChangeFromViewModel(newValue) {
-          this.log.debug('handleChangeFromViewModel', newValue, $(this.element).val());
-          if (!this._suspendUpdate) {
-            this.createMaterialSelect(false);
+        Ui5Select.prototype.enabledChanged = function enabledChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setEnableChanged(getBooleanFromAttributeValue(newValue));
           }
         };
 
-        MdSelect.prototype.toggleControl = function toggleControl(disable) {
-          var $wrapper = $(this.element).parent('.select-wrapper');
-          if ($wrapper.length > 0) {
-            if (disable) {
-              $('.caret', $wrapper).addClass('disabled');
-              $('input.select-dropdown', $wrapper).attr('disabled', 'disabled');
-              $wrapper.attr('disabled', 'disabled');
-            } else {
-              $('.caret', $wrapper).removeClass('disabled');
-              $('input.select-dropdown', $wrapper).attr('disabled', null);
-              $wrapper.attr('disabled', null);
-              $('.select-dropdown', $wrapper).dropdown({ 'hover': false, 'closeOnClick': false });
-            }
+        Ui5Select.prototype.widthChanged = function widthChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setWidth(newValue);
           }
         };
 
-        MdSelect.prototype.createMaterialSelect = function createMaterialSelect(destroy) {
-          this.observeVisibleDropdownContent(false);
-          this.observeOptions(false);
-          if (destroy) {
-            $(this.element).material_select('destroy');
-          }
-          $(this.element).material_select();
-          this.toggleControl(this.disabled);
-          this.observeVisibleDropdownContent(true);
-          this.observeOptions(true);
-          this.setErrorTextAttribute();
-        };
-
-        MdSelect.prototype.observeVisibleDropdownContent = function observeVisibleDropdownContent(attach) {
-          var _this3 = this;
-
-          if (attach) {
-            if (!this.dropdownMutationObserver) {
-              this.dropdownMutationObserver = DOM.createMutationObserver(function (mutations) {
-                var isHidden = false;
-                for (var _iterator = mutations, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-                  var _ref;
-
-                  if (_isArray) {
-                    if (_i >= _iterator.length) break;
-                    _ref = _iterator[_i++];
-                  } else {
-                    _i = _iterator.next();
-                    if (_i.done) break;
-                    _ref = _i.value;
-                  }
-
-                  var mutation = _ref;
-
-                  if (window.getComputedStyle(mutation.target).getPropertyValue('display') === 'none') {
-                    isHidden = true;
-                  }
-                }
-                if (isHidden) {
-                  _this3.dropdownMutationObserver.takeRecords();
-                  _this3.handleBlur();
-                }
-              });
-            }
-            this.dropdownMutationObserver.observe(this.element.parentElement.querySelector('.dropdown-content'), {
-              attributes: true,
-              attributeFilter: ['style']
-            });
-          } else {
-            if (this.dropdownMutationObserver) {
-              this.dropdownMutationObserver.disconnect();
-              this.dropdownMutationObserver.takeRecords();
-            }
+        Ui5Select.prototype.maxWidthChanged = function maxWidthChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setMaxWidth(newValue);
           }
         };
 
-        MdSelect.prototype.observeOptions = function observeOptions(attach) {
-          var _this4 = this;
-
-          if (getBooleanFromAttributeValue(this.enableOptionObserver)) {
-            if (attach) {
-              if (!this.optionsMutationObserver) {
-                this.optionsMutationObserver = DOM.createMutationObserver(function (mutations) {
-                  _this4.refresh();
-                });
-              }
-              this.optionsMutationObserver.observe(this.element, {
-                characterData: true,
-                subtree: true
-              });
-            } else {
-              if (this.optionsMutationObserver) {
-                this.optionsMutationObserver.disconnect();
-                this.optionsMutationObserver.takeRecords();
-              }
-            }
+        Ui5Select.prototype.selectedKeyChanged = function selectedKeyChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setSelectedKey(newValue);
           }
         };
 
-        MdSelect.prototype.handleBlur = function handleBlur() {
-          var _this5 = this;
-
-          if (this._taskqueueRunning) return;
-          this._taskqueueRunning = true;
-          this.taskQueue.queueTask(function () {
-            _this5.log.debug('fire blur event');
-            fireEvent(_this5.element, 'blur');
-            _this5._taskqueueRunning = false;
-          });
+        Ui5Select.prototype.selectedItemIdChanged = function selectedItemIdChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setSelectedItemId(newValue);
+          }
         };
 
-        return MdSelect;
-      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_dec3], {
+        Ui5Select.prototype.iconChanged = function iconChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setIcon(newValue);
+          }
+        };
+
+        Ui5Select.prototype.typeChanged = function typeChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setType(newValue);
+          }
+        };
+
+        Ui5Select.prototype.autoAdjustWidthChanged = function autoAdjustWidthChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setAutoAdjustWidth(getBooleanFromAttributeValue(newValue));
+          }
+        };
+
+        Ui5Select.prototype.textAlignChanged = function textAlignChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setTextAlign(newValue);
+          }
+        };
+
+        Ui5Select.prototype.textDirectionChanged = function textDirectionChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setTextDirection(newValue);
+          }
+        };
+
+        Ui5Select.prototype.valueStateChanged = function valueStateChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setValueState(newValue);
+          }
+        };
+
+        Ui5Select.prototype.valueStateTextChanged = function valueStateTextChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setValueStateText(newValue);
+          }
+        };
+
+        Ui5Select.prototype.showSecondaryValuesChanged = function showSecondaryValuesChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setShowSecondaryValues(getBooleanFromAttributeValue(newValue));
+          }
+        };
+
+        Ui5Select.prototype.forceSelectionChanged = function forceSelectionChanged(newValue) {
+          if (this._select !== null) {
+            this._select.setForceSelection(getBooleanFromAttributeValue(newValue));
+          }
+        };
+
+        return Ui5Select;
+      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
         enumerable: true,
         initializer: function initializer() {
-          return false;
+          return null;
         }
-      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'enableOptionObserver', [_dec4], {
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'name', [_dec4], {
         enumerable: true,
         initializer: function initializer() {
-          return false;
+          return null;
         }
-      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'label', [_dec5], {
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec5], {
         enumerable: true,
         initializer: function initializer() {
-          return '';
+          return null;
         }
-      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'showErrortext', [_dec6], {
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'maxWidth', [_dec6], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec7], {
         enumerable: true,
         initializer: function initializer() {
           return true;
         }
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'selectedKey', [_dec8], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'selectedItemId', [_dec9], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec10], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_dec11], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'autoAdjustWidth', [_dec12], {
+        enumerable: true,
+        initializer: function initializer() {
+          return false;
+        }
+      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'valueState', [_dec13], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'valueStateText', [_dec14], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'showSecondaryValues', [_dec15], {
+        enumerable: true,
+        initializer: function initializer() {
+          return false;
+        }
+      }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'forceSelection', [_dec16], {
+        enumerable: true,
+        initializer: function initializer() {
+          return true;
+        }
+      }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'items', [_dec17], {
+        enumerable: true,
+        initializer: function initializer() {
+          return [];
+        }
+      }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'selectedItem', [_dec18], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'change', [_dec19], {
+        enumerable: true,
+        initializer: function initializer() {
+          return this.defaultFunc;
+        }
       })), _class2)) || _class) || _class));
 
-      _export('MdSelect', MdSelect);
+      _export('Ui5Select', Ui5Select);
     }
   };
 });

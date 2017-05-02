@@ -1,208 +1,168 @@
-import {bindable, customAttribute} from 'aurelia-templating';
-import {BindingEngine} from 'aurelia-binding';
-import {inject} from 'aurelia-dependency-injection';
-import {TaskQueue} from 'aurelia-task-queue';
-import {getLogger} from 'aurelia-logging';
-import {fireEvent} from '../common/events';
-import {getBooleanFromAttributeValue} from '../common/attributes';
-import {DOM} from 'aurelia-pal';
+import { bindable, customElement, noView } from 'aurelia-templating';
+import { inject } from 'aurelia-dependency-injection';
+import { AttributeManager } from '../common/attributeManager';
+import { getBooleanFromAttributeValue } from '../common/attributes';
+import { Ui5InputBase } from '../input-base/input-base';
+@customElement('ui5-select')
+@inject(Element)
 
-@inject(Element, BindingEngine, TaskQueue)
-@customAttribute('md-select')
-export class MdSelect {
-  @bindable() disabled = false;
-  @bindable() enableOptionObserver = false;
-  @bindable() label = '';
-  @bindable() showErrortext = true;
-  _suspendUpdate = false;
-  subscriptions = [];
-  input = null;
-  dropdownMutationObserver = null;
-  optionsMutationObserver = null;
+export class Ui5Select {
+  _select = null;
+  @bindable() ui5Id = null;
 
-  constructor(element, bindingEngine, taskQueue) {
+  @bindable() name = null;
+  @bindable() width = null;
+  @bindable() maxWidth = null;
+  @bindable() enabled = true;
+  @bindable() selectedKey = null;
+  @bindable() selectedItemId = null;
+  @bindable() icon = null;
+  @bindable() type = null;
+  @bindable() autoAdjustWidth = false;
+  @bindable() valueState = null;
+  @bindable() valueStateText = null;
+  @bindable() showSecondaryValues = false;
+  @bindable() forceSelection = true;
+
+  @bindable() items = [];
+
+  @bindable() selectedItem = null;
+
+  @bindable() change = this.defaultFunc;
+  get UIElement() {
+    return this._select;
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'item')
+        if (this._select.getItems().length == 0) // set key when first item is added
+          this.selectedKey = child.mProperties.key;
+      this._select.addItem(child);
+
+      break;
+    }
+  }
+  constructor(element) {
     this.element = element;
-    this.taskQueue = taskQueue;
-    this.handleChangeFromViewModel = this.handleChangeFromViewModel.bind(this);
-    this.handleChangeFromNativeSelect = this.handleChangeFromNativeSelect.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.log = getLogger('md-select');
-    this.bindingEngine = bindingEngine;
   }
+  defaultFunc() {
 
+  }
   attached() {
-    this.taskQueue.queueTask(() => {
-      this.createMaterialSelect(false);
-
-      if (this.label) {
-        let wrapper = $(this.element).parent('.select-wrapper');
-        let div = $('<div class="input-field"></div>');
-        let va = this.element.attributes.getNamedItem('validate');
-        if (va) {
-          div.attr(va.name, va.label);
-        }
-        wrapper.wrap(div);
-        $(`<label>${this.label}</label>`).insertAfter(wrapper);
-      }
+    var attributeManager = new AttributeManager(this.element);
+    var params = {
+      name: this.name,
+      width: this.width,
+      maxWidth: this.maxWidth,
+      enabled: getBooleanFromAttributeValue(this.enabled),
+      selectedKey: this.selectedKey,
+      selectedItemId: this.selectedItemId,
+      icon: this.icon,
+      type: this.type,
+      autoAdjustWidth: getBooleanFromAttributeValue(this.autoAdjustWidth),
+      textAlign: this.textAlign,
+      textDirection: this.textDirection,
+      valueState: this.valueState,
+      valueStateText: this.valueStateText,
+      showSecondaryValues: getBooleanFromAttributeValue(this.showSecondaryValues),
+      forceSelection: getBooleanFromAttributeValue(this.forceSelection),
+      items: this.items,
+      selectedItem: this.selectedItem,
+      change: this.change
+    };
+    if (this.ui5Id)
+      this._select = new sap.m.Select(this.ui5Id, params);
+    else
+      this._select = new sap.m.Select(params);
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._select, this.element);
+    attributeManager.addAttributes({ "ui5-container": '' });
+    var that = this;
+    this._select.attachChange((event) => {
+      that.selectedItem = event.mParameters.selectedItem;
+      that.selectedKey = event.mParameters.selectedItem.mProperties.key;
     });
-    this.subscriptions.push(this.bindingEngine.propertyObserver(this.element, 'value').subscribe(this.handleChangeFromViewModel));
-    // this.subscriptions.push(this.bindingEngine.propertyObserver(this.element, 'selectedOptions').subscribe(this.notifyBindingEngine.bind(this)));
-    // $(this.element).material_select(() => {
-    //   this.log.warn('materialize callback', $(this.element).val());
-    //   this.handleChangeFromNativeSelect();
-    // });
 
-    $(this.element).on('change', this.handleChangeFromNativeSelect);
+    this._select.addEventDelegate(this.element);
   }
-
-  detached() {
-    $(this.element).off('change', this.handleChangeFromNativeSelect);
-    this.observeVisibleDropdownContent(false);
-    this.observeOptions(false);
-    this.dropdownMutationObserver = null;
-    $(this.element).material_select('destroy');
-    this.subscriptions.forEach(sub => sub.dispose());
+  nameChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setName(newValue);
+    }
   }
-
-  refresh() {
-    this.taskQueue.queueTask(() => {
-      this.createMaterialSelect(true);
-    });
+  enabledChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setEnableChanged(getBooleanFromAttributeValue(newValue));
+    }
   }
-
-  disabledChanged(newValue) {
-    this.toggleControl(newValue);
+  widthChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setWidth(newValue);
+    }
   }
-
-  showErrortextChanged() {
-    this.setErrorTextAttribute();
-  }
-
-  setErrorTextAttribute() {
-    let input = this.element.parentElement.querySelector('input.select-dropdown');
-    if (!input) return;
-    this.log.debug('showErrortextChanged: ' + this.showErrortext);
-    input.setAttribute('data-show-errortext', getBooleanFromAttributeValue(this.showErrortext));
-  }
-
-  notifyBindingEngine() {
-    this.log.debug('selectedOptions changed', arguments);
-  }
-
-  handleChangeFromNativeSelect() {
-    if (!this._suspendUpdate) {
-      this.log.debug('handleChangeFromNativeSelect', this.element.value, $(this.element).val());
-      this._suspendUpdate = true;
-      fireEvent(this.element, 'change');
-      this._suspendUpdate = false;
+  maxWidthChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setMaxWidth(newValue);
     }
   }
 
-  handleChangeFromViewModel(newValue) {
-    this.log.debug('handleChangeFromViewModel', newValue, $(this.element).val());
-    if (!this._suspendUpdate) {
-      this.createMaterialSelect(false);
+  selectedKeyChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setSelectedKey(newValue);
+    }
+  }
+  selectedItemIdChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setSelectedItemId(newValue);
     }
   }
 
-  toggleControl(disable) {
-    let $wrapper = $(this.element).parent('.select-wrapper');
-    if ($wrapper.length > 0) {
-      if (disable) {
-        $('.caret', $wrapper).addClass('disabled');
-        $('input.select-dropdown', $wrapper).attr('disabled', 'disabled');
-        $wrapper.attr('disabled', 'disabled');
-      } else {
-        $('.caret', $wrapper).removeClass('disabled');
-        $('input.select-dropdown', $wrapper).attr('disabled', null);
-        $wrapper.attr('disabled', null);
-        $('.select-dropdown', $wrapper).dropdown({'hover': false, 'closeOnClick': false});
-      }
+  iconChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setIcon(newValue);
     }
   }
 
-  createMaterialSelect(destroy) {
-    this.observeVisibleDropdownContent(false);
-    this.observeOptions(false);
-    if (destroy) {
-      $(this.element).material_select('destroy');
+  typeChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setType(newValue);
     }
-    $(this.element).material_select();
-    this.toggleControl(this.disabled);
-    this.observeVisibleDropdownContent(true);
-    this.observeOptions(true);
-    this.setErrorTextAttribute();
   }
-
-  observeVisibleDropdownContent(attach) {
-    if (attach) {
-      if (!this.dropdownMutationObserver) {
-        this.dropdownMutationObserver = DOM.createMutationObserver(mutations => {
-          let isHidden = false;
-          for (let mutation of mutations) {
-            if (window.getComputedStyle(mutation.target).getPropertyValue('display') === 'none') {
-              isHidden = true;
-            }
-          }
-          if (isHidden) {
-            this.dropdownMutationObserver.takeRecords();
-            this.handleBlur();
-          }
-        });
-      }
-      this.dropdownMutationObserver.observe(this.element.parentElement.querySelector('.dropdown-content'), {
-        attributes: true,
-        attributeFilter: ['style']
-      });
-    } else {
-      if (this.dropdownMutationObserver) {
-        this.dropdownMutationObserver.disconnect();
-        this.dropdownMutationObserver.takeRecords();
-      }
+  autoAdjustWidthChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setAutoAdjustWidth(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  textAlignChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setTextAlign(newValue);
+    }
+  }
+  textDirectionChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setTextDirection(newValue);
+    }
+  }
+  valueStateChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setValueState(newValue);
+    }
+  }
+  valueStateTextChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setValueStateText(newValue);
     }
   }
 
-  observeOptions(attach) {
-    if (getBooleanFromAttributeValue(this.enableOptionObserver)) {
-      if (attach) {
-        if (!this.optionsMutationObserver) {
-          this.optionsMutationObserver = DOM.createMutationObserver(mutations => {
-            // this.log.debug('observeOptions', mutations);
-            this.refresh();
-          });
-        }
-        this.optionsMutationObserver.observe(this.element, {
-          // childList: true,
-          characterData: true,
-          subtree: true
-        });
-      } else {
-        if (this.optionsMutationObserver) {
-          this.optionsMutationObserver.disconnect();
-          this.optionsMutationObserver.takeRecords();
-        }
-      }
+  showSecondaryValuesChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setShowSecondaryValues(getBooleanFromAttributeValue(newValue));
     }
   }
 
-  //
-  // Firefox sometimes fire blur several times in a row
-  // observable at http://localhost:3000/#/samples/select/
-  // when enable 'Disable Functionality', open that list and
-  // then open 'Basic use' list.
-  // Chrome - ok
-  // IE 11 - ok
-  // Edge ?
-  //
-  _taskqueueRunning = false;
-
-  handleBlur() {
-    if (this._taskqueueRunning) return;
-    this._taskqueueRunning = true;
-    this.taskQueue.queueTask(() => {
-      this.log.debug('fire blur event');
-      fireEvent(this.element, 'blur');
-      this._taskqueueRunning = false;
-    });
+  forceSelectionChanged(newValue) {
+    if (this._select !== null) {
+      this._select.setForceSelection(getBooleanFromAttributeValue(newValue));
+    }
   }
 }

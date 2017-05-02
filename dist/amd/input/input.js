@@ -105,6 +105,24 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     Ui5Input.prototype.addChild = function addChild(child, elem) {
       var path = $(elem).parentsUntil(this.element);
       _Ui5InputBase.prototype.addChild.call(this, child, elem);
+      for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+        if (_isArray) {
+          if (_i >= _iterator.length) break;
+          elem = _iterator[_i++];
+        } else {
+          _i = _iterator.next();
+          if (_i.done) break;
+          elem = _i.value;
+        }
+
+        if (elem.localName == 'suggestion-item') {
+          this._input.addSuggestionItem(child);
+          break;
+        } else if (elem.localName == 'suggestion-row') {
+          this._input.addSuggestionRow(child);
+          break;
+        }
+      }
     };
 
     _createClass(Ui5Input, [{
@@ -231,8 +249,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         selectedItem: this.selectedItem,
         selectedRow: this.selectedRow,
         liveChange: this.liveChange,
-        valueHelpRequest: this.valueHelpRequest,
         suggest: this.suggest,
+        valueHelpRequest: this.valueHelpRequest,
         suggestionItemSelected: this.suggestionItemSelected,
         submit: this.submit,
         value: this.value,
@@ -252,6 +270,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       if (this.ui5Id) this._input = new sap.m.Input(this.ui5Id, params);else this._input = new sap.m.Input(params);
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._input, this.element);
       attributeManager.addAttributes({ "ui5-layout": '' });
+      attributeManager.addAttributes({ "ui5-container": '' });
       var that = this;
       this._input.attachChange(function (event) {
         that.value = event.mParameters.value;

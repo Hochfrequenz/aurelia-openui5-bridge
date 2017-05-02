@@ -89,7 +89,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         Ui5Text.prototype.attached = function attached() {
 
           this._text = new sap.m.Text({
-            text: this.text,
+            text: this.text != null ? this.text : this.element.innerText.trim(),
             wrapping: getBooleanFromAttributeValue(this.wrapping),
             textAlign: this.textAlign,
             maxLines: this.maxLines

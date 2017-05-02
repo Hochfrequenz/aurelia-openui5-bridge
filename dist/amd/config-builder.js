@@ -22,7 +22,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     }
 
     ConfigBuilder.prototype.useAll = function useAll() {
-      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useTitle().useLayoutData();
+      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout();
     };
 
     ConfigBuilder.prototype.usePage = function usePage() {
@@ -33,6 +33,8 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
 
     ConfigBuilder.prototype.useBar = function useBar() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./bar/bar'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./overflow-toolbar/overflow-toolbar'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./toolbar-spacer/toolbar-spacer'));
       return this;
     };
 
@@ -98,13 +100,48 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
       return this;
     };
 
+    ConfigBuilder.prototype.useDatePicker = function useDatePicker() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./date-picker/date-picker'));
+      return this;
+    };
+
     ConfigBuilder.prototype.useTitle = function useTitle() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./title/title'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./m-title/m-title'));
       return this;
     };
 
     ConfigBuilder.prototype.useLayoutData = function useLayoutData() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./grid-data/grid-data'));
+      return this;
+    };
+
+    ConfigBuilder.prototype.useLayout = function useLayout() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./vertical-layout/vertical-layout'));
+      return this;
+    };
+
+    ConfigBuilder.prototype.useSelect = function useSelect() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./select/select'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./list-item/list-item'));
+      return this;
+    };
+
+    ConfigBuilder.prototype.useTable = function useTable() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./table/table'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./column/column'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./column-list-item/column-list-item'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./object-identifier/object-identifier'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./object-number/object-number'));
+      return this;
+    };
+
+    ConfigBuilder.prototype.useTabs = function useTabs() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./tab-container/tab-container'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./tab-container-item/tab-container-item'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./icon-tab-bar/icon-tab-bar'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./icon-tab-filter/icon-tab-filter'));
+
       return this;
     };
 

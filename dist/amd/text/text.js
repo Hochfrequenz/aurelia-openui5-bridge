@@ -79,7 +79,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     Ui5Text.prototype.attached = function attached() {
 
       this._text = new sap.m.Text({
-        text: this.text,
+        text: this.text != null ? this.text : this.element.innerText.trim(),
         wrapping: (0, _attributes.getBooleanFromAttributeValue)(this.wrapping),
         textAlign: this.textAlign,
         maxLines: this.maxLines

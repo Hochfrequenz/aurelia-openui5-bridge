@@ -1,4 +1,4 @@
-import {PLATFORM} from 'aurelia-pal';
+import { PLATFORM } from 'aurelia-pal';
 /**
 * Plugin configuration builder
 */
@@ -18,12 +18,17 @@ export class ConfigBuilder {
       .useTiles()
       .useGrid()
       .useText()
-      .useWizard()      
+      .useWizard()
       .useForm()
       .useLabel()
       .useInput()
+      .useDatePicker()
       .useTitle()
       .useLayoutData()
+      .useSelect()
+      .useTable()
+      .useTabs()
+      .useLayout()
   }
 
   usePage(): ConfigBuilder {
@@ -31,15 +36,17 @@ export class ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./shell/shell'));
     return this;
   }
-   useBar(): ConfigBuilder {
+  useBar(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./bar/bar'));
+    this.globalResources.push(PLATFORM.moduleName('./overflow-toolbar/overflow-toolbar'));
+    this.globalResources.push(PLATFORM.moduleName('./toolbar-spacer/toolbar-spacer'));
     return this;
   }
   useContainer(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./container/container'));
     return this;
   }
-   useHtml(): ConfigBuilder {
+  useHtml(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./html/html'));
     return this;
   }
@@ -60,7 +67,7 @@ export class ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./text/text'));
     return this;
   }
-  
+
   useTiles(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./generic-tile/generic-tile'));
     this.globalResources.push(PLATFORM.moduleName('./tile-container/tile-container'));
@@ -88,15 +95,44 @@ export class ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./input/input'));
     return this;
   }
+  useDatePicker(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./date-picker/date-picker'));
+    return this;
+  }
   useTitle(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./title/title'));
+    this.globalResources.push(PLATFORM.moduleName('./m-title/m-title'));
     return this;
   }
   useLayoutData(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./grid-data/grid-data'));
     return this;
   }
-
+  useLayout(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./vertical-layout/vertical-layout'));
+    return this;
+  }
+  useSelect(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./select/select'));
+    this.globalResources.push(PLATFORM.moduleName('./list-item/list-item'));
+    return this;
+  }
+  useTable(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./table/table'));
+    this.globalResources.push(PLATFORM.moduleName('./column/column'));
+    this.globalResources.push(PLATFORM.moduleName('./column-list-item/column-list-item'));
+    this.globalResources.push(PLATFORM.moduleName('./object-identifier/object-identifier'));
+    this.globalResources.push(PLATFORM.moduleName('./object-number/object-number'));
+    return this;
+  }
+  useTabs(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./tab-container/tab-container'));
+    this.globalResources.push(PLATFORM.moduleName('./tab-container-item/tab-container-item'));
+    this.globalResources.push(PLATFORM.moduleName('./icon-tab-bar/icon-tab-bar'));
+    this.globalResources.push(PLATFORM.moduleName('./icon-tab-filter/icon-tab-filter'));
+    
+    return this;
+  }
 
   /**
   * Don't globalize any resources

@@ -74,7 +74,7 @@ var Ui5InputBase = exports.Ui5InputBase = (_dec = (0, _aureliaTemplating.customE
 
     var _this = _possibleConstructorReturn(this, _Ui5Control.call(this, element));
 
-    _this._input = null;
+    _this._picker = null;
 
     _initDefineProp(_this, 'value', _descriptor, _this);
 
@@ -117,80 +117,80 @@ var Ui5InputBase = exports.Ui5InputBase = (_dec = (0, _aureliaTemplating.customE
   };
 
   Ui5InputBase.prototype.valueChanged = function valueChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setValue(newValue);
+    if (this._picker !== null) {
+      this._picker.setValue(newValue);
     }
   };
 
   Ui5InputBase.prototype.widthChanged = function widthChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setWidth(newValue);
+    if (this._picker !== null) {
+      this._picker.setWidth(newValue);
     }
   };
 
   Ui5InputBase.prototype.enabledChanged = function enabledChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    if (this._picker !== null) {
+      this._picker.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
     }
   };
 
   Ui5InputBase.prototype.valueStateChanged = function valueStateChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setValueState(newValue);
+    if (this._picker !== null) {
+      this._picker.setValueState(newValue);
     }
   };
 
   Ui5InputBase.prototype.nameChanged = function nameChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setName(newValue);
+    if (this._picker !== null) {
+      this._picker.setName(newValue);
     }
   };
 
   Ui5InputBase.prototype.placeholderChanged = function placeholderChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setPlaceholder(newValue);
+    if (this._picker !== null) {
+      this._picker.setPlaceholder(newValue);
     }
   };
 
   Ui5InputBase.prototype.editableChanged = function editableChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setEditable((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    if (this._picker !== null) {
+      this._picker.setEditable((0, _attributes.getBooleanFromAttributeValue)(newValue));
     }
   };
 
   Ui5InputBase.prototype.valueStateTextChanged = function valueStateTextChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setValueStateText(newValue);
+    if (this._picker !== null) {
+      this._picker.setValueStateText(newValue);
     }
   };
 
   Ui5InputBase.prototype.showValueStateMessageChanged = function showValueStateMessageChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setShowValueStateMessage((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    if (this._picker !== null) {
+      this._picker.setShowValueStateMessage((0, _attributes.getBooleanFromAttributeValue)(newValue));
     }
   };
 
   Ui5InputBase.prototype.textAlignChanged = function textAlignChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setTextAlign(newValue);
+    if (this._picker !== null) {
+      this._picker.setTextAlign(newValue);
     }
   };
 
   Ui5InputBase.prototype.textDirectionChanged = function textDirectionChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setTextDirection(newValue);
+    if (this._picker !== null) {
+      this._picker.setTextDirection(newValue);
     }
   };
 
   Ui5InputBase.prototype.requiredChanged = function requiredChanged(newValue) {
-    if (this._input !== null) {
-      this._input.setRequired((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    if (this._picker !== null) {
+      this._picker.setRequired((0, _attributes.getBooleanFromAttributeValue)(newValue));
     }
   };
 
   Ui5InputBase.prototype.changeChanged = function changeChanged(newValue) {
-    if (this._input !== null) {
-      this._input.attachChange(newValue);
+    if (this._picker !== null) {
+      this._picker.attachChange(newValue);
     }
   };
 

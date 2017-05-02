@@ -26,7 +26,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         }
 
         ConfigBuilder.prototype.useAll = function useAll() {
-          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useTitle().useLayoutData();
+          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout();
         };
 
         ConfigBuilder.prototype.usePage = function usePage() {
@@ -37,6 +37,8 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
         ConfigBuilder.prototype.useBar = function useBar() {
           this.globalResources.push(PLATFORM.moduleName('./bar/bar'));
+          this.globalResources.push(PLATFORM.moduleName('./overflow-toolbar/overflow-toolbar'));
+          this.globalResources.push(PLATFORM.moduleName('./toolbar-spacer/toolbar-spacer'));
           return this;
         };
 
@@ -102,13 +104,48 @@ System.register(['aurelia-pal'], function (_export, _context) {
           return this;
         };
 
+        ConfigBuilder.prototype.useDatePicker = function useDatePicker() {
+          this.globalResources.push(PLATFORM.moduleName('./date-picker/date-picker'));
+          return this;
+        };
+
         ConfigBuilder.prototype.useTitle = function useTitle() {
           this.globalResources.push(PLATFORM.moduleName('./title/title'));
+          this.globalResources.push(PLATFORM.moduleName('./m-title/m-title'));
           return this;
         };
 
         ConfigBuilder.prototype.useLayoutData = function useLayoutData() {
           this.globalResources.push(PLATFORM.moduleName('./grid-data/grid-data'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useLayout = function useLayout() {
+          this.globalResources.push(PLATFORM.moduleName('./vertical-layout/vertical-layout'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useSelect = function useSelect() {
+          this.globalResources.push(PLATFORM.moduleName('./select/select'));
+          this.globalResources.push(PLATFORM.moduleName('./list-item/list-item'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useTable = function useTable() {
+          this.globalResources.push(PLATFORM.moduleName('./table/table'));
+          this.globalResources.push(PLATFORM.moduleName('./column/column'));
+          this.globalResources.push(PLATFORM.moduleName('./column-list-item/column-list-item'));
+          this.globalResources.push(PLATFORM.moduleName('./object-identifier/object-identifier'));
+          this.globalResources.push(PLATFORM.moduleName('./object-number/object-number'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useTabs = function useTabs() {
+          this.globalResources.push(PLATFORM.moduleName('./tab-container/tab-container'));
+          this.globalResources.push(PLATFORM.moduleName('./tab-container-item/tab-container-item'));
+          this.globalResources.push(PLATFORM.moduleName('./icon-tab-bar/icon-tab-bar'));
+          this.globalResources.push(PLATFORM.moduleName('./icon-tab-filter/icon-tab-filter'));
+
           return this;
         };
 

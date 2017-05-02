@@ -1,3 +1,7 @@
 <template>
-    <div><layout><slot name="layoutData" ></slot></layout></div>
+    <div>
+        <layout><slot name="layoutData" ></slot></layout>
+        <suggestion-item><slot name="suggestionItem"></slot></suggestion-item>
+        <suggestion-row><slot name="suggestionRow"></slot></suggestion-row>
+    </div>
 </template>
