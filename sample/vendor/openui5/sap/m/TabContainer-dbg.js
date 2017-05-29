@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -24,7 +24,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 		 * @extends sap.ui.core.Control
 		 *
 		 * @author SAP SE
-		 * @version 1.44.8
+		 * @version 1.46.7
 		 *
 		 * @constructor
 		 * @public
@@ -117,7 +117,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 					delete mSettings['items'];
 				}
 
-				sap.ui.base.ManagedObject.prototype.constructor.apply(this, arguments);
+				Control.prototype.constructor.apply(this, arguments);
 				var oControl = new sap.m.TabStrip(this.getId() + "--tabstrip", {
 					hasSelect: true,
 					itemSelect: function(oEvent) {
@@ -285,12 +285,18 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 		 * @private
 		 */
 		TabContainer.prototype._moveToNextItem = function (bSetAsSelected) {
+			if (!this._getTabStrip()._oItemNavigation) {
+				return;
+			}
+
 			var iItemsCount = this.getItems().length,
 					iCurrentFocusedIndex = this._getTabStrip()._oItemNavigation.getFocusedIndex(),
 					iNextIndex = iItemsCount === iCurrentFocusedIndex ? --iCurrentFocusedIndex : iCurrentFocusedIndex,
 					oNextItem = this.getItems()[iNextIndex],
 					fnFocusCallback = function () {
-						this._getTabStrip()._oItemNavigation.focusItem(iNextIndex);
+						if (this._getTabStrip()._oItemNavigation) {
+							this._getTabStrip()._oItemNavigation.focusItem(iNextIndex);
+						}
 					};
 
 			// Selection (causes invalidation)

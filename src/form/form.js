@@ -2,7 +2,7 @@ import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { computedFrom } from 'aurelia-framework';
 @customElement('ui5-form')
 @inject(Element)
 export class Ui5Form {
@@ -13,6 +13,10 @@ export class Ui5Form {
   _form = null;
   constructor(element) {
     this.element = element;
+  }
+  @computedFrom('_form')
+  get UIElement() {
+    return this._form;
   }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
@@ -42,7 +46,7 @@ export class Ui5Form {
       width: this.width,
       title: this.title
     };
-    if (this.uiId5)
+    if (this.ui5Id)
       this._form = new sap.ui.layout.form.Form(this.ui5Id, params);
     else
       this._form = new sap.ui.layout.form.Form(params);

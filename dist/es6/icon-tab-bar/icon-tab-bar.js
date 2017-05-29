@@ -19,6 +19,7 @@ export class Ui5IconTabBar {
   @bindable() showOverflowSelectList = false;
   @bindable() headerBackgroundDesign = 'Solid';
   @bindable() enableTabReordering = false;
+  @bindable() select = this.defaultFunc;
   constructor(element) {
     this.element = element;
   }
@@ -57,9 +58,13 @@ export class Ui5IconTabBar {
       headerMode:this.headerMode,
       showOverflowSelectList: getBooleanFromAttributeValue(this.showOverflowSelectList),
       headerBackgroundDesign: this.headerBackgroundDesign,
-      enableTabReordering: getBooleanFromAttributeValue (this.enableTabReordering)
+      enableTabReordering: getBooleanFromAttributeValue (this.enableTabReordering),
+      select: this.select
     });
-
+    var that = this;
+    this._tab.attachSelect((event) => {
+      that.selectedKey = event.mParameters.selectedItem.mProperties.text;
+    });
     if ($(this.element).parents("[ui5-container]").length > 0) {
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });

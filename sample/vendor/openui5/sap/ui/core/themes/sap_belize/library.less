@@ -2,7 +2,7 @@
 
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -245,9 +245,15 @@ html[data-sap-ui-browser*="ie"] .sapUiBody {
 
 /****** Safari + Chrome on Desktop ******/
 
+html.sap-desktop ::-webkit-scrollbar:horizontal {
+	height: 0.75rem;
+}
+
+html.sap-desktop ::-webkit-scrollbar:vertical {
+	width: 0.75rem;
+}
+
 html.sap-desktop ::-webkit-scrollbar {
-	width: 16px;
-	height: 16px;
 	background-color: @sapUiScrollBarTrackColor;
 }
 

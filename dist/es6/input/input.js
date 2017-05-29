@@ -52,20 +52,46 @@ export class Ui5Input extends Ui5InputBase {
   @bindable() required = false;
 
   @bindable() change = this.defaultFunc;
+
+  /* from Control*/
+  @bindable() busy = false;
+
   get UIElement() {
     return this._input;
   }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     super.addChild(child, elem);
-    for(elem of path)
-    {
-      if(elem.localName=='suggestion-item'){
+    for (elem of path) {
+      if (elem.localName == 'suggestion-item') {
         this._input.addSuggestionItem(child);
+        return elem.localName;
+      }
+      else if (elem.localName == 'suggestion-row') {
+        this._input.addSuggestionRow(child);
+        return elem.localName;
+      }
+    }
+  }
+  removeChildByRelation(child,relation)
+  {
+    if (relation == 'suggestion-item') {
+        this._input.removeSuggestionItem(child);
+      }
+      else if (relation == 'suggestion-row') {
+        this._input.removeSuggestionRow(child);
+      }
+  }
+  removeChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    super.removeChild(child, elem);
+    for (elem of path) {
+      if (elem.localName == 'suggestion-item') {
+        this._input.removeSuggestionItem(child);
         break;
       }
-      else if(elem.localName=='suggestion-row'){
-        this._input.addSuggestionRow(child);
+      else if (elem.localName == 'suggestion-row') {
+        this._input.removeSuggestionRow(child);
         break;
       }
     }
@@ -102,7 +128,7 @@ export class Ui5Input extends Ui5InputBase {
       selectedRow: this.selectedRow,
       liveChange: this.liveChange,
       suggest: this.suggest,
-      valueHelpRequest: this.valueHelpRequest,      
+      valueHelpRequest: this.valueHelpRequest,
       suggestionItemSelected: this.suggestionItemSelected,
       submit: this.submit,
       value: this.value,
@@ -334,6 +360,11 @@ export class Ui5Input extends Ui5InputBase {
   changeChanged(newValue) {
     if (this._input !== null) {
       this._input.attachChange(newValue);
+    }
+  }
+  busyChanged(newValue) {
+    if (this._input !== null) {
+      this._input.setBusy(getBooleanFromAttributeValue(newValue));
     }
   }
 }

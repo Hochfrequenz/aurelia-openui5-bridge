@@ -110,7 +110,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         }
 
         if (elem.localName == 'content') {
-          this._tab.removeItem(child);
           break;
         }
       }

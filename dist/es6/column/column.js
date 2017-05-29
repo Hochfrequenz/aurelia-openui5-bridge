@@ -76,44 +76,44 @@ export class Ui5Column {
     }
   }
   styleClassChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setStyleClass(newValue);
+    if (this._column !== null) {
+      this._column.setStyleClass(newValue);
     }
   }
   visibleChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setVisible(getBooleanFromAttributeValue(newValue));
+    if (this._column !== null) {
+      this._column.setVisible(getBooleanFromAttributeValue(newValue));
     }
   }
   minScreenWidthChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setMinScreenWidth(newValue);
+    if (this._column !== null) {
+      this._column.setMinScreenWidth(newValue);
     }
   }
 
   demandPopinChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setDemandPopin(getBooleanFromAttributeValue(newValue));
+    if (this._column !== null) {
+      this._column.setDemandPopin(getBooleanFromAttributeValue(newValue));
     }
   }
   popinDisplayChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setPopinDisplay(newValue);
+    if (this._column !== null) {
+      this._column.setPopinDisplay(newValue);
     }
   }
   popinHAlignChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setPopinHAlign(newValue);
+    if (this._column !== null) {
+      this._column.setPopinHAlign(newValue);
     }
   }
   mergeDuplicatesChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setMergeDuplicates(getBooleanFromAttributeValue(newValue));
+    if (this._column !== null) {
+      this._column.setMergeDuplicates(getBooleanFromAttributeValue(newValue));
     }
   }
   mergeFunctionNameChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setMergeFunctionName(newValue);
+    if (this._column !== null) {
+      this._column.setMergeFunctionName(newValue);
     }
   }
 

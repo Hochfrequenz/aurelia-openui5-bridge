@@ -478,6 +478,8 @@
 @sapUiShellActiveBackground: darken(@sapUiBrand, 17);
 @sapUiShellActiveTextColor: lighten(@sapUiBrand, 55);
 @sapUiShellHoverToggleBackground: darken(@sapUiBrand, 32);
+@sapUiShellContainerBackground: lighten(@sapUiShellBackground, 16);
+@sapUiShellAltContainerBackground: darken(saturate(@sapUiShellBackground, 6), 28);
 
 @sapUiUx3ShellHeaderColor: @sapShellColor;			// "Quick"
 @sapUiUx3ShellBackgroundColor: @sapUiPrimary3;
@@ -521,7 +523,7 @@
 @sapUiButtonEmphasizedHoverBorderColor: darken(@sapUiButtonEmphasizedBackground, 5);
 @sapUiButtonEmphasizedActiveBackground: @sapUiButtonActiveBackground;
 @sapUiButtonEmphasizedActiveBorderColor: @sapUiButtonActiveBorderColor;
-@sapUiButtonEmphasizedTextShadow: contrast(@sapUiButtonEmphasizedTextColor, fade(@sapUiContentShadowColor, 50), fade(@sapUiContentContrastShadowColor, 50), @sapUiContentContrastTextThreshold);
+@sapUiButtonEmphasizedTextShadow: contrast(@sapUiButtonEmphasizedTextColor, @sapUiContentShadowColor, @sapUiContentContrastShadowColor, @sapUiContentContrastTextThreshold);
 @sapUiButtonAcceptBorderColor: @sapUiPositiveElement;
 @sapUiButtonAcceptHoverBackground: @sapUiButtonHoverBackground;
 @sapUiButtonAcceptHoverBorderColor: @sapUiButtonAcceptBorderColor;
@@ -548,14 +550,11 @@
 @sapUiButtonActionSelectBackground: @sapUiPageFooterBackground;
 @sapUiButtonActionSelectBorderColor: contrast(@sapUiButtonActionSelectBackground, darken(@sapUiButtonActionSelectBackground, 8), lighten(@sapUiButtonActionSelectBackground, 12));
 @sapUiButtonLiteActionSelectHoverBackground: contrast(@sapUiButtonActionSelectBackground, darken(@sapUiButtonActionSelectBackground, 3), lighten(@sapUiButtonActionSelectBackground, 5));
-@sapUiToggleButtonPressedBackground: darken(@sapUiButtonActiveBackground, 10);
+@sapUiToggleButtonPressedBackground: darken(@sapUiSelected, 10);
 @sapUiToggleButtonPressedBorderColor:  darken(@sapUiToggleButtonPressedBackground, 5);
 @sapUiToggleButtonPressedTextColor: contrast(@sapUiToggleButtonPressedBackground, @sapUiButtonTextColor, @sapUiContentContrastTextColor, @sapUiContentContrastTextThreshold);
 @sapUiToggleButtonPressedHoverBackground: lighten(@sapUiToggleButtonPressedBackground, 10);
 @sapUiToggleButtonPressedHoverBorderColor: @sapUiToggleButtonPressedHoverBackground;
-@sapUiToggleButtonPressedDisabledBackground: @sapUiToggleButtonPressedBackground;
-@sapUiToggleButtonPressedDisabledBorderColor: @sapUiToggleButtonPressedBorderColor;
-@sapUiToggleButtonPressedDisabledTextColor: mix(@sapUiButtonTextColor, #fff, 25);
 @sapUiSegmentedButtonBackground: lighten(@sapUiButtonBackground, 3);
 @sapUiSegmentedButtonBorderColor: lighten(@sapUiButtonBorderColor, 8);
 @sapUiSegmentedButtonTextColor: contrast(@sapUiSegmentedButtonBackground, @sapUiButtonTextColor, @sapUiContentContrastTextColor, @sapUiContentContrastTextThreshold);
@@ -587,7 +586,7 @@
 @sapUiListGroupHeaderBackground: @sapUiListBackground;
 @sapUiListTableGroupHeaderBackground: darken(@sapUiListBackground, 5);
 @sapUiListTableGroupHeaderBorderColor: darken(@sapUiListBorderColor, 10);
-@sapUiListTableGroupHeaderTextColor: contrast(@sapUiListTableGroupHeaderBackground, @sapUiListTextColor, @sapUiContentContrastTextColor, @sapUiContentContrastTextThreshold);
+@sapUiListTableGroupHeaderTextColor: contrast(@sapUiListTableGroupHeaderBackground, @sapUiContentMarkerTextColor, @sapUiContentContrastTextColor, @sapUiContentContrastTextThreshold);
 @sapUiListTableFooterBorder: darken(@sapUiListBorderColor, 10);
 @sapUiListTableFixedBorder: darken(@sapUiListBorderColor, 30);
 @sapUiListTableTextSize: 0.875rem;
@@ -598,13 +597,22 @@
 @sapUiInfobarHoverBackground: darken(@sapUiInfobarBackground, 3);
 @sapUiInfobarActiveBackground: @sapUiListActiveBackground;
 
+@sapUiObjectHeaderBorderColor: darken(@sapUiObjectHeaderBackground, 8);
+
 @sapUiCalendarColorToday: @sapUiAccent4;
 
-@sapUiShadowLevel0: 0 0 0.125rem 0 fade(@sapUiContentShadowColor, 30);
-@sapUiShadowLevel1: 0 0.125rem 0.375rem 0 fade(@sapUiContentShadowColor, 20), 0 0 0.125rem 0 fade(@sapUiContentShadowColor, 30);
-@sapUiShadowLevel2: 0 0.375rem 0.750rem 0 fade(@sapUiContentShadowColor, 30), 0 0 0.125rem 0 fade(@sapUiContentShadowColor, 30);
-@sapUiShadowLevel3: 0 1.250rem 2rem 0 fade(@sapUiContentShadowColor, 50), 0 0 0.125rem 0 fade(@sapUiContentShadowColor, 30);
-@sapUiShadowText: 0 1px fade(@sapUiContentContrastShadowColor, 50);
+@sapUiDragAndDropColor: @sapUiContentNonInteractiveIconColor;
+@sapUiDragAndDropBackground: @sapUiGroupContentBackground;
+@sapUiDragAndDropBorderColor: @sapUiContentForegroundBorderColor;
+@sapUiDragAndDropActiveColor: @sapUiLink;
+@sapUiDragAndDropActiveBackground: fade(@sapUiLink, 5);
+@sapUiDragAndDropActiveBorderColor: @sapUiLink;
+
+@sapUiShadowLevel0: 0 0 0 1px fade(@sapUiContentShadowColor, 15);
+@sapUiShadowLevel1: 0 0.125rem 0.5rem 0 fade(@sapUiContentShadowColor, 15), @sapUiShadowLevel0;
+@sapUiShadowLevel2: 0 0.625rem 1.875rem 0 fade(@sapUiContentShadowColor, 15), @sapUiShadowLevel0;
+@sapUiShadowLevel3: 0 1.25rem 5rem 0 fade(@sapUiContentShadowColor, 15), @sapUiShadowLevel0;
+@sapUiShadowText: 0 0 0.125rem @sapUiContentContrastShadowColor;
 @sapUiShadowHeader: 0 0.125rem 0 0 @sapUiContentContrastShadowColor;
 
 //images for shell

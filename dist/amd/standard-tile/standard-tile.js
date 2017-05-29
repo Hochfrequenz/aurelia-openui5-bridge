@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (exports, _aureliaTemplating, _aureliaDependencyInjection, _attributeManager, _attributes) {
+define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', '../control/control'], function (exports, _aureliaTemplating, _aureliaDependencyInjection, _attributeManager, _attributes, _control) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -20,6 +20,48 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         if (!(instance instanceof Constructor)) {
             throw new TypeError("Cannot call a class as a function");
         }
+    }
+
+    function _possibleConstructorReturn(self, call) {
+        if (!self) {
+            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+        }
+
+        return call && (typeof call === "object" || typeof call === "function") ? call : self;
+    }
+
+    var _createClass = function () {
+        function defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+            if (protoProps) defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) defineProperties(Constructor, staticProps);
+            return Constructor;
+        };
+    }();
+
+    function _inherits(subClass, superClass) {
+        if (typeof superClass !== "function" && superClass !== null) {
+            throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+        }
+
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+            constructor: {
+                value: subClass,
+                enumerable: false,
+                writable: true,
+                configurable: true
+            }
+        });
+        if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
     function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -55,37 +97,51 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
 
-    var Ui5StandardTile = exports.Ui5StandardTile = (_dec = (0, _aureliaTemplating.customElement)('ui5-standard-tile'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+    var Ui5StandardTile = exports.Ui5StandardTile = (_dec = (0, _aureliaTemplating.customElement)('ui5-standard-tile'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+        _inherits(Ui5StandardTile, _Ui5Control);
+
+        _createClass(Ui5StandardTile, [{
+            key: 'UIElement',
+            get: function get() {
+                return this._tile;
+            }
+        }]);
+
         function Ui5StandardTile(element) {
             _classCallCheck(this, Ui5StandardTile);
 
-            this._tile = null;
+            var _this = _possibleConstructorReturn(this, _Ui5Control.call(this, element));
 
-            _initDefineProp(this, 'type', _descriptor, this);
+            _this._tile = null;
 
-            _initDefineProp(this, 'title', _descriptor2, this);
+            _initDefineProp(_this, 'type', _descriptor, _this);
 
-            _initDefineProp(this, 'number', _descriptor3, this);
+            _initDefineProp(_this, 'title', _descriptor2, _this);
 
-            _initDefineProp(this, 'info', _descriptor4, this);
+            _initDefineProp(_this, 'number', _descriptor3, _this);
 
-            _initDefineProp(this, 'infoState', _descriptor5, this);
+            _initDefineProp(_this, 'info', _descriptor4, _this);
 
-            _initDefineProp(this, 'numberUnit', _descriptor6, this);
+            _initDefineProp(_this, 'infoState', _descriptor5, _this);
 
-            _initDefineProp(this, 'icon', _descriptor7, this);
+            _initDefineProp(_this, 'numberUnit', _descriptor6, _this);
 
-            _initDefineProp(this, 'press', _descriptor8, this);
+            _initDefineProp(_this, 'icon', _descriptor7, _this);
 
-            this.element = element;
+            _initDefineProp(_this, 'press', _descriptor8, _this);
+
+            _initDefineProp(_this, 'busy', _descriptor9, _this);
+
+            _this.element = element;
+            return _this;
         }
 
         Ui5StandardTile.prototype.defaultPress = function defaultPress() {};
 
         Ui5StandardTile.prototype.attached = function attached() {
-            this._tile = new sap.m.StandardTile({
+            var props = {
                 type: this.type,
                 title: this.title,
                 number: this.number,
@@ -94,7 +150,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
                 numberUnit: this.numberUnit,
                 icon: this.icon,
                 press: this.press != null ? this.press : this.defaultPress
-            });
+            };
+            _Ui5Control.prototype.fillProperties.call(this, props);
+            this._tile = new sap.m.StandardTile(props);
             $(this.element).parents("ui5-tile-container")[0].au.controller.viewModel.addChild(this._tile, this.element);
         };
 
@@ -150,8 +208,14 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
             }
         };
 
+        Ui5StandardTile.prototype.busyChanged = function busyChanged(newValue) {
+            if (this._tile !== null) {
+                this._tile.setBusy((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            }
+        };
+
         return Ui5StandardTile;
-    }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'type', [_dec3], {
+    }(_control.Ui5Control), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'type', [_dec3], {
         enumerable: true,
         initializer: function initializer() {
             return null;
@@ -190,6 +254,11 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         enumerable: true,
         initializer: function initializer() {
             return null;
+        }
+    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec11], {
+        enumerable: true,
+        initializer: function initializer() {
+            return false;
         }
     })), _class2)) || _class) || _class);
 });

@@ -18,6 +18,9 @@ export function configure(aurelia) {
       plugin.useAll();
     })
     .plugin('aurelia-validation')
+    .plugin('aurelia-animator-velocity', plugin => {
+      plugin.registerEffect('scroll', {});
+    })
     .plugin('aurelia-i18n', (instance) => {
       // register backend plugin
       instance.i18next.use(Backend.with(aurelia.loader));

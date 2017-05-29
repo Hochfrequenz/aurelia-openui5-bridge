@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19,7 +19,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 	 * @class
 	 * Calendar with dates displayed in one line.
 	 * @extends sap.ui.unified.Calendar
-	 * @version 1.44.8
+	 * @version 1.46.7
 	 *
 	 * @constructor
 	 * @public
@@ -186,7 +186,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 			oYearPicker.setYears(iYears);
 		}
 
-		var oStartDate = _getStartDate.call(this);
+		var oStartDate = this._getStartDate();
 		this._updateHeader(oStartDate);
 
 		if (this.getDomRef()) {
@@ -339,7 +339,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 	CalendarDateInterval.prototype._focusDateExtend = function(oDate, bOtherMonth, bNoEvent) {
 		if (bOtherMonth) {
 			var oOldFocusedDate = this._getFocusedDate();
-			var oOldStartDate = _getStartDate.call(this);
+			var oOldStartDate = this._getStartDate();
 			var iDay = Math.ceil((oOldFocusedDate.getTime() - oOldStartDate.getTime()) / (i24_HOURS));
 			var oNewStartDate = this._newUniversalDate(oDate);
 			oNewStartDate.setUTCDate(oNewStartDate.getUTCDate() - iDay);
@@ -437,7 +437,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 			return;
 		}
 
-		var oStartDate = _getStartDate.call(this);
+		var oStartDate = this._getStartDate();
 		var oEndDate = this._newUniversalDate(oStartDate);
 		oEndDate.setUTCDate(oEndDate.getUTCDate() + iDays - 1);
 
@@ -474,20 +474,32 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 
 	};
 
+  /**
+	* Shifts <code>startDate</code> and focusedDate according to given amount of time.
+	*
+	* @param {Date} oStartDate start date
+	* @param {Date} oFocusedDate focused date
+	* @param {int} iDays number of days to shift. Positive values will shift forward, negative - backward.
+	* @private
+	*/
+	CalendarDateInterval.prototype._shiftStartFocusDates = function(oStartDate, oFocusedDate, iDays){
+		oStartDate.setUTCDate(oStartDate.getUTCDate() + iDays);
+		oFocusedDate.setUTCDate(oFocusedDate.getUTCDate() + iDays);
+		this._setFocusedDate(oFocusedDate);
+		this._setStartDate(oStartDate, true);
+	};
+
 	CalendarDateInterval.prototype._handlePrevious = function(oEvent){
 
 		var oFocusedDate = this._newUniversalDate(this._getFocusedDate());
 		var oMonthPicker = this.getAggregation("monthPicker");
 		var oYearPicker = this.getAggregation("yearPicker");
-		var oStartDate = this._newUniversalDate(_getStartDate.call(this));
+		var oStartDate = this._newUniversalDate(this._getStartDate());
 		var iDays = this._getDays();
 
 		switch (this._iMode) {
 		case 0: // day picker
-			oStartDate.setUTCDate(oStartDate.getUTCDate() - iDays);
-			oFocusedDate.setUTCDate(oFocusedDate.getUTCDate() - iDays);
-			this._setFocusedDate(oFocusedDate);
-			this._setStartDate(oStartDate, true);
+			this._shiftStartFocusDates(oStartDate, oFocusedDate, (iDays * -1));
 			break;
 
 		case 1: // month picker
@@ -521,15 +533,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 		var oFocusedDate = this._newUniversalDate(this._getFocusedDate());
 		var oMonthPicker = this.getAggregation("monthPicker");
 		var oYearPicker = this.getAggregation("yearPicker");
-		var oStartDate = this._newUniversalDate(_getStartDate.call(this));
+		var oStartDate = this._newUniversalDate(this._getStartDate());
 		var iDays = this._getDays();
 
 		switch (this._iMode) {
 		case 0: // day picker
-			oStartDate.setUTCDate(oStartDate.getUTCDate() + iDays);
-			oFocusedDate.setUTCDate(oFocusedDate.getUTCDate() + iDays);
-			this._setFocusedDate(oFocusedDate);
-			this._setStartDate(oStartDate, true);
+			this._shiftStartFocusDates(oStartDate, oFocusedDate, iDays);
 			break;
 
 		case 1: // month picker
@@ -583,7 +592,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 	CalendarDateInterval.prototype._getDisplayedSecondaryMonths = function(sPrimaryCalendarType, sSecondaryCalendarType){
 
 		var iDays = this._getDays();
-		var oStartDate = _getStartDate.call(this);
+		var oStartDate = this._getStartDate();
 		oStartDate = UniversalDate.getInstance(oStartDate.getJSDate(), sSecondaryCalendarType);
 		var iStartMonth = oStartDate.getUTCMonth();
 
@@ -678,7 +687,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 	* @private
 	*/
 
-	function _getStartDate(){
+	CalendarDateInterval.prototype._getStartDate = function(){
 
 		if (!this._oUTCStartDate) {
 			// no start date set, use focused date
@@ -687,7 +696,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 
 		return this._oUTCStartDate;
 
-	}
+	};
 
 	function _handlePopupClosed(oEvent) {
 

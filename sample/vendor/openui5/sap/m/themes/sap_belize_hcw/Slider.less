@@ -1,64 +1,46 @@
-/* ======================================= */
-/* CSS for control sap.m/Slider.control    */
-/* ======================================= */
+/* ================================= */
+/* CSS for control sap.m/Slider      */
+/* Belize High Contrast White theme  */
+/* ================================= */
 
-/* ------------------------------ */
-/* Slider commons styles          */
-/* ------------------------------ */
-
-.sapMSlider {
-	display: inline-block;
-	vertical-align: top;
-	box-sizing: border-box;
-	position: relative;
-
-	/* IE Windows 8 */
-	/* This elements receives events when not panning in vertial direction */
-	touch-action: pan-y;
-	-ms-touch-action: pan-y;
-}
-
-.sapMSlider:not(.sapMSliderDisabled) {
-	cursor: pointer;
-}
-
+/* slider */
 .sapMSliderInner {
-	width: 100%;
-	position: relative;
-	background-repeat: no-repeat;
+	border: 1px solid @sapUiFieldBorderColor;
+	background: @sapUiFieldBackground;
+	border-radius: 0.125rem;
 }
 
-.sapMSliderProgress,
+/* slider handle */
 .sapMSliderHandle {
-	position: absolute;
+	background: transparent;
+	border: 0.125rem solid @sapUiFieldBorderColor;
 }
 
-.sapMSliderHandle {
-	display: block;
-	outline: none;
+/* hover */
+html.sap-desktop .sapMSliderHandle:not(.sapMSliderInnerDisabled ):hover {
+	background: @sapUiFieldActiveBackground;
 }
 
-.sapMSliderInput {
-	display: none;
+/* focus */
+html.sap-desktop .sapMSliderHandle:focus {
+	outline: 0.125rem dotted @sapUiContentFocusColor;
 }
 
-.sapMSliderTickmarks {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	position: absolute;
-	z-index: -1;
-	height: 40%;
-	top: 30%;
-	left: 1.0625rem;
-	right: 1.0625rem;;
-	display: block;
-	border-right: 0.0625rem solid @sapUiFieldBorderColor;
+/* pressed */
+.sapMSliderPressed:not(.sapMSliderInnerDisabled ) > .sapMSliderHandle {
+	background: @sapUiFieldActiveBackground;
+	border: 0.125rem solid @sapUiFieldActiveBorderColor;
 }
 
-.sapMSliderTick {
-	display: inline-block;
-	border-left: 0.0625rem solid @sapUiFieldBorderColor;
-	height: 100%;
-	position: relative;
+.sapMSliderInnerDisabled {
+	border: 0.063rem solid @sapUiHcReducedAltForeground;
+}
+
+.sapMSliderInnerDisabled .sapMSliderProgress {
+	background: @sapUiHcReducedBackground;
+}
+
+.sapMSliderInnerDisabled > .sapMSliderHandle {
+	background: transparent;
+	border:0.125rem solid @sapUiHcReducedForeground;
 }

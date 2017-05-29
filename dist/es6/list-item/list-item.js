@@ -8,6 +8,7 @@ import { Ui5Control } from '../control/control';
 
 export class Ui5ListItem {
   _item = null;
+  _container = null;
 
   @bindable() icon = null;
   @bindable() additionalText = null;
@@ -33,7 +34,12 @@ export class Ui5ListItem {
       textDirection: this.textDirection,
       key: this.key
     });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._item, this.element);
+    this._container = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._relation = this._container.addChild(this._item, this.element);
+  }
+  detached() {
+    if(this._container && this._container.removeChildByRelation)
+      this._container.removeChildByRelation(this._item, this._relation);
   }
   addChild(child, elem) {
   }
@@ -47,25 +53,25 @@ export class Ui5ListItem {
       this._item.setAdditionalText(newValue);
     }
   }
-   keyChanged(newValue) {
-     if (this._item !== null) {
-       this._item.setKey(newValue);
-     }
-   }
-   enabledChanged(newValue) {
-     if (this._item !== null) {
-       this._item.setEnabled(getBooleanFromAttributeValue(newValue));
-     }
-   }
-   textChanged(newValue) {
-     if (this._item !== null) {
-       this._item.setText(newValue);
-     }
-   }
-   textDirectionChanged(newValue) {
-     if (this._item !== null) {
-       this._item.setTextDirection(newValue);
-     }
-   }
+  keyChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setKey(newValue);
+    }
+  }
+  enabledChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setEnabled(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  textChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setText(newValue);
+    }
+  }
+  textDirectionChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setTextDirection(newValue);
+    }
+  }
 
 }

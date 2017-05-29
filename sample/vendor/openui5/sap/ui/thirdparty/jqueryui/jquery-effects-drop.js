@@ -1,14 +1,1 @@
-/* */ 
-(function(jQuery){
-
-	var MESSAGE = "The file sap/ui/thirdparty/jqueryui/jquery-effects-drop.js has been renamed to sap/ui/thirdparty/jqueryui/jquery-ui-effect-drop.js! Please update the dependencies accordingly.";
-
-	if ( jQuery && jQuery.sap && jQuery.sap.require ) {
-		// if jQuery.sap is available, require the new module and log a warning
-		jQuery.sap.require("sap.ui.thirdparty.jqueryui.jquery-ui-effect-drop");
-		jQuery.sap.log.warning(MESSAGE);
-	} else {
-		throw new Error(MESSAGE);
-	}
-
-})(window.jQuery);
+(function(q){var M="The file sap/ui/thirdparty/jqueryui/jquery-effects-drop.js has been renamed to sap/ui/thirdparty/jqueryui/jquery-ui-effect-drop.js! Please update the dependencies accordingly.";if(q&&q.sap&&q.sap.require){q.sap.require("sap.ui.thirdparty.jqueryui.jquery-ui-effect-drop");q.sap.log.warning(M);}else{throw new Error(M);}})(window.jQuery);

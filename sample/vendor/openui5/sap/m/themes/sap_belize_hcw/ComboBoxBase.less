@@ -1,7 +1,16 @@
 /* =================================== */
 /* CSS for control sap.m/ComboBoxBase  */
-/* Base theme                          */
+/* Belize High Contrast White theme    */
 /* =================================== */
+
+/* ------------------------------ */
+/* text field                     */
+/* ------------------------------ */
+
+/* note: do not optimize this selector, the sap.m.MulticomboBox DOM structure differ from sap.m.ComboBox */
+.sapMComboBoxBasePressed .sapMComboBoxBaseInputInner:not(.sapMInputBaseStateInner) {
+	border-color: @sapUiFieldActiveBorderColor;
+}
 
 /* ------------------------------ */
 /* arrow                          */
@@ -9,25 +18,36 @@
 
 /* hover */
 html.sap-desktop .sapMComboBoxBaseArrow:not(.sapMComboBoxBasePressed):hover {
-	background: @sapUiButtonLiteHoverBackground;
+	border-left: 1px solid @sapUiFieldHoverBorderColor;
 }
 
 /* pressed */
 /* note: do not optimize this selector, the sap.m.MulticomboBox DOM structure differ from sap.m.ComboBox */
 .sapMComboBoxBasePressed .sapMComboBoxBaseArrow,
 html.sap-desktop .sapMComboBoxBasePressed .sapMComboBoxBaseArrow:hover {
-	background: @sapUiButtonLiteActiveBackground;
-}
-
-/* note: do not optimize this selector, the sap.m.MulticomboBox DOM structure differ from sap.m.ComboBox */
-.sapMComboBoxBasePressed .sapMComboBoxBaseArrow::before {
-	color: @sapUiButtonActiveTextColor;
+	border-left: 1px solid @sapUiFieldActiveBorderColor;
 }
 
 /* ------------------------------ */
-/* dialog                         */
+/* list                           */
 /* ------------------------------ */
 
-div.sapMComboBoxBasePicker .sapMDialogScrollCont {
-	padding: 0;
+.sapMComboBoxBaseList.sapUiLocalBusy {
+	min-height: 2rem;
+}
+
+/* ------------------------------ */
+/* picker                         */
+/* ------------------------------ */
+
+div.sapMComboBoxBasePicker {
+	box-shadow: 0 .25rem 1.875rem .125rem fade(@sapUiContentShadowColor, 80%);
+	border: none;
+}
+
+/* make border of the combobox's list not scrollable */
+.sapMComboBoxBasePicker > div {
+	box-sizing: border-box;
+	border: solid @sapUiGroupContentBorderColor;
+	border-width: 1px 2px 2px;
 }

@@ -8,22 +8,22 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 
 export class Ui5MTitle {
   _title = null;
+  @bindable() ui5Id = null;
   @bindable() text = null;
-  @bindable() icon = null;
   @bindable() level = 'Auto';
-  @bindable() emphasized = false;
   constructor(element) {
     this.element = element;
   }
 
   attached() {
-
-    this._title = new sap.m.Title({
+    var props = {
       text: this.text,
-      icon: this.icon,
-      emphasized: getBooleanFromAttributeValue(this.emphasized),
       level: this.level,
-    });
+    }; 
+    if(this.ui5Id)
+      this._title = new sap.m.Title(this.ui5Id,props);
+    else
+      this._title = new sap.m.Title(props);
     $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
   }
   textChanged(newValue) {
@@ -31,19 +31,9 @@ export class Ui5MTitle {
       this._title.setText(newValue);
     }
   }
-  iconChanged(newValue) {
-    if (this._title != null) {
-      this._title.setIcon(newValue);
-    }
-  }
    levelChanged(newValue) {
     if (this._title != null) {
       this._title.setLevel(newValue);
-    }
-  }
-   emphasizedChanged(newValue) {
-    if (this._title != null) {
-      this._title.setEmphasized(getBooleanFromAttributeValue(newValue));
     }
   }
 }

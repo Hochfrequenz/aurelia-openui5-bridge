@@ -1,8 +1,11 @@
-/* ============================================= */
-/* CSS for control sap.m/Panel.control           */
-/* ============================================= */
+/* ============================ */
+/* CSS for control sap.m/Panel  */
+/* Base theme                   */
+/* ============================ */
+
 .sapMPanel {
 	overflow: hidden;
+	box-sizing: border-box;
 	// The following needed for calculation of height for content child
 	position: relative;
 }
@@ -23,6 +26,12 @@
 	* the size of small text so let's disable this
 	*/
 	-webkit-text-size-adjust: none;
+
+	font-weight: @sapUiFontHeaderWeight;
+	font-size: @sapMFontHeader4Size;
+	font-family: @sapUiFontHeaderFamily;
+	color: @sapUiGroupTitleTextColor;
+	background-color: @sapUiGroupTitleBackground;
 }
 
 .sapMPanelContent {
@@ -43,8 +52,8 @@
 	font-size: 1rem;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+	color: @sapUiContentIconColor;
 
 	&:focus {
 		outline: none;
@@ -69,7 +78,6 @@
 .sapMPanelExpandableIconExpanded {
 	display: inline-block;
 	-webkit-transform: translateY(-50%) rotate(90deg);
-	-ms-transform: translateY(-50%) rotate(90deg);
 	transform: translateY(-50%) rotate(90deg);
 }
 

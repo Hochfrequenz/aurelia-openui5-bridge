@@ -6,6 +6,11 @@
       "theme": "sap_hcb"
     },
     {
+      "name": "BlockLayout.less",
+      "designtime": true,
+      "theme": "sap_hcb"
+    },
+    {
       "name": "Form.less",
       "designtime": true,
       "theme": "sap_hcb"

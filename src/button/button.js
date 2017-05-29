@@ -12,6 +12,7 @@ export class Ui5Button {
   @bindable() text = '';
   @bindable() press = null;
   @bindable() icon = null;
+  @bindable() type = 'Default';
   _button = null;
   constructor(element) {
     this.attributeManager = new AttributeManager(element);
@@ -21,6 +22,7 @@ export class Ui5Button {
   attached() {
     this._button = new sap.m.Button({
       text: this.text,
+      type: this.type,
       icon: this.icon,
       enabled: !getBooleanFromAttributeValue(this.disabled),
       press: this.press != null ? this.press : this.defaultPress
@@ -36,7 +38,11 @@ export class Ui5Button {
   detached() {
 
   }
-
+  typeChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setType(newValue);
+    }
+  }
   disabledChanged(newValue) {
     if (this._button !== null) {
       this._button.setEnabled(!getBooleanFromAttributeValue(newValue));

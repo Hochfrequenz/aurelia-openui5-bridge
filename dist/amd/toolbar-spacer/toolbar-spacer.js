@@ -71,7 +71,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     Ui5ToolbarSpacer.prototype.attached = function attached() {
 
       this._spacer = new sap.m.ToolbarSpacer({
-        widtht: this.width
+        width: this.width
       });
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer, this.element);
     };

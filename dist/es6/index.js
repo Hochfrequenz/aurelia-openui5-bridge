@@ -1,5 +1,4 @@
 import {ConfigBuilder} from './config-builder';
-import {ScrollfirePatch} from './scrollfire/scrollfire-patch';
 
 import {polyfillElementClosest} from './common/polyfills';
 
@@ -17,9 +16,6 @@ export function configure(aurelia, configCallback) {
 
   if (builder.useGlobalResources) {
     aurelia.globalResources(builder.globalResources);
-  }
-  if (builder.useScrollfirePatch) {
-    new ScrollfirePatch().patch();
   }
 }
 

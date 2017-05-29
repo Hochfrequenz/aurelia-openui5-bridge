@@ -16,11 +16,6 @@
       "theme": "sap_belize"
     },
     {
-      "name": "ActionSheet.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
       "name": "App.less",
       "designtime": true,
       "theme": "sap_belize"
@@ -96,27 +91,7 @@
       "theme": "sap_belize"
     },
     {
-      "name": "DatePicker.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "DateRangeSelection.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "DateTimeInput.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
       "name": "Dialog.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "DisplayListItem.less",
       "designtime": true,
       "theme": "sap_belize"
     },
@@ -226,32 +201,12 @@
       "theme": "sap_belize"
     },
     {
-      "name": "List.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
       "name": "ListBase.less",
       "designtime": true,
       "theme": "sap_belize"
     },
     {
       "name": "ListItemBase.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "MaskInput.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "MenuButton.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "MessageBox.less",
       "designtime": true,
       "theme": "sap_belize"
     },
@@ -271,12 +226,7 @@
       "theme": "sap_belize"
     },
     {
-      "name": "MessageToast.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "MultiComboBox.less",
+      "name": "MessageView.less",
       "designtime": true,
       "theme": "sap_belize"
     },
@@ -306,27 +256,12 @@
       "theme": "sap_belize"
     },
     {
-      "name": "NumericContent.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
       "name": "ObjectAttribute.less",
       "designtime": true,
       "theme": "sap_belize"
     },
     {
       "name": "ObjectHeader.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "ObjectIdentifier.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "ObjectListItem.less",
       "designtime": true,
       "theme": "sap_belize"
     },
@@ -351,11 +286,6 @@
       "theme": "sap_belize"
     },
     {
-      "name": "P13nColumnsPanel.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
       "name": "Page.less",
       "designtime": true,
       "theme": "sap_belize"
@@ -372,11 +302,6 @@
     },
     {
       "name": "Popover.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "ProgressIndicator.less",
       "designtime": true,
       "theme": "sap_belize"
     },
@@ -431,11 +356,6 @@
       "theme": "sap_belize"
     },
     {
-      "name": "SelectDialog.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
       "name": "SelectList.less",
       "designtime": true,
       "theme": "sap_belize"
@@ -457,11 +377,6 @@
     },
     {
       "name": "SplitButton.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "SplitContainer.less",
       "designtime": true,
       "theme": "sap_belize"
     },
@@ -496,17 +411,7 @@
       "theme": "sap_belize"
     },
     {
-      "name": "TabStripSelectList.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
       "name": "Table.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "TablePersoDialog.less",
       "designtime": true,
       "theme": "sap_belize"
     },
@@ -517,11 +422,6 @@
     },
     {
       "name": "TextArea.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "Tile.less",
       "designtime": true,
       "theme": "sap_belize"
     },
@@ -541,16 +441,6 @@
       "theme": "sap_belize"
     },
     {
-      "name": "Title.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "ToggleButton.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
       "name": "Token.less",
       "designtime": true,
       "theme": "sap_belize"
@@ -562,11 +452,6 @@
     },
     {
       "name": "Toolbar.less",
-      "designtime": true,
-      "theme": "sap_belize"
-    },
-    {
-      "name": "ToolbarSeparator.less",
       "designtime": true,
       "theme": "sap_belize"
     },

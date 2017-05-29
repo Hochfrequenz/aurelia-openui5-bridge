@@ -13,8 +13,12 @@ export class Ui5Grid {
     }
     addChild(child, elem) {
         var path = $(elem).parentsUntil(this.element);
-        if (path[0].localName == 'content')
-            this._grid.addContent(child);
+        for (elem of path) {
+            if (elem.localName == 'content') {
+                this._grid.addContent(child);
+                break;
+            }
+        }
     }
     removeChild(child, elem) {
         var path = $(elem).parentsUntil(this.element);
@@ -25,12 +29,17 @@ export class Ui5Grid {
 
     }
     attached() {
+        var attributeManager = new AttributeManager(this.element);
+
         this._grid = new sap.ui.layout.Grid(
             {
                 defaultSpan: this.defaultSpan,
             }
         );
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._grid, this.element);
+        if ($(this.element).parents("[ui5-container]").length > 0) {
+            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._grid, this.element);
+            attributeManager.addAttributes({ "ui5-container": '' });
+        }
     }
     detached() {
         $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._grid, this.element);
@@ -40,5 +49,5 @@ export class Ui5Grid {
             this._grid.setDefaultSpan(newValue);
         }
     }
-    
+
 }

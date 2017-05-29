@@ -1,8 +1,23 @@
-/* inherited from .sapUiMnu */
-//.sapMMenu .sapUiMnuItmIco > .sapUiIcon {
-//	color: @sapUiElement;
-//}
+/* =========================== */
+/* CSS for control sap.m/Menu  */
+/* Base theme                  */
+/* =========================== */
 
-.sapMMenu.sapUiMnu {
-	box-shadow: 0 0 1.875rem 0.125rem fade(@sapUiDarkShadowTint, 15%);
+.sapMListIcons .sapMLIB:not(.sapMSLIIcon) > .sapMLIBContent {
+	padding-left: 2rem;
 }
+
+.sapMRespMenuDialog .sapMLIB {
+	border-bottom: none;
+}
+
+/* compact */
+.sapUiSizeCompact .sapMMenu.sapUiMnu {
+	min-width: 50px;
+}
+
+.sapUiSizeCompact .sapMMenu .sapUiMnuItmIco > .sapUiIcon {
+	font-size: 1rem;
+}
+
+/* end compact */

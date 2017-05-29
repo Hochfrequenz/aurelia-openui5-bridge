@@ -1,11 +1,11 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
-sap.ui.define([ "sap/m/GenericTileRenderer", "sap/m/LoadState" ],
-	function(TileRenderer, LoadState) {
+sap.ui.define([ "sap/m/GenericTileRenderer", "sap/m/LoadState", "sap/m/GenericTileScope" ],
+	function(TileRenderer, LoadState, GenericTileScope) {
 	"use strict";
 
 	/**
@@ -24,6 +24,7 @@ sap.ui.define([ "sap/m/GenericTileRenderer", "sap/m/LoadState" ],
 		var sTooltipText = oControl._getTooltipText(),
 			bIsCompact = oControl._isCompact(),
 			sAriaText = oControl._getAriaText(),
+			sScopeClass = jQuery.sap.encodeCSS("sapMGTScope" + oControl.getScope()),
 			bHasPress = oControl.hasListeners("press");
 		this._bRTL = sap.ui.getCore().getConfiguration().getRTL();
 
@@ -36,6 +37,7 @@ sap.ui.define([ "sap/m/GenericTileRenderer", "sap/m/LoadState" ],
 			oRm.writeAttribute("role", "presentation");
 		}
 		oRm.addClass("sapMGT");
+		oRm.addClass(sScopeClass);
 		oRm.addClass("sapMGTLineMode");
 		this._writeDirection(oRm);
 		if (sTooltipText) {
@@ -73,7 +75,13 @@ sap.ui.define([ "sap/m/GenericTileRenderer", "sap/m/LoadState" ],
 			oRm.writeAttribute("id", oControl.getId() + "-endMarker");
 			oRm.addClass("sapMGTEndMarker");
 			oRm.writeClasses();
-			oRm.write("/>");
+			oRm.write(">");
+
+			if (oControl.getScope() === GenericTileScope.Actions) {
+				this._renderActionsScope(oRm, oControl);
+			}
+
+			oRm.write("</div>");
 
 			//hover and press style helper
 			oRm.write("<div");
@@ -109,9 +117,12 @@ sap.ui.define([ "sap/m/GenericTileRenderer", "sap/m/LoadState" ],
 			}
 			oRm.write("</span>"); //.sapMGTLineModeHelpContainer
 
+			if (oControl.getScope() === GenericTileScope.Actions) {
+				this._renderActionsScope(oRm, oControl);
+			}
+
 			oRm.write("</div>"); //.sapMGTTouchArea
 		}
-
 		oRm.write("</span>"); //.sapMGT
 	};
 
@@ -152,6 +163,21 @@ sap.ui.define([ "sap/m/GenericTileRenderer", "sap/m/LoadState" ],
 		oRm.write(">");
 		oRm.writeEscaped(oControl.getSubheader());
 		oRm.write("</span>");
+	};
+
+	GenericTileLineModeRenderer._renderActionsScope = function(oRm, oControl) {
+		if (oControl.getState() !== LoadState.Disabled) {
+			oRm.write("<span");
+			oRm.writeAttribute("id", oControl.getId() + "-actions");
+			oRm.addClass("sapMGTActionsContainer");
+			oRm.writeClasses();
+			oRm.write(">");
+
+			oRm.renderControl(oControl._oMoreIcon);
+			oRm.renderControl(oControl._oRemoveButton);
+
+			oRm.write("</span>");
+		}
 	};
 
 	/**

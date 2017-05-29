@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -101,7 +101,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Renderer', 'sap/ui/core/ValueSt
 			var oList = oSelect.getList();
 
 			if (oSelect._isShadowListRequired() && oList) {
-				oRm.renderControl(oList);
+				this.renderShadowList(oRm, oList);
 			}
 
 			if (oSelect.getName()) {
@@ -207,6 +207,42 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Renderer', 'sap/ui/core/ValueSt
 			oRm.writeAttributeEscaped("name", oSelect.getName());
 			oRm.writeAttributeEscaped("value", oSelect.getSelectedKey());
 			oRm.write("/>");
+		};
+
+		/**
+		 * Renders a shadow list control, using the provided {@link sap.ui.core.RenderManager}.
+		 *
+		 * @param {sap.ui.core.RenderManager} oRm The RenderManager that can be used for writing to the render output buffer.
+		 * @param {sap.m.SelectList} oList An object representation of the list that should be rendered.
+		 * @private
+		 */
+		SelectRenderer.renderShadowList = function(oRm, oList) {
+			var oListRenderer = oList.getRenderer();
+			oListRenderer.writeOpenListTag(oRm, oList);
+			this.renderShadowItems(oRm, oList);
+			oListRenderer.writeCloseListTag(oRm, oList);
+		};
+
+		/**
+		 * Renders shadow items for the given control, using the provided {@link sap.ui.core.RenderManager}.
+		 *
+		 * @param {sap.ui.core.RenderManager} oRm The RenderManager that can be used for writing to the render output buffer.
+		 * @param {sap.m.Select} oList An object representation of the select that should be rendered.
+		 * @private
+		 */
+		SelectRenderer.renderShadowItems = function(oRm, oList) {
+			var oListRenderer = oList.getRenderer(),
+				iSize = oList.getItems().length,
+				oSelectedItem = oList.getSelectedItem();
+
+			for (var i = 0, aItems = oList.getItems(); i < aItems.length; i++) {
+				oListRenderer.renderItem(oRm, oList, aItems[i], {
+					selected: oSelectedItem === aItems[i],
+					setsize: iSize,
+					posinset: i + 1,
+					elementData: false // avoid duplicated IDs in the DOM when the select control is rendered inside a dialog
+				});
+			}
 		};
 
 		/**

@@ -91,27 +91,7 @@
       "theme": "sap_bluecrystal"
     },
     {
-      "name": "DatePicker.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "DateRangeSelection.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "DateTimeInput.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
       "name": "Dialog.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "DisplayListItem.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -211,42 +191,7 @@
       "theme": "sap_bluecrystal"
     },
     {
-      "name": "List.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "ListBase.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
       "name": "ListItemBase.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "MaskInput.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "Menu.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "MenuButton.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "MenuListItem.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "MessageBox.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -271,7 +216,7 @@
       "theme": "sap_bluecrystal"
     },
     {
-      "name": "MultiComboBox.less",
+      "name": "MessageView.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -286,22 +231,7 @@
       "theme": "sap_bluecrystal"
     },
     {
-      "name": "NotificationListBase.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "NotificationListGroup.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
       "name": "NotificationListItem.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "NumericContent.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -312,21 +242,6 @@
     },
     {
       "name": "ObjectHeader.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "ObjectIdentifier.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "ObjectListItem.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "ObjectMarker.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -342,11 +257,6 @@
     },
     {
       "name": "OverflowToolbarAssociativePopover.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "P13nColumnsPanel.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -367,11 +277,6 @@
     },
     {
       "name": "Popover.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "ProgressIndicator.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -426,11 +331,6 @@
       "theme": "sap_bluecrystal"
     },
     {
-      "name": "SelectDialog.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
       "name": "SelectList.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
@@ -457,11 +357,6 @@
     },
     {
       "name": "SplitContainer.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "StandardListItem.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -496,17 +391,7 @@
       "theme": "sap_bluecrystal"
     },
     {
-      "name": "TabStripSelectList.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
       "name": "Table.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "TablePersoDialog.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -517,11 +402,6 @@
     },
     {
       "name": "TextArea.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "Tile.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -542,11 +422,6 @@
     },
     {
       "name": "Title.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "ToggleButton.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },
@@ -582,11 +457,6 @@
     },
     {
       "name": "ViewSettingsDialog.less",
-      "designtime": true,
-      "theme": "sap_bluecrystal"
-    },
-    {
-      "name": "ViewSettingsPopover.less",
       "designtime": true,
       "theme": "sap_bluecrystal"
     },

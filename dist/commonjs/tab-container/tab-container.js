@@ -113,7 +113,6 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
       }
 
       if (elem.localName == 'content') {
-        this._tab.removeItem(child);
         break;
       }
     }

@@ -3,18 +3,13 @@
 /* Belize theme                    */
 /* =============================== */
 
+@_sap_m_CheckBox_SelectedWarningColor: darken(@sapUiFieldWarningColor, 100);
+
 .sapMCb.sapMCbWarn .sapMCbBg {
 	background-color: @sapUiFieldWarningBackground;
 	border-color: @sapUiFieldWarningColor;
 	&.sapMCbMarkChecked:before {
-		color: darken(@sapUiFieldWarningColor,100);
-	}
-}
-
-.sapContrast .sapMCb.sapMCbWarn .sapMCbBg,
-.sapContrast.sapMCb.sapMCbWarn .sapMCbBg {
-	&.sapMCbMarkChecked:before {
-		color: @sapUiFieldWarningColor;
+		color: @_sap_m_CheckBox_SelectedWarningColor;
 	}
 }
 
@@ -64,7 +59,7 @@ html.sap-desktop {
 		border: 1px dotted @sapUiContentFocusColor;
 	}
 
-	.sapUiSimpleForm .sapMCb:not(.sapMCbBgDis):focus:before {
+	.sapUiForm .sapMCb:not(.sapMCbBgDis):focus:before {
 		left: -1px; /* Cb in SimpleForm: left and right border adjustment */
 		right: 1px;
 	}

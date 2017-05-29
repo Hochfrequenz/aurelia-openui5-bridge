@@ -1,12 +1,14 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
 // Provides control sap.m.SplitContainer.
-sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/core/IconPool', 'sap/ui/core/theming/Parameters', 'sap/m/semantic/SemanticPage'],
-	function(jQuery, library, Control, IconPool, Parameters, SemanticPage) {
+sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/core/IconPool',
+	'sap/ui/core/theming/Parameters', 'sap/m/semantic/SemanticPage', 'sap/ui/core/InvisibleText'],
+	function(jQuery, library, Control, IconPool,
+			Parameters, SemanticPage, InvisibleText) {
 	"use strict";
 
 
@@ -23,7 +25,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 	 *
 	 * NOTE: This control must be rendered as a full screen control in order to make the show/hide master area work properly.
 	 * @extends sap.ui.core.Control
-	 * @version 1.44.8
+	 * @version 1.46.7
 	 *
 	 * @constructor
 	 * @public
@@ -437,12 +439,20 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 			this._isMie9 = true;
 		}
 
+		// Init static hidden text for ARIA
+		if (sap.ui.getCore().getConfiguration().getAccessibility() && !SplitContainer._sAriaPopupLabelId) {
+			SplitContainer._sAriaPopupLabelId = new InvisibleText({
+				text: '' // add empty string in order to prevent the redundant speech output
+			}).toStatic().getId();
+		}
+
+		this._rb = sap.ui.getCore().getLibraryResourceBundle("sap.m");
+
 		// Pages arrays: As we delegate the pages to internal navigation container we have to remember the pages
 		// in private member variables. By doing this we can return the right pages for master /detail aggregations.
 		this._aMasterPages = [];
 		this._aDetailPages = [];
 		if (!sap.ui.Device.system.phone) {
-			this._rb = sap.ui.getCore().getLibraryResourceBundle("sap.m");
 			//initialize the master nav container
 			this._oMasterNav = new sap.m.NavContainer(this.getId() + "-Master", {
 				width: "",
@@ -491,6 +501,10 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 					that._afterHideMasterAnimation();
 				}
 			}).addStyleClass("sapMSplitContainerPopover");
+
+			if (SplitContainer._sAriaPopupLabelId) {
+				this._oPopOver.addAriaLabelledBy(SplitContainer._sAriaPopupLabelId);
+			}
 
 			this.setAggregation("_navPopover", this._oPopOver, true);
 		} else {
@@ -609,7 +623,8 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 			return;
 		}
 
-		var bIsMasterNav = true;
+		var bIsMasterNav = true,
+			metaData = oEvent.srcControl.getMetadata();
 
 		if (jQuery(oEvent.target).closest(".sapMSplitContainerDetail").length > 0) {
 			bIsMasterNav = false;
@@ -623,7 +638,8 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 				// press isn't occurring in master area
 				&& !bIsMasterNav
 				// press isn't triggered by the showMasterButton
-				&& !jQuery.sap.containsOrEquals(this._oShowMasterBtn.getDomRef(), oEvent.target)) {
+				&& !jQuery.sap.containsOrEquals(this._oShowMasterBtn.getDomRef(), oEvent.target)
+				&& (!metaData.getEvent("tap") || !metaData.getEvent("press"))) {
 			this.hideMaster();
 		}
 	};
@@ -1842,6 +1858,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 
 		this._oShowMasterBtn = new sap.m.Button(this.getId() + "-MasterBtn", {
 			icon: IconPool.getIconURI("menu2"),
+			tooltip: this._rb.getText('SPLITCONTAINER_NAVBUTTON_TOOLTIP'),
 			type: sap.m.ButtonType.Default,
 			press: jQuery.proxy(this._onMasterButtonTap, this)
 		}).addStyleClass("sapMSplitContainerMasterBtn");
@@ -1972,8 +1989,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 								fnCallBack(oPage);
 							}
 						}
-						this._oShowMasterBtn.$().parent().toggleClass("sapMSplitContainerMasterBtnShow", false);
-						this._oShowMasterBtn.$().parent().toggleClass("sapMSplitContainerMasterBtnHide", true);
+						this._oShowMasterBtn.destroy();
 						/*eslint-disable no-loop-func */
 						this._oShowMasterBtn.$().parent().bind("webkitAnimationEnd animationend", function(){
 							jQuery(this).unbind("webkitAnimationEnd animationend");

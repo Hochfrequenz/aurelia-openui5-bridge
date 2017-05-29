@@ -1,10 +1,102 @@
-/* ============================================= */
-/* CSS for control sap.m/Bar.control             */
-/* High Contrast Black theme                     */
-/* ============================================= */
+/* ========================== */
+/* CSS for control sap.m/Bar  */
+/* Base theme                 */
+/* ========================== */
+
+.sapMBarShadow(@color) {
+	box-shadow: inset 0 -0.0625rem @color;
+}
+
+.sapMBar {
+	display: block;
+	width: 100%;
+	position: relative;
+	height: 3rem;
+	line-height: 3rem;
+	color: @sapUiPageHeaderTextColor;
+	background-color: @sapUiPageHeaderBackground;
+	/* 1px down white shadow with 50% opacity */
+	text-shadow: @sapUiShadowText;
+	/* 1px inside border line at the bottom of a bar */
+	.sapMBarShadow(@sapUiPageHeaderBorderColor);
+}
+
+.sapMBarContainer {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/* fix for ff */
+html[data-sap-ui-browser^="ff"].sap-desktop {
+	.sapMBarContainer {
+		display: flex;
+		align-items: center;
+	}
+
+	.sapMBarPH {
+		justify-content: center;
+	}
+
+	.sapMBarRight {
+		justify-content: flex-end;
+	}
+
+	.sapMBarContainer > .sapMBarChild {
+		flex : none;
+	}
+
+	.sapMBarContainer > .sapMButton,
+	.sapMBarContainer > .sapMText,
+	.sapMBarContainer > .sapMLabel {
+		flex : initial;
+	}
+}
+
+
+.sapMBarLeft,
+.sapMBarRight {
+	position: absolute;
+	height: 100%;
+}
+
+.sapMBarLeft {
+	left: 0px;
+}
+
+/* IE / Edge does not support "text-align: end" */
+/* use "right" and "left" instead        */
+.sapMBarRight {
+	text-align: right;
+	right: 0px;
+}
+
+.sapMBarRight.sapMRTL {
+	text-align: left;
+}
 
 .sapMBarPH {
-	vertical-align: top; /* needed for ios and android */
+	display: inline-block;
+	height: 3rem;
+	vertical-align: top;
+}
+
+.sapMBarMiddle {
+	text-align: center;
+	width: 100%;
+	height: 0px;
+	top: 0px;
+	left: 0px;
+}
+
+.sapMBar .sapMLabel,
+.sapMBar .sapMLnk {
+	display: inline;
+}
+
+.sapMBarFlexBoxWidth100 {
+	width: 100%;
 }
 
 /* select control in a bar */
@@ -12,13 +104,8 @@
 	vertical-align: top;
 }
 
-.sapMBar {
-	height: 3rem;
-	line-height: 3rem;
-	color: @sapHCStandardFG;
-	background-color: @sapHCStandardBG;
-	border-bottom: 1px solid @sapHCStandardFG;
-	box-sizing: border-box;
+.sapMBar:active {
+	text-shadow: none;
 }
 
 /* this "sapMBrandingBar-CTX" CSS class can be set by any container control that comes with its own branding bar, so any pages inside will not display their branding bar */
@@ -30,7 +117,7 @@
 
 @media (min-height: @sapMShellMinHeightForHeader) {
 	/* Shell draws its own branding bar */
-	html.sap-desktop .sapMShell .sapMBar.sapMPageHeader:before {
+	.sap-desktop .sapMShell .sapMBar.sapMPageHeader:before {
 		display: none;
 	}
 }
@@ -79,7 +166,6 @@
 .sapMBarPH {
 	padding-left: 0.25rem;
 }
-
 
 .sapMIBar > .sapMBarLeft > .sapMBarChild:last-child,
 .sapMIBar .sapMBarPH > .sapMBarChild:last-child {

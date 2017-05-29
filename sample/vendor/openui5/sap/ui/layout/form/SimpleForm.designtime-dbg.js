@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8,28 +8,15 @@
 sap.ui.define([], function() {
 	"use strict";
 
-	var fnGetFormElementState = function(oFormElement) {
-		var that = this;
-
-		var aControlsState = [];
-
-		var oLabel = oFormElement.getLabel();
-		var aControls = oFormElement.getFields();
-		if (oLabel) {
-			aControls = [oLabel].concat(aControls);
-		}
-
-		aControls.forEach(function(oControl) {
-			aControlsState.push({
-				element : oControl,
-				visible : oControl.getVisible(),
-				index : that.getContent().indexOf(oControl)
+	var fnHasContent = function(oFormContainer) {
+		if (oFormContainer.getTitle()) {
+			return true;
+		} else {
+			var oSimpleForm = oFormContainer.getParent().getParent();
+			return oSimpleForm.getContent().some(function(oControl) {
+				return oControl.getVisible();
 			});
-		});
-
-		return {
-			elementsState : aControlsState
-		};
+		}
 	};
 
 	return {
@@ -71,7 +58,7 @@ sap.ui.define([], function() {
 					return iIndex;
 				},
 				ignore : false,
-				childrenName : function (oElement){
+				childNames : function (oElement){
 					var sType = oElement.getMetadata().getName();
 					if (sType === "sap.ui.layout.form.SimpleForm") {
 						return {
@@ -85,22 +72,39 @@ sap.ui.define([], function() {
 						};
 					}
 				},
+				beforeMove : function (oSimpleForm) {
+					if (oSimpleForm){
+						oSimpleForm._bChangedByMe = true;
+					}
+				},
+				afterMove : function (oSimpleForm) {
+					if (oSimpleForm){
+						oSimpleForm._bChangedByMe = false;
+					}
+				},
 				actions : {
 					move : function(oMovedElement){
 						var sType = oMovedElement.getMetadata().getName();
 
+						var oMoveMetadata;
 						if (sType === "sap.ui.layout.form.FormContainer"){
-							return "moveSimpleFormGroup";
+							oMoveMetadata = {
+								changeType : "moveSimpleFormGroup"
+							};
 						} else if (sType === "sap.ui.layout.form.FormElement"){
-							return "moveSimpleFormField";
+							oMoveMetadata = {
+								changeType : "moveSimpleFormField"
+							};
 						}
+
+						return oMoveMetadata;
 					},
 					rename : function(oElement){
 						var sType = oElement.getMetadata().getName();
 						var bIsEnabled = true;
 						var oRenameMetadata;
 						if (sType === "sap.ui.layout.form.FormContainer"){
-							if (oElement.getToolbar && oElement.getToolbar()) {
+							if (oElement.getToolbar() || !oElement.getTitle()) {
 								bIsEnabled = false;
 							}
 							oRenameMetadata = {
@@ -109,31 +113,7 @@ sap.ui.define([], function() {
 								domRef : function (oControl){
 									if (oControl.getTitle && oControl.getTitle()) {
 										return oControl.getTitle().getDomRef();
-									} else {
-										return;
 									}
-								},
-								getState : function (oControl) {
-									var oState = {
-										oTitle : oControl.getTitle(),
-										oldValue : oControl.getTitle().getText()
-									};
-									return oState;
-								},
-								restoreState : function (oControl, oState) {
-									oState.oTitle.setText(oState.oldValue);
-									var sBindingValue = "";
-									var oBindingInfo = oState.oTitle.getBindingInfo("text");
-									if (oBindingInfo) {
-										sBindingValue = oBindingInfo.binding.getValue();
-										if (sBindingValue === oState.oldValue) {
-											var oBinding = oState.oTitle.getBinding("text");
-											if (oBinding) {
-												oBinding.resume();
-											}
-										}
-									}
-									return true;
 								}
 							};
 						} else if (sType === "sap.ui.layout.form.FormElement"){
@@ -142,28 +122,6 @@ sap.ui.define([], function() {
 								isEnabled : bIsEnabled,
 								domRef : function (oControl){
 									return oControl.getLabel().getDomRef();
-								},
-								getState : function (oControl) {
-									var oState = {
-										oLabel : oControl.getLabel(),
-										oldValue : oControl.getLabel().getText()
-									};
-									return oState;
-								},
-								restoreState : function (oControl, oState) {
-									oState.oLabel.setText(oState.oldValue);
-									var sBindingValue = "";
-									var oBindingInfo = oState.oLabel.getBindingInfo("text");
-									if (oBindingInfo) {
-										sBindingValue = oBindingInfo.binding.getValue();
-										if (sBindingValue === oState.oldValue) {
-											var oBinding = oState.oLabel.getBinding("text");
-											if (oBinding) {
-												oBinding.resume();
-											}
-										}
-									}
-									return true;
 								}
 							};
 						}
@@ -176,9 +134,13 @@ sap.ui.define([], function() {
 						var bIsEnabled = true;
 						if (sType === "sap.ui.layout.form.FormContainer"){
 							sChangeType = "removeSimpleFormGroup";
-							bIsEnabled = !!oRemovedElement.getTitle() || !!oRemovedElement.getToolbar();
+							if (!oRemovedElement.getToolbar() && !fnHasContent.call(this, oRemovedElement)) {
+								bIsEnabled = false;
+							}
 						} else if (sType === "sap.ui.layout.form.FormElement"){
 							sChangeType = "hideSimpleFormField";
+						} else {
+							return undefined;
 						}
 
 						return {
@@ -202,45 +164,27 @@ sap.ui.define([], function() {
 									return oTextResources.getText("MSG_REMOVING_TOOLBAR");
 								}
 							},
-							getState : function(oRemovedElement) {
-								var that = this;
+							getState : function(oSimpleForm) {
+								var aContent = oSimpleForm.getContent();
+								return {
+									content : aContent.map(function(oElement) {
+										return {
+											element : oElement,
+											visible : oElement.getVisible ? oElement.getVisible() : undefined,
+											index : aContent.indexOf(oElement)
+										};
+									})
+								};
 
-								if (oRemovedElement.getMetadata().getName() === "sap.ui.layout.form.FormElement") {
-									return fnGetFormElementState.call(this, oRemovedElement);
-								} else {
-									var aElementsState = [];
-									var oTitleOrToolbar = oRemovedElement.getTitle() || oRemovedElement.getToolbar();
-									aElementsState.push({
-										element : oTitleOrToolbar,
-										index : this.getContent().indexOf(oTitleOrToolbar)
-									});
-
-									oRemovedElement.getFormElements().forEach(function(oFormElement) {
-										aElementsState = aElementsState.concat(fnGetFormElementState.call(that, oFormElement).elementsState);
-									});
-
-									return {
-										elementsState : aElementsState
-									};
-								}
 							},
-							restoreState : function(oRemovedElement, oState) {
-								var that = this;
-								if (oRemovedElement.getMetadata().getName() === "sap.ui.layout.form.FormElement") {
-									oState.elementsState.forEach(function(oElementState) {
+							restoreState : function(oSimpleForm, oState) {
+								oSimpleForm.removeAllContent();
+								oState.content.forEach(function(oElementState) {
+									oSimpleForm.insertContent(oElementState.element, oElementState.index);
+									if (oElementState.element.setVisible){
 										oElementState.element.setVisible(oElementState.visible);
-									});
-								} else {
-									oState.elementsState.forEach(function(oElementState) {
-										if (oElementState.visible) {
-											oElementState.element.setVisible(oElementState.visible);
-										}
-										if (oElementState.index !== undefined) {
-											that.removeContent(oElementState.element);
-											that.insertContent(oElementState.element, oElementState.index);
-										}
-									});
-								}
+									}
+								});
 							}
 						};
 					},
@@ -248,7 +192,7 @@ sap.ui.define([], function() {
 						var sType = oElement.getMetadata().getName();
 						var oCreateContainerMetadata;
 						if (sType === "sap.ui.layout.form.FormElement"){
-							return;
+							return null;
 						} else if (sType === "sap.ui.layout.form.SimpleForm") {
 							oCreateContainerMetadata = {
 								changeType : "addSimpleFormGroup",
@@ -263,13 +207,6 @@ sap.ui.define([], function() {
 									}
 									return true;
 								},
-								restoreState : function (oElement) {
-									oElement.destroy();
-									return true;
-								},
-								getState: function (oElement) {
-								},
-								containerTitle : "GROUP_CONTROL_NAME",
 								getCreatedContainerId : function(sNewControlID) {
 									var oTitle = sap.ui.getCore().byId(sNewControlID);
 									var sParentElementId = oTitle.getParent().getId();
@@ -286,13 +223,6 @@ sap.ui.define([], function() {
 									}
 									return true;
 								},
-								restoreState : function (oElement) {
-									oElement.destroy();
-									return true;
-								},
-								getState: function (oElement) {
-								},
-								containerTitle : "GROUP_CONTROL_NAME",
 								getCreatedContainerId : function(sNewControlID) {
 									var oTitle = sap.ui.getCore().byId(sNewControlID);
 									var sParentElementId = oTitle.getParent().getId();
@@ -303,9 +233,10 @@ sap.ui.define([], function() {
 						}
 						return oCreateContainerMetadata;
 					},
-					reveal : function(oParentElement) {
+					reveal : function(oParentElement, sAggregationName) {
 						var sType = oParentElement.getMetadata().getName();
-						if (sType === "sap.ui.layout.form.FormContainer") {
+						var bRevealableAggregation = sAggregationName ? ( sAggregationName === "formElements" || sAggregationName === "formContainers") : true;
+						if (sType === "sap.ui.layout.form.FormContainer" && bRevealableAggregation) {
 							return {
 								changeType : "unhideSimpleFormField",
 								getInvisibleElements : function(oSimpleForm) {

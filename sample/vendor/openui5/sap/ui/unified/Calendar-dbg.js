@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -25,7 +25,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 	 * Basic Calendar.
 	 * This calendar is used for DatePickers
 	 * @extends sap.ui.core.Control
-	 * @version 1.44.8
+	 * @version 1.46.7
 	 *
 	 * @constructor
 	 * @public
@@ -239,8 +239,6 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 		this.setAggregation("yearPicker",oYearPicker);
 
 		this._resizeProxy = jQuery.proxy(_handleResize, this);
-		this._oSelectedDay = undefined; //needed for a later usage here after its assignment in the Month.js
-
 	};
 
 	Calendar.prototype.exit = function(){
@@ -324,7 +322,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 		} else if (this.getDomRef() && this._iMode == 0 && !this._sInvalidateMonth) {
 			// DateRange changed -> only rerender days
 			// do this only once if more DateRanges / Special days are changed
-			this._sInvalidateMonth = jQuery.sap.delayedCall(0, this, this._invalidateMonth, [this]);
+			this._sInvalidateMonth = jQuery.sap.delayedCall(0, this, this._invalidateMonth, [oOrigin]);
 		}
 
 	};
@@ -1327,6 +1325,16 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 		}
 	};
 
+	/**
+	* Returns an array of currently visible days
+	* @returns {Array} visible days
+	* @private
+	*/
+	Calendar.prototype._getVisibleDays = function () {
+	   var oMonth = this.getAggregation("month")[0];
+	   return oMonth._getVisibleDays(oMonth._getDate(), false);
+	};
+
 	/*
 	 * sets the date in the used Month controls
 	 * @param {sap.ui.unified.Calendar} this Calendar instance
@@ -1638,7 +1646,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 
 	};
 
-	Calendar.prototype._invalidateMonth = function() {
+	Calendar.prototype._invalidateMonth = function(oOrigin) {
 
 		this._sInvalidateMonth = undefined;
 
@@ -1651,7 +1659,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 				if (aMonths.length > 1) {
 					oMonth._bNoFocus = true;
 				}
-				oMonth.invalidate();
+				oMonth.invalidate(oOrigin);
 				oMonth._bInvalidateSync = undefined;
 			}
 
@@ -1703,7 +1711,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 		oHeader.setAdditionalTextButton1(sText);
 
 		var aMonths = this._getDisplayedMonths(oDate);
-		if (aMonths.length > 1) {
+		if (aMonths.length > 1 && !this._bShowOneMonth) {
 			if (!sPattern) {
 				sPattern = oLocaleData.getIntervalPattern();
 			}
@@ -1810,7 +1818,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 				var oMonth = aMonths[i];
 
 				if (oMonth.getId() != oEvent.oSource.getId()) {
-					oMonth._updateSelection(this._oSelectedDay);
+					oMonth._updateSelection();
 				}
 			}
 		}
@@ -1876,9 +1884,13 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'sap/ui/core/LocaleDa
 		var oYearPicker = this.getAggregation("yearPicker");
 		var oDate = CalendarUtils._createUniversalUTCDate(oYearPicker.getDate(), this.getPrimaryCalendarType());
 		var iYear = oYearPicker.getYear();
+		var oModifiedFocusedDate;
 
 		if (this._adjustFocusedDateUponYearChange) {//hook (currently used by PlanningCalendar)
-			this._adjustFocusedDateUponYearChange(oFocusedDate, iYear);
+			oModifiedFocusedDate = this._adjustFocusedDateUponYearChange(oFocusedDate, iYear);
+			if (oModifiedFocusedDate) {
+				oFocusedDate = oModifiedFocusedDate;
+			}
 		} else {
 			oDate.setUTCMonth(oFocusedDate.getUTCMonth(), oFocusedDate.getUTCDate()); // to keep day and month stable also for islamic date
 			oFocusedDate = oDate;

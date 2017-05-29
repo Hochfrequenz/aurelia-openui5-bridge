@@ -14,9 +14,10 @@ export class Ui5ToolbarSpacer {
   }
 
   attached() {
+    
 
     this._spacer = new sap.m.ToolbarSpacer({
-      widtht : this.width,
+      width : this.width,
     }); 
     $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer,this.element);  
   }

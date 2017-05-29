@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['./config-builder', './scrollfire/scrollfire-patch', './common/polyfills', './exports'], function (_export, _context) {
+System.register(['./config-builder', './common/polyfills', './exports'], function (_export, _context) {
   "use strict";
 
-  var ConfigBuilder, ScrollfirePatch, polyfillElementClosest;
+  var ConfigBuilder, polyfillElementClosest;
 
 
   function applyPolyfills() {
@@ -21,9 +21,6 @@ System.register(['./config-builder', './scrollfire/scrollfire-patch', './common/
     if (builder.useGlobalResources) {
       aurelia.globalResources(builder.globalResources);
     }
-    if (builder.useScrollfirePatch) {
-      new ScrollfirePatch().patch();
-    }
   }
 
   _export('configure', configure);
@@ -31,8 +28,6 @@ System.register(['./config-builder', './scrollfire/scrollfire-patch', './common/
   return {
     setters: [function (_configBuilder) {
       ConfigBuilder = _configBuilder.ConfigBuilder;
-    }, function (_scrollfireScrollfirePatch) {
-      ScrollfirePatch = _scrollfireScrollfirePatch.ScrollfirePatch;
     }, function (_commonPolyfills) {
       polyfillElementClosest = _commonPolyfills.polyfillElementClosest;
     }, function (_exports) {

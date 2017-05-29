@@ -21,12 +21,16 @@ System.register(['aurelia-pal'], function (_export, _context) {
           _classCallCheck(this, ConfigBuilder);
 
           this.useGlobalResources = true;
-          this.useScrollfirePatch = false;
           this.globalResources = [];
         }
 
         ConfigBuilder.prototype.useAll = function useAll() {
-          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout();
+          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs();
+        };
+
+        ConfigBuilder.prototype.useLink = function useLink() {
+          this.globalResources.push(PLATFORM.moduleName('./link/link'));
+          return this;
         };
 
         ConfigBuilder.prototype.usePage = function usePage() {
@@ -39,6 +43,8 @@ System.register(['aurelia-pal'], function (_export, _context) {
           this.globalResources.push(PLATFORM.moduleName('./bar/bar'));
           this.globalResources.push(PLATFORM.moduleName('./overflow-toolbar/overflow-toolbar'));
           this.globalResources.push(PLATFORM.moduleName('./toolbar-spacer/toolbar-spacer'));
+          this.globalResources.push(PLATFORM.moduleName('./toolbar/toolbar'));
+
           return this;
         };
 
@@ -70,6 +76,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
         ConfigBuilder.prototype.useText = function useText() {
           this.globalResources.push(PLATFORM.moduleName('./text/text'));
+          this.globalResources.push(PLATFORM.moduleName('./formatted-text/formatted-text'));
           return this;
         };
 
@@ -101,6 +108,8 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
         ConfigBuilder.prototype.useInput = function useInput() {
           this.globalResources.push(PLATFORM.moduleName('./input/input'));
+          this.globalResources.push(PLATFORM.moduleName('./search-field/search-field'));
+
           return this;
         };
 
@@ -149,13 +158,21 @@ System.register(['aurelia-pal'], function (_export, _context) {
           return this;
         };
 
-        ConfigBuilder.prototype.withoutGlobalResources = function withoutGlobalResources() {
-          this.useGlobalResources = false;
+        ConfigBuilder.prototype.useDynamicPage = function useDynamicPage() {
+          this.globalResources.push(PLATFORM.moduleName('./dynamic-page/dynamic-page'));
+          this.globalResources.push(PLATFORM.moduleName('./dynamic-page-header/dynamic-page-header'));
+          this.globalResources.push(PLATFORM.moduleName('./dynamic-page-title/dynamic-page-title'));
+
           return this;
         };
 
-        ConfigBuilder.prototype.withScrollfirePatch = function withScrollfirePatch() {
-          this.useScrollfirePatch = true;
+        ConfigBuilder.prototype.useBreadcrumbs = function useBreadcrumbs() {
+          this.globalResources.push(PLATFORM.moduleName('./breadcrumbs/breadcrumbs'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.withoutGlobalResources = function withoutGlobalResources() {
+          this.useGlobalResources = false;
           return this;
         };
 

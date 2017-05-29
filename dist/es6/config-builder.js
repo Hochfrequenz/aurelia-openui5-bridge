@@ -5,7 +5,7 @@ import { PLATFORM } from 'aurelia-pal';
 export class ConfigBuilder {
 
   useGlobalResources: boolean = true;
-  useScrollfirePatch: boolean = false;
+//  useScrollfirePatch: boolean = false;
   globalResources = [];
 
   useAll(): ConfigBuilder {
@@ -29,8 +29,15 @@ export class ConfigBuilder {
       .useTable()
       .useTabs()
       .useLayout()
+      .useDynamicPage()
+      .useLink()
+      .useBreadcrumbs()
   }
 
+useLink(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./link/link'));
+    return this;
+  }
   usePage(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./page/page'));
     this.globalResources.push(PLATFORM.moduleName('./shell/shell'));
@@ -40,6 +47,8 @@ export class ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./bar/bar'));
     this.globalResources.push(PLATFORM.moduleName('./overflow-toolbar/overflow-toolbar'));
     this.globalResources.push(PLATFORM.moduleName('./toolbar-spacer/toolbar-spacer'));
+    this.globalResources.push(PLATFORM.moduleName('./toolbar/toolbar'));
+    
     return this;
   }
   useContainer(): ConfigBuilder {
@@ -65,6 +74,7 @@ export class ConfigBuilder {
   }
   useText(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./text/text'));
+    this.globalResources.push(PLATFORM.moduleName('./formatted-text/formatted-text'));
     return this;
   }
 
@@ -93,6 +103,8 @@ export class ConfigBuilder {
   }
   useInput(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./input/input'));
+    this.globalResources.push(PLATFORM.moduleName('./search-field/search-field'));
+    
     return this;
   }
   useDatePicker(): ConfigBuilder {
@@ -133,7 +145,17 @@ export class ConfigBuilder {
     
     return this;
   }
-
+   useDynamicPage(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./dynamic-page/dynamic-page'));
+    this.globalResources.push(PLATFORM.moduleName('./dynamic-page-header/dynamic-page-header'));
+    this.globalResources.push(PLATFORM.moduleName('./dynamic-page-title/dynamic-page-title'));
+    
+    return this;
+  }
+  useBreadcrumbs(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./breadcrumbs/breadcrumbs'));
+    return this;
+  }
   /**
   * Don't globalize any resources
   * Allows you to import yourself via <require></require>
@@ -143,8 +165,8 @@ export class ConfigBuilder {
     return this;
   }
 
-  withScrollfirePatch(): ConfigBuilder {
+  /*withScrollfirePatch(): ConfigBuilder {
     this.useScrollfirePatch = true;
     return this;
-  }
+  }*/
 }

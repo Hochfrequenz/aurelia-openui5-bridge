@@ -19,8 +19,6 @@ Object.keys(_exports).forEach(function (key) {
 
 var _configBuilder = require('./config-builder');
 
-var _scrollfirePatch = require('./scrollfire/scrollfire-patch');
-
 var _polyfills = require('./common/polyfills');
 
 function applyPolyfills() {
@@ -37,8 +35,5 @@ function configure(aurelia, configCallback) {
 
   if (builder.useGlobalResources) {
     aurelia.globalResources(builder.globalResources);
-  }
-  if (builder.useScrollfirePatch) {
-    new _scrollfirePatch.ScrollfirePatch().patch();
   }
 }

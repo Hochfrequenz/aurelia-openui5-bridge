@@ -7,6 +7,8 @@ exports.Ui5Control = undefined;
 
 var _element = require('../element/element');
 
+var _attributes = require('../common/attributes');
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -16,18 +18,35 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Ui5Control = exports.Ui5Control = function (_Ui5Element) {
     _inherits(Ui5Control, _Ui5Element);
 
-    function Ui5Control() {
+    function Ui5Control(elem) {
         _classCallCheck(this, Ui5Control);
 
-        return _possibleConstructorReturn(this, _Ui5Element.apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, _Ui5Element.call(this, elem));
+
+        _this.busy = false;
+        return _this;
     }
 
     Ui5Control.prototype.addChild = function addChild(child, elem) {
         _Ui5Element.prototype.addChild.call(this, child, elem);
     };
 
+    Ui5Control.prototype.removeChild = function removeChild(child, elem) {
+        _Ui5Element.prototype.removeChild.call(this, child, elem);
+    };
+
     Ui5Control.prototype.attached = function attached() {
         _Ui5Element.prototype.attached.call(this);
+    };
+
+    Ui5Control.prototype.fillProperties = function fillProperties(propertyObject) {
+        propertyObject.busy = this.busy;
+    };
+
+    Ui5Control.prototype.busyChanged = function busyChanged(newValue) {
+        if (this.UIElement != null) {
+            this.UIElement.setBusy((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        }
     };
 
     return Ui5Control;

@@ -1,14 +1,1 @@
-/* */ 
-(function(jQuery){
-
-	var MESSAGE = "The file sap/ui/thirdparty/jqueryui/jquery-effects-scale.js has been renamed to sap/ui/thirdparty/jqueryui/jquery-ui-effect-scale.js! Please update the dependencies accordingly.";
-
-	if ( jQuery && jQuery.sap && jQuery.sap.require ) {
-		// if jQuery.sap is available, require the new module and log a warning
-		jQuery.sap.require("sap.ui.thirdparty.jqueryui.jquery-ui-effect-scale");
-		jQuery.sap.log.warning(MESSAGE);
-	} else {
-		throw new Error(MESSAGE);
-	}
-
-})(window.jQuery);
+(function(q){var M="The file sap/ui/thirdparty/jqueryui/jquery-effects-scale.js has been renamed to sap/ui/thirdparty/jqueryui/jquery-ui-effect-scale.js! Please update the dependencies accordingly.";if(q&&q.sap&&q.sap.require){q.sap.require("sap.ui.thirdparty.jqueryui.jquery-ui-effect-scale");q.sap.log.warning(M);}else{throw new Error(M);}})(window.jQuery);

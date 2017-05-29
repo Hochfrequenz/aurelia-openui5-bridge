@@ -120,7 +120,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             }
 
             if (elem.localName == 'content') {
-              this._tab.removeItem(child);
               break;
             }
           }

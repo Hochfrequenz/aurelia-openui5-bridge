@@ -1,0 +1,165 @@
+<template>
+	<ui5-shell>
+		<ui5-page>
+			<ui5-dynamic-page header-expanded="false">
+				<ui5-dynamic-page-title slot="title">
+					<ui5-m-title slot="heading" text="Testtitel"></ui5-m-title>
+					<ui5-text slot="expandedContent">expandedText</ui5-text>
+					<ui5-text slot="snappedContent">snappedText</ui5-text>
+				</ui5-dynamic-page-title>
+				<ui5-dynamic-page-header slot="header">
+					<ui5-grid defaultSpan="XL4 L6 M6 S12">
+						<ui5-vertical-layout>
+							<ui5-label text="${'firstName' | t}"></ui5-label>
+							<ui5-input ui5-layout value.two-way="name & validate:rules" value-live-update="true">
+								<ui5-grid-data slot="layoutData" span="L3 M4 S4"></ui5-grid-data>
+							</ui5-input>
+							<ui5-link press.call="pressLink()" text="Mein Link">
+
+							</ui5-link>
+						</ui5-vertical-layout>
+					</ui5-grid>
+				</ui5-dynamic-page-header>
+				<ui5-tab-container>
+					<ui5-tab-container-item key="Wizard" name="Wizard">
+
+						<ui5-wizard scroll-container>
+							<ui5-wizard-step ui5-container title="Start">
+								<!--	<ui5-text text="Schritt 1 zur Installation:"></ui5-text>-->
+								<ui5-text linkid="MeinTest" ui5-id="nameText" text.bind="selectedValue"></ui5-text>
+								<!--	<ui5-simple-form ui5-id='testForm' labelSpanL="4"
+			labelSpanM="12"
+			adjustLabelSpan="false"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="2"
+			columnsM="2"
+			layout="ResponsiveGridLayout"
+			editable = "true"
+			title="Address">
+			<ui5-title text="Allgemeines"></ui5-title>
+					<ui5-label ui5-id="nameLabel" text="${'firstName' | t}" label-for="nameInput">
+					</ui5-label>
+					<ui5-input ui5-layout ui5-id="nameInput" value.two-way="name & validate:rules" value-live-update="true"><ui5-grid-data slot="layoutData" span="L3 M4 S4"></ui5-grid-data></ui5-input>
+				</ui5-simple-form>-->
+								<ui5-form>
+									<ui5-form-container>
+										<ui5-form-element>
+											<ui5-label slot="label" text="${'firstName' | t}"></ui5-label>
+											<ui5-input ui5-layout ui5-id="nameInput" value.two-way="name & validate:rules" value-live-update="true" show-suggestion="true"
+											 suggest.call="onSuggest($event)">
+												<ui5-grid-data slot="layoutData" span="L3 M4 S4"></ui5-grid-data>
+												<ui5-list-item repeat.for="item of nameSuggestions" slot="suggestionItem" key.bind="item.key" text.bind="item.text"></ui5-list-item>
+											</ui5-input>
+										</ui5-form-element>
+										<ui5-form-element>
+											<ui5-label slot="label" text="${'firstName' | t}"></ui5-label>
+											<ui5-select auto-adjust-width="true" show-secondary-values="true" selected-key.two-way="selectedValue">
+												<ui5-list-item key="test" text="TestText" additional-text="noch mehr Text"></ui5-list-item>
+												<ui5-list-item key="test2" text="zweiter Eintrag" additional-text="noch mehr Text"></ui5-list-item>
+											</ui5-select>
+										</ui5-form-element>
+
+									</ui5-form-container>
+									<ui5-responsive-grid-layout slot="layout" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"></ui5-responsive-grid-layout>
+								</ui5-form>
+							</ui5-wizard-step>
+							<ui5-wizard-step ui5-container title="Ende">
+								<ui5-overflow-toolbar design="Transparent">
+									<ui5-m-title text="Zweiter Schritt"></ui5-m-title>
+									<ui5-toolbar-spacer></ui5-toolbar-spacer>
+									<ui5-button icon="sap-icon://add"></ui5-button>
+									<ui5-button icon="sap-icon://delete"></ui5-button>
+								</ui5-overflow-toolbar>
+								<ui5-icon-tab-bar>
+									<ui5-icon-tab-filter text="Erster Tab">
+										<ui5-table>
+											<ui5-column slot="column">
+												<ui5-text slot="header">FirstColumn</ui5-text>
+											</ui5-column>
+											<ui5-column slot="column">
+												<ui5-text slot="header">Zahlen</ui5-text>
+											</ui5-column>
+											<ui5-column-list-item>
+												<ui5-object-identifier title="Titel">Mein Wert</ui5-object-identifier>
+												<ui5-object-number>12</ui5-object-number>
+											</ui5-column-list-item>
+											<ui5-column-list-item>
+												<ui5-text>Zeile 2</ui5-text>
+												<ui5-object-number unit="EUR">12</ui5-object-number>
+											</ui5-column-list-item>
+										</ui5-table>
+									</ui5-icon-tab-filter>
+									<ui5-icon-tab-filter text="Zweiter">
+										<ui5-form>
+											<ui5-form-container>
+												<ui5-form-element>
+													<ui5-label slot="label" text="${'firstName' | t}"></ui5-label>
+													<ui5-input ui5-layout value.two-way="name & validate:rules" value-live-update="true" show-suggestion="true" suggest.call="onSuggest($event)">
+														<ui5-grid-data slot="layoutData" span="L3 M4 S4"></ui5-grid-data>
+														<ui5-list-item repeat.for="item of nameSuggestions" slot="suggestionItem" key.bind="item.key" text.bind="item.text"></ui5-list-item>
+													</ui5-input>
+												</ui5-form-element>
+												<ui5-form-element>
+													<ui5-label slot="label" text="${'firstName' | t}"></ui5-label>
+													<ui5-select auto-adjust-width="true" show-secondary-values="true" selected-key.two-way="selectedValue">
+														<ui5-list-item key="test" text="TestText" additional-text="noch mehr Text"></ui5-list-item>
+														<ui5-list-item key="test2" text="zweiter Eintrag" additional-text="noch mehr Text"></ui5-list-item>
+													</ui5-select>
+												</ui5-form-element>
+
+											</ui5-form-container>
+											<ui5-responsive-grid-layout slot="layout" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"></ui5-responsive-grid-layout>
+										</ui5-form>
+									</ui5-icon-tab-filter>
+								</ui5-icon-tab-bar>
+							</ui5-wizard-step>
+						</ui5-wizard>
+					</ui5-tab-container-item>
+					<ui5-tab-container-item key="table" name="Table">
+						<ui5-table>
+							<ui5-column slot="column">
+								<ui5-text slot="header">FirstColumn</ui5-text>
+							</ui5-column>
+							<ui5-column slot="column">
+								<ui5-text slot="header">Zahlen</ui5-text>
+							</ui5-column>
+							<ui5-column-list-item>
+								<ui5-object-identifier title="Titel">Mein Wert</ui5-object-identifier>
+								<ui5-object-number>12</ui5-object-number>
+							</ui5-column-list-item>
+							<ui5-column-list-item>
+								<ui5-text>Zeile 2</ui5-text>
+								<ui5-object-number unit="EUR">12</ui5-object-number>
+							</ui5-column-list-item>
+						</ui5-table>
+					</ui5-tab-container-item>
+					<ui5-tab-container-item key="form" name="Form">
+						<ui5-vertical-layout>
+							<ui5-form>
+								<ui5-form-container>
+									<ui5-form-element>
+										<ui5-label slot="label" text="${'firstName' | t}"></ui5-label>
+										<ui5-input ui5-layout value.two-way="name & validate:rules" value-live-update="true" show-suggestion="true" suggest.call="onSuggest($event)">
+											<ui5-grid-data slot="layoutData" span="L3 M4 S4"></ui5-grid-data>
+											<ui5-list-item repeat.for="item of nameSuggestions" slot="suggestionItem" key.bind="item.key" text.bind="item.text"></ui5-list-item>
+										</ui5-input>
+									</ui5-form-element>
+									<ui5-form-element>
+										<ui5-label slot="label" text="${'firstName' | t}"></ui5-label>
+										<ui5-select auto-adjust-width="true" show-secondary-values="true" selected-key.two-way="selectedValue">
+											<ui5-list-item key="test" text="TestText" additional-text="noch mehr Text"></ui5-list-item>
+											<ui5-list-item key="test2" text="zweiter Eintrag" additional-text="noch mehr Text"></ui5-list-item>
+										</ui5-select>
+									</ui5-form-element>
+
+								</ui5-form-container>
+								<ui5-responsive-grid-layout slot="layout" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"></ui5-responsive-grid-layout>
+							</ui5-form>
+						</ui5-vertical-layout>
+					</ui5-tab-container-item>
+				</ui5-tab-container>
+			</ui5-dynamic-page>
+		</ui5-page>
+	</ui5-shell>
+</template>

@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
+System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, Ui5Table;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, Ui5Table;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -19,6 +19,30 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
+  }
+
+  function _possibleConstructorReturn(self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -65,17 +89,46 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       AttributeManager = _commonAttributeManager.AttributeManager;
     }, function (_commonAttributes) {
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+    }, function (_controlControl) {
+      Ui5Control = _controlControl.Ui5Control;
     }],
     execute: function () {
-      _export('Ui5Table', Ui5Table = (_dec = customElement('ui5-table'), _dec2 = inject(Element), _dec3 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
+
+      _export('Ui5Table', Ui5Table = (_dec = customElement('ui5-table'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+        _inherits(Ui5Table, _Ui5Control);
+
         function Ui5Table(element) {
           _classCallCheck(this, Ui5Table);
 
-          _initDefineProp(this, 'headerText', _descriptor, this);
+          var _this = _possibleConstructorReturn(this, _Ui5Control.call(this, element));
 
-          this._table = null;
+          _initDefineProp(_this, 'headerText', _descriptor, _this);
 
-          this.element = element;
+          _initDefineProp(_this, 'showOverlay', _descriptor2, _this);
+
+          _initDefineProp(_this, 'busy', _descriptor3, _this);
+
+          _this._table = null;
+
+          _this.element = element;
+          return _this;
         }
 
         Ui5Table.prototype.addChild = function addChild(child, elem) {
@@ -125,9 +178,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
         Ui5Table.prototype.attached = function attached() {
           var attributeManager = new AttributeManager(this.element);
-          var table = new sap.m.Table({
-            headerText: this.headerText
-          });
+          var props = {
+            headerText: this.headerText,
+            showOverlay: getBooleanFromAttributeValue(this.showOverlay)
+          };
+          _Ui5Control.prototype.fillProperties.call(this, props);
+          var table = new sap.m.Table(props);
           this._table = table;
 
           if ($(this.element).parents("[ui5-container]").length > 0) {
@@ -154,11 +210,34 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        Ui5Table.prototype.showOverlayChanged = function showOverlayChanged(newValue) {
+          if (this._table !== null) {
+            this._table.setShowOverlay(newValue);
+          }
+        };
+
+        _createClass(Ui5Table, [{
+          key: 'UIElement',
+          get: function get() {
+            return this._table;
+          }
+        }]);
+
         return Ui5Table;
-      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'headerText', [_dec3], {
+      }(Ui5Control), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'headerText', [_dec3], {
         enumerable: true,
         initializer: function initializer() {
           return '';
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'showOverlay', [_dec4], {
+        enumerable: true,
+        initializer: function initializer() {
+          return false;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec5], {
+        enumerable: true,
+        initializer: function initializer() {
+          return false;
         }
       })), _class2)) || _class) || _class));
 

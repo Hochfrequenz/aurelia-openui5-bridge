@@ -55,9 +55,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13;
 
-  var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-bar'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-bar'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5IconTabBar(element) {
       _classCallCheck(this, Ui5IconTabBar);
 
@@ -86,6 +86,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       _initDefineProp(this, 'headerBackgroundDesign', _descriptor11, this);
 
       _initDefineProp(this, 'enableTabReordering', _descriptor12, this);
+
+      _initDefineProp(this, 'select', _descriptor13, this);
 
       this.element = element;
     }
@@ -144,9 +146,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         headerMode: this.headerMode,
         showOverflowSelectList: (0, _attributes.getBooleanFromAttributeValue)(this.showOverflowSelectList),
         headerBackgroundDesign: this.headerBackgroundDesign,
-        enableTabReordering: (0, _attributes.getBooleanFromAttributeValue)(this.enableTabReordering)
+        enableTabReordering: (0, _attributes.getBooleanFromAttributeValue)(this.enableTabReordering),
+        select: this.select
       });
-
+      var that = this;
+      this._tab.attachSelect(function (event) {
+        that.selectedKey = event.mParameters.selectedItem.mProperties.text;
+      });
       if ($(this.element).parents("[ui5-container]").length > 0) {
         $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
         attributeManager.addAttributes({ "ui5-container": '' });
@@ -297,6 +303,11 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     enumerable: true,
     initializer: function initializer() {
       return false;
+    }
+  }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec15], {
+    enumerable: true,
+    initializer: function initializer() {
+      return this.defaultFunc;
     }
   })), _class2)) || _class) || _class);
 });

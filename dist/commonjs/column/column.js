@@ -160,50 +160,50 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
   };
 
   Ui5Column.prototype.styleClassChanged = function styleClassChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setStyleClass(newValue);
+    if (this._column !== null) {
+      this._column.setStyleClass(newValue);
     }
   };
 
   Ui5Column.prototype.visibleChanged = function visibleChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    if (this._column !== null) {
+      this._column.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
     }
   };
 
   Ui5Column.prototype.minScreenWidthChanged = function minScreenWidthChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setMinScreenWidth(newValue);
+    if (this._column !== null) {
+      this._column.setMinScreenWidth(newValue);
     }
   };
 
   Ui5Column.prototype.demandPopinChanged = function demandPopinChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setDemandPopin((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    if (this._column !== null) {
+      this._column.setDemandPopin((0, _attributes.getBooleanFromAttributeValue)(newValue));
     }
   };
 
   Ui5Column.prototype.popinDisplayChanged = function popinDisplayChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setPopinDisplay(newValue);
+    if (this._column !== null) {
+      this._column.setPopinDisplay(newValue);
     }
   };
 
   Ui5Column.prototype.popinHAlignChanged = function popinHAlignChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setPopinHAlign(newValue);
+    if (this._column !== null) {
+      this._column.setPopinHAlign(newValue);
     }
   };
 
   Ui5Column.prototype.mergeDuplicatesChanged = function mergeDuplicatesChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setMergeDuplicates((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    if (this._column !== null) {
+      this._column.setMergeDuplicates((0, _attributes.getBooleanFromAttributeValue)(newValue));
     }
   };
 
   Ui5Column.prototype.mergeFunctionNameChanged = function mergeFunctionNameChanged(newValue) {
-    if (controlName !== null) {
-      controlName.setMergeFunctionName(newValue);
+    if (this._column !== null) {
+      this._column.setMergeFunctionName(newValue);
     }
   };
 

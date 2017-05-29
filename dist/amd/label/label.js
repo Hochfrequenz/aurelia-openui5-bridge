@@ -87,7 +87,10 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         textAlign: this.textAlign,
         textDirection: this.textDirection
       });
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._label, this.element);
+      if ($(this.element).parents("[ui5-container]").length > 0) {
+
+        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._label, this.element);
+      }
     };
 
     Ui5Label.prototype.textChanged = function textChanged(newValue) {

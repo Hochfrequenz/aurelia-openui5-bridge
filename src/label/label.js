@@ -7,13 +7,14 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 
 export class Ui5Label {
-   _label = null;
-   @bindable() ui5Id = null;
-   @bindable() labelFor = null;
-   @bindable() text = null;
-   @bindable() required = false;
-   @bindable() textAlign = "Begin";
-   @bindable() textDirection = null;
+  _label = null;
+  @bindable() ui5Id = null;
+  @bindable() labelFor = null;
+  @bindable() text = null;
+  @bindable() required = false;
+  @bindable() textAlign = "Begin";
+  @bindable() textDirection = null;
+
   constructor(element) {
     this.element = element;
   }
@@ -21,15 +22,18 @@ export class Ui5Label {
   attached() {
 
     this._label = new sap.m.Label({
-      text : this.text,
+      text: this.text,
       labelFor: this.labelFor,
-      required : getBooleanFromAttributeValue(this.required),
-      textAlign : this.textAlign,  
-      textDirection : this.textDirection
-    }); 
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._label,this.element);  
+      required: getBooleanFromAttributeValue(this.required),
+      textAlign: this.textAlign,
+      textDirection: this.textDirection
+    });
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._label, this.element);
+    }
   }
-   textChanged(newValue) {
+  textChanged(newValue) {
     if (this._label !== null) {
       this._label.setText(newValue);
     }

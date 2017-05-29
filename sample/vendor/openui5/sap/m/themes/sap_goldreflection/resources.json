@@ -11,6 +11,11 @@
       "theme": "base"
     },
     {
+      "name": "ActionSelect.less",
+      "designtime": true,
+      "theme": "base"
+    },
+    {
       "name": "ActionSheet.less",
       "designtime": true,
       "theme": "base"
@@ -91,17 +96,7 @@
       "theme": "base"
     },
     {
-      "name": "DatePicker.less",
-      "designtime": true,
-      "theme": "base"
-    },
-    {
       "name": "DateRangeSelection.less",
-      "designtime": true,
-      "theme": "base"
-    },
-    {
-      "name": "DateTimeInput.less",
       "designtime": true,
       "theme": "base"
     },
@@ -152,11 +147,6 @@
     },
     {
       "name": "FeedListItem.less",
-      "designtime": true,
-      "theme": "base"
-    },
-    {
-      "name": "FileUpload.less",
       "designtime": true,
       "theme": "base"
     },
@@ -241,22 +231,12 @@
       "theme": "base"
     },
     {
-      "name": "List.less",
-      "designtime": true,
-      "theme": "base"
-    },
-    {
       "name": "ListBase.less",
       "designtime": true,
       "theme": "base"
     },
     {
       "name": "ListItemBase.less",
-      "designtime": true,
-      "theme": "base"
-    },
-    {
-      "name": "MaskInput.less",
       "designtime": true,
       "theme": "base"
     },
@@ -297,6 +277,11 @@
     },
     {
       "name": "MessageToast.less",
+      "designtime": true,
+      "theme": "base"
+    },
+    {
+      "name": "MessageView.less",
       "designtime": true,
       "theme": "base"
     },
@@ -402,11 +387,6 @@
     },
     {
       "name": "P13nGroupPanel.less",
-      "designtime": true,
-      "theme": "base"
-    },
-    {
-      "name": "P13nPanel.less",
       "designtime": true,
       "theme": "base"
     },
@@ -522,11 +502,6 @@
     },
     {
       "name": "Slider.less",
-      "designtime": true,
-      "theme": "base"
-    },
-    {
-      "name": "SplitApp.less",
       "designtime": true,
       "theme": "base"
     },

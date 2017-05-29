@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -18,7 +18,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control'],
 	 * @extends sap.ui.core.Control
 	 *
 	 * @author SAP SE
-	 * @version 1.44.8
+	 * @version 1.46.7
 	 * @since 1.34
 	 *
 	 * @public
@@ -69,6 +69,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control'],
 
 	TileContent.prototype.init = function() {
 		this._bRenderFooter = true;
+		this._bRenderContent = true;
 	};
 
 	TileContent.prototype.onBeforeRendering = function() {
@@ -184,12 +185,23 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control'],
 
 	/**
 	 * Setter for protected property to enable or disable footer rendering. This function does not invalidate the control.
-	 * @param {boolean} value is used to if the footer is rendered or not
+	 * @param {boolean} value Determines whether the control's footer is rendered or not
 	 * @returns {sap.m.TileContent} this to allow method chaining
 	 * @protected
 	 */
 	TileContent.prototype.setRenderFooter = function(value) {
 		this._bRenderFooter = value;
+		return this;
+	};
+
+	/**
+	 * Setter for protected property to enable or disable content rendering. This function does not invalidate the control.
+	 * @param {boolean} value Determines whether the control's content is rendered or not
+	 * @returns {sap.m.TileContent} this To allow method chaining
+	 * @protected
+	 */
+	TileContent.prototype.setRenderContent = function(value) {
+		this._bRenderContent = value;
 		return this;
 	};
 

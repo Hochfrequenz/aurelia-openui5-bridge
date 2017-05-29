@@ -80,7 +80,21 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
                 Ui5Grid.prototype.addChild = function addChild(child, elem) {
                     var path = $(elem).parentsUntil(this.element);
-                    if (path[0].localName == 'content') this._grid.addContent(child);
+                    for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+                        if (_isArray) {
+                            if (_i >= _iterator.length) break;
+                            elem = _iterator[_i++];
+                        } else {
+                            _i = _iterator.next();
+                            if (_i.done) break;
+                            elem = _i.value;
+                        }
+
+                        if (elem.localName == 'content') {
+                            this._grid.addContent(child);
+                            break;
+                        }
+                    }
                 };
 
                 Ui5Grid.prototype.removeChild = function removeChild(child, elem) {
@@ -91,10 +105,15 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
                 Ui5Grid.prototype.defaultPress = function defaultPress() {};
 
                 Ui5Grid.prototype.attached = function attached() {
+                    var attributeManager = new AttributeManager(this.element);
+
                     this._grid = new sap.ui.layout.Grid({
                         defaultSpan: this.defaultSpan
                     });
-                    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._grid, this.element);
+                    if ($(this.element).parents("[ui5-container]").length > 0) {
+                        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._grid, this.element);
+                        attributeManager.addAttributes({ "ui5-container": '' });
+                    }
                 };
 
                 Ui5Grid.prototype.detached = function detached() {

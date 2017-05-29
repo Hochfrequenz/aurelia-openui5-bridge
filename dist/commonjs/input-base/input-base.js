@@ -116,6 +116,10 @@ var Ui5InputBase = exports.Ui5InputBase = (_dec = (0, _aureliaTemplating.customE
     _Ui5Control.prototype.addChild.call(this, child, elem);
   };
 
+  Ui5InputBase.prototype.removeChild = function removeChild(child, elem) {
+    _Ui5Control.prototype.removeChild.call(this, child, elem);
+  };
+
   Ui5InputBase.prototype.valueChanged = function valueChanged(newValue) {
     if (this._picker !== null) {
       this._picker.setValue(newValue);

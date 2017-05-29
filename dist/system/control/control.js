@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['../element/element'], function (_export, _context) {
+System.register(['../element/element', '../common/attributes'], function (_export, _context) {
     "use strict";
 
-    var Ui5Element, Ui5Control;
+    var Ui5Element, getBooleanFromAttributeValue, Ui5Control;
 
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
@@ -38,23 +38,42 @@ System.register(['../element/element'], function (_export, _context) {
     return {
         setters: [function (_elementElement) {
             Ui5Element = _elementElement.Ui5Element;
+        }, function (_commonAttributes) {
+            getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
         }],
         execute: function () {
             _export('Ui5Control', Ui5Control = function (_Ui5Element) {
                 _inherits(Ui5Control, _Ui5Element);
 
-                function Ui5Control() {
+                function Ui5Control(elem) {
                     _classCallCheck(this, Ui5Control);
 
-                    return _possibleConstructorReturn(this, _Ui5Element.apply(this, arguments));
+                    var _this = _possibleConstructorReturn(this, _Ui5Element.call(this, elem));
+
+                    _this.busy = false;
+                    return _this;
                 }
 
                 Ui5Control.prototype.addChild = function addChild(child, elem) {
                     _Ui5Element.prototype.addChild.call(this, child, elem);
                 };
 
+                Ui5Control.prototype.removeChild = function removeChild(child, elem) {
+                    _Ui5Element.prototype.removeChild.call(this, child, elem);
+                };
+
                 Ui5Control.prototype.attached = function attached() {
                     _Ui5Element.prototype.attached.call(this);
+                };
+
+                Ui5Control.prototype.fillProperties = function fillProperties(propertyObject) {
+                    propertyObject.busy = this.busy;
+                };
+
+                Ui5Control.prototype.busyChanged = function busyChanged(newValue) {
+                    if (this.UIElement != null) {
+                        this.UIElement.setBusy(getBooleanFromAttributeValue(newValue));
+                    }
                 };
 
                 return Ui5Control;

@@ -49,7 +49,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         };
 
         Ui5TileContainer.prototype.detached = function detached() {
-          $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._container, this.element);
+          if ($(this.element).parents("[ui5-container]")[0]) {
+            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._container, this.element);
+          }
         };
 
         return Ui5TileContainer;

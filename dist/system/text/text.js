@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
+System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', 'aurelia-framework'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, Ui5Text;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, computedFrom, _createClass, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, Ui5Text;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -65,9 +65,29 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       AttributeManager = _commonAttributeManager.AttributeManager;
     }, function (_commonAttributes) {
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+    }, function (_aureliaFramework) {
+      computedFrom = _aureliaFramework.computedFrom;
     }],
     execute: function () {
-      _export('Ui5Text', Ui5Text = (_dec = customElement('ui5-text'), _dec2 = inject(Element), _dec(_class = _dec2(_class = (_class2 = function () {
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
+
+      _export('Ui5Text', Ui5Text = (_dec = customElement('ui5-text'), _dec2 = inject(Element), _dec3 = computedFrom('_text'), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5Text(element) {
           _classCallCheck(this, Ui5Text);
 
@@ -87,13 +107,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         }
 
         Ui5Text.prototype.attached = function attached() {
-
-          this._text = new sap.m.Text({
+          var props = {
             text: this.text != null ? this.text : this.element.innerText.trim(),
             wrapping: getBooleanFromAttributeValue(this.wrapping),
             textAlign: this.textAlign,
             maxLines: this.maxLines
-          });
+          };
+          if (this.ui5Id) this._text = new sap.m.Text(this.ui5Id, props);else this._text = new sap.m.Text(props);
           $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
         };
 
@@ -102,6 +122,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             this._text.setText(newValue);
           }
         };
+
+        _createClass(Ui5Text, [{
+          key: 'UIElement',
+          get: function get() {
+            return this._text;
+          }
+        }]);
 
         return Ui5Text;
       }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [bindable], {
@@ -129,7 +156,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         initializer: function initializer() {
           return null;
         }
-      })), _class2)) || _class) || _class));
+      }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
       _export('Ui5Text', Ui5Text);
     }

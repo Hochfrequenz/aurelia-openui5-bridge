@@ -37,6 +37,9 @@ export class Ui5InputBase extends Ui5Control {
   addChild(child, elem) {
     super.addChild(child, elem);
   }
+  removeChild(child, elem) {
+    super.removeChild(child, elem);
+  }
   valueChanged(newValue) {
     if (this._picker !== null) {
       this._picker.setValue(newValue);

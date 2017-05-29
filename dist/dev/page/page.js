@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, Ui5Page;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, Ui5Page;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -67,7 +67,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
     }],
     execute: function () {
-      _export('Ui5Page', Ui5Page = (_dec = customElement('ui5-page'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5Page', Ui5Page = (_dec = customElement('ui5-page'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5Page(element) {
           _classCallCheck(this, Ui5Page);
 
@@ -79,23 +79,73 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           _initDefineProp(this, 'showNavButton', _descriptor4, this);
 
+          _initDefineProp(this, 'navButtonPress', _descriptor5, this);
+
           this._page = null;
 
           this.element = element;
         }
 
+        Ui5Page.prototype.defaultFunc = function defaultFunc() {};
+
         Ui5Page.prototype.addChild = function addChild(child, elem) {
           var path = $(elem).parentsUntil(this.element);
-          if (path[0].localName == 'subheader') this._page.setSubHeader(child);
-          if (path[0].localName == 'content') this._page.addContent(child);
-          if (path[0].localName == 'footer') this._page.setFooter(child);
+          for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            if (_isArray) {
+              if (_i >= _iterator.length) break;
+              elem = _iterator[_i++];
+            } else {
+              _i = _iterator.next();
+              if (_i.done) break;
+              elem = _i.value;
+            }
+
+            if (elem.localName == 'header') {
+              this._page.addHeaderContent(child);
+              break;
+            }
+            if (elem.localName == 'subheader') {
+              this._page.setSubHeader(child);
+              break;
+            }
+            if (elem.localName == 'content') {
+              this._page.addContent(child);
+              break;
+            }
+            if (elem.localName == 'footer') {
+              this._page.setFooter(child);
+              break;
+            }
+          }
         };
 
         Ui5Page.prototype.removeChild = function removeChild(child, elem) {
           var path = $(elem).parentsUntil(this.element);
-          if (path[0].localName == 'subheader') this._page.setSubHeader(child);
-          if (path[0].localName == 'content') this._page.removeContent(child);
-          if (path[0].localName == 'footer') this._page.setFooter(child);
+          for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+            if (_isArray2) {
+              if (_i2 >= _iterator2.length) break;
+              elem = _iterator2[_i2++];
+            } else {
+              _i2 = _iterator2.next();
+              if (_i2.done) break;
+              elem = _i2.value;
+            }
+
+            if (elem.localName == 'header') {
+              this._page.removeHeaderContent(child);
+              break;
+            }
+            if (elem.localName == 'subheader') {
+              break;
+            }
+            if (elem.localName == 'content') {
+              this._page.removeContent(child);
+              break;
+            }
+            if (elem.localName == 'footer') {
+              break;
+            }
+          }
         };
 
         Ui5Page.prototype.attached = function attached() {
@@ -104,7 +154,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             title: this.title,
             showHeader: getBooleanFromAttributeValue(this.showHeader),
             showFooter: getBooleanFromAttributeValue(this.showFooter),
-            showNavButton: getBooleanFromAttributeValue(this.showNavButton)
+            showNavButton: getBooleanFromAttributeValue(this.showNavButton),
+            navButtonPress: this.navButtonPress
           });
           this._page = page;
 
@@ -170,6 +221,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         enumerable: true,
         initializer: function initializer() {
           return false;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonPress', [_dec7], {
+        enumerable: true,
+        initializer: function initializer() {
+          return this.defaultFunc;
         }
       })), _class2)) || _class) || _class));
 

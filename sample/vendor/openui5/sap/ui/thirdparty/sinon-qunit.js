@@ -31,32 +31,6 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-/*global sinon, QUnit, test*/
-sinon.expectation.fail = sinon.assert.fail = function (msg) {
-    QUnit.ok(false, msg);
-};
-
-sinon.assert.pass = function (assertion) {
-    QUnit.ok(true, assertion);
-};
-
-sinon.config = {
-    injectIntoThis: true,
-    injectInto: null,
-    properties: ["spy", "stub", "mock", "clock", "sandbox"],
-    useFakeTimers: false,
-    useFakeServer: false
-};
-
-(function (global) {
-    var qTest = QUnit.test;
-
-    QUnit.test = global.test = function (testName, expected, callback, async) {
-        if (arguments.length === 2) {
-            callback = expected;
-            expected = null;
-        }
-
-        return qTest(testName, expected, sinon.test(callback), async);
-    };
-}(this));
+sinon.expectation.fail=sinon.assert.fail=function(m){QUnit.ok(false,m);};
+sinon.assert.pass=function(a){QUnit.ok(true,a);};
+sinon.config={injectIntoThis:true,injectInto:null,properties:["spy","stub","mock","clock","sandbox"],useFakeTimers:false,useFakeServer:false};(function(g){var q=QUnit.test;QUnit.test=g.test=function(t,e,c,a){if(arguments.length===2){c=e;e=null;}return q(t,e,sinon.test(c),a);};}(this));

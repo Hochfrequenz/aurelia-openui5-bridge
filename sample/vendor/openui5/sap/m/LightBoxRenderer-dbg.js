@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -40,6 +40,8 @@ sap.ui.define(['jquery.sap.global'], function (jQuery) {
 		/** @type {sap.m.LightBoxLoadingStates} */
 		var imageState = lightBoxItem._getImageState();
 
+		var invisiblePopupText = oControl.getAggregation('_invisiblePopupText');
+
 		oRm.write('<div');
 		oRm.writeControlData(oControl);
 		oRm.addClass(className);
@@ -55,9 +57,16 @@ sap.ui.define(['jquery.sap.global'], function (jQuery) {
 			oRm.addClass(classNameError);
 		}
 
+		oRm.writeAccessibilityState({
+			role: 'dialog',
+			labelledby: invisiblePopupText && invisiblePopupText.getId()
+		});
+
 		oRm.writeClasses();
 		oRm.writeStyles();
 		oRm.write('>');
+
+		oRm.renderControl(invisiblePopupText);
 
 		//if control is busy render busyIndicator instead
 		if (imageState === sap.m.LightBoxLoadingStates.Loading) {

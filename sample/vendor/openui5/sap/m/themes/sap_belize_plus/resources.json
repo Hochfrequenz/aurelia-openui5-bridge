@@ -21,16 +21,6 @@
       "theme": "sap_belize_plus"
     },
     {
-      "name": "FeedInput.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
-      "name": "FeedListItem.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
       "name": "HeaderContainer.less",
       "designtime": true,
       "theme": "sap_belize_plus"
@@ -41,22 +31,7 @@
       "theme": "sap_belize_plus"
     },
     {
-      "name": "ImageContent.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
-      "name": "LightBox.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
       "name": "Link.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
-      "name": "ListBase.less",
       "designtime": true,
       "theme": "sap_belize_plus"
     },
@@ -81,11 +56,6 @@
       "theme": "sap_belize_plus"
     },
     {
-      "name": "NumericContent.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
       "name": "ObjectAttribute.less",
       "designtime": true,
       "theme": "sap_belize_plus"
@@ -106,17 +76,7 @@
       "theme": "sap_belize_plus"
     },
     {
-      "name": "Page.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
       "name": "Popover.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
-      "name": "ProgressIndicator.less",
       "designtime": true,
       "theme": "sap_belize_plus"
     },
@@ -136,22 +96,12 @@
       "theme": "sap_belize_plus"
     },
     {
-      "name": "SlideTile.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
       "name": "Slider.less",
       "designtime": true,
       "theme": "sap_belize_plus"
     },
     {
       "name": "StandardListItem.less",
-      "designtime": true,
-      "theme": "sap_belize_plus"
-    },
-    {
-      "name": "StandardTile.less",
       "designtime": true,
       "theme": "sap_belize_plus"
     },
@@ -171,12 +121,12 @@
       "theme": "sap_belize_plus"
     },
     {
-      "name": "Token.less",
+      "name": "TimePicker.less",
       "designtime": true,
       "theme": "sap_belize_plus"
     },
     {
-      "name": "UploadCollection.less",
+      "name": "Token.less",
       "designtime": true,
       "theme": "sap_belize_plus"
     },

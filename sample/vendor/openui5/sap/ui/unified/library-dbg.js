@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19,14 +19,14 @@ sap.ui.define(['jquery.sap.global',
 	 * @namespace
 	 * @name sap.ui.unified
 	 * @author SAP SE
-	 * @version 1.44.8
+	 * @version 1.46.7
 	 * @public
 	 */
 
 	// delegate further initialization of this library to the Core
 	sap.ui.getCore().initLibrary({
 		name : "sap.ui.unified",
-		version: "1.44.8",
+		version: "1.46.7",
 		dependencies : ["sap.ui.core"],
 		types: [
 			"sap.ui.unified.CalendarDayType",
@@ -151,7 +151,7 @@ sap.ui.define(['jquery.sap.global',
 	};
 
 	/**
-	 * Type of a interval in a <code>CalendarRow</code>.
+	 * Interval types in a <code>CalendarRow</code>.
 	 *
 	 * @enum {string}
 	 * @public
@@ -161,32 +161,45 @@ sap.ui.define(['jquery.sap.global',
 	sap.ui.unified.CalendarIntervalType = {
 
 		/**
-		 * one <code>CalendarRow</code> interval has the size of one hour
+		 * Intervals have the size of one hour.
 		 * @public
 		 */
 		Hour : "Hour",
 
 		/**
-		 * one <code>CalendarRow</code> interval has the size of one day
+		 * Intervals have the size of one day.
 		 * @public
 		 */
 		Day : "Day",
 
 		/**
-		 * one <code>CalendarRow</code> interval has the size of one Month
+		 * Intervals have the size of one month.
 		 * @public
 		 */
 		Month : "Month",
 
 		/**
-		 * one <code>CalendarRow</code> interval has the size of one Week
+		 * Intervals have the size of one day where 7 days are displayed, starting with the first day of the week.
+		 *
+		 * Note: This interval type is NOT supported when creating a custom sap.m.PlanningCalendarView.
+		 *
+		 * @since 1.44
 		 */
-		Week : "Week"
+		Week : "Week",
+
+		/**
+		 * Intervals have the size of one day where 31 days are displayed, starting with the first day of the month.
+		 *
+		 * Note: This interval type is NOT supported when creating a custom sap.m.PlanningCalendarView.
+		 *
+		 * @since 1.46
+		 */
+		OneMonth : "One Month"
 
 	};
 
 	/**
-	 * Visualisation of an <code>CalendarAppoinment</code> in a <code>CalendarRow</code>.
+	 * Visualization types for {@link sap.ui.unified.CalendarAppointment}.
 	 *
 	 * @enum {string}
 	 * @public
@@ -196,13 +209,13 @@ sap.ui.define(['jquery.sap.global',
 	sap.ui.unified.CalendarAppointmentVisualization = {
 
 		/**
-		 * Standard visualization of an <code>CalendarAppoinment</code>
+		 * Standard visualization with no fill color.
 		 * @public
 		 */
 		Standard : "Standard",
 
 		/**
-		 * depending on the used theme the <code>CalendarAppoinment</code> are visualized with filled color
+		 * Visualization with fill color depending on the used theme.
 		 * @public
 		 */
 		Filled : "Filled"

@@ -62,6 +62,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       _classCallCheck(this, Ui5ListItem);
 
       this._item = null;
+      this._container = null;
 
       _initDefineProp(this, 'icon', _descriptor, this);
 
@@ -89,7 +90,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         textDirection: this.textDirection,
         key: this.key
       });
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._item, this.element);
+      this._container = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._container.addChild(this._item, this.element);
+    };
+
+    Ui5ListItem.prototype.detached = function detached() {
+      if (this._container && this._container.removeChildByRelation) this._container.removeChildByRelation(this._item, this._relation);
     };
 
     Ui5ListItem.prototype.addChild = function addChild(child, elem) {};

@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -23,7 +23,7 @@ sap.ui.define(['jquery.sap.global', './ListBase', './TreeItemBase', './library',
 	 * @extends sap.m.ListBase
 	 *
 	 * @author SAP SE
-	 * @version 1.44.8
+	 * @version 1.46.7
 	 *
 	 * @constructor
 	 * @public
@@ -34,6 +34,11 @@ sap.ui.define(['jquery.sap.global', './ListBase', './TreeItemBase', './library',
 	var Tree = ListBase.extend("sap.m.Tree", { metadata : {
 		library : "sap.m"
 	}});
+
+	Tree.prototype.init = function() {
+		ListBase.prototype.init.apply(this, arguments);
+		this.setEnableBusyIndicator(false);
+	};
 
 	Tree.prototype.isTreeBinding = function(sName) {
 		return (sName == "items");
@@ -61,7 +66,11 @@ sap.ui.define(['jquery.sap.global', './ListBase', './TreeItemBase', './library',
 		return oBinding;
 	};
 
-	Tree.prototype.updateItems = function(sReason) {
+	Tree.prototype.updateAggregation = function(sName) {
+		if (sName != "items") {
+			return ListBase.prototype.updateAggregation.apply(this, arguments);
+		}
+
 		// Reuse the ListBinding from ManagedObject.updataAggregation
 		var oBindingInfo = this.getBindingInfo("items"),
 			oBinding = this.getBinding("items"),
@@ -94,7 +103,7 @@ sap.ui.define(['jquery.sap.global', './ListBase', './TreeItemBase', './library',
 		}
 
 		// Get all nodes.
-		aContexts = oBinding.getContexts(0, Number.MAX_VALUE);
+		aContexts = oBinding.getContexts(0, Number.MAX_SAFE_INTEGER);
 
 		// If factory function is used without extended change detection, destroy aggregation
 		if (!oBindingInfo.template) {
@@ -127,28 +136,65 @@ sap.ui.define(['jquery.sap.global', './ListBase', './TreeItemBase', './library',
 		}
 	};
 
+	/**
+	 * The <code>growing</code> property is not supported for control <code>Tree</code>.
+	 * @public
+	 * @deprecated
+	 */
 	Tree.prototype.setGrowing = function() {
 		jQuery.sap.log.error("Growing feature of " + this + " is not supported!");
 		return this;
 	};
 
+	/**
+	 * The <code>growingThreshold</code> property is not supported for control <code>Tree</code>.
+	 * @public
+	 * @deprecated
+	 */
 	Tree.prototype.setGrowingThreshold = function() {
 		jQuery.sap.log.error("GrowingThreshold of " + this + " is not supported!");
 		return this;
 	};
 
+	/**
+	 * The <code>growingTriggerText</code> property is not supported for control <code>Tree</code>.
+	 * @public
+	 * @deprecated
+	 */
 	Tree.prototype.setGrowingTriggerText = function() {
 		jQuery.sap.log.error("GrowingTriggerText of " + this + " is not supported!");
 		return this;
 	};
 
+	/**
+	 * The <code>growingScrollToLoad</code> property is not supported for control <code>Tree</code>.
+	 * @public
+	 * @deprecated
+	 */
 	Tree.prototype.setGrowingScrollToLoad = function() {
 		jQuery.sap.log.error("GrowingScrollToLoad of " + this + " is not supported!");
 		return this;
 	};
 
+	/**
+	 * The <code>growingDirection</code> property is not supported for control <code>Tree</code>.
+	 * @public
+	 * @deprecated
+	 */
 	Tree.prototype.setGrowingDirection = function() {
 		jQuery.sap.log.error("GrowingDirection of " + this + " is not supported!");
+		return this;
+	};
+
+	/**
+	 * The <code>enableBusyIndicator</code> property is not supported for control <code>Tree</code>.
+	 * @public
+	 * @deprecated
+	 */
+	Tree.prototype.setEnableBusyIndicator = function(bEnable) {
+		if (bEnable) {
+			jQuery.sap.log.error("enableBusyIndicator property is not supported for control " + this);
+		}
 		return this;
 	};
 
@@ -157,7 +203,10 @@ sap.ui.define(['jquery.sap.global', './ListBase', './TreeItemBase', './library',
 
 		jQuery.sap.assert(oBinding && oBinding.expandToLevel, "Tree.expandToLevel is not supported with your current Binding. Please check if you are running on an ODataModel V2.");
 
-		if (oBinding && oBinding.expandToLevel) {
+		if (oBinding && oBinding.expandToLevel && oBinding.getNumberOfExpandedLevels) {
+			if (oBinding.getNumberOfExpandedLevels() > iLevel) {
+				oBinding.collapseToLevel(0);
+			}
 			oBinding.expandToLevel(iLevel);
 		}
 
@@ -178,6 +227,20 @@ sap.ui.define(['jquery.sap.global', './ListBase', './TreeItemBase', './library',
 
 	Tree.prototype.getAccessibilityType = function() {
 		return sap.ui.getCore().getLibraryResourceBundle("sap.m").getText("ACC_CTR_TYPE_TREE");
+	};
+
+	Tree.prototype.getAccessbilityPosition = function(oItem) {
+		var iSetSize = 0,
+			iPosInset = 0,
+			oNodeContext = oItem.getItemNodeContext();
+
+		iSetSize = oNodeContext.parent.children.length;
+		iPosInset = oNodeContext.positionInParent + 1;
+
+		return {
+			setSize: iSetSize,
+			posInset: iPosInset
+		};
 	};
 
 	return Tree;

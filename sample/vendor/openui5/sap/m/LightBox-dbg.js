@@ -1,13 +1,15 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
 sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/core/Popup', 'sap/m/Text',
 		'sap/m/Button', 'sap/m/Image', 'sap/ui/core/ResizeHandler', 'sap/ui/Device', 'sap/m/MessagePage',
-		'sap/ui/core/Icon', 'sap/ui/layout/VerticalLayout'],
-	function (jQuery, library, Control, Popup, Text, Button, Image, ResizeHandler, Device, MessagePage, Icon, VerticalLayout) {
+		'sap/ui/core/Icon', 'sap/ui/layout/VerticalLayout', './InstanceManager', 'sap/ui/core/InvisibleText'],
+	function (jQuery, library, Control, Popup, Text,
+			Button, Image, ResizeHandler, Device, MessagePage,
+			Icon, VerticalLayout, InstanceManager, InvisibleText) {
 
 		'use strict';
 
@@ -51,7 +53,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 		 * <br><br>
 		 * Check out the <a href="/#docs/api/symbols/sap.m.LightBox.html" >API Reference</a>.
 		 * @author SAP SE
-		 * @version 1.44.8
+		 * @version 1.46.7
 		 *
 		 * @constructor
 		 * @public
@@ -95,7 +97,12 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 					 * A layout control used to display the error texts when the image could not be loaded.
 					 * @private
 					 */
-					_verticalLayout: {type: 'sap.ui.layout.VerticalLayout', multiple: false, visibility: 'hidden'}
+					_verticalLayout: {type: 'sap.ui.layout.VerticalLayout', multiple: false, visibility: 'hidden'},
+					/**
+					 * Hidden text used for accessibility of the popup.
+					 * @private
+					 */
+					_invisiblePopupText: {type: "sap.ui.core.InvisibleText", multiple: false, visibility: "hidden"}
 				},
 				events: {},
 				defaultAggregation: 'imageContent'
@@ -115,7 +122,14 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 			this._resizeListenerId = null;
 			this._$lightBox = null;
 
-			this._closeButtonText = sap.ui.getCore().getLibraryResourceBundle("sap.m").getText("LIGHTBOX_CLOSE_BUTTON");
+			this._rb = sap.ui.getCore().getLibraryResourceBundle("sap.m");
+
+			this._closeButtonText = this._rb.getText("LIGHTBOX_CLOSE_BUTTON");
+
+			// create an ARIA announcement for enlarged image
+			if (sap.ui.getCore().getConfiguration().getAccessibility()) {
+				this.setAggregation("_invisiblePopupText", new InvisibleText());
+			}
 		};
 
 		LightBox.prototype.onBeforeRendering = function () {
@@ -147,6 +161,11 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 					break;
 				default:
 					break;
+			}
+
+			var oInvisiblePopupText = this.getAggregation('_invisiblePopupText');
+			if (oImageContent && oInvisiblePopupText) {
+				oInvisiblePopupText.setText(this._rb.getText("LIGHTBOX_ARIA_ENLARGED", oImageContent.getTitle()));
 			}
 
 			this._isRendering = true;
@@ -191,6 +210,8 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 				ResizeHandler.deregister(this._resizeListenerId);
 				this._resizeListenerId = null;
 			}
+
+			InstanceManager.removeLightBoxInstance(this);
 		};
 
 		//================================================================================
@@ -210,6 +231,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 
 			if (oImageContent && oImageContent.getImageSrc()) {
 				this._oPopup.open(300, 'center center', 'center center', document.body, null);
+				InstanceManager.addLightBoxInstance(this);
 			}
 
 			return this;
@@ -241,6 +263,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 			}
 
 			this._oPopup.close();
+			InstanceManager.removeLightBoxInstance(this);
 
 			return this;
 		};
@@ -318,7 +341,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 		 * @private
 		 */
 		LightBox.prototype._createErrorControls = function() {
-			var resourceBundle = sap.ui.getCore().getLibraryResourceBundle("sap.m");
+			var resourceBundle = this._rb;
 			var errorMessageTitle;
 			var errorMessageSubtitle;
 

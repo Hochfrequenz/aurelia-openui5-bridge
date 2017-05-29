@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -14,16 +14,35 @@ sap.ui.define([
 	 * Change handler for hiding of a control.
 	 * @alias sap.ui.fl.changeHandler.HideControl
 	 * @author SAP SE
-	 * @version 1.44.8
+	 * @version 1.46.7
 	 * @experimental Since 1.27.0
 	 */
 	var HideForm = { };
+
+	var fnIsTitleOrToolbar = function(oControl, oModifier){
+		var sControlType = oModifier.getControlType(oControl);
+		return (sControlType === "sap.ui.core.Title") ||
+			(sControlType === "sap.m.Title") ||
+			(sControlType === "sap.m.Toolbar") ||
+			(sControlType === "sap.m.OverflowToolbar");
+	};
+
+	var fnGetFirstToolbarOrTitle = function(aContent, oModifier) {
+		var iIndex;
+		for (iIndex = 0; iIndex < aContent.length; ++iIndex){
+			if (fnIsTitleOrToolbar(aContent[iIndex], oModifier)){
+				return aContent[iIndex];
+			}
+		}
+	};
 
 	/**
 	 * Hides a control.
 	 *
 	 * @param {sap.ui.fl.Change} oChange change object with instructions to be applied on the control map
 	 * @param {sap.ui.core.Control} oControl control that matches the change selector for applying the change
+	 * @param {object} mPropertyBag - map of properties
+	 * @returns {boolean} true - if change could be applied
 	 * @public
 	 */
 	HideForm.applyChange = function(oChange, oControl, mPropertyBag) {
@@ -38,6 +57,12 @@ sap.ui.define([
 		var aContent = oModifier.getAggregation(oControl, "content");
 		var iStart = -1;
 
+		// this is needed to trigger a refresh of a simpleform! Otherwise simpleForm content and visualization are not in sync
+		oModifier.removeAllAggregation(oControl, "content");
+		for (var i = 0; i < aContent.length; ++i) {
+			oModifier.insertAggregation(oControl, "content", aContent[i], i);
+		}
+
 		if (oChangeDefinition.changeType === "hideSimpleFormField") {
 			aContent.some(function (oField, index) {
 				if (oField === oRemovedElement) {
@@ -46,9 +71,8 @@ sap.ui.define([
 				}
 				if (iStart >= 0 && index > iStart) {
 					if ((oModifier.getControlType(oField) === "sap.m.Label") ||
-							(oModifier.getControlType(oField) === "sap.ui.core.Title") ||
-							(oModifier.getControlType(oField) === "sap.m.Title") ||
-							(oModifier.getControlType(oField) === "sap.m.Toolbar")) {
+						(oModifier.getControlType(oField) === "sap.ui.comp.smartfield.SmartLabel") ||
+						fnIsTitleOrToolbar(oField, oModifier)) {
 						return true;
 					} else {
 						oModifier.setVisible(oField, false);
@@ -56,31 +80,48 @@ sap.ui.define([
 				}
 			});
 		} else if (oChangeDefinition.changeType === "removeSimpleFormGroup") {
+			var oTitleOrToolbar = fnGetFirstToolbarOrTitle(aContent, oModifier);
+			var bFirstContainerWithoutTitle = oTitleOrToolbar && !oRemovedElement;
 			aContent.some(function (oField, index) {
-				if (oField === oRemovedElement) {
-					iStart = index;
-				}
-				if (iStart >= 0 && index > iStart) {
-					if ((oModifier.getControlType(oField) === "sap.ui.core.Title") ||
-							(oModifier.getControlType(oField) === "sap.m.Title") ||
-							(oModifier.getControlType(oField) === "sap.m.Toolbar")) {
-						if (iStart === 0) {
-							oModifier.removeAggregation(oControl, "content", oField, oView);
-							oModifier.insertAggregation(oControl, "content", oField, 0, oView);
+				// if there is no Title/Toolbar, there is only the one FormContainer without Title/Toolbar.
+				// Therefor all Fields will be hidden.
+				if (!oTitleOrToolbar) {
+					oModifier.setVisible(oField, false);
+				} else if (bFirstContainerWithoutTitle) {
+					// if there is oTitleOrToolbar but no oRemovedElement the first FormContainer needs to be hidden.
+					// This FormContainer has no Title/Toolbar, but there are FormContainers with Title/Toolbar
+					// Therefor we have to set iStart to 0 and hide the first Field once
+					iStart = 0;
+					oModifier.setVisible(oField, false);
+					bFirstContainerWithoutTitle = false;
+				} else {
+					if (oField === oRemovedElement) {
+						iStart = index;
+					}
+					if (iStart >= 0 && index > iStart) {
+						if (fnIsTitleOrToolbar(oField, oModifier)) {
+							if (iStart === 0) {
+								oModifier.removeAggregation(oControl, "content", oField, oView);
+								oModifier.insertAggregation(oControl, "content", oField, 0, oView);
+							}
+							return true;
+						} else {
+							oModifier.setVisible(oField, false);
 						}
-						return true;
-					} else {
-						oModifier.setVisible(oField, false);
 					}
 				}
 			});
-			oModifier.removeAggregation(oControl, "content", oRemovedElement, oView);
+			if (oRemovedElement) {
+				oModifier.removeAggregation(oControl, "content", oRemovedElement, oView);
+			}
 		}
 
 		return true;
 	};
 
 	/**
+	 * @param {object} oElement - removedElement
+	 * @returns {object} stable element
 	 * @private
 	 */
 	HideForm._getStableElement = function(oElement) {
@@ -96,9 +137,9 @@ sap.ui.define([
 	/**
 	 * Completes the change by adding change handler specific content
 	 *
-	 * @param {sap.ui.fl.oChangeWrapper} oChange change object to be completed
+	 * @param {sap.ui.fl.oChangeWrapper} oChangeWrapper change object to be completed
 	 * @param {object} oSpecificChangeInfo as an empty object since no additional attributes are required for this operation
-	 * @param {object} mPropertyBag
+	 * @param {object} mPropertyBag - map of properties
 	 * @param {sap.ui.core.UiComponent} mPropertyBag.appComponent component in which the change should be applied
 	 * @public
 	 */
@@ -110,18 +151,6 @@ sap.ui.define([
 		} else {
 			throw new Error("oSpecificChangeInfo.removedElement.id attribute required");
 		}
-	};
-
-
-	/**
-	 * Transform the remove action format to the hideControl change format
-	 *
-	 * @param {object} mRemoveActionParameter a json object with the remove parameter
-	 * @returns {object} json object that the completeChangeContent method will take as oSpecificChangeInfo
-	 * @public
-	 */
-	HideForm.buildStableChangeInfo = function(mRemoveActionParameter) {
-		return mRemoveActionParameter;
 	};
 
 	return HideForm;

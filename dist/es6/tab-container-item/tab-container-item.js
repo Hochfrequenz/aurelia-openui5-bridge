@@ -2,6 +2,7 @@ import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
+import { computedFrom } from 'aurelia-framework';
 
 @customElement('ui5-tab-container-item')
 @inject(Element)
@@ -16,6 +17,10 @@ export class Ui5TabContainerItem {
   }
   defaultFunc(event) {
 
+  }
+  @computedFrom('_tab')
+  get UIElement() {
+    return this._tab;
   }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);

@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, Ui5IconTabBar;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, Ui5IconTabBar;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -67,7 +67,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
     }],
     execute: function () {
-      _export('Ui5IconTabBar', Ui5IconTabBar = (_dec = customElement('ui5-icon-tab-bar'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5IconTabBar', Ui5IconTabBar = (_dec = customElement('ui5-icon-tab-bar'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5IconTabBar(element) {
           _classCallCheck(this, Ui5IconTabBar);
 
@@ -96,6 +96,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           _initDefineProp(this, 'headerBackgroundDesign', _descriptor11, this);
 
           _initDefineProp(this, 'enableTabReordering', _descriptor12, this);
+
+          _initDefineProp(this, 'select', _descriptor13, this);
 
           this.element = element;
         }
@@ -154,9 +156,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             headerMode: this.headerMode,
             showOverflowSelectList: getBooleanFromAttributeValue(this.showOverflowSelectList),
             headerBackgroundDesign: this.headerBackgroundDesign,
-            enableTabReordering: getBooleanFromAttributeValue(this.enableTabReordering)
+            enableTabReordering: getBooleanFromAttributeValue(this.enableTabReordering),
+            select: this.select
           });
-
+          var that = this;
+          this._tab.attachSelect(function (event) {
+            that.selectedKey = event.mParameters.selectedItem.mProperties.text;
+          });
           if ($(this.element).parents("[ui5-container]").length > 0) {
             $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });
@@ -307,6 +313,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         enumerable: true,
         initializer: function initializer() {
           return false;
+        }
+      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec15], {
+        enumerable: true,
+        initializer: function initializer() {
+          return this.defaultFunc;
         }
       })), _class2)) || _class) || _class));
 

@@ -1,114 +1,100 @@
-/* ===================================== */
-/* CSS for control sap.m/Switch.control  */
-/* ===================================== */
-
-/* ------------------------------ */
-/* Switch common styles           */
-/* ------------------------------ */
-
-.sapMSwtText,
-.sapMSwtHandle,
-.sapMSwtInner {
-	position: absolute;
-}
-
-.sapMSwtCont,
-.sapMSwt {
-	position: relative;
-}
-
-.sapMSwtText,
-.sapMSwtAcceptReject .sapMSwtHandle {
-	box-sizing: border-box;
-}
+/* ================================= */
+/* CSS for control sap.m/Switch      */
+/* Belize High Contrast Black theme  */
+/* ================================= */
 
 /* ------------------------------ */
 /* Switch container               */
 /* ------------------------------ */
 
-.sapMSwtCont {
-	display: inline-block;
-	vertical-align: top;
-	outline: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
+/* focus */
 
-.sapMSwtCont:not(.sapMSwtContDisabled) {
-	cursor: pointer;
-}
-
-.sapMSwtCont > input {
-	display: none;
+html.sap-desktop .sapMSwtCont:focus > .sapMSwt {
+	outline: 0.125rem dotted @sapUiContentFocusColor;
 }
 
 /* ------------------------------ */
 /* Switch                         */
 /* ------------------------------ */
 
-.sapMSwt {
-	outline: none;
+/* disabled */
 
-	/* IE Windows 8 */
-	/* This elements receives events when not panning in vertial direction */
-	touch-action: pan-y;
-	-ms-touch-action: pan-y;
+.sapMSwtOn.sapMSwtDisabled:not(.sapMSwtAcceptReject) {
+	background: @sapUiHcReducedBackground;
+	border-color: @sapUiHcReducedAltForeground;
 }
 
-/* focus */
-
-.sapMSwtDisabled:focus {
-	outline: none;
-}
-
-/* ------------------------------ */
-/* Switch inner                   */
-/* ------------------------------ */
-
-.sapMSwtInner {
-	width: 100%;
-	height: 100%;
+.sapMSwtOff.sapMSwtDisabled:not(.sapMSwtAcceptReject) {
+	border-color: @sapUiHcReducedForeground;
 }
 
 /* ------------------------------ */
 /* Switch text                    */
 /* ------------------------------ */
 
-.sapMSwtText {
-	text-align: center;
+/* disabled */
+
+.sapMSwtOn.sapMSwtDisabled:not(.sapMSwtAcceptReject) .sapMSwtText {
+	color: @sapUiHcReducedAltForeground;
 }
 
-.sapMSwtLabel {
-	display: block;
-	white-space: nowrap;
-	text-decoration: none;
-	text-overflow: ellipsis;
-	overflow: hidden;
+.sapMSwtOff.sapMSwtDisabled:not(.sapMSwtAcceptReject) .sapMSwtText {
+	color: @sapUiContentDisabledTextColor;
 }
 
 /* ------------------------------ */
 /* Switch handler                 */
 /* ------------------------------ */
 
-.sapMSwtHandle {
-	display: block;
-	top: 0;
-	bottom: 0;
-	margin: auto;
+/* disabled */
+
+.sapMSwtOn.sapMSwtDisabled:not(.sapMSwtAcceptReject) .sapMSwtHandle,
+.sapMSwtOff.sapMSwtDisabled:not(.sapMSwtAcceptReject) .sapMSwtHandle {
+	border: 0.125rem solid @sapUiHcReducedAltForeground;
 }
 
 /* ====================================================== */
-/* switch type "AcceptReject"                             */
+/* Switch type "AcceptReject"                             */
 /* ====================================================== */
+
+/* ----------------------------------------- */
+/* Switch type "AcceptReject" common styles  */
+/* ----------------------------------------- */
+
+/* disabled */
+
+.sapMSwtAcceptReject.sapMSwtDisabled {
+	border-color: @sapUiHcReducedForeground;
+}
 
 /* ------------------------------ */
 /* Switch text                    */
 /* ------------------------------ */
 
-.sapMSwtAcceptReject .sapMSwtLabelOn::before,
-.sapMSwtAcceptReject .sapMSwtLabelOff::before {
-	font-family: 'SAP-icons';
-	speak: none;
+/* hover */
+
+.sapMSwtAcceptReject.sapMSwtHoverable:hover .sapMSwtLabel::before {
+	color: @sapUiContentIconColor;
+}
+
+/* disabled */
+
+.sapMSwtAcceptReject.sapMSwtDisabled .sapMSwtLabel::before {
+	color: @sapUiContentDisabledTextColor;
+}
+
+/* ------------------------------ */
+/* Switch handler                 */
+/* ------------------------------ */
+
+/* hover */
+
+.sapMSwtAcceptReject.sapMSwtHoverable:hover .sapMSwtHandle {
+	border-color: @sapUiButtonHoverBorderColor;
+}
+
+/* disabled */
+
+.sapMSwtAcceptReject.sapMSwtDisabled .sapMSwtHandle {
+	border-color: @sapUiHcReducedForeground;
 }

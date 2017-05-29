@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19,9 +19,10 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', './Butto
 		 * The <code>sap.m.Menu</code> control represents a hierarchical menu.
 		 * When opened on mobile devices it occupies the whole screen.
 		 * @extends sap.ui.core.Control
+		 * @implements sap.ui.core.IContextMenu
 		 *
 		 * @author SAP SE
-		 * @version 1.44.8
+		 * @version 1.46.7
 		 *
 		 * @constructor
 		 * @public
@@ -29,6 +30,9 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', './Butto
 		 * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
 		 */
 		var Menu = Control.extend("sap.m.Menu", /** @lends sap.m.Menu.prototype */ { metadata : {
+			interfaces: [
+				"sap.ui.core.IContextMenu"
+			],
 			library : "sap.m",
 			properties : {
 				/**
@@ -147,14 +151,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', './Butto
 		 */
 		Menu.prototype.openBy = function(oControl, bWithKeyboard) {
 			if (Device.system.phone) {
-				if (!this._bIsInitialized) {
-					this._initAllPages();
-					this._bIsInitialized = true;
-				}
-
-				//reset to first page
-				this._getNavContainer().to(this._getNavContainer().getPages()[0]);
-				this._getDialog().open();
+				this._openDialog();
 			} else {
 				if (!this._bIsInitialized) {
 					this._initAllMenuItems();
@@ -202,6 +199,21 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', './Butto
 		 */
 		Menu.prototype._getDialog = function() {
 			return this.getAggregation("_dialog");
+		};
+
+		/**
+		 * Opens the internal dialog.
+		 * @private
+		 */
+		Menu.prototype._openDialog = function() {
+			if (!this._bIsInitialized) {
+				this._initAllPages();
+				this._bIsInitialized = true;
+			}
+
+			//reset to first page
+			this._getNavContainer().to(this._getNavContainer().getPages()[0]);
+			this._getDialog().open();
 		};
 
 		Menu.prototype._initAllMenuItems = function() {
@@ -757,6 +769,23 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', './Butto
 				return this._getDialog().getId();
 			} else {
 				return this._getMenu().getId();
+			}
+		};
+
+		/**
+		 * Opens the menu as a context menu.
+		 */
+		Menu.prototype.openAsContextMenu = function(oEvent, oOpenerRef) {
+
+			if (Device.system.phone) {
+				this._openDialog();
+			} else {
+				if (!this._bIsInitialized) {
+					this._initAllMenuItems();
+					this._bIsInitialized = true;
+				}
+
+				this._getMenu().openAsContextMenu(oEvent, oOpenerRef);
 			}
 		};
 

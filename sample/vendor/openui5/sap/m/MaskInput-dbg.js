@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -21,7 +21,7 @@ sap.ui.define(['jquery.sap.global', './InputBase', './MaskInputRule', 'sap/ui/co
 	 *
 	 * @author SAP SE
 	 * @extends sap.m.InputBase
-	 * @version 1.44.8
+	 * @version 1.46.7
 	 *
 	 * @constructor
 	 * @public
@@ -235,7 +235,7 @@ sap.ui.define(['jquery.sap.global', './InputBase', './MaskInputRule', 'sap/ui/co
 			this._setupMaskVariables();
 		}
 		// We don't need to validate the initial MaskInput placeholder value because this will break setting it to empty value on focusout
-		if (this._oTempValue._aInitial.join('') !== sValue && sValue.length) {
+		if (this._oTempValue._aInitial.join('') !== sValue) {// sValue is never null/undefined here
 			this._applyRules(sValue);
 		}
 
@@ -616,6 +616,12 @@ sap.ui.define(['jquery.sap.global', './InputBase', './MaskInputRule', 'sap/ui/co
 	 * @private
 	 */
 	MaskInput.prototype._setCursorPosition = function (iPos) {
+		if (sap.ui.Device.browser.webkit && iPos < 0) {
+			/* For webkit browsers version >=58.0, negative value position the carret at the end of the string.
+			/* In previous versions the outcome was the same as if position is 0 => at the beginning of the string.
+			 */
+			iPos = 0;
+		}
 		return jQuery(this.getFocusDomRef()).cursorPos(iPos);
 	};
 

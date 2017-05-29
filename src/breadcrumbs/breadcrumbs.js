@@ -1,42 +1,48 @@
-import {bindable, customElement} from 'aurelia-templating';
-import {inject} from 'aurelia-dependency-injection';
-import {Router} from 'aurelia-router';
+import { bindable, customElement, noView } from 'aurelia-templating';
+import { inject } from 'aurelia-dependency-injection';
+import { AttributeManager } from '../common/attributeManager';
+import { getBooleanFromAttributeValue } from '../common/attributes';
+import { Ui5Control } from '../control/control';
+@customElement('ui5-breadcrumbs')
+@inject(Element)
 
-// taken from: https://github.com/heruan/aurelia-breadcrumbs
-
-@customElement('md-breadcrumbs')
-@inject(Element, Router)
-export class MdBreadcrumbs {
-  @bindable() router;
-
-  constructor(element, router) {
+export class Ui5BreadCrumbs {
+  _crumbs = null;
+  @bindable() ui5Id = null;
+  @bindable() currentLocationText = null;
+  constructor(element) {
     this.element = element;
-    this.aureliaRouter = router;
-    // this._childRouter = router;
-    // while (router.parent) {
-    //   router = router.parent;
-    // }
-    // this.router = router;
   }
+  defaultFunc() {
 
-  bind() {
-    if (!this.router) {
-      this.router = this.aureliaRouter;
+  }
+  attached() {
+    var attributeManager = new AttributeManager(this.element);
+    var params = {
+      currentLocationText: this.currentLocationText
+    };
+    if (this.ui5Id)
+      this._crumbs = new sap.m.Breadcrumbs(this.ui5Id, params);
+    else
+      this._crumbs = new sap.m.Breadcrumbs(params);
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._crumbs, this.element);
+    attributeManager.addAttributes({ "ui5-container": '' });
+
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'links')
+      { this._crumbs.addLink(child); break; }
     }
-    let router = this.router;
-    this._childRouter = router;
-    while (router.parent) {
-      router = router.parent;
+  }
+  removeChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'links')
+      { this._crumbs.removeLink(child); break; }
     }
-    this.router = router;
   }
 
-  routerChanged() {
-    // console.log('[breadcrumbs]', this.router);
-  }
 
-  navigate(navigationInstruction) {
-    this._childRouter.navigateToRoute(navigationInstruction.config.name);
-    // this.router.navigate(navigationInstruction.config.name);
-  }
 }

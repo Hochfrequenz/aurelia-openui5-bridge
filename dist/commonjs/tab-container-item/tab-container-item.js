@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5TabContainerItem = undefined;
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -14,6 +16,8 @@ var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 var _attributeManager = require('../common/attributeManager');
 
 var _attributes = require('../common/attributes');
+
+var _aureliaFramework = require('aurelia-framework');
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -60,7 +64,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-tab-container-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-tab-container-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaFramework.computedFrom)('_tab'), _dec(_class = _dec2(_class = (_class2 = function () {
   function Ui5TabContainerItem(element) {
     _classCallCheck(this, Ui5TabContainerItem);
 
@@ -162,6 +166,13 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
     }
   };
 
+  _createClass(Ui5TabContainerItem, [{
+    key: 'UIElement',
+    get: function get() {
+      return this._tab;
+    }
+  }]);
+
   return Ui5TabContainerItem;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'name', [_dec3], {
   enumerable: true,
@@ -183,4 +194,4 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
   initializer: function initializer() {
     return this.defaultFunc;
   }
-})), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec7], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

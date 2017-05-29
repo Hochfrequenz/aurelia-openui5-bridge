@@ -2,7 +2,7 @@
 
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -17,36 +17,16 @@
 /* Belize Plus theme             */
 /* ============================= */
 
-.sapMIBar-CTX .sapMBtnInner {
-	border-color: @sapUiButtonLiteBorderColor;
-}
-
-html.sap-desktop .sapContrastPlus .sapMBtn:focus > .sapMBtnEmphasized.sapMFocusable,
-html.sap-desktop .sapContrastPlus.sapMBtn:focus > .sapMBtnEmphasized.sapMFocusable {
-	outline-color:    @sapUiContentContrastFocusColor;
-}
-
-/* ---------------------------------------------------------------------*/
-/* Custom focus outline for IE and Edge:                                */
-/* ---------------------------------------------------------------------*/
-html.sap-desktop .sapContrastPlus .sapMBtn:focus > .sapMBtnEmphasized > .sapMBtnFocusDiv,
-html.sap-desktop .sapContrastPlus.sapMBtn:focus > .sapMBtnEmphasized > .sapMBtnFocusDiv {
-	border-color:    @sapUiContentContrastFocusColor;
-}
+@_sap_m_Button_EmphasizedFocusColor: @sapUiContentContrastFocusColor;
 /* END "Button.less" */
 
 /* START "CheckBox.less" */
 /* =============================== */
 /* CSS for control sap.m/CheckBox  */
-/* Belize theme (sap_belize_plus)  */
+/* Belize Plus theme               */
 /* =============================== */
 
-.sapContrastPlus .sapMCb.sapMCbWarn .sapMCbBg,
-.sapContrastPlus.sapMCb.sapMCbWarn .sapMCbBg {
-	&.sapMCbMarkChecked:before {
-		color: @sapUiFieldWarningColor;
-	}
-}
+@_sap_m_CheckBox_SelectedWarningColor: @sapUiFieldWarningColor;
 /* END "CheckBox.less" */
 
 /* START "Dialog.less" */
@@ -55,79 +35,17 @@ html.sap-desktop .sapContrastPlus.sapMBtn:focus > .sapMBtnEmphasized > .sapMBtnF
 /* Belize Plus theme             */
 /* ============================= */
 
-.sapMDialog > header:last-of-type {
-    box-shadow: inset 0 -1px lighten(@sapUiGroupContentBackground, 8);
-}
+@_sap_m_Dialog_HeaderShadowColor: lighten(@sapUiGroupContentBackground, 8);
 /* END "Dialog.less" */
 
-/* START "FeedInput.less" */
-/* ================================ */
-/* CSS for control sap.m/FeedInput  */
-/* Belize Plus theme                */
-/* ================================ */
-
-.sapMFeedInFigure {
-	border-width: 0rem;
-	background-color: lighten(@sapUiBaseColor, 20);
-}
-
-.sapMFeedInFigure.sapMFeedListItemIsDefaultIcon {
-	border-width: 0.125rem;
-}
-
-.sapMFeedInImage {
-	border-width: 0rem;
-	box-sizing: border-box;
-	border-style: solid;
-	border-color: @sapUiFieldBackground; /* the background parameter is used for to ensure the border theme is aligned with the text area backgroud */
-	background-color: lighten(@sapUiBaseColor, 20);
-	color: lighten(@sapUiListBackground,5);
-}
-
-img.sapMFeedInImage {
-	width: 4rem;
-	line-height: 4rem;
-}
-
-.sapMFeedIn {
-	background-color: lighten(@sapUiBaseColor, 20);
-}
-/* END "FeedInput.less" */
-
-/* START "FeedListItem.less" */
-/* =================================== */
-/* CSS for control sap.m/FeedListItem  */
-/* Belize Plus theme                   */
-/* =================================== */
-.sapMLIBActive .sapMFeedListItem a,
-.sapMLIBActive .sapMFeedListItem span,
-.sapMLIBActive .sapMFeedListItem p,
-.sapMLIBActive .sapMFeedListItemFooter,
-.sapMLIBActive .sapMFeedListItemText,
-.sapMLIBActive .sapMFeedListItemTimestamp,
-.sapMLIBActive .sapMFeedListItem .sapMFeedListItemTextText .sapMFeedListItemTextString,
-.sapMLIBActive .sapMFeedListItem:hover .sapMFeedListItemTextText> .sapMFeedListItemLinkExpandCollapse,
-.sapMLIBActive .sapMFeedListItemTextText,
-.sapMLIBActive .sapMFeedListItemTextText>.sapMLnk,
-.sapMLIBActive .sapMFeedListItemTextText>.sapMLnk.sapMLnkDsbl
-.sapMLIBActive .sapMFeedListItemTextName>.sapMLnk,
-.sapMLIBActive .sapMFeedListItemTextName>.sapMLnk.sapMLnkDsbl {
-	color: @sapUiListTextColor;
-}
-/* END "FeedListItem.less" */
-
 /* START "HeaderContainer.less" */
-/* ================================================================= */
-/* CSS for sap.m/HeaderContainer.control for 'sap_belize_plus' theme */
-/* ================================================================== */
-.sapMHdrCntrBGTranslucent {
-	background-color: fade(@sapUiBaseColor, 60%);
-}
+/* ====================================== */
+/* CSS for control sap.m/HeaderContainer  */
+/* Belize Plus theme                      */
+/* ====================================== */
+
+@_sap_m_HeaderContainer_Translucent_Background: fade(@sapUiObjectHeaderBackground, 60);
 /* END "HeaderContainer.less" */
-
-/* START "LightBox.less" */
-
-/* END "LightBox.less" */
 
 /* START "IconTabBar.less" */
 /* ================================= */
@@ -135,37 +53,10 @@ img.sapMFeedInImage {
 /* Belize Plus theme                 */
 /* ================================= */
 
-.sapContrastPlus .sapMITH,
-.sapContrastPlus.sapMITH {
-    box-shadow: inset 0 -0.25rem 0 -0.125rem lighten(@sapUiObjectHeaderBackground, 8);
-    border-bottom: 0.125rem solid @sapUiObjectHeaderBackground;
-}
-
-.sapMITBSelected .sapMITBFilterDefault {
-    background: @sapUiHighlight;
-}
-
-.sapContrastPlus .sapMITBContent,
-.sapContrastPlus.sapMITBContent {
-    border-bottom: 0.125rem solid lighten(@sapUiObjectHeaderBackground, 8);
-}
-
-.sapMITBTextOnly .sapMITBFilterDefault:hover > .sapMITBText {
-    color: lighten(@sapUiGroupTitleTextColor, 2);
-}
-
-.sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected:hover > .sapMITBText {
-    color: lighten(@sapUiSelected, 10);
-}
+@_sap_m_IconTabBar_TextHoverColor: lighten(@sapUiGroupTitleTextColor, 2);
+@_sap_m_IconTabBar_SelectedTextColor: @sapUiSelected;
+@_sap_m_IconTabBar_SelectedTextHoverColor: lighten(@sapUiSelected, 10);
 /* END "IconTabBar.less" */
-
-/* START "ImageContent.less" */
-/* ========================================== */
-/* CSS for control sap.m/ImageContent.control */
-/* Belize Plus theme                          */
-/* ========================================== */
-
-/* END "ImageContent.less" */
 
 /* START "Link.less" */
 /* ============================= */
@@ -173,32 +64,8 @@ img.sapMFeedInImage {
 /* Belize Plus theme             */
 /* ============================= */
 
-.sapContrastPlus .sapMLnk,
-.sapContrastPlus.sapMLnk {
-	text-shadow: @sapUiShadowText;
-}
+@_sap_m_Link_TextShadowColor: @sapUiShadowText;
 /* END "Link.less" */
-
-/* START "ListBase.less" */
-/* =============================== */
-/* CSS for control sap.m/ListBase  */
-/* Belize plus theme               */
-/* =============================== */
-
-.sapMGrowingList > .sapMCLI.sapMLIB:not(.sapMLIBActive) {
-	background: lighten(@sapUiListBackground, 3);
-	border-color: lighten(@sapUiListBorderColor, 3);
-}
-
-.sapMGrowingList > .sapMCLI.sapMLIBHoverable:hover {
-	background: lighten(@sapUiListHoverBackground, 3);
-}
-
-.sapMGrowingListDescription,
-.sapMGrowingListTriggerText > .sapMSLITitle {
-	text-shadow: @sapUiShadowText;
-}
-/* END "ListBase.less" */
 
 /* START "ListItemBase.less" */
 /* ================================== */
@@ -206,9 +73,7 @@ img.sapMFeedInImage {
 /* Belize Plus theme                  */
 /* ================================== */
 
-.sapMLIBCounter {
-	text-shadow: @sapUiShadowText;
-}
+@_sap_m_ListItemBase_ListTextShadowColor: @sapUiShadowText;
 /* END "ListItemBase.less" */
 
 /* START "NewsContent.less" */
@@ -216,22 +81,10 @@ img.sapMFeedInImage {
 /* CSS for control sap.m/NewsContent  */
 /* Belize Plus theme                  */
 /* ================================== */
-.sapMNwCCTxt .sapMText {
-	color: @sapUiGroupTitleTextColor;
-}
 
-.sapMTileCnt.News .sapMNwCSbh {
-	color: @sapUiTileTextColor;
-}
+@_sap_m_NewsContent_HeaderTextColor: @sapUiGroupTitleTextColor;
+@_sap_m_NewsContent_SubHeaderTextColor: @sapUiTileTextColor;
 /* END "NewsContent.less" */
-
-/* START "NumericContent.less" */
-/* ============================= */
-/* CSS for sap.m/NumericContent  */
-/* Belize Plus theme             */
-/* ============================= */
-
-/* END "NumericContent.less" */
 
 /* START "NotificationListBase.less" */
 /* =========================================== */
@@ -239,10 +92,7 @@ img.sapMFeedInImage {
 /* Belize Plus theme                           */
 /* =========================================== */
 
-.sapContrastPlus.sapMNLB,
-.sapContrastPlus .sapMNLB {
-  background-color: fade(@sapUiListBackground, 60);
-}
+@_sap_m_NotificationListBase_Background: fade(@sapUiListBackground, 60);
 /* END "NotificationListBase.less" */
 
 /* START "NotificationListGroup.less" */
@@ -251,21 +101,16 @@ img.sapMFeedInImage {
 /* Belize Plus theme                            */
 /* ============================================ */
 
-.sapContrastPlus.sapMNLG .sapMNLI,
-.sapContrastPlus .sapMNLG .sapMNLI {
-    background: none;
-}
+@_sap_m_NotificationListGroup_CombinationBackground: none;
 /* END "NotificationListGroup.less" */
 
 /* START "ObjectMarker.less" */
-/* ====================================== */
+/* =================================== */
 /* CSS for control sap.m/ObjectMarker  */
-/* Belize Plus theme                      */
-/* ====================================== */
+/* Belize Plus theme                   */
+/* =================================== */
 
-.sapMObjectMarker .sapMLnk{
-	text-shadow: none;
-}
+@_sap_m_ObjectMarker_LinkShadowColor: @sapUiShadowText;
 /* END "ObjectMarker.less" */
 
 /* START "ObjectNumber.less" */
@@ -274,12 +119,7 @@ img.sapMFeedInImage {
 /* Belize Plus theme                   */
 /* =================================== */
 
-.sapContrastPlus .sapMObjectNumberText,
-.sapContrastPlus.sapMObjectNumberText,
-.sapContrastPlus .sapMObjectNumberUnit,
-.sapContrastPlus.sapMObjectNumberUnit {
-	text-shadow: @sapUiShadowText;
-}
+@_sap_m_ObjectNumber_TextShadowColor: @sapUiShadowText;
 /* END "ObjectNumber.less" */
 
 /* START "ObjectStatus.less" */
@@ -288,51 +128,19 @@ img.sapMFeedInImage {
 /* Belize Plus theme                   */
 /* =================================== */
 
-.sapContrastPlus .sapMObjStatus .sapMObjStatusText,
-.sapContrastPlus.sapMObjStatus .sapMObjStatusIcon {
-	text-shadow: @sapUiShadowText;
-}
+@_sap_m_ObjectStatus_TextShadowColor: @sapUiShadowText;
 /* END "ObjectStatus.less" */
 
-/* START "Page.less" */
-/* The following overrides for sap_belize_plus are only intended for apps inside FLP (Ushell) */
-.sapUshellShell {
-
-	/* In sap_belize_plus backgroundDesign=Standard maps to Solid */
-	.sapMPageBgStandard {
-		background-color: @sapBackgroundColorDefault;
-	}
-
-	/* For the pages in the master part of sap.m.SplitApp backgroundDesign=Standard maps to Transparent */
-	.sapMSplitContainerMaster .sapMPageBgStandard {
-		background-color: transparent;
-		background-image: none;
-	}
-
-	/* Hack - temporary - this is the FLP change*/
-	#sapUshellDashboardPage {
-		background-color: transparent !important;
-		background-image: none !important;
-	}
-}
-/* END "Page.less" */
-
 /* START "Popover.less" */
+/* ============================== */
+/* CSS for control sap.m/Popover  */
+/* Belize Plus theme              */
+/* ============================== */
+
 .sapMPopover .sapMIBar.sapMHeader-CTX {
   border-bottom: 1px solid lighten(@sapUiGroupContentBackground, 8);
 }
 /* END "Popover.less" */
-
-/* START "ProgressIndicator.less" */
-/* ======================================== */
-/* CSS for control sap.m/ProgressIndicator  */
-/* Belize plus theme                             */
-/* ======================================== */
-
-.sapMPI {
-	background: fade(@sapUiBlockLayerBackground, 20);
-}
-/* END "ProgressIndicator.less" */
 
 /* START "RadioButton.less" */
 /* ================================= */
@@ -340,179 +148,60 @@ img.sapMFeedInImage {
 /* Belize Plus theme                 */
 /* ================================= */
 
-.sapContrastPlus .sapMRbWarn.sapMRbSel .sapMRbBInn,
-.sapContrastPlus.sapMRbWarn.sapMRbSel .sapMRbBInn {
-  background-color: @sapUiFieldWarningColor;
-}
+@_sap_m_RadioButton_SelectedWarningColor: @sapUiFieldWarningColor;
 /* END "RadioButton.less" */
 
 /* START "Shell.less" */
+/* ============================ */
+/* CSS for control sap.m/Shell  */
+/* Belize Plus theme            */
+/* ============================ */
+
 .sapUshellShell .sapMShellGlobalInnerBackground {
 	background-color: transparent;
 	background-image: none;
 }
-
 /* END "Shell.less" */
 
 /* START "Slider.less" */
-.sapMSliderInner {
-  background: darken(@sapUiFieldBorderColor, 5);
-}
+/* ============================= */
+/* CSS for control sap.m/Slider  */
+/* Belize Plus theme             */
+/* ============================= */
 
-.sapMSliderHandle {
-  border: 0.125rem solid lighten(@sapUiFieldBorderColor, 15);
-}
-
-.sapMSliderHandle:hover {
-  background-color: fade(lighten(@sapUiFieldBackground, 15), 60);
-  border: 0.125rem solid lighten(@sapUiFieldBorderColor, 15);
-}
+@_sap_m_Slider_Background: darken(@sapUiFieldBorderColor, 5);
+@_sap_m_Slider_HandleBorderColor: lighten(@sapUiFieldBorderColor, 15);
+@_sap_m_Slider_HandleHoverBackground: fade(lighten(@sapUiFieldBackground, 15), 60);
 /* END "Slider.less" */
 
-/* START "SlideTile.less" */
-/* ================================ */
-/* CSS for control sap.m/SlideTile  */
-/* Belize Plus theme                */
-/* ================================ */
-
-/* Bulleted indicator of multiple tiles*/
-.sapMSTBulleted > span.sapMSTActive {
-	background-color: lighten(@sapUiContentNonInteractiveIconColor, 40);
-}
-
-.sapMST .sapMSTIconDisplayArea {
-	background-color: darken(@sapUiHighlight, 50);
-}
-
-/* END "SlideTile.less" */
-
 /* START "StandardListItem.less" */
-.sapMSLIInfo {
-	text-shadow: @sapUiShadowText;
-}
+/* ======================================= */
+/* CSS for control sap.m/StandardListItem  */
+/* Belize Plus theme                       */
+/* ======================================= */
 
+@_sap_m_StandardListItem_TextShadowColor: @sapUiShadowText;
+@_sap_m_StandardListItem_SelectedLabelColor: lighten(@sapUiContentLabelColor, 4);
 /* END "StandardListItem.less" */
 
-/* START "StandardTile.less" */
-/* =================================== */
-/* CSS for control sap.m/StandardTile  */
-/* Belize theme                        */
-/* =================================== */
-
-.sapMStdTileIconDiv {
-	color: @sapUiHighlight;
-}
-
-.sapMStdIconMonitor {
-	color: @sapUiContentNonInteractiveIconColor;
-	.sapMStdTileTitle {
-		color: @sapUiContentLabelColor;
-	}
-}
-
-
-.sapMStdIconCreate {
-	color: lighten(@sapUiTileTextColor, 20);
-	opacity: .3;
-}
-
-.sapMStdTileNum,
-.sapMStdTileNumM,
-.sapMStdTileNumS {
-	font-family: @sapUiFontCondensedFamily;
-	font-stretch: condensed; /* for Firefox */
-	color: @sapUiContentLabelColor;
-}
-
-.sapMStdTileNumUnit {
-	color: @sapUiContentLabelColor;
-	text-transform: uppercase;
-}
-
-.sapMStdTileInfoNone {
-}
-
-.sapMStdTileInfoError {
-	color: @sapUiNegativeText;
-}
-
-.sapMStdTileInfoWarning {
-	color: @sapUiCriticalText;
-}
-
-.sapMStdTileInfoSuccess {
-	color: @sapUiPositiveText;
-}
-
-.sapMStdTileMonitorType {
-	background-color: darken(@sapUiTileBackground, 2);
-}
-
-.sapMTCEditable .sapMStdTileMonitorType {
-	background-color: fade(darken(@sapUiTileBackground, 5), 50);
-}
-
-.sapMStdTileMonitorType .sapMStdTileTitle {
-	color: @sapUiContentLabelColor;
-}
-
-.sapMTileActive-CTX .sapMStdTileMonitorType {
-	background-color: transparent;
-}
-
-.sapMTileActive-CTX .sapMStdIconCreate {
-	opacity: 1;
-}
-
-.sapMStdTileInfo {
-	color: @sapUiContentLabelColor;
-}
-
-.sapMTileActive-CTX .sapMStdTileInfoWarning,
-.sapMTileActive-CTX .sapMStdTileInfoSuccess,
-.sapMTileActive-CTX .sapMStdTileInfoError,
-.sapMTileActive-CTX .sapMStdTileTitle,
-.sapMTileActive-CTX .sapMStdTileNumUnit,
-.sapMTileActive-CTX .sapMStdTileNum,
-.sapMTileActive-CTX .sapMStdTileNumM,
-.sapMTileActive-CTX .sapMStdTileNumS,
-.sapMTileActive-CTX .sapMStdTileInfo {
-	color: @sapUiContentContrastTextColor;
-}
-
-.sapMTileActive-CTX .sapMStdTileIconDiv,
-.sapMTileActive-CTX .sapMStdIconMonitor,
-.sapMTileActive-CTX .sapMStdIconCreate {
-	color: @sapUiContentContrastIconColor;
-}
-/* END "StandardTile.less" */
-
 /* START "Switch.less" */
+/* ============================= */
+/* CSS for control sap.m/Switch  */
+/* Belize Plus theme             */
+/* ============================= */
 
+@_sap_m_Switch_OffBackground: darken(@sapUiButtonBackground, 2);
+@_sap_m_Switch_OffBorderColor: darken(@sapUiButtonBorderColor, 3);
 /* END "Switch.less" */
 
 /* START "TabStrip.less" */
 /* =============================== */
 /* CSS for control sap.m/TabStrip  */
-/* Belize plus theme                    */
+/* Belize Plus theme               */
 /* =============================== */
 
-.sapMTabStrip {
-	box-shadow: inset 0 -0.125rem 0 0 lighten(@sapUiObjectHeaderBackground,8);
-	.sapMTSTabsContainer {
-		.sapMTSTabs {
-			.sapMTabStripItem {
-				&:hover {
-					color: lighten(@sapUiGroupTitleTextColor, 10);
-				}
-				&.sapMTabStripItemSelected {
-					color: lighten(@sapUiGroupTitleTextColor, 20);
-				}
-			}
-		}
-	}
-}
-
+@_sap_m_TabStrip_ItemHoverTextColor: lighten(@sapUiGroupTitleTextColor, 10);
+@_sap_m_TabStrip_ItemSelectedTextColor: lighten(@sapUiGroupTitleTextColor, 20);
 /* END "TabStrip.less" */
 
 /* START "TileContent.less" */
@@ -521,14 +210,7 @@ img.sapMFeedInImage {
 /* Belize Plus theme                  */
 /* ================================== */
 
-.sapMTileCnt.News {
-	background-color: fade(darken(@sapUiHighlight, 50), 85%);
-
-	.sapMTileCntFtrTxt {
-		color: @sapUiContentLabelColor;
-	}
-}
-
+@_sap_m_TileContent_NewsFooterTextColor: @sapUiTileTextColor;
 /* END "TileContent.less" */
 
 /* START "Token.less" */
@@ -537,40 +219,17 @@ img.sapMFeedInImage {
 /* Belize Plus theme            */
 /* ============================ */
 
-.sapContrastPlus .sapMToken,
-.sapContrastPlus.sapMToken {
-     border: 1px solid lighten(@sapUiButtonBackground, 15);
-}
-
-.sapContrastPlus .sapMToken:focus,
-.sapContrastPlus.sapMToken:focus {
-	outline-color: @sapUiContentFocusColor;
-}
+@_sap_m_Token_BorderColor: lighten(@sapUiButtonBackground, 15);
+@_sap_m_Token_HoverBorderColor: lighten(@sapUiButtonHoverBackground, 5);
 /* END "Token.less" */
 
-/* START "UploadCollection.less" */
-/* ======================================= */
-/* CSS for control sap.m/UploadCollection  */
-/* Belize Plus theme                       */
-/* ======================================= */
-
-/* END "UploadCollection.less" */
-
 /* START "ViewSettingsDialog.less" */
-/* ================================== */
+/* ========================================= */
 /* CSS for control sap.m/ViewSettingsDialog  */
-/* Belize Plus theme                  */
-/* ================================== */
+/* Belize Plus theme                         */
+/* ========================================= */
 
-.sapMVSD .sapMVSDBar {
-	box-shadow: inset 0 -1px lighten(@sapUiGroupContentBackground, 8);
-}
-
-.sapMVSDBarWithSearch.sapMBar ,
-.sapMVSD.sapMDialog.sapMPopup-CTX .sapMIBar.sapMHeader-CTX .sapMVSDBarWithSearch,
-.sapMVSD.sapMDialog.sapMPopup-CTX .sapMIBar.sapMSubHeader-CTX .sapMVSDBarWithSearch {
-	box-shadow: none;
-}
+@_sap_m_ViewSettingsDialog_HeaderBorderColor: lighten(@sapUiGroupContentBackground, 8);
 /* END "ViewSettingsDialog.less" */
 
 /* START "WizardProgressNavigator.less" */
@@ -579,41 +238,17 @@ img.sapMFeedInImage {
 /* Belize Plus theme                              */
 /* ============================================== */
 
-.sapMWizardProgressNav {
-	background: @sapUiObjectHeaderBackground;
-	border-bottom: solid 0.125rem lighten(@sapUiObjectHeaderBackground, 8);
-}
-
-.sapMWizardProgressNavStep:hover .sapMWizardProgressNavAnchorCircle {
-	background: darken(@sapUiObjectHeaderBackground, 5);
-}
-
-.sapMWizardProgressNavStep[data-sap-ui-wpn-step-current="true"] {
-	& .sapMWizardProgressNavAnchor::after {
-		background: @sapUiSelected;
-	}
-
-	& .sapMWizardProgressNavAnchorCircle {
-		background: @sapUiHighlight;
-	}
-}
-
-.sapMWizardProgressNavStep[data-sap-ui-wpn-step-active="true"] {
-	.sapMWizardProgressNavAnchorTitle {
-		color: lighten(@sapUiGroupTitleTextColor, 20);
-	}
-}
-
-.sapMWizardProgressNavAnchorTitle:hover {
-	color: lighten(@sapUiGroupTitleTextColor, 10);
-}
-
+@_sap_m_WizardProgressNavigator_NavAnchorCircleHoverColor: darken(@sapUiObjectHeaderBackground, 5);
+@_sap_m_WizardProgressNavigator_NavAnchorTitleSelectedTextColor: lighten(@sapUiGroupTitleTextColor, 20);
+@_sap_m_WizardProgressNavigator_NavAnchorTitleHoverTextColor: lighten(@sapUiGroupTitleTextColor, 10);
 /* END "WizardProgressNavigator.less" */
 
 /* START "RatingIndicator.less" */
-.sapMRIIconUnsel  {
-    color: lighten(@sapUiContentForegroundColor, 25);
-}
+/* ====================================== */
+/* CSS for control sap.m/RatingIndicator  */
+/* Belize Plus theme                      */
+/* ====================================== */
 
+@_sap_m_RatingIndicator_IconUnselectedColor: lighten(@sapUiContentForegroundColor, 30);
+@_sap_m_RatingIndicator_IconHoverColor: lighten(@sapUiAccent1, 5);
 /* END "RatingIndicator.less" */
-

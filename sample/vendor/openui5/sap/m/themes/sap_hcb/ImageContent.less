@@ -1,9 +1,41 @@
-/* ========================================== */
-/* CSS for control sap.m/ImageContent.control */
-/* HCB theme                                  */
-/* ========================================== */
+/* =================================== */
+/* CSS for control sap.m/ImageContent  */
+/* Base theme                          */
+/* =================================== */
+
+.sapMImageContent {
+	position: relative;
+	height: 3.875rem;
+	width: 9rem;
+	outline: none;
+}
+
+.sapMImageContentImageIcon {
+	display: block;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	max-height: 3.5rem;
+}
+
+/* BREAKPOINT FOR SMALL PHONES */
+@media screen and (max-width: 374px) {
+	.sapMImageContent {
+		height: 3.438rem;
+		width: 8rem;
+	}
+
+	.sapMImageContentImageIcon {
+		max-height: 3rem;
+	}
+	
+	.sapMImageContentImageIcon.sapUiIcon {
+		font-size: 1.5rem;
+	}
+}
+
 html.sap-desktop .sapMImageContent:focus {
-	outline-color: @sapHCStandardFG;
+	outline-color: @sapUiContentFocusColor;
 	outline-style: dotted;
 	outline-width: 1px;
 }
@@ -13,13 +45,7 @@ html.sap-desktop .sapMImageContent:focus:not([tabindex]) {
 }
 
 .sapMImageContentImageIcon.sapUiIcon {
-	font-size: 2.25rem;
-	color: @sapHCStandardFG;
-}
-
-/* BREAKPOINT FOR SMALL PHONES */
-@media screen and (max-width: 374px) {
-	.sapMImageContentImageIcon.sapUiIcon {
-		font-size: 1.5rem;
-	}
+	font-size: 1.75rem;
+	color: @sapUiTileIconColor;
+	padding-bottom: 0.35rem;
 }

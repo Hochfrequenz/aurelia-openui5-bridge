@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -22,7 +22,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 	 * @extends sap.ui.core.Control
 	 *
 	 * @author SAP SE
-	 * @version 1.44.8
+	 * @version 1.46.7
 	 *
 	 * @constructor
 	 * @public
@@ -63,8 +63,7 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 
 			/**
 			 * Defines the highlight state of the list items.
-			 * The highlight state provides a visual indication that can be related to a value state or as a general highlighting which can vary depending on the application use-case.
-			 * @since 1.44.6
+			 * @since 1.44.0
 			 */
 			highlight : {type : "sap.ui.core.MessageType", group : "Appearance", defaultValue : "None"}
 		},
@@ -102,19 +101,21 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 			 * Fires when the user clicks on the detail button of the control.
 			 */
 			detailPress : {}
-		}
+		},
+		designTime : true
 	}});
 
 	ListItemBase.getAccessibilityText = function(oControl, bDetectEmpty) {
-		if (!oControl || !oControl.bOutput) {
+		if (!oControl || !oControl.bOutput || !oControl.getVisible || !oControl.getVisible()) {
 			return "";
 		}
 
 		var oAccInfo;
-		if (!oControl.getAccessibilityInfo) {
-			oAccInfo = this.getDefaultAccessibilityInfo(oControl.getDomRef());
-		} else if (oControl.getVisible && oControl.getVisible()) {
+		if (oControl.getAccessibilityInfo) {
 			oAccInfo = oControl.getAccessibilityInfo();
+		}
+		if (!oAccInfo || !oControl.getAccessibilityInfo) {
+			oAccInfo = this.getDefaultAccessibilityInfo(oControl.getDomRef());
 		}
 
 		oAccInfo = jQuery.extend({
@@ -317,10 +318,6 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 			aOutput.push(oBundle.getText("LIST_ITEM_UNREAD"));
 		}
 
-		if (this.getContentAnnouncement) {
-			aOutput.push((this.getContentAnnouncement(oBundle) || "").trim());
-		}
-
 		if (this.getCounter()) {
 			aOutput.push(oBundle.getText("LIST_ITEM_COUNTER", this.getCounter()));
 		}
@@ -334,6 +331,10 @@ sap.ui.define(['jquery.sap.global', './library', 'sap/ui/core/Control', 'sap/ui/
 			if (sType == mType.Active || sType == mType.DetailAndActive) {
 				aOutput.push(oBundle.getText("LIST_ITEM_ACTIVE"));
 			}
+		}
+
+		if (this.getContentAnnouncement) {
+			aOutput.push((this.getContentAnnouncement(oBundle) || "").trim());
 		}
 
 		return aOutput.join(" ");

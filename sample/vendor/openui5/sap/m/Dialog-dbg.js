@@ -1,20 +1,19 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
 // Provides control sap.m.Dialog.
 sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './AssociativeOverflowToolbar', './ToolbarSpacer',
 	'./library', 'sap/ui/core/Control', 'sap/ui/core/IconPool', 'sap/ui/core/Popup', 'sap/ui/core/delegate/ScrollEnablement',
-	'sap/ui/core/theming/Parameters', 'sap/ui/core/RenderManager', 'sap/ui/core/InvisibleText', 'sap/ui/core/ResizeHandler','sap/ui/Device'],
+	'sap/ui/core/theming/Parameters', 'sap/ui/core/RenderManager', 'sap/ui/core/InvisibleText', 'sap/ui/core/ResizeHandler','sap/ui/Device', 'sap/ui/base/ManagedObject'],
 	function (jQuery, Bar, InstanceManager, AssociativeOverflowToolbar, ToolbarSpacer, library, Control, IconPool,
-			  Popup, ScrollEnablement, Parameters, RenderManager, InvisibleText, ResizeHandler, Device) {
+			  Popup, ScrollEnablement, Parameters, RenderManager, InvisibleText, ResizeHandler, Device, ManagedObject) {
 		"use strict";
 
 
 		var ValueState = sap.ui.core.ValueState;
-		var isTheCurrentBrowserIENine = Device.browser.internet_explorer && (Device.browser.version < 10);
 
 		/**
 		 * Constructor for a new Dialog.
@@ -28,7 +27,7 @@ sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './Associative
 		 * @implements sap.ui.core.PopupInterface
 		 *
 		 * @author SAP SE
-		 * @version 1.44.8
+		 * @version 1.46.7
 		 *
 		 * @constructor
 		 * @public
@@ -60,7 +59,7 @@ sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './Associative
 					showHeader: {type: "boolean", group: "Appearance", defaultValue: true},
 
 					/**
-					 * The type of the dialog. In theme sap_bluecrystal, the type "message" will limit the dialog's width within 480px on tablet and desktop.
+					 * The type of the dialog. In some themes, the type "message" will limit the dialog's width within 480px on tablet and desktop.
 					 */
 					type: {type: "sap.m.DialogType", group: "Appearance", defaultValue: sap.m.DialogType.Standard},
 
@@ -144,7 +143,7 @@ sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './Associative
 					subHeader: {type: "sap.m.IBar", multiple: false},
 
 					/**
-					 * CustomHeader is only supported in theme sap_bluecrystal. When it's set, the icon, title and showHeader are properties ignored. Only the customHeader is shown as the header of the dialog.
+					 * CustomHeader is only supported in some themes. When it's set, the icon, title and showHeader are properties ignored. Only the customHeader is shown as the header of the dialog.
 					 * @since 1.15.1
 					 */
 					customHeader: {type: "sap.m.IBar", multiple: false},
@@ -265,7 +264,8 @@ sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './Associative
 							origin: {type: "sap.m.Button"}
 						}
 					}
-				}
+				},
+				designTime : true
 			}
 		});
 
@@ -293,7 +293,7 @@ sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './Associative
 			this._bRTL = sap.ui.getCore().getConfiguration().getRTL();
 
 			// used to judge if enableScrolling needs to be disabled
-			this._scrollContentList = ["NavContainer", "Page", "ScrollContainer", "SplitContainer"];
+			this._scrollContentList = ["NavContainer", "Page", "ScrollContainer", "SplitContainer", "MultiInput"];
 
 			this.oPopup = new Popup();
 			this.oPopup.setShadow(true);
@@ -323,12 +323,14 @@ sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './Associative
 					oPosition.at.left = that._oManuallySetPosition.x;
 					oPosition.at.top = that._oManuallySetPosition.y;
 				} else {
-					oPosition.at.top = '50%';
+					// the top and left position need to be calculated with the
+					// window scroll position
+					oPosition.at.top = 'calc(50% + ' + (window.scrollY === undefined ? window.pageYOffset : window.scrollY) + 'px)';
 
 					if (that._bRTL) {
 						oPosition.at.left = 'auto'; // RTL mode adds right 50% so we have to remove left 50%
 					} else {
-						oPosition.at.left = '50%';
+						oPosition.at.left = 'calc(50% + ' + (window.scrollX === undefined ? window.pageXOffset : window.scrollX) + 'px)';
 					}
 				}
 
@@ -670,12 +672,8 @@ sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './Associative
 			// because of display = "none" in the same call stack before.
 			jQuery.sap.delayedCall(0, this, function(){$Ref.addClass("sapMDialogOpen");});
 
-			if (isTheCurrentBrowserIENine) {
-				$Ref.fadeIn(200, fnOpened);
-			} else {
-				$Ref.css("display", "block");
-				setTimeout(fnOpened, 210); // the time should be longer the longest transition in the CSS, because of focusing and transition relate issues
-			}
+			$Ref.css("display", "block");
+			setTimeout(fnOpened, 300); // the time should be longer the longest transition in the CSS (200ms), because of focusing and transition relate issues especially in IE where 200ms transition sometimes seems to last a little longer
 		};
 
 		/**
@@ -688,11 +686,7 @@ sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './Associative
 		Dialog.prototype._closeAnimation = function ($Ref, iRealDuration, fnClose) {
 			$Ref.removeClass("sapMDialogOpen");
 
-			if (isTheCurrentBrowserIENine) {
-				$Ref.fadeOut(200, fnClose);
-			} else {
-				setTimeout(fnClose, 210);
-			}
+			setTimeout(fnClose, 300);
 		};
 
 		/**
@@ -1729,6 +1723,14 @@ sap.ui.define(['jquery.sap.global', './Bar', './InstanceManager', './Associative
 				e.stopPropagation();
 			};
 		}
+
+		/**
+		 * Popup controls should not propagate contextual width
+		 * @private
+		 */
+		Dialog.prototype._applyContextualSettings = function () {
+			ManagedObject.prototype._applyContextualSettings.call(this, ManagedObject._defaultContextualSettings);
+		};
 
 		return Dialog;
 

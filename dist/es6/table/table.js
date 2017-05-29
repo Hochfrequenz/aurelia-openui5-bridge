@@ -2,15 +2,23 @@ import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { Ui5Control } from '../control/control';
 @customElement('ui5-table')
 @inject(Element)
-export class Ui5Table {
+export class Ui5Table extends Ui5Control {
   @bindable() headerText = '';
+  @bindable() showOverlay = false;
+  /*inherited from Ui5Control */
+  @bindable() busy = false;
+
   _table = null;
   constructor(element) {
+    super(element);
     this.element = element;
   }
+  get UIElement() {
+        return this._table;
+    }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     for (elem of path) {
@@ -33,9 +41,12 @@ export class Ui5Table {
   }
   attached() {
     var attributeManager = new AttributeManager(this.element);
-    var table = new sap.m.Table({
+    var props = {
       headerText: this.headerText,
-    });
+      showOverlay: getBooleanFromAttributeValue(this.showOverlay)
+    };
+    super.fillProperties(props);
+    var table = new sap.m.Table(props);
     this._table = table;
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
@@ -59,6 +70,11 @@ export class Ui5Table {
   headerTextChanged(newValue) {
     if (this._table !== null) {
       this._table.setHeaderText(newValue);
+    }
+  }
+  showOverlayChanged(newValue) {
+    if (this._table !== null) {
+      this._table.setShowOverlay(newValue);
     }
   }
 }

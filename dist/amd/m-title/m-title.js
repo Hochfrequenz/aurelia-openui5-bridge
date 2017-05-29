@@ -55,33 +55,29 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-  var Ui5MTitle = exports.Ui5MTitle = (_dec = (0, _aureliaTemplating.customElement)('ui5-m-title'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5MTitle = exports.Ui5MTitle = (_dec = (0, _aureliaTemplating.customElement)('ui5-m-title'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5MTitle(element) {
       _classCallCheck(this, Ui5MTitle);
 
       this._title = null;
 
-      _initDefineProp(this, 'text', _descriptor, this);
+      _initDefineProp(this, 'ui5Id', _descriptor, this);
 
-      _initDefineProp(this, 'icon', _descriptor2, this);
+      _initDefineProp(this, 'text', _descriptor2, this);
 
       _initDefineProp(this, 'level', _descriptor3, this);
-
-      _initDefineProp(this, 'emphasized', _descriptor4, this);
 
       this.element = element;
     }
 
     Ui5MTitle.prototype.attached = function attached() {
-
-      this._title = new sap.m.Title({
+      var props = {
         text: this.text,
-        icon: this.icon,
-        emphasized: (0, _attributes.getBooleanFromAttributeValue)(this.emphasized),
         level: this.level
-      });
+      };
+      if (this.ui5Id) this._title = new sap.m.Title(this.ui5Id, props);else this._title = new sap.m.Title(props);
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
     };
 
@@ -91,31 +87,19 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       }
     };
 
-    Ui5MTitle.prototype.iconChanged = function iconChanged(newValue) {
-      if (this._title != null) {
-        this._title.setIcon(newValue);
-      }
-    };
-
     Ui5MTitle.prototype.levelChanged = function levelChanged(newValue) {
       if (this._title != null) {
         this._title.setLevel(newValue);
       }
     };
 
-    Ui5MTitle.prototype.emphasizedChanged = function emphasizedChanged(newValue) {
-      if (this._title != null) {
-        this._title.setEmphasized((0, _attributes.getBooleanFromAttributeValue)(newValue));
-      }
-    };
-
     return Ui5MTitle;
-  }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec3], {
+  }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
     enumerable: true,
     initializer: function initializer() {
       return null;
     }
-  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec4], {
+  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec4], {
     enumerable: true,
     initializer: function initializer() {
       return null;
@@ -124,11 +108,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     enumerable: true,
     initializer: function initializer() {
       return 'Auto';
-    }
-  }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'emphasized', [_dec6], {
-    enumerable: true,
-    initializer: function initializer() {
-      return false;
     }
   })), _class2)) || _class) || _class);
 });

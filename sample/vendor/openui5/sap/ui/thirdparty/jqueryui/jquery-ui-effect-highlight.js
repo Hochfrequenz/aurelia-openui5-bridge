@@ -11,40 +11,4 @@
  * Depends:
  *	jquery.ui.effect.js
  */
-(function( $, undefined ) {
-
-$.effects.effect.highlight = function( o, done ) {
-	var elem = $( this ),
-		props = [ "backgroundImage", "backgroundColor", "opacity" ],
-		mode = $.effects.setMode( elem, o.mode || "show" ),
-		animation = {
-			backgroundColor: elem.css( "backgroundColor" )
-		};
-
-	if (mode === "hide") {
-		animation.opacity = 0;
-	}
-
-	$.effects.save( elem, props );
-
-	elem
-		.show()
-		.css({
-			backgroundImage: "none",
-			backgroundColor: o.color || "#ffff99"
-		})
-		.animate( animation, {
-			queue: false,
-			duration: o.duration,
-			easing: o.easing,
-			complete: function() {
-				if ( mode === "hide" ) {
-					elem.hide();
-				}
-				$.effects.restore( elem, props );
-				done();
-			}
-		});
-};
-
-})(jQuery);
+(function($,u){$.effects.effect.highlight=function(o,d){var e=$(this),p=["backgroundImage","backgroundColor","opacity"],m=$.effects.setMode(e,o.mode||"show"),a={backgroundColor:e.css("backgroundColor")};if(m==="hide"){a.opacity=0;}$.effects.save(e,p);e.show().css({backgroundImage:"none",backgroundColor:o.color||"#ffff99"}).animate(a,{queue:false,duration:o.duration,easing:o.easing,complete:function(){if(m==="hide"){e.hide();}$.effects.restore(e,p);d();}});};})(jQuery);

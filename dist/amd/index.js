@@ -1,4 +1,4 @@
-define(['exports', './exports', './config-builder', './scrollfire/scrollfire-patch', './common/polyfills'], function (exports, _exports, _configBuilder, _scrollfirePatch, _polyfills) {
+define(['exports', './exports', './config-builder', './common/polyfills'], function (exports, _exports, _configBuilder, _polyfills) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -30,9 +30,6 @@ define(['exports', './exports', './config-builder', './scrollfire/scrollfire-pat
 
     if (builder.useGlobalResources) {
       aurelia.globalResources(builder.globalResources);
-    }
-    if (builder.useScrollfirePatch) {
-      new _scrollfirePatch.ScrollfirePatch().patch();
     }
   }
 });

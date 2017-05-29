@@ -32,7 +32,6 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 /**
  * Helps IE run the fake timers. By defining global functions, IE allows
  * them to be overwritten at a later point. If these are not defined like
@@ -46,24 +45,15 @@
  *
  * Copyright (c) 2010-2013 Christian Johansen
  */
-function setTimeout() {}
-function clearTimeout() {}
-function setImmediate() {}
-function clearImmediate() {}
-function setInterval() {}
-function clearInterval() {}
-function Date() {}
 
-// Reassign the original functions. Now their writable attribute
-// should be true. Hackish, I know, but it works.
-setTimeout = sinon.timers.setTimeout;
-clearTimeout = sinon.timers.clearTimeout;
-setImmediate = sinon.timers.setImmediate;
-clearImmediate = sinon.timers.clearImmediate;
-setInterval = sinon.timers.setInterval;
-clearInterval = sinon.timers.clearInterval;
-Date = sinon.timers.Date;
-
+function setTimeout(){}
+function clearTimeout(){}
+function setImmediate(){}
+function clearImmediate(){}
+function setInterval(){}
+function clearInterval(){}
+function Date(){}
+setTimeout=sinon.timers.setTimeout;clearTimeout=sinon.timers.clearTimeout;setImmediate=sinon.timers.setImmediate;clearImmediate=sinon.timers.clearImmediate;setInterval=sinon.timers.setInterval;clearInterval=sinon.timers.clearInterval;Date=sinon.timers.Date;
 /**
  * Helps IE run the fake XMLHttpRequest. By defining global functions, IE allows
  * them to be overwritten at a later point. If these are not defined like
@@ -77,21 +67,8 @@ Date = sinon.timers.Date;
  *
  * Copyright (c) 2010-2013 Christian Johansen
  */
-function XMLHttpRequest() {}
 
-// Reassign the original function. Now its writable attribute
-// should be true. Hackish, I know, but it works.
-XMLHttpRequest = sinon.xhr.XMLHttpRequest || undefined;
-/**
- * Helps IE run the fake XDomainRequest. By defining global functions, IE allows
- * them to be overwritten at a later point. If these are not defined like
- * this, overwriting them will result in anything from an exception to browser
- * crash.
- *
- * If you don't require fake XDR to work in IE, don't include this file.
- */
-function XDomainRequest() {}
-
-// Reassign the original function. Now its writable attribute
-// should be true. Hackish, I know, but it works.
-XDomainRequest = sinon.xdr.XDomainRequest || undefined;
+function XMLHttpRequest(){}
+XMLHttpRequest=sinon.xhr.XMLHttpRequest||undefined;
+function XDomainRequest(){}
+XDomainRequest=sinon.xdr.XDomainRequest||undefined;

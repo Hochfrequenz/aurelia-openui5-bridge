@@ -31,7 +31,8 @@ export class Ui5TabContainer {
     var path = $(elem).parentsUntil(this.element);
     for (elem of path) {
       if (elem.localName == 'content') {
-        this._tab.removeItem(child);
+       // if(this._tab)
+       //   this._tab.removeItem(child);
         break;
       }
     }

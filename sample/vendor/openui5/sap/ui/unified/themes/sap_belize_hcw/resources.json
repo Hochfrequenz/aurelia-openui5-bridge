@@ -6,6 +6,46 @@
       "theme": "sap_belize_hcw"
     },
     {
+      "name": "Calendar.less",
+      "designtime": true,
+      "theme": "sap_belize_hcw"
+    },
+    {
+      "name": "CalendarLegend.less",
+      "designtime": true,
+      "theme": "sap_belize_hcw"
+    },
+    {
+      "name": "CalendarRow.less",
+      "designtime": true,
+      "theme": "sap_belize_hcw"
+    },
+    {
+      "name": "Currency.less",
+      "designtime": true,
+      "theme": "sap_belize_hcw"
+    },
+    {
+      "name": "Menu.less",
+      "designtime": true,
+      "theme": "sap_belize_hcw"
+    },
+    {
+      "name": "ShellHeader.less",
+      "designtime": true,
+      "theme": "sap_belize_hcw"
+    },
+    {
+      "name": "ShellLayout.less",
+      "designtime": true,
+      "theme": "sap_belize_hcw"
+    },
+    {
+      "name": "ShellOverlay.less",
+      "designtime": true,
+      "theme": "sap_belize_hcw"
+    },
+    {
       "name": "library-RTL-dbg.css",
       "isDebug": true,
       "theme": "sap_belize_hcw"

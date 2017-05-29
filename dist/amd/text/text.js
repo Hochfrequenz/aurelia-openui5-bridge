@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (exports, _aureliaTemplating, _aureliaDependencyInjection, _attributeManager, _attributes) {
+define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', 'aurelia-framework'], function (exports, _aureliaTemplating, _aureliaDependencyInjection, _attributeManager, _attributes, _aureliaFramework) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -21,6 +21,24 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       throw new TypeError("Cannot call a class as a function");
     }
   }
+
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
 
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
     var desc = {};
@@ -55,9 +73,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+  var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
 
-  var Ui5Text = exports.Ui5Text = (_dec = (0, _aureliaTemplating.customElement)('ui5-text'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5Text = exports.Ui5Text = (_dec = (0, _aureliaTemplating.customElement)('ui5-text'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaFramework.computedFrom)('_text'), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5Text(element) {
       _classCallCheck(this, Ui5Text);
 
@@ -77,13 +95,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     }
 
     Ui5Text.prototype.attached = function attached() {
-
-      this._text = new sap.m.Text({
+      var props = {
         text: this.text != null ? this.text : this.element.innerText.trim(),
         wrapping: (0, _attributes.getBooleanFromAttributeValue)(this.wrapping),
         textAlign: this.textAlign,
         maxLines: this.maxLines
-      });
+      };
+      if (this.ui5Id) this._text = new sap.m.Text(this.ui5Id, props);else this._text = new sap.m.Text(props);
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
     };
 
@@ -92,6 +110,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         this._text.setText(newValue);
       }
     };
+
+    _createClass(Ui5Text, [{
+      key: 'UIElement',
+      get: function get() {
+        return this._text;
+      }
+    }]);
 
     return Ui5Text;
   }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_aureliaTemplating.bindable], {
@@ -119,5 +144,5 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     initializer: function initializer() {
       return null;
     }
-  })), _class2)) || _class) || _class);
+  }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

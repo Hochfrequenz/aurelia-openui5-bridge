@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5Button = undefined;
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -60,7 +60,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement)('ui5-button'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement)('ui5-button'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
   function Ui5Button(element) {
     _classCallCheck(this, Ui5Button);
 
@@ -76,6 +76,8 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
 
     _initDefineProp(this, 'icon', _descriptor6, this);
 
+    _initDefineProp(this, 'type', _descriptor7, this);
+
     this._button = null;
 
     this.attributeManager = new _attributeManager.AttributeManager(element);
@@ -85,6 +87,7 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
   Ui5Button.prototype.attached = function attached() {
     this._button = new sap.m.Button({
       text: this.text,
+      type: this.type,
       icon: this.icon,
       enabled: !(0, _attributes.getBooleanFromAttributeValue)(this.disabled),
       press: this.press != null ? this.press : this.defaultPress
@@ -98,6 +101,12 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
   Ui5Button.prototype.defaultPress = function defaultPress() {};
 
   Ui5Button.prototype.detached = function detached() {};
+
+  Ui5Button.prototype.typeChanged = function typeChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setType(newValue);
+    }
+  };
 
   Ui5Button.prototype.disabledChanged = function disabledChanged(newValue) {
     if (this._button !== null) {
@@ -153,5 +162,10 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
   enumerable: true,
   initializer: function initializer() {
     return null;
+  }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_dec9], {
+  enumerable: true,
+  initializer: function initializer() {
+    return 'Default';
   }
 })), _class2)) || _class) || _class);

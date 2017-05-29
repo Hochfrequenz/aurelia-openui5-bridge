@@ -1,8 +1,13 @@
 <template>
 	<ui5-shell>
 		<ui5-page>
+			<ui5-toolbar slot="subheader">
+			<ui5-search-field width="100%">
+			</ui5-search-field>
+			</ui5-toolbar>
 			<ui5-tab-container>
 				<ui5-tab-container-item key="Wizard" name="Wizard">
+					
 					<ui5-wizard>
 						<ui5-wizard-step ui5-container title="Start">
 							<!--	<ui5-text text="Schritt 1 zur Installation:"></ui5-text>-->

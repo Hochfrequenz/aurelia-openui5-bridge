@@ -13,6 +13,7 @@
 	word-wrap: normal;
 	font-family: @sapUiFontFamily;
 	font-size: @sapMFontMediumSize;
+	cursor: pointer;
 }
 
 .sapMLnk:active {
@@ -52,6 +53,10 @@
 
 .sapUiSizeCondensed .sapUiTableCell .sapMLnk {
 	line-height: 1.5rem;
+}
+
+.sapUiHLayoutChildWrapper > .sapMLnk {
+	vertical-align: text-bottom;
 }
 
 /* Global focus offset */
@@ -108,4 +113,8 @@ html.sap-desktop .sapMLnk:focus:not(.sapMLnkDsbl) {
 /* Compact size */
 .sapUiSizeCompact .sapUiFormEdit .sapMLnk {
 	line-height: 2rem;
+}
+
+.sapMLnk:-webkit-any-link:focus {
+	outline: none;
 }

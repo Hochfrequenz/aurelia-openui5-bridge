@@ -1,6 +1,8 @@
-/* ======================================= */
-/* CSS for sap.m.RangeSlider control       */
-/* ======================================= */
+/* ================================== */
+/* CSS for control sap.m/RangeSlider  */
+/* Base theme                         */
+/* ================================== */
+
 .sapMSliderProgress {
   width: auto;
 }
@@ -9,7 +11,7 @@
   outline: none;
 }
 
-.sapMSliderProgress:focus:before {
+html.sap-desktop .sapMSliderProgress:focus:before {
   border: 1px dotted @sapUiContentFocusColor;
   content: "";
   display: block;
@@ -28,16 +30,20 @@
 
 //----- RangeSlider Labels------------
 .sapMSliderLabels {
-  position: relative;
-  top: 1rem;
+  margin: 0.875rem -0.875rem 0 -0.875rem;
+  height: 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
 }
 
-.sapMSliderLabel {
+.sapMSliderRangeLabel {
+  display: block;
+  width: 1.75rem;
+  font-size: 0.75rem;
   align-self: flex-end;
+  text-align: center;
 }
 
 .sapMSliderTooltipContainer {
@@ -77,5 +83,64 @@
   }
   .sapMInputBaseInner {
     height: 2.5rem;
+  }
+}
+
+/* pressed */
+
+.sapMSliderHandleTooltip {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+  visibility: hidden;
+  box-shadow: @sapUiShadowLevel1;
+  position: relative;
+  flex-shrink: 0;
+  background-color: @sapUiGroupContentBackground;
+}
+
+.sapMSliderHandleTooltipShow {
+  visibility: visible;
+}
+
+.sapMSlider {
+  &:hover {
+    .sapMSliderHandleTooltip, .sapMSliderTooltipContainer {
+      visibility: visible;
+    }
+  }
+}
+
+.sapMSliderHandleTooltipsShow,
+.sapMSliderHandleTooltipsShow .sapMSliderHandleTooltip {
+  visibility: visible;
+}
+
+/* overlap */
+.sapMSliderHandle.sapMSliderHandleOverlap {
+  background-color: @sapUiFieldActiveBorderColor;
+  border: @sapUiFieldActiveBorderColor;
+}
+
+/* pressed */
+.sapMSliderInner > .sapMSliderHandle.sapMSliderHandlePressed {
+  background: @sapUiHighlight;
+  border: 0.125rem solid @sapUiFieldActiveBorderColor;
+}
+
+
+/* ============ */
+/* compact size */
+/* ============ */
+.sapUiSizeCompact {
+  .sapMSliderLabels {
+    margin: 0.5rem -0.6875rem 0 -0.6875rem;
+  }
+
+  .sapMSliderRangeLabel {
+    width: 1.375rem;
   }
 }

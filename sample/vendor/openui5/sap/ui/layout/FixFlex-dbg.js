@@ -1,6 +1,6 @@
 /*!
  * UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * (c) Copyright 2009-2017 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -28,7 +28,7 @@ sap.ui.define(["jquery.sap.global", "sap/ui/core/Control", "sap/ui/core/EnabledP
 		 * @extends sap.ui.core.Control
 		 *
 		 * @author SAP SE
-		 * @version 1.44.8
+		 * @version 1.46.7
 		 *
 		 * @constructor
 		 * @public
@@ -285,15 +285,16 @@ sap.ui.define(["jquery.sap.global", "sap/ui/core/Control", "sap/ui/core/EnabledP
 		 */
 		FixFlex.prototype.onBeforeRendering = function () {
 			var oScroller = this._scroller,
-				oInnerScroller = this._innerScroller;
+				oInnerScroller = this._innerScroller,
+				bScrolling = this.getMinFlexSize() != 0;
 
 			this._deregisterControl();
 
 			oScroller.setVertical(false);
 			oScroller.setHorizontal(false);
 
-			oInnerScroller.setVertical(true);
-			oInnerScroller.setHorizontal(true);
+			oInnerScroller.setVertical(bScrolling);
+			oInnerScroller.setHorizontal(bScrolling);
 		};
 
 		/**
