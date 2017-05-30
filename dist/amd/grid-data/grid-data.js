@@ -55,9 +55,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-  var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customElement)('ui5-grid-data'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customElement)('ui5-grid-data'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5GridData(element) {
       _classCallCheck(this, Ui5GridData);
 
@@ -67,16 +67,23 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
       _initDefineProp(this, 'span', _descriptor2, this);
 
+      _initDefineProp(this, 'indent', _descriptor3, this);
+
       this.element = element;
     }
 
     Ui5GridData.prototype.attached = function attached() {
-
       this._gridData = new sap.ui.layout.GridData({
-        span: this.span
-
+        span: this.span,
+        indent: this.indent
       });
       $(this.element).parents("[ui5-layout]")[0].au.controller.viewModel.addChild(this._gridData, this.element);
+    };
+
+    Ui5GridData.prototype.indentChanged = function indentChanged(newValue) {
+      if (this._gridData !== null) {
+        this._gridData.setIndent(newValue);
+      }
     };
 
     Ui5GridData.prototype.spanChanged = function spanChanged(newValue) {
@@ -92,6 +99,11 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       return null;
     }
   }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'span', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'indent', [_dec5], {
     enumerable: true,
     initializer: function initializer() {
       return null;

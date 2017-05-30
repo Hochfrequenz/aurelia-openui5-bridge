@@ -8,6 +8,8 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 
 export class Ui5Label {
   _label = null;
+  _parent = null;
+  _relation = null;
   @bindable() ui5Id = null;
   @bindable() labelFor = null;
   @bindable() text = null;
@@ -29,8 +31,13 @@ export class Ui5Label {
       textDirection: this.textDirection
     });
     if ($(this.element).parents("[ui5-container]").length > 0) {
-
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._label, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._label, this.element);
+    }
+  }
+  detached() {
+    if (this._parent && this._parent.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._label, this._relation);
     }
   }
   textChanged(newValue) {

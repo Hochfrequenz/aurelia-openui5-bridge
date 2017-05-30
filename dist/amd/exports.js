@@ -1,4 +1,4 @@
-define(['exports', './page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs'], function (exports, _page, _shell, _bar, _container, _html, _button, _tileContainer, _genericTile, _tileContent, _imageContent, _numericContent, _feedContent, _standardTile, _slideTile, _toastService, _grid, _text, _wizard, _wizardStep, _simpleForm, _label, _control, _element, _inputBase, _input, _datePicker, _title, _mTitle, _gridData, _init, _busyIndicator, _messageBox, _smoothScroll, _link, _form, _formContainer, _formElement, _responsiveGridLayout, _select, _listItem, _column, _columnListItem, _table, _objectIdentifier, _objectNumber, _tabContainer, _tabContainerItem, _verticalLayout, _iconTabFilter, _iconTabBar, _overflowToolbar, _toolbar, _toolbarSpacer, _searchField, _formattedText, _dynamicPage, _dynamicPageHeader, _dynamicPageTitle, _breadcrumbs) {
+define(['exports', './page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs', './segmented-button/segmented-button', './segmented-button-item/segmented-button-item'], function (exports, _page, _shell, _bar, _container, _html, _button, _tileContainer, _genericTile, _tileContent, _imageContent, _numericContent, _feedContent, _standardTile, _slideTile, _toastService, _grid, _text, _wizard, _wizardStep, _simpleForm, _label, _control, _element, _inputBase, _input, _datePicker, _title, _mTitle, _gridData, _init, _busyIndicator, _messageBox, _smoothScroll, _link, _form, _formContainer, _formElement, _responsiveGridLayout, _select, _listItem, _column, _columnListItem, _table, _objectIdentifier, _objectNumber, _tabContainer, _tabContainerItem, _verticalLayout, _iconTabFilter, _iconTabBar, _overflowToolbar, _toolbar, _toolbarSpacer, _searchField, _formattedText, _dynamicPage, _dynamicPageHeader, _dynamicPageTitle, _breadcrumbs, _segmentedButton, _segmentedButtonItem) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -532,6 +532,24 @@ define(['exports', './page/page', './shell/shell', './bar/bar', './container/con
       enumerable: true,
       get: function () {
         return _breadcrumbs[key];
+      }
+    });
+  });
+  Object.keys(_segmentedButton).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function () {
+        return _segmentedButton[key];
+      }
+    });
+  });
+  Object.keys(_segmentedButtonItem).forEach(function (key) {
+    if (key === "default" || key === "__esModule") return;
+    Object.defineProperty(exports, key, {
+      enumerable: true,
+      get: function () {
+        return _segmentedButtonItem[key];
       }
     });
   });

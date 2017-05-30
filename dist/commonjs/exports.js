@@ -711,3 +711,27 @@ Object.keys(_breadcrumbs).forEach(function (key) {
     }
   });
 });
+
+var _segmentedButton = require('./segmented-button/segmented-button');
+
+Object.keys(_segmentedButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _segmentedButton[key];
+    }
+  });
+});
+
+var _segmentedButtonItem = require('./segmented-button-item/segmented-button-item');
+
+Object.keys(_segmentedButtonItem).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _segmentedButtonItem[key];
+    }
+  });
+});

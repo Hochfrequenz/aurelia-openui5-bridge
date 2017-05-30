@@ -25,9 +25,15 @@ export class Ui5Toolbar {
     for (elem of path) {
       if (elem.localName == 'content') {
         this._bar.addContent(child);
-        break;
+        return 'content';
       }
     }
+  }
+  removeChildByRelation(child,relation)
+  {
+    if (relation == 'content') {
+        this._bar.removeContent(child);
+      }
   }
   removeChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);

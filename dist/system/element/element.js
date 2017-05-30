@@ -24,7 +24,7 @@ System.register([], function (_export, _context) {
                 Ui5Element.prototype.addChild = function addChild(child, elem) {
                     var path = $(elem).parentsUntil(this.element);
                     if (path[0].localName == 'layout') {
-                        this._input.setLayoutData(child);
+                        this.UIElement.setLayoutData(child);
                     }
                 };
 

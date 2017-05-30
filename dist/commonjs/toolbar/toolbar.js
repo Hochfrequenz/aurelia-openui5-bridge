@@ -98,8 +98,14 @@ var Ui5Toolbar = exports.Ui5Toolbar = (_dec = (0, _aureliaTemplating.customEleme
 
       if (elem.localName == 'content') {
         this._bar.addContent(child);
-        break;
+        return 'content';
       }
+    }
+  };
+
+  Ui5Toolbar.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+    if (relation == 'content') {
+      this._bar.removeContent(child);
     }
   };
 

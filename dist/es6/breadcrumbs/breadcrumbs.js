@@ -8,6 +8,7 @@ import { Ui5Control } from '../control/control';
 
 export class Ui5BreadCrumbs {
   _crumbs = null;
+
   @bindable() ui5Id = null;
   @bindable() currentLocationText = null;
   constructor(element) {
@@ -37,10 +38,8 @@ export class Ui5BreadCrumbs {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'links')
-      { this._crumbs.removeLink(child); break; }
+    if (this._crumbs) {
+      this._crumbs.removeLink(child);
     }
   }
 

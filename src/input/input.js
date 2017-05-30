@@ -8,6 +8,8 @@ import { Ui5InputBase } from '../input-base/input-base';
 
 export class Ui5Input extends Ui5InputBase {
   _input = null;
+  _parent = null;
+  _relation = null;
   @bindable() ui5Id = null;
   @bindable() type = 'Text';
   @bindable() maxLength = 0;
@@ -73,14 +75,13 @@ export class Ui5Input extends Ui5InputBase {
       }
     }
   }
-  removeChildByRelation(child,relation)
-  {
+  removeChildByRelation(child, relation) {
     if (relation == 'suggestion-item') {
-        this._input.removeSuggestionItem(child);
-      }
-      else if (relation == 'suggestion-row') {
-        this._input.removeSuggestionRow(child);
-      }
+      this._input.removeSuggestionItem(child);
+    }
+    else if (relation == 'suggestion-row') {
+      this._input.removeSuggestionRow(child);
+    }
   }
   removeChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
@@ -149,7 +150,8 @@ export class Ui5Input extends Ui5InputBase {
       this._input = new sap.m.Input(this.ui5Id, params);
     else
       this._input = new sap.m.Input(params);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._input, this.element);
+    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._relation = this._parent.addChild(this._input, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
     attributeManager.addAttributes({ "ui5-container": '' });
     var that = this;
@@ -163,6 +165,11 @@ export class Ui5Input extends Ui5InputBase {
     });
     this._input.addEventDelegate(this.element);
     super.attached();
+  }
+  detached(){
+    if(this._parent && this._parent.removeChildByRelation){
+      this._parent.removeChildByRelation(this._input,this._relation);
+    }
   }
   typeChanged(newValue) {
     if (this._input !== null) {

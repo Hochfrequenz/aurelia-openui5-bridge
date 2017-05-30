@@ -79,6 +79,8 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
     _initDefineProp(this, 'type', _descriptor7, this);
 
     this._button = null;
+    this._parent = null;
+    this._relation = null;
 
     this.attributeManager = new _attributeManager.AttributeManager(element);
     this.element = element;
@@ -94,13 +96,18 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._button, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._button, this.element);
     }
   };
 
   Ui5Button.prototype.defaultPress = function defaultPress() {};
 
-  Ui5Button.prototype.detached = function detached() {};
+  Ui5Button.prototype.detached = function detached() {
+    if (this._parent && this._parent.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._button, this._relation);
+    }
+  };
 
   Ui5Button.prototype.typeChanged = function typeChanged(newValue) {
     if (this._button !== null) {

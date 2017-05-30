@@ -181,6 +181,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           var _this = _possibleConstructorReturn(this, _Ui5InputBase.call(this, element));
 
           _this._input = null;
+          _this._parent = null;
+          _this._relation = null;
 
           _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
@@ -313,7 +315,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             change: this.change
           };
           if (this.ui5Id) this._input = new sap.m.Input(this.ui5Id, params);else this._input = new sap.m.Input(params);
-          $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._input, this.element);
+          this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+          this._relation = this._parent.addChild(this._input, this.element);
           attributeManager.addAttributes({ "ui5-layout": '' });
           attributeManager.addAttributes({ "ui5-container": '' });
           var that = this;
@@ -327,6 +330,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           });
           this._input.addEventDelegate(this.element);
           _Ui5InputBase.prototype.attached.call(this);
+        };
+
+        Ui5Input.prototype.detached = function detached() {
+          if (this._parent && this._parent.removeChildByRelation) {
+            this._parent.removeChildByRelation(this._input, this._relation);
+          }
         };
 
         Ui5Input.prototype.typeChanged = function typeChanged(newValue) {

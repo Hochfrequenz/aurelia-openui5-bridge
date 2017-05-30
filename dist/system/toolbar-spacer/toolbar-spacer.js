@@ -83,7 +83,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           this._spacer = new sap.m.ToolbarSpacer({
             width: this.width
           });
-          $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer, this.element);
+          if ($(this.element).parents("[ui5-container]").length > 0) {
+            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer, this.element);
+          }
         };
 
         Ui5ToolbarSpacer.prototype.widthChanged = function widthChanged(newValue) {

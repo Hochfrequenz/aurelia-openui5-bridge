@@ -92,6 +92,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
         Ui5Item.prototype.addChild = function addChild(child, elem) {};
 
+        Ui5Item.prototype.fillProperties = function fillProperties(propertyObject) {
+          propertyObject.text = this.text;
+          propertyObject.key = this.key;
+          propertyObject.textDirection = this.textDirection;
+          propertyObject.enabled = this.enabled;
+        };
+
         Ui5Item.prototype.keyChanged = function keyChanged(newValue) {
           if (this._item !== null) {
             this._item.setKey(newValue);

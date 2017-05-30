@@ -4,7 +4,7 @@ export class Ui5Element {
         var path = $(elem).parentsUntil(this.element);
         if (path[0].localName == 'layout')
         {
-            this._input.setLayoutData(child);
+            this.UIElement.setLayoutData(child);
         }
     }
     removeChild(child,elem)

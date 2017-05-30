@@ -76,7 +76,9 @@ var Ui5ToolbarSpacer = exports.Ui5ToolbarSpacer = (_dec = (0, _aureliaTemplating
     this._spacer = new sap.m.ToolbarSpacer({
       width: this.width
     });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer, this.element);
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer, this.element);
+    }
   };
 
   Ui5ToolbarSpacer.prototype.widthChanged = function widthChanged(newValue) {

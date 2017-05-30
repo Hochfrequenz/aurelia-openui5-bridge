@@ -55,9 +55,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
-  var Ui5MTitle = exports.Ui5MTitle = (_dec = (0, _aureliaTemplating.customElement)('ui5-m-title'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5MTitle = exports.Ui5MTitle = (_dec = (0, _aureliaTemplating.customElement)('ui5-m-title'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5MTitle(element) {
       _classCallCheck(this, Ui5MTitle);
 
@@ -69,13 +69,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
       _initDefineProp(this, 'level', _descriptor3, this);
 
+      _initDefineProp(this, 'titleStyle', _descriptor4, this);
+
       this.element = element;
     }
 
     Ui5MTitle.prototype.attached = function attached() {
       var props = {
         text: this.text,
-        level: this.level
+        level: this.level,
+        titleStyle: this.titleStyle
       };
       if (this.ui5Id) this._title = new sap.m.Title(this.ui5Id, props);else this._title = new sap.m.Title(props);
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
@@ -93,6 +96,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       }
     };
 
+    Ui5MTitle.prototype.titleStyleChanged = function titleStyleChanged(newValue) {
+      if (this._title !== null) {
+        this._title.setTitleStyle(newValue);
+      }
+    };
+
     return Ui5MTitle;
   }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
     enumerable: true,
@@ -105,6 +114,11 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       return null;
     }
   }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'level', [_dec5], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 'Auto';
+    }
+  }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'titleStyle', [_dec6], {
     enumerable: true,
     initializer: function initializer() {
       return 'Auto';

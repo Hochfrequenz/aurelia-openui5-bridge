@@ -5,7 +5,7 @@ import { PLATFORM } from 'aurelia-pal';
 export class ConfigBuilder {
 
   useGlobalResources: boolean = true;
-//  useScrollfirePatch: boolean = false;
+  //  useScrollfirePatch: boolean = false;
   globalResources = [];
 
   useAll(): ConfigBuilder {
@@ -32,9 +32,10 @@ export class ConfigBuilder {
       .useDynamicPage()
       .useLink()
       .useBreadcrumbs()
+      .useSegmentedButton()
   }
 
-useLink(): ConfigBuilder {
+  useLink(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./link/link'));
     return this;
   }
@@ -48,7 +49,7 @@ useLink(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./overflow-toolbar/overflow-toolbar'));
     this.globalResources.push(PLATFORM.moduleName('./toolbar-spacer/toolbar-spacer'));
     this.globalResources.push(PLATFORM.moduleName('./toolbar/toolbar'));
-    
+
     return this;
   }
   useContainer(): ConfigBuilder {
@@ -104,7 +105,7 @@ useLink(): ConfigBuilder {
   useInput(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./input/input'));
     this.globalResources.push(PLATFORM.moduleName('./search-field/search-field'));
-    
+
     return this;
   }
   useDatePicker(): ConfigBuilder {
@@ -142,18 +143,23 @@ useLink(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./tab-container-item/tab-container-item'));
     this.globalResources.push(PLATFORM.moduleName('./icon-tab-bar/icon-tab-bar'));
     this.globalResources.push(PLATFORM.moduleName('./icon-tab-filter/icon-tab-filter'));
-    
+
     return this;
   }
-   useDynamicPage(): ConfigBuilder {
+  useDynamicPage(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./dynamic-page/dynamic-page'));
     this.globalResources.push(PLATFORM.moduleName('./dynamic-page-header/dynamic-page-header'));
     this.globalResources.push(PLATFORM.moduleName('./dynamic-page-title/dynamic-page-title'));
-    
+
     return this;
   }
   useBreadcrumbs(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./breadcrumbs/breadcrumbs'));
+    return this;
+  }
+  useSegmentedButton(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./segmented-button/segmented-button'));
+    this.globalResources.push(PLATFORM.moduleName('./segmented-button-item/segmented-button-item'));
     return this;
   }
   /**

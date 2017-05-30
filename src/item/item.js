@@ -24,6 +24,12 @@ export class Ui5Item{
   }
   addChild(child, elem) {
   }
+  fillProperties(propertyObject) {
+        propertyObject.text = this.text;
+        propertyObject.key = this.key;
+        propertyObject.textDirection = this.textDirection;
+        propertyObject.enabled = this.enabled;
+    }
   keyChanged(newValue) {
     if (this._item !== null) {
       this._item.setKey(newValue);

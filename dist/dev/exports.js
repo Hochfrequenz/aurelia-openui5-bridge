@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['./page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs'], function (_export, _context) {
+System.register(['./page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs', './segmented-button/segmented-button', './segmented-button-item/segmented-button-item'], function (_export, _context) {
   "use strict";
 
   return {
@@ -476,6 +476,22 @@ System.register(['./page/page', './shell/shell', './bar/bar', './container/conta
       }
 
       _export(_exportObj59);
+    }, function (_segmentedButtonSegmentedButton) {
+      var _exportObj60 = {};
+
+      for (var _key60 in _segmentedButtonSegmentedButton) {
+        if (_key60 !== "default" && _key60 !== "__esModule") _exportObj60[_key60] = _segmentedButtonSegmentedButton[_key60];
+      }
+
+      _export(_exportObj60);
+    }, function (_segmentedButtonItemSegmentedButtonItem) {
+      var _exportObj61 = {};
+
+      for (var _key61 in _segmentedButtonItemSegmentedButtonItem) {
+        if (_key61 !== "default" && _key61 !== "__esModule") _exportObj61[_key61] = _segmentedButtonItemSegmentedButtonItem[_key61];
+      }
+
+      _export(_exportObj61);
     }],
     execute: function () {}
   };

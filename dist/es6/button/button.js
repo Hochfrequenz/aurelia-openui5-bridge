@@ -14,6 +14,8 @@ export class Ui5Button {
   @bindable() icon = null;
   @bindable() type = 'Default';
   _button = null;
+  _parent = null;
+  _relation = null;
   constructor(element) {
     this.attributeManager = new AttributeManager(element);
     this.element = element;
@@ -29,14 +31,17 @@ export class Ui5Button {
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._button, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._button, this.element);
     }
   }
   defaultPress() {
 
   }
   detached() {
-
+    if (this._parent && this._parent.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._button, this._relation);
+    }
   }
   typeChanged(newValue) {
     if (this._button !== null) {

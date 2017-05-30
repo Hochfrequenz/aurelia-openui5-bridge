@@ -86,6 +86,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           _initDefineProp(this, 'href', _descriptor7, this);
 
           this._link = null;
+          this._parent = null;
 
           this.attributeManager = new AttributeManager(element);
           this.element = element;
@@ -103,13 +104,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           });
 
           if ($(this.element).parents("[ui5-container]").length > 0) {
-            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._link, this.element);
+            this.parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+            this.parent.addChild(this._link, this.element);
           }
         };
 
         Ui5Link.prototype.defaultPress = function defaultPress() {};
 
-        Ui5Link.prototype.detached = function detached() {};
+        Ui5Link.prototype.detached = function detached() {
+          if (this.parent && this.parent.removeChild) {
+            this.parent.removeChild(this._link, this.elememt);
+          }
+        };
 
         Ui5Link.prototype.hrefChanged = function hrefChanged(newValue) {
           if (this._link !== null) {

@@ -2,11 +2,11 @@ import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { Ui5Element } from '../element/element';
 @customElement('ui5-formatted-text')
 @inject(Element)
 
-export class Ui5FormattedText {
+export class Ui5FormattedText extends Ui5Element {
   _text = null;
   @bindable() htmlText = null;
   @bindable() width = null;
@@ -14,9 +14,15 @@ export class Ui5FormattedText {
   @bindable() convertLinksToAnchorTags = 'None';
   @bindable() convertedLinksDefaultTarget = '_blank';
   constructor(element) {
+    super(element);
     this.element = element;
   }
-
+  addChild(child, elem) {
+    super.addChild(child, elem);
+  }
+  get UIElement() {
+    return this._text;
+  }
   attached() {
 
     this._text = new sap.m.FormattedText({

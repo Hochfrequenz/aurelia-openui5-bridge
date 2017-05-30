@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5FormattedText = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
 
 var _aureliaTemplating = require('aurelia-templating');
@@ -14,6 +16,8 @@ var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 var _attributeManager = require('../common/attributeManager');
 
 var _attributes = require('../common/attributes');
+
+var _element = require('../element/element');
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -26,6 +30,10 @@ function _initDefineProp(target, property, descriptor, context) {
 }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
@@ -60,24 +68,33 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5FormattedText = exports.Ui5FormattedText = (_dec = (0, _aureliaTemplating.customElement)('ui5-formatted-text'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5FormattedText = exports.Ui5FormattedText = (_dec = (0, _aureliaTemplating.customElement)('ui5-formatted-text'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
+  _inherits(Ui5FormattedText, _Ui5Element);
+
   function Ui5FormattedText(element) {
     _classCallCheck(this, Ui5FormattedText);
 
-    this._text = null;
+    var _this = _possibleConstructorReturn(this, _Ui5Element.call(this, element));
 
-    _initDefineProp(this, 'htmlText', _descriptor, this);
+    _this._text = null;
 
-    _initDefineProp(this, 'width', _descriptor2, this);
+    _initDefineProp(_this, 'htmlText', _descriptor, _this);
 
-    _initDefineProp(this, 'height', _descriptor3, this);
+    _initDefineProp(_this, 'width', _descriptor2, _this);
 
-    _initDefineProp(this, 'convertLinksToAnchorTags', _descriptor4, this);
+    _initDefineProp(_this, 'height', _descriptor3, _this);
 
-    _initDefineProp(this, 'convertedLinksDefaultTarget', _descriptor5, this);
+    _initDefineProp(_this, 'convertLinksToAnchorTags', _descriptor4, _this);
 
-    this.element = element;
+    _initDefineProp(_this, 'convertedLinksDefaultTarget', _descriptor5, _this);
+
+    _this.element = element;
+    return _this;
   }
+
+  Ui5FormattedText.prototype.addChild = function addChild(child, elem) {
+    _Ui5Element.prototype.addChild.call(this, child, elem);
+  };
 
   Ui5FormattedText.prototype.attached = function attached() {
 
@@ -121,8 +138,15 @@ var Ui5FormattedText = exports.Ui5FormattedText = (_dec = (0, _aureliaTemplating
     }
   };
 
+  _createClass(Ui5FormattedText, [{
+    key: 'UIElement',
+    get: function get() {
+      return this._text;
+    }
+  }]);
+
   return Ui5FormattedText;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'htmlText', [_dec3], {
+}(_element.Ui5Element), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'htmlText', [_dec3], {
   enumerable: true,
   initializer: function initializer() {
     return null;

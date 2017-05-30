@@ -117,10 +117,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
               elem = _i.value;
             }
 
-            if (elem.localName == 'item') if (this._button.getItems().length == 0) this.selectedKey = child.mProperties.key;
-            this._button.addItem(child);
+            if (elem.localName == 'item') {
+              if (this._button.getItems().length == 0) this.selectedKey = child.mProperties.key;
+              this._button.addItem(child);
 
-            break;
+              break;
+            }
           }
         };
 
@@ -131,12 +133,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             selectedKey: this.selectedKey,
             select: this.select
           });
-
+          var that = this;
           if ($(this.element).parents("[ui5-container]").length > 0) {
             $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._button, this.element);
+            this.attributeManager.addAttributes({ "ui5-container": '' });
           }
-          this._button.attachChange(function (event) {
-            that.selectedKey = event.mParameters.selectedItem.mProperties.key;
+          this._button.attachSelect(function (event) {
+            that.selectedKey = event.mParameters.key;
           });
         };
 
@@ -150,7 +153,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
         Ui5SegmentedButton.prototype.widthChanged = function widthChanged(newValue) {
           if (this._button !== null) {
-            this._button.setEidth(newValue);
+            this._button.setWidth(newValue);
           }
         };
 

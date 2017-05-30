@@ -72,6 +72,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           _classCallCheck(this, Ui5Label);
 
           this._label = null;
+          this._parent = null;
+          this._relation = null;
 
           _initDefineProp(this, 'ui5Id', _descriptor, this);
 
@@ -98,8 +100,14 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             textDirection: this.textDirection
           });
           if ($(this.element).parents("[ui5-container]").length > 0) {
+            this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+            this._relation = this._parent.addChild(this._label, this.element);
+          }
+        };
 
-            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._label, this.element);
+        Ui5Label.prototype.detached = function detached() {
+          if (this._parent && this._parent.removeChildByRelation) {
+            this._parent.removeChildByRelation(this._label, this._relation);
           }
         };
 

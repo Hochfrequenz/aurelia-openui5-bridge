@@ -24,15 +24,16 @@ export class Ui5SegmentedButton {
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     for (elem of path) {
-      if (elem.localName == 'item')
+      if (elem.localName == 'item') {
         if (this._button.getItems().length == 0) // set key when first item is added
           this.selectedKey = child.mProperties.key;
-      this._button.addItem(child);
+        this._button.addItem(child);
 
-      break;
+        break;
+      }
     }
   }
-  
+
   attached() {
     this._button = new sap.m.SegmentedButton({
       enabled: !getBooleanFromAttributeValue(this.enabled),
@@ -40,12 +41,13 @@ export class Ui5SegmentedButton {
       selectedKey: this.selectedKey,
       select: this.select
     });
-
+    var that = this;
     if ($(this.element).parents("[ui5-container]").length > 0) {
       $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._button, this.element);
+      this.attributeManager.addAttributes({ "ui5-container": '' });
     }
-      this._button.attachChange((event) => {
-      that.selectedKey = event.mParameters.selectedItem.mProperties.key;
+    this._button.attachSelect((event) => {
+      that.selectedKey = event.mParameters.key;
     });
 
   }
@@ -59,7 +61,7 @@ export class Ui5SegmentedButton {
   }
   widthChanged(newValue) {
     if (this._button !== null) {
-      this._button.setEidth(newValue);
+      this._button.setWidth(newValue);
     }
   }
   selectedKeyChanged(newValue) {

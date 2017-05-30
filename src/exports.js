@@ -58,4 +58,6 @@ export * from './dynamic-page/dynamic-page';
 export * from './dynamic-page-header/dynamic-page-header';
 export * from './dynamic-page-title/dynamic-page-title';
 export * from './breadcrumbs/breadcrumbs';
+export * from './segmented-button/segmented-button';
+export * from './segmented-button-item/segmented-button-item';
 // build-index-remove end

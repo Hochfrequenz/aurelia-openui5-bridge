@@ -7,21 +7,23 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 
 export class Ui5ToolbarSpacer {
-   _spacer = null;
-   @bindable() width = null;
+  _spacer = null;
+  @bindable() width = null;
   constructor(element) {
     this.element = element;
   }
 
   attached() {
-    
+
 
     this._spacer = new sap.m.ToolbarSpacer({
-      width : this.width,
-    }); 
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer,this.element);  
+      width: this.width,
+    });
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer, this.element);
+    }
   }
-   widthChanged(newValue) {
+  widthChanged(newValue) {
     if (this._spacer !== null) {
       this._spacer.setWidth(newValue);
     }

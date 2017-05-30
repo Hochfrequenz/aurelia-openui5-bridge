@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
+System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', '../element/element'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, Ui5FormattedText;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, Ui5Element, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, Ui5FormattedText;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -19,6 +19,30 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
+  }
+
+  function _possibleConstructorReturn(self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -65,26 +89,55 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       AttributeManager = _commonAttributeManager.AttributeManager;
     }, function (_commonAttributes) {
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+    }, function (_elementElement) {
+      Ui5Element = _elementElement.Ui5Element;
     }],
     execute: function () {
-      _export('Ui5FormattedText', Ui5FormattedText = (_dec = customElement('ui5-formatted-text'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
+
+      _export('Ui5FormattedText', Ui5FormattedText = (_dec = customElement('ui5-formatted-text'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
+        _inherits(Ui5FormattedText, _Ui5Element);
+
         function Ui5FormattedText(element) {
           _classCallCheck(this, Ui5FormattedText);
 
-          this._text = null;
+          var _this = _possibleConstructorReturn(this, _Ui5Element.call(this, element));
 
-          _initDefineProp(this, 'htmlText', _descriptor, this);
+          _this._text = null;
 
-          _initDefineProp(this, 'width', _descriptor2, this);
+          _initDefineProp(_this, 'htmlText', _descriptor, _this);
 
-          _initDefineProp(this, 'height', _descriptor3, this);
+          _initDefineProp(_this, 'width', _descriptor2, _this);
 
-          _initDefineProp(this, 'convertLinksToAnchorTags', _descriptor4, this);
+          _initDefineProp(_this, 'height', _descriptor3, _this);
 
-          _initDefineProp(this, 'convertedLinksDefaultTarget', _descriptor5, this);
+          _initDefineProp(_this, 'convertLinksToAnchorTags', _descriptor4, _this);
 
-          this.element = element;
+          _initDefineProp(_this, 'convertedLinksDefaultTarget', _descriptor5, _this);
+
+          _this.element = element;
+          return _this;
         }
+
+        Ui5FormattedText.prototype.addChild = function addChild(child, elem) {
+          _Ui5Element.prototype.addChild.call(this, child, elem);
+        };
 
         Ui5FormattedText.prototype.attached = function attached() {
 
@@ -128,8 +181,15 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        _createClass(Ui5FormattedText, [{
+          key: 'UIElement',
+          get: function get() {
+            return this._text;
+          }
+        }]);
+
         return Ui5FormattedText;
-      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'htmlText', [_dec3], {
+      }(Ui5Element), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'htmlText', [_dec3], {
         enumerable: true,
         initializer: function initializer() {
           return null;

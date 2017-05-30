@@ -14,6 +14,7 @@ export class Ui5Link {
   @bindable() target = null;
   @bindable() href = null;
   _link = null;
+  _parent = null;
   constructor(element) {
     this.attributeManager = new AttributeManager(element);
     this.element = element;
@@ -31,14 +32,17 @@ export class Ui5Link {
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._link, this.element);
+      this.parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this.parent.addChild(this._link, this.element);
     }
   }
   defaultPress() {
 
   }
   detached() {
-
+    if (this.parent && this.parent.removeChild) {
+      this.parent.removeChild(this._link, this.elememt);
+    }
   }
   hrefChanged(newValue) {
     if (this._link !== null) {

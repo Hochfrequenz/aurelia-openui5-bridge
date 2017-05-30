@@ -25,7 +25,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         }
 
         ConfigBuilder.prototype.useAll = function useAll() {
-          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs();
+          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton();
         };
 
         ConfigBuilder.prototype.useLink = function useLink() {
@@ -168,6 +168,12 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
         ConfigBuilder.prototype.useBreadcrumbs = function useBreadcrumbs() {
           this.globalResources.push(PLATFORM.moduleName('./breadcrumbs/breadcrumbs'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useSegmentedButton = function useSegmentedButton() {
+          this.globalResources.push(PLATFORM.moduleName('./segmented-button/segmented-button'));
+          this.globalResources.push(PLATFORM.moduleName('./segmented-button-item/segmented-button-item'));
           return this;
         };
 

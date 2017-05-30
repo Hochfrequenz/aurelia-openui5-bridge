@@ -7,26 +7,30 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 
 export class Ui5GridData {
-   _gridData = null;
-   @bindable() id = null;
-   @bindable() span = null;
-  
+  _gridData = null;
+  @bindable() id = null;
+  @bindable() span = null;
+  @bindable() indent = null;
   constructor(element) {
     this.element = element;
   }
 
   attached() {
-
     this._gridData = new sap.ui.layout.GridData({
-      span : this.span,
-    
-    }); 
-    $(this.element).parents("[ui5-layout]")[0].au.controller.viewModel.addChild(this._gridData,this.element);  
+      span: this.span,
+      indent: this.indent
+    });
+    $(this.element).parents("[ui5-layout]")[0].au.controller.viewModel.addChild(this._gridData, this.element);
   }
-   spanChanged(newValue) {
+  indentChanged(newValue) {
+    if (this._gridData !== null) {
+      this._gridData.setIndent(newValue);
+    }
+  }
+  spanChanged(newValue) {
     if (this._gridData !== null) {
       this._gridData.setSpan(newValue);
     }
   }
-  
+
 }
