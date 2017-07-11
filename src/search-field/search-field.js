@@ -59,7 +59,6 @@ export class Ui5SearchField extends Ui5Control {
       showRefreshButton: getBooleanFromAttributeValue(this.showRefreshButton),
       refreshButtonTooltip: this.refreshButtonTooltip,
       showSearchButton: getBooleanFromAttributeValue(this.showSearchButton),
-      enableSuggestions: getBooleanFromAttributeValue(this.enableSuggestions),
       selectOnFocus: getBooleanFromAttributeValue(this.selectOnFocus)
     };
     if (this.ui5Id)
@@ -71,9 +70,7 @@ export class Ui5SearchField extends Ui5Control {
     attributeManager.addAttributes({ "ui5-container": '' });
     var that = this;
     this._field.attachLiveChange((event) => {
-      if (getBooleanFromAttributeValue(that.valueLiveUpdate)) {
-        that.value = event.mParameters.value;
-      }
+        that.value = event.mParameters.newValue;
     });
     this._field.addEventDelegate(this.element);
     super.attached();

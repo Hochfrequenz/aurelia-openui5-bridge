@@ -77,6 +77,8 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
     _initDefineProp(this, 'itemPropertyChanged', _descriptor4, this);
 
     this._tab = null;
+    this._parent = null;
+    this._relation = null;
 
     this.element = element;
   }
@@ -131,7 +133,8 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     } else {
       this._tab.placeAt(this.element.parentElement);
@@ -141,11 +144,7 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
   };
 
   Ui5TabContainerItem.prototype.detached = function detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._tab, this.element);
-    } else {
-      this._tab.destroy();
-    }
+    this._parent.removeChildByRelation(this._tab, this._relation);
   };
 
   Ui5TabContainerItem.prototype.keyChanged = function keyChanged(newValue) {

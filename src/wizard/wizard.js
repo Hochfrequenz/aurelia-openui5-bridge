@@ -15,9 +15,11 @@ export class Ui5Wizard {
   @bindable() stepActivate = this.defaultFunc;
   @bindable() complete = this.defaultFunc;
 
+  @bindable() lastStep = false;
   defaultFunc() {
 
   }
+
   @computedFrom('_wizard')
   get UIElement() {
     return this._wizard;
@@ -46,7 +48,11 @@ export class Ui5Wizard {
       stepActivate: this.stepActivate,
       complete: this.complete
     };
+    var that = this;
     this._wizard = new sap.m.Wizard(params);
+    this._wizard.attachStepActivate((event) => {
+      that.lastStep = event.mParameters.index == that._wizard.getSteps().length;
+    });
     $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._wizard, this.element);
   }
   detached() {

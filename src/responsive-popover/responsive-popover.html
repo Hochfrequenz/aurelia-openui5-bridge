@@ -1,0 +1,19 @@
+<template>
+    <dialog>
+        <subHeader>
+            <slot name="subHeader"></slot>
+        </subHeader>
+        <customHeader>
+            <slot name="customHeader"></slot>
+        </customHeader>
+        <leftButton>
+            <slot name="leftButton"></slot>
+        </leftButton>
+        <rightButton>
+            <slot name="rightButton"></slot>
+        </rightButton>
+        <content>
+            <slot></slot>
+        </content>
+    </dialog>
+</template>

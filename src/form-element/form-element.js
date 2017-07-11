@@ -9,19 +9,19 @@ export class Ui5FormElement {
   @bindable() ui5Id = null;
   //TODO: expanded, visible, expandable
   _form = null;
+  _parent = null;
+  _relation = null;
   constructor(element) {
     this.element = element;
   }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     for (elem of path) {
-      if (elem.localName == 'label')
-      {
+      if (elem.localName == 'label') {
         this._form.setLabel(child);
         break;
       }
-      if (elem.localName == 'field')
-      {
+      if (elem.localName == 'field') {
         this._form.addField(child);
         break;
       }
@@ -37,7 +37,8 @@ export class Ui5FormElement {
       this._form = new sap.ui.layout.form.FormElement(params);
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._form, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -45,11 +46,15 @@ export class Ui5FormElement {
       attributeManager.addClasses("ui5-hide");
     }
   }
+  detached() {
+    if (this._parent && this._parent.removeChildByRelation)
+      this._parent.removeChildByRelation(this._form, this._relation);
+  }
   titleChanged(newValue) {
     if (this._form !== null) {
       this._form.setTitle(newValue);
     }
   }
- 
+
 
 }

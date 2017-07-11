@@ -23,18 +23,14 @@ export class Ui5TabContainer {
     for (elem of path) {
       if (elem.localName == 'content') {
         this._tab.addItem(child);
-        break;
+        return elem.localName;
       }
     }
   }
-  removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'content') {
-       // if(this._tab)
-       //   this._tab.removeItem(child);
-        break;
-      }
+  removeChildByRelation(child, relation) {
+    if (relation === 'content' && this._tab && child) {
+      // due to a bug in openui5-removal-code I can't remove the tabs
+      // this._tab.removeItem(child);
     }
   }
   attached() {

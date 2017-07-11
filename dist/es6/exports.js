@@ -60,4 +60,17 @@ export * from './dynamic-page-title/dynamic-page-title';
 export * from './breadcrumbs/breadcrumbs';
 export * from './segmented-button/segmented-button';
 export * from './segmented-button-item/segmented-button-item';
+export * from './dialog/dialog';
+export * from './list/list';
+export * from './list-base/list-base';
+export * from './standard-list-item/standard-list-item';
+export * from './responsive-popover/responsive-popover';
+export * from './icon/icon';
+export * from './action-sheet/action-sheet';
+export * from './table-select-dialog/table-select-dialog';
+export * from './upload-collection/upload-collection';
+export * from './upload-collection-item/upload-collection-item';
+export * from './view-settings-item/view-settings-item';
+export * from './view-settings-filter-item/view-settings-filter-item';
+export * from './view-settings-dialog/view-settings-dialog';
 // build-index-remove end

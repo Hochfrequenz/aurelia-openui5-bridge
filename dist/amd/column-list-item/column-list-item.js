@@ -22,6 +22,24 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     }
   }
 
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
+
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
     var desc = {};
     Object['ke' + 'ys'](descriptor).forEach(function (key) {
@@ -55,15 +73,19 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
+  var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2;
 
-  var Ui5ColumnListItem = exports.Ui5ColumnListItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-column-list-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5ColumnListItem = exports.Ui5ColumnListItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-column-list-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5ColumnListItem(element) {
       _classCallCheck(this, Ui5ColumnListItem);
 
       this._item = null;
+      this._parent = null;
+      this._relation = null;
 
       _initDefineProp(this, 'vAlign', _descriptor, this);
+
+      _initDefineProp(this, 'selected', _descriptor2, this);
 
       this.element = element;
     }
@@ -74,10 +96,26 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       var attributeManager = new _attributeManager.AttributeManager(this.element);
 
       this._item = new sap.m.ColumnListItem({
-        vAlign: this.vAlign
+        vAlign: this.vAlign,
+        selected: (0, _attributes.getBooleanFromAttributeValue)(this.selected)
       });
       attributeManager.addAttributes({ "ui5-container": '' });
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._item, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._item, this.element);
+    };
+
+    Ui5ColumnListItem.prototype.detached = function detached() {
+      if (this._parent && this._parent.removeChildByRelation) {
+        this._parent.removeChildByRelation(this._item, this._relation);
+      }
+    };
+
+    Ui5ColumnListItem.prototype.bind = function bind(bindingContext, overrideContext) {
+      console.log("bind called" + bindingContext + overrideContext);
+    };
+
+    Ui5ColumnListItem.prototype.unbind = function unbind() {
+      console.log('unbind called ');
     };
 
     Ui5ColumnListItem.prototype.addChild = function addChild(child, elem) {
@@ -104,11 +142,29 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       }
     };
 
+    Ui5ColumnListItem.prototype.selectedChanged = function selectedChanged(newValue) {
+      if (this._item !== null) {
+        this._item.setSelected(newValue);
+      }
+    };
+
+    _createClass(Ui5ColumnListItem, [{
+      key: 'UIElement',
+      get: function get() {
+        return this._item;
+      }
+    }]);
+
     return Ui5ColumnListItem;
   }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'vAlign', [_dec3], {
     enumerable: true,
     initializer: function initializer() {
       return 'Inherit';
+    }
+  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'selected', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+      return false;
     }
   })), _class2)) || _class) || _class);
 });

@@ -12,6 +12,8 @@ export class Ui5TabContainerItem {
   @bindable() modified = false;
   @bindable() itemPropertyChanged = this.defaultFunc;
   _tab = null;
+  _parent = null;
+  _relation = null;
   constructor(element) {
     this.element = element;
   }
@@ -50,7 +52,8 @@ export class Ui5TabContainerItem {
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -60,12 +63,7 @@ export class Ui5TabContainerItem {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._tab, this.element);
-    }
-    else {
-      this._tab.destroy();
-    }
+      this._parent.removeChildByRelation(this._tab, this._relation);
   }
   keyChanged(newValue) {
     if (this._tab !== null) {

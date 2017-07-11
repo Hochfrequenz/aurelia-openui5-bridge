@@ -87,6 +87,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
             }
         };
 
+        Ui5Grid.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+            if (relation == 'content') {
+                this._grid.removeContent(child);
+            }
+        };
+
         Ui5Grid.prototype.removeChild = function removeChild(child, elem) {
             var path = $(elem).parentsUntil(this.element);
             if (path[0].localName == 'content') this._grid.removeContent(child);

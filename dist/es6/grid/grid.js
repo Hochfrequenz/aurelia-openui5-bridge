@@ -20,6 +20,11 @@ export class Ui5Grid {
             }
         }
     }
+    removeChildByRelation(child, relation) {
+        if (relation == 'content') {
+            this._grid.removeContent(child);
+        }
+    }
     removeChild(child, elem) {
         var path = $(elem).parentsUntil(this.element);
         if (path[0].localName == 'content')

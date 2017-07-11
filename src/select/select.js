@@ -35,11 +35,15 @@ export class Ui5Select {
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     for (elem of path) {
-      if (elem.localName == 'item')
-        if (this._select.getItems().length == 0) // set key when first item is added
-          this.selectedKey = child.mProperties.key;
-      this._select.addItem(child);
-
+      if (elem.localName == 'item') {
+        //if (this._select.getItems().length) // set key when first item is added
+        //  this.selectedKey = child.mProperties.key;
+        this._select.addItem(child);
+        //reset selected key
+        var oldVal = this.selectedKey;
+        this.selectedKey = null;
+        this.selectedKey = oldVal;
+      }
       break;
     }
   }

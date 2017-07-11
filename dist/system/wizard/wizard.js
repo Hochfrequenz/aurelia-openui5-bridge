@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', 'aurelia-framework'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, computedFrom, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, Ui5Wizard;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, computedFrom, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, Ui5Wizard;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -87,7 +87,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         };
       }();
 
-      _export('Ui5Wizard', Ui5Wizard = (_dec = customElement('ui5-wizard'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = computedFrom('_wizard'), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5Wizard', Ui5Wizard = (_dec = customElement('ui5-wizard'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = computedFrom('_wizard'), _dec(_class = _dec2(_class = (_class2 = function () {
         Ui5Wizard.prototype.defaultFunc = function defaultFunc() {};
 
         _createClass(Ui5Wizard, [{
@@ -116,6 +116,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           _initDefineProp(this, 'complete', _descriptor7, this);
 
+          _initDefineProp(this, 'lastStep', _descriptor8, this);
+
           this.element = element;
         }
 
@@ -138,7 +140,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             stepActivate: this.stepActivate,
             complete: this.complete
           };
+          var that = this;
           this._wizard = new sap.m.Wizard(params);
+          this._wizard.attachStepActivate(function (event) {
+            that.lastStep = event.mParameters.index == that._wizard.getSteps().length;
+          });
           $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._wizard, this.element);
         };
 
@@ -212,7 +218,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         initializer: function initializer() {
           return this.defaultFunc;
         }
-      }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec10], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'lastStep', [_dec10], {
+        enumerable: true,
+        initializer: function initializer() {
+          return false;
+        }
+      }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec11], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
       _export('Ui5Wizard', Ui5Wizard);
     }

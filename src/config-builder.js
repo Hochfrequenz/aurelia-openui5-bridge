@@ -33,6 +33,13 @@ export class ConfigBuilder {
       .useLink()
       .useBreadcrumbs()
       .useSegmentedButton()
+      .useDialog()
+      .useList()
+      .useIcon()
+      .useActionSheet()
+      .useTableSelectDialog()
+      .useUploadCollection()
+      .useViewSettingsDialog()
   }
 
   useLink(): ConfigBuilder {
@@ -138,6 +145,11 @@ export class ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./object-number/object-number'));
     return this;
   }
+  useList(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./list/list'));
+    this.globalResources.push(PLATFORM.moduleName('./standard-list-item/standard-list-item'));
+    return this;
+  }
   useTabs(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./tab-container/tab-container'));
     this.globalResources.push(PLATFORM.moduleName('./tab-container-item/tab-container-item'));
@@ -160,6 +172,35 @@ export class ConfigBuilder {
   useSegmentedButton(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./segmented-button/segmented-button'));
     this.globalResources.push(PLATFORM.moduleName('./segmented-button-item/segmented-button-item'));
+    return this;
+  }
+  useDialog(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./dialog/dialog'));
+    this.globalResources.push(PLATFORM.moduleName('./responsive-popover/responsive-popover'));
+    
+    return this;
+  }
+  useIcon(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./icon/icon'));
+    return this;
+  }
+  useActionSheet(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./action-sheet/action-sheet'));
+    return this;
+  }
+  useTableSelectDialog(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./table-select-dialog/table-select-dialog'));
+    return this;
+  }
+  useUploadCollection(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./upload-collection/upload-collection'));
+    this.globalResources.push(PLATFORM.moduleName('./upload-collection-item/upload-collection-item'));
+    return this;
+  }
+  useViewSettingsDialog(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./view-settings-item/view-settings-item'));
+    this.globalResources.push(PLATFORM.moduleName('./view-settings-filter-item/view-settings-filter-item'));
+    this.globalResources.push(PLATFORM.moduleName('./view-settings-dialog/view-settings-dialog'));
     return this;
   }
   /**

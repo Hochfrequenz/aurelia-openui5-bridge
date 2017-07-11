@@ -25,7 +25,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         }
 
         ConfigBuilder.prototype.useAll = function useAll() {
-          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton();
+          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useUploadCollection().useViewSettingsDialog();
         };
 
         ConfigBuilder.prototype.useLink = function useLink() {
@@ -149,6 +149,12 @@ System.register(['aurelia-pal'], function (_export, _context) {
           return this;
         };
 
+        ConfigBuilder.prototype.useList = function useList() {
+          this.globalResources.push(PLATFORM.moduleName('./list/list'));
+          this.globalResources.push(PLATFORM.moduleName('./standard-list-item/standard-list-item'));
+          return this;
+        };
+
         ConfigBuilder.prototype.useTabs = function useTabs() {
           this.globalResources.push(PLATFORM.moduleName('./tab-container/tab-container'));
           this.globalResources.push(PLATFORM.moduleName('./tab-container-item/tab-container-item'));
@@ -174,6 +180,41 @@ System.register(['aurelia-pal'], function (_export, _context) {
         ConfigBuilder.prototype.useSegmentedButton = function useSegmentedButton() {
           this.globalResources.push(PLATFORM.moduleName('./segmented-button/segmented-button'));
           this.globalResources.push(PLATFORM.moduleName('./segmented-button-item/segmented-button-item'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useDialog = function useDialog() {
+          this.globalResources.push(PLATFORM.moduleName('./dialog/dialog'));
+          this.globalResources.push(PLATFORM.moduleName('./responsive-popover/responsive-popover'));
+
+          return this;
+        };
+
+        ConfigBuilder.prototype.useIcon = function useIcon() {
+          this.globalResources.push(PLATFORM.moduleName('./icon/icon'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useActionSheet = function useActionSheet() {
+          this.globalResources.push(PLATFORM.moduleName('./action-sheet/action-sheet'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useTableSelectDialog = function useTableSelectDialog() {
+          this.globalResources.push(PLATFORM.moduleName('./table-select-dialog/table-select-dialog'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useUploadCollection = function useUploadCollection() {
+          this.globalResources.push(PLATFORM.moduleName('./upload-collection/upload-collection'));
+          this.globalResources.push(PLATFORM.moduleName('./upload-collection-item/upload-collection-item'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useViewSettingsDialog = function useViewSettingsDialog() {
+          this.globalResources.push(PLATFORM.moduleName('./view-settings-item/view-settings-item'));
+          this.globalResources.push(PLATFORM.moduleName('./view-settings-filter-item/view-settings-filter-item'));
+          this.globalResources.push(PLATFORM.moduleName('./view-settings-dialog/view-settings-dialog'));
           return this;
         };
 

@@ -100,9 +100,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
               elem = _i.value;
             }
 
-            if (elem.localName == 'item') if (this._select.getItems().length == 0) this.selectedKey = child.mProperties.key;
-            this._select.addItem(child);
+            if (elem.localName == 'item') {
+              this._select.addItem(child);
 
+              var oldVal = this.selectedKey;
+              this.selectedKey = null;
+              this.selectedKey = oldVal;
+            }
             break;
           }
         };

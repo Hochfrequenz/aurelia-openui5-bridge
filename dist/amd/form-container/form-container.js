@@ -82,9 +82,24 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
           elem = _i.value;
         }
 
-        if (elem.localName == 'toolbar') this._form.setToolbar(child);
-        if (elem.localName == 'titleElement') this._form.setTitle(child);
-        if (elem.localName == 'element') this._form.addFormElement(child);
+        if (elem.localName == 'toolbar') {
+          this._form.setToolbar(child);
+          return elem.localName;
+        }
+        if (elem.localName == 'titleElement') {
+          this._form.setTitle(child);
+          return elem.localName;
+        }
+        if (elem.localName == 'element') {
+          this._form.addFormElement(child);
+          return elem.localName;
+        }
+      }
+    };
+
+    Ui5FormContainer.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+      if (relation == 'element') {
+        this._form.removeFormElement(child);
       }
     };
 

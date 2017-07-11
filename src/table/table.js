@@ -3,33 +3,72 @@ import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
 import { Ui5Control } from '../control/control';
+import { Ui5ListBase } from '../list-base/list-base';
 @customElement('ui5-table')
 @inject(Element)
-export class Ui5Table extends Ui5Control {
-  @bindable() headerText = '';
+export class Ui5Table extends Ui5ListBase {
+
   @bindable() showOverlay = false;
+  @bindable() fixedLayout = true;
+
+   /*inherited from list-base*/
+  @bindable() inset = true;
+  @bindable() headerText = null;
+  @bindable() headerDesign = 'Standard';
+  @bindable() footerText = null;
+  @bindable() mode = 'None';
+  @bindable() width = '100%';
+  @bindable() includeItemInSelection = false;
+  @bindable() showUnread = false;
+  @bindable() noDataText = null;
+  @bindable() showNoData = true;
+  @bindable() enableBusyIndicator = true;
+  @bindable() modeAnimationOn = true;
+  @bindable() showSeparator = 'All';
+  @bindable() swipeDirection = 'Both';
+  @bindable() growing = false;
+  @bindable() growingThreshold = 20;
+  @bindable() growingTriggerText = null;
+  @bindable() growingScrollToLoad = false;
+  @bindable() growingDirection = 'Downwards';
+  @bindable() rememberSelections = true;
+  @bindable() keyboardMode = 'Navigation';
+
+  @bindable() delete = this.defaultFunc;
+  @bindable() itemPress = this.defaultFunc;
+  @bindable() selectionChange = this.defaultFunc;
+  @bindable() swipe = this.defaultFunc;
+  @bindable() updateFinished = this.defaultFunc;
+  @bindable() updateStarted = this.defaultFunc;
   /*inherited from Ui5Control */
   @bindable() busy = false;
 
   _table = null;
+  _parent = null;
+  _relation = null;
   constructor(element) {
     super(element);
     this.element = element;
   }
   get UIElement() {
-        return this._table;
-    }
+    return this._table;
+  }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     for (elem of path) {
       if (elem.localName == 'header-toolbar')
-      { this._table.setHeaderToolbar(child); break; }
+      { this._table.setHeaderToolbar(child); return elem.localName; }
       if (elem.localName == 'info-toolbar')
-      { this._table.setInfoToolbar(child); break; }
+      { this._table.setInfoToolbar(child); return elem.localName; }
       if (elem.localName == 'item')
-      { this._table.addItem(child); break; }
+      { this._table.addItem(child); return elem.localName; }
       if (elem.localName == 'column')
-      { this._table.addColumn(child); break; }
+      { this._table.addColumn(child); return elem.localName; }
+    }
+  }
+  removeChildByRelation(child, relation) {
+    if (relation == 'item') {
+      this._table.removeItem(child);
     }
   }
   removeChild(child, elem) {
@@ -42,15 +81,16 @@ export class Ui5Table extends Ui5Control {
   attached() {
     var attributeManager = new AttributeManager(this.element);
     var props = {
-      headerText: this.headerText,
-      showOverlay: getBooleanFromAttributeValue(this.showOverlay)
+      showOverlay: getBooleanFromAttributeValue(this.showOverlay),
+      fixedLayout: getBooleanFromAttributeValue(this.fixedLayout)
     };
     super.fillProperties(props);
     var table = new sap.m.Table(props);
     this._table = table;
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._table, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._table, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -60,11 +100,16 @@ export class Ui5Table extends Ui5Control {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._table, this.element);
+    if (this._parent && this._parent.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._table, this._relation);
     }
     else {
       this._table.destroy();
+    }
+  }
+  fixedLayoutChanged(newValue) {
+    if (this._table !== null) {
+      this._table.setFixedLayout(getBooleanFromAttributeValue(newValue));
     }
   }
   headerTextChanged(newValue) {

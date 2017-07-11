@@ -10,6 +10,8 @@ export class Ui5DatePicker extends Ui5InputBase {
   _picker = null;
   @bindable() ui5Id = null;
 
+  @bindable() includeTime = false;
+
   @bindable() displayFormat = null;
   @bindable() valueFormat = null;
   @bindable() dateValue = null;
@@ -78,10 +80,18 @@ export class Ui5DatePicker extends Ui5InputBase {
       change: this.change
       /*inherited from InputBase*/
     };
-    if (this.ui5Id)
-      this._picker = new sap.m.DatePicker(this.ui5Id, params);
-    else
-      this._picker = new sap.m.DatePicker(params);
+    if (this.ui5Id) {
+      if (getBooleanFromAttributeValue(this.includeTime))
+        this._picker = new sap.m.DateTimePicker(this.ui5Id, params);
+      else
+        this._picker = new sap.m.DatePicker(this.ui5Id, params);
+    }
+    else {
+      if (getBooleanFromAttributeValue(this.includeTime))
+        this._picker = new sap.m.DateTimePicker(params);
+      else
+        this._picker = new sap.m.DatePicker(params);
+    }
     $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._picker, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
     var that = this;
@@ -123,14 +133,14 @@ export class Ui5DatePicker extends Ui5InputBase {
       this._picker.setMinDate(newValue);
     }
   }
-  
+
   specialDatesChanged(newValue) {
     //TODO: Need to add and remove values separately
     if (this._picker !== null) {
       this._picker.setSpecialDates(newValue);
     }
   }
-  
+
   /*valueChanged(newValue) {
     if (this._picker !== null) {
       this._picker.setValue(newValue);

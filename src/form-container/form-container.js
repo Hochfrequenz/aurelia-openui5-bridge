@@ -16,12 +16,23 @@ export class Ui5FormContainer {
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     for (elem of path) {
-      if (elem.localName == 'toolbar')
+      if (elem.localName == 'toolbar') {
         this._form.setToolbar(child);
-      if (elem.localName == 'titleElement')
+        return elem.localName;
+      }
+      if (elem.localName == 'titleElement') {
         this._form.setTitle(child);
-        if (elem.localName == 'element')
+        return elem.localName;
+      }
+      if (elem.localName == 'element') {
         this._form.addFormElement(child);
+        return elem.localName;
+      }
+    }
+  }
+  removeChildByRelation(child, relation) {
+    if (relation == 'element') {
+      this._form.removeFormElement(child);
     }
   }
   attached() {
@@ -48,6 +59,6 @@ export class Ui5FormContainer {
       this._form.setTitle(newValue);
     }
   }
- 
+
 
 }

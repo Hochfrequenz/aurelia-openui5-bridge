@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['./page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs', './segmented-button/segmented-button', './segmented-button-item/segmented-button-item'], function (_export, _context) {
+System.register(['./page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs', './segmented-button/segmented-button', './segmented-button-item/segmented-button-item', './dialog/dialog', './list/list', './list-base/list-base', './standard-list-item/standard-list-item', './responsive-popover/responsive-popover', './icon/icon', './action-sheet/action-sheet', './table-select-dialog/table-select-dialog', './upload-collection/upload-collection', './upload-collection-item/upload-collection-item', './view-settings-item/view-settings-item', './view-settings-filter-item/view-settings-filter-item', './view-settings-dialog/view-settings-dialog'], function (_export, _context) {
   "use strict";
 
   return {
@@ -492,6 +492,110 @@ System.register(['./page/page', './shell/shell', './bar/bar', './container/conta
       }
 
       _export(_exportObj61);
+    }, function (_dialogDialog) {
+      var _exportObj62 = {};
+
+      for (var _key62 in _dialogDialog) {
+        if (_key62 !== "default" && _key62 !== "__esModule") _exportObj62[_key62] = _dialogDialog[_key62];
+      }
+
+      _export(_exportObj62);
+    }, function (_listList) {
+      var _exportObj63 = {};
+
+      for (var _key63 in _listList) {
+        if (_key63 !== "default" && _key63 !== "__esModule") _exportObj63[_key63] = _listList[_key63];
+      }
+
+      _export(_exportObj63);
+    }, function (_listBaseListBase) {
+      var _exportObj64 = {};
+
+      for (var _key64 in _listBaseListBase) {
+        if (_key64 !== "default" && _key64 !== "__esModule") _exportObj64[_key64] = _listBaseListBase[_key64];
+      }
+
+      _export(_exportObj64);
+    }, function (_standardListItemStandardListItem) {
+      var _exportObj65 = {};
+
+      for (var _key65 in _standardListItemStandardListItem) {
+        if (_key65 !== "default" && _key65 !== "__esModule") _exportObj65[_key65] = _standardListItemStandardListItem[_key65];
+      }
+
+      _export(_exportObj65);
+    }, function (_responsivePopoverResponsivePopover) {
+      var _exportObj66 = {};
+
+      for (var _key66 in _responsivePopoverResponsivePopover) {
+        if (_key66 !== "default" && _key66 !== "__esModule") _exportObj66[_key66] = _responsivePopoverResponsivePopover[_key66];
+      }
+
+      _export(_exportObj66);
+    }, function (_iconIcon) {
+      var _exportObj67 = {};
+
+      for (var _key67 in _iconIcon) {
+        if (_key67 !== "default" && _key67 !== "__esModule") _exportObj67[_key67] = _iconIcon[_key67];
+      }
+
+      _export(_exportObj67);
+    }, function (_actionSheetActionSheet) {
+      var _exportObj68 = {};
+
+      for (var _key68 in _actionSheetActionSheet) {
+        if (_key68 !== "default" && _key68 !== "__esModule") _exportObj68[_key68] = _actionSheetActionSheet[_key68];
+      }
+
+      _export(_exportObj68);
+    }, function (_tableSelectDialogTableSelectDialog) {
+      var _exportObj69 = {};
+
+      for (var _key69 in _tableSelectDialogTableSelectDialog) {
+        if (_key69 !== "default" && _key69 !== "__esModule") _exportObj69[_key69] = _tableSelectDialogTableSelectDialog[_key69];
+      }
+
+      _export(_exportObj69);
+    }, function (_uploadCollectionUploadCollection) {
+      var _exportObj70 = {};
+
+      for (var _key70 in _uploadCollectionUploadCollection) {
+        if (_key70 !== "default" && _key70 !== "__esModule") _exportObj70[_key70] = _uploadCollectionUploadCollection[_key70];
+      }
+
+      _export(_exportObj70);
+    }, function (_uploadCollectionItemUploadCollectionItem) {
+      var _exportObj71 = {};
+
+      for (var _key71 in _uploadCollectionItemUploadCollectionItem) {
+        if (_key71 !== "default" && _key71 !== "__esModule") _exportObj71[_key71] = _uploadCollectionItemUploadCollectionItem[_key71];
+      }
+
+      _export(_exportObj71);
+    }, function (_viewSettingsItemViewSettingsItem) {
+      var _exportObj72 = {};
+
+      for (var _key72 in _viewSettingsItemViewSettingsItem) {
+        if (_key72 !== "default" && _key72 !== "__esModule") _exportObj72[_key72] = _viewSettingsItemViewSettingsItem[_key72];
+      }
+
+      _export(_exportObj72);
+    }, function (_viewSettingsFilterItemViewSettingsFilterItem) {
+      var _exportObj73 = {};
+
+      for (var _key73 in _viewSettingsFilterItemViewSettingsFilterItem) {
+        if (_key73 !== "default" && _key73 !== "__esModule") _exportObj73[_key73] = _viewSettingsFilterItemViewSettingsFilterItem[_key73];
+      }
+
+      _export(_exportObj73);
+    }, function (_viewSettingsDialogViewSettingsDialog) {
+      var _exportObj74 = {};
+
+      for (var _key74 in _viewSettingsDialogViewSettingsDialog) {
+        if (_key74 !== "default" && _key74 !== "__esModule") _exportObj74[_key74] = _viewSettingsDialogViewSettingsDialog[_key74];
+      }
+
+      _export(_exportObj74);
     }],
     execute: function () {}
   };

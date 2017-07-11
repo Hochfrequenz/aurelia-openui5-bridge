@@ -74,6 +74,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           _initDefineProp(this, 'ui5Id', _descriptor, this);
 
           this._form = null;
+          this._parent = null;
+          this._relation = null;
 
           this.element = element;
         }
@@ -107,12 +109,17 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           if (this.uiId5) this._form = new sap.ui.layout.form.FormElement(this.ui5Id, params);else this._form = new sap.ui.layout.form.FormElement(params);
 
           if ($(this.element).parents("[ui5-container]").length > 0) {
-            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
+            this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+            this._relation = this._parent.addChild(this._form, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });
           } else {
             this._form.placeAt(this.element.parentElement);
             attributeManager.addClasses("ui5-hide");
           }
+        };
+
+        Ui5FormElement.prototype.detached = function detached() {
+          if (this._parent && this._parent.removeChildByRelation) this._parent.removeChildByRelation(this._form, this._relation);
         };
 
         Ui5FormElement.prototype.titleChanged = function titleChanged(newValue) {

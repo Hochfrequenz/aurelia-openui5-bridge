@@ -95,27 +95,13 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
 
       if (elem.localName == 'content') {
         this._tab.addItem(child);
-        break;
+        return elem.localName;
       }
     }
   };
 
-  Ui5TabContainer.prototype.removeChild = function removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-      if (_isArray2) {
-        if (_i2 >= _iterator2.length) break;
-        elem = _iterator2[_i2++];
-      } else {
-        _i2 = _iterator2.next();
-        if (_i2.done) break;
-        elem = _i2.value;
-      }
-
-      if (elem.localName == 'content') {
-        break;
-      }
-    }
+  Ui5TabContainer.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+    if (relation === 'content' && this._tab && child) {}
   };
 
   Ui5TabContainer.prototype.attached = function attached() {

@@ -133,10 +133,8 @@ var Ui5SearchField = exports.Ui5SearchField = (_dec = (0, _aureliaTemplating.cus
   Ui5SearchField.prototype.defaultFunc = function defaultFunc() {};
 
   Ui5SearchField.prototype.attached = function attached() {
-    var _params;
-
     var attributeManager = new _attributeManager.AttributeManager(this.element);
-    var params = (_params = {
+    var params = {
       maxLength: this.maxLength,
       enableSuggestions: (0, _attributes.getBooleanFromAttributeValue)(this.enableSuggestions),
       liveChange: this.liveChange,
@@ -149,17 +147,16 @@ var Ui5SearchField = exports.Ui5SearchField = (_dec = (0, _aureliaTemplating.cus
       showMagnifier: (0, _attributes.getBooleanFromAttributeValue)(this.showMagnifier),
       showRefreshButton: (0, _attributes.getBooleanFromAttributeValue)(this.showRefreshButton),
       refreshButtonTooltip: this.refreshButtonTooltip,
-      showSearchButton: (0, _attributes.getBooleanFromAttributeValue)(this.showSearchButton)
-    }, _params['enableSuggestions'] = (0, _attributes.getBooleanFromAttributeValue)(this.enableSuggestions), _params.selectOnFocus = (0, _attributes.getBooleanFromAttributeValue)(this.selectOnFocus), _params);
+      showSearchButton: (0, _attributes.getBooleanFromAttributeValue)(this.showSearchButton),
+      selectOnFocus: (0, _attributes.getBooleanFromAttributeValue)(this.selectOnFocus)
+    };
     if (this.ui5Id) this._field = new sap.m.SearchField(this.ui5Id, params);else this._field = new sap.m.SearchField(params);
     $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._field, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
     attributeManager.addAttributes({ "ui5-container": '' });
     var that = this;
     this._field.attachLiveChange(function (event) {
-      if ((0, _attributes.getBooleanFromAttributeValue)(that.valueLiveUpdate)) {
-        that.value = event.mParameters.value;
-      }
+      that.value = event.mParameters.newValue;
     });
     this._field.addEventDelegate(this.element);
     _Ui5Control.prototype.attached.call(this);

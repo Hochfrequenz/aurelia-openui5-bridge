@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', '../input-base/input-base'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, Ui5InputBase, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, Ui5DatePicker;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, Ui5InputBase, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, Ui5DatePicker;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -111,7 +111,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         };
       }();
 
-      _export('Ui5DatePicker', Ui5DatePicker = (_dec = customElement('ui5-date-picker'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec(_class = _dec2(_class = (_class2 = function (_Ui5InputBase) {
+      _export('Ui5DatePicker', Ui5DatePicker = (_dec = customElement('ui5-date-picker'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec(_class = _dec2(_class = (_class2 = function (_Ui5InputBase) {
         _inherits(Ui5DatePicker, _Ui5InputBase);
 
         Ui5DatePicker.prototype.addChild = function addChild(child, elem) {
@@ -135,47 +135,49 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-          _initDefineProp(_this, 'displayFormat', _descriptor2, _this);
+          _initDefineProp(_this, 'includeTime', _descriptor2, _this);
 
-          _initDefineProp(_this, 'valueFormat', _descriptor3, _this);
+          _initDefineProp(_this, 'displayFormat', _descriptor3, _this);
 
-          _initDefineProp(_this, 'dateValue', _descriptor4, _this);
+          _initDefineProp(_this, 'valueFormat', _descriptor4, _this);
 
-          _initDefineProp(_this, 'displayFormatType', _descriptor5, _this);
+          _initDefineProp(_this, 'dateValue', _descriptor5, _this);
 
-          _initDefineProp(_this, 'secondaryCalendarType', _descriptor6, _this);
+          _initDefineProp(_this, 'displayFormatType', _descriptor6, _this);
 
-          _initDefineProp(_this, 'minDate', _descriptor7, _this);
+          _initDefineProp(_this, 'secondaryCalendarType', _descriptor7, _this);
 
-          _initDefineProp(_this, 'maxDate', _descriptor8, _this);
+          _initDefineProp(_this, 'minDate', _descriptor8, _this);
 
-          _initDefineProp(_this, 'specialDates', _descriptor9, _this);
+          _initDefineProp(_this, 'maxDate', _descriptor9, _this);
 
-          _initDefineProp(_this, 'value', _descriptor10, _this);
+          _initDefineProp(_this, 'specialDates', _descriptor10, _this);
 
-          _initDefineProp(_this, 'width', _descriptor11, _this);
+          _initDefineProp(_this, 'value', _descriptor11, _this);
 
-          _initDefineProp(_this, 'enabled', _descriptor12, _this);
+          _initDefineProp(_this, 'width', _descriptor12, _this);
 
-          _initDefineProp(_this, 'valueState', _descriptor13, _this);
+          _initDefineProp(_this, 'enabled', _descriptor13, _this);
 
-          _initDefineProp(_this, 'name', _descriptor14, _this);
+          _initDefineProp(_this, 'valueState', _descriptor14, _this);
 
-          _initDefineProp(_this, 'placeholder', _descriptor15, _this);
+          _initDefineProp(_this, 'name', _descriptor15, _this);
 
-          _initDefineProp(_this, 'editable', _descriptor16, _this);
+          _initDefineProp(_this, 'placeholder', _descriptor16, _this);
 
-          _initDefineProp(_this, 'valueStateText', _descriptor17, _this);
+          _initDefineProp(_this, 'editable', _descriptor17, _this);
 
-          _initDefineProp(_this, 'showValueStateMessage', _descriptor18, _this);
+          _initDefineProp(_this, 'valueStateText', _descriptor18, _this);
 
-          _initDefineProp(_this, 'textAlign', _descriptor19, _this);
+          _initDefineProp(_this, 'showValueStateMessage', _descriptor19, _this);
 
-          _initDefineProp(_this, 'textDirection', _descriptor20, _this);
+          _initDefineProp(_this, 'textAlign', _descriptor20, _this);
 
-          _initDefineProp(_this, 'required', _descriptor21, _this);
+          _initDefineProp(_this, 'textDirection', _descriptor21, _this);
 
-          _initDefineProp(_this, 'change', _descriptor22, _this);
+          _initDefineProp(_this, 'required', _descriptor22, _this);
+
+          _initDefineProp(_this, 'change', _descriptor23, _this);
 
           _this.element = element;
           return _this;
@@ -209,7 +211,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             required: getBooleanFromAttributeValue(this.required),
             change: this.change
           };
-          if (this.ui5Id) this._picker = new sap.m.DatePicker(this.ui5Id, params);else this._picker = new sap.m.DatePicker(params);
+          if (this.ui5Id) {
+            if (getBooleanFromAttributeValue(this.includeTime)) this._picker = new sap.m.DateTimePicker(this.ui5Id, params);else this._picker = new sap.m.DatePicker(this.ui5Id, params);
+          } else {
+            if (getBooleanFromAttributeValue(this.includeTime)) this._picker = new sap.m.DateTimePicker(params);else this._picker = new sap.m.DatePicker(params);
+          }
           $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._picker, this.element);
           attributeManager.addAttributes({ "ui5-layout": '' });
           var that = this;
@@ -269,107 +275,112 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'displayFormat', [_dec4], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'valueFormat', [_dec5], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'dateValue', [_dec6], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'displayFormatType', [_dec7], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'secondaryCalendarType', [_dec8], {
-        enumerable: true,
-        initializer: function initializer() {
-          return 'Gregorian';
-        }
-      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'minDate', [_dec9], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'maxDate', [_dec10], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'specialDates', [_dec11], {
-        enumerable: true,
-        initializer: function initializer() {
-          return [];
-        }
-      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec12], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec13], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec14], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'valueState', [_dec15], {
-        enumerable: true,
-        initializer: function initializer() {
-          return 'None';
-        }
-      }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'name', [_dec16], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_dec17], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'editable', [_dec18], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'valueStateText', [_dec19], {
-        enumerable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'showValueStateMessage', [_dec20], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'textAlign', [_dec21], {
-        enumerable: true,
-        initializer: function initializer() {
-          return 'Initial';
-        }
-      }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec22], {
-        enumerable: true,
-        initializer: function initializer() {
-          return 'Inherit';
-        }
-      }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'required', [_dec23], {
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'includeTime', [_dec4], {
         enumerable: true,
         initializer: function initializer() {
           return false;
         }
-      }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'change', [_dec24], {
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'displayFormat', [_dec5], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'valueFormat', [_dec6], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'dateValue', [_dec7], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'displayFormatType', [_dec8], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'secondaryCalendarType', [_dec9], {
+        enumerable: true,
+        initializer: function initializer() {
+          return 'Gregorian';
+        }
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'minDate', [_dec10], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'maxDate', [_dec11], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'specialDates', [_dec12], {
+        enumerable: true,
+        initializer: function initializer() {
+          return [];
+        }
+      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec13], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec14], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec15], {
+        enumerable: true,
+        initializer: function initializer() {
+          return true;
+        }
+      }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'valueState', [_dec16], {
+        enumerable: true,
+        initializer: function initializer() {
+          return 'None';
+        }
+      }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'name', [_dec17], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_dec18], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'editable', [_dec19], {
+        enumerable: true,
+        initializer: function initializer() {
+          return true;
+        }
+      }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'valueStateText', [_dec20], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'showValueStateMessage', [_dec21], {
+        enumerable: true,
+        initializer: function initializer() {
+          return true;
+        }
+      }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'textAlign', [_dec22], {
+        enumerable: true,
+        initializer: function initializer() {
+          return 'Initial';
+        }
+      }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec23], {
+        enumerable: true,
+        initializer: function initializer() {
+          return 'Inherit';
+        }
+      }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'required', [_dec24], {
+        enumerable: true,
+        initializer: function initializer() {
+          return false;
+        }
+      }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'change', [_dec25], {
         enumerable: true,
         initializer: function initializer() {
           return this.defaultFunc;
