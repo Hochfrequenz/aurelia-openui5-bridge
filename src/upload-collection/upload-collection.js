@@ -55,6 +55,10 @@ export class Ui5UploadCollection {
         this._upload.setInfoToolbar(child);
         return elem.localName;
       }
+      else if (elem.localName == 'parameter') {
+        this._upload.addHeaderParameter(child);
+        return elem.localName;
+      }
     }
   }
   removeChildByRelation(child, relation) {
@@ -66,6 +70,9 @@ export class Ui5UploadCollection {
     }
     else if (relation === 'infotoolbar' && this._upload) {
       this._upload.setInfoToolbar(null);
+    }
+    else if (relation === 'parameter' && this._upload) {
+      this._upload.removeHeaderParameter(null);
     }
   }
   attached() {

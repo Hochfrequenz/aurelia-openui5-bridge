@@ -151,6 +151,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             } else if (elem.localName == 'infotoolbar') {
               this._upload.setInfoToolbar(child);
               return elem.localName;
+            } else if (elem.localName == 'parameter') {
+              this._upload.addHeaderParameter(child);
+              return elem.localName;
             }
           }
         };
@@ -162,6 +165,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             this._upload.setToolbar(null);
           } else if (relation === 'infotoolbar' && this._upload) {
             this._upload.setInfoToolbar(null);
+          } else if (relation === 'parameter' && this._upload) {
+            this._upload.removeHeaderParameter(null);
           }
         };
 

@@ -135,7 +135,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
     Ui5TableSelectDialog.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
       if (relation == 'item') {
-        this._dialog.removeItem(child);
+        try {
+          this._dialog.removeItem(child);
+        } catch (exc) {}
+      } else if (relation == 'column') {
+        try {
+          this._dialog.removeColumn(child);
+        } catch (exc) {}
       }
     };
 

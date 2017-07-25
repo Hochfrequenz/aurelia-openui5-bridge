@@ -106,8 +106,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
               var oldVal = this.selectedKey;
               this.selectedKey = null;
               this.selectedKey = oldVal;
+              return elem.localName;
             }
             break;
+          }
+        };
+
+        Ui5Select.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+          if (relation === 'item') {
+            this._select.removeItem(child);
+            var oldVal = this.selectedKey;
+            this.selectedKey = null;
+            this.selectedKey = oldVal;
           }
         };
 

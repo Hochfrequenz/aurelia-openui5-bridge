@@ -21,7 +21,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     }
 
     ConfigBuilder.prototype.useAll = function useAll() {
-      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useUploadCollection().useViewSettingsDialog();
+      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog();
     };
 
     ConfigBuilder.prototype.useLink = function useLink() {
@@ -204,6 +204,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     ConfigBuilder.prototype.useUploadCollection = function useUploadCollection() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./upload-collection/upload-collection'));
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./upload-collection-item/upload-collection-item'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./upload-collection-parameter/upload-collection-parameter'));
       return this;
     };
 
@@ -211,6 +212,11 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./view-settings-item/view-settings-item'));
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./view-settings-filter-item/view-settings-filter-item'));
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./view-settings-dialog/view-settings-dialog'));
+      return this;
+    };
+
+    ConfigBuilder.prototype.useSelectDialog = function useSelectDialog() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./select-dialog/select-dialog'));
       return this;
     };
 

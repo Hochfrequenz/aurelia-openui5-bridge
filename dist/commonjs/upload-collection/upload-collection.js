@@ -144,6 +144,9 @@ var Ui5UploadCollection = exports.Ui5UploadCollection = (_dec = (0, _aureliaTemp
       } else if (elem.localName == 'infotoolbar') {
         this._upload.setInfoToolbar(child);
         return elem.localName;
+      } else if (elem.localName == 'parameter') {
+        this._upload.addHeaderParameter(child);
+        return elem.localName;
       }
     }
   };
@@ -155,6 +158,8 @@ var Ui5UploadCollection = exports.Ui5UploadCollection = (_dec = (0, _aureliaTemp
       this._upload.setToolbar(null);
     } else if (relation === 'infotoolbar' && this._upload) {
       this._upload.setInfoToolbar(null);
+    } else if (relation === 'parameter' && this._upload) {
+      this._upload.removeHeaderParameter(null);
     }
   };
 

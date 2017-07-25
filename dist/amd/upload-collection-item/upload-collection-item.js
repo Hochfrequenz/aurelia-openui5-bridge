@@ -90,6 +90,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       _initDefineProp(this, 'selected', _descriptor14, this);
 
       this._upload = null;
+      this._parent = null;
+      this._relation = null;
+
 
       this.element = element;
     }
@@ -149,7 +152,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       });
 
       if ($(this.element).parents("[ui5-container]").length > 0) {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._upload, this.element);
+        this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+        this._relation = this._parent.addChild(this._upload, this.element);
         attributeManager.addAttributes({ "ui5-container": '' });
       } else {
         this._upload.placeAt(this.element.parentElement);
@@ -159,8 +163,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     };
 
     Ui5UploadCollectionItem.prototype.detached = function detached() {
-      if ($(this.element).parents("[ui5-container]").length > 0) {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._upload, this.element);
+      if (this._parent && this._parent.removeChildByRelation) {
+        this._parent.removeChildByRelation(this._upload, this._relation);
       } else {
         this._upload.destroy();
       }

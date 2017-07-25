@@ -38,6 +38,7 @@ export class ConfigBuilder {
       .useIcon()
       .useActionSheet()
       .useTableSelectDialog()
+      .useSelectDialog()
       .useUploadCollection()
       .useViewSettingsDialog()
   }
@@ -195,12 +196,17 @@ export class ConfigBuilder {
   useUploadCollection(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./upload-collection/upload-collection'));
     this.globalResources.push(PLATFORM.moduleName('./upload-collection-item/upload-collection-item'));
+    this.globalResources.push(PLATFORM.moduleName('./upload-collection-parameter/upload-collection-parameter'));
     return this;
   }
   useViewSettingsDialog(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./view-settings-item/view-settings-item'));
     this.globalResources.push(PLATFORM.moduleName('./view-settings-filter-item/view-settings-filter-item'));
     this.globalResources.push(PLATFORM.moduleName('./view-settings-dialog/view-settings-dialog'));
+    return this;
+  }
+  useSelectDialog(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./select-dialog/select-dialog'));
     return this;
   }
   /**

@@ -43,8 +43,17 @@ export class Ui5Select {
         var oldVal = this.selectedKey;
         this.selectedKey = null;
         this.selectedKey = oldVal;
+        return elem.localName;
       }
       break;
+    }
+  }
+    removeChildByRelation(child, relation) {
+    if(relation === 'item'){
+      this._select.removeItem(child);
+      var oldVal = this.selectedKey;
+        this.selectedKey = null;
+        this.selectedKey = oldVal;
     }
   }
   constructor(element) {

@@ -70,7 +70,9 @@ export * from './action-sheet/action-sheet';
 export * from './table-select-dialog/table-select-dialog';
 export * from './upload-collection/upload-collection';
 export * from './upload-collection-item/upload-collection-item';
+export * from './upload-collection-parameter/upload-collection-parameter';
 export * from './view-settings-item/view-settings-item';
 export * from './view-settings-filter-item/view-settings-filter-item';
 export * from './view-settings-dialog/view-settings-dialog';
+export * from './select-dialog/select-dialog';
 // build-index-remove end

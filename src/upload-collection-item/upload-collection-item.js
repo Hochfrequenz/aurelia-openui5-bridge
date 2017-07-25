@@ -22,7 +22,10 @@ export class Ui5UploadCollectionItem {
   @bindable() selected = false;
 
   _upload = null;
+  _parent = null;
+  _relation = null;
   constructor(element) {
+    
     this.element = element;
   }
   defaultFunc(event) {
@@ -74,7 +77,8 @@ export class Ui5UploadCollectionItem {
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._upload, this.element);
+      this._parent =$(this.element).parents("[ui5-container]")[0].au.controller.viewModel; 
+      this._relation = this._parent.addChild(this._upload, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -84,8 +88,8 @@ export class Ui5UploadCollectionItem {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._upload, this.element);
+    if (this._parent && this._parent.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._upload, this._relation);
     }
     else {
       this._upload.destroy();

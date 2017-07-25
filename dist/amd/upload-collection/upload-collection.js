@@ -141,6 +141,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         } else if (elem.localName == 'infotoolbar') {
           this._upload.setInfoToolbar(child);
           return elem.localName;
+        } else if (elem.localName == 'parameter') {
+          this._upload.addHeaderParameter(child);
+          return elem.localName;
         }
       }
     };
@@ -152,6 +155,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         this._upload.setToolbar(null);
       } else if (relation === 'infotoolbar' && this._upload) {
         this._upload.setInfoToolbar(null);
+      } else if (relation === 'parameter' && this._upload) {
+        this._upload.removeHeaderParameter(null);
       }
     };
 

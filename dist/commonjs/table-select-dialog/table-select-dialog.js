@@ -122,7 +122,13 @@ var Ui5TableSelectDialog = exports.Ui5TableSelectDialog = (_dec = (0, _aureliaTe
 
   Ui5TableSelectDialog.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
     if (relation == 'item') {
-      this._dialog.removeItem(child);
+      try {
+        this._dialog.removeItem(child);
+      } catch (exc) {}
+    } else if (relation == 'column') {
+      try {
+        this._dialog.removeColumn(child);
+      } catch (exc) {}
     }
   };
 

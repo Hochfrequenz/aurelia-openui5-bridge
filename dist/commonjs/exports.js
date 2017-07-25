@@ -856,6 +856,18 @@ Object.keys(_uploadCollectionItem).forEach(function (key) {
   });
 });
 
+var _uploadCollectionParameter = require('./upload-collection-parameter/upload-collection-parameter');
+
+Object.keys(_uploadCollectionParameter).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _uploadCollectionParameter[key];
+    }
+  });
+});
+
 var _viewSettingsItem = require('./view-settings-item/view-settings-item');
 
 Object.keys(_viewSettingsItem).forEach(function (key) {
@@ -888,6 +900,18 @@ Object.keys(_viewSettingsDialog).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _viewSettingsDialog[key];
+    }
+  });
+});
+
+var _selectDialog = require('./select-dialog/select-dialog');
+
+Object.keys(_selectDialog).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _selectDialog[key];
     }
   });
 });

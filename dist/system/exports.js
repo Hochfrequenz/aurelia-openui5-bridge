@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['./page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs', './segmented-button/segmented-button', './segmented-button-item/segmented-button-item', './dialog/dialog', './list/list', './list-base/list-base', './standard-list-item/standard-list-item', './responsive-popover/responsive-popover', './icon/icon', './action-sheet/action-sheet', './table-select-dialog/table-select-dialog', './upload-collection/upload-collection', './upload-collection-item/upload-collection-item', './view-settings-item/view-settings-item', './view-settings-filter-item/view-settings-filter-item', './view-settings-dialog/view-settings-dialog'], function (_export, _context) {
+System.register(['./page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs', './segmented-button/segmented-button', './segmented-button-item/segmented-button-item', './dialog/dialog', './list/list', './list-base/list-base', './standard-list-item/standard-list-item', './responsive-popover/responsive-popover', './icon/icon', './action-sheet/action-sheet', './table-select-dialog/table-select-dialog', './upload-collection/upload-collection', './upload-collection-item/upload-collection-item', './upload-collection-parameter/upload-collection-parameter', './view-settings-item/view-settings-item', './view-settings-filter-item/view-settings-filter-item', './view-settings-dialog/view-settings-dialog', './select-dialog/select-dialog'], function (_export, _context) {
   "use strict";
 
   return {
@@ -572,30 +572,46 @@ System.register(['./page/page', './shell/shell', './bar/bar', './container/conta
       }
 
       _export(_exportObj71);
-    }, function (_viewSettingsItemViewSettingsItem) {
+    }, function (_uploadCollectionParameterUploadCollectionParameter) {
       var _exportObj72 = {};
 
-      for (var _key72 in _viewSettingsItemViewSettingsItem) {
-        if (_key72 !== "default" && _key72 !== "__esModule") _exportObj72[_key72] = _viewSettingsItemViewSettingsItem[_key72];
+      for (var _key72 in _uploadCollectionParameterUploadCollectionParameter) {
+        if (_key72 !== "default" && _key72 !== "__esModule") _exportObj72[_key72] = _uploadCollectionParameterUploadCollectionParameter[_key72];
       }
 
       _export(_exportObj72);
-    }, function (_viewSettingsFilterItemViewSettingsFilterItem) {
+    }, function (_viewSettingsItemViewSettingsItem) {
       var _exportObj73 = {};
 
-      for (var _key73 in _viewSettingsFilterItemViewSettingsFilterItem) {
-        if (_key73 !== "default" && _key73 !== "__esModule") _exportObj73[_key73] = _viewSettingsFilterItemViewSettingsFilterItem[_key73];
+      for (var _key73 in _viewSettingsItemViewSettingsItem) {
+        if (_key73 !== "default" && _key73 !== "__esModule") _exportObj73[_key73] = _viewSettingsItemViewSettingsItem[_key73];
       }
 
       _export(_exportObj73);
-    }, function (_viewSettingsDialogViewSettingsDialog) {
+    }, function (_viewSettingsFilterItemViewSettingsFilterItem) {
       var _exportObj74 = {};
 
-      for (var _key74 in _viewSettingsDialogViewSettingsDialog) {
-        if (_key74 !== "default" && _key74 !== "__esModule") _exportObj74[_key74] = _viewSettingsDialogViewSettingsDialog[_key74];
+      for (var _key74 in _viewSettingsFilterItemViewSettingsFilterItem) {
+        if (_key74 !== "default" && _key74 !== "__esModule") _exportObj74[_key74] = _viewSettingsFilterItemViewSettingsFilterItem[_key74];
       }
 
       _export(_exportObj74);
+    }, function (_viewSettingsDialogViewSettingsDialog) {
+      var _exportObj75 = {};
+
+      for (var _key75 in _viewSettingsDialogViewSettingsDialog) {
+        if (_key75 !== "default" && _key75 !== "__esModule") _exportObj75[_key75] = _viewSettingsDialogViewSettingsDialog[_key75];
+      }
+
+      _export(_exportObj75);
+    }, function (_selectDialogSelectDialog) {
+      var _exportObj76 = {};
+
+      for (var _key76 in _selectDialogSelectDialog) {
+        if (_key76 !== "default" && _key76 !== "__esModule") _exportObj76[_key76] = _selectDialogSelectDialog[_key76];
+      }
+
+      _export(_exportObj76);
     }],
     execute: function () {}
   };

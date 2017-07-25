@@ -67,6 +67,8 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
     _classCallCheck(this, Ui5Column);
 
     this._column = null;
+    this._parent = null;
+    this._relation = null;
 
     _initDefineProp(this, 'ui5Id', _descriptor, this);
 
@@ -113,8 +115,15 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
       mergeFunctionName: this.mergeFunctionName
     };
     if (this.ui5Id) this._column = new sap.m.Column(this.ui5Id, params);else this._column = new sap.m.Column(params);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._column, this.element);
+    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._relation = this._parent.addChild(this._column, this.element);
     attributeManager.addAttributes({ "ui5-container": '' });
+  };
+
+  Ui5Column.prototype.detached = function detached() {
+    if (this._parent && this._relation) {
+      this._parent.removeChildByRelation(this._column, this._relation);
+    }
   };
 
   Ui5Column.prototype.addChild = function addChild(child, elem) {
