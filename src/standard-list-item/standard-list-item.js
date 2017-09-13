@@ -3,10 +3,13 @@ import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
 import { Ui5Control } from '../control/control';
+import { Ui5ListItemBase } from '../list-item-base/list-item-base';
+import { computedFrom } from 'aurelia-framework';
+
 @customElement('ui5-standard-list-item')
 @inject(Element)
 
-export class Ui5StandardListItem {
+export class Ui5StandardListItem extends Ui5ListItemBase {
   _item = null;
   _parent = null;
   _relation = null;
@@ -21,9 +24,25 @@ export class Ui5StandardListItem {
   @bindable() adaptTitleSize = true;
   @bindable() titleTextDirection = 'Inherit';
   @bindable() infoTextDirection = 'Inherit';
+  /*inherited from list-item-base*/
+  @bindable() visible = true;
+  @bindable() type = 'Inactive';
+  @bindable() unread = false;
+  @bindable() selected = false;
+  @bindable() counter = null;
+  @bindable() highlight = 'None';
 
+  @bindable() tap = this.defaultFunc;
+  @bindable() detailTap = this.defaultFunc;
+  @bindable() press = this.defaultFunc;
+  @bindable() detailPress = this.defaultFunc;
 
+  @computedFrom('_item')
+  get UIElement() {
+    return this._item;
+  }
   constructor(element) {
+    super(element);
     this.element = element;
   }
   defaultFunc() {
@@ -34,6 +53,7 @@ export class Ui5StandardListItem {
     var props = {
       title: this.title,
       icon: this.icon,
+      description: this.description,
       iconInset: getBooleanFromAttributeValue(this.iconInset),
       iconDensityAware: getBooleanFromAttributeValue(this.iconDensityAware),
       activeIcon: this.activeIcon,
@@ -43,7 +63,12 @@ export class Ui5StandardListItem {
       titleTextDirection: this.titleTextDirection,
       infoTextDirection: this.infoTextDirection
     }
+    super.fillProperties(props);
     this._item = new sap.m.StandardListItem(props);
+
+    if (this._customData)
+      this._item.addCustomData(this._customData);
+
     attributeManager.addAttributes({ "ui5-container": '' });
     this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
     this._relation = this._parent.addChild(this._item, this.element);

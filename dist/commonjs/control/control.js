@@ -49,5 +49,13 @@ var Ui5Control = exports.Ui5Control = function (_Ui5Element) {
         }
     };
 
+    Ui5Control.prototype.bind = function bind(param) {
+        _Ui5Element.prototype.bind.call(this, param);
+    };
+
+    Ui5Control.prototype.unbind = function unbind() {
+        _Ui5Element.prototype.unbind.call(this);
+    };
+
     return Ui5Control;
 }(_element.Ui5Element);

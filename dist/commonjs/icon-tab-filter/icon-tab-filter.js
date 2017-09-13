@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5IconTabFilter = undefined;
 
-var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
+var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -60,13 +60,15 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-filter'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-filter'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
   function Ui5IconTabFilter(element) {
     _classCallCheck(this, Ui5IconTabFilter);
 
     this._tab = null;
 
     _initDefineProp(this, 'text', _descriptor, this);
+
+    _initDefineProp(this, 'tabKey', _descriptor2, this);
 
     this.element = element;
   }
@@ -114,7 +116,8 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
   Ui5IconTabFilter.prototype.attached = function attached() {
     var attributeManager = new _attributeManager.AttributeManager(this.element);
     this._tab = new sap.m.IconTabFilter({
-      text: this.text
+      text: this.text,
+      key: this.tabKey
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
@@ -135,6 +138,12 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
     }
   };
 
+  Ui5IconTabFilter.prototype.tabKeyChanged = function tabKeyChanged(newValue) {
+    if (this._tab !== null) {
+      this._tab.setKey(newValue);
+    }
+  };
+
   Ui5IconTabFilter.prototype.textChanged = function textChanged(newValue) {
     if (this._tab !== null) {
       this._tab.setText(newValue);
@@ -143,6 +152,11 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
 
   return Ui5IconTabFilter;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec3], {
+  enumerable: true,
+  initializer: function initializer() {
+    return null;
+  }
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabKey', [_dec4], {
   enumerable: true,
   initializer: function initializer() {
     return null;

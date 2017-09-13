@@ -80,6 +80,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       _classCallCheck(this, Ui5Text);
 
       this._text = null;
+      this._parent = null;
+      this._relation = null;
 
       _initDefineProp(this, 'ui5Id', _descriptor, this);
 
@@ -102,7 +104,14 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         maxLines: this.maxLines
       };
       if (this.ui5Id) this._text = new sap.m.Text(this.ui5Id, props);else this._text = new sap.m.Text(props);
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._text, this.element);
+    };
+
+    Ui5Text.prototype.detached = function detached() {
+      if (this._parent && this._parent.removeChildByRelation) {
+        this._parent.removeChildByRelation(this._text, this._relation);
+      }
     };
 
     Ui5Text.prototype.textChanged = function textChanged(newValue) {

@@ -75,6 +75,8 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
     _initDefineProp(this, 'navButtonPress', _descriptor5, this);
 
     this._page = null;
+    this._relation = null;
+    this._parent = null;
 
     this.element = element;
   }
@@ -95,19 +97,19 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
 
       if (elem.localName == 'header') {
         this._page.addHeaderContent(child);
-        break;
+        return elem.localName;
       }
       if (elem.localName == 'subheader') {
         this._page.setSubHeader(child);
-        break;
+        return elem.localName;
       }
       if (elem.localName == 'content') {
         this._page.addContent(child);
-        break;
+        return elem.localName;
       }
       if (elem.localName == 'footer') {
         this._page.setFooter(child);
-        break;
+        return elem.localName;
       }
     }
   };
@@ -141,6 +143,14 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
     }
   };
 
+  Ui5Page.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+    if (relation == 'header') {
+      this._page.removeHeaderContent(child);
+    } else if (relation == 'content') {
+      this._page.removeContent(child);
+    }
+  };
+
   Ui5Page.prototype.attached = function attached() {
     var attributeManager = new _attributeManager.AttributeManager(this.element);
     var page = new sap.m.Page({
@@ -153,7 +163,8 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
     this._page = page;
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._page, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._page, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     } else {
       this._page.placeAt(this.element.parentElement);
@@ -164,7 +175,7 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
 
   Ui5Page.prototype.detached = function detached() {
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
+      if (this._parent && this._parent.removeChildByRelation) this._parent.removeChildByRelation(this._relation);else $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
     } else {
       this._page.destroy();
     }

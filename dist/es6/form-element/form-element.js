@@ -19,12 +19,22 @@ export class Ui5FormElement {
     for (elem of path) {
       if (elem.localName == 'label') {
         this._form.setLabel(child);
-        break;
+        return elem.localName;
       }
       if (elem.localName == 'field') {
         this._form.addField(child);
-        break;
+        return elem.localName;
       }
+    }
+  }
+  removeChildByRelation(child, relation) {
+    try {
+      if (relation === 'field' && this._form && child) {
+        this._form.removeField(child);
+      }
+    }
+    catch (error) {
+
     }
   }
   attached() {

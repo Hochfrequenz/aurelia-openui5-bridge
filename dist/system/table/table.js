@@ -240,6 +240,10 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        Ui5Table.prototype.resetLimit = function resetLimit() {
+          this._table._oGrowingDelegate.reset();
+        };
+
         Ui5Table.prototype.attached = function attached() {
           var attributeManager = new AttributeManager(this.element);
           var props = {
@@ -249,7 +253,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           _Ui5ListBase.prototype.fillProperties.call(this, props);
           var table = new sap.m.Table(props);
           this._table = table;
-
+          if (this._table._oGrowingDelegate) {
+            this._table._oGrowingDelegate.updateItems = function (sChangeReason) {
+              this._onBeforePageLoaded(sChangeReason);
+              this._onAfterPageLoaded(sChangeReason);
+            };
+          }
           if ($(this.element).parents("[ui5-container]").length > 0) {
             this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
             this._relation = this._parent.addChild(this._table, this.element);

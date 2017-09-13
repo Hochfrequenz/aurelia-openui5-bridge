@@ -41,6 +41,7 @@ export class ConfigBuilder {
       .useSelectDialog()
       .useUploadCollection()
       .useViewSettingsDialog()
+      .useSplitContainer()
   }
 
   useLink(): ConfigBuilder {
@@ -207,6 +208,10 @@ export class ConfigBuilder {
   }
   useSelectDialog(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./select-dialog/select-dialog'));
+    return this;
+  }
+  useSplitContainer(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./split-container/split-container'));
     return this;
   }
   /**

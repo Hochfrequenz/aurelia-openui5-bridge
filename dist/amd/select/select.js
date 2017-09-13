@@ -188,7 +188,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       var that = this;
       this._select.attachChange(function (event) {
         that.selectedItem = event.mParameters.selectedItem;
-        that.selectedKey = event.mParameters.selectedItem.mProperties.key;
+        if (event.mParameters.selectedItem) that.selectedKey = event.mParameters.selectedItem.mProperties.key;else that.selectedKey = null;
       });
 
       this._select.addEventDelegate(this.element);

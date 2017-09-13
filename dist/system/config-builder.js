@@ -25,7 +25,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         }
 
         ConfigBuilder.prototype.useAll = function useAll() {
-          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog();
+          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer();
         };
 
         ConfigBuilder.prototype.useLink = function useLink() {
@@ -221,6 +221,11 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
         ConfigBuilder.prototype.useSelectDialog = function useSelectDialog() {
           this.globalResources.push(PLATFORM.moduleName('./select-dialog/select-dialog'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useSplitContainer = function useSplitContainer() {
+          this.globalResources.push(PLATFORM.moduleName('./split-container/split-container'));
           return this;
         };
 

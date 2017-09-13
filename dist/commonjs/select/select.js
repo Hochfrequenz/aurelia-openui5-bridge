@@ -177,7 +177,7 @@ var Ui5Select = exports.Ui5Select = (_dec = (0, _aureliaTemplating.customElement
     var that = this;
     this._select.attachChange(function (event) {
       that.selectedItem = event.mParameters.selectedItem;
-      that.selectedKey = event.mParameters.selectedItem.mProperties.key;
+      if (event.mParameters.selectedItem) that.selectedKey = event.mParameters.selectedItem.mProperties.key;else that.selectedKey = null;
     });
 
     this._select.addEventDelegate(this.element);

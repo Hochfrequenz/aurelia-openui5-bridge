@@ -9,7 +9,7 @@ import { Ui5ListBase } from '../list-base/list-base';
 export class Ui5List extends Ui5ListBase {
   @bindable() backgroundDesign = 'Solid';
   /*inherited from list-base*/
-  @bindable() inset = true;
+  @bindable() inset = false;
   @bindable() headerText = null;
   @bindable() headerDesign = 'Standard';
   @bindable() footerText = null;
@@ -33,7 +33,7 @@ export class Ui5List extends Ui5ListBase {
 
   @bindable() delete = this.defaultFunc;
   @bindable() itemPress = this.defaultFunc;
-  @bindable() selectionChanged = this.defaultFunc;
+  @bindable() selectionChange = this.defaultFunc;
   @bindable() swipe = this.defaultFunc;
   @bindable() updateFinished = this.defaultFunc;
   @bindable() updateStarted = this.defaultFunc;
@@ -73,6 +73,10 @@ export class Ui5List extends Ui5ListBase {
       if (elem.localName == 'item')
       { this._list.removeItem(child); break; }
     }
+
+  }
+  resetLimit() {
+    this._list._oGrowingDelegate.reset();
   }
   attached() {
     var attributeManager = new AttributeManager(this.element);
@@ -80,9 +84,12 @@ export class Ui5List extends Ui5ListBase {
       backgroundDesign: this.backgroundDesign,
     };
     super.fillProperties(props);
-    var table = new sap.m.List(props);
-    this._list = table;
-
+    var list = new sap.m.List(props);
+    this._list = list;
+    this._list._oGrowingDelegate.updateItems = function (sChangeReason) {
+      this._onBeforePageLoaded(sChangeReason);
+      this._onAfterPageLoaded(sChangeReason);
+    };
     if ($(this.element).parents("[ui5-container]").length > 0) {
       this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._list, this.element);
@@ -108,9 +115,9 @@ export class Ui5List extends Ui5ListBase {
       this._list.setBackgroundDesign(newValue);
     }
   }
-  selectionChangedChanged(newValue) {
+  selectionChangeChanged(newValue) {
     if (this._list !== null) {
-      this._list.attachSelectionChanged(newValue);
+      this._list.attachSelectionChange(newValue);
     }
   }
 

@@ -8,6 +8,8 @@ import { computedFrom } from 'aurelia-framework';
 
 export class Ui5Text {
   _text = null;
+  _parent = null;
+  _relation = null;
   @bindable ui5Id = null;
   @bindable text = null;
   @bindable wrapping = true;
@@ -31,7 +33,14 @@ export class Ui5Text {
       this._text = new sap.m.Text(this.ui5Id,props);
     else
       this._text = new sap.m.Text(props);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._relation = this._parent.addChild(this._text, this.element);
+    
+  }
+  detached(){
+    if(this._parent && this._parent.removeChildByRelation){
+      this._parent.removeChildByRelation(this._text,this._relation);
+    }
   }
   textChanged(newValue) {
     if (this._text != null) {

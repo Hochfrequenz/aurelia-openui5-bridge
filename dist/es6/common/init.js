@@ -11,3 +11,14 @@ export function ui5Initialize() {
 export function ui5SetTheme(name, path) {
   sap.ui.getCore().applyTheme(name, path);
 }
+export function findUi5DialogElement(name){
+  return document.body.querySelector(`[ui5-dialog-id="${name}"`); 
+}
+export function getUi5DialogElement(name) {
+  try {
+    return document.body.querySelector(`[ui5-dialog-id="${name}"`).au.controller.viewModel.UIElement;
+  }
+  catch (exc) {
+    return null;
+  }
+}

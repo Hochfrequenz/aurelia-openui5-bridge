@@ -48,12 +48,12 @@ export class Ui5Select {
       break;
     }
   }
-    removeChildByRelation(child, relation) {
-    if(relation === 'item'){
+  removeChildByRelation(child, relation) {
+    if (relation === 'item') {
       this._select.removeItem(child);
       var oldVal = this.selectedKey;
-        this.selectedKey = null;
-        this.selectedKey = oldVal;
+      this.selectedKey = null;
+      this.selectedKey = oldVal;
     }
   }
   constructor(element) {
@@ -93,7 +93,10 @@ export class Ui5Select {
     var that = this;
     this._select.attachChange((event) => {
       that.selectedItem = event.mParameters.selectedItem;
-      that.selectedKey = event.mParameters.selectedItem.mProperties.key;
+      if (event.mParameters.selectedItem)
+        that.selectedKey = event.mParameters.selectedItem.mProperties.key;
+      else
+        that.selectedKey = null;
     });
 
     this._select.addEventDelegate(this.element);

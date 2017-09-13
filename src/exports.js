@@ -63,6 +63,7 @@ export * from './segmented-button-item/segmented-button-item';
 export * from './dialog/dialog';
 export * from './list/list';
 export * from './list-base/list-base';
+export * from './list-item-base/list-item-base';
 export * from './standard-list-item/standard-list-item';
 export * from './responsive-popover/responsive-popover';
 export * from './icon/icon';
@@ -75,4 +76,5 @@ export * from './view-settings-item/view-settings-item';
 export * from './view-settings-filter-item/view-settings-filter-item';
 export * from './view-settings-dialog/view-settings-dialog';
 export * from './select-dialog/select-dialog';
+export * from './split-container/split-container';
 // build-index-remove end

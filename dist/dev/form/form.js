@@ -100,6 +100,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           _initDefineProp(this, 'title', _descriptor4, this);
 
           this._form = null;
+          this._parent = null;
+          this._relation = null;
 
           this.element = element;
         }
@@ -118,19 +120,19 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
             if (elem.localName == 'toolbar') {
               this._form.setToolbar(child);
-              break;
+              return elem.localName;
             }
             if (elem.localName == 'titleElement') {
               this._form.setTitle(child);
-              break;
+              return elem.localName;
             }
             if (elem.localName == 'layout') {
               this._form.setLayout(child);
-              break;
+              return elem.localName;
             }
             if (elem.localName == 'container') {
               this._form.addFormContainer(child);
-              break;
+              return elem.localName;
             }
           }
         };
@@ -145,12 +147,23 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           if (this.ui5Id) this._form = new sap.ui.layout.form.Form(this.ui5Id, params);else this._form = new sap.ui.layout.form.Form(params);
 
           if ($(this.element).parents("[ui5-container]").length > 0) {
-            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
+            this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+            this._relation = this._parent.addChild(this._form, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });
           } else {
             this._form.placeAt(this.element.parentElement);
             attributeManager.addClasses("ui5-hide");
           }
+        };
+
+        Ui5Form.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+          if (relation === 'container' && this._form && child) {
+            this._form.removeFormContainer(child);
+          }
+        };
+
+        Ui5Form.prototype.detached = function detached() {
+          if (this._parent && this._parent.removeChildByRelation) this._parent.removeChildByRelation(this._form, this._relation);
         };
 
         Ui5Form.prototype.editableChanged = function editableChanged(newValue) {

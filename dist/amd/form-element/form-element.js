@@ -84,13 +84,21 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
         if (elem.localName == 'label') {
           this._form.setLabel(child);
-          break;
+          return elem.localName;
         }
         if (elem.localName == 'field') {
           this._form.addField(child);
-          break;
+          return elem.localName;
         }
       }
+    };
+
+    Ui5FormElement.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+      try {
+        if (relation === 'field' && this._form && child) {
+          this._form.removeField(child);
+        }
+      } catch (error) {}
     };
 
     Ui5FormElement.prototype.attached = function attached() {

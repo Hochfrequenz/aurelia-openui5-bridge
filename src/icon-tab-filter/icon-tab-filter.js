@@ -8,6 +8,7 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 export class Ui5IconTabFilter {
   _tab = null;
   @bindable() text = null;
+  @bindable() tabKey = null;
   constructor(element) {
     this.element = element;
   }
@@ -36,6 +37,7 @@ export class Ui5IconTabFilter {
     var attributeManager = new AttributeManager(this.element);
     this._tab = new sap.m.IconTabFilter({
       text: this.text,
+      key: this.tabKey
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
@@ -55,6 +57,11 @@ export class Ui5IconTabFilter {
     else {
       this._tab.destroy();
     }
+  }
+  tabKeyChanged(newValue) {
+    if (this._tab !== null) {
+      this._tab.setKey(newValue);
+    } 
   }
   textChanged(newValue) {
     if (this._tab !== null) {

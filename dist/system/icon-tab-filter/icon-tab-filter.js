@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, Ui5IconTabFilter;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, Ui5IconTabFilter;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -67,13 +67,15 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
     }],
     execute: function () {
-      _export('Ui5IconTabFilter', Ui5IconTabFilter = (_dec = customElement('ui5-icon-tab-filter'), _dec2 = inject(Element), _dec3 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5IconTabFilter', Ui5IconTabFilter = (_dec = customElement('ui5-icon-tab-filter'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5IconTabFilter(element) {
           _classCallCheck(this, Ui5IconTabFilter);
 
           this._tab = null;
 
           _initDefineProp(this, 'text', _descriptor, this);
+
+          _initDefineProp(this, 'tabKey', _descriptor2, this);
 
           this.element = element;
         }
@@ -121,7 +123,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         Ui5IconTabFilter.prototype.attached = function attached() {
           var attributeManager = new AttributeManager(this.element);
           this._tab = new sap.m.IconTabFilter({
-            text: this.text
+            text: this.text,
+            key: this.tabKey
           });
 
           if ($(this.element).parents("[ui5-container]").length > 0) {
@@ -142,6 +145,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        Ui5IconTabFilter.prototype.tabKeyChanged = function tabKeyChanged(newValue) {
+          if (this._tab !== null) {
+            this._tab.setKey(newValue);
+          }
+        };
+
         Ui5IconTabFilter.prototype.textChanged = function textChanged(newValue) {
           if (this._tab !== null) {
             this._tab.setText(newValue);
@@ -150,6 +159,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
         return Ui5IconTabFilter;
       }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec3], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabKey', [_dec4], {
         enumerable: true,
         initializer: function initializer() {
           return null;

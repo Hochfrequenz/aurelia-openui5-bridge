@@ -169,7 +169,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           _initDefineProp(_this, 'itemPress', _descriptor24, _this);
 
-          _initDefineProp(_this, 'selectionChanged', _descriptor25, _this);
+          _initDefineProp(_this, 'selectionChange', _descriptor25, _this);
 
           _initDefineProp(_this, 'swipe', _descriptor26, _this);
 
@@ -231,15 +231,22 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        Ui5List.prototype.resetLimit = function resetLimit() {
+          this._list._oGrowingDelegate.reset();
+        };
+
         Ui5List.prototype.attached = function attached() {
           var attributeManager = new AttributeManager(this.element);
           var props = {
             backgroundDesign: this.backgroundDesign
           };
           _Ui5ListBase.prototype.fillProperties.call(this, props);
-          var table = new sap.m.List(props);
-          this._list = table;
-
+          var list = new sap.m.List(props);
+          this._list = list;
+          this._list._oGrowingDelegate.updateItems = function (sChangeReason) {
+            this._onBeforePageLoaded(sChangeReason);
+            this._onAfterPageLoaded(sChangeReason);
+          };
           if ($(this.element).parents("[ui5-container]").length > 0) {
             this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
             this._relation = this._parent.addChild(this._list, this.element);
@@ -265,9 +272,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
-        Ui5List.prototype.selectionChangedChanged = function selectionChangedChanged(newValue) {
+        Ui5List.prototype.selectionChangeChanged = function selectionChangeChanged(newValue) {
           if (this._list !== null) {
-            this._list.attachSelectionChanged(newValue);
+            this._list.attachSelectionChange(newValue);
           }
         };
 
@@ -287,7 +294,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'inset', [_dec4], {
         enumerable: true,
         initializer: function initializer() {
-          return true;
+          return false;
         }
       }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'headerText', [_dec5], {
         enumerable: true,
@@ -399,7 +406,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         initializer: function initializer() {
           return this.defaultFunc;
         }
-      }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'selectionChanged', [_dec27], {
+      }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'selectionChange', [_dec27], {
         enumerable: true,
         initializer: function initializer() {
           return this.defaultFunc;

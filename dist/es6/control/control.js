@@ -13,6 +13,7 @@ export class Ui5Control extends Ui5Element {
     addChild(child, elem) {
         super.addChild(child, elem);
     }
+   
     removeChild(child,elem){
         super.removeChild(child,elem);
     }
@@ -26,5 +27,11 @@ export class Ui5Control extends Ui5Element {
         if (this.UIElement != null) {
             this.UIElement.setBusy(getBooleanFromAttributeValue(newValue));
         }
+    }
+    bind(param){
+        super.bind(param);
+    }
+    unbind(){
+        super.unbind();
     }
 }

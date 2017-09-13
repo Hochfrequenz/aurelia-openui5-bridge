@@ -11,7 +11,7 @@ export class Ui5Table extends Ui5ListBase {
   @bindable() showOverlay = false;
   @bindable() fixedLayout = true;
 
-   /*inherited from list-base*/
+  /*inherited from list-base*/
   @bindable() inset = true;
   @bindable() headerText = null;
   @bindable() headerDesign = 'Standard';
@@ -78,6 +78,9 @@ export class Ui5Table extends Ui5ListBase {
       { this._table.removeItem(child); break; }
     }
   }
+  resetLimit() {
+    this._table._oGrowingDelegate.reset();
+  }
   attached() {
     var attributeManager = new AttributeManager(this.element);
     var props = {
@@ -87,7 +90,12 @@ export class Ui5Table extends Ui5ListBase {
     super.fillProperties(props);
     var table = new sap.m.Table(props);
     this._table = table;
-
+    if (this._table._oGrowingDelegate) {
+      this._table._oGrowingDelegate.updateItems = function (sChangeReason) {
+        this._onBeforePageLoaded(sChangeReason);
+        this._onAfterPageLoaded(sChangeReason);
+      };
+    }
     if ($(this.element).parents("[ui5-container]").length > 0) {
       this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._table, this.element);

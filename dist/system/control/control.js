@@ -76,6 +76,14 @@ System.register(['../element/element', '../common/attributes'], function (_expor
                     }
                 };
 
+                Ui5Control.prototype.bind = function bind(param) {
+                    _Ui5Element.prototype.bind.call(this, param);
+                };
+
+                Ui5Control.prototype.unbind = function unbind() {
+                    _Ui5Element.prototype.unbind.call(this);
+                };
+
                 return Ui5Control;
             }(Ui5Element));
 
