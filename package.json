@@ -1,6 +1,6 @@
 {
   "name": "aurelia-openui5-bridge",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "registry": "github",
   "description": "Aurelia interface to https://github.com/SAP/openui5",
   "keywords": [

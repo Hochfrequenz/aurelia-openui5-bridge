@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.1.1...v0.1.2) (2017-09-19)
+
+
+### Bug Fixes
+
+* **release:** add npm config ([cce323b](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/cce323b))
+* **release:** update require-dir dependency ([0c42cfd](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/0c42cfd))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.1.0...v0.1.1) (2017-09-19)
 
