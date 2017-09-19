@@ -32,3 +32,9 @@ script:
 before_install:
   - npm install -g jspm
   - jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
+deploy:
+  provider: npm
+  email: $NPM_USER
+  api_key: $NPM_API_KEY
+  on:
+    tags: true
