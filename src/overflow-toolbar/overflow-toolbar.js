@@ -25,7 +25,7 @@ export class Ui5OverflowToolbar {
     for (elem of path) {
       if (elem.localName == 'content') {
         this._bar.addContent(child);
-        break;
+        return elem.localName;
       }
     }
   }
@@ -38,6 +38,11 @@ export class Ui5OverflowToolbar {
       }
     }
   }
+  removeChildByRelation(child,relation){
+    if (relation === 'content' && this._bar && child) {
+     this._bar.removeContent(child);
+   }
+ }
   attached() {
     var attributeManager = new AttributeManager(this.element);
     this._bar = new sap.m.OverflowToolbar({

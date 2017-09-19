@@ -100,7 +100,8 @@ export class Ui5IconTabBar {
   }
   selectedKeyChanged(newValue) {
     if (this._tab !== null) {
-      this._tab.setSelectedKey(newValue);
+      if(this._tab.getSelectedKey()!=newValue)
+        this._tab.setSelectedKey(newValue);
     }
   }
   upperCaseChanged(newValue) {

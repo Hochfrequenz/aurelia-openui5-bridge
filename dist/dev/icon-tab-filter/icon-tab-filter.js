@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, Ui5IconTabFilter;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, Ui5IconTabFilter;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -67,7 +67,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
     }],
     execute: function () {
-      _export('Ui5IconTabFilter', Ui5IconTabFilter = (_dec = customElement('ui5-icon-tab-filter'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5IconTabFilter', Ui5IconTabFilter = (_dec = customElement('ui5-icon-tab-filter'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5IconTabFilter(element) {
           _classCallCheck(this, Ui5IconTabFilter);
 
@@ -76,6 +76,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           _initDefineProp(this, 'text', _descriptor, this);
 
           _initDefineProp(this, 'tabKey', _descriptor2, this);
+
+          _initDefineProp(this, 'design', _descriptor3, this);
 
           this.element = element;
         }
@@ -124,7 +126,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           var attributeManager = new AttributeManager(this.element);
           this._tab = new sap.m.IconTabFilter({
             text: this.text,
-            key: this.tabKey
+            key: this.tabKey,
+            design: this.design
           });
 
           if ($(this.element).parents("[ui5-container]").length > 0) {
@@ -157,6 +160,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        Ui5IconTabFilter.prototype.designChanged = function designChanged(newValue) {
+          if (this._tab !== null) {
+            this._tab.setDesign(newValue);
+          }
+        };
+
         return Ui5IconTabFilter;
       }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec3], {
         enumerable: true,
@@ -167,6 +176,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         enumerable: true,
         initializer: function initializer() {
           return null;
+        }
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'design', [_dec5], {
+        enumerable: true,
+        initializer: function initializer() {
+          return 'Vertical';
         }
       })), _class2)) || _class) || _class));
 

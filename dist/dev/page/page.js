@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, Ui5Page;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, Ui5Page;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -67,19 +67,23 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
     }],
     execute: function () {
-      _export('Ui5Page', Ui5Page = (_dec = customElement('ui5-page'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5Page', Ui5Page = (_dec = customElement('ui5-page'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5Page(element) {
           _classCallCheck(this, Ui5Page);
 
           _initDefineProp(this, 'title', _descriptor, this);
 
-          _initDefineProp(this, 'showHeader', _descriptor2, this);
+          _initDefineProp(this, 'busy', _descriptor2, this);
 
-          _initDefineProp(this, 'showFooter', _descriptor3, this);
+          _initDefineProp(this, 'busyIndicatorDelay', _descriptor3, this);
 
-          _initDefineProp(this, 'showNavButton', _descriptor4, this);
+          _initDefineProp(this, 'showHeader', _descriptor4, this);
 
-          _initDefineProp(this, 'navButtonPress', _descriptor5, this);
+          _initDefineProp(this, 'showFooter', _descriptor5, this);
+
+          _initDefineProp(this, 'showNavButton', _descriptor6, this);
+
+          _initDefineProp(this, 'navButtonPress', _descriptor7, this);
 
           this._page = null;
           this._relation = null;
@@ -165,7 +169,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             showHeader: getBooleanFromAttributeValue(this.showHeader),
             showFooter: getBooleanFromAttributeValue(this.showFooter),
             showNavButton: getBooleanFromAttributeValue(this.showNavButton),
-            navButtonPress: this.navButtonPress
+            navButtonPress: this.navButtonPress,
+            busy: getBooleanFromAttributeValue(this.busy),
+            busyIndicatorDelay: this.busyIndicatorDelay
           });
           this._page = page;
 
@@ -212,28 +218,50 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        Ui5Page.prototype.busyChanged = function busyChanged(newValue) {
+          if (this._page !== null) {
+            this._page.setBusy(getBooleanFromAttributeValue(newValue));
+          }
+        };
+
+        Ui5Page.prototype.busyIndicatorDelayChanged = function busyIndicatorDelayChanged(newValue) {
+          if (this._page !== null) {
+            this._page.setBusyIndicatorDelay(newValue);
+          }
+        };
+
         return Ui5Page;
       }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'title', [_dec3], {
         enumerable: true,
         initializer: function initializer() {
           return '';
         }
-      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'showHeader', [_dec4], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'showFooter', [_dec5], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'showNavButton', [_dec6], {
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec4], {
         enumerable: true,
         initializer: function initializer() {
           return false;
         }
-      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonPress', [_dec7], {
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec5], {
+        enumerable: true,
+        initializer: function initializer() {
+          return 1000;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'showHeader', [_dec6], {
+        enumerable: true,
+        initializer: function initializer() {
+          return true;
+        }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'showFooter', [_dec7], {
+        enumerable: true,
+        initializer: function initializer() {
+          return true;
+        }
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'showNavButton', [_dec8], {
+        enumerable: true,
+        initializer: function initializer() {
+          return false;
+        }
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonPress', [_dec9], {
         enumerable: true,
         initializer: function initializer() {
           return this.defaultFunc;

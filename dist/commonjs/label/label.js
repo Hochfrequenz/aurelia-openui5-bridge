@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5Label = undefined;
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -60,7 +60,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5Label = exports.Ui5Label = (_dec = (0, _aureliaTemplating.customElement)('ui5-label'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5Label = exports.Ui5Label = (_dec = (0, _aureliaTemplating.customElement)('ui5-label'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
   function Ui5Label(element) {
     _classCallCheck(this, Ui5Label);
 
@@ -80,6 +80,8 @@ var Ui5Label = exports.Ui5Label = (_dec = (0, _aureliaTemplating.customElement)(
 
     _initDefineProp(this, 'textDirection', _descriptor6, this);
 
+    _initDefineProp(this, 'tooltip', _descriptor7, this);
+
     this.element = element;
   }
 
@@ -90,7 +92,8 @@ var Ui5Label = exports.Ui5Label = (_dec = (0, _aureliaTemplating.customElement)(
       labelFor: this.labelFor,
       required: (0, _attributes.getBooleanFromAttributeValue)(this.required),
       textAlign: this.textAlign,
-      textDirection: this.textDirection
+      textDirection: this.textDirection,
+      tooltip: this.tooltip
     });
     if ($(this.element).parents("[ui5-container]").length > 0) {
       this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
@@ -134,6 +137,12 @@ var Ui5Label = exports.Ui5Label = (_dec = (0, _aureliaTemplating.customElement)(
     }
   };
 
+  Ui5Label.prototype.tooltipChanged = function tooltipChanged(newValue) {
+    if (this._label !== null) {
+      this._label.setTooltip(newValue);
+    }
+  };
+
   return Ui5Label;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
   enumerable: true,
@@ -161,6 +170,11 @@ var Ui5Label = exports.Ui5Label = (_dec = (0, _aureliaTemplating.customElement)(
     return "Begin";
   }
 }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec8], {
+  enumerable: true,
+  initializer: function initializer() {
+    return null;
+  }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'tooltip', [_dec9], {
   enumerable: true,
   initializer: function initializer() {
     return null;

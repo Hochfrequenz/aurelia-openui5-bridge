@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, Ui5Button;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, Ui5Button;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -67,7 +67,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
     }],
     execute: function () {
-      _export('Ui5Button', Ui5Button = (_dec = customElement('ui5-button'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5Button', Ui5Button = (_dec = customElement('ui5-button'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5Button(element) {
           _classCallCheck(this, Ui5Button);
 
@@ -85,6 +85,10 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           _initDefineProp(this, 'type', _descriptor7, this);
 
+          _initDefineProp(this, 'visible', _descriptor8, this);
+
+          _initDefineProp(this, 'tooltip', _descriptor9, this);
+
           this._button = null;
           this._parent = null;
           this._relation = null;
@@ -99,6 +103,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             type: this.type,
             icon: this.icon,
             enabled: !getBooleanFromAttributeValue(this.disabled),
+            visible: getBooleanFromAttributeValue(this.visible),
+            tooltip: this.tooltip,
             press: this.press != null ? this.press : this.defaultPress
           });
 
@@ -137,6 +143,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         Ui5Button.prototype.textChanged = function textChanged(newValue) {
           if (this._button !== null) {
             this._button.setText(newValue);
+          }
+        };
+
+        Ui5Button.prototype.visibleChanged = function visibleChanged(newValue) {
+          if (this._button !== null) {
+            this._button.setVisible(getBooleanFromAttributeValue(newValue));
+          }
+        };
+
+        Ui5Button.prototype.tooltipChanged = function tooltipChanged(newValue) {
+          if (this._button !== null) {
+            this._button.setTooltip(newValue);
           }
         };
 
@@ -181,6 +199,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         enumerable: true,
         initializer: function initializer() {
           return 'Default';
+        }
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec10], {
+        enumerable: true,
+        initializer: function initializer() {
+          return true;
+        }
+      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'tooltip', [_dec11], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
         }
       })), _class2)) || _class) || _class));
 

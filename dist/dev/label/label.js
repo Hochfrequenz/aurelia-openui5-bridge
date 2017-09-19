@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, Ui5Label;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, Ui5Label;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -67,7 +67,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
     }],
     execute: function () {
-      _export('Ui5Label', Ui5Label = (_dec = customElement('ui5-label'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5Label', Ui5Label = (_dec = customElement('ui5-label'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5Label(element) {
           _classCallCheck(this, Ui5Label);
 
@@ -87,6 +87,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           _initDefineProp(this, 'textDirection', _descriptor6, this);
 
+          _initDefineProp(this, 'tooltip', _descriptor7, this);
+
           this.element = element;
         }
 
@@ -97,7 +99,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             labelFor: this.labelFor,
             required: getBooleanFromAttributeValue(this.required),
             textAlign: this.textAlign,
-            textDirection: this.textDirection
+            textDirection: this.textDirection,
+            tooltip: this.tooltip
           });
           if ($(this.element).parents("[ui5-container]").length > 0) {
             this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
@@ -141,6 +144,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        Ui5Label.prototype.tooltipChanged = function tooltipChanged(newValue) {
+          if (this._label !== null) {
+            this._label.setTooltip(newValue);
+          }
+        };
+
         return Ui5Label;
       }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
         enumerable: true,
@@ -168,6 +177,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           return "Begin";
         }
       }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec8], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'tooltip', [_dec9], {
         enumerable: true,
         initializer: function initializer() {
           return null;

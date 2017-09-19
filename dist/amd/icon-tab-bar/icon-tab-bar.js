@@ -191,7 +191,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
     Ui5IconTabBar.prototype.selectedKeyChanged = function selectedKeyChanged(newValue) {
       if (this._tab !== null) {
-        this._tab.setSelectedKey(newValue);
+        if (this._tab.getSelectedKey() != newValue) this._tab.setSelectedKey(newValue);
       }
     };
 

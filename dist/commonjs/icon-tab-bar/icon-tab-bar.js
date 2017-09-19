@@ -194,7 +194,7 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
 
   Ui5IconTabBar.prototype.selectedKeyChanged = function selectedKeyChanged(newValue) {
     if (this._tab !== null) {
-      this._tab.setSelectedKey(newValue);
+      if (this._tab.getSelectedKey() != newValue) this._tab.setSelectedKey(newValue);
     }
   };
 

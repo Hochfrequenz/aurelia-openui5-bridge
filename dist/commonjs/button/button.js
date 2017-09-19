@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5Button = undefined;
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -60,7 +60,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement)('ui5-button'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement)('ui5-button'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
   function Ui5Button(element) {
     _classCallCheck(this, Ui5Button);
 
@@ -78,6 +78,10 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
 
     _initDefineProp(this, 'type', _descriptor7, this);
 
+    _initDefineProp(this, 'visible', _descriptor8, this);
+
+    _initDefineProp(this, 'tooltip', _descriptor9, this);
+
     this._button = null;
     this._parent = null;
     this._relation = null;
@@ -92,6 +96,8 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
       type: this.type,
       icon: this.icon,
       enabled: !(0, _attributes.getBooleanFromAttributeValue)(this.disabled),
+      visible: (0, _attributes.getBooleanFromAttributeValue)(this.visible),
+      tooltip: this.tooltip,
       press: this.press != null ? this.press : this.defaultPress
     });
 
@@ -130,6 +136,18 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
   Ui5Button.prototype.textChanged = function textChanged(newValue) {
     if (this._button !== null) {
       this._button.setText(newValue);
+    }
+  };
+
+  Ui5Button.prototype.visibleChanged = function visibleChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    }
+  };
+
+  Ui5Button.prototype.tooltipChanged = function tooltipChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setTooltip(newValue);
     }
   };
 
@@ -174,5 +192,15 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
   enumerable: true,
   initializer: function initializer() {
     return 'Default';
+  }
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec10], {
+  enumerable: true,
+  initializer: function initializer() {
+    return true;
+  }
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'tooltip', [_dec11], {
+  enumerable: true,
+  initializer: function initializer() {
+    return null;
   }
 })), _class2)) || _class) || _class);

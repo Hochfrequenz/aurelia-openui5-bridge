@@ -9,6 +9,7 @@ export class Ui5IconTabFilter {
   _tab = null;
   @bindable() text = null;
   @bindable() tabKey = null;
+  @bindable() design = 'Vertical';
   constructor(element) {
     this.element = element;
   }
@@ -37,7 +38,8 @@ export class Ui5IconTabFilter {
     var attributeManager = new AttributeManager(this.element);
     this._tab = new sap.m.IconTabFilter({
       text: this.text,
-      key: this.tabKey
+      key: this.tabKey,
+      design: this.design
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
@@ -61,11 +63,16 @@ export class Ui5IconTabFilter {
   tabKeyChanged(newValue) {
     if (this._tab !== null) {
       this._tab.setKey(newValue);
-    } 
+    }
   }
   textChanged(newValue) {
     if (this._tab !== null) {
       this._tab.setText(newValue);
+    }
+  }
+  designChanged(newValue) {
+    if (this._tab !== null) {
+      this._tab.setDesign(newValue);
     }
   }
   /*TODO: Add change bindings for event handlers */

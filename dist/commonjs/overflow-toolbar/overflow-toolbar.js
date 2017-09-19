@@ -97,7 +97,7 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
 
       if (elem.localName == 'content') {
         this._bar.addContent(child);
-        break;
+        return elem.localName;
       }
     }
   };
@@ -118,6 +118,12 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
         this._bar.removeContent(child);
         break;
       }
+    }
+  };
+
+  Ui5OverflowToolbar.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+    if (relation === 'content' && this._bar && child) {
+      this._bar.removeContent(child);
     }
   };
 

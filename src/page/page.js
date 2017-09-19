@@ -7,6 +7,8 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 export class Ui5Page {
   @bindable() title = '';
+  @bindable() busy = false;
+  @bindable() busyIndicatorDelay = 1000;
   @bindable() showHeader = true;
   @bindable() showFooter = true;
   @bindable() showNavButton = false;
@@ -77,7 +79,9 @@ export class Ui5Page {
       showHeader: getBooleanFromAttributeValue(this.showHeader),
       showFooter: getBooleanFromAttributeValue(this.showFooter),
       showNavButton: getBooleanFromAttributeValue(this.showNavButton),
-      navButtonPress: this.navButtonPress
+      navButtonPress: this.navButtonPress,
+      busy: getBooleanFromAttributeValue(this.busy),
+      busyIndicatorDelay: this.busyIndicatorDelay
     });
     this._page = page;
 
@@ -121,6 +125,16 @@ export class Ui5Page {
   showNavButtonChanged(newValue) {
     if (this._page !== null) {
       this._page.setShowNavButton(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  busyChanged(newValue) {
+    if (this._page !== null) {
+      this._page.setBusy(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  busyIndicatorDelayChanged(newValue) {
+    if (this._page !== null) {
+      this._page.setBusyIndicatorDelay(newValue);
     }
   }
 }

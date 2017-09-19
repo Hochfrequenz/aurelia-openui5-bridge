@@ -55,9 +55,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-  var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-filter'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-filter'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5IconTabFilter(element) {
       _classCallCheck(this, Ui5IconTabFilter);
 
@@ -66,6 +66,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       _initDefineProp(this, 'text', _descriptor, this);
 
       _initDefineProp(this, 'tabKey', _descriptor2, this);
+
+      _initDefineProp(this, 'design', _descriptor3, this);
 
       this.element = element;
     }
@@ -114,7 +116,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       var attributeManager = new _attributeManager.AttributeManager(this.element);
       this._tab = new sap.m.IconTabFilter({
         text: this.text,
-        key: this.tabKey
+        key: this.tabKey,
+        design: this.design
       });
 
       if ($(this.element).parents("[ui5-container]").length > 0) {
@@ -147,6 +150,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       }
     };
 
+    Ui5IconTabFilter.prototype.designChanged = function designChanged(newValue) {
+      if (this._tab !== null) {
+        this._tab.setDesign(newValue);
+      }
+    };
+
     return Ui5IconTabFilter;
   }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec3], {
     enumerable: true,
@@ -157,6 +166,11 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     enumerable: true,
     initializer: function initializer() {
       return null;
+    }
+  }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'design', [_dec5], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 'Vertical';
     }
   })), _class2)) || _class) || _class);
 });

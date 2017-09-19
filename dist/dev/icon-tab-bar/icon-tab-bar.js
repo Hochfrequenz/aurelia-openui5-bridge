@@ -201,7 +201,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
         Ui5IconTabBar.prototype.selectedKeyChanged = function selectedKeyChanged(newValue) {
           if (this._tab !== null) {
-            this._tab.setSelectedKey(newValue);
+            if (this._tab.getSelectedKey() != newValue) this._tab.setSelectedKey(newValue);
           }
         };
 

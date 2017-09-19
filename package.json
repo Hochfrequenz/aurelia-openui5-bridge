@@ -1,19 +1,19 @@
 {
   "name": "aurelia-openui5-bridge",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "registry": "github",
   "description": "Aurelia interface to https://github.com/SAP/openui5",
   "keywords": [
     "aurelia",
     "plugin",
-    "materialize"
+    "openui5"
   ],
-  "homepage": "https://github.com/aurelia-ui-toolkits/aurelia-materialize-bridge",
+  "homepage": "https://github.com/hochfrequenz/aurelia-openui5-bridge",
   "bugs": {
-    "url": "https://github.com/aurelia-ui-toolkits/aurelia-materialize-bridge/issues"
+    "url": "https://github.com/hochfrequenz/aurelia-openui5-bridge/issues"
   },
   "license": "MIT",
-  "author": "aurelia-ui-toolkits",
+  "author": "Hochfrequenz",
   "directories": {
     "lib": "dist/system"
   },
@@ -25,7 +25,7 @@
   "typings": "dist/aurelia-openui5-bridge.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aurelia-ui-toolkits/aurelia-materialize-bridge"
+    "url": "https://github.com/hochfrequenz/aurelia-openui5-bridge"
   },
   "jspm": {
     "main": "index",

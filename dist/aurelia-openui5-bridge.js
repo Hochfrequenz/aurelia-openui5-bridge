@@ -2,7 +2,7 @@ import {PLATFORM} from 'aurelia-pal';
 import {bindable,customAttribute,customElement,noView,inlineView} from 'aurelia-templating';
 import {bindingMode} from 'aurelia-binding';
 import {inject} from 'aurelia-dependency-injection';
-import {Animator,computedFrom,TaskQueue} from 'aurelia-framework';
+import {Animator,TaskQueue,computedFrom} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 import {getLogger} from 'aurelia-logging';
 
@@ -291,6 +291,31 @@ export class MdBox {
   }
 }
 
+@customElement('ui5-bar')
+@inject(Element)
+export class Ui5Bar {
+   _bar = null;
+
+  constructor(element) {
+    this.element = element;
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    if (path[0].localName == 'content-left')
+      this._bar.addContentLeft(child);
+    if (path[0].localName == 'content-middle')
+      this._bar.addContentMiddle(child);
+    if (path[0].localName == 'content-right')
+      this._bar.addContentRight(child);
+  }
+  attached() {
+
+    this._bar = new sap.m.Bar();
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._bar,this.element);
+
+  }
+}
+
 @customElement('ui5-breadcrumbs')
 @inject(Element)
 
@@ -334,29 +359,276 @@ export class Ui5BreadCrumbs {
 
 }
 
-@customElement('ui5-bar')
+@customElement('ui5-button')
 @inject(Element)
-export class Ui5Bar {
-   _bar = null;
+export class Ui5Button {
+  @bindable() disabled = false;
+  @bindable() floating = false;
+  @bindable() large = false;
+  @bindable() text = '';
+  @bindable() press = null;
+  @bindable() icon = null;
+  @bindable() type = 'Default';
+  @bindable() visible = true;
+  @bindable() tooltip = null;
+  _button = null;
+  _parent = null;
+  _relation = null;
+  constructor(element) {
+    this.attributeManager = new AttributeManager(element);
+    this.element = element;
+  }
+
+  attached() {
+    this._button = new sap.m.Button({
+      text: this.text,
+      type: this.type,
+      icon: this.icon,
+      enabled: !getBooleanFromAttributeValue(this.disabled),
+      visible: getBooleanFromAttributeValue(this.visible),
+      tooltip: this.tooltip,
+      press: this.press != null ? this.press : this.defaultPress
+    });
+
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._button, this.element);
+    }
+  }
+  defaultPress() {
+
+  }
+  detached() {
+    if (this._parent && this._parent.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._button, this._relation);
+    }
+  }
+  typeChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setType(newValue);
+    }
+  }
+  disabledChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setEnabled(!getBooleanFromAttributeValue(newValue));
+    }
+
+  }
+  iconChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setIcon(newValue);
+    }
+  }
+  textChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setText(newValue);
+    }
+  }
+  visibleChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setVisible(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  tooltipChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setTooltip(newValue);
+    }
+  }
+  pressChanged(newValue) {
+    if (this._button !== null) {
+      this._button.attachPress(newValue);
+    }
+  }
+}
+
+@customElement('ui5-column-list-item')
+@inject(Element)
+
+export class Ui5ColumnListItem {
+  _item = null;
+  _parent = null;
+  _relation = null;
+
+
+
+  @bindable() vAlign = 'Inherit';
+  @bindable() selected = false;
 
   constructor(element) {
     this.element = element;
   }
-  addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    if (path[0].localName == 'content-left')
-      this._bar.addContentLeft(child);
-    if (path[0].localName == 'content-middle')
-      this._bar.addContentMiddle(child);
-    if (path[0].localName == 'content-right')
-      this._bar.addContentRight(child);
+  get UIElement() {
+    return this._item;
+  }
+  defaultFunc() {
+
   }
   attached() {
+    var attributeManager = new AttributeManager(this.element);
 
-    this._bar = new sap.m.Bar();
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._bar,this.element);
+    this._item = new sap.m.ColumnListItem({
+      vAlign: this.vAlign,
+      selected: getBooleanFromAttributeValue(this.selected)
+    });
+    attributeManager.addAttributes({ "ui5-container": '' });
+    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._relation = this._parent.addChild(this._item, this.element);
+  }
+  detached() {
+    if (this._parent && this._parent.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._item, this._relation);
+    }
 
   }
+  bind(bindingContext, overrideContext){
+    console.log("bind called"+bindingContext+overrideContext);
+  }
+  unbind(){
+    console.log('unbind called ');
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'cell')
+      { this._item.addCell(child); break; }
+    }
+  }
+  vAlignChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setVAlign(newValue);
+    }
+  }
+  selectedChanged(newValue) {
+  if (this._item !== null) {
+  this._item.setSelected(newValue);
+  }
+  }
+
+
+}
+
+@customElement('ui5-column')
+@inject(Element)
+
+export class Ui5Column {
+  _column = null;
+  _parent = null;
+  _relation = null;
+  @bindable() ui5Id = null;
+  @bindable() width;
+  @bindable() hAlign = 'Begin';
+  @bindable() vAlign = 'Inherit';
+  @bindable() styleClass = null;
+  @bindable() visible = true;
+  @bindable() minScreenWidth = null;
+  @bindable() demandPopin = false;
+  @bindable() popinHAlign = null;
+  @bindable() popinDisplay = null;
+  @bindable() mergeDuplicates = false;
+  @bindable() mergeFunctionName = 'getText';
+  constructor(element) {
+    this.element = element;
+  }
+  defaultFunc() {
+
+  }
+  attached() {
+    var attributeManager = new AttributeManager(this.element);
+    var params = {
+      width: this.width,
+      hAlign: this.hAlign,
+      vAlign: this.vAlign,
+      styleClass: this.styleClass,
+      visible: getBooleanFromAttributeValue(this.visible),
+      minScreenWidth: this.minScreenWidth,
+      demandPopin: getBooleanFromAttributeValue(this.demandPopin),
+      popinDisplay: this.popinDisplay,
+      popinHAlign: this.popinHAlign,
+      mergeDuplicates: getBooleanFromAttributeValue(this.mergeDuplicates),
+      mergeFunctionName: this.mergeFunctionName
+    };
+    if (this.ui5Id)
+      this._column = new sap.m.Column(this.ui5Id, params);
+    else
+      this._column = new sap.m.Column(params);
+    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._relation = this._parent.addChild(this._column, this.element);
+    attributeManager.addAttributes({ "ui5-container": '' });
+
+  }
+  detached() {
+    if (this._parent && this._relation) {
+      this._parent.removeChildByRelation(this._column, this._relation);
+    }
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'header')
+      { this._column.setHeader(child); break; }
+      if (elem.localName == 'footer')
+      { this._column.setFooter(child); break; }
+      if (elem.localName == 'content')
+      { this._column.addDependent(child); break; }
+    }
+  }
+  widthChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setWidth(newValue);
+    }
+  }
+  hAlignChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setHAlign(newValue);
+    }
+  }
+  vAlignChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setVAlign(newValue);
+    }
+  }
+  styleClassChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setStyleClass(newValue);
+    }
+  }
+  visibleChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setVisible(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  minScreenWidthChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setMinScreenWidth(newValue);
+    }
+  }
+
+  demandPopinChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setDemandPopin(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  popinDisplayChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setPopinDisplay(newValue);
+    }
+  }
+  popinHAlignChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setPopinHAlign(newValue);
+    }
+  }
+  mergeDuplicatesChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setMergeDuplicates(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  mergeFunctionNameChanged(newValue) {
+    if (this._column !== null) {
+      this._column.setMergeFunctionName(newValue);
+    }
+  }
+
 }
 
 @customElement('ui5-action-sheet')
@@ -456,72 +728,23 @@ export class Ui5ActionSheet {
 
 }
 
-@customElement('ui5-button')
+@customAttribute('ui5-container')
 @inject(Element)
-export class Ui5Button {
-  @bindable() disabled = false;
-  @bindable() floating = false;
-  @bindable() large = false;
-  @bindable() text = '';
-  @bindable() press = null;
-  @bindable() icon = null;
-  @bindable() type = 'Default';
-  _button = null;
-  _parent = null;
-  _relation = null;
+export class Ui5Container {
+ 
   constructor(element) {
-    this.attributeManager = new AttributeManager(element);
     this.element = element;
+    this.attributeManager = new AttributeManager(this.element);
   }
 
   attached() {
-    this._button = new sap.m.Button({
-      text: this.text,
-      type: this.type,
-      icon: this.icon,
-      enabled: !getBooleanFromAttributeValue(this.disabled),
-      press: this.press != null ? this.press : this.defaultPress
-    });
-
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
-      this._relation = this._parent.addChild(this._button, this.element);
-    }
+  
   }
-  defaultPress() {
 
-  }
   detached() {
-    if (this._parent && this._parent.removeChildByRelation) {
-      this._parent.removeChildByRelation(this._button, this._relation);
-    }
+    
   }
-  typeChanged(newValue) {
-    if (this._button !== null) {
-      this._button.setType(newValue);
-    }
-  }
-  disabledChanged(newValue) {
-    if (this._button !== null) {
-      this._button.setEnabled(!getBooleanFromAttributeValue(newValue));
-    }
 
-  }
-  iconChanged(newValue) {
-    if (this._button !== null) {
-      this._button.setIcon(newValue);
-    }
-  }
-  textChanged(newValue) {
-    if (this._button !== null) {
-      this._button.setText(newValue);
-    }
-  }
-  pressChanged(newValue) {
-    if (this._button !== null) {
-      this._button.attachPress(newValue);
-    }
-  }
 }
 
 /**
@@ -944,230 +1167,6 @@ export class SmoothScroll {
     }
 
 }
-@customAttribute('ui5-container')
-@inject(Element)
-export class Ui5Container {
- 
-  constructor(element) {
-    this.element = element;
-    this.attributeManager = new AttributeManager(this.element);
-  }
-
-  attached() {
-  
-  }
-
-  detached() {
-    
-  }
-
-}
-
-@customElement('ui5-date-picker')
-@inject(Element)
-
-export class Ui5DatePicker extends Ui5InputBase {
-  _picker = null;
-  @bindable() ui5Id = null;
-
-  @bindable() includeTime = false;
-
-  @bindable() displayFormat = null;
-  @bindable() valueFormat = null;
-  @bindable() dateValue = null;
-  @bindable() displayFormatType = null;
-  @bindable() secondaryCalendarType = 'Gregorian';
-  @bindable() minDate = null;
-  @bindable() maxDate = null;
-
-  @bindable() specialDates = [];
-
-
-  /*Inherited from InputBase */
-  @bindable() value = null;
-  @bindable() width = null;
-  @bindable() enabled = true;
-  @bindable() valueState = 'None';
-  @bindable() name = null;
-  @bindable() placeholder = null;
-  @bindable() editable = true;
-  @bindable() valueStateText = null;
-  @bindable() showValueStateMessage = true;
-  @bindable() textAlign = 'Initial';
-  @bindable() textDirection = 'Inherit';
-  @bindable() required = false;
-
-  @bindable() change = this.defaultFunc;
-  get UIElement() {
-    return this._picker;
-  }
-  addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    super.addChild(child, elem);
-
-  }
-  constructor(element) {
-    super(element);
-    this.element = element;
-  }
-  defaultFunc() {
-
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    var params = {
-      displayFormat: this.displayFormat,
-      valueFormat: this.valueFormat,
-      dateValue: this.dateValue,
-      displayFormatType: this.displayFormatType,
-      secondaryCalendarType: this.secondaryCalendarType,
-      minDate: this.minDate,
-      maxDate: this.maxDate,
-      specialDates: this.specialDates,
-      /*inherited from InputBase*/
-      value: this.value,
-      width: this.width,
-      enabled: getBooleanFromAttributeValue(this.enabled),
-      valueState: this.valueState,
-      name: this.value,
-      placeholder: this.placeholder,
-      editable: getBooleanFromAttributeValue(this.editable),
-      valueStateText: this.valueStateText,
-      showValueStateMessage: getBooleanFromAttributeValue(this.showValueStateMessage),
-      textAlign: this.textAlign,
-      textDirection: this.textDirection,
-      required: getBooleanFromAttributeValue(this.required),
-      change: this.change
-      /*inherited from InputBase*/
-    };
-    if (this.ui5Id) {
-      if (getBooleanFromAttributeValue(this.includeTime))
-        this._picker = new sap.m.DateTimePicker(this.ui5Id, params);
-      else
-        this._picker = new sap.m.DatePicker(this.ui5Id, params);
-    }
-    else {
-      if (getBooleanFromAttributeValue(this.includeTime))
-        this._picker = new sap.m.DateTimePicker(params);
-      else
-        this._picker = new sap.m.DatePicker(params);
-    }
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._picker, this.element);
-    attributeManager.addAttributes({ "ui5-layout": '' });
-    var that = this;
-    this._picker.attachChange((event) => {
-      that.value = event.mParameters.value;
-    });
-
-    this._picker.addEventDelegate(this.element);
-    super.attached();
-  }
-  displayFormatChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setDisplayFormat(newValue);
-    }
-  }
-  valueFormatChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setValueFormat(newValue);
-    }
-  }
-  dateValueChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setDateValue(newValue);
-    }
-  }
-  displayFormatTypeChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setDisplayFormatType(newValue);
-    }
-  }
-
-  secondaryCalendarTypeChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setSecondaryCalendarType(newValue);
-    }
-  }
-  minDateChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setMinDate(newValue);
-    }
-  }
-
-  specialDatesChanged(newValue) {
-    //TODO: Need to add and remove values separately
-    if (this._picker !== null) {
-      this._picker.setSpecialDates(newValue);
-    }
-  }
-
-  /*valueChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setValue(newValue);
-    }
-  }
-  widthChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setWidth(newValue);
-    }
-  }
-  enabledChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setEnabled(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  valueStateChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setValueState(newValue);
-    }
-  }
-  nameChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setName(newValue);
-    }
-  }
-  placeholderChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setPlaceholder(newValue);
-    }
-  }
-  editableChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setEditable(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  valueStateTextChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setValueStateText(newValue);
-    }
-  }
-  showValueStateMessageChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  textAlignChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setTextAlign(newValue);
-    }
-  }
-  textDirectionChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setTextDirection(newValue);
-    }
-  }
-  requiredChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setRequired(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  changeChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.attachChange(newValue);
-    }
-  }*/
-}
-
 export class Ui5Control extends Ui5Element {
 /*  as bindables are not inheritable (see https://github.com/aurelia/framework/issues/210  we will have to define the following
     properties as bindable on all subclasses*/
@@ -1377,6 +1376,338 @@ export class Ui5Dialog {
 
 }
 
+@customElement('ui5-dynamic-page')
+@inject(Element,TaskQueue)
+export class Ui5DynamicPage {
+  @bindable() preserveHeaderStateOnScroll = false;
+  @bindable() headerExpanded = true;
+  @bindable() toggleHeaderOnTitleClick = true;
+  @bindable() showFooter = false;
+  @bindable() fitContent = true;
+  _page = null;
+  _taskQueue = null;
+  constructor(element,queue) {
+    this.element = element;
+    this._taskQueue = queue;
+  }
+  defaultFunc() {
+
+  }
+  @computedFrom('_page')
+  get UIElement() {
+    return this._page;
+  }
+
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'heading') {
+        this._page.setHeader(child);
+
+        break;
+      }
+      if (elem.localName == 'pagetitle') {
+        this._page.setTitle(child);
+        //reset header expanded flag as the title is required to do so
+        var _self = this;
+        _self._taskQueue.queueTask(function () {
+          _self._page.setHeaderExpanded(getBooleanFromAttributeValue(_self.headerExpanded));
+        });
+        break;
+      }
+      if (elem.localName == 'content') {
+        this._page.setContent(child);
+
+        break;
+      }
+      if (elem.localName == 'footer') {
+        this._page.setFooter(child);
+        break;
+      }
+    }
+  }
+  removeChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'header') {
+        //header is removed automatically
+        break;
+      }
+
+      if (elem.localName == 'content') {
+        // content is removed automatically
+        break;
+      }
+      if (elem.localName == 'footer') {
+        //footer is removed automatically
+        break;
+      }
+    }
+  }
+  attached() {
+    var attributeManager = new AttributeManager(this.element);
+    var page = new sap.f.DynamicPage({
+      preserveHeaderStateOnScroll: getBooleanFromAttributeValue(this.preserveHeaderStateOnScroll),
+      headerExpanded: getBooleanFromAttributeValue(this.headerExpanded),
+      toggleHeaderOnTitleClick: getBooleanFromAttributeValue(this.toggleHeaderOnTitleClick),
+      showFooter: getBooleanFromAttributeValue(this.showFooter),
+      fitContent: getBooleanFromAttributeValue(this.fitContent)
+    });
+    this._page = page;
+
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._page, this.element);
+      attributeManager.addAttributes({ "ui5-container": '' });
+    }
+    else {
+      this._page.placeAt(this.element.parentElement);
+      attributeManager.addAttributes({ "ui5-container": '' });
+      attributeManager.addClasses("ui5-hide");
+    }
+
+  }
+  detached() {
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
+    }
+    else {
+      this._page.destroy();
+    }
+  }
+
+
+  showFooterChanged(newValue) {
+    if (this._page !== null) {
+      this._page.setShowFooter(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  preserveHeaderStateOnScrollChanged(newValue) {
+    if (this._page !== null) {
+      this._page.setPreserveHeaderStateOnScroll(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  headerExpandedChanged(newValue) {
+    if (this._page !== null) {
+      this._page.setHeaderExpanded(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  toggleHeaderOnTitleClickChanged(newValue) {
+    if (this._page !== null) {
+      this._page.setToggleHeaderOnTitleClick(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  fitContentChanged(newValue) {
+    if (this._page !== null) {
+      this._page.setFitContent(getBooleanFromAttributeValue(newValue));
+    }
+  }
+}
+
+@customElement('ui5-date-picker')
+@inject(Element)
+
+export class Ui5DatePicker extends Ui5InputBase {
+  _picker = null;
+  @bindable() ui5Id = null;
+
+  @bindable() includeTime = false;
+
+  @bindable() displayFormat = null;
+  @bindable() valueFormat = null;
+  @bindable() dateValue = null;
+  @bindable() displayFormatType = null;
+  @bindable() secondaryCalendarType = 'Gregorian';
+  @bindable() minDate = null;
+  @bindable() maxDate = null;
+
+  @bindable() specialDates = [];
+
+
+  /*Inherited from InputBase */
+  @bindable() value = null;
+  @bindable() width = null;
+  @bindable() enabled = true;
+  @bindable() valueState = 'None';
+  @bindable() name = null;
+  @bindable() placeholder = null;
+  @bindable() editable = true;
+  @bindable() valueStateText = null;
+  @bindable() showValueStateMessage = true;
+  @bindable() textAlign = 'Initial';
+  @bindable() textDirection = 'Inherit';
+  @bindable() required = false;
+
+  @bindable() change = this.defaultFunc;
+  get UIElement() {
+    return this._picker;
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    super.addChild(child, elem);
+
+  }
+  constructor(element) {
+    super(element);
+    this.element = element;
+  }
+  defaultFunc() {
+
+  }
+  attached() {
+    var attributeManager = new AttributeManager(this.element);
+    var params = {
+      displayFormat: this.displayFormat,
+      valueFormat: this.valueFormat,
+      dateValue: this.dateValue,
+      displayFormatType: this.displayFormatType,
+      secondaryCalendarType: this.secondaryCalendarType,
+      minDate: this.minDate,
+      maxDate: this.maxDate,
+      specialDates: this.specialDates,
+      /*inherited from InputBase*/
+      value: this.value,
+      width: this.width,
+      enabled: getBooleanFromAttributeValue(this.enabled),
+      valueState: this.valueState,
+      name: this.value,
+      placeholder: this.placeholder,
+      editable: getBooleanFromAttributeValue(this.editable),
+      valueStateText: this.valueStateText,
+      showValueStateMessage: getBooleanFromAttributeValue(this.showValueStateMessage),
+      textAlign: this.textAlign,
+      textDirection: this.textDirection,
+      required: getBooleanFromAttributeValue(this.required),
+      change: this.change
+      /*inherited from InputBase*/
+    };
+    if (this.ui5Id) {
+      if (getBooleanFromAttributeValue(this.includeTime))
+        this._picker = new sap.m.DateTimePicker(this.ui5Id, params);
+      else
+        this._picker = new sap.m.DatePicker(this.ui5Id, params);
+    }
+    else {
+      if (getBooleanFromAttributeValue(this.includeTime))
+        this._picker = new sap.m.DateTimePicker(params);
+      else
+        this._picker = new sap.m.DatePicker(params);
+    }
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._picker, this.element);
+    attributeManager.addAttributes({ "ui5-layout": '' });
+    var that = this;
+    this._picker.attachChange((event) => {
+      that.value = event.mParameters.value;
+    });
+
+    this._picker.addEventDelegate(this.element);
+    super.attached();
+  }
+  displayFormatChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setDisplayFormat(newValue);
+    }
+  }
+  valueFormatChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setValueFormat(newValue);
+    }
+  }
+  dateValueChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setDateValue(newValue);
+    }
+  }
+  displayFormatTypeChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setDisplayFormatType(newValue);
+    }
+  }
+
+  secondaryCalendarTypeChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setSecondaryCalendarType(newValue);
+    }
+  }
+  minDateChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setMinDate(newValue);
+    }
+  }
+
+  specialDatesChanged(newValue) {
+    //TODO: Need to add and remove values separately
+    if (this._picker !== null) {
+      this._picker.setSpecialDates(newValue);
+    }
+  }
+
+  /*valueChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setValue(newValue);
+    }
+  }
+  widthChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setWidth(newValue);
+    }
+  }
+  enabledChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setEnabled(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  valueStateChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setValueState(newValue);
+    }
+  }
+  nameChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setName(newValue);
+    }
+  }
+  placeholderChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setPlaceholder(newValue);
+    }
+  }
+  editableChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setEditable(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  valueStateTextChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setValueStateText(newValue);
+    }
+  }
+  showValueStateMessageChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  textAlignChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setTextAlign(newValue);
+    }
+  }
+  textDirectionChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setTextDirection(newValue);
+    }
+  }
+  requiredChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setRequired(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  changeChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.attachChange(newValue);
+    }
+  }*/
+}
+
 @customElement('ui5-dynamic-page-header')
 @inject(Element)
 export class Ui5DynamicPageHeader {
@@ -1569,6 +1900,211 @@ export class Ui5Element {
 
     }
 }
+@customElement('ui5-file-uploader')
+@inject(Element)
+export class Ui5FileUploader {
+  @bindable() fileType = [];
+  @bindable() maximumFilenameLength = null;
+  @bindable() maximumFileSize = null;
+  @bindable() mimeType = [];
+  @bindable() multiple = false;
+  @bindable() value = null;
+  @bindable() name = null;
+  @bindable() sameFilenameAllowed = false;
+  @bindable() showSeperators = 'All';
+  @bindable() uploadOnChange = true;
+  @bindable() uploadUrl = '../../../upload';
+  @bindable() enabled = true;
+  @bindable() width = null;
+  @bindable() valueState = 'None';
+  @bindable() buttonOnly = false;
+  @bindable() useMultipart = true;
+  @bindable() buttonText = null;
+  @bindable() sendXHR = false;
+  @bindable() placeholder = null;
+  @bindable() style = null;
+  @bindable() icon = null;
+  @bindable() iconHovered = null;
+  @bindable() iconSelected = null;
+  @bindable() iconFirst = true;
+  @bindable() iconOnly = false;
+
+  @bindable() change = this.defaultFunc;
+  @bindable() filenameLengthExceeded = this.defaultFunc;
+  @bindable() fileSizeExceeded = this.defaultFunc;
+  @bindable() fileAllowed = this.defaultFunc;
+  @bindable() uploadComplete = this.defaultFunc;
+  @bindable() uploadAborted = this.defaultFunc;
+  @bindable() uploadStart = this.defaultFunc;
+  @bindable() uploadProgress = this.defaultFunc;
+  _upload = null;
+  constructor(element) {
+    this.element = element;
+  }
+  defaultFunc(event) {
+
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'items') {
+        this._upload.addItem(child);
+        return elem.localName;
+      }
+      else if (elem.localName == 'toolbar') {
+        this._upload.setToolbar(child);
+        return elem.localName;
+      }
+      else if (elem.localName == 'infotoolbar') {
+        this._upload.setInfoToolbar(child);
+        return elem.localName;
+      }
+      else if (elem.localName == 'parameter') {
+        this._upload.addHeaderParameter(child);
+        return elem.localName;
+      }
+    }
+  }
+  removeChildByRelation(child, relation) {
+    if (relation === 'items' && this._upload) {
+      this._upload.removeItem(child);
+    }
+    else if (relation === 'toolbar' && this._upload) {
+      this._upload.setToolbar(null);
+    }
+    else if (relation === 'infotoolbar' && this._upload) {
+      this._upload.setInfoToolbar(null);
+    }
+    else if (relation === 'parameter' && this._upload) {
+      this._upload.removeHeaderParameter(null);
+    }
+  }
+  attached() {
+    var attributeManager = new AttributeManager(this.element);
+    this._upload = new sap.m.UploadCollection({
+      fileType: this.fileType,
+      maximumFilenameLength: this.maximumFilenameLength,
+      maximumFileSize: this.maximumFileSize,
+      mimeType: this.mimeType,
+      multiple: getBooleanFromAttributeValue(this.multiple),
+      value: this.value,
+      name: this.name,
+      sameFilenameAllowed: getBooleanFromAttributeValue(this.sameFilenameAllowed),
+      showSeperators: this.showSeperators,
+      uploadOnChange: getBooleanFromAttributeValue(this.uploadOnChange),
+      uploadUrl: this.uploadUrl,
+      enabled: getBooleanFromAttributeValue(this.enabled),
+      width: this.width,
+      useMultipart: getBooleanFromAttributeValue(this.useMultipart),
+      change: this.change,
+      fileDeleted: this.fileDeleted,
+      filenameLengthExceeded: this.filenameLengthExceeded,
+      fileSizeExceeded: this.fileSizeExceeded,
+      fileAllowed: this.fileAllowed,
+      uploadComplete: this.uploadComplete,
+      uploadAborted: this.uploadAborted,
+      uploadStart: this.uploadStart,
+      uploadProgress: this.uploadProgress
+    });
+
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewvalueStatel.addChild(this._upload, this.element);
+      attributeManager.addAttributes({ "ui5-container": '' });
+    }
+    else {
+      this._upload.placeAt(this.element.parentElement);
+      attributeManager.addAttributes({ "ui5-container": '' });
+      attributeManager.addClasses("ui5-hide");
+    }
+  }
+  detached() {
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewvalueStatel.removeChild(this._upload, this.element);
+    }
+    else {
+      this._upload.destroy();
+    }
+  }
+  fileTypeChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setFileType(newValue);
+    }
+  }
+  maximumFilenameLengthChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setMaximumFilenameLength(newValue);
+    }
+  }
+  mimeTypeChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setMimeType(newValue);
+    }
+  }
+  multipleChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setMultiple(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  valueChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setvalue(newValue);
+    }
+  }
+  nameChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setname(newValue);
+    }
+  }
+  sameFilenameAllowedChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setSameFilenameAllowed(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  showSeperatorsChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setshowSeperators(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  uploadOnChangeChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setuploadOnChange(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  uploadUrlChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setUploadUrl(newValue);
+    }
+  }
+  enabledChanged(newValue) {
+    if (this._upload !== null) {
+      //not supported by OpenUI5 (yet)
+      //this._upload.setenabled(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  widthChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setwidth(newValue);
+    }
+  }
+  valueStateChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setvalueState(newValue);
+    }
+  }
+  buttonOnlyChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setbuttonOnly(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  useMultipartChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setuseMultipart(getBooleanFromAttributeValue(newValue));
+    }
+  }
+
+  /*TODO: Add change bindings for event handlers */
+}
+
 @customElement('ui5-feed-content')
 @inject(Element)
 export class Ui5FeedContent {
@@ -1621,130 +2157,6 @@ export class Ui5FeedContent {
         }
     }
     
-}
-
-@customElement('ui5-column')
-@inject(Element)
-
-export class Ui5Column {
-  _column = null;
-  _parent = null;
-  _relation = null;
-  @bindable() ui5Id = null;
-  @bindable() width;
-  @bindable() hAlign = 'Begin';
-  @bindable() vAlign = 'Inherit';
-  @bindable() styleClass = null;
-  @bindable() visible = true;
-  @bindable() minScreenWidth = null;
-  @bindable() demandPopin = false;
-  @bindable() popinHAlign = null;
-  @bindable() popinDisplay = null;
-  @bindable() mergeDuplicates = false;
-  @bindable() mergeFunctionName = 'getText';
-  constructor(element) {
-    this.element = element;
-  }
-  defaultFunc() {
-
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    var params = {
-      width: this.width,
-      hAlign: this.hAlign,
-      vAlign: this.vAlign,
-      styleClass: this.styleClass,
-      visible: getBooleanFromAttributeValue(this.visible),
-      minScreenWidth: this.minScreenWidth,
-      demandPopin: getBooleanFromAttributeValue(this.demandPopin),
-      popinDisplay: this.popinDisplay,
-      popinHAlign: this.popinHAlign,
-      mergeDuplicates: getBooleanFromAttributeValue(this.mergeDuplicates),
-      mergeFunctionName: this.mergeFunctionName
-    };
-    if (this.ui5Id)
-      this._column = new sap.m.Column(this.ui5Id, params);
-    else
-      this._column = new sap.m.Column(params);
-    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
-    this._relation = this._parent.addChild(this._column, this.element);
-    attributeManager.addAttributes({ "ui5-container": '' });
-
-  }
-  detached() {
-    if (this._parent && this._relation) {
-      this._parent.removeChildByRelation(this._column, this._relation);
-    }
-  }
-  addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'header')
-      { this._column.setHeader(child); break; }
-      if (elem.localName == 'footer')
-      { this._column.setFooter(child); break; }
-      if (elem.localName == 'content')
-      { this._column.addDependent(child); break; }
-    }
-  }
-  widthChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setWidth(newValue);
-    }
-  }
-  hAlignChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setHAlign(newValue);
-    }
-  }
-  vAlignChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setVAlign(newValue);
-    }
-  }
-  styleClassChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setStyleClass(newValue);
-    }
-  }
-  visibleChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setVisible(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  minScreenWidthChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setMinScreenWidth(newValue);
-    }
-  }
-
-  demandPopinChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setDemandPopin(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  popinDisplayChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setPopinDisplay(newValue);
-    }
-  }
-  popinHAlignChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setPopinHAlign(newValue);
-    }
-  }
-  mergeDuplicatesChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setMergeDuplicates(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  mergeFunctionNameChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setMergeFunctionName(newValue);
-    }
-  }
-
 }
 
 @customElement('ui5-form')
@@ -1901,66 +2313,6 @@ export class Ui5FormElement {
 
 }
 
-@customElement('ui5-form-container')
-@inject(Element)
-export class Ui5FormContainer {
-  @bindable() ui5Id = null;
-  @bindable() title = null;
-  //TODO: expanded, visible, expandable
-  _form = null;
-  constructor(element) {
-    this.element = element;
-  }
-  addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'toolbar') {
-        this._form.setToolbar(child);
-        return elem.localName;
-      }
-      if (elem.localName == 'titleElement') {
-        this._form.setTitle(child);
-        return elem.localName;
-      }
-      if (elem.localName == 'element') {
-        this._form.addFormElement(child);
-        return elem.localName;
-      }
-    }
-  }
-  removeChildByRelation(child, relation) {
-    if (relation == 'element') {
-      this._form.removeFormElement(child);
-    }
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    var params = {
-      title: this.title,
-    };
-    if (this.uiId5)
-      this._form = new sap.ui.layout.form.FormContainer(this.ui5Id, params);
-    else
-      this._form = new sap.ui.layout.form.FormContainer(params);
-
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
-    }
-    else {
-      this._form.placeAt(this.element.parentElement);
-      attributeManager.addClasses("ui5-hide");
-    }
-  }
-  titleChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setTitle(newValue);
-    }
-  }
-
-
-}
-
 @customElement('ui5-formatted-text')
 @inject(Element)
 
@@ -2083,69 +2435,35 @@ export class Ui5GenericTile {
     }
 }
 
-@customElement('ui5-column-list-item')
+@customElement('ui5-grid-data')
 @inject(Element)
 
-export class Ui5ColumnListItem {
-  _item = null;
-  _parent = null;
-  _relation = null;
-
-
-
-  @bindable() vAlign = 'Inherit';
-  @bindable() selected = false;
-
+export class Ui5GridData {
+  _gridData = null;
+  @bindable() id = null;
+  @bindable() span = null;
+  @bindable() indent = null;
   constructor(element) {
     this.element = element;
   }
-  get UIElement() {
-    return this._item;
-  }
-  defaultFunc() {
 
-  }
   attached() {
-    var attributeManager = new AttributeManager(this.element);
-
-    this._item = new sap.m.ColumnListItem({
-      vAlign: this.vAlign,
-      selected: getBooleanFromAttributeValue(this.selected)
+    this._gridData = new sap.ui.layout.GridData({
+      span: this.span,
+      indent: this.indent
     });
-    attributeManager.addAttributes({ "ui5-container": '' });
-    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
-    this._relation = this._parent.addChild(this._item, this.element);
+    $(this.element).parents("[ui5-layout]")[0].au.controller.viewModel.addChild(this._gridData, this.element);
   }
-  detached() {
-    if (this._parent && this._parent.removeChildByRelation) {
-      this._parent.removeChildByRelation(this._item, this._relation);
-    }
-
-  }
-  bind(bindingContext, overrideContext){
-    console.log("bind called"+bindingContext+overrideContext);
-  }
-  unbind(){
-    console.log('unbind called ');
-  }
-  addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'cell')
-      { this._item.addCell(child); break; }
+  indentChanged(newValue) {
+    if (this._gridData !== null) {
+      this._gridData.setIndent(newValue);
     }
   }
-  vAlignChanged(newValue) {
-    if (this._item !== null) {
-      this._item.setVAlign(newValue);
+  spanChanged(newValue) {
+    if (this._gridData !== null) {
+      this._gridData.setSpan(newValue);
     }
   }
-  selectedChanged(newValue) {
-  if (this._item !== null) {
-  this._item.setSelected(newValue);
-  }
-  }
-
 
 }
 
@@ -2203,35 +2521,208 @@ export class Ui5Grid {
 
 }
 
-@customElement('ui5-grid-data')
+@customElement('ui5-html')
 @inject(Element)
 
-export class Ui5GridData {
-  _gridData = null;
-  @bindable() id = null;
-  @bindable() span = null;
-  @bindable() indent = null;
+export class Ui5Html {
+   _html = null;
+
   constructor(element) {
     this.element = element;
   }
 
   attached() {
-    this._gridData = new sap.ui.layout.GridData({
-      span: this.span,
-      indent: this.indent
-    });
-    $(this.element).parents("[ui5-layout]")[0].au.controller.viewModel.addChild(this._gridData, this.element);
+
+    this._html = new sap.ui.core.HTML(); 
+    this._html.setContent(this.content.innerHTML);
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._html,this.element);  
   }
-  indentChanged(newValue) {
-    if (this._gridData !== null) {
-      this._gridData.setIndent(newValue);
+}
+
+@customElement('ui5-icon')
+@inject(Element)
+
+export class Ui5Icon {
+  _icon = null;
+  @bindable() ui5Id = null;
+  @bindable() src = null;
+  @bindable() size = null;
+  @bindable() color = null;
+  @bindable() hoverColor = null;
+  @bindable() activeColor = null;
+  @bindable() width = null;
+  @bindable() height = null;
+  @bindable() backgroundColor = null;
+  @bindable() hoverBackgroundColor = null;
+  @bindable() activeBackgroundColor = null;
+  @bindable() decorative = true;
+  @bindable() useIconTooltip = true;
+  @bindable() alt = null;
+  @bindable() noTabStop = false;
+  @bindable() press = this.defaultFunc;
+  defaultFunc(){
+    
+  }
+  constructor(element) {
+    this.element = element;
+  }
+  @computedFrom('_icon')
+  get UIElement() {
+    return this._icon;
+  }
+  attached() {
+    var props = {
+      src: this.src,
+      size: this.size,
+      color: this.color,
+      hoverColor: this.hoverColor,
+      activeColor: this.activeColor,
+      width: this.width,
+      height: this.height,
+      backgroundColor: this.backgroundColor,
+      activeBackgroundColor: this.activeBackgroundColor,
+      decorative: getBooleanFromAttributeValue(this.decorative),
+      useIconTooltip: getBooleanFromAttributeValue(this.useIconTooltip),
+      alt: this.alt,
+      noTabStop: getBooleanFromAttributeValue(this.noTabStop),
+      press: this.press
+    };
+    if (this.ui5Id)
+      this._icon = new sap.ui.core.Icon(this.ui5Id, props);
+    else
+      this._icon = new sap.ui.core.Icon(props);
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._icon, this.element);
+  }
+  srcChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setSrc(newValue);
     }
   }
-  spanChanged(newValue) {
-    if (this._gridData !== null) {
-      this._gridData.setSpan(newValue);
+  sizeChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setSize(newValue);
     }
   }
+  colorChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setColor(newValue);
+    }
+  }
+  hoverColorChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setHoverColor(newValue);
+    }
+  }
+  activeColorChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setActiveColor(newValue);
+    }
+  }
+  widthChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setWidth(newValue);
+    }
+  }
+  heightChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setHeight(newValue);
+    }
+  }
+  backgroundColorChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setBackgroundColor(newValue);
+    }
+  }
+  hoverBackgroundColorChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setHoverBackgroundColor(newValue);
+    }
+  }
+  activeBackgroundColorChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setActiveBackgroundColor(newValue);
+    }
+  }
+  decorativeChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setDecorative(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  useIconTooltipChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setUseIconTooltip(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  altChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setAlt(newValue);
+    }
+  }
+  noTabStopChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setNoTabStop(getBooleanFromAttributeValue(newValue));
+    }
+  }
+
+}
+
+@customElement('ui5-form-container')
+@inject(Element)
+export class Ui5FormContainer {
+  @bindable() ui5Id = null;
+  @bindable() title = null;
+  //TODO: expanded, visible, expandable
+  _form = null;
+  constructor(element) {
+    this.element = element;
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'toolbar') {
+        this._form.setToolbar(child);
+        return elem.localName;
+      }
+      if (elem.localName == 'titleElement') {
+        this._form.setTitle(child);
+        return elem.localName;
+      }
+      if (elem.localName == 'element') {
+        this._form.addFormElement(child);
+        return elem.localName;
+      }
+    }
+  }
+  removeChildByRelation(child, relation) {
+    if (relation == 'element') {
+      this._form.removeFormElement(child);
+    }
+  }
+  attached() {
+    var attributeManager = new AttributeManager(this.element);
+    var params = {
+      title: this.title,
+    };
+    if (this.uiId5)
+      this._form = new sap.ui.layout.form.FormContainer(this.ui5Id, params);
+    else
+      this._form = new sap.ui.layout.form.FormContainer(params);
+
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
+      attributeManager.addAttributes({ "ui5-container": '' });
+    }
+    else {
+      this._form.placeAt(this.element.parentElement);
+      attributeManager.addClasses("ui5-hide");
+    }
+  }
+  titleChanged(newValue) {
+    if (this._form !== null) {
+      this._form.setTitle(newValue);
+    }
+  }
+
 
 }
 
@@ -2332,7 +2823,8 @@ export class Ui5IconTabBar {
   }
   selectedKeyChanged(newValue) {
     if (this._tab !== null) {
-      this._tab.setSelectedKey(newValue);
+      if(this._tab.getSelectedKey()!=newValue)
+        this._tab.setSelectedKey(newValue);
     }
   }
   upperCaseChanged(newValue) {
@@ -2379,30 +2871,13 @@ export class Ui5IconTabBar {
   /*TODO: Add change bindings for event handlers */
 }
 
-@customElement('ui5-html')
-@inject(Element)
-
-export class Ui5Html {
-   _html = null;
-
-  constructor(element) {
-    this.element = element;
-  }
-
-  attached() {
-
-    this._html = new sap.ui.core.HTML(); 
-    this._html.setContent(this.content.innerHTML);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._html,this.element);  
-  }
-}
-
 @customElement('ui5-icon-tab-filter')
 @inject(Element)
 export class Ui5IconTabFilter {
   _tab = null;
   @bindable() text = null;
   @bindable() tabKey = null;
+  @bindable() design = 'Vertical';
   constructor(element) {
     this.element = element;
   }
@@ -2431,7 +2906,8 @@ export class Ui5IconTabFilter {
     var attributeManager = new AttributeManager(this.element);
     this._tab = new sap.m.IconTabFilter({
       text: this.text,
-      key: this.tabKey
+      key: this.tabKey,
+      design: this.design
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
@@ -2455,11 +2931,16 @@ export class Ui5IconTabFilter {
   tabKeyChanged(newValue) {
     if (this._tab !== null) {
       this._tab.setKey(newValue);
-    } 
+    }
   }
   textChanged(newValue) {
     if (this._tab !== null) {
       this._tab.setText(newValue);
+    }
+  }
+  designChanged(newValue) {
+    if (this._tab !== null) {
+      this._tab.setDesign(newValue);
     }
   }
   /*TODO: Add change bindings for event handlers */
@@ -2865,160 +3346,6 @@ export class Ui5Input extends Ui5InputBase {
   }
 }
 
-@customElement('ui5-input-base')
-@inject(Element)
-
-export class Ui5InputBase extends Ui5Control {
-  _picker = null;
-
-  @bindable() value = null;
-  @bindable() width = null;
-  @bindable() enabled = true;
-  @bindable() valueState = 'None';
-  @bindable() name = null;
-  @bindable() placeholder = null;
-  @bindable() editable = true;
-  @bindable() valueStateText = null;
-  @bindable() showValueStateMessage = true;
-  @bindable() textAlign = 'Initial';
-  @bindable() textDirection = 'Inherit';
-  @bindable() required = false;
-
-  @bindable() change = this.defaultFunc;
-
-  constructor(element) {
-    super(element);
-    this.element = element;
-  }
-  defaultFunc() {
-
-  }
-  attached() {
-    super.attached();
-  }
-  addChild(child, elem) {
-    super.addChild(child, elem);
-  }
-  removeChild(child, elem) {
-    super.removeChild(child, elem);
-  }
-  valueChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setValue(newValue);
-    }
-  }
-  widthChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setWidth(newValue);
-    }
-  }
-  enabledChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setEnabled(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  valueStateChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setValueState(newValue);
-    }
-  }
-  nameChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setName(newValue);
-    }
-  }
-  placeholderChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setPlaceholder(newValue);
-    }
-  }
-  editableChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setEditable(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  valueStateTextChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setValueStateText(newValue);
-    }
-  }
-  showValueStateMessageChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  textAlignChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setTextAlign(newValue);
-    }
-  }
-  textDirectionChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setTextDirection(newValue);
-    }
-  }
-  requiredChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.setRequired(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  changeChanged(newValue) {
-    if (this._picker !== null) {
-      this._picker.attachChange(newValue);
-    }
-  }
-}
-
-@customElement('ui5-item')
-@inject(Element)
-
-export class Ui5Item{
-  _item = null;
-
-  @bindable() key = null;
-  @bindable() enabled = true;
-  @bindable() text =null;
-  @bindable() textDirection = null;
-  
-  constructor(element) {
-    this.element = element;
-  }
-  defaultFunc() {
-
-  }
-  attached() {
-  }
-  addChild(child, elem) {
-  }
-  fillProperties(propertyObject) {
-        propertyObject.text = this.text;
-        propertyObject.key = this.key;
-        propertyObject.textDirection = this.textDirection;
-        propertyObject.enabled = this.enabled;
-    }
-  keyChanged(newValue) {
-    if (this._item !== null) {
-      this._item.setKey(newValue);
-    }
-  }
-  enabledChanged(newValue) {
-    if (this._item !== null) {
-      this._item.setEnabled(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  textChanged(newValue) {
-    if (this._item !== null) {
-      this._item.setText(newValue);
-    }
-  }
-  textDirectionChanged(newValue) {
-    if (this._item !== null) {
-      this._item.setTextDirection(newValue);
-    }
-  }
-  
-}
-
 @customElement('ui5-label')
 @inject(Element)
 
@@ -3032,7 +3359,7 @@ export class Ui5Label {
   @bindable() required = false;
   @bindable() textAlign = "Begin";
   @bindable() textDirection = null;
-
+  @bindable() tooltip = null;
   constructor(element) {
     this.element = element;
   }
@@ -3044,7 +3371,8 @@ export class Ui5Label {
       labelFor: this.labelFor,
       required: getBooleanFromAttributeValue(this.required),
       textAlign: this.textAlign,
-      textDirection: this.textDirection
+      textDirection: this.textDirection,
+      tooltip: this.tooltip
     });
     if ($(this.element).parents("[ui5-container]").length > 0) {
       this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
@@ -3079,6 +3407,11 @@ export class Ui5Label {
   textDirectionChanged(newValue) {
     if (this._label !== null) {
       this._label.setTextDirection(newValue);
+    }
+  }
+  tooltipChanged(newValue) {
+    if (this._label !== null) {
+      this._label.setTooltip(newValue);
     }
   }
 }
@@ -3157,6 +3490,143 @@ export class Ui5Link {
       this._link.attachPress(newValue);
     }
   }
+}
+
+@customElement('ui5-item')
+@inject(Element)
+
+export class Ui5Item{
+  _item = null;
+
+  @bindable() key = null;
+  @bindable() enabled = true;
+  @bindable() text =null;
+  @bindable() textDirection = null;
+  
+  constructor(element) {
+    this.element = element;
+  }
+  defaultFunc() {
+
+  }
+  attached() {
+  }
+  addChild(child, elem) {
+  }
+  fillProperties(propertyObject) {
+        propertyObject.text = this.text;
+        propertyObject.key = this.key;
+        propertyObject.textDirection = this.textDirection;
+        propertyObject.enabled = this.enabled;
+    }
+  keyChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setKey(newValue);
+    }
+  }
+  enabledChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setEnabled(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  textChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setText(newValue);
+    }
+  }
+  textDirectionChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setTextDirection(newValue);
+    }
+  }
+  
+}
+
+@inject(Element)
+export class Ui5ListBase extends Ui5Control {
+
+  @bindable() inset = true;
+  @bindable() headerText = null;
+  @bindable() headerDesign = 'Standard';
+  @bindable() footerText = null;
+  @bindable() mode = 'None';
+  @bindable() width = '100%';
+  @bindable() includeItemInSelection = false;
+  @bindable() showUnread = false;
+  @bindable() noDataText = null;
+  @bindable() showNoData = true;
+  @bindable() enableBusyIndicator = true;
+  @bindable() modeAnimationOn = true;
+  @bindable() showSeparator = 'All';
+  @bindable() swipeDirection = 'Both';
+  @bindable() growing = false;
+  @bindable() growingThreshold = 20;
+  @bindable() growingTriggerText = null;
+  @bindable() growingScrollToLoad = false;
+  @bindable() growingDirection  = 'Downwards';
+  @bindable() rememberSelections = true;
+  @bindable() keyboardMode = 'Navigation';
+
+  @bindable() delete = this.defaultFunc;
+  @bindable() itemPress = this.defaultFunc;
+  @bindable() selectionChange = this.defaultFunc;
+  @bindable() swipe = this.defaultFunc;
+  @bindable() updateFinished = this.defaultFunc;
+  @bindable() updateStarted = this.defaultFunc;
+
+  defaultFunc(){
+
+  }
+  constructor(elem) {
+    super(elem);
+  }
+  addChild(child, elem) {
+    super.addChild(child, elem);
+  }
+  removeChild(child, elem) {
+    super.removeChild(child, elem);
+  }
+  removeChildByRelation(child,relation){
+    super.removeChildByRelation(child,relation);
+  }
+  attached() {
+    super.attached();
+  }
+  fillProperties(propertyObject) {
+    propertyObject.inset = getBooleanFromAttributeValue(this.inset),
+    propertyObject.headerText = this.headerText,
+    propertyObject.headerDesign = this.headerDesign,
+    propertyObject.footerText = this.footerText,
+    propertyObject.mode = this.mode,
+    propertyObject.width = this.width,
+    propertyObject.includeItemInSelection = getBooleanFromAttributeValue(this.includeItemInSelection),
+    propertyObject.showUnread = getBooleanFromAttributeValue(this.showUnread),
+    propertyObject.noDataText = this.noDataText
+    propertyObject.showNoData = getBooleanFromAttributeValue(this.showNoData),
+    propertyObject.enableBusyIndicator = getBooleanFromAttributeValue(this.enableBusyIndicator),
+    propertyObject.modeAnimationOn = getBooleanFromAttributeValue(this.modeAnimationOn),
+    propertyObject.showSeparator = this.showSeparator,
+    propertyObject.swipeDirection = this.swipeDirection,
+    propertyObject.growing = getBooleanFromAttributeValue(this.growing),
+    propertyObject.growingThreshold = +this.growingThreshold,
+    propertyObject.growingTriggerText = this.growingTriggerText,
+    propertyObject.growingScrollToLoad = getBooleanFromAttributeValue(this.growingScrollToLoad),
+    propertyObject.growingDirection = this.growingDirection,
+    propertyObject.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections),
+    propertyObject.keyboardMode = this.keyboardMode,
+    propertyObject.delete = this.delete,
+    propertyObject.itemPress = this.itemPress,
+    propertyObject.selectionChange = this.selectionChange,
+    propertyObject.swipe = this.swipe,
+    propertyObject.updateFinished = this.updateFinished,
+    propertyObject.updateStarted = this.updateStarted
+  }
+  busyChanged(newValue) {
+    if (this.UIElement != null) {
+      this.UIElement.setBusy(getBooleanFromAttributeValue(newValue));
+    }
+  }
+
 }
 
 @customElement('ui5-list')
@@ -3278,325 +3748,6 @@ export class Ui5List extends Ui5ListBase {
 
 }
 
-@customElement('ui5-icon')
-@inject(Element)
-
-export class Ui5Icon {
-  _icon = null;
-  @bindable() ui5Id = null;
-  @bindable() src = null;
-  @bindable() size = null;
-  @bindable() color = null;
-  @bindable() hoverColor = null;
-  @bindable() activeColor = null;
-  @bindable() width = null;
-  @bindable() height = null;
-  @bindable() backgroundColor = null;
-  @bindable() hoverBackgroundColor = null;
-  @bindable() activeBackgroundColor = null;
-  @bindable() decorative = true;
-  @bindable() useIconTooltip = true;
-  @bindable() alt = null;
-  @bindable() noTabStop = false;
-  @bindable() press = this.defaultFunc;
-  defaultFunc(){
-    
-  }
-  constructor(element) {
-    this.element = element;
-  }
-  @computedFrom('_icon')
-  get UIElement() {
-    return this._icon;
-  }
-  attached() {
-    var props = {
-      src: this.src,
-      size: this.size,
-      color: this.color,
-      hoverColor: this.hoverColor,
-      activeColor: this.activeColor,
-      width: this.width,
-      height: this.height,
-      backgroundColor: this.backgroundColor,
-      activeBackgroundColor: this.activeBackgroundColor,
-      decorative: getBooleanFromAttributeValue(this.decorative),
-      useIconTooltip: getBooleanFromAttributeValue(this.useIconTooltip),
-      alt: this.alt,
-      noTabStop: getBooleanFromAttributeValue(this.noTabStop),
-      press: this.press
-    };
-    if (this.ui5Id)
-      this._icon = new sap.ui.core.Icon(this.ui5Id, props);
-    else
-      this._icon = new sap.ui.core.Icon(props);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._icon, this.element);
-  }
-  srcChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setSrc(newValue);
-    }
-  }
-  sizeChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setSize(newValue);
-    }
-  }
-  colorChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setColor(newValue);
-    }
-  }
-  hoverColorChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setHoverColor(newValue);
-    }
-  }
-  activeColorChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setActiveColor(newValue);
-    }
-  }
-  widthChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setWidth(newValue);
-    }
-  }
-  heightChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setHeight(newValue);
-    }
-  }
-  backgroundColorChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setBackgroundColor(newValue);
-    }
-  }
-  hoverBackgroundColorChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setHoverBackgroundColor(newValue);
-    }
-  }
-  activeBackgroundColorChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setActiveBackgroundColor(newValue);
-    }
-  }
-  decorativeChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setDecorative(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  useIconTooltipChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setUseIconTooltip(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  altChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setAlt(newValue);
-    }
-  }
-  noTabStopChanged(newValue) {
-    if (this._icon !== null) {
-      this._icon.setNoTabStop(getBooleanFromAttributeValue(newValue));
-    }
-  }
-
-}
-
-@inject(Element)
-export class Ui5ListBase extends Ui5Control {
-
-  @bindable() inset = true;
-  @bindable() headerText = null;
-  @bindable() headerDesign = 'Standard';
-  @bindable() footerText = null;
-  @bindable() mode = 'None';
-  @bindable() width = '100%';
-  @bindable() includeItemInSelection = false;
-  @bindable() showUnread = false;
-  @bindable() noDataText = null;
-  @bindable() showNoData = true;
-  @bindable() enableBusyIndicator = true;
-  @bindable() modeAnimationOn = true;
-  @bindable() showSeparator = 'All';
-  @bindable() swipeDirection = 'Both';
-  @bindable() growing = false;
-  @bindable() growingThreshold = 20;
-  @bindable() growingTriggerText = null;
-  @bindable() growingScrollToLoad = false;
-  @bindable() growingDirection  = 'Downwards';
-  @bindable() rememberSelections = true;
-  @bindable() keyboardMode = 'Navigation';
-
-  @bindable() delete = this.defaultFunc;
-  @bindable() itemPress = this.defaultFunc;
-  @bindable() selectionChange = this.defaultFunc;
-  @bindable() swipe = this.defaultFunc;
-  @bindable() updateFinished = this.defaultFunc;
-  @bindable() updateStarted = this.defaultFunc;
-
-  defaultFunc(){
-
-  }
-  constructor(elem) {
-    super(elem);
-  }
-  addChild(child, elem) {
-    super.addChild(child, elem);
-  }
-  removeChild(child, elem) {
-    super.removeChild(child, elem);
-  }
-  removeChildByRelation(child,relation){
-    super.removeChildByRelation(child,relation);
-  }
-  attached() {
-    super.attached();
-  }
-  fillProperties(propertyObject) {
-    propertyObject.inset = getBooleanFromAttributeValue(this.inset),
-    propertyObject.headerText = this.headerText,
-    propertyObject.headerDesign = this.headerDesign,
-    propertyObject.footerText = this.footerText,
-    propertyObject.mode = this.mode,
-    propertyObject.width = this.width,
-    propertyObject.includeItemInSelection = getBooleanFromAttributeValue(this.includeItemInSelection),
-    propertyObject.showUnread = getBooleanFromAttributeValue(this.showUnread),
-    propertyObject.noDataText = this.noDataText
-    propertyObject.showNoData = getBooleanFromAttributeValue(this.showNoData),
-    propertyObject.enableBusyIndicator = getBooleanFromAttributeValue(this.enableBusyIndicator),
-    propertyObject.modeAnimationOn = getBooleanFromAttributeValue(this.modeAnimationOn),
-    propertyObject.showSeparator = this.showSeparator,
-    propertyObject.swipeDirection = this.swipeDirection,
-    propertyObject.growing = getBooleanFromAttributeValue(this.growing),
-    propertyObject.growingThreshold = +this.growingThreshold,
-    propertyObject.growingTriggerText = this.growingTriggerText,
-    propertyObject.growingScrollToLoad = getBooleanFromAttributeValue(this.growingScrollToLoad),
-    propertyObject.growingDirection = this.growingDirection,
-    propertyObject.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections),
-    propertyObject.keyboardMode = this.keyboardMode,
-    propertyObject.delete = this.delete,
-    propertyObject.itemPress = this.itemPress,
-    propertyObject.selectionChange = this.selectionChange,
-    propertyObject.swipe = this.swipe,
-    propertyObject.updateFinished = this.updateFinished,
-    propertyObject.updateStarted = this.updateStarted
-  }
-  busyChanged(newValue) {
-    if (this.UIElement != null) {
-      this.UIElement.setBusy(getBooleanFromAttributeValue(newValue));
-    }
-  }
-
-}
-
-@inject(Element)
-export class Ui5ListItemBase extends Ui5Control {
-
-  @bindable() visible = true;
-  @bindable() type = 'Inactive';
-  @bindable() unread = false;
-  @bindable() selected = false;
-  @bindable() counter = null;
-  @bindable() highlight = 'None';
-
-  @bindable() tap = this.defaultFunc;
-  @bindable() detailTap = this.defaultFunc;
-  @bindable() press = this.defaultFunc;
-  @bindable() detailPress = this.defaultFunc;
-
-  /*inherited from control*/
-
-  defaultFunc() {
-
-  }
-  constructor(elem) {
-    super(elem);
-  }
-  addChild(child, elem) {
-    super.addChild(child, elem);
-  }
-  removeChild(child, elem) {
-    super.removeChild(child, elem);
-  }
-  removeChildByRelation(child, relation) {
-    super.removeChildByRelation(child, relation);
-  }
-  attached() {
-    super.attached();
-  }
-  fillProperties(propertyObject) {
-    super.fillProperties(propertyObject);
-    propertyObject.visible = getBooleanFromAttributeValue(this.visible);
-    propertyObject.type = this.type;
-    propertyObject.unread = getBooleanFromAttributeValue(this.unread);
-    propertyObject.selected = getBooleanFromAttributeValue(this.selected);
-    propertyObject.counter = this.counter;
-    propertyObject.highlight = this.highlight;
-    propertyObject.tap = this.tap;
-    propertyObject.detailTap = this.detailTap;
-    propertyObject.press = this.press;
-    propertyObject.detailPress = this.detailPress;
-  }
-  busyChanged(newValue) {
-    if (this.UIElement != null) {
-      this.UIElement.setBusy(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  bind(param) {
-    super.bind(param);
-  }
-  unbind() {
-    super.unbind();
-  }
-
-}
-
-@customElement('ui5-m-title')
-@inject(Element)
-
-export class Ui5MTitle {
-  _title = null;
-  @bindable() ui5Id = null;
-  @bindable() text = null;
-  @bindable() level = 'Auto';
-  @bindable() titleStyle = 'Auto';
-  constructor(element) {
-    this.element = element;
-  }
-
-  attached() {
-    var props = {
-      text: this.text,
-      level: this.level,
-      titleStyle: this.titleStyle
-    };
-    if (this.ui5Id)
-      this._title = new sap.m.Title(this.ui5Id, props);
-    else
-      this._title = new sap.m.Title(props);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
-  }
-
-  textChanged(newValue) {
-    if (this._title != null) {
-      this._title.setText(newValue);
-    }
-  }
-  levelChanged(newValue) {
-    if (this._title != null) {
-      this._title.setLevel(newValue);
-    }
-  }
-  titleStyleChanged(newValue) {
-    if (this._title !== null) {
-      this._title.setTitleStyle(newValue);
-    }
-  }
-}
-
 @customElement('ui5-list-item')
 @inject(Element)
 
@@ -3670,6 +3821,142 @@ export class Ui5ListItem {
 
 }
 
+@inject(Element)
+export class Ui5ListItemBase extends Ui5Control {
+
+  @bindable() visible = true;
+  @bindable() type = 'Inactive';
+  @bindable() unread = false;
+  @bindable() selected = false;
+  @bindable() counter = null;
+  @bindable() highlight = 'None';
+
+  @bindable() tap = this.defaultFunc;
+  @bindable() detailTap = this.defaultFunc;
+  @bindable() press = this.defaultFunc;
+  @bindable() detailPress = this.defaultFunc;
+
+  /*inherited from control*/
+
+  defaultFunc() {
+
+  }
+  constructor(elem) {
+    super(elem);
+  }
+  addChild(child, elem) {
+    super.addChild(child, elem);
+  }
+  removeChild(child, elem) {
+    super.removeChild(child, elem);
+  }
+  removeChildByRelation(child, relation) {
+    super.removeChildByRelation(child, relation);
+  }
+  attached() {
+    super.attached();
+  }
+  fillProperties(propertyObject) {
+    super.fillProperties(propertyObject);
+    propertyObject.visible = getBooleanFromAttributeValue(this.visible);
+    propertyObject.type = this.type;
+    propertyObject.unread = getBooleanFromAttributeValue(this.unread);
+    propertyObject.selected = getBooleanFromAttributeValue(this.selected);
+    propertyObject.counter = this.counter;
+    propertyObject.highlight = this.highlight;
+    propertyObject.tap = this.tap;
+    propertyObject.detailTap = this.detailTap;
+    propertyObject.press = this.press;
+    propertyObject.detailPress = this.detailPress;
+  }
+  busyChanged(newValue) {
+    if (this.UIElement != null) {
+      this.UIElement.setBusy(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  bind(param) {
+    super.bind(param);
+  }
+  unbind() {
+    super.unbind();
+  }
+
+}
+
+@customElement('ui5-message-strip')
+@inject(Element)
+
+export class Ui5MessageStrip {
+  _text = null;
+  @bindable ui5Id = null;
+  @bindable text = null;
+  @bindable wrapping = true;
+  @bindable textAlign = "Begin";
+  @bindable maxLines = null;
+  constructor(element) {
+    this.element = element;
+  }
+
+  attached() {
+
+    this._text = new sap.m.Text({
+      text: this.text,
+      wrapping: getBooleanFromAttributeValue(this.wrapping),
+      textAlign: this.textAlign,
+      maxLines: this.maxLines
+    });
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+  }
+  textChanged(newValue) {
+    if (this._text != null) {
+      this._text.setText(newValue);
+    }
+  }
+}
+
+@customElement('ui5-m-title')
+@inject(Element)
+
+export class Ui5MTitle {
+  _title = null;
+  @bindable() ui5Id = null;
+  @bindable() text = null;
+  @bindable() level = 'Auto';
+  @bindable() titleStyle = 'Auto';
+  constructor(element) {
+    this.element = element;
+  }
+
+  attached() {
+    var props = {
+      text: this.text,
+      level: this.level,
+      titleStyle: this.titleStyle
+    };
+    if (this.ui5Id)
+      this._title = new sap.m.Title(this.ui5Id, props);
+    else
+      this._title = new sap.m.Title(props);
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
+  }
+
+  textChanged(newValue) {
+    if (this._title != null) {
+      this._title.setText(newValue);
+    }
+  }
+  levelChanged(newValue) {
+    if (this._title != null) {
+      this._title.setLevel(newValue);
+    }
+  }
+  titleStyleChanged(newValue) {
+    if (this._title !== null) {
+      this._title.setTitleStyle(newValue);
+    }
+  }
+}
+
 @customElement('ui5-numeric-content')
 @inject(Element)
 export class Ui5NumericContent {
@@ -3731,64 +4018,6 @@ export class Ui5NumericContent {
         }
     }
     
-}
-
-@customElement('ui5-object-identifier')
-@inject(Element)
-
-export class Ui5ObjectIdentifier {
-  _text = null;
-  @bindable ui5Id = null;
-  @bindable text = null;
-  @bindable() title = null;
-  @bindable() visible = true;
-  @bindable() titleActive = false;
-  @bindable() textDirection = 'Inherit';
-  @bindable() titlePress = this.defaultFunc;
-
-  constructor(element) {
-    this.element = element;
-  }
-  defaultFunc() {
-
-  }
-  attached() {
-
-    this._text = new sap.m.ObjectIdentifier({
-      text: this.text != null ? this.text : this.element.innerText.trim(),
-      title : this.title,
-      visible: getBooleanFromAttributeValue(this.visible),
-      titleActive: getBooleanFromAttributeValue(this.titleActive),
-      textDirection: this.textDirection,
-      titlePress: this.titlePress
-    });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
-  }
-  textChanged(newValue) {
-    if (this._text != null) {
-      this._text.setText(newValue);
-    }
-  }
-  titleChanged(newValue) {
-    if (this._text !== null) {
-      this._text.setTitle(newValue);
-    }
-  }
-  visibleChanged(newValue) {
-    if (this._text !== null) {
-      this._text.setVisible(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  titleActiveChanged(newValue) {
-    if (this._text !== null) {
-      this._text.setTitleActive(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  textDirectionChanged(newValue) {
-    if (this._text !== null) {
-      this._text.setTextDirection(newValue);
-    }
-  }
 }
 
 @customElement('ui5-object-number')
@@ -3861,10 +4090,113 @@ export class Ui5ObjectNumber {
   }
 }
 
+@customElement('ui5-overflow-toolbar')
+@inject(Element)
+export class Ui5OverflowToolbar {
+  _bar = null;
+
+  @bindable() width = null;
+  @bindable() active = false;
+  @bindable() enabled = true;
+  @bindable() height = null;
+  @bindable() design = null;
+  @bindable() press = this.defaultFunc;
+  constructor(element) {
+    this.element = element;
+  }
+  defaultFunc(event) {
+
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'content') {
+        this._bar.addContent(child);
+        return elem.localName;
+      }
+    }
+  }
+  removeChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'content') {
+        this._bar.removeContent(child);
+        break;
+      }
+    }
+  }
+  removeChildByRelation(child,relation){
+    if (relation === 'content' && this._bar && child) {
+     this._bar.removeContent(child);
+   }
+ }
+  attached() {
+    var attributeManager = new AttributeManager(this.element);
+    this._bar = new sap.m.OverflowToolbar({
+      width: this.width,
+      enabled: getBooleanFromAttributeValue(this.enabled),
+      active: getBooleanFromAttributeValue(this.active),
+      height: this.height,
+      design: this.design,
+      press: this.press
+    });
+
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._bar, this.element);
+      attributeManager.addAttributes({ "ui5-container": '' });
+    }
+    else {
+      this._bar.placeAt(this.element.parentElement);
+      attributeManager.addAttributes({ "ui5-container": '' });
+      attributeManager.addClasses("ui5-hide");
+    }
+  }
+  detached() {
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._bar, this.element);
+    }
+    else {
+      this._bar.destroy();
+    }
+  }
+  widthChanged(newValue) {
+    if (this._bar !== null) {
+      this._bar.setWidth(newValue);
+    }
+  }
+  enabledChanged(newValue) {
+    if (this._bar !== null) {
+      this._bar.setEnabled(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  activeChanged(newValue) {
+    if (this._bar !== null) {
+      this._bar.setActive(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  heightChanged(newValue) {
+    if (this._bar !== null) {
+      this._bar.setHeight(newValue);
+    }
+  }
+  designChanged(newValue) {
+    if (this._bar !== null) {
+      this._bar.setDesign(newValue);
+    }
+  }
+  pressChanged(newValue) {
+    if (this._bar !== null) {
+      this._bar.setPress(newValue);
+    }
+  }
+}
+
 @customElement('ui5-page')
 @inject(Element)
 export class Ui5Page {
   @bindable() title = '';
+  @bindable() busy = false;
+  @bindable() busyIndicatorDelay = 1000;
   @bindable() showHeader = true;
   @bindable() showFooter = true;
   @bindable() showNavButton = false;
@@ -3935,7 +4267,9 @@ export class Ui5Page {
       showHeader: getBooleanFromAttributeValue(this.showHeader),
       showFooter: getBooleanFromAttributeValue(this.showFooter),
       showNavButton: getBooleanFromAttributeValue(this.showNavButton),
-      navButtonPress: this.navButtonPress
+      navButtonPress: this.navButtonPress,
+      busy: getBooleanFromAttributeValue(this.busy),
+      busyIndicatorDelay: this.busyIndicatorDelay
     });
     this._page = page;
 
@@ -3981,474 +4315,78 @@ export class Ui5Page {
       this._page.setShowNavButton(getBooleanFromAttributeValue(newValue));
     }
   }
-}
-
-@customElement('ui5-overflow-toolbar')
-@inject(Element)
-export class Ui5OverflowToolbar {
-  _bar = null;
-
-  @bindable() width = null;
-  @bindable() active = false;
-  @bindable() enabled = true;
-  @bindable() height = null;
-  @bindable() design = null;
-  @bindable() press = this.defaultFunc;
-  constructor(element) {
-    this.element = element;
-  }
-  defaultFunc(event) {
-
-  }
-  addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'content') {
-        this._bar.addContent(child);
-        break;
-      }
+  busyChanged(newValue) {
+    if (this._page !== null) {
+      this._page.setBusy(getBooleanFromAttributeValue(newValue));
     }
   }
-  removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'content') {
-        this._bar.removeContent(child);
-        break;
-      }
-    }
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    this._bar = new sap.m.OverflowToolbar({
-      width: this.width,
-      enabled: getBooleanFromAttributeValue(this.enabled),
-      active: getBooleanFromAttributeValue(this.active),
-      height: this.height,
-      design: this.design,
-      press: this.press
-    });
-
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._bar, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
-    }
-    else {
-      this._bar.placeAt(this.element.parentElement);
-      attributeManager.addAttributes({ "ui5-container": '' });
-      attributeManager.addClasses("ui5-hide");
-    }
-  }
-  detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._bar, this.element);
-    }
-    else {
-      this._bar.destroy();
-    }
-  }
-  widthChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setWidth(newValue);
-    }
-  }
-  enabledChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setEnabled(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  activeChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setActive(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  heightChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setHeight(newValue);
-    }
-  }
-  designChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setDesign(newValue);
-    }
-  }
-  pressChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setPress(newValue);
+  busyIndicatorDelayChanged(newValue) {
+    if (this._page !== null) {
+      this._page.setBusyIndicatorDelay(newValue);
     }
   }
 }
 
-@customElement('ui5-file-uploader')
+@customElement('ui5-responsive-grid-layout')
 @inject(Element)
-export class Ui5FileUploader {
-  @bindable() fileType = [];
-  @bindable() maximumFilenameLength = null;
-  @bindable() maximumFileSize = null;
-  @bindable() mimeType = [];
-  @bindable() multiple = false;
-  @bindable() value = null;
-  @bindable() name = null;
-  @bindable() sameFilenameAllowed = false;
-  @bindable() showSeperators = 'All';
-  @bindable() uploadOnChange = true;
-  @bindable() uploadUrl = '../../../upload';
-  @bindable() enabled = true;
-  @bindable() width = null;
-  @bindable() valueState = 'None';
-  @bindable() buttonOnly = false;
-  @bindable() useMultipart = true;
-  @bindable() buttonText = null;
-  @bindable() sendXHR = false;
-  @bindable() placeholder = null;
-  @bindable() style = null;
-  @bindable() icon = null;
-  @bindable() iconHovered = null;
-  @bindable() iconSelected = null;
-  @bindable() iconFirst = true;
-  @bindable() iconOnly = false;
-
-  @bindable() change = this.defaultFunc;
-  @bindable() filenameLengthExceeded = this.defaultFunc;
-  @bindable() fileSizeExceeded = this.defaultFunc;
-  @bindable() fileAllowed = this.defaultFunc;
-  @bindable() uploadComplete = this.defaultFunc;
-  @bindable() uploadAborted = this.defaultFunc;
-  @bindable() uploadStart = this.defaultFunc;
-  @bindable() uploadProgress = this.defaultFunc;
-  _upload = null;
-  constructor(element) {
-    this.element = element;
-  }
-  defaultFunc(event) {
-
-  }
-  addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'items') {
-        this._upload.addItem(child);
-        return elem.localName;
-      }
-      else if (elem.localName == 'toolbar') {
-        this._upload.setToolbar(child);
-        return elem.localName;
-      }
-      else if (elem.localName == 'infotoolbar') {
-        this._upload.setInfoToolbar(child);
-        return elem.localName;
-      }
-      else if (elem.localName == 'parameter') {
-        this._upload.addHeaderParameter(child);
-        return elem.localName;
-      }
-    }
-  }
-  removeChildByRelation(child, relation) {
-    if (relation === 'items' && this._upload) {
-      this._upload.removeItem(child);
-    }
-    else if (relation === 'toolbar' && this._upload) {
-      this._upload.setToolbar(null);
-    }
-    else if (relation === 'infotoolbar' && this._upload) {
-      this._upload.setInfoToolbar(null);
-    }
-    else if (relation === 'parameter' && this._upload) {
-      this._upload.removeHeaderParameter(null);
-    }
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    this._upload = new sap.m.UploadCollection({
-      fileType: this.fileType,
-      maximumFilenameLength: this.maximumFilenameLength,
-      maximumFileSize: this.maximumFileSize,
-      mimeType: this.mimeType,
-      multiple: getBooleanFromAttributeValue(this.multiple),
-      value: this.value,
-      name: this.name,
-      sameFilenameAllowed: getBooleanFromAttributeValue(this.sameFilenameAllowed),
-      showSeperators: this.showSeperators,
-      uploadOnChange: getBooleanFromAttributeValue(this.uploadOnChange),
-      uploadUrl: this.uploadUrl,
-      enabled: getBooleanFromAttributeValue(this.enabled),
-      width: this.width,
-      useMultipart: getBooleanFromAttributeValue(this.useMultipart),
-      change: this.change,
-      fileDeleted: this.fileDeleted,
-      filenameLengthExceeded: this.filenameLengthExceeded,
-      fileSizeExceeded: this.fileSizeExceeded,
-      fileAllowed: this.fileAllowed,
-      uploadComplete: this.uploadComplete,
-      uploadAborted: this.uploadAborted,
-      uploadStart: this.uploadStart,
-      uploadProgress: this.uploadProgress
-    });
-
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewvalueStatel.addChild(this._upload, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
-    }
-    else {
-      this._upload.placeAt(this.element.parentElement);
-      attributeManager.addAttributes({ "ui5-container": '' });
-      attributeManager.addClasses("ui5-hide");
-    }
-  }
-  detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewvalueStatel.removeChild(this._upload, this.element);
-    }
-    else {
-      this._upload.destroy();
-    }
-  }
-  fileTypeChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setFileType(newValue);
-    }
-  }
-  maximumFilenameLengthChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setMaximumFilenameLength(newValue);
-    }
-  }
-  mimeTypeChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setMimeType(newValue);
-    }
-  }
-  multipleChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setMultiple(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  valueChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setvalue(newValue);
-    }
-  }
-  nameChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setname(newValue);
-    }
-  }
-  sameFilenameAllowedChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setSameFilenameAllowed(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  showSeperatorsChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setshowSeperators(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  uploadOnChangeChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setuploadOnChange(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  uploadUrlChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setUploadUrl(newValue);
-    }
-  }
-  enabledChanged(newValue) {
-    if (this._upload !== null) {
-      //not supported by OpenUI5 (yet)
-      //this._upload.setenabled(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  widthChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setwidth(newValue);
-    }
-  }
-  valueStateChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setvalueState(newValue);
-    }
-  }
-  buttonOnlyChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setbuttonOnly(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  useMultipartChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setuseMultipart(getBooleanFromAttributeValue(newValue));
-    }
-  }
-
-  /*TODO: Add change bindings for event handlers */
-}
-
-@customElement('ui5-responsive-popover')
-@inject(Element)
-export class Ui5ResponsivePopover {
-  _dialog = null;
-  _parent = null;
+export class Ui5ResponsiveGridLayout {
   @bindable() ui5Id = null;
-  @bindable() placement = 'Right';
-  @bindable() icon = null;
-  @bindable() title = null;
-  @bindable() offsetX = null;
-  @bindable() offsetY = null;
-  @bindable() showArrow = true;
-  @bindable() showHeader = true;
-  @bindable() contentWidth = null;
-  @bindable() contentHeight = null;
-  @bindable() horizontalScrolling = true;
-  @bindable() verticalScrolling = true;
-  @bindable() showCloseButton = true;
-  @bindable() resizable = false;
-  @bindable() beforeOpen = this.defaultFunc;
-  @bindable() afterOpen = this.defaultFunc;
-  @bindable() beforeClose = this.defaultFunc;
-  @bindable() afterClose = this.defaultFunc;
 
+  @bindable() labelSpanXL = -1;
+  @bindable() labelSpanL = 4;
+  @bindable() labelSpanM = 2;
+  @bindable() labelSpanS = 12;
+  @bindable() adjustLabelSpan = true;
+  @bindable() emptySpanXL = -1;
+  @bindable() emptySpanL = 0;
+  @bindable() emptySpanM = 0;
+  @bindable() emptySpanS = 0;
+  @bindable() singleContainerFullSize = false;
+  @bindable() breakpointXL = 1440;
+  @bindable() breakpointL = 1024;
+  @bindable() breakpointM = 600;
+
+  _form = null;
   constructor(element) {
     this.element = element;
-    this.attributeManager = new AttributeManager(this.element);
-  }
-  defaultFunc(event) {
-
-  }
-  get UIElement() {
-    return this._dialog;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'subHeader') {
-        this._dialog.setSubHeader(child);
-        return 'subHeader';
-      }
-      if (elem.localName == 'customHeader') {
-        this._dialog.setCustomHeader(child);
-        return 'customHeader';
-      }
-      if (elem.localName == 'leftbutton') {
-        this._dialog.setBeginButton(child);
-        return 'leftButton';
-      }
-      if (elem.localName == 'rightbutton') {
-        this._dialog.setEndButton(child);
-        return 'rightButton';
-      }
-      if (elem.localName == 'content') {
-        this._dialog.addContent(child);
-        return 'content';
-      }
-    }
-  }
-  removeChildByRelation(child, relation) {
-    if (relation == 'content') {
-      this._dialog.removeContent(child);
-    }
-  }
-  removeChild(child, elem) {
-
+   
   }
   attached() {
-    var props = {
-      icon: this.icon,
-      placement: this.placement,
-      title: this.title,
-      showHeader: getBooleanFromAttributeValue(this.showHeader),
-      offsetX: this.offsetX,
-      offsetY: this.offsetY,
-      showArrow : getBooleanFromAttributeValue(this.showArrow),
-      showCloseButton: getBooleanFromAttributeValue(this.showCloseButton),
-      contentWidth: this.contentWidth,
-      contentHeight: this.contentHeight,
-      horizontalScrolling: getBooleanFromAttributeValue(this.horizontalScrolling),
-      verticalScrolling: getBooleanFromAttributeValue(this.verticalScrolling),
-      resizable: getBooleanFromAttributeValue(this.resizable),
-      beforeOpen: this.beforeOpen,
-      afterOpen: this.afterOpen,
-      beforeClose: this.beforeClose,
-      afterClose: this.afterClose
+    var attributeManager = new AttributeManager(this.element);
+    var params = {
+     
+      labelSpanXL: parseInt(this.labelSpanXL),
+      labelSpanL: parseInt(this.labelSpanL),
+      labelSpanM: parseInt(this.labelSpanM),
+      labelSpanS: parseInt(this.labelSpanS),
+      adjustLabelSpan: getBooleanFromAttributeValue(this.adjustLabelSpan),
+      emptySpanXL: parseInt(this.emptySpanXL),
+      emptySpanL: parseInt(this.emptySpanL),
+      emptySpanM: parseInt(this.emptySpanM),
+      emptySpanS: parseInt(this.emptySpanS),
+      singleContainerFullSize: getBooleanFromAttributeValue(this.singleContainerFullSize),
+      breakpointXL: parseInt(this.breakpointXL),
+      breakpointL: parseInt(this.breakpointL),
+      breakpointM: parseInt(this.breakpointM),
+
     };
-    if (this.ui5Id)
-      this._dialog = new sap.m.ResponsivePopover(this.ui5Id, props);
+    if (this.uiId5)
+      this._form = new sap.ui.layout.form.ResponsiveGridLayout(this.ui5Id, params);
     else
-      this._dialog = new sap.m.ResponsivePopover(props);
-    this.attributeManager.addAttributes({ "ui5-dialog-id": this.ui5Id });
-    this.attributeManager.addAttributes({ "ui5-layout": '' });
-    this.attributeManager.addAttributes({ "ui5-container": '' });
+      this._form = new sap.ui.layout.form.ResponsiveGridLayout(params);
 
-  }
-  detached() {
-
-  }
-  placementChanged(newValue) {
-  if (this._dialog !== null) {
-  this._dialog.setPlacement(newValue);
-  }
-  }
-  offsetXChanged(newValue) {
-  if (this._dialog !== null) {
-  this._dialog.setOffsetX(newValue);
-  }
-  }
-  offsetYChanged(newValue) {
-  if (this._dialog !== null) {
-  this._dialog.setOffsetY(newValue);
-  }
-  }
-  showArrayChanged(newValue) {
-  if (this._dialog !== null) {
-  this._dialog.setShowArray(getBooleanFromAttributeValue(newValue));
-  }
-  }
-  showCloseButtonChanged(newValue) {
-  if (this._dialog !== null) {
-  this._dialog.setShowCloseButton(getBooleanFromAttributeValue(newValue));
-  }
-  }
-  iconChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setIcon(newValue);
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
+      attributeManager.addAttributes({ "ui5-container": '' });
+    }
+    else {
+      this._form.placeAt(this.element.parentElement);
+      attributeManager.addClasses("ui5-hide");
     }
   }
-  titleChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setTitle(newValue);
-    }
-  }
-  showHeaderChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setShowHeader(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  contentHeightChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setContentHeight(newValue);
-    }
-  }
-  contentWidthChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setContentWidth(newValue);
-    }
-  }
-  horizontalScrollingChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setHorizontalScrolling(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  verticalScrollingChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setVerticalScrolling(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  resizableChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setResizable(getBooleanFromAttributeValue(newValue));
-    }
-  }
-
+ 
 
 }
 
@@ -4587,129 +4525,106 @@ export class Ui5SearchField extends Ui5Control {
  /*Todo change event handlers*/
 }
 
-@customElement('ui5-dynamic-page')
-@inject(Element,TaskQueue)
-export class Ui5DynamicPage {
-  @bindable() preserveHeaderStateOnScroll = false;
-  @bindable() headerExpanded = true;
-  @bindable() toggleHeaderOnTitleClick = true;
-  @bindable() showFooter = false;
-  @bindable() fitContent = true;
-  _page = null;
-  _taskQueue = null;
-  constructor(element,queue) {
+@customElement('ui5-input-base')
+@inject(Element)
+
+export class Ui5InputBase extends Ui5Control {
+  _picker = null;
+
+  @bindable() value = null;
+  @bindable() width = null;
+  @bindable() enabled = true;
+  @bindable() valueState = 'None';
+  @bindable() name = null;
+  @bindable() placeholder = null;
+  @bindable() editable = true;
+  @bindable() valueStateText = null;
+  @bindable() showValueStateMessage = true;
+  @bindable() textAlign = 'Initial';
+  @bindable() textDirection = 'Inherit';
+  @bindable() required = false;
+
+  @bindable() change = this.defaultFunc;
+
+  constructor(element) {
+    super(element);
     this.element = element;
-    this._taskQueue = queue;
   }
   defaultFunc() {
 
   }
-  @computedFrom('_page')
-  get UIElement() {
-    return this._page;
+  attached() {
+    super.attached();
   }
-
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'heading') {
-        this._page.setHeader(child);
-
-        break;
-      }
-      if (elem.localName == 'pagetitle') {
-        this._page.setTitle(child);
-        //reset header expanded flag as the title is required to do so
-        var _self = this;
-        _self._taskQueue.queueTask(function () {
-          _self._page.setHeaderExpanded(getBooleanFromAttributeValue(_self.headerExpanded));
-        });
-        break;
-      }
-      if (elem.localName == 'content') {
-        this._page.setContent(child);
-
-        break;
-      }
-      if (elem.localName == 'footer') {
-        this._page.setFooter(child);
-        break;
-      }
-    }
+    super.addChild(child, elem);
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'header') {
-        //header is removed automatically
-        break;
-      }
-
-      if (elem.localName == 'content') {
-        // content is removed automatically
-        break;
-      }
-      if (elem.localName == 'footer') {
-        //footer is removed automatically
-        break;
-      }
+    super.removeChild(child, elem);
+  }
+  valueChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setValue(newValue);
     }
   }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    var page = new sap.f.DynamicPage({
-      preserveHeaderStateOnScroll: getBooleanFromAttributeValue(this.preserveHeaderStateOnScroll),
-      headerExpanded: getBooleanFromAttributeValue(this.headerExpanded),
-      toggleHeaderOnTitleClick: getBooleanFromAttributeValue(this.toggleHeaderOnTitleClick),
-      showFooter: getBooleanFromAttributeValue(this.showFooter),
-      fitContent: getBooleanFromAttributeValue(this.fitContent)
-    });
-    this._page = page;
-
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._page, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
-    }
-    else {
-      this._page.placeAt(this.element.parentElement);
-      attributeManager.addAttributes({ "ui5-container": '' });
-      attributeManager.addClasses("ui5-hide");
-    }
-
-  }
-  detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
-    }
-    else {
-      this._page.destroy();
+  widthChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setWidth(newValue);
     }
   }
-
-
-  showFooterChanged(newValue) {
-    if (this._page !== null) {
-      this._page.setShowFooter(getBooleanFromAttributeValue(newValue));
+  enabledChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setEnabled(getBooleanFromAttributeValue(newValue));
     }
   }
-  preserveHeaderStateOnScrollChanged(newValue) {
-    if (this._page !== null) {
-      this._page.setPreserveHeaderStateOnScroll(getBooleanFromAttributeValue(newValue));
+  valueStateChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setValueState(newValue);
     }
   }
-  headerExpandedChanged(newValue) {
-    if (this._page !== null) {
-      this._page.setHeaderExpanded(getBooleanFromAttributeValue(newValue));
+  nameChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setName(newValue);
     }
   }
-  toggleHeaderOnTitleClickChanged(newValue) {
-    if (this._page !== null) {
-      this._page.setToggleHeaderOnTitleClick(getBooleanFromAttributeValue(newValue));
+  placeholderChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setPlaceholder(newValue);
     }
   }
-  fitContentChanged(newValue) {
-    if (this._page !== null) {
-      this._page.setFitContent(getBooleanFromAttributeValue(newValue));
+  editableChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setEditable(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  valueStateTextChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setValueStateText(newValue);
+    }
+  }
+  showValueStateMessageChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  textAlignChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setTextAlign(newValue);
+    }
+  }
+  textDirectionChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setTextDirection(newValue);
+    }
+  }
+  requiredChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.setRequired(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  changeChanged(newValue) {
+    if (this._picker !== null) {
+      this._picker.attachChange(newValue);
     }
   }
 }
@@ -4779,6 +4694,67 @@ export class Ui5SegmentedButton {
     if (this._button !== null) {
       this._button.setSelectedKey(newValue);
     }
+  }
+
+}
+
+@customElement('ui5-segmented-button-item')
+@inject(Element)
+export class Ui5SegmentedButtonItem extends Ui5Item {
+  _item = null;
+
+  @bindable() icon = null;
+  @bindable() visible = true;
+  @bindable() width = null;
+  @bindable() press = this.defaultFunc;
+
+  /*from Ui5Item*/
+  @bindable() key = null;
+  @bindable() enabled = true;
+  @bindable() text = null;
+  @bindable() textDirection = null;
+
+
+  constructor(element) {
+    super(element);
+    this.attributeManager = new AttributeManager(element);
+    this.element = element;
+  }
+
+  defaultFunc() {
+
+  }
+  attached() {
+    var props = {
+      width: this.width,
+      icon: this.icon,
+      visible: getBooleanFromAttributeValue(this.visible),
+      press: this.press != null ? this.press : this.defaultPress
+    };
+    super.fillProperties(props);
+    this._item = new sap.m.SegmentedButtonItem(props);
+
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._item, this.element);
+    }
+  }
+
+  addChild(child, elem) {
+  }
+  removeChild(child, elem) {
+  }
+  iconChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setIcon(newValue);
+    }
+  }
+  visibleChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setVisible(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  widthChanged(newValue) {
+    this._item.setWidth(newValue);
   }
 
 }
@@ -4963,6 +4939,117 @@ export class Ui5Select {
   }
 }
 
+@customElement('ui5-select-dialog')
+@inject(Element)
+export class Ui5SelectDialog {
+  _dialog = null;
+  _parent = null;
+  @bindable() ui5Id = null;
+  @bindable() title = null;
+  @bindable() contentHeight = null;
+  @bindable() noDataText = null;
+  @bindable() multiSelect = false;
+  @bindable() growingThreshold = null;
+  @bindable() contentWidth = null;
+  @bindable() rememberSelections = false;
+  @bindable() confirm = this.defaultFunc;
+  @bindable() search = this.defaultFunc;
+  @bindable() liveChange = this.defaultFunc;
+  @bindable() cancel = this.defaultFunc;
+  constructor(element) {
+    this.element = element;
+    this.attributeManager = new AttributeManager(this.element);
+  }
+  defaultFunc(event) {
+
+  }
+  get UIElement() {
+    return this._dialog;
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'item')
+      { this._dialog.addItem(child); return elem.localName; }
+    }
+  }
+  removeChildByRelation(child, relation) {
+    if (relation == 'item') {
+      try {
+        this._dialog.removeItem(child);
+      }
+      catch (exc) { }
+    }
+  }
+  removeChild(child, elem) {
+
+  }
+  attached() {
+    var props = {
+      icon: this.icon,
+      title: this.title,
+      contentWidth: this.contentWidth,
+      contentHeight: this.contentHeight,
+      multiSelect: getBooleanFromAttributeValue(this.multiSelect),
+      noDataText: this.noDataText,
+      growingThreshold: this.growingThreshold,
+      rememberSelections: getBooleanFromAttributeValue(this.rememberSelections),
+      confirm: this.confirm,
+      search: this.search,
+      liveChange: this.liveChange,
+      cancel: this.cancel
+    };
+    if (this.ui5Id)
+      this._dialog = new sap.m.SelectDialog(this.ui5Id, props);
+    else
+      this._dialog = new sap.m.SelectDialog(props);
+    this.attributeManager.addAttributes({ "ui5-dialog-id": this.ui5Id });
+    this.attributeManager.addAttributes({ "ui5-layout": '' });
+    this.attributeManager.addAttributes({ "ui5-container": '' });
+
+  }
+  detached() {
+
+  }
+
+  titleChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setTitle(newValue);
+    }
+  }
+  contentHeightChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setContentHeight(newValue);
+    }
+  }
+  contentWidthChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setContentWidth(newValue);
+    }
+  }
+  noDataTextChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setNoDataText(newValue);
+    }
+  }
+  multiSelectChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setMultiSelect(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  growingThresholdChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setGrowingThreshold(newValue);
+    }
+  }
+  rememberSelectionsChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setRememberSelections(getBooleanFromAttributeValue(newValue));
+    }
+  }
+
+}
+
 @customElement('ui5-shell')
 @inject(Element)
 export class Ui5Shell {
@@ -5145,117 +5232,6 @@ export class Ui5SimpleForm {
 
 }
 
-@customElement('ui5-select-dialog')
-@inject(Element)
-export class Ui5SelectDialog {
-  _dialog = null;
-  _parent = null;
-  @bindable() ui5Id = null;
-  @bindable() title = null;
-  @bindable() contentHeight = null;
-  @bindable() noDataText = null;
-  @bindable() multiSelect = false;
-  @bindable() growingThreshold = null;
-  @bindable() contentWidth = null;
-  @bindable() rememberSelections = false;
-  @bindable() confirm = this.defaultFunc;
-  @bindable() search = this.defaultFunc;
-  @bindable() liveChange = this.defaultFunc;
-  @bindable() cancel = this.defaultFunc;
-  constructor(element) {
-    this.element = element;
-    this.attributeManager = new AttributeManager(this.element);
-  }
-  defaultFunc(event) {
-
-  }
-  get UIElement() {
-    return this._dialog;
-  }
-  addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'item')
-      { this._dialog.addItem(child); return elem.localName; }
-    }
-  }
-  removeChildByRelation(child, relation) {
-    if (relation == 'item') {
-      try {
-        this._dialog.removeItem(child);
-      }
-      catch (exc) { }
-    }
-  }
-  removeChild(child, elem) {
-
-  }
-  attached() {
-    var props = {
-      icon: this.icon,
-      title: this.title,
-      contentWidth: this.contentWidth,
-      contentHeight: this.contentHeight,
-      multiSelect: getBooleanFromAttributeValue(this.multiSelect),
-      noDataText: this.noDataText,
-      growingThreshold: this.growingThreshold,
-      rememberSelections: getBooleanFromAttributeValue(this.rememberSelections),
-      confirm: this.confirm,
-      search: this.search,
-      liveChange: this.liveChange,
-      cancel: this.cancel
-    };
-    if (this.ui5Id)
-      this._dialog = new sap.m.SelectDialog(this.ui5Id, props);
-    else
-      this._dialog = new sap.m.SelectDialog(props);
-    this.attributeManager.addAttributes({ "ui5-dialog-id": this.ui5Id });
-    this.attributeManager.addAttributes({ "ui5-layout": '' });
-    this.attributeManager.addAttributes({ "ui5-container": '' });
-
-  }
-  detached() {
-
-  }
-
-  titleChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setTitle(newValue);
-    }
-  }
-  contentHeightChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setContentHeight(newValue);
-    }
-  }
-  contentWidthChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setContentWidth(newValue);
-    }
-  }
-  noDataTextChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setNoDataText(newValue);
-    }
-  }
-  multiSelectChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setMultiSelect(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  growingThresholdChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setGrowingThreshold(newValue);
-    }
-  }
-  rememberSelectionsChanged(newValue) {
-    if (this._dialog !== null) {
-      this._dialog.setRememberSelections(getBooleanFromAttributeValue(newValue));
-    }
-  }
-
-}
-
 @customElement('ui5-slide-tile')
 @inject(Element)
 export class Ui5SlideTile {
@@ -5298,67 +5274,6 @@ export class Ui5SlideTile {
       this._container.setTransitionTime(newValue);
     }
   }
-}
-
-@customElement('ui5-segmented-button-item')
-@inject(Element)
-export class Ui5SegmentedButtonItem extends Ui5Item {
-  _item = null;
-
-  @bindable() icon = null;
-  @bindable() visible = true;
-  @bindable() width = null;
-  @bindable() press = this.defaultFunc;
-
-  /*from Ui5Item*/
-  @bindable() key = null;
-  @bindable() enabled = true;
-  @bindable() text = null;
-  @bindable() textDirection = null;
-
-
-  constructor(element) {
-    super(element);
-    this.attributeManager = new AttributeManager(element);
-    this.element = element;
-  }
-
-  defaultFunc() {
-
-  }
-  attached() {
-    var props = {
-      width: this.width,
-      icon: this.icon,
-      visible: getBooleanFromAttributeValue(this.visible),
-      press: this.press != null ? this.press : this.defaultPress
-    };
-    super.fillProperties(props);
-    this._item = new sap.m.SegmentedButtonItem(props);
-
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._item, this.element);
-    }
-  }
-
-  addChild(child, elem) {
-  }
-  removeChild(child, elem) {
-  }
-  iconChanged(newValue) {
-    if (this._item !== null) {
-      this._item.setIcon(newValue);
-    }
-  }
-  visibleChanged(newValue) {
-    if (this._item !== null) {
-      this._item.setVisible(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  widthChanged(newValue) {
-    this._item.setWidth(newValue);
-  }
-
 }
 
 @customElement('md-slider')
@@ -5429,37 +5344,6 @@ export class MdSlider {
   // mdTransitionChanged() {
   //   this.refresh();
   // }
-}
-
-@customElement('ui5-message-strip')
-@inject(Element)
-
-export class Ui5MessageStrip {
-  _text = null;
-  @bindable ui5Id = null;
-  @bindable text = null;
-  @bindable wrapping = true;
-  @bindable textAlign = "Begin";
-  @bindable maxLines = null;
-  constructor(element) {
-    this.element = element;
-  }
-
-  attached() {
-
-    this._text = new sap.m.Text({
-      text: this.text,
-      wrapping: getBooleanFromAttributeValue(this.wrapping),
-      textAlign: this.textAlign,
-      maxLines: this.maxLines
-    });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
-  }
-  textChanged(newValue) {
-    if (this._text != null) {
-      this._text.setText(newValue);
-    }
-  }
 }
 
 @customElement('ui5-split-container')
@@ -5817,47 +5701,56 @@ export class Ui5StandardTile extends Ui5Control {
     }
 }
 
-@customElement('ui5-tab-container')
+@customElement('ui5-tab-container-item')
 @inject(Element)
-export class Ui5TabContainer {
-  @bindable() showAddNewButton = true;
-  @bindable() selectedItem = null;
-  @bindable() itemClose = this.defaultFunc;
-  @bindable() itemSelect = this.defaultFunc;
-  @bindable() addNewButtonPress = this.defaultFunc;
+export class Ui5TabContainerItem {
+  @bindable() name = null;
+  @bindable() key = null;
+  @bindable() modified = false;
+  @bindable() itemPropertyChanged = this.defaultFunc;
   _tab = null;
+  _parent = null;
+  _relation = null;
   constructor(element) {
     this.element = element;
   }
   defaultFunc(event) {
 
   }
+  @computedFrom('_tab')
+  get UIElement() {
+    return this._tab;
+  }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     for (elem of path) {
       if (elem.localName == 'content') {
-        this._tab.addItem(child);
-        return elem.localName;
+        this._tab.addContent(child);
+        break;
       }
     }
   }
-  removeChildByRelation(child, relation) {
-    if (relation === 'content' && this._tab && child) {
-      // due to a bug in openui5-removal-code I can't remove the tabs
-      // this._tab.removeItem(child);
+  removeChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'content') {
+        this._tab.removeContent(child);
+        break;
+      }
     }
   }
   attached() {
     var attributeManager = new AttributeManager(this.element);
-    this._tab = new sap.m.TabContainer({
-      showAddNewButton: getBooleanFromAttributeValue(this.showAddNewButton),
-      itemClose: this.itemClose,
-      itemSelect: this.itemSelect,
-      addNewButtonPress: this.addNewButtonPress
+    this._tab = new sap.m.TabContainerItem({
+      name: this.name,
+      key: this.key,
+      modified: getBooleanFromAttributeValue(this.modified),
+      itemPropertyChanged: this.itemPropertyChanged,
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -5867,16 +5760,21 @@ export class Ui5TabContainer {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._tab, this.element);
-    }
-    else {
-      this._tab.destroy();
+      this._parent.removeChildByRelation(this._tab, this._relation);
+  }
+  keyChanged(newValue) {
+    if (this._tab !== null) {
+      this._tab.setKey(newValue);
     }
   }
-  showAddNewButtonChanged(newValue) {
+  nameChanged(newValue) {
     if (this._tab !== null) {
-      this._tab.setShowAddNewButton(getBooleanFromAttributeValue(newValue));
+      this._tab.setName(newValue);
+    }
+  }
+  modifiedChanged(newValue) {
+    if (this._tab !== null) {
+      this._tab.setModified(getBooleanFromAttributeValue(newValue));
     }
   }
   /*TODO: Add change bindings for event handlers */
@@ -6059,56 +5957,47 @@ export class Ui5Table extends Ui5ListBase {
   }
 }
 
-@customElement('ui5-tab-container-item')
+@customElement('ui5-tab-container')
 @inject(Element)
-export class Ui5TabContainerItem {
-  @bindable() name = null;
-  @bindable() key = null;
-  @bindable() modified = false;
-  @bindable() itemPropertyChanged = this.defaultFunc;
+export class Ui5TabContainer {
+  @bindable() showAddNewButton = true;
+  @bindable() selectedItem = null;
+  @bindable() itemClose = this.defaultFunc;
+  @bindable() itemSelect = this.defaultFunc;
+  @bindable() addNewButtonPress = this.defaultFunc;
   _tab = null;
-  _parent = null;
-  _relation = null;
   constructor(element) {
     this.element = element;
   }
   defaultFunc(event) {
 
   }
-  @computedFrom('_tab')
-  get UIElement() {
-    return this._tab;
-  }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
     for (elem of path) {
       if (elem.localName == 'content') {
-        this._tab.addContent(child);
-        break;
+        this._tab.addItem(child);
+        return elem.localName;
       }
     }
   }
-  removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'content') {
-        this._tab.removeContent(child);
-        break;
-      }
+  removeChildByRelation(child, relation) {
+    if (relation === 'content' && this._tab && child) {
+      // due to a bug in openui5-removal-code I can't remove the tabs
+      // this._tab.removeItem(child);
     }
   }
   attached() {
     var attributeManager = new AttributeManager(this.element);
-    this._tab = new sap.m.TabContainerItem({
-      name: this.name,
-      key: this.key,
-      modified: getBooleanFromAttributeValue(this.modified),
-      itemPropertyChanged: this.itemPropertyChanged,
+    this._tab = new sap.m.TabContainer({
+      showAddNewButton: getBooleanFromAttributeValue(this.showAddNewButton),
+      itemClose: this.itemClose,
+      itemSelect: this.itemSelect,
+      addNewButtonPress: this.addNewButtonPress
     });
 
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
-      this._relation = this._parent.addChild(this._tab, this.element);
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -6118,24 +6007,65 @@ export class Ui5TabContainerItem {
     }
   }
   detached() {
-      this._parent.removeChildByRelation(this._tab, this._relation);
-  }
-  keyChanged(newValue) {
-    if (this._tab !== null) {
-      this._tab.setKey(newValue);
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._tab, this.element);
+    }
+    else {
+      this._tab.destroy();
     }
   }
-  nameChanged(newValue) {
+  showAddNewButtonChanged(newValue) {
     if (this._tab !== null) {
-      this._tab.setName(newValue);
-    }
-  }
-  modifiedChanged(newValue) {
-    if (this._tab !== null) {
-      this._tab.setModified(getBooleanFromAttributeValue(newValue));
+      this._tab.setShowAddNewButton(getBooleanFromAttributeValue(newValue));
     }
   }
   /*TODO: Add change bindings for event handlers */
+}
+
+@customElement('ui5-text')
+@inject(Element)
+
+export class Ui5Text {
+  _text = null;
+  _parent = null;
+  _relation = null;
+  @bindable ui5Id = null;
+  @bindable text = null;
+  @bindable wrapping = true;
+  @bindable textAlign = "Begin";
+  @bindable maxLines = null;
+  constructor(element) {
+    this.element = element;
+  }
+  @computedFrom('_text')
+  get UIElement() {
+    return this._text;
+  }
+  attached() {
+    var props = {
+      text: this.text != null ? this.text : this.element.innerText.trim(),
+      wrapping: getBooleanFromAttributeValue(this.wrapping),
+      textAlign: this.textAlign,
+      maxLines: this.maxLines
+    };
+    if(this.ui5Id)
+      this._text = new sap.m.Text(this.ui5Id,props);
+    else
+      this._text = new sap.m.Text(props);
+    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._relation = this._parent.addChild(this._text, this.element);
+    
+  }
+  detached(){
+    if(this._parent && this._parent.removeChildByRelation){
+      this._parent.removeChildByRelation(this._text,this._relation);
+    }
+  }
+  textChanged(newValue) {
+    if (this._text != null) {
+      this._text.setText(newValue);
+    }
+  }
 }
 
 @customElement('ui5-table-select-dialog')
@@ -6257,50 +6187,49 @@ export class Ui5TableSelectDialog {
 
 }
 
-@customElement('ui5-text')
+@customElement('ui5-tile-content')
 @inject(Element)
-
-export class Ui5Text {
-  _text = null;
-  _parent = null;
-  _relation = null;
-  @bindable ui5Id = null;
-  @bindable text = null;
-  @bindable wrapping = true;
-  @bindable textAlign = "Begin";
-  @bindable maxLines = null;
-  constructor(element) {
-    this.element = element;
-  }
-  @computedFrom('_text')
-  get UIElement() {
-    return this._text;
-  }
-  attached() {
-    var props = {
-      text: this.text != null ? this.text : this.element.innerText.trim(),
-      wrapping: getBooleanFromAttributeValue(this.wrapping),
-      textAlign: this.textAlign,
-      maxLines: this.maxLines
-    };
-    if(this.ui5Id)
-      this._text = new sap.m.Text(this.ui5Id,props);
-    else
-      this._text = new sap.m.Text(props);
-    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
-    this._relation = this._parent.addChild(this._text, this.element);
-    
-  }
-  detached(){
-    if(this._parent && this._parent.removeChildByRelation){
-      this._parent.removeChildByRelation(this._text,this._relation);
+export class Ui5TileContent {
+    _content = null;
+    @bindable() footer = null;
+    @bindable() unit = null;
+    constructor(element) {
+        this.element = element;
     }
-  }
-  textChanged(newValue) {
-    if (this._text != null) {
-      this._text.setText(newValue);
+    addChild(child, elem) {
+        var path = $(elem).parentsUntil(this.element);
+        if (path[0].localName == 'content')
+            this._content.setContent(child);
     }
-  }
+    removeChild(child, elem) {
+        var path = $(elem).parentsUntil(this.element);
+        if (path[0].localName == 'content')
+            this._content.destroyContent(child);
+    }
+    attached() {
+        this._content = new sap.m.TileContent({
+            footer: this.footer,
+            unit: this.unit
+        });
+        $(this.element).parents("ui5-generic-tile")[0].au.controller.viewModel.addChild(this._content, this.element);
+    }
+    detached() {
+        $(this.element).parents("ui5-generic-tile")[0].au.controller.viewModel.removeChild(this._content, this.element);
+    }
+    footerChanged(newValue)
+    {
+        if(this._content!=null)
+        {
+            this._content.setFooter(newValue);
+        }
+    }
+    unitChanged(newValue)
+    {
+        if(this._content!=null)
+        {
+            this._content.setUnit(newValue);
+        }
+    }
 }
 
 @customElement('ui5-title')
@@ -6348,49 +6277,33 @@ export class Ui5Title {
   }
 }
 
-@customElement('ui5-tile-content')
+@customElement('ui5-tile-container')
 @inject(Element)
-export class Ui5TileContent {
-    _content = null;
-    @bindable() footer = null;
-    @bindable() unit = null;
-    constructor(element) {
-        this.element = element;
+export class Ui5TileContainer {
+  _container = null;
+
+  constructor(element) {
+    this.element = element;
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    if (path[0].localName == 'tile')
+      this._container.addTile(child);
+  }
+  removeChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    if (path[0].localName == 'tile')
+      this._container.removeTile(child);
+  }
+  attached() {
+    this._container = new sap.m.TileContainer();
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._container, this.element);
+  }
+  detached() {
+    if ($(this.element).parents("[ui5-container]")[0]) {
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._container, this.element);
     }
-    addChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
-        if (path[0].localName == 'content')
-            this._content.setContent(child);
-    }
-    removeChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
-        if (path[0].localName == 'content')
-            this._content.destroyContent(child);
-    }
-    attached() {
-        this._content = new sap.m.TileContent({
-            footer: this.footer,
-            unit: this.unit
-        });
-        $(this.element).parents("ui5-generic-tile")[0].au.controller.viewModel.addChild(this._content, this.element);
-    }
-    detached() {
-        $(this.element).parents("ui5-generic-tile")[0].au.controller.viewModel.removeChild(this._content, this.element);
-    }
-    footerChanged(newValue)
-    {
-        if(this._content!=null)
-        {
-            this._content.setFooter(newValue);
-        }
-    }
-    unitChanged(newValue)
-    {
-        if(this._content!=null)
-        {
-            this._content.setUnit(newValue);
-        }
-    }
+  }
 }
 
 export class Ui5ToastService {
@@ -6509,32 +6422,230 @@ export class Ui5Toolbar {
   }
 }
 
-@customElement('ui5-toolbar-spacer')
+@customElement('ui5-responsive-popover')
+@inject(Element)
+export class Ui5ResponsivePopover {
+  _dialog = null;
+  _parent = null;
+  @bindable() ui5Id = null;
+  @bindable() placement = 'Right';
+  @bindable() icon = null;
+  @bindable() title = null;
+  @bindable() offsetX = null;
+  @bindable() offsetY = null;
+  @bindable() showArrow = true;
+  @bindable() showHeader = true;
+  @bindable() contentWidth = null;
+  @bindable() contentHeight = null;
+  @bindable() horizontalScrolling = true;
+  @bindable() verticalScrolling = true;
+  @bindable() showCloseButton = true;
+  @bindable() resizable = false;
+  @bindable() beforeOpen = this.defaultFunc;
+  @bindable() afterOpen = this.defaultFunc;
+  @bindable() beforeClose = this.defaultFunc;
+  @bindable() afterClose = this.defaultFunc;
+
+  constructor(element) {
+    this.element = element;
+    this.attributeManager = new AttributeManager(this.element);
+  }
+  defaultFunc(event) {
+
+  }
+  get UIElement() {
+    return this._dialog;
+  }
+  addChild(child, elem) {
+    var path = $(elem).parentsUntil(this.element);
+    for (elem of path) {
+      if (elem.localName == 'subHeader') {
+        this._dialog.setSubHeader(child);
+        return 'subHeader';
+      }
+      if (elem.localName == 'customHeader') {
+        this._dialog.setCustomHeader(child);
+        return 'customHeader';
+      }
+      if (elem.localName == 'leftbutton') {
+        this._dialog.setBeginButton(child);
+        return 'leftButton';
+      }
+      if (elem.localName == 'rightbutton') {
+        this._dialog.setEndButton(child);
+        return 'rightButton';
+      }
+      if (elem.localName == 'content') {
+        this._dialog.addContent(child);
+        return 'content';
+      }
+    }
+  }
+  removeChildByRelation(child, relation) {
+    if (relation == 'content') {
+      this._dialog.removeContent(child);
+    }
+  }
+  removeChild(child, elem) {
+
+  }
+  attached() {
+    var props = {
+      icon: this.icon,
+      placement: this.placement,
+      title: this.title,
+      showHeader: getBooleanFromAttributeValue(this.showHeader),
+      offsetX: this.offsetX,
+      offsetY: this.offsetY,
+      showArrow : getBooleanFromAttributeValue(this.showArrow),
+      showCloseButton: getBooleanFromAttributeValue(this.showCloseButton),
+      contentWidth: this.contentWidth,
+      contentHeight: this.contentHeight,
+      horizontalScrolling: getBooleanFromAttributeValue(this.horizontalScrolling),
+      verticalScrolling: getBooleanFromAttributeValue(this.verticalScrolling),
+      resizable: getBooleanFromAttributeValue(this.resizable),
+      beforeOpen: this.beforeOpen,
+      afterOpen: this.afterOpen,
+      beforeClose: this.beforeClose,
+      afterClose: this.afterClose
+    };
+    if (this.ui5Id)
+      this._dialog = new sap.m.ResponsivePopover(this.ui5Id, props);
+    else
+      this._dialog = new sap.m.ResponsivePopover(props);
+    this.attributeManager.addAttributes({ "ui5-dialog-id": this.ui5Id });
+    this.attributeManager.addAttributes({ "ui5-layout": '' });
+    this.attributeManager.addAttributes({ "ui5-container": '' });
+
+  }
+  detached() {
+
+  }
+  placementChanged(newValue) {
+  if (this._dialog !== null) {
+  this._dialog.setPlacement(newValue);
+  }
+  }
+  offsetXChanged(newValue) {
+  if (this._dialog !== null) {
+  this._dialog.setOffsetX(newValue);
+  }
+  }
+  offsetYChanged(newValue) {
+  if (this._dialog !== null) {
+  this._dialog.setOffsetY(newValue);
+  }
+  }
+  showArrayChanged(newValue) {
+  if (this._dialog !== null) {
+  this._dialog.setShowArray(getBooleanFromAttributeValue(newValue));
+  }
+  }
+  showCloseButtonChanged(newValue) {
+  if (this._dialog !== null) {
+  this._dialog.setShowCloseButton(getBooleanFromAttributeValue(newValue));
+  }
+  }
+  iconChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setIcon(newValue);
+    }
+  }
+  titleChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setTitle(newValue);
+    }
+  }
+  showHeaderChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setShowHeader(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  contentHeightChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setContentHeight(newValue);
+    }
+  }
+  contentWidthChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setContentWidth(newValue);
+    }
+  }
+  horizontalScrollingChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setHorizontalScrolling(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  verticalScrollingChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setVerticalScrolling(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  resizableChanged(newValue) {
+    if (this._dialog !== null) {
+      this._dialog.setResizable(getBooleanFromAttributeValue(newValue));
+    }
+  }
+
+
+}
+
+@customElement('ui5-object-identifier')
 @inject(Element)
 
-export class Ui5ToolbarSpacer {
-  _spacer = null;
-  @bindable() width = null;
+export class Ui5ObjectIdentifier {
+  _text = null;
+  @bindable ui5Id = null;
+  @bindable text = null;
+  @bindable() title = null;
+  @bindable() visible = true;
+  @bindable() titleActive = false;
+  @bindable() textDirection = 'Inherit';
+  @bindable() titlePress = this.defaultFunc;
+
   constructor(element) {
     this.element = element;
   }
+  defaultFunc() {
 
+  }
   attached() {
 
-
-    this._spacer = new sap.m.ToolbarSpacer({
-      width: this.width,
+    this._text = new sap.m.ObjectIdentifier({
+      text: this.text != null ? this.text : this.element.innerText.trim(),
+      title : this.title,
+      visible: getBooleanFromAttributeValue(this.visible),
+      titleActive: getBooleanFromAttributeValue(this.titleActive),
+      textDirection: this.textDirection,
+      titlePress: this.titlePress
     });
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer, this.element);
+    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+  }
+  textChanged(newValue) {
+    if (this._text != null) {
+      this._text.setText(newValue);
     }
   }
-  widthChanged(newValue) {
-    if (this._spacer !== null) {
-      this._spacer.setWidth(newValue);
+  titleChanged(newValue) {
+    if (this._text !== null) {
+      this._text.setTitle(newValue);
     }
   }
-
+  visibleChanged(newValue) {
+    if (this._text !== null) {
+      this._text.setVisible(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  titleActiveChanged(newValue) {
+    if (this._text !== null) {
+      this._text.setTitleActive(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  textDirectionChanged(newValue) {
+    if (this._text !== null) {
+      this._text.setTextDirection(newValue);
+    }
+  }
 }
 
 @customElement('ui5-upload-collection')
@@ -6735,377 +6846,29 @@ export class Ui5UploadCollection {
   /*TODO: Add change bindings for event handlers */
 }
 
-@customElement('ui5-upload-collection-parameter')
+@customElement('ui5-toolbar-spacer')
 @inject(Element)
-export class Ui5UploadCollectionParameter {
-  @bindable() name = null;
-  @bindable() value = null;
 
-  _parameter = null;
-  _parent = null;
-  _relation = null;
+export class Ui5ToolbarSpacer {
+  _spacer = null;
+  @bindable() width = null;
   constructor(element) {
     this.element = element;
   }
-  get UIElement() {
-    return this._parameter;
-  }
-  defaultFunc(event) {
 
-  }
-  addChild(child, elem) {
-  }
-  removeChildByRelation(child, relation) {
-
-  }
   attached() {
-    var attributeManager = new AttributeManager(this.element);
-    this._parameter = new sap.m.UploadCollectionParameter({
-      name: this.name,
-      value: this.value,
+
+
+    this._spacer = new sap.m.ToolbarSpacer({
+      width: this.width,
     });
-
     if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
-      this.relation = this._parent.addChild(this._parameter, this.element);
-    }
-    
-  }
-  detached() {
-    if (this._parent && this._parameter.removeChildByRelation) {
-      this._parent.removeChildByRelation(this._parameter, this.relation);
-    }
-    
-  }
-  nameChanged(newValue) {
-    if (this._parameter !== null) {
-      this._parameter.setName(newValue);
+      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._spacer, this.element);
     }
   }
-  valueChanged(newValue) {
-    if (this._parameter !== null) {
-      this._parameter.setValue(newValue);
-    }
-  }
-  
-}
-
-@customElement('ui5-upload-collection-item')
-@inject(Element)
-export class Ui5UploadCollectionItem {
-  @bindable() contributor = null;
-  @bindable() documentId = null;
-  @bindable() fileName = null;
-  @bindable() fileSize = null;
-  @bindable() enableEdit = true;
-  @bindable() mimeType = null;
-  @bindable() thumbnailUrl = null;
-  @bindable() enableDelete = true;
-  @bindable() uploadedDate = null;
-  @bindable() visibleEdit = true;
-  @bindable() url = null;
-  @bindable() visibleDelete = true;
-  @bindable() ariaLabelForPicture = null;
-  @bindable() selected = false;
-
-  _upload = null;
-  _parent = null;
-  _relation = null;
-  constructor(element) {
-    
-    this.element = element;
-  }
-  defaultFunc(event) {
-
-  }
-  addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    for (elem of path) {
-      if (elem.localName == 'attributes') {
-        this._upload.addAttribute(child);
-        return elem.localName;
-      }
-      else if (elem.localName == 'statuses') {
-        this._upload.addStatus(child);
-        return elem.localName;
-      }
-      else if (elem.localName == 'markers') {
-        this._upload.addMarker(child);
-        return elem.localName;
-      }
-    }
-  }
-  removeChildByRelation(child, relation) {
-    if (relation === 'attributes' && this._upload) {
-      this._upload.removeAttribute(child);
-    }
-    else if (relation === 'statuses' && this._upload) {
-      this._upload.removeStatus(null);
-    }
-    else if (relation === 'markers' && this._upload) {
-      this._upload.removeMarker(null);
-    }
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    this._upload = new sap.m.UploadCollectionItem({
-      contributor: this.contributor,
-      documentId: this.documentId,
-      fileName: this.fileName,
-      fileSize: this.fileSize,
-      mimeType: this.mimeType,
-      thumbnailUrl: this.thumbnailUrl,
-      enableDelete: getBooleanFromAttributeValue(this.enableDelete),
-      uploadedDate: this.uploadedDate,
-      visibleEdit: getBooleanFromAttributeValue(this.visibleEdit),
-      url: this.url,
-      visibleDelete: getBooleanFromAttributeValue(this.visibleDelete),
-      ariaLabelForPicture: this.ariaLabelForPicture,
-    });
-
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent =$(this.element).parents("[ui5-container]")[0].au.controller.viewModel; 
-      this._relation = this._parent.addChild(this._upload, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
-    }
-    else {
-      this._upload.placeAt(this.element.parentElement);
-      attributeManager.addAttributes({ "ui5-container": '' });
-      attributeManager.addClasses("ui5-hide");
-    }
-  }
-  detached() {
-    if (this._parent && this._parent.removeChildByRelation) {
-      this._parent.removeChildByRelation(this._upload, this._relation);
-    }
-    else {
-      this._upload.destroy();
-    }
-  }
-  contributorChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setContributor(newValue);
-    }
-  }
-  documentIdChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setDocumentId(newValue);
-    }
-  }
-  fileSizeChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setFileSize(newValue);
-    }
-  }
-  mimeTypeChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setMimeType(newValue);
-    }
-  }
-  thumbnailUrlChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setThumbnailUrl(newValue);
-    }
-  }
-  enableDeleteChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setEnableDelete(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  uploadedDateChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setUploadedDate(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  visibleEditChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setVisibleEdit(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  urlChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setUrl(newValue);
-    }
-  }
-  visibleDeleteChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setVisibleDelete(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  ariaLabelForPictureChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setAriaLabelForPicture(newValue);
-    }
-  }
-  selectedChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setSelected(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  terminationEnabledChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setterminationEnabled(getBooleanFromAttributeValue(newValue));
-    }
-  }
-
-  /*TODO: Add change bindings for event handlers */
-}
-
-export class MaterializeFormValidationRenderer {
-
-  className = 'md-input-validation';
-  classNameFirst = 'md-input-validation-first';
-
-  render(instruction) {
-    let allElements = new Array();
-    for (let { result, elements } of instruction.unrender) {
-      for (let element of elements) {
-        this.remove(element, result);
-        if (allElements.indexOf(element) == -1) {
-          allElements.push(element);
-        }
-      }
-    }
-    for (let { result, elements } of instruction.render) {
-      for (let element of elements) {
-        this.add(element, result);
-        if (allElements.indexOf(element) == -1) {
-          allElements.push(element);
-        }
-      }
-    }
-    allElements.forEach(e => this.underlineInput(e));
-  }
-
-  underlineInput(element) {
-    let input;
-    switch (element.tagName) {
-      case 'MD-INPUT': {
-        input = element.querySelector('input') || element.querySelector('textarea');
-        break;
-      }
-      case 'SELECT': {
-        const selectWrapper = element.closest('.select-wrapper');
-        if (selectWrapper) {
-          input = selectWrapper.querySelector('input');
-        }
-        break;
-      }
-      case 'INPUT': {
-        input = element;
-        break;
-      }
-      default: break;
-    }
-    if (input) {
-      if (element.querySelectorAll('.' + this.className).length === 0) {
-        input.classList.remove('invalid');
-        input.classList.add('valid');
-      }
-      else {
-        input.classList.remove('valid');
-        input.classList.add('invalid');
-      }
-    }
-  }
-
-  add(element, result) {
-    if (result.valid) {
-      return;
-    }
-    switch (element.tagName) {
-    case 'MD-INPUT': {
-      let label = element.querySelector('label');
-      let input = element.querySelector('input') || element.querySelector('textarea');
-      if (label) {
-        label.removeAttribute('data-error');
-      }
-      if (input) {
-        result.target = input;
-        if (input.hasAttribute('data-show-errortext')) {
-          this.addMessage(element, result);
-        }
-      }
-      break;
-    }
-    case 'SELECT': {
-      const selectWrapper = element.closest('.select-wrapper');
-      if (!selectWrapper) {
-        return;
-      }
-      let input = selectWrapper.querySelector('input');
-      if (input) {
-        result.target = input;
-        if (!(input.hasAttribute('data-show-errortext') &&
-            input.getAttribute('data-show-errortext') === 'false')) {
-          this.addMessage(selectWrapper, result);
-        }
-      }
-      break;
-    }
-    case 'INPUT' : {
-      if (element.hasAttribute('md-datepicker')) {
-        if (!(element.hasAttribute('data-show-errortext') &&
-            element.getAttribute('data-show-errortext') === 'false')) {
-          this.addMessage(element.parentNode, result);
-        }
-      }
-      break;
-    }
-    default: break;
-    }
-  }
-
-  remove(element, result) {
-    if (result.valid) {
-      return;
-    }
-    switch (element.tagName) {
-    case 'MD-INPUT': {
-      this.removeMessage(element, result);
-      break;
-    }
-    case 'SELECT': {
-      const selectWrapper = element.closest('.select-wrapper');
-      if (!selectWrapper) {
-        return;
-      }
-
-      if ($(selectWrapper.parentElement).children().hasClass('md-input-validation') ) {
-        this.removeMessage(selectWrapper.parentElement, result);
-      } else {
-        this.removeMessage(selectWrapper, result);
-      }
-      break;
-    }
-    case 'INPUT' : {
-      if (element.hasAttribute('md-datepicker')) {
-        this.removeMessage(element.parentNode, result);
-      }
-      break;
-    }
-    default: break;
-    }
-  }
-
-  addMessage(element, result) {
-    let message = document.createElement('div');
-    message.id = `md-input-validation-${result.id}`;
-    message.textContent = result.message;
-    message.className = this.className;
-    if (element.querySelectorAll('.' + this.className).length === 0) {
-      message.className += ' ' + this.classNameFirst;
-    }
-    message.style.opacity = 0;
-    element.appendChild(message, element.nextSibling);
-    window.getComputedStyle(message).opacity;
-    message.style.opacity = 1;
-  }
-
-  removeMessage(element, result) {
-    let message = element.querySelector(`#md-input-validation-${result.id}`);
-    if (message) {
-      element.removeChild(message);
+  widthChanged(newValue) {
+    if (this._spacer !== null) {
+      this._spacer.setWidth(newValue);
     }
   }
 
@@ -7279,6 +7042,166 @@ export class Ui5ViewSettingsDialog {
   }
   }
 
+export class MaterializeFormValidationRenderer {
+
+  className = 'md-input-validation';
+  classNameFirst = 'md-input-validation-first';
+
+  render(instruction) {
+    let allElements = new Array();
+    for (let { result, elements } of instruction.unrender) {
+      for (let element of elements) {
+        this.remove(element, result);
+        if (allElements.indexOf(element) == -1) {
+          allElements.push(element);
+        }
+      }
+    }
+    for (let { result, elements } of instruction.render) {
+      for (let element of elements) {
+        this.add(element, result);
+        if (allElements.indexOf(element) == -1) {
+          allElements.push(element);
+        }
+      }
+    }
+    allElements.forEach(e => this.underlineInput(e));
+  }
+
+  underlineInput(element) {
+    let input;
+    switch (element.tagName) {
+      case 'MD-INPUT': {
+        input = element.querySelector('input') || element.querySelector('textarea');
+        break;
+      }
+      case 'SELECT': {
+        const selectWrapper = element.closest('.select-wrapper');
+        if (selectWrapper) {
+          input = selectWrapper.querySelector('input');
+        }
+        break;
+      }
+      case 'INPUT': {
+        input = element;
+        break;
+      }
+      default: break;
+    }
+    if (input) {
+      if (element.querySelectorAll('.' + this.className).length === 0) {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+      }
+      else {
+        input.classList.remove('valid');
+        input.classList.add('invalid');
+      }
+    }
+  }
+
+  add(element, result) {
+    if (result.valid) {
+      return;
+    }
+    switch (element.tagName) {
+    case 'MD-INPUT': {
+      let label = element.querySelector('label');
+      let input = element.querySelector('input') || element.querySelector('textarea');
+      if (label) {
+        label.removeAttribute('data-error');
+      }
+      if (input) {
+        result.target = input;
+        if (input.hasAttribute('data-show-errortext')) {
+          this.addMessage(element, result);
+        }
+      }
+      break;
+    }
+    case 'SELECT': {
+      const selectWrapper = element.closest('.select-wrapper');
+      if (!selectWrapper) {
+        return;
+      }
+      let input = selectWrapper.querySelector('input');
+      if (input) {
+        result.target = input;
+        if (!(input.hasAttribute('data-show-errortext') &&
+            input.getAttribute('data-show-errortext') === 'false')) {
+          this.addMessage(selectWrapper, result);
+        }
+      }
+      break;
+    }
+    case 'INPUT' : {
+      if (element.hasAttribute('md-datepicker')) {
+        if (!(element.hasAttribute('data-show-errortext') &&
+            element.getAttribute('data-show-errortext') === 'false')) {
+          this.addMessage(element.parentNode, result);
+        }
+      }
+      break;
+    }
+    default: break;
+    }
+  }
+
+  remove(element, result) {
+    if (result.valid) {
+      return;
+    }
+    switch (element.tagName) {
+    case 'MD-INPUT': {
+      this.removeMessage(element, result);
+      break;
+    }
+    case 'SELECT': {
+      const selectWrapper = element.closest('.select-wrapper');
+      if (!selectWrapper) {
+        return;
+      }
+
+      if ($(selectWrapper.parentElement).children().hasClass('md-input-validation') ) {
+        this.removeMessage(selectWrapper.parentElement, result);
+      } else {
+        this.removeMessage(selectWrapper, result);
+      }
+      break;
+    }
+    case 'INPUT' : {
+      if (element.hasAttribute('md-datepicker')) {
+        this.removeMessage(element.parentNode, result);
+      }
+      break;
+    }
+    default: break;
+    }
+  }
+
+  addMessage(element, result) {
+    let message = document.createElement('div');
+    message.id = `md-input-validation-${result.id}`;
+    message.textContent = result.message;
+    message.className = this.className;
+    if (element.querySelectorAll('.' + this.className).length === 0) {
+      message.className += ' ' + this.classNameFirst;
+    }
+    message.style.opacity = 0;
+    element.appendChild(message, element.nextSibling);
+    window.getComputedStyle(message).opacity;
+    message.style.opacity = 1;
+  }
+
+  removeMessage(element, result) {
+    let message = element.querySelector(`#md-input-validation-${result.id}`);
+    if (message) {
+      element.removeChild(message);
+    }
+  }
+
+}
+
 @customElement('ui5-view-settings-filter-item')
 @inject(Element)
 
@@ -7349,6 +7272,52 @@ export class Ui5ViewSettingsFilterItem extends Ui5Item {
   multiSelectChanged(newValue) {
     if (this._item !== null) {
       this._item.setMultiSelect(getBooleanFromAttributeValue(newValue));
+    }
+  }
+}
+
+@customElement('ui5-view-settings-item')
+@inject(Element)
+
+export class Ui5ViewSettingsItem extends Ui5Item {
+  _item = null;
+  _container = null;
+
+  @bindable() selected = null;
+  @bindable() itemPropertyChanged = this.defaultFunc;
+  /* inherited from list item*/
+  @bindable() key = null;
+  @bindable() enabled = true;
+  @bindable() text = null;
+  @bindable() textDirection = null;
+  /* inherited from list item*/
+
+  constructor(element) {
+    super(element);
+    this.element = element;
+  }
+  defaultFunc() {
+
+  }
+  attached() {
+    var props = {
+      selected: getBooleanFromAttributeValue(this.selected),
+      itemPropertyChanged: this.itemPropertyChanged,
+    };
+    super.fillProperties(props);
+    this._item = new sap.m.ViewSettingsItem(props);
+    this._container = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._relation = this._container.addChild(this._item, this.element);
+  }
+  detached() {
+    if (this._container && this._container.removeChildByRelation)
+      this._container.removeChildByRelation(this._item, this._relation);
+  }
+  addChild(child, elem) {
+  }
+  selectedChanged(newValue) {
+    if (this._item !== null) {
+      this._item.setSelected(getBooleanFromAttributeValue(newValue));
     }
   }
 }
@@ -7435,69 +7404,6 @@ export class Ui5Wizard {
   }
 }
 
-@customElement('ui5-responsive-grid-layout')
-@inject(Element)
-export class Ui5ResponsiveGridLayout {
-  @bindable() ui5Id = null;
-
-  @bindable() labelSpanXL = -1;
-  @bindable() labelSpanL = 4;
-  @bindable() labelSpanM = 2;
-  @bindable() labelSpanS = 12;
-  @bindable() adjustLabelSpan = true;
-  @bindable() emptySpanXL = -1;
-  @bindable() emptySpanL = 0;
-  @bindable() emptySpanM = 0;
-  @bindable() emptySpanS = 0;
-  @bindable() singleContainerFullSize = false;
-  @bindable() breakpointXL = 1440;
-  @bindable() breakpointL = 1024;
-  @bindable() breakpointM = 600;
-
-  _form = null;
-  constructor(element) {
-    this.element = element;
-  }
-  addChild(child, elem) {
-   
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    var params = {
-     
-      labelSpanXL: parseInt(this.labelSpanXL),
-      labelSpanL: parseInt(this.labelSpanL),
-      labelSpanM: parseInt(this.labelSpanM),
-      labelSpanS: parseInt(this.labelSpanS),
-      adjustLabelSpan: getBooleanFromAttributeValue(this.adjustLabelSpan),
-      emptySpanXL: parseInt(this.emptySpanXL),
-      emptySpanL: parseInt(this.emptySpanL),
-      emptySpanM: parseInt(this.emptySpanM),
-      emptySpanS: parseInt(this.emptySpanS),
-      singleContainerFullSize: getBooleanFromAttributeValue(this.singleContainerFullSize),
-      breakpointXL: parseInt(this.breakpointXL),
-      breakpointL: parseInt(this.breakpointL),
-      breakpointM: parseInt(this.breakpointM),
-
-    };
-    if (this.uiId5)
-      this._form = new sap.ui.layout.form.ResponsiveGridLayout(this.ui5Id, params);
-    else
-      this._form = new sap.ui.layout.form.ResponsiveGridLayout(params);
-
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
-    }
-    else {
-      this._form.placeAt(this.element.parentElement);
-      attributeManager.addClasses("ui5-hide");
-    }
-  }
- 
-
-}
-
 @customElement('ui5-wizard-step')
 @inject(Element)
 export class Ui5WizardStep {
@@ -7548,77 +7454,218 @@ export class Ui5WizardStep {
   }
 }
 
-@customElement('ui5-tile-container')
+@customElement('ui5-upload-collection-item')
 @inject(Element)
-export class Ui5TileContainer {
-  _container = null;
+export class Ui5UploadCollectionItem {
+  @bindable() contributor = null;
+  @bindable() documentId = null;
+  @bindable() fileName = null;
+  @bindable() fileSize = null;
+  @bindable() enableEdit = true;
+  @bindable() mimeType = null;
+  @bindable() thumbnailUrl = null;
+  @bindable() enableDelete = true;
+  @bindable() uploadedDate = null;
+  @bindable() visibleEdit = true;
+  @bindable() url = null;
+  @bindable() visibleDelete = true;
+  @bindable() ariaLabelForPicture = null;
+  @bindable() selected = false;
 
+  _upload = null;
+  _parent = null;
+  _relation = null;
   constructor(element) {
+    
     this.element = element;
+  }
+  defaultFunc(event) {
+
   }
   addChild(child, elem) {
     var path = $(elem).parentsUntil(this.element);
-    if (path[0].localName == 'tile')
-      this._container.addTile(child);
-  }
-  removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
-    if (path[0].localName == 'tile')
-      this._container.removeTile(child);
-  }
-  attached() {
-    this._container = new sap.m.TileContainer();
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._container, this.element);
-  }
-  detached() {
-    if ($(this.element).parents("[ui5-container]")[0]) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._container, this.element);
+    for (elem of path) {
+      if (elem.localName == 'attributes') {
+        this._upload.addAttribute(child);
+        return elem.localName;
+      }
+      else if (elem.localName == 'statuses') {
+        this._upload.addStatus(child);
+        return elem.localName;
+      }
+      else if (elem.localName == 'markers') {
+        this._upload.addMarker(child);
+        return elem.localName;
+      }
     }
   }
-}
-
-@customElement('ui5-view-settings-item')
-@inject(Element)
-
-export class Ui5ViewSettingsItem extends Ui5Item {
-  _item = null;
-  _container = null;
-
-  @bindable() selected = null;
-  @bindable() itemPropertyChanged = this.defaultFunc;
-  /* inherited from list item*/
-  @bindable() key = null;
-  @bindable() enabled = true;
-  @bindable() text = null;
-  @bindable() textDirection = null;
-  /* inherited from list item*/
-
-  constructor(element) {
-    super(element);
-    this.element = element;
-  }
-  defaultFunc() {
-
+  removeChildByRelation(child, relation) {
+    if (relation === 'attributes' && this._upload) {
+      this._upload.removeAttribute(child);
+    }
+    else if (relation === 'statuses' && this._upload) {
+      this._upload.removeStatus(null);
+    }
+    else if (relation === 'markers' && this._upload) {
+      this._upload.removeMarker(null);
+    }
   }
   attached() {
-    var props = {
-      selected: getBooleanFromAttributeValue(this.selected),
-      itemPropertyChanged: this.itemPropertyChanged,
-    };
-    super.fillProperties(props);
-    this._item = new sap.m.ViewSettingsItem(props);
-    this._container = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
-    this._relation = this._container.addChild(this._item, this.element);
+    var attributeManager = new AttributeManager(this.element);
+    this._upload = new sap.m.UploadCollectionItem({
+      contributor: this.contributor,
+      documentId: this.documentId,
+      fileName: this.fileName,
+      fileSize: this.fileSize,
+      mimeType: this.mimeType,
+      thumbnailUrl: this.thumbnailUrl,
+      enableDelete: getBooleanFromAttributeValue(this.enableDelete),
+      uploadedDate: this.uploadedDate,
+      visibleEdit: getBooleanFromAttributeValue(this.visibleEdit),
+      url: this.url,
+      visibleDelete: getBooleanFromAttributeValue(this.visibleDelete),
+      ariaLabelForPicture: this.ariaLabelForPicture,
+    });
+
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      this._parent =$(this.element).parents("[ui5-container]")[0].au.controller.viewModel; 
+      this._relation = this._parent.addChild(this._upload, this.element);
+      attributeManager.addAttributes({ "ui5-container": '' });
+    }
+    else {
+      this._upload.placeAt(this.element.parentElement);
+      attributeManager.addAttributes({ "ui5-container": '' });
+      attributeManager.addClasses("ui5-hide");
+    }
   }
   detached() {
-    if (this._container && this._container.removeChildByRelation)
-      this._container.removeChildByRelation(this._item, this._relation);
+    if (this._parent && this._parent.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._upload, this._relation);
+    }
+    else {
+      this._upload.destroy();
+    }
   }
-  addChild(child, elem) {
+  contributorChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setContributor(newValue);
+    }
+  }
+  documentIdChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setDocumentId(newValue);
+    }
+  }
+  fileSizeChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setFileSize(newValue);
+    }
+  }
+  mimeTypeChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setMimeType(newValue);
+    }
+  }
+  thumbnailUrlChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setThumbnailUrl(newValue);
+    }
+  }
+  enableDeleteChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setEnableDelete(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  uploadedDateChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setUploadedDate(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  visibleEditChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setVisibleEdit(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  urlChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setUrl(newValue);
+    }
+  }
+  visibleDeleteChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setVisibleDelete(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  ariaLabelForPictureChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setAriaLabelForPicture(newValue);
+    }
   }
   selectedChanged(newValue) {
-    if (this._item !== null) {
-      this._item.setSelected(getBooleanFromAttributeValue(newValue));
+    if (this._upload !== null) {
+      this._upload.setSelected(getBooleanFromAttributeValue(newValue));
     }
   }
+  terminationEnabledChanged(newValue) {
+    if (this._upload !== null) {
+      this._upload.setterminationEnabled(getBooleanFromAttributeValue(newValue));
+    }
+  }
+
+  /*TODO: Add change bindings for event handlers */
+}
+
+@customElement('ui5-upload-collection-parameter')
+@inject(Element)
+export class Ui5UploadCollectionParameter {
+  @bindable() name = null;
+  @bindable() value = null;
+
+  _parameter = null;
+  _parent = null;
+  _relation = null;
+  constructor(element) {
+    this.element = element;
+  }
+  get UIElement() {
+    return this._parameter;
+  }
+  defaultFunc(event) {
+
+  }
+  addChild(child, elem) {
+  }
+  removeChildByRelation(child, relation) {
+
+  }
+  attached() {
+    var attributeManager = new AttributeManager(this.element);
+    this._parameter = new sap.m.UploadCollectionParameter({
+      name: this.name,
+      value: this.value,
+    });
+
+    if ($(this.element).parents("[ui5-container]").length > 0) {
+      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this.relation = this._parent.addChild(this._parameter, this.element);
+    }
+    
+  }
+  detached() {
+    if (this._parent && this._parameter.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._parameter, this.relation);
+    }
+    
+  }
+  nameChanged(newValue) {
+    if (this._parameter !== null) {
+      this._parameter.setName(newValue);
+    }
+  }
+  valueChanged(newValue) {
+    if (this._parameter !== null) {
+      this._parameter.setValue(newValue);
+    }
+  }
+  
 }

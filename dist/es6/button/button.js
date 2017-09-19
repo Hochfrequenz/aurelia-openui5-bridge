@@ -13,6 +13,8 @@ export class Ui5Button {
   @bindable() press = null;
   @bindable() icon = null;
   @bindable() type = 'Default';
+  @bindable() visible = true;
+  @bindable() tooltip = null;
   _button = null;
   _parent = null;
   _relation = null;
@@ -27,6 +29,8 @@ export class Ui5Button {
       type: this.type,
       icon: this.icon,
       enabled: !getBooleanFromAttributeValue(this.disabled),
+      visible: getBooleanFromAttributeValue(this.visible),
+      tooltip: this.tooltip,
       press: this.press != null ? this.press : this.defaultPress
     });
 
@@ -62,6 +66,16 @@ export class Ui5Button {
   textChanged(newValue) {
     if (this._button !== null) {
       this._button.setText(newValue);
+    }
+  }
+  visibleChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setVisible(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  tooltipChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setTooltip(newValue);
     }
   }
   pressChanged(newValue) {

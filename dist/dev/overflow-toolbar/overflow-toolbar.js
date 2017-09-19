@@ -104,7 +104,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
             if (elem.localName == 'content') {
               this._bar.addContent(child);
-              break;
+              return elem.localName;
             }
           }
         };
@@ -125,6 +125,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
               this._bar.removeContent(child);
               break;
             }
+          }
+        };
+
+        Ui5OverflowToolbar.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+          if (relation === 'content' && this._bar && child) {
+            this._bar.removeContent(child);
           }
         };
 

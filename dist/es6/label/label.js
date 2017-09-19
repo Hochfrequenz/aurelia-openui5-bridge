@@ -16,7 +16,7 @@ export class Ui5Label {
   @bindable() required = false;
   @bindable() textAlign = "Begin";
   @bindable() textDirection = null;
-
+  @bindable() tooltip = null;
   constructor(element) {
     this.element = element;
   }
@@ -28,7 +28,8 @@ export class Ui5Label {
       labelFor: this.labelFor,
       required: getBooleanFromAttributeValue(this.required),
       textAlign: this.textAlign,
-      textDirection: this.textDirection
+      textDirection: this.textDirection,
+      tooltip: this.tooltip
     });
     if ($(this.element).parents("[ui5-container]").length > 0) {
       this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
@@ -63,6 +64,11 @@ export class Ui5Label {
   textDirectionChanged(newValue) {
     if (this._label !== null) {
       this._label.setTextDirection(newValue);
+    }
+  }
+  tooltipChanged(newValue) {
+    if (this._label !== null) {
+      this._label.setTooltip(newValue);
     }
   }
 }
