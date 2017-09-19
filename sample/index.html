@@ -1,53 +1,50 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Aurelia openui5 Catalog</title>
-      
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
 
-  <body class="sapUiBody">
-    <div class="hiddendiv"></div>
-    <div aurelia-app="main" class="auto-height">
-      <div class="splash">
-        <div class="message" style="font-family: '72-Web',Arial,Helvetica,sans-serif">Aurelia openui5 bridge</div>
-        <div id="indicator"></div>
-      </div>
+<head>
+  <title>Aurelia openui5 Catalog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="sapUiBody">
+  <div class="hiddendiv"></div>
+  <div aurelia-app="main" class="auto-height">
+    <div class="splash">
+      <div class="message" style="font-family: '72-Web',Arial,Helvetica,sans-serif">Aurelia openui5 bridge</div>
+      <div id="indicator"></div>
     </div>
+  </div>
 
-    <script src="vendor/bluebird.js"></script>
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
-    <script id="sap-ui-bootstrap" 
-      type="text/javascript"
-      src="vendor/openui5/sap-ui-core-dbg.js"
-      data-sap-ui-theme="hftheme"
-      data-sap-ui-libs="sap.m,sap.ui.layout,sap.f"
-      data-sap-ui-compatVersion="edge">
-    </script>
-    <script>
-      System.import('aurelia-bootstrapper');
-      sap.ui.getCore().attachInit(function () {
+  <script src="vendor/bluebird.js"></script>
+  <script src="jspm_packages/system.js"></script>
+  <script src="config.js"></script>
+  <script id="sap-ui-bootstrap" type="text/javascript" src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js" data-sap-ui-theme="sap_belize"
+    data-sap-ui-libs="sap.m,sap.ui.layout,sap.f" data-sap-ui-compatVersion="edge"></script>
+  <script>
+    System.import('aurelia-bootstrapper');
+    sap.ui.getCore().attachInit(function () {
       // Show indicator
       new sap.m.BusyIndicator().placeAt("indicator");
       // Load the package.json from the root to get the package name
-      System.import("root/package.json!").then(function(m) {
+      System.import("root/package.json!").then(function (m) {
         var cfg = {
-           packages: {}
+          packages: {}
         };
 
         // Create a new systemjs package with the package name
         cfg.packages[m.name] = {
-            "main": "index",
-            "dependencies": m.jspm.dependencies
+          "main": "index",
+          "dependencies": m.jspm.dependencies
         };
 
         System.config(cfg);
-      
-      });      
-      });
-    </script>
-    <link rel="stylesheet" href="styles/styles.css">
 
-  </body>
+      });
+    });
+  </script>
+  <link rel="stylesheet" href="styles/styles.css">
+
+</body>
+
 </html>
