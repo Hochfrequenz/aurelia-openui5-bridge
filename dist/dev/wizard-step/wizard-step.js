@@ -104,7 +104,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
             if (elem.localName == 'step') {
               this._step.addContent(child);
-              break;
+              return elem.localName;
             }
           }
         };
@@ -125,6 +125,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
               this._step.removeContent(child);
               break;
             }
+          }
+        };
+
+        Ui5WizardStep.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+          if (relation === 'step' && this._step && child) {
+            this._step.removeContent(child);
           }
         };
 

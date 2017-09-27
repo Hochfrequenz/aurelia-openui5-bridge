@@ -97,7 +97,7 @@ var Ui5WizardStep = exports.Ui5WizardStep = (_dec = (0, _aureliaTemplating.custo
 
       if (elem.localName == 'step') {
         this._step.addContent(child);
-        break;
+        return elem.localName;
       }
     }
   };
@@ -118,6 +118,12 @@ var Ui5WizardStep = exports.Ui5WizardStep = (_dec = (0, _aureliaTemplating.custo
         this._step.removeContent(child);
         break;
       }
+    }
+  };
+
+  Ui5WizardStep.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+    if (relation === 'step' && this._step && child) {
+      this._step.removeContent(child);
     }
   };
 

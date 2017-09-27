@@ -22,7 +22,7 @@ export class Ui5WizardStep {
     for (elem of path) {
       if (elem.localName == 'step') {
         this._step.addContent(child);
-        break;
+        return elem.localName;
       }
     }
   }
@@ -35,6 +35,11 @@ export class Ui5WizardStep {
       }
     }
   }
+  removeChildByRelation(child,relation){
+    if (relation === 'step' && this._step && child) {
+     this._step.removeContent(child);
+   }
+ }
   defaultFunc() {
 
   }
