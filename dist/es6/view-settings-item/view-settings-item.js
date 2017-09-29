@@ -34,7 +34,7 @@ export class Ui5ViewSettingsItem extends Ui5Item {
     };
     super.fillProperties(props);
     this._item = new sap.m.ViewSettingsItem(props);
-    this._container = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._container = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
     this._relation = this._container.addChild(this._item, this.element);
   }
   detached() {

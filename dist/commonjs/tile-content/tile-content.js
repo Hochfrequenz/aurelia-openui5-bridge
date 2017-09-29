@@ -74,12 +74,12 @@ var Ui5TileContent = exports.Ui5TileContent = (_dec = (0, _aureliaTemplating.cus
     }
 
     Ui5TileContent.prototype.addChild = function addChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         if (path[0].localName == 'content') this._content.setContent(child);
     };
 
     Ui5TileContent.prototype.removeChild = function removeChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         if (path[0].localName == 'content') this._content.destroyContent(child);
     };
 
@@ -88,11 +88,11 @@ var Ui5TileContent = exports.Ui5TileContent = (_dec = (0, _aureliaTemplating.cus
             footer: this.footer,
             unit: this.unit
         });
-        $(this.element).parents("ui5-generic-tile")[0].au.controller.viewModel.addChild(this._content, this.element);
+        $(this.element).closest("ui5-generic-tile")[0].au.controller.viewModel.addChild(this._content, this.element);
     };
 
     Ui5TileContent.prototype.detached = function detached() {
-        $(this.element).parents("ui5-generic-tile")[0].au.controller.viewModel.removeChild(this._content, this.element);
+        $(this.element).closest("ui5-generic-tile")[0].au.controller.viewModel.removeChild(this._content, this.element);
     };
 
     Ui5TileContent.prototype.footerChanged = function footerChanged(newValue) {

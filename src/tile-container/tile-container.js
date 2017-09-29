@@ -7,27 +7,30 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 export class Ui5TileContainer {
   _container = null;
-
+  _parent = null;
   constructor(element) {
     this.element = element;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'tile')
       this._container.addTile(child);
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'tile')
       this._container.removeTile(child);
   }
   attached() {
+    var attributeManager = new AttributeManager(this.element);
     this._container = new sap.m.TileContainer();
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._container, this.element);
+    this._parent = this.element.closest("[ui5-container]").au.controller.viewModel;
+    this._parent.addChild(this._container, this.element);
+    attributeManager.addAttributes({ "ui5-container": '' });
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]")[0]) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._container, this.element);
+    if (this._parent) {
+      this._parent.removeChild(this._container, this.element);
     }
   }
 }

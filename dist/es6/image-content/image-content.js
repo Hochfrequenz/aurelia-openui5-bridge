@@ -15,10 +15,10 @@ export class Ui5ImageContent {
         this._content = new sap.m.ImageContent({
             src: this.src,
         });
-        $(this.element).parents("ui5-tile-content")[0].au.controller.viewModel.addChild(this._content, this.element);
+        $(this.element).closest("ui5-tile-content")[0].au.controller.viewModel.addChild(this._content, this.element);
     }
     detached() {
-        $(this.element).parents("ui5-tile-content")[0].au.controller.viewModel.removeChild(this._content, this.element);
+        $(this.element).closest("ui5-tile-content")[0].au.controller.viewModel.removeChild(this._content, this.element);
     }
     srcChanged(newValue)
     {

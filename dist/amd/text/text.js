@@ -104,7 +104,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         maxLines: this.maxLines
       };
       if (this.ui5Id) this._text = new sap.m.Text(this.ui5Id, props);else this._text = new sap.m.Text(props);
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._text, this.element);
     };
 

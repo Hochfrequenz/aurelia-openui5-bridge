@@ -19,7 +19,7 @@ define(['exports'], function (exports) {
         }
 
         Ui5Element.prototype.addChild = function addChild(child, elem) {
-            var path = $(elem).parentsUntil(this.element);
+            var path = jQuery.makeArray($(elem).parentsUntil(this.element));
             for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
                 if (_isArray) {
                     if (_i >= _iterator.length) break;

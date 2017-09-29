@@ -26,12 +26,12 @@ export class Ui5BreadCrumbs {
       this._crumbs = new sap.m.Breadcrumbs(this.ui5Id, params);
     else
       this._crumbs = new sap.m.Breadcrumbs(params);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._crumbs, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._crumbs, this.element);
     attributeManager.addAttributes({ "ui5-container": '' });
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'links')
       { this._crumbs.addLink(child); break; }

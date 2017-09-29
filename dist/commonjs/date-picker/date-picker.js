@@ -72,7 +72,7 @@ var Ui5DatePicker = exports.Ui5DatePicker = (_dec = (0, _aureliaTemplating.custo
   _inherits(Ui5DatePicker, _Ui5InputBase);
 
   Ui5DatePicker.prototype.addChild = function addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     _Ui5InputBase.prototype.addChild.call(this, child, elem);
   };
 
@@ -173,7 +173,7 @@ var Ui5DatePicker = exports.Ui5DatePicker = (_dec = (0, _aureliaTemplating.custo
     } else {
       if ((0, _attributes.getBooleanFromAttributeValue)(this.includeTime)) this._picker = new sap.m.DateTimePicker(params);else this._picker = new sap.m.DatePicker(params);
     }
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._picker, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._picker, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
     var that = this;
     this._picker.attachChange(function (event) {

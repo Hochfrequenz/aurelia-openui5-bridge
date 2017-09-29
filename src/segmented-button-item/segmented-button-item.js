@@ -40,8 +40,8 @@ export class Ui5SegmentedButtonItem extends Ui5Item {
     super.fillProperties(props);
     this._item = new sap.m.SegmentedButtonItem(props);
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._item, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._item, this.element);
     }
   }
 

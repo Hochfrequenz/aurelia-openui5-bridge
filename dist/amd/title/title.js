@@ -82,7 +82,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         emphasized: (0, _attributes.getBooleanFromAttributeValue)(this.emphasized),
         level: this.level
       });
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
+      $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
     };
 
     Ui5Title.prototype.textChanged = function textChanged(newValue) {

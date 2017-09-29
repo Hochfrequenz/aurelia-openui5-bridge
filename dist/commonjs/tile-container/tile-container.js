@@ -22,28 +22,32 @@ var Ui5TileContainer = exports.Ui5TileContainer = (_dec = (0, _aureliaTemplating
     _classCallCheck(this, Ui5TileContainer);
 
     this._container = null;
+    this._parent = null;
 
     this.element = element;
   }
 
   Ui5TileContainer.prototype.addChild = function addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'tile') this._container.addTile(child);
   };
 
   Ui5TileContainer.prototype.removeChild = function removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'tile') this._container.removeTile(child);
   };
 
   Ui5TileContainer.prototype.attached = function attached() {
+    var attributeManager = new _attributeManager.AttributeManager(this.element);
     this._container = new sap.m.TileContainer();
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._container, this.element);
+    this._parent = this.element.closest("[ui5-container]").au.controller.viewModel;
+    this._parent.addChild(this._container, this.element);
+    attributeManager.addAttributes({ "ui5-container": '' });
   };
 
   Ui5TileContainer.prototype.detached = function detached() {
-    if ($(this.element).parents("[ui5-container]")[0]) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._container, this.element);
+    if (this._parent) {
+      this._parent.removeChild(this._container, this.element);
     }
   };
 

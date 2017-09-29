@@ -104,7 +104,7 @@ var Ui5ViewSettingsItem = exports.Ui5ViewSettingsItem = (_dec = (0, _aureliaTemp
     };
     _Ui5Item.prototype.fillProperties.call(this, props);
     this._item = new sap.m.ViewSettingsItem(props);
-    this._container = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._container = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
     this._relation = this._container.addChild(this._item, this.element);
   };
 

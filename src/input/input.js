@@ -62,7 +62,7 @@ export class Ui5Input extends Ui5InputBase {
     return this._input;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     super.addChild(child, elem);
     for (elem of path) {
       if (elem.localName == 'suggestion-item') {
@@ -84,7 +84,7 @@ export class Ui5Input extends Ui5InputBase {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     super.removeChild(child, elem);
     for (elem of path) {
       if (elem.localName == 'suggestion-item') {
@@ -150,7 +150,7 @@ export class Ui5Input extends Ui5InputBase {
       this._input = new sap.m.Input(this.ui5Id, params);
     else
       this._input = new sap.m.Input(params);
-    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
     this._relation = this._parent.addChild(this._input, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
     attributeManager.addAttributes({ "ui5-container": '' });

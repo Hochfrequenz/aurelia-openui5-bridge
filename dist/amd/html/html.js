@@ -27,7 +27,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
       this._html = new sap.ui.core.HTML();
       this._html.setContent(this.content.innerHTML);
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._html, this.element);
+      $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._html, this.element);
     };
 
     return Ui5Html;

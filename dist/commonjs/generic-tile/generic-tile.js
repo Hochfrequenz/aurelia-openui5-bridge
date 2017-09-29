@@ -65,6 +65,7 @@ var Ui5GenericTile = exports.Ui5GenericTile = (_dec = (0, _aureliaTemplating.cus
         _classCallCheck(this, Ui5GenericTile);
 
         this._tile = null;
+        this._parent = null;
 
         _initDefineProp(this, 'mode', _descriptor, this);
 
@@ -80,12 +81,12 @@ var Ui5GenericTile = exports.Ui5GenericTile = (_dec = (0, _aureliaTemplating.cus
     }
 
     Ui5GenericTile.prototype.addChild = function addChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         if (path[0].localName == 'content') this._tile.addTileContent(child);
     };
 
     Ui5GenericTile.prototype.removeChild = function removeChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         if (path[0].localName == 'content') this._tile.removeTileContent(child);
     };
 
@@ -100,12 +101,12 @@ var Ui5GenericTile = exports.Ui5GenericTile = (_dec = (0, _aureliaTemplating.cus
         });
         this._tile.addStyleClass('sapUiTinyMarginTop');
         this._tile.addStyleClass('sapUiTinyMarginBegin');
-
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tile, this.element);
+        this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+        this._parent.addChild(this._tile, this.element);
     };
 
     Ui5GenericTile.prototype.detached = function detached() {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._tile, this.element);
+        this._parent.removeChild(this._tile, this.element);
     };
 
     Ui5GenericTile.prototype.headerChanged = function headerChanged(newValue) {

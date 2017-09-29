@@ -103,7 +103,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     _inherits(Ui5Input, _Ui5InputBase);
 
     Ui5Input.prototype.addChild = function addChild(child, elem) {
-      var path = $(elem).parentsUntil(this.element);
+      var path = jQuery.makeArray($(elem).parentsUntil(this.element));
       _Ui5InputBase.prototype.addChild.call(this, child, elem);
       for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
         if (_isArray) {
@@ -134,7 +134,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     };
 
     Ui5Input.prototype.removeChild = function removeChild(child, elem) {
-      var path = $(elem).parentsUntil(this.element);
+      var path = jQuery.makeArray($(elem).parentsUntil(this.element));
       _Ui5InputBase.prototype.removeChild.call(this, child, elem);
       for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
         if (_isArray2) {
@@ -303,7 +303,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         change: this.change
       };
       if (this.ui5Id) this._input = new sap.m.Input(this.ui5Id, params);else this._input = new sap.m.Input(params);
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._input, this.element);
       attributeManager.addAttributes({ "ui5-layout": '' });
       attributeManager.addAttributes({ "ui5-container": '' });

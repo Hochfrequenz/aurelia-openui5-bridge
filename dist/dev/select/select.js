@@ -89,7 +89,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
       _export('Ui5Select', Ui5Select = (_dec = customElement('ui5-select'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         Ui5Select.prototype.addChild = function addChild(child, elem) {
-          var path = $(elem).parentsUntil(this.element);
+          var path = jQuery.makeArray($(elem).parentsUntil(this.element));
           for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
             if (_isArray) {
               if (_i >= _iterator.length) break;
@@ -195,7 +195,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             change: this.change
           };
           if (this.ui5Id) this._select = new sap.m.Select(this.ui5Id, params);else this._select = new sap.m.Select(params);
-          $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._select, this.element);
+          $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._select, this.element);
           attributeManager.addAttributes({ "ui5-container": '' });
           var that = this;
           this._select.attachChange(function (event) {

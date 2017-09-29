@@ -94,11 +94,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
                         scale: this.scale,
                         valueColor: this.valueColor
                     });
-                    $(this.element).parents("ui5-tile-content")[0].au.controller.viewModel.addChild(this._content, this.element);
+                    $(this.element).closest("ui5-tile-content")[0].au.controller.viewModel.addChild(this._content, this.element);
                 };
 
                 Ui5NumericContent.prototype.detached = function detached() {
-                    $(this.element).parents("ui5-tile-content")[0].au.controller.viewModel.removeChild(this._content, this.element);
+                    $(this.element).closest("ui5-tile-content")[0].au.controller.viewModel.removeChild(this._content, this.element);
                 };
 
                 Ui5NumericContent.prototype.iconChanged = function iconChanged(newValue) {

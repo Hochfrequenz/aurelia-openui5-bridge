@@ -7,6 +7,7 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 export class Ui5GenericTile {
     _tile = null;
+    _parent = null;
     @bindable() mode = "content";
     @bindable() header = null;
     @bindable() subheader = null;
@@ -16,12 +17,12 @@ export class Ui5GenericTile {
         this.element = element;
     }
     addChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         if (path[0].localName == 'content')
             this._tile.addTileContent(child);
     }
     removeChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         if (path[0].localName == 'content')
             this._tile.removeTileContent(child);
     }
@@ -39,11 +40,11 @@ export class Ui5GenericTile {
         );
         this._tile.addStyleClass('sapUiTinyMarginTop');
         this._tile.addStyleClass('sapUiTinyMarginBegin');
-        
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tile, this.element);
+        this._parent =         $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+        this._parent.addChild(this._tile, this.element);
     }
     detached() {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._tile, this.element);
+        this._parent.removeChild(this._tile, this.element);
     }
     headerChanged(newValue) {
         if (this._tile != null) {

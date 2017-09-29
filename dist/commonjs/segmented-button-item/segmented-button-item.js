@@ -111,8 +111,8 @@ var Ui5SegmentedButtonItem = exports.Ui5SegmentedButtonItem = (_dec = (0, _aurel
     _Ui5Item.prototype.fillProperties.call(this, props);
     this._item = new sap.m.SegmentedButtonItem(props);
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._item, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._item, this.element);
     }
   };
 

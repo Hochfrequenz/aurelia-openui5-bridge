@@ -7,7 +7,7 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 export class Ui5OverflowToolbar {
   _bar = null;
-
+  _parent = null;
   @bindable() width = null;
   @bindable() active = false;
   @bindable() enabled = true;
@@ -21,7 +21,7 @@ export class Ui5OverflowToolbar {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._bar.addContent(child);
@@ -30,7 +30,7 @@ export class Ui5OverflowToolbar {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._bar.removeContent(child);
@@ -54,8 +54,9 @@ export class Ui5OverflowToolbar {
       press: this.press
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._bar, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._bar, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -65,8 +66,8 @@ export class Ui5OverflowToolbar {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._bar, this.element);
+    if (this._parent) {
+      this._parent.removeChild(this._bar, this.element);
     }
     else {
       this._bar.destroy();

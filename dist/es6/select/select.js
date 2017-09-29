@@ -33,7 +33,7 @@ export class Ui5Select {
     return this._select;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'item') {
         //if (this._select.getItems().length) // set key when first item is added
@@ -88,7 +88,7 @@ export class Ui5Select {
       this._select = new sap.m.Select(this.ui5Id, params);
     else
       this._select = new sap.m.Select(params);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._select, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._select, this.element);
     attributeManager.addAttributes({ "ui5-container": '' });
     var that = this;
     this._select.attachChange((event) => {

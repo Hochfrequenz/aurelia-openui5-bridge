@@ -127,8 +127,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           };
           if (this.uiId5) this._form = new sap.ui.layout.form.ResponsiveGridLayout(this.ui5Id, params);else this._form = new sap.ui.layout.form.ResponsiveGridLayout(params);
 
-          if ($(this.element).parents("[ui5-container]").length > 0) {
-            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+            $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });
           } else {
             this._form.placeAt(this.element.parentElement);

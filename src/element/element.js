@@ -1,6 +1,6 @@
 export class Ui5Element {
     addChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
             if (elem.localName == 'layout') {
                 this.UIElement.setLayoutData(child);

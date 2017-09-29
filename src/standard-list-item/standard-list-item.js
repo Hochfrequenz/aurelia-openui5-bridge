@@ -69,9 +69,10 @@ export class Ui5StandardListItem extends Ui5ListItemBase {
     if (this._customData)
       this._item.addCustomData(this._customData);
 
-    attributeManager.addAttributes({ "ui5-container": '' });
-    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    
+    this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
     this._relation = this._parent.addChild(this._item, this.element);
+    attributeManager.addAttributes({ "ui5-container": '' });
   }
   detached() {
     if (this._parent && this._parent.removeChildByRelation) {

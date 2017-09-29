@@ -7,12 +7,13 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 export class Ui5Grid {
     _grid = null;
+    _parent = null;
     @bindable() defaultSpan = null;
     constructor(element) {
         this.element = element;
     }
     addChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
             if (elem.localName == 'content') {
                 this._grid.addContent(child);
@@ -26,7 +27,7 @@ export class Ui5Grid {
         }
     }
     removeChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         if (path[0].localName == 'content')
             this._grid.removeContent(child);
     }
@@ -41,13 +42,14 @@ export class Ui5Grid {
                 defaultSpan: this.defaultSpan,
             }
         );
-        if ($(this.element).parents("[ui5-container]").length > 0) {
-            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._grid, this.element);
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+          this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+            this._parent.addChild(this._grid, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });
         }
     }
     detached() {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._grid, this.element);
+        this._parent.removeChild(this._grid, this.element);
     }
     defaultSpanChanged(newValue) {
         if (this._grid != null) {

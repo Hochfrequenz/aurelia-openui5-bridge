@@ -72,11 +72,11 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
             this._content = new sap.m.ImageContent({
                 src: this.src
             });
-            $(this.element).parents("ui5-tile-content")[0].au.controller.viewModel.addChild(this._content, this.element);
+            $(this.element).closest("ui5-tile-content")[0].au.controller.viewModel.addChild(this._content, this.element);
         };
 
         Ui5ImageContent.prototype.detached = function detached() {
-            $(this.element).parents("ui5-tile-content")[0].au.controller.viewModel.removeChild(this._content, this.element);
+            $(this.element).closest("ui5-tile-content")[0].au.controller.viewModel.removeChild(this._content, this.element);
         };
 
         Ui5ImageContent.prototype.srcChanged = function srcChanged(newValue) {

@@ -138,6 +138,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           _initDefineProp(this, 'uploadProgress', _descriptor33, this);
 
           this._upload = null;
+          this._parent = null;
 
           this.element = element;
         }
@@ -145,7 +146,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         Ui5FileUploader.prototype.defaultFunc = function defaultFunc(event) {};
 
         Ui5FileUploader.prototype.addChild = function addChild(child, elem) {
-          var path = $(elem).parentsUntil(this.element);
+          var path = jQuery.makeArray($(elem).parentsUntil(this.element));
           for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
             if (_isArray) {
               if (_i >= _iterator.length) break;
@@ -212,8 +213,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             uploadProgress: this.uploadProgress
           });
 
-          if ($(this.element).parents("[ui5-container]").length > 0) {
-            $(this.element).parents("[ui5-container]")[0].au.controller.viewvalueStatel.addChild(this._upload, this.element);
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller;
+            this._parent.addChild(this._upload, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });
           } else {
             this._upload.placeAt(this.element.parentElement);
@@ -223,8 +225,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         };
 
         Ui5FileUploader.prototype.detached = function detached() {
-          if ($(this.element).parents("[ui5-container]").length > 0) {
-            $(this.element).parents("[ui5-container]")[0].au.controller.viewvalueStatel.removeChild(this._upload, this.element);
+          if (this._parent) {
+            this._parent.removeChild(this._upload, this.element);
           } else {
             this._upload.destroy();
           }

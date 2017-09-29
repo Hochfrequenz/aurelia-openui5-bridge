@@ -75,6 +75,7 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
     _initDefineProp(this, 'addNewButtonPress', _descriptor5, this);
 
     this._tab = null;
+    this._parent = null;
 
     this.element = element;
   }
@@ -82,7 +83,7 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
   Ui5TabContainer.prototype.defaultFunc = function defaultFunc(event) {};
 
   Ui5TabContainer.prototype.addChild = function addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
       if (_isArray) {
         if (_i >= _iterator.length) break;
@@ -113,8 +114,9 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
       addNewButtonPress: this.addNewButtonPress
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     } else {
       this._tab.placeAt(this.element.parentElement);
@@ -124,8 +126,8 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
   };
 
   Ui5TabContainer.prototype.detached = function detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._tab, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent.removeChild(this._tab, this.element);
     } else {
       this._tab.destroy();
     }

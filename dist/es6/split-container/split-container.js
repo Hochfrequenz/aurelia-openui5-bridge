@@ -24,6 +24,7 @@ export class Ui5SplitContainer {
   @bindable() detailNavigate = this.defaultFunc;
   @bindable() afterDetailNavigate = this.defaultFunc;
   _container = null;
+  _parent = null;
   constructor(element) {
     this.element = element;
   }
@@ -31,7 +32,7 @@ export class Ui5SplitContainer {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'master') {
         this._container.addMasterPage(child);
@@ -74,8 +75,9 @@ export class Ui5SplitContainer {
     });
     this._container = container;
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._container, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._container, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -85,8 +87,8 @@ export class Ui5SplitContainer {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._container, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent.removeChild(this._container, this.element);
     }
     else {
       this._container.destroy();

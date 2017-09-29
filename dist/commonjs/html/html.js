@@ -30,7 +30,7 @@ var Ui5Html = exports.Ui5Html = (_dec = (0, _aureliaTemplating.customElement)('u
 
     this._html = new sap.ui.core.HTML();
     this._html.setContent(this.content.innerHTML);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._html, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._html, this.element);
   };
 
   return Ui5Html;

@@ -28,7 +28,7 @@ export class Ui5ViewSettingsDialog {
     return this._dialog;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'sortitems') {
         this._dialog.addSortItem(child);

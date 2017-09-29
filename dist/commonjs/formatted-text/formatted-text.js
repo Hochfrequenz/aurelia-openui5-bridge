@@ -105,7 +105,7 @@ var Ui5FormattedText = exports.Ui5FormattedText = (_dec = (0, _aureliaTemplating
       convertedLinksDefaultTarget: this.convertedLinksDefaultTarget,
       convertLinksToAnchorTags: this.convertLinksToAnchorTags
     });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
   };
 
   Ui5FormattedText.prototype.htmlTextChanged = function htmlTextChanged(newValue) {

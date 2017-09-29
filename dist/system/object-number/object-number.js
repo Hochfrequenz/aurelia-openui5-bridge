@@ -105,7 +105,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             textDirection: this.textDirection,
             textAlign: this.textAlign
           });
-          $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._number, this.element);
+          $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._number, this.element);
         };
 
         Ui5ObjectNumber.prototype.numberChanged = function numberChanged(newValue) {

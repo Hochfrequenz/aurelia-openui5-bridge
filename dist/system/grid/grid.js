@@ -72,6 +72,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
                     _classCallCheck(this, Ui5Grid);
 
                     this._grid = null;
+                    this._parent = null;
 
                     _initDefineProp(this, 'defaultSpan', _descriptor, this);
 
@@ -79,7 +80,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
                 }
 
                 Ui5Grid.prototype.addChild = function addChild(child, elem) {
-                    var path = $(elem).parentsUntil(this.element);
+                    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
                     for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
                         if (_isArray) {
                             if (_i >= _iterator.length) break;
@@ -104,7 +105,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
                 };
 
                 Ui5Grid.prototype.removeChild = function removeChild(child, elem) {
-                    var path = $(elem).parentsUntil(this.element);
+                    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
                     if (path[0].localName == 'content') this._grid.removeContent(child);
                 };
 
@@ -116,14 +117,15 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
                     this._grid = new sap.ui.layout.Grid({
                         defaultSpan: this.defaultSpan
                     });
-                    if ($(this.element).parents("[ui5-container]").length > 0) {
-                        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._grid, this.element);
+                    if ($(this.element).closest("[ui5-container]").length > 0) {
+                        this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                        this._parent.addChild(this._grid, this.element);
                         attributeManager.addAttributes({ "ui5-container": '' });
                     }
                 };
 
                 Ui5Grid.prototype.detached = function detached() {
-                    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._grid, this.element);
+                    this._parent.removeChild(this._grid, this.element);
                 };
 
                 Ui5Grid.prototype.defaultSpanChanged = function defaultSpanChanged(newValue) {

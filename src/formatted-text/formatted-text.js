@@ -32,7 +32,7 @@ export class Ui5FormattedText extends Ui5Element {
       convertedLinksDefaultTarget: this.convertedLinksDefaultTarget,
       convertLinksToAnchorTags: this.convertLinksToAnchorTags
     });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
   }
   htmlTextChanged(newValue) {
     if (this._text != null) {

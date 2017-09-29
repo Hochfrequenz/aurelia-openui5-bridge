@@ -115,6 +115,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
             var _this = _possibleConstructorReturn(this, _Ui5Control.call(this, element));
 
             _this._tile = null;
+            _this._parent = null;
 
             _initDefineProp(_this, 'type', _descriptor, _this);
 
@@ -153,11 +154,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
             };
             _Ui5Control.prototype.fillProperties.call(this, props);
             this._tile = new sap.m.StandardTile(props);
-            $(this.element).parents("ui5-tile-container")[0].au.controller.viewModel.addChild(this._tile, this.element);
+            this._parent = $(this.element).closest("ui5-tile-container")[0].au.controller.viewModel;
+            this._parent.addChild(this._tile, this.element);
         };
 
         Ui5StandardTile.prototype.detached = function detached() {
-            $(this.element).parents("ui5-tile-container")[0].au.controller.viewModel.removeChild(this._tile, this.element);
+            this._parent.removeChild(this._tile, this.element);
         };
 
         Ui5StandardTile.prototype.typeChanged = function typeChanged(newValue) {

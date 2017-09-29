@@ -80,7 +80,7 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
       span: this.span,
       indent: this.indent
     });
-    $(this.element).parents("[ui5-layout]")[0].au.controller.viewModel.addChild(this._gridData, this.element);
+    $(this.element).closest("[ui5-layout]")[0].au.controller.viewModel.addChild(this._gridData, this.element);
   };
 
   Ui5GridData.prototype.indentChanged = function indentChanged(newValue) {

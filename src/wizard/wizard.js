@@ -7,6 +7,7 @@ import { computedFrom } from 'aurelia-framework';
 @inject(Element)
 export class Ui5Wizard {
   _wizard = null;
+  _parent = null;
   @bindable() width = 'auto';
   @bindable() height = '100%';
   @bindable() showNextButton = true;
@@ -28,12 +29,12 @@ export class Ui5Wizard {
     this.element = element;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'wizard')
       this._wizard.addStep(child);
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     //FIXME: Dynamic step removal is not supported by openui5 yet, will be removed with the wizard itself
     //if (path[0].localName == 'wizard')
     // this._wizard.removeStep(child);
@@ -53,10 +54,11 @@ export class Ui5Wizard {
     this._wizard.attachStepActivate((event) => {
       that.lastStep = event.mParameters.index == that._wizard.getSteps().length;
     });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._wizard, this.element);
+    this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+    this._parent.addChild(this._wizard, this.element);
   }
   detached() {
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._wizard, this.element);
+    this._parent.removeChild(this._wizard, this.element);
   }
   widthChanged(newValue) {
     if (this._wizard !== null) {

@@ -100,7 +100,7 @@ var Ui5SelectDialog = exports.Ui5SelectDialog = (_dec = (0, _aureliaTemplating.c
   Ui5SelectDialog.prototype.defaultFunc = function defaultFunc(event) {};
 
   Ui5SelectDialog.prototype.addChild = function addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
       if (_isArray) {
         if (_i >= _iterator.length) break;
@@ -111,14 +111,14 @@ var Ui5SelectDialog = exports.Ui5SelectDialog = (_dec = (0, _aureliaTemplating.c
         elem = _i.value;
       }
 
-      if (elem.localName == 'item') {
+      if (elem.localName == 'items') {
         this._dialog.addItem(child);return elem.localName;
       }
     }
   };
 
   Ui5SelectDialog.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-    if (relation == 'item') {
+    if (relation == 'items') {
       try {
         this._dialog.removeItem(child);
       } catch (exc) {}

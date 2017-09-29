@@ -42,7 +42,7 @@ export class Ui5DatePicker extends Ui5InputBase {
     return this._picker;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     super.addChild(child, elem);
 
   }
@@ -92,7 +92,7 @@ export class Ui5DatePicker extends Ui5InputBase {
       else
         this._picker = new sap.m.DatePicker(params);
     }
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._picker, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._picker, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
     var that = this;
     this._picker.attachChange((event) => {

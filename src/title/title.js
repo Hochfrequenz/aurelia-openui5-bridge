@@ -24,7 +24,7 @@ export class Ui5Title {
       emphasized: getBooleanFromAttributeValue(this.emphasized),
       level: this.level,
     });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
   }
   textChanged(newValue) {
     if (this._title != null) {

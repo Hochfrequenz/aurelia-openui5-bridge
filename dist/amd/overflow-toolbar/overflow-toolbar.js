@@ -62,6 +62,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       _classCallCheck(this, Ui5OverflowToolbar);
 
       this._bar = null;
+      this._parent = null;
 
       _initDefineProp(this, 'width', _descriptor, this);
 
@@ -81,7 +82,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     Ui5OverflowToolbar.prototype.defaultFunc = function defaultFunc(event) {};
 
     Ui5OverflowToolbar.prototype.addChild = function addChild(child, elem) {
-      var path = $(elem).parentsUntil(this.element);
+      var path = jQuery.makeArray($(elem).parentsUntil(this.element));
       for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
         if (_isArray) {
           if (_i >= _iterator.length) break;
@@ -100,7 +101,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     };
 
     Ui5OverflowToolbar.prototype.removeChild = function removeChild(child, elem) {
-      var path = $(elem).parentsUntil(this.element);
+      var path = jQuery.makeArray($(elem).parentsUntil(this.element));
       for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
         if (_isArray2) {
           if (_i2 >= _iterator2.length) break;
@@ -135,8 +136,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         press: this.press
       });
 
-      if ($(this.element).parents("[ui5-container]").length > 0) {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._bar, this.element);
+      if ($(this.element).closest("[ui5-container]").length > 0) {
+        this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+        this._parent.addChild(this._bar, this.element);
         attributeManager.addAttributes({ "ui5-container": '' });
       } else {
         this._bar.placeAt(this.element.parentElement);
@@ -146,8 +148,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     };
 
     Ui5OverflowToolbar.prototype.detached = function detached() {
-      if ($(this.element).parents("[ui5-container]").length > 0) {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._bar, this.element);
+      if (this._parent) {
+        this._parent.removeChild(this._bar, this.element);
       } else {
         this._bar.destroy();
       }

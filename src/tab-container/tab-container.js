@@ -12,6 +12,7 @@ export class Ui5TabContainer {
   @bindable() itemSelect = this.defaultFunc;
   @bindable() addNewButtonPress = this.defaultFunc;
   _tab = null;
+  _parent = null;
   constructor(element) {
     this.element = element;
   }
@@ -19,7 +20,7 @@ export class Ui5TabContainer {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._tab.addItem(child);
@@ -42,8 +43,9 @@ export class Ui5TabContainer {
       addNewButtonPress: this.addNewButtonPress
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -53,8 +55,8 @@ export class Ui5TabContainer {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._tab, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent.removeChild(this._tab, this.element);
     }
     else {
       this._tab.destroy();

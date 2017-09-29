@@ -32,9 +32,10 @@ export class Ui5ColumnListItem {
       vAlign: this.vAlign,
       selected: getBooleanFromAttributeValue(this.selected)
     });
-    attributeManager.addAttributes({ "ui5-container": '' });
-    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+
+    this._parent = this.element.closest("[ui5-container]").au.controller.viewModel;
     this._relation = this._parent.addChild(this._item, this.element);
+    attributeManager.addAttributes({ "ui5-container": '' });
   }
   detached() {
     if (this._parent && this._parent.removeChildByRelation) {
@@ -49,7 +50,7 @@ export class Ui5ColumnListItem {
     console.log('unbind called ');
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'cell')
       { this._item.addCell(child); break; }

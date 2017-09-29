@@ -14,7 +14,7 @@ export class Ui5FormContainer {
     this.element = element;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'toolbar') {
         this._form.setToolbar(child);
@@ -45,8 +45,8 @@ export class Ui5FormContainer {
     else
       this._form = new sap.ui.layout.form.FormContainer(params);
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {

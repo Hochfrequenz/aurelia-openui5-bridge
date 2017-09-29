@@ -22,7 +22,7 @@ export class Ui5SegmentedButton {
     return this._button;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'item') {
         if (this._button.getItems().length == 0) // set key when first item is added
@@ -42,8 +42,8 @@ export class Ui5SegmentedButton {
       select: this.select
     });
     var that = this;
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._button, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._button, this.element);
       this.attributeManager.addAttributes({ "ui5-container": '' });
     }
     this._button.attachSelect((event) => {

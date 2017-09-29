@@ -7,12 +7,13 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 export class Ui5DynamicPageHeader {
     _header = null;
+    _parent = null;
     @bindable() pinnable = true;
     constructor(element) {
         this.element = element;
     }
     addChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
             if (elem.localName == 'content') {
                 this._header.addContent(child);
@@ -20,7 +21,7 @@ export class Ui5DynamicPageHeader {
         }
     }
     removeChild(child, elem) {
-        var path = $(elem).parentsUntil(this.element);
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
             if (elem.localName == 'content') {
                 this._header.removeContent(child);
@@ -38,13 +39,14 @@ export class Ui5DynamicPageHeader {
                 pinnable: getBooleanFromAttributeValue(this.pinnable),
             }
         );
-        if ($(this.element).parents("[ui5-container]").length > 0) {
-            $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._header, this.element);
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+          this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+            this._parent.addChild(this._header, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });
         }
     }
     detached() {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._header, this.element);
+        this._parent.removeChild(this._header, this.element);
     }
     pinnableChanged(newValue) {
         if (this._header !== null) {

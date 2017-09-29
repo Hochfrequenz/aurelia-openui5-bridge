@@ -54,7 +54,7 @@ export class Ui5Table extends Ui5ListBase {
     return this._table;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'header-toolbar')
       { this._table.setHeaderToolbar(child); return elem.localName; }
@@ -72,7 +72,7 @@ export class Ui5Table extends Ui5ListBase {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'item')
       { this._table.removeItem(child); break; }
@@ -96,8 +96,8 @@ export class Ui5Table extends Ui5ListBase {
         this._onAfterPageLoaded(sChangeReason);
       };
     }
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._table, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }

@@ -34,7 +34,7 @@ export class Ui5ObjectNumber {
       textDirection: this.textDirection,
       textAlign: this.textAlign
     });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._number, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._number, this.element);
   }
   numberChanged(newValue) {
     if (this._number != null) {

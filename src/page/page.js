@@ -23,7 +23,7 @@ export class Ui5Page {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'header') {
         this._page.addHeaderContent(child);
@@ -44,7 +44,7 @@ export class Ui5Page {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'header') {
         this._page.removeHeaderContent(child);
@@ -85,8 +85,8 @@ export class Ui5Page {
     });
     this._page = page;
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._page, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
@@ -97,11 +97,11 @@ export class Ui5Page {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
+    if ($(this.element).closest("[ui5-container]").length > 0) {
       if (this._parent && this._parent.removeChildByRelation)
         this._parent.removeChildByRelation(this._relation);
       else
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
+        $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
     }
     else {
       this._page.destroy();

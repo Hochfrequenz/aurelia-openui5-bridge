@@ -20,7 +20,7 @@ export class Ui5GridData {
       span: this.span,
       indent: this.indent
     });
-    $(this.element).parents("[ui5-layout]")[0].au.controller.viewModel.addChild(this._gridData, this.element);
+    $(this.element).closest("[ui5-layout]")[0].au.controller.viewModel.addChild(this._gridData, this.element);
   }
   indentChanged(newValue) {
     if (this._gridData !== null) {

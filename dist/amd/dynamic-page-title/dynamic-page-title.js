@@ -19,6 +19,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       _classCallCheck(this, Ui5DynamicPageTitle);
 
       this._title = null;
+      this._parent = null;
 
       this.element = element;
     }
@@ -26,7 +27,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     Ui5DynamicPageTitle.prototype.defaultFunc = function defaultFunc() {};
 
     Ui5DynamicPageTitle.prototype.addChild = function addChild(child, elem) {
-      var path = $(elem).parentsUntil(this.element);
+      var path = jQuery.makeArray($(elem).parentsUntil(this.element));
       for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
         if (_isArray) {
           if (_i >= _iterator.length) break;
@@ -57,7 +58,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     };
 
     Ui5DynamicPageTitle.prototype.removeChild = function removeChild(child, elem) {
-      var path = $(elem).parentsUntil(this.element);
+      var path = jQuery.makeArray($(elem).parentsUntil(this.element));
       for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
         if (_isArray2) {
           if (_i2 >= _iterator2.length) break;
@@ -90,15 +91,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       var attributeManager = new _attributeManager.AttributeManager(this.element);
       this._title = new sap.f.DynamicPageTitle({});
 
-      if ($(this.element).parents("[ui5-container]").length > 0) {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
+      if ($(this.element).closest("[ui5-container]").length > 0) {
+        this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+        this._parent.addChild(this._title, this.element);
         attributeManager.addAttributes({ "ui5-container": '' });
       }
     };
 
     Ui5DynamicPageTitle.prototype.detached = function detached() {
-      if ($(this.element).parents("[ui5-container]").length > 0) {
-        $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._title, this.element);
+      if (this._parent) {
+        this._parent.removeChild(this._title, this.element);
       } else {
         this._title.destroy();
       }

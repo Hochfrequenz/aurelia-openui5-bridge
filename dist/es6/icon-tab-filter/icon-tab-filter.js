@@ -7,6 +7,7 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 export class Ui5IconTabFilter {
   _tab = null;
+  _parent = null;
   @bindable() text = null;
   @bindable() tabKey = null;
   @bindable() design = 'Vertical';
@@ -17,7 +18,7 @@ export class Ui5IconTabFilter {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._tab.addContent(child);
@@ -26,7 +27,7 @@ export class Ui5IconTabFilter {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._tab.removeContent(child);
@@ -42,8 +43,9 @@ export class Ui5IconTabFilter {
       design: this.design
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._tab, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -53,8 +55,8 @@ export class Ui5IconTabFilter {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._tab, this.element);
+    if (this._parent) {
+      this._parent.removeChild(this._tab, this.element);
     }
     else {
       this._tab.destroy();

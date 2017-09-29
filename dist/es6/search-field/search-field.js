@@ -27,7 +27,7 @@ export class Ui5SearchField extends Ui5Control {
   @bindable() search = this.defaultFunc;
 
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     super.addChild(child, elem);
     for (elem of path) {
       if (elem.localName == 'suggestion-item') {
@@ -65,7 +65,7 @@ export class Ui5SearchField extends Ui5Control {
       this._field = new sap.m.SearchField(this.ui5Id, params);
     else
       this._field = new sap.m.SearchField(params);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._field, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._field, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
     attributeManager.addAttributes({ "ui5-container": '' });
     var that = this;

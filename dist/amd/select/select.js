@@ -77,7 +77,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
   var Ui5Select = exports.Ui5Select = (_dec = (0, _aureliaTemplating.customElement)('ui5-select'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
     Ui5Select.prototype.addChild = function addChild(child, elem) {
-      var path = $(elem).parentsUntil(this.element);
+      var path = jQuery.makeArray($(elem).parentsUntil(this.element));
       for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
         if (_isArray) {
           if (_i >= _iterator.length) break;
@@ -183,7 +183,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         change: this.change
       };
       if (this.ui5Id) this._select = new sap.m.Select(this.ui5Id, params);else this._select = new sap.m.Select(params);
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._select, this.element);
+      $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._select, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
       var that = this;
       this._select.attachChange(function (event) {

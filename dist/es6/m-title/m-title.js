@@ -26,7 +26,7 @@ export class Ui5MTitle {
       this._title = new sap.m.Title(this.ui5Id, props);
     else
       this._title = new sap.m.Title(props);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
   }
 
   textChanged(newValue) {

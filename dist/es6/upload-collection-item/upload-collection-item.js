@@ -32,7 +32,7 @@ export class Ui5UploadCollectionItem {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'attributes') {
         this._upload.addAttribute(child);
@@ -76,8 +76,8 @@ export class Ui5UploadCollectionItem {
       ariaLabelForPicture: this.ariaLabelForPicture,
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent =$(this.element).parents("[ui5-container]")[0].au.controller.viewModel; 
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent =$(this.element).closest("[ui5-container]")[0].au.controller.viewModel; 
       this._relation = this._parent.addChild(this._upload, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }

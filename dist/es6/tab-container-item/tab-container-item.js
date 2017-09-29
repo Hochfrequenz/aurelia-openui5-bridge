@@ -25,7 +25,7 @@ export class Ui5TabContainerItem {
     return this._tab;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._tab.addContent(child);
@@ -34,7 +34,7 @@ export class Ui5TabContainerItem {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._tab.removeContent(child);
@@ -51,8 +51,8 @@ export class Ui5TabContainerItem {
       itemPropertyChanged: this.itemPropertyChanged,
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }

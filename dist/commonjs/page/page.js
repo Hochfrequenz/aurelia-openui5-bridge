@@ -88,7 +88,7 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
   Ui5Page.prototype.defaultFunc = function defaultFunc() {};
 
   Ui5Page.prototype.addChild = function addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
       if (_isArray) {
         if (_i >= _iterator.length) break;
@@ -119,7 +119,7 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
   };
 
   Ui5Page.prototype.removeChild = function removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
       if (_isArray2) {
         if (_i2 >= _iterator2.length) break;
@@ -168,8 +168,8 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
     });
     this._page = page;
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._page, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     } else {
@@ -180,8 +180,8 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
   };
 
   Ui5Page.prototype.detached = function detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      if (this._parent && this._parent.removeChildByRelation) this._parent.removeChildByRelation(this._relation);else $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      if (this._parent && this._parent.removeChildByRelation) this._parent.removeChildByRelation(this._relation);else $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
     } else {
       this._page.destroy();
     }

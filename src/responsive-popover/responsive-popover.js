@@ -38,7 +38,7 @@ export class Ui5ResponsivePopover {
     return this._dialog;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'subHeader') {
         this._dialog.setSubHeader(child);

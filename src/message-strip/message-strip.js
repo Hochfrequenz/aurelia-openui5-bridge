@@ -25,7 +25,7 @@ export class Ui5MessageStrip {
       textAlign: this.textAlign,
       maxLines: this.maxLines
     });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
   }
   textChanged(newValue) {
     if (this._text != null) {

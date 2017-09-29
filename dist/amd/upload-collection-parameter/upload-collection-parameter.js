@@ -103,8 +103,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         value: this.value
       });
 
-      if ($(this.element).parents("[ui5-container]").length > 0) {
-        this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+      if ($(this.element).closest("[ui5-container]").length > 0) {
+        this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
         this.relation = this._parent.addChild(this._parameter, this.element);
       }
     };

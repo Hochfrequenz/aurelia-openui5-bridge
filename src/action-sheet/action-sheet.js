@@ -32,7 +32,7 @@ export class Ui5ActionSheet {
     return this._sheet;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'buttons') {
         this._sheet.addButton(child);

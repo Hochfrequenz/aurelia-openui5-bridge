@@ -148,7 +148,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             convertedLinksDefaultTarget: this.convertedLinksDefaultTarget,
             convertLinksToAnchorTags: this.convertLinksToAnchorTags
           });
-          $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+          $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
         };
 
         Ui5FormattedText.prototype.htmlTextChanged = function htmlTextChanged(newValue) {

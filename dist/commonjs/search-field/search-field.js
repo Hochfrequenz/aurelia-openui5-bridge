@@ -70,7 +70,7 @@ var Ui5SearchField = exports.Ui5SearchField = (_dec = (0, _aureliaTemplating.cus
   _inherits(Ui5SearchField, _Ui5Control);
 
   Ui5SearchField.prototype.addChild = function addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     _Ui5Control.prototype.addChild.call(this, child, elem);
     for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
       if (_isArray) {
@@ -151,7 +151,7 @@ var Ui5SearchField = exports.Ui5SearchField = (_dec = (0, _aureliaTemplating.cus
       selectOnFocus: (0, _attributes.getBooleanFromAttributeValue)(this.selectOnFocus)
     };
     if (this.ui5Id) this._field = new sap.m.SearchField(this.ui5Id, params);else this._field = new sap.m.SearchField(params);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._field, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._field, this.element);
     attributeManager.addAttributes({ "ui5-layout": '' });
     attributeManager.addAttributes({ "ui5-container": '' });
     var that = this;

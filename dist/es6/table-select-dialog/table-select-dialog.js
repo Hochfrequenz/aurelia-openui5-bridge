@@ -31,7 +31,7 @@ export class Ui5TableSelectDialog {
     return this._dialog;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'item')
       { this._dialog.addItem(child); return elem.localName; }

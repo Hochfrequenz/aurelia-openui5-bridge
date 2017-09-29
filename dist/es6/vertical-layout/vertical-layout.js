@@ -7,6 +7,7 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 export class Ui5VerticalLayout {
   _layout = null;
+  _parent = null;
   constructor(element) {
     this.element = element;
   }
@@ -14,7 +15,7 @@ export class Ui5VerticalLayout {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._layout.addContent(child);
@@ -23,7 +24,7 @@ export class Ui5VerticalLayout {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._layout.removeContent(child);
@@ -36,8 +37,9 @@ export class Ui5VerticalLayout {
     this._layout = new sap.ui.layout.VerticalLayout({
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._layout, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._layout, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -47,8 +49,8 @@ export class Ui5VerticalLayout {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._layout, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent.removeChild(this._layout, this.element);
     }
     else {
       this._layout.destroy();

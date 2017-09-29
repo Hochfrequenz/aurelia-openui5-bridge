@@ -31,14 +31,14 @@ export class Ui5SelectDialog {
     return this._dialog;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
-      if (elem.localName == 'item')
+      if (elem.localName == 'items')
       { this._dialog.addItem(child); return elem.localName; }
     }
   }
   removeChildByRelation(child, relation) {
-    if (relation == 'item') {
+    if (relation == 'items') {
       try {
         this._dialog.removeItem(child);
       }

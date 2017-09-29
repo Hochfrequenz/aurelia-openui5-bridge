@@ -15,7 +15,7 @@ export class Ui5FormElement {
     this.element = element;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'label') {
         this._form.setLabel(child);
@@ -46,8 +46,8 @@ export class Ui5FormElement {
     else
       this._form = new sap.ui.layout.form.FormElement(params);
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._form, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }

@@ -125,7 +125,7 @@ var Ui5Icon = exports.Ui5Icon = (_dec = (0, _aureliaTemplating.customElement)('u
       press: this.press
     };
     if (this.ui5Id) this._icon = new sap.ui.core.Icon(this.ui5Id, props);else this._icon = new sap.ui.core.Icon(props);
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._icon, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._icon, this.element);
   };
 
   Ui5Icon.prototype.srcChanged = function srcChanged(newValue) {

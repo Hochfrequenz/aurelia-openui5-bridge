@@ -21,7 +21,7 @@ export class Ui5Toolbar {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._bar.addContent(child);
@@ -36,7 +36,7 @@ export class Ui5Toolbar {
       }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'content') {
         this._bar.removeContent(child);
@@ -55,8 +55,8 @@ export class Ui5Toolbar {
       press: this.press
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this.parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this.parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this.parent.addChild(this._bar, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
@@ -67,7 +67,7 @@ export class Ui5Toolbar {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0 && this.parent.removeChild) {
+    if ($(this.element).closest("[ui5-container]").length > 0 && this.parent.removeChild) {
       this.parent.removeChild(this._bar, this.element);
     }
     else {

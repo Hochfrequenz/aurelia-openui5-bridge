@@ -14,6 +14,7 @@ export class Ui5DynamicPage {
   @bindable() showFooter = false;
   @bindable() fitContent = true;
   _page = null;
+  _parent = null;
   _taskQueue = null;
   constructor(element,queue) {
     this.element = element;
@@ -28,7 +29,7 @@ export class Ui5DynamicPage {
   }
 
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'heading') {
         this._page.setHeader(child);
@@ -56,7 +57,7 @@ export class Ui5DynamicPage {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'header') {
         //header is removed automatically
@@ -84,8 +85,9 @@ export class Ui5DynamicPage {
     });
     this._page = page;
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._page, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._page, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -96,8 +98,8 @@ export class Ui5DynamicPage {
 
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
+    if (this._parent) {
+      this._parent.removeChild(this._page, this.element);
     }
     else {
       this._page.destroy();

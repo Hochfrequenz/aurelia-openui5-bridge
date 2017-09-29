@@ -65,6 +65,7 @@ var Ui5SlideTile = exports.Ui5SlideTile = (_dec = (0, _aureliaTemplating.customE
     _classCallCheck(this, Ui5SlideTile);
 
     this._container = null;
+    this._parent = null;
 
     _initDefineProp(this, 'displayTime', _descriptor, this);
 
@@ -74,12 +75,12 @@ var Ui5SlideTile = exports.Ui5SlideTile = (_dec = (0, _aureliaTemplating.customE
   }
 
   Ui5SlideTile.prototype.addChild = function addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'tile') this._container.addTile(child);
   };
 
   Ui5SlideTile.prototype.removeChild = function removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'tile') this._container.removeTile(child);
   };
 
@@ -90,12 +91,12 @@ var Ui5SlideTile = exports.Ui5SlideTile = (_dec = (0, _aureliaTemplating.customE
     });
     this._container.addStyleClass('sapUiTinyMarginTop');
     this._container.addStyleClass('sapUiTinyMarginBegin');
-
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._container, this.element);
+    this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+    this._parent.addChild(this._container, this.element);
   };
 
   Ui5SlideTile.prototype.detached = function detached() {
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._container, this.element);
+    this._parent.removeChild(this._container, this.element);
   };
 
   Ui5SlideTile.prototype.displayTimeChanged = function displayTimeChanged(newValue) {

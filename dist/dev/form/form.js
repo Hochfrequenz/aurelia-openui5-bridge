@@ -107,7 +107,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         }
 
         Ui5Form.prototype.addChild = function addChild(child, elem) {
-          var path = $(elem).parentsUntil(this.element);
+          var path = jQuery.makeArray($(elem).parentsUntil(this.element));
           for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
             if (_isArray) {
               if (_i >= _iterator.length) break;
@@ -146,8 +146,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           };
           if (this.ui5Id) this._form = new sap.ui.layout.form.Form(this.ui5Id, params);else this._form = new sap.ui.layout.form.Form(params);
 
-          if ($(this.element).parents("[ui5-container]").length > 0) {
-            this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
             this._relation = this._parent.addChild(this._form, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });
           } else {

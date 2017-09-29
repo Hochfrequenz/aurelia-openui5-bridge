@@ -21,10 +21,10 @@ export class Ui5FeedContent {
             subheader: this.subheader,
             valueColor: this.valueColor
         });
-        $(this.element).parents("ui5-tile-content")[0].au.controller.viewModel.addChild(this._content, this.element);
+        $(this.element).closest("ui5-tile-content")[0].au.controller.viewModel.addChild(this._content, this.element);
     }
     detached() {
-        $(this.element).parents("ui5-tile-content")[0].au.controller.viewModel.removeChild(this._content, this.element);
+        $(this.element).closest("ui5-tile-content")[0].au.controller.viewModel.removeChild(this._content, this.element);
     }
     valueChanged(newValue)
     {

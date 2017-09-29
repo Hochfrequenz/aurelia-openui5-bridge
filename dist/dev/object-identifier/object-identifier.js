@@ -102,7 +102,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             textDirection: this.textDirection,
             titlePress: this.titlePress
           });
-          $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+          $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
         };
 
         Ui5ObjectIdentifier.prototype.textChanged = function textChanged(newValue) {

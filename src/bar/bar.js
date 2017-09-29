@@ -12,7 +12,7 @@ export class Ui5Bar {
     this.element = element;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'content-left')
       this._bar.addContentLeft(child);
     if (path[0].localName == 'content-middle')
@@ -23,7 +23,7 @@ export class Ui5Bar {
   attached() {
 
     this._bar = new sap.m.Bar();
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._bar,this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._bar,this.element);
 
   }
 }

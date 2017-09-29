@@ -101,8 +101,8 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
       press: this.press != null ? this.press : this.defaultPress
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._button, this.element);
     }
   };

@@ -7,18 +7,19 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 @inject(Element)
 export class Ui5SlideTile {
   _container = null;
+  _parent = null;
   @bindable() displayTime = 5000;
   @bindable() transitionTime = 500;
   constructor(element) {
     this.element = element;
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'tile')
       this._container.addTile(child);
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     if (path[0].localName == 'tile')
       this._container.removeTile(child);
   }
@@ -29,11 +30,11 @@ export class Ui5SlideTile {
     });
     this._container.addStyleClass('sapUiTinyMarginTop');
     this._container.addStyleClass('sapUiTinyMarginBegin');
-
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._container, this.element);
+    this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+    this._parent.addChild(this._container, this.element);
   }
   detached() {
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._container, this.element);
+    this._parent.removeChild(this._container, this.element);
   }
   displayTimeChanged(newValue) {
     if (this._container != null) {

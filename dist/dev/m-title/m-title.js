@@ -91,7 +91,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             titleStyle: this.titleStyle
           };
           if (this.ui5Id) this._title = new sap.m.Title(this.ui5Id, props);else this._title = new sap.m.Title(props);
-          $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
+          $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
         };
 
         Ui5MTitle.prototype.textChanged = function textChanged(newValue) {

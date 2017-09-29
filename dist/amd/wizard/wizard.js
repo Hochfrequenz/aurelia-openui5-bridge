@@ -89,6 +89,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       _classCallCheck(this, Ui5Wizard);
 
       this._wizard = null;
+      this._parent = null;
 
       _initDefineProp(this, 'width', _descriptor, this);
 
@@ -110,12 +111,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     }
 
     Ui5Wizard.prototype.addChild = function addChild(child, elem) {
-      var path = $(elem).parentsUntil(this.element);
+      var path = jQuery.makeArray($(elem).parentsUntil(this.element));
       if (path[0].localName == 'wizard') this._wizard.addStep(child);
     };
 
     Ui5Wizard.prototype.removeChild = function removeChild(child, elem) {
-      var path = $(elem).parentsUntil(this.element);
+      var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     };
 
     Ui5Wizard.prototype.attached = function attached() {
@@ -133,11 +134,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       this._wizard.attachStepActivate(function (event) {
         that.lastStep = event.mParameters.index == that._wizard.getSteps().length;
       });
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._wizard, this.element);
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._wizard, this.element);
     };
 
     Ui5Wizard.prototype.detached = function detached() {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._wizard, this.element);
+      this._parent.removeChild(this._wizard, this.element);
     };
 
     Ui5Wizard.prototype.widthChanged = function widthChanged(newValue) {

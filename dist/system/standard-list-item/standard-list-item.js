@@ -202,9 +202,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           if (this._customData) this._item.addCustomData(this._customData);
 
-          attributeManager.addAttributes({ "ui5-container": '' });
-          this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+          this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
           this._relation = this._parent.addChild(this._item, this.element);
+          attributeManager.addAttributes({ "ui5-container": '' });
         };
 
         Ui5StandardListItem.prototype.detached = function detached() {

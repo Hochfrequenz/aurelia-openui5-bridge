@@ -34,7 +34,7 @@ export class Ui5ListItem {
       textDirection: this.textDirection,
       key: this.key
     });
-    this._container = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._container = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
     this._relation = this._container.addChild(this._item, this.element);
   }
   detached() {

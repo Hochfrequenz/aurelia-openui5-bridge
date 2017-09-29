@@ -34,6 +34,7 @@ export class Ui5UploadCollection {
   @bindable() beforeUploadStarts = this.defaultFunc;
   @bindable() selectionChange = this.defaultFunc;
   _upload = null;
+  _parent = null;
   constructor(element) {
     this.element = element;
   }
@@ -41,7 +42,7 @@ export class Ui5UploadCollection {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'items') {
         this._upload.addItem(child);
@@ -103,8 +104,9 @@ export class Ui5UploadCollection {
       selectionChange: this.selectionChange
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._upload, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._upload, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -114,8 +116,8 @@ export class Ui5UploadCollection {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._upload, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent.removeChild(this._upload, this.element);
     }
     else {
       this._upload.destroy();

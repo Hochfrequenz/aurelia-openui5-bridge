@@ -32,7 +32,7 @@ export class Ui5ViewSettingsFilterItem extends Ui5Item {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'items') {
         this._item.addItem(child);
@@ -59,7 +59,7 @@ export class Ui5ViewSettingsFilterItem extends Ui5Item {
     this.attributeManager.addAttributes({ "ui5-layout": '' });
     this.attributeManager.addAttributes({ "ui5-container": '' });
 
-    this._container = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._container = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
     this._relation = this._container.addChild(this._item, this.element);
   }
   detached() {

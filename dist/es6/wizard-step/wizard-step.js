@@ -17,8 +17,9 @@ export class Ui5WizardStep {
   constructor(element) {
     this.element = element;
   }
+  _parent = null;
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'step') {
         this._step.addContent(child);
@@ -27,7 +28,7 @@ export class Ui5WizardStep {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'step') {
         this._step.removeContent(child);
@@ -44,6 +45,7 @@ export class Ui5WizardStep {
 
   }
   attached() {
+    var attributeManager = new AttributeManager(this.element);
     this._step = new sap.m.WizardStep({
       title: this.title,
       icon: this.icon,
@@ -51,9 +53,11 @@ export class Ui5WizardStep {
       complete: this.complete,
       activate: this.activate
     });
-    $(this.element).parents("ui5-wizard")[0].au.controller.viewModel.addChild(this._step, this.element);
+    this._parent = this.element.closest("ui5-wizard").au.controller.viewModel;
+    this._parent.addChild(this._step, this.element);
+    attributeManager.addAttributes({ "ui5-container": '' });
   }
   detached() {
-    $(this.element).parents("ui5-wizard")[0].au.controller.viewModel.removeChild(this._step, this.element);
+    this._parent.removeChild(this._step, this.element);
   }
 }

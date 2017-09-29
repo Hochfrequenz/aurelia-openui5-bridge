@@ -41,6 +41,7 @@ export class Ui5FileUploader {
   @bindable() uploadStart = this.defaultFunc;
   @bindable() uploadProgress = this.defaultFunc;
   _upload = null;
+  _parent = null;
   constructor(element) {
     this.element = element;
   }
@@ -48,7 +49,7 @@ export class Ui5FileUploader {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'items') {
         this._upload.addItem(child);
@@ -110,8 +111,9 @@ export class Ui5FileUploader {
       uploadProgress: this.uploadProgress
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewvalueStatel.addChild(this._upload, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller; 
+      this._parent.addChild(this._upload, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -121,8 +123,8 @@ export class Ui5FileUploader {
     }
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewvalueStatel.removeChild(this._upload, this.element);
+    if (this._parent) {
+      this._parent.removeChild(this._upload, this.element);
     }
     else {
       this._upload.destroy();

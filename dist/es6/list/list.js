@@ -54,7 +54,7 @@ export class Ui5List extends Ui5ListBase {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
 
       if (elem.localName == 'item')
@@ -68,7 +68,7 @@ export class Ui5List extends Ui5ListBase {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'item')
       { this._list.removeItem(child); break; }
@@ -90,8 +90,8 @@ export class Ui5List extends Ui5ListBase {
       this._onBeforePageLoaded(sChangeReason);
       this._onAfterPageLoaded(sChangeReason);
     };
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._list, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }

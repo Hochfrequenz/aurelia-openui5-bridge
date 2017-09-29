@@ -47,7 +47,7 @@ export class Ui5Column {
       this._column = new sap.m.Column(this.ui5Id, params);
     else
       this._column = new sap.m.Column(params);
-    this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
     this._relation = this._parent.addChild(this._column, this.element);
     attributeManager.addAttributes({ "ui5-container": '' });
 
@@ -58,7 +58,7 @@ export class Ui5Column {
     }
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'header')
       { this._column.setHeader(child); break; }

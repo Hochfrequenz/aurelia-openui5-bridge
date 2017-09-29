@@ -147,7 +147,7 @@ var Ui5Table = exports.Ui5Table = (_dec = (0, _aureliaTemplating.customElement)(
   }
 
   Ui5Table.prototype.addChild = function addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
       if (_isArray) {
         if (_i >= _iterator.length) break;
@@ -180,7 +180,7 @@ var Ui5Table = exports.Ui5Table = (_dec = (0, _aureliaTemplating.customElement)(
   };
 
   Ui5Table.prototype.removeChild = function removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
       if (_isArray2) {
         if (_i2 >= _iterator2.length) break;
@@ -216,8 +216,8 @@ var Ui5Table = exports.Ui5Table = (_dec = (0, _aureliaTemplating.customElement)(
         this._onAfterPageLoaded(sChangeReason);
       };
     }
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this._parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this._relation = this._parent.addChild(this._table, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     } else {

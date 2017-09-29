@@ -96,8 +96,8 @@ var Ui5Link = exports.Ui5Link = (_dec = (0, _aureliaTemplating.customElement)('u
       press: this.press != null ? this.press : this.defaultPress
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      this.parent = $(this.element).parents("[ui5-container]")[0].au.controller.viewModel;
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this.parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
       this.parent.addChild(this._link, this.element);
     }
   };

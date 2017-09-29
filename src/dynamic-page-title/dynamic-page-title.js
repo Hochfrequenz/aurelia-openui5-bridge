@@ -8,6 +8,7 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 export class Ui5DynamicPageTitle {
  
   _title = null;
+  _parent = null;
   constructor(element) {
     this.element = element;
   }
@@ -15,7 +16,7 @@ export class Ui5DynamicPageTitle {
 
   }
   addChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'heading') {
         this._title.setHeading(child);
@@ -36,7 +37,7 @@ export class Ui5DynamicPageTitle {
     }
   }
   removeChild(child, elem) {
-    var path = $(elem).parentsUntil(this.element);
+    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
       if (elem.localName == 'heading') {
       //heading is removed automatically
@@ -62,14 +63,15 @@ export class Ui5DynamicPageTitle {
     
     });
 
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._title, this.element);
+    if ($(this.element).closest("[ui5-container]").length > 0) {
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._parent.addChild(this._title, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }  
   }
   detached() {
-    if ($(this.element).parents("[ui5-container]").length > 0) {
-      $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.removeChild(this._title, this.element);
+    if (this._parent) {
+      this._parent.removeChild(this._title, this.element);
     }
     else {
       this._title.destroy();

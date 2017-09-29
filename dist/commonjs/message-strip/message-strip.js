@@ -87,7 +87,7 @@ var Ui5MessageStrip = exports.Ui5MessageStrip = (_dec = (0, _aureliaTemplating.c
       textAlign: this.textAlign,
       maxLines: this.maxLines
     });
-    $(this.element).parents("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
+    $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._text, this.element);
   };
 
   Ui5MessageStrip.prototype.textChanged = function textChanged(newValue) {

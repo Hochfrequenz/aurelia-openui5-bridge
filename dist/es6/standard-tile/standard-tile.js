@@ -7,6 +7,7 @@ import { Ui5Control } from '../control/control';
 @inject(Element)
 export class Ui5StandardTile extends Ui5Control {
     _tile = null;
+    _parent = null;
     @bindable() type = null;
     @bindable() title = null;
     @bindable() number = null;
@@ -42,10 +43,11 @@ export class Ui5StandardTile extends Ui5Control {
         };
         super.fillProperties(props);
         this._tile = new sap.m.StandardTile(props);
-        $(this.element).parents("ui5-tile-container")[0].au.controller.viewModel.addChild(this._tile, this.element);
+        this._parent = $(this.element).closest("ui5-tile-container")[0].au.controller.viewModel;
+        this._parent.addChild(this._tile, this.element);
     }
     detached() {
-        $(this.element).parents("ui5-tile-container")[0].au.controller.viewModel.removeChild(this._tile, this.element);
+        this._parent.removeChild(this._tile, this.element);
     }
     typeChanged(newValue) {
         if (this._tile != null) {
