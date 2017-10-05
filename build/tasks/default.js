@@ -3,7 +3,7 @@ var runSequence = require('run-sequence');
 
 gulp.task('default', function(callback) {
   return runSequence(
-    'lint',
+   // 'lint',
     'build',
     'test',
     callback
