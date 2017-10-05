@@ -1,5 +1,7 @@
 # aurelia-openui5-bridge
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Hochfrequenz/aurelia-openui5-bridge.svg)](https://greenkeeper.io/)
+
 
 Aurelia components for SAP openUi5
 
