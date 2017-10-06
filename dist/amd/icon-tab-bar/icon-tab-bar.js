@@ -109,7 +109,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
         if (elem.localName == 'content') {
           this._tab.addItem(child);
-          break;
+          return elem.localName;
         }
       }
     };
@@ -130,6 +130,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
           this._tab.removeItem(child);
           break;
         }
+      }
+    };
+
+    Ui5IconTabBar.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+      if (relation == 'content') {
+        this._tab.removeItem(child);
       }
     };
 

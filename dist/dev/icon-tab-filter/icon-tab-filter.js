@@ -73,6 +73,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           this._tab = null;
           this._parent = null;
+          this._relation = null;
 
           _initDefineProp(this, 'text', _descriptor, this);
 
@@ -133,7 +134,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           if ($(this.element).closest("[ui5-container]").length > 0) {
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-            this._parent.addChild(this._tab, this.element);
+            this._relation = this._parent.addChild(this._tab, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });
           } else {
             this._tab.placeAt(this.element.parentElement);
@@ -144,7 +145,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
         Ui5IconTabFilter.prototype.detached = function detached() {
           if (this._parent) {
-            this._parent.removeChild(this._tab, this.element);
+            this._parent.removeChildByRelation(this._tab, this._relation);
           } else {
             this._tab.destroy();
           }

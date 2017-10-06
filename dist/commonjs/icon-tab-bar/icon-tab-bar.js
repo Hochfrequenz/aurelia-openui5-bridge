@@ -112,7 +112,7 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
 
       if (elem.localName == 'content') {
         this._tab.addItem(child);
-        break;
+        return elem.localName;
       }
     }
   };
@@ -133,6 +133,12 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
         this._tab.removeItem(child);
         break;
       }
+    }
+  };
+
+  Ui5IconTabBar.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+    if (relation == 'content') {
+      this._tab.removeItem(child);
     }
   };
 

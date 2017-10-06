@@ -119,7 +119,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
             if (elem.localName == 'content') {
               this._tab.addItem(child);
-              break;
+              return elem.localName;
             }
           }
         };
@@ -140,6 +140,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
               this._tab.removeItem(child);
               break;
             }
+          }
+        };
+
+        Ui5IconTabBar.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+          if (relation == 'content') {
+            this._tab.removeItem(child);
           }
         };
 

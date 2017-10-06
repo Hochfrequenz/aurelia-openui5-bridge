@@ -32,7 +32,7 @@ export class Ui5IconTabBar {
     for (elem of path) {
       if (elem.localName == 'content') {
         this._tab.addItem(child);
-        break;
+        return elem.localName;
       }
     }
   }
@@ -45,21 +45,26 @@ export class Ui5IconTabBar {
       }
     }
   }
+  removeChildByRelation(child, relation) {
+    if (relation == 'content') {
+      this._tab.removeItem(child);
+    }
+  }
   attached() {
     var attributeManager = new AttributeManager(this.element);
     this._tab = new sap.m.IconTabBar({
       showSelection: getBooleanFromAttributeValue(this.showSelection),
       expandable: getBooleanFromAttributeValue(this.expandable),
       expanded: getBooleanFromAttributeValue(this.expanded),
-      selectedKey:this.selectedKey,
+      selectedKey: this.selectedKey,
       upperCase: getBooleanFromAttributeValue(this.upperCase),
       stretchContentHeight: getBooleanFromAttributeValue(this.stretchContentHeight),
       applyContentPadding: getBooleanFromAttributeValue(this.applyContentPadding),
       backgroundDesign: this.backgroundDesign,
-      headerMode:this.headerMode,
+      headerMode: this.headerMode,
       showOverflowSelectList: getBooleanFromAttributeValue(this.showOverflowSelectList),
       headerBackgroundDesign: this.headerBackgroundDesign,
-      enableTabReordering: getBooleanFromAttributeValue (this.enableTabReordering),
+      enableTabReordering: getBooleanFromAttributeValue(this.enableTabReordering),
       select: this.select
     });
     var that = this;
@@ -102,7 +107,7 @@ export class Ui5IconTabBar {
   }
   selectedKeyChanged(newValue) {
     if (this._tab !== null) {
-      if(this._tab.getSelectedKey()!=newValue)
+      if (this._tab.getSelectedKey() != newValue)
         this._tab.setSelectedKey(newValue);
     }
   }

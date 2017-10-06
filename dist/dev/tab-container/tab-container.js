@@ -109,7 +109,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         };
 
         Ui5TabContainer.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-          if (relation === 'content' && this._tab && child) {}
+          if (relation === 'content' && this._tab && child) {
+            this._tab.removeItem(child);
+          }
         };
 
         Ui5TabContainer.prototype.attached = function attached() {
