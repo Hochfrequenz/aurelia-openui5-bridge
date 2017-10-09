@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.8"></a>
+## [0.1.8](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.1.7...v0.1.8) (2017-10-09)
+
+
+### Bug Fixes
+
+* **ui:** fix form placement ([9b0e0d1](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/9b0e0d1))
+
+
+
 <a name="0.1.7"></a>
 ## [0.1.7](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.1.6...v0.1.7) (2017-10-06)
 
