@@ -119,7 +119,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             title: this.title
           };
           if (this.uiId5) this._form = new sap.ui.layout.form.FormContainer(this.ui5Id, params);else this._form = new sap.ui.layout.form.FormContainer(params);
-
+          this.element.removeAttribute('ui5-container');
           if ($(this.element).closest("[ui5-container]").length > 0) {
             $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
             attributeManager.addAttributes({ "ui5-container": '' });

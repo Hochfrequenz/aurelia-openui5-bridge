@@ -2,7 +2,7 @@ import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { computedFrom } from 'aurelia-framework';
 @customElement('ui5-icon-tab-filter')
 @inject(Element)
 export class Ui5IconTabFilter {
@@ -18,22 +18,40 @@ export class Ui5IconTabFilter {
   defaultFunc(event) {
 
   }
-  addChild(child, elem) {
+  @computedFrom('_tab')
+  get UIElement() {
+    return this._tab;
+  }
+  addChild(child, elem, afterElement) {
+
     var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-    for (elem of path) {
-      if (elem.localName == 'content') {
-        this._tab.addContent(child);
-        break;
+    var prevChild = null;
+    for (var childElem of path) {
+      if (childElem.localName == 'content') {
+        var _index = null;
+        if (afterElement)
+          _index = this._tab.indexOfContent(afterElement);
+        if (_index)
+          this._tab.insertContent(child, _index + 1);
+        else
+          this._tab.addContent(child);
+        return childElem.localName;
       }
+      prevChild = childElem;
     }
   }
   removeChild(child, elem) {
     var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-    for (elem of path) {
-      if (elem.localName == 'content') {
+    for (var childElem of path) {
+      if (childElem.localName == 'content') {
         this._tab.removeContent(child);
         break;
       }
+    }
+  }
+  removeChildByRelation(child, relation) {
+    if (relation === 'content' && this._tab && child) {
+      this._tab.removeContent(child);
     }
   }
   attached() {

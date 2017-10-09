@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (exports, _aureliaTemplating, _aureliaDependencyInjection, _attributeManager, _attributes) {
+define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', 'aurelia-framework'], function (exports, _aureliaTemplating, _aureliaDependencyInjection, _attributeManager, _attributes, _aureliaFramework) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -21,6 +21,24 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       throw new TypeError("Cannot call a class as a function");
     }
   }
+
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
 
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
     var desc = {};
@@ -55,9 +73,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-  var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-filter'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-filter'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaFramework.computedFrom)('_tab'), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5IconTabFilter(element) {
       _classCallCheck(this, Ui5IconTabFilter);
 
@@ -76,41 +94,60 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
     Ui5IconTabFilter.prototype.defaultFunc = function defaultFunc(event) {};
 
-    Ui5IconTabFilter.prototype.addChild = function addChild(child, elem) {
+    Ui5IconTabFilter.prototype.addChild = function addChild(child, elem, afterElement) {
+
       var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+      var prevChild = null;
       for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+        var _ref;
+
         if (_isArray) {
           if (_i >= _iterator.length) break;
-          elem = _iterator[_i++];
+          _ref = _iterator[_i++];
         } else {
           _i = _iterator.next();
           if (_i.done) break;
-          elem = _i.value;
+          _ref = _i.value;
         }
 
-        if (elem.localName == 'content') {
-          this._tab.addContent(child);
-          break;
+        var childElem = _ref;
+
+        if (childElem.localName == 'content') {
+          var _index = null;
+          if (afterElement) _index = this._tab.indexOfContent(afterElement);
+          if (_index) this._tab.insertContent(child, _index + 1);else this._tab.addContent(child);
+          return childElem.localName;
         }
+        prevChild = childElem;
       }
     };
 
     Ui5IconTabFilter.prototype.removeChild = function removeChild(child, elem) {
       var path = jQuery.makeArray($(elem).parentsUntil(this.element));
       for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+        var _ref2;
+
         if (_isArray2) {
           if (_i2 >= _iterator2.length) break;
-          elem = _iterator2[_i2++];
+          _ref2 = _iterator2[_i2++];
         } else {
           _i2 = _iterator2.next();
           if (_i2.done) break;
-          elem = _i2.value;
+          _ref2 = _i2.value;
         }
 
-        if (elem.localName == 'content') {
+        var childElem = _ref2;
+
+        if (childElem.localName == 'content') {
           this._tab.removeContent(child);
           break;
         }
+      }
+    };
+
+    Ui5IconTabFilter.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+      if (relation === 'content' && this._tab && child) {
+        this._tab.removeContent(child);
       }
     };
 
@@ -159,6 +196,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       }
     };
 
+    _createClass(Ui5IconTabFilter, [{
+      key: 'UIElement',
+      get: function get() {
+        return this._tab;
+      }
+    }]);
+
     return Ui5IconTabFilter;
   }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec3], {
     enumerable: true,
@@ -175,5 +219,5 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     initializer: function initializer() {
       return 'Vertical';
     }
-  })), _class2)) || _class) || _class);
+  }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

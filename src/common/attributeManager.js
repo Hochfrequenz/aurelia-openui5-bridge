@@ -39,6 +39,9 @@ export class AttributeManager {
         this.addedAttributes[a] = null;
         delete this.addedAttributes[a];
       }
+      else if(this.element.getAttribute(a)){
+        this.element.removeAttribute(a);
+      }
     });
   }
 
