@@ -73,9 +73,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
 
-  var Ui5Icon = exports.Ui5Icon = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaFramework.computedFrom)('_icon'), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5Icon = exports.Ui5Icon = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaFramework.computedFrom)('_icon'), _dec(_class = _dec2(_class = (_class2 = function () {
     Ui5Icon.prototype.defaultFunc = function defaultFunc() {};
 
     function Ui5Icon(element) {
@@ -115,6 +115,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
       _initDefineProp(this, 'press', _descriptor16, this);
 
+      _initDefineProp(this, 'tooltip', _descriptor17, this);
+
       this.element = element;
     }
 
@@ -133,7 +135,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         useIconTooltip: (0, _attributes.getBooleanFromAttributeValue)(this.useIconTooltip),
         alt: this.alt,
         noTabStop: (0, _attributes.getBooleanFromAttributeValue)(this.noTabStop),
-        press: this.press
+        press: this.press,
+        tooltip: this.tooltip
       };
       if (this.ui5Id) this._icon = new sap.ui.core.Icon(this.ui5Id, props);else this._icon = new sap.ui.core.Icon(props);
       $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._icon, this.element);
@@ -220,6 +223,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     Ui5Icon.prototype.noTabStopChanged = function noTabStopChanged(newValue) {
       if (this._icon !== null) {
         this._icon.setNoTabStop((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      }
+    };
+
+    Ui5Icon.prototype.tooltipChanged = function tooltipChanged(newValue) {
+      if (this._icon !== null) {
+        this._icon.setTooltip(newValue);
       }
     };
 
@@ -311,5 +320,10 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     initializer: function initializer() {
       return this.defaultFunc;
     }
-  }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec19], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+  }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'tooltip', [_dec19], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec20], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

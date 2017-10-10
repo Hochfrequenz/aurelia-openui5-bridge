@@ -24,6 +24,7 @@ export class Ui5Icon {
   @bindable() alt = null;
   @bindable() noTabStop = false;
   @bindable() press = this.defaultFunc;
+  @bindable() tooltip = null;
   defaultFunc(){
     
   }
@@ -49,7 +50,8 @@ export class Ui5Icon {
       useIconTooltip: getBooleanFromAttributeValue(this.useIconTooltip),
       alt: this.alt,
       noTabStop: getBooleanFromAttributeValue(this.noTabStop),
-      press: this.press
+      press: this.press,
+      tooltip: this.tooltip
     };
     if (this.ui5Id)
       this._icon = new sap.ui.core.Icon(this.ui5Id, props);
@@ -127,5 +129,9 @@ export class Ui5Icon {
       this._icon.setNoTabStop(getBooleanFromAttributeValue(newValue));
     }
   }
-
+  tooltipChanged(newValue) {
+    if (this._icon !== null) {
+      this._icon.setTooltip(newValue);
+    }
+  }
 }

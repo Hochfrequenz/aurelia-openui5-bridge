@@ -73,9 +73,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+  var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
 
-  var Ui5Text = exports.Ui5Text = (_dec = (0, _aureliaTemplating.customElement)('ui5-text'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaFramework.computedFrom)('_text'), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5Text = exports.Ui5Text = (_dec = (0, _aureliaTemplating.customElement)('ui5-text'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaFramework.computedFrom)('_text'), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5Text(element) {
       _classCallCheck(this, Ui5Text);
 
@@ -93,6 +93,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
       _initDefineProp(this, 'maxLines', _descriptor5, this);
 
+      _initDefineProp(this, 'tooltip', _descriptor6, this);
+
       this.element = element;
     }
 
@@ -101,7 +103,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         text: this.text != null ? this.text : this.element.innerText.trim(),
         wrapping: (0, _attributes.getBooleanFromAttributeValue)(this.wrapping),
         textAlign: this.textAlign,
-        maxLines: this.maxLines
+        maxLines: this.maxLines,
+        tooltip: this.tooltip
       };
       if (this.ui5Id) this._text = new sap.m.Text(this.ui5Id, props);else this._text = new sap.m.Text(props);
       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
@@ -117,6 +120,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     Ui5Text.prototype.textChanged = function textChanged(newValue) {
       if (this._text != null) {
         this._text.setText(newValue);
+      }
+    };
+
+    Ui5Text.prototype.tooltipChanged = function tooltipChanged(newValue) {
+      if (this._text !== null) {
+        this._text.setTooltip(newValue);
       }
     };
 
@@ -153,5 +162,10 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     initializer: function initializer() {
       return null;
     }
-  }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+  }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'tooltip', [_dec3], {
+    enumerable: true,
+    initializer: function initializer() {
+      return null;
+    }
+  }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec4], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

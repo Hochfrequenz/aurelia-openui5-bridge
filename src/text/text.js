@@ -15,6 +15,7 @@ export class Ui5Text {
   @bindable wrapping = true;
   @bindable textAlign = "Begin";
   @bindable maxLines = null;
+  @bindable() tooltip = null;
   constructor(element) {
     this.element = element;
   }
@@ -27,7 +28,8 @@ export class Ui5Text {
       text: this.text != null ? this.text : this.element.innerText.trim(),
       wrapping: getBooleanFromAttributeValue(this.wrapping),
       textAlign: this.textAlign,
-      maxLines: this.maxLines
+      maxLines: this.maxLines,
+      tooltip: this.tooltip
     };
     if(this.ui5Id)
       this._text = new sap.m.Text(this.ui5Id,props);
@@ -45,6 +47,11 @@ export class Ui5Text {
   textChanged(newValue) {
     if (this._text != null) {
       this._text.setText(newValue);
+    }
+  }
+  tooltipChanged(newValue) {
+    if (this._text !== null) {
+      this._text.setTooltip(newValue);
     }
   }
 }
