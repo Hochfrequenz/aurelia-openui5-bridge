@@ -30,8 +30,7 @@ export class Ui5TabContainer {
   }
   removeChildByRelation(child, relation) {
     if (relation === 'content' && this._tab && child) {
-      // due to a bug in openui5-removal-code I can't remove the tabs
-      // this._tab.removeItem(child);
+      this._tab.removeItem(child);
     }
   }
   attached() {

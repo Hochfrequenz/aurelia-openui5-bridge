@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
+System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', 'aurelia-framework'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, Ui5OverflowToolbar;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, computedFrom, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, Ui5OverflowToolbar;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -65,9 +65,29 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       AttributeManager = _commonAttributeManager.AttributeManager;
     }, function (_commonAttributes) {
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+    }, function (_aureliaFramework) {
+      computedFrom = _aureliaFramework.computedFrom;
     }],
     execute: function () {
-      _export('Ui5OverflowToolbar', Ui5OverflowToolbar = (_dec = customElement('ui5-overflow-toolbar'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
+
+      _export('Ui5OverflowToolbar', Ui5OverflowToolbar = (_dec = customElement('ui5-overflow-toolbar'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = computedFrom('_bar'), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5OverflowToolbar(element) {
           _classCallCheck(this, Ui5OverflowToolbar);
 
@@ -201,6 +221,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        _createClass(Ui5OverflowToolbar, [{
+          key: 'UIElement',
+          get: function get() {
+            return this._bar;
+          }
+        }]);
+
         return Ui5OverflowToolbar;
       }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec3], {
         enumerable: true,
@@ -232,7 +259,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         initializer: function initializer() {
           return this.defaultFunc;
         }
-      })), _class2)) || _class) || _class));
+      }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec9], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
       _export('Ui5OverflowToolbar', Ui5OverflowToolbar);
     }

@@ -102,7 +102,9 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
   };
 
   Ui5TabContainer.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-    if (relation === 'content' && this._tab && child) {}
+    if (relation === 'content' && this._tab && child) {
+      this._tab.removeItem(child);
+    }
   };
 
   Ui5TabContainer.prototype.attached = function attached() {

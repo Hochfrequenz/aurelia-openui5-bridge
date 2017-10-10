@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5OverflowToolbar = undefined;
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -14,6 +16,8 @@ var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 var _attributeManager = require('../common/attributeManager');
 
 var _attributes = require('../common/attributes');
+
+var _aureliaFramework = require('aurelia-framework');
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -60,7 +64,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTemplating.customElement)('ui5-overflow-toolbar'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTemplating.customElement)('ui5-overflow-toolbar'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaFramework.computedFrom)('_bar'), _dec(_class = _dec2(_class = (_class2 = function () {
   function Ui5OverflowToolbar(element) {
     _classCallCheck(this, Ui5OverflowToolbar);
 
@@ -194,6 +198,13 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
     }
   };
 
+  _createClass(Ui5OverflowToolbar, [{
+    key: 'UIElement',
+    get: function get() {
+      return this._bar;
+    }
+  }]);
+
   return Ui5OverflowToolbar;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec3], {
   enumerable: true,
@@ -225,4 +236,4 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
   initializer: function initializer() {
     return this.defaultFunc;
   }
-})), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec9], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

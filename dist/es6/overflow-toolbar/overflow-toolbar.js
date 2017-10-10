@@ -2,7 +2,7 @@ import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { computedFrom } from 'aurelia-framework';
 @customElement('ui5-overflow-toolbar')
 @inject(Element)
 export class Ui5OverflowToolbar {
@@ -19,6 +19,10 @@ export class Ui5OverflowToolbar {
   }
   defaultFunc(event) {
 
+  }
+  @computedFrom('_bar')
+  get UIElement() {
+    return this._bar;
   }
   addChild(child, elem) {
     var path = jQuery.makeArray($(elem).parentsUntil(this.element));

@@ -52,25 +52,30 @@ export class Ui5Form {
       this._form = new sap.ui.layout.form.Form(this.ui5Id, params);
     else
       this._form = new sap.ui.layout.form.Form(params);
-
+    this.element.removeAttribute('ui5-container');
     if ($(this.element).closest("[ui5-container]").length > 0) {
-       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this._relation = this._parent.addChild(this._form, this.element);
-     attributeManager.addAttributes({ "ui5-container": '' });
+      var prevSibling = null;
+      if(this.element.previousElementSibling)
+        prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._form, this.element, prevSibling);
+      attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
       this._form.placeAt(this.element.parentElement);
       attributeManager.addClasses("ui5-hide");
     }
   }
-  removeChildByRelation(child,relation){
-     if (relation === 'container' && this._form && child) {
+  removeChildByRelation(child, relation) {
+    if (relation === 'container' && this._form && child) {
       this._form.removeFormContainer(child);
     }
   }
-  detached(){
-     if (this._parent && this._parent.removeChildByRelation)
+  detached() {
+    if (this._parent && this._parent.removeChildByRelation)
       this._parent.removeChildByRelation(this._form, this._relation);
+    var attributeManager = new AttributeManager(this.element);
+    attributeManager.removeAttributes(["ui5-container"]);
   }
   editableChanged(newValue) {
     if (this._form !== null) {

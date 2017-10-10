@@ -133,10 +133,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         title: this.title
       };
       if (this.ui5Id) this._form = new sap.ui.layout.form.Form(this.ui5Id, params);else this._form = new sap.ui.layout.form.Form(params);
-
+      this.element.removeAttribute('ui5-container');
       if ($(this.element).closest("[ui5-container]").length > 0) {
+        var prevSibling = null;
+        if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-        this._relation = this._parent.addChild(this._form, this.element);
+        this._relation = this._parent.addChild(this._form, this.element, prevSibling);
         attributeManager.addAttributes({ "ui5-container": '' });
       } else {
         this._form.placeAt(this.element.parentElement);
@@ -152,6 +154,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
     Ui5Form.prototype.detached = function detached() {
       if (this._parent && this._parent.removeChildByRelation) this._parent.removeChildByRelation(this._form, this._relation);
+      var attributeManager = new _attributeManager.AttributeManager(this.element);
+      attributeManager.removeAttributes(["ui5-container"]);
     };
 
     Ui5Form.prototype.editableChanged = function editableChanged(newValue) {

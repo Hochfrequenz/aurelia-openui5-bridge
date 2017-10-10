@@ -42,6 +42,8 @@ var AttributeManager = exports.AttributeManager = function () {
         _this2.element.removeAttribute(a);
         _this2.addedAttributes[a] = null;
         delete _this2.addedAttributes[a];
+      } else if (_this2.element.getAttribute(a)) {
+        _this2.element.removeAttribute(a);
       }
     });
   };
