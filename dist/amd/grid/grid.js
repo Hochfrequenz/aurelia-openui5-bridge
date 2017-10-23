@@ -22,6 +22,24 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         }
     }
 
+    var _createClass = function () {
+        function defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+            if (protoProps) defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) defineProperties(Constructor, staticProps);
+            return Constructor;
+        };
+    }();
+
     function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
         var desc = {};
         Object['ke' + 'ys'](descriptor).forEach(function (key) {
@@ -123,6 +141,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
                 this._grid.setDefaultSpan(newValue);
             }
         };
+
+        _createClass(Ui5Grid, [{
+            key: 'UIElement',
+            get: function get() {
+                return this._grid;
+            }
+        }]);
 
         return Ui5Grid;
     }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'defaultSpan', [_dec3], {

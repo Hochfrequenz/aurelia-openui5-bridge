@@ -12,6 +12,9 @@ export class Ui5Grid {
     constructor(element) {
         this.element = element;
     }
+    get UIElement() {
+        return this._grid;
+      }
     addChild(child, elem) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {

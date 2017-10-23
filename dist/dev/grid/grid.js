@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, Ui5Grid;
+    var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, Ui5Grid;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -67,6 +67,24 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
         }],
         execute: function () {
+            _createClass = function () {
+                function defineProperties(target, props) {
+                    for (var i = 0; i < props.length; i++) {
+                        var descriptor = props[i];
+                        descriptor.enumerable = descriptor.enumerable || false;
+                        descriptor.configurable = true;
+                        if ("value" in descriptor) descriptor.writable = true;
+                        Object.defineProperty(target, descriptor.key, descriptor);
+                    }
+                }
+
+                return function (Constructor, protoProps, staticProps) {
+                    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+                    if (staticProps) defineProperties(Constructor, staticProps);
+                    return Constructor;
+                };
+            }();
+
             _export('Ui5Grid', Ui5Grid = (_dec = customElement('ui5-grid'), _dec2 = inject(Element), _dec3 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
                 function Ui5Grid(element) {
                     _classCallCheck(this, Ui5Grid);
@@ -133,6 +151,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
                         this._grid.setDefaultSpan(newValue);
                     }
                 };
+
+                _createClass(Ui5Grid, [{
+                    key: 'UIElement',
+                    get: function get() {
+                        return this._grid;
+                    }
+                }]);
 
                 return Ui5Grid;
             }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'defaultSpan', [_dec3], {

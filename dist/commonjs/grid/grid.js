@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5Grid = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
 
 var _aureliaTemplating = require('aurelia-templating');
@@ -126,6 +128,13 @@ var Ui5Grid = exports.Ui5Grid = (_dec = (0, _aureliaTemplating.customElement)('u
             this._grid.setDefaultSpan(newValue);
         }
     };
+
+    _createClass(Ui5Grid, [{
+        key: 'UIElement',
+        get: function get() {
+            return this._grid;
+        }
+    }]);
 
     return Ui5Grid;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'defaultSpan', [_dec3], {
