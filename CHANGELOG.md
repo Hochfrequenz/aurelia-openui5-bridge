@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.11"></a>
+## [0.1.11](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.1.8...v0.1.11) (2017-10-23)
+
+
+### Bug Fixes
+
+* **grid:** add UIElement to grid ([86d55f1](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/86d55f1))
+* **ui:** add tooltip for text and icon objects ([ee002a5](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/ee002a5))
+
+
+
 <a name="0.1.10"></a>
 ## [0.1.10](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.1.6...v0.1.10) (2017-10-10)
 
