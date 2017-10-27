@@ -145,6 +145,7 @@ var Ui5Form = exports.Ui5Form = (_dec = (0, _aureliaTemplating.customElement)('u
     if (this._parent && this._parent.removeChildByRelation) this._parent.removeChildByRelation(this._form, this._relation);
     var attributeManager = new _attributeManager.AttributeManager(this.element);
     attributeManager.removeAttributes(["ui5-container"]);
+    this._form.destroy();
   };
 
   Ui5Form.prototype.editableChanged = function editableChanged(newValue) {

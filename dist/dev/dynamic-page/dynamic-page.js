@@ -136,16 +136,15 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
               _self._taskQueue.queueTask(function () {
                 _self._page.setHeaderExpanded(getBooleanFromAttributeValue(_self.headerExpanded));
               });
-              break;
+              return elem.localName;
             }
             if (elem.localName == 'content') {
               this._page.setContent(child);
-
-              break;
+              return elem.localName;
             }
             if (elem.localName == 'footer') {
               this._page.setFooter(child);
-              break;
+              return elem.localName;
             }
           }
         };
@@ -162,7 +161,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
               elem = _i2.value;
             }
 
-            if (elem.localName == 'header') {
+            if (elem.localName == 'heading') {
               break;
             }
 
@@ -172,6 +171,14 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             if (elem.localName == 'footer') {
               break;
             }
+          }
+        };
+
+        Ui5DynamicPage.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+          if (relation == 'heading') {
+            this._page.setHeader(null);
+          } else if (relation == 'content') {
+            this._page.setContent(null);
           }
         };
 

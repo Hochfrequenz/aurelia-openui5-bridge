@@ -168,6 +168,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           if (this._parent && this._parent.removeChildByRelation) this._parent.removeChildByRelation(this._form, this._relation);
           var attributeManager = new AttributeManager(this.element);
           attributeManager.removeAttributes(["ui5-container"]);
+          this._form.destroy();
         };
 
         Ui5Form.prototype.editableChanged = function editableChanged(newValue) {

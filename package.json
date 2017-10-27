@@ -76,6 +76,7 @@
     "browser-sync": "^2.9.3",
     "conventional-changelog": "^1.1.0",
     "del": "^3.0.0",
+    "dev-ip": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-babel": "6",
     "gulp-bump": "^2.8.0",
@@ -105,6 +106,7 @@
     "require-dir": "^0.3.2",
     "run-sequence": "^2.2.0",
     "through2": "^2.0.0",
+    "typedoc": "^0.9.0",
     "vinyl": "^2.1.0",
     "vinyl-paths": "^2.1.0",
     "yargs": "^9.0.1"

@@ -43,23 +43,22 @@ export class Ui5DynamicPage {
         _self._taskQueue.queueTask(function () {
           _self._page.setHeaderExpanded(getBooleanFromAttributeValue(_self.headerExpanded));
         });
-        break;
+        return elem.localName;
       }
       if (elem.localName == 'content') {
         this._page.setContent(child);
-
-        break;
+        return elem.localName;
       }
       if (elem.localName == 'footer') {
         this._page.setFooter(child);
-        break;
+        return elem.localName;
       }
     }
   }
   removeChild(child, elem) {
     var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (elem of path) {
-      if (elem.localName == 'header') {
+      if (elem.localName == 'heading') {
         //header is removed automatically
         break;
       }
@@ -72,6 +71,14 @@ export class Ui5DynamicPage {
         //footer is removed automatically
         break;
       }
+    }
+  }
+  removeChildByRelation(child, relation) {
+    if (relation == 'heading') {
+      this._page.setHeader(null);
+    }
+    else if (relation == 'content') {
+      this._page.setContent(null);
     }
   }
   attached() {

@@ -76,6 +76,7 @@ export class Ui5Form {
       this._parent.removeChildByRelation(this._form, this._relation);
     var attributeManager = new AttributeManager(this.element);
     attributeManager.removeAttributes(["ui5-container"]);
+    this._form.destroy();
   }
   editableChanged(newValue) {
     if (this._form !== null) {

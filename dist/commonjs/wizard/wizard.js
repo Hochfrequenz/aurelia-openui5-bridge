@@ -123,6 +123,7 @@ var Ui5Wizard = exports.Ui5Wizard = (_dec = (0, _aureliaTemplating.customElement
     this._wizard.attachStepActivate(function (event) {
       that.lastStep = event.mParameters.index == that._wizard.getSteps().length;
     });
+    if (that._wizard.getSteps().length === 1) that.lastStep = true;
     this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
     this._parent.addChild(this._wizard, this.element);
   };

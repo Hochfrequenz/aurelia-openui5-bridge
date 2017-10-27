@@ -54,6 +54,8 @@ export class Ui5Wizard {
     this._wizard.attachStepActivate((event) => {
       that.lastStep = event.mParameters.index == that._wizard.getSteps().length;
     });
+    if (that._wizard.getSteps().length === 1)
+      that.lastStep = true;
     this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
     this._parent.addChild(this._wizard, this.element);
   }
