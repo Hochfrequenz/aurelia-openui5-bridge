@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.12"></a>
+## [0.1.12](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.1.11...v0.1.12) (2017-10-27)
+
+
+### Bug Fixes
+
+* **form:** fix correct disposal ([0543c85](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/0543c85))
+* **grid:** complete grid parameter set ([0d0c39c](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/0d0c39c))
+* **wizard:** auto-set last step for one step processes ([9d072a3](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/9d072a3))
+
+
+
 <a name="0.1.11"></a>
 ## [0.1.11](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.1.8...v0.1.11) (2017-10-23)
 
