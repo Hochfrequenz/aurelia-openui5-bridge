@@ -42,6 +42,7 @@ export class ConfigBuilder {
       .useUploadCollection()
       .useViewSettingsDialog()
       .useSplitContainer()
+      .useMessageView()
   }
 
   useLink(): ConfigBuilder {
@@ -212,6 +213,11 @@ export class ConfigBuilder {
   }
   useSplitContainer(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./split-container/split-container'));
+    return this;
+  }
+  useMessageView(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./message-view/message-view'));
+    this.globalResources.push(PLATFORM.moduleName('./message-item/message-item'));
     return this;
   }
   /**

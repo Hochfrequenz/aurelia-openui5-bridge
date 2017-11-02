@@ -939,3 +939,27 @@ Object.keys(_splitContainer).forEach(function (key) {
     }
   });
 });
+
+var _messageView = require('./message-view/message-view');
+
+Object.keys(_messageView).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _messageView[key];
+    }
+  });
+});
+
+var _messageItem = require('./message-item/message-item');
+
+Object.keys(_messageItem).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _messageItem[key];
+    }
+  });
+});

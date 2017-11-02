@@ -21,7 +21,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     }
 
     ConfigBuilder.prototype.useAll = function useAll() {
-      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer();
+      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView();
     };
 
     ConfigBuilder.prototype.useLink = function useLink() {
@@ -222,6 +222,12 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
 
     ConfigBuilder.prototype.useSplitContainer = function useSplitContainer() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./split-container/split-container'));
+      return this;
+    };
+
+    ConfigBuilder.prototype.useMessageView = function useMessageView() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./message-view/message-view'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./message-item/message-item'));
       return this;
     };
 

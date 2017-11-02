@@ -77,4 +77,6 @@ export * from './view-settings-filter-item/view-settings-filter-item';
 export * from './view-settings-dialog/view-settings-dialog';
 export * from './select-dialog/select-dialog';
 export * from './split-container/split-container';
+export * from './message-view/message-view';
+export * from './message-item/message-item';
 // build-index-remove end

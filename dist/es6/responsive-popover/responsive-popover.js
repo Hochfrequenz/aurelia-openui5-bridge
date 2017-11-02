@@ -26,6 +26,7 @@ export class Ui5ResponsivePopover {
   @bindable() afterOpen = this.defaultFunc;
   @bindable() beforeClose = this.defaultFunc;
   @bindable() afterClose = this.defaultFunc;
+  @bindable() modal = false;
 
   constructor(element) {
     this.element = element;
@@ -88,7 +89,8 @@ export class Ui5ResponsivePopover {
       beforeOpen: this.beforeOpen,
       afterOpen: this.afterOpen,
       beforeClose: this.beforeClose,
-      afterClose: this.afterClose
+      afterClose: this.afterClose,
+      modal: getBooleanFromAttributeValue(this.modal)
     };
     if (this.ui5Id)
       this._dialog = new sap.m.ResponsivePopover(this.ui5Id, props);

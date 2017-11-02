@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5Button = undefined;
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -60,7 +60,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement)('ui5-button'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement)('ui5-button'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
   function Ui5Button(element) {
     _classCallCheck(this, Ui5Button);
 
@@ -82,6 +82,10 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
 
     _initDefineProp(this, 'tooltip', _descriptor9, this);
 
+    _initDefineProp(this, 'busy', _descriptor10, this);
+
+    _initDefineProp(this, 'busyIndicatorDelay', _descriptor11, this);
+
     this._button = null;
     this._parent = null;
     this._relation = null;
@@ -98,7 +102,9 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
       enabled: !(0, _attributes.getBooleanFromAttributeValue)(this.disabled),
       visible: (0, _attributes.getBooleanFromAttributeValue)(this.visible),
       tooltip: this.tooltip,
-      press: this.press != null ? this.press : this.defaultPress
+      press: this.press != null ? this.press : this.defaultPress,
+      busy: (0, _attributes.getBooleanFromAttributeValue)(this.busy),
+      busyIndicatorDelay: this.busyIndicatorDelay
     });
 
     if ($(this.element).closest("[ui5-container]").length > 0) {
@@ -157,6 +163,18 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
     }
   };
 
+  Ui5Button.prototype.busyChanged = function busyChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setBusy((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    }
+  };
+
+  Ui5Button.prototype.busyIndicatorDelayChanged = function busyIndicatorDelayChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setBusyIndicatorDelay(newValue);
+    }
+  };
+
   return Ui5Button;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'disabled', [_dec3], {
   enumerable: true,
@@ -202,5 +220,15 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
   enumerable: true,
   initializer: function initializer() {
     return null;
+  }
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec12], {
+  enumerable: true,
+  initializer: function initializer() {
+    return false;
+  }
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec13], {
+  enumerable: true,
+  initializer: function initializer() {
+    return 1000;
   }
 })), _class2)) || _class) || _class);

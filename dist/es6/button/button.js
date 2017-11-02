@@ -15,6 +15,8 @@ export class Ui5Button {
   @bindable() type = 'Default';
   @bindable() visible = true;
   @bindable() tooltip = null;
+  @bindable() busy = false;
+  @bindable() busyIndicatorDelay = 1000;
   _button = null;
   _parent = null;
   _relation = null;
@@ -31,7 +33,9 @@ export class Ui5Button {
       enabled: !getBooleanFromAttributeValue(this.disabled),
       visible: getBooleanFromAttributeValue(this.visible),
       tooltip: this.tooltip,
-      press: this.press != null ? this.press : this.defaultPress
+      press: this.press != null ? this.press : this.defaultPress,
+      busy: getBooleanFromAttributeValue(this.busy),
+      busyIndicatorDelay: this.busyIndicatorDelay
     });
 
     if ($(this.element).closest("[ui5-container]").length > 0) {
@@ -81,6 +85,16 @@ export class Ui5Button {
   pressChanged(newValue) {
     if (this._button !== null) {
       this._button.attachPress(newValue);
+    }
+  }
+  busyChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setBusy(getBooleanFromAttributeValue(newValue));
+    }
+  }
+  busyIndicatorDelayChanged(newValue) {
+    if (this._button !== null) {
+      this._button.setBusyIndicatorDelay(newValue);
     }
   }
 }

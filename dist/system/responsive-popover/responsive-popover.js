@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, Ui5ResponsivePopover;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, Ui5ResponsivePopover;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -85,7 +85,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         };
       }();
 
-      _export('Ui5ResponsivePopover', Ui5ResponsivePopover = (_dec = customElement('ui5-responsive-popover'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5ResponsivePopover', Ui5ResponsivePopover = (_dec = customElement('ui5-responsive-popover'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5ResponsivePopover(element) {
           _classCallCheck(this, Ui5ResponsivePopover);
 
@@ -127,6 +127,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           _initDefineProp(this, 'beforeClose', _descriptor17, this);
 
           _initDefineProp(this, 'afterClose', _descriptor18, this);
+
+          _initDefineProp(this, 'modal', _descriptor19, this);
 
           this.element = element;
           this.attributeManager = new AttributeManager(this.element);
@@ -195,7 +197,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             beforeOpen: this.beforeOpen,
             afterOpen: this.afterOpen,
             beforeClose: this.beforeClose,
-            afterClose: this.afterClose
+            afterClose: this.afterClose,
+            modal: getBooleanFromAttributeValue(this.modal)
           };
           if (this.ui5Id) this._dialog = new sap.m.ResponsivePopover(this.ui5Id, props);else this._dialog = new sap.m.ResponsivePopover(props);
           this.attributeManager.addAttributes({ "ui5-dialog-id": this.ui5Id });
@@ -380,6 +383,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         enumerable: true,
         initializer: function initializer() {
           return this.defaultFunc;
+        }
+      }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'modal', [_dec21], {
+        enumerable: true,
+        initializer: function initializer() {
+          return false;
         }
       })), _class2)) || _class) || _class));
 
