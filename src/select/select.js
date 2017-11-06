@@ -108,7 +108,7 @@ export class Ui5Select {
   }
   enabledChanged(newValue) {
     if (this._select !== null) {
-      this._select.setEnableChanged(getBooleanFromAttributeValue(newValue));
+      this._select.setEnabled(getBooleanFromAttributeValue(newValue));
     }
   }
   widthChanged(newValue) {

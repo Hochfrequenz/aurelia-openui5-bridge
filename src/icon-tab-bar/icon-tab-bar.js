@@ -8,6 +8,7 @@ import { getBooleanFromAttributeValue } from '../common/attributes';
 export class Ui5IconTabBar {
   _tab = null;
   _parent = null;
+  _relation = null;
   @bindable() showSelection = true;
   @bindable() expandable = true;
   @bindable() expanded = true;
@@ -73,7 +74,7 @@ export class Ui5IconTabBar {
     });
     if ($(this.element).closest("[ui5-container]").length > 0) {
       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this._parent.addChild(this._tab, this.element);
+      this._relation =  this._parent.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -84,7 +85,7 @@ export class Ui5IconTabBar {
   }
   detached() {
     if (this._parent) {
-      this._parent.removeChild(this._tab, this.element);
+      this._parent.removeChildByRelation(this._tab, this._relation);
     }
     else {
       this._tab.destroy();

@@ -202,7 +202,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
     Ui5Select.prototype.enabledChanged = function enabledChanged(newValue) {
       if (this._select !== null) {
-        this._select.setEnableChanged((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        this._select.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
       }
     };
 

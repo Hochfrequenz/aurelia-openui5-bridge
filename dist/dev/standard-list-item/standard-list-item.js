@@ -210,6 +210,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         Ui5StandardListItem.prototype.detached = function detached() {
           if (this._parent && this._parent.removeChildByRelation) {
             this._parent.removeChildByRelation(this._item, this._relation);
+            this._item.destroy();
           }
         };
 

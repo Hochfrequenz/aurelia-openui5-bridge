@@ -66,6 +66,7 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
 
     this._tab = null;
     this._parent = null;
+    this._relation = null;
 
     _initDefineProp(this, 'showSelection', _descriptor, this);
 
@@ -165,7 +166,7 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
     });
     if ($(this.element).closest("[ui5-container]").length > 0) {
       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this._parent.addChild(this._tab, this.element);
+      this._relation = this._parent.addChild(this._tab, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     } else {
       this._tab.placeAt(this.element.parentElement);
@@ -176,7 +177,7 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
 
   Ui5IconTabBar.prototype.detached = function detached() {
     if (this._parent) {
-      this._parent.removeChild(this._tab, this.element);
+      this._parent.removeChildByRelation(this._tab, this._relation);
     } else {
       this._tab.destroy();
     }

@@ -191,7 +191,7 @@ var Ui5Select = exports.Ui5Select = (_dec = (0, _aureliaTemplating.customElement
 
   Ui5Select.prototype.enabledChanged = function enabledChanged(newValue) {
     if (this._select !== null) {
-      this._select.setEnableChanged((0, _attributes.getBooleanFromAttributeValue)(newValue));
+      this._select.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
     }
   };
 

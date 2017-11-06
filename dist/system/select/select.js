@@ -214,7 +214,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
         Ui5Select.prototype.enabledChanged = function enabledChanged(newValue) {
           if (this._select !== null) {
-            this._select.setEnableChanged(getBooleanFromAttributeValue(newValue));
+            this._select.setEnabled(getBooleanFromAttributeValue(newValue));
           }
         };
 

@@ -194,6 +194,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     Ui5StandardListItem.prototype.detached = function detached() {
       if (this._parent && this._parent.removeChildByRelation) {
         this._parent.removeChildByRelation(this._item, this._relation);
+        this._item.destroy();
       }
     };
 

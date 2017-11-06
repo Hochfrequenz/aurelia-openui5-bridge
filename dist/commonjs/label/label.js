@@ -104,6 +104,7 @@ var Ui5Label = exports.Ui5Label = (_dec = (0, _aureliaTemplating.customElement)(
   Ui5Label.prototype.detached = function detached() {
     if (this._parent && this._parent.removeChildByRelation) {
       this._parent.removeChildByRelation(this._label, this._relation);
+      this._label.destroy();
     }
   };
 

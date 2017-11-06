@@ -8,6 +8,7 @@ import { computedFrom } from 'aurelia-framework';
 export class Ui5OverflowToolbar {
   _bar = null;
   _parent = null;
+  _relation = null;
   @bindable() width = null;
   @bindable() active = false;
   @bindable() enabled = true;
@@ -60,7 +61,7 @@ export class Ui5OverflowToolbar {
 
     if ($(this.element).closest("[ui5-container]").length > 0) {
       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this._parent.addChild(this._bar, this.element);
+      this._relation = this._parent.addChild(this._bar, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
@@ -71,7 +72,7 @@ export class Ui5OverflowToolbar {
   }
   detached() {
     if (this._parent) {
-      this._parent.removeChild(this._bar, this.element);
+      this._parent.removeChildByRelation(this._bar, this._relation);
     }
     else {
       this._bar.destroy();

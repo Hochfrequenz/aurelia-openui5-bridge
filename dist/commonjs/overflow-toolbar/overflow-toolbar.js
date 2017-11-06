@@ -70,6 +70,7 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
 
     this._bar = null;
     this._parent = null;
+    this._relation = null;
 
     _initDefineProp(this, 'width', _descriptor, this);
 
@@ -145,7 +146,7 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
 
     if ($(this.element).closest("[ui5-container]").length > 0) {
       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this._parent.addChild(this._bar, this.element);
+      this._relation = this._parent.addChild(this._bar, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
     } else {
       this._bar.placeAt(this.element.parentElement);
@@ -156,7 +157,7 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
 
   Ui5OverflowToolbar.prototype.detached = function detached() {
     if (this._parent) {
-      this._parent.removeChild(this._bar, this.element);
+      this._parent.removeChildByRelation(this._bar, this._relation);
     } else {
       this._bar.destroy();
     }

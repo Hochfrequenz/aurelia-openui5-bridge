@@ -39,6 +39,7 @@ export class Ui5Label {
   detached() {
     if (this._parent && this._parent.removeChildByRelation) {
       this._parent.removeChildByRelation(this._label, this._relation);
+      this._label.destroy();
     }
   }
   textChanged(newValue) {

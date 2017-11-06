@@ -167,6 +167,7 @@ var Ui5StandardListItem = exports.Ui5StandardListItem = (_dec = (0, _aureliaTemp
   Ui5StandardListItem.prototype.detached = function detached() {
     if (this._parent && this._parent.removeChildByRelation) {
       this._parent.removeChildByRelation(this._item, this._relation);
+      this._item.destroy();
     }
   };
 

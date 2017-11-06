@@ -77,6 +77,7 @@ export class Ui5StandardListItem extends Ui5ListItemBase {
   detached() {
     if (this._parent && this._parent.removeChildByRelation) {
       this._parent.removeChildByRelation(this._item, this._relation);
+      this._item.destroy();
     }
 
   }
