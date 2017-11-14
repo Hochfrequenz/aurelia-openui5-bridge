@@ -2,7 +2,9 @@
 /**
 * Initialize the plugin and respond with a promise
 */
-export function ui5Initialize() {
+export function ui5Initialize(debug) {
+  if(debug)
+    jQuery.sap.log.setLevel(jQuery.sap.log.Level.DEBUG);
   new Promise(resolve => sap.ui.getCore().attachInit(() => {
     new sap.m.BusyIndicator().placeAt("indicator");
     resolve();

@@ -7,7 +7,8 @@ exports.ui5Initialize = ui5Initialize;
 exports.ui5SetTheme = ui5SetTheme;
 exports.findUi5DialogElement = findUi5DialogElement;
 exports.getUi5DialogElement = getUi5DialogElement;
-function ui5Initialize() {
+function ui5Initialize(debug) {
+  if (debug) jQuery.sap.log.setLevel(jQuery.sap.log.Level.DEBUG);
   new Promise(function (resolve) {
     return sap.ui.getCore().attachInit(function () {
       new sap.m.BusyIndicator().placeAt("indicator");

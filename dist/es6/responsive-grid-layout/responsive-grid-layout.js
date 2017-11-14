@@ -2,7 +2,7 @@ import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { computedFrom } from 'aurelia-framework';
 @customElement('ui5-responsive-grid-layout')
 @inject(Element)
 export class Ui5ResponsiveGridLayout {
@@ -21,13 +21,17 @@ export class Ui5ResponsiveGridLayout {
   @bindable() breakpointXL = 1440;
   @bindable() breakpointL = 1024;
   @bindable() breakpointM = 600;
-
+  _parent = null;
   _form = null;
   constructor(element) {
     this.element = element;
   }
   addChild(child, elem) {
    
+  }
+  @computedFrom('_form')
+  get UIElement() {
+    return this._form;
   }
   attached() {
     var attributeManager = new AttributeManager(this.element);
@@ -54,8 +58,16 @@ export class Ui5ResponsiveGridLayout {
       this._form = new sap.ui.layout.form.ResponsiveGridLayout(params);
 
     if ($(this.element).closest("[ui5-container]").length > 0) {
-      $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
+      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+      if (!this._parent.UIElement || (this._parent.UIElement.sId != this._form.sId)) {
+      this._parent.addChild(this._form, this.element);
       attributeManager.addAttributes({ "ui5-container": '' });
+      }
+      else{
+        this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+        this._parent.addChild(this._form, this.element);
+        attributeManager.addAttributes({ "ui5-container": '' });
+      }
     }
     else {
       this._form.placeAt(this.element.parentElement);

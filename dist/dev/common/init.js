@@ -3,7 +3,8 @@
 System.register([], function (_export, _context) {
   "use strict";
 
-  function ui5Initialize() {
+  function ui5Initialize(debug) {
+    if (debug) jQuery.sap.log.setLevel(jQuery.sap.log.Level.DEBUG);
     new Promise(function (resolve) {
       return sap.ui.getCore().attachInit(function () {
         new sap.m.BusyIndicator().placeAt("indicator");

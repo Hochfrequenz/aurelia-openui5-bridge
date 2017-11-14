@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
+System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', 'aurelia-framework'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, Ui5ResponsiveGridLayout;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, computedFrom, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, Ui5ResponsiveGridLayout;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -65,9 +65,29 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       AttributeManager = _commonAttributeManager.AttributeManager;
     }, function (_commonAttributes) {
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+    }, function (_aureliaFramework) {
+      computedFrom = _aureliaFramework.computedFrom;
     }],
     execute: function () {
-      _export('Ui5ResponsiveGridLayout', Ui5ResponsiveGridLayout = (_dec = customElement('ui5-responsive-grid-layout'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
+
+      _export('Ui5ResponsiveGridLayout', Ui5ResponsiveGridLayout = (_dec = customElement('ui5-responsive-grid-layout'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = computedFrom('_form'), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5ResponsiveGridLayout(element) {
           _classCallCheck(this, Ui5ResponsiveGridLayout);
 
@@ -99,6 +119,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           _initDefineProp(this, 'breakpointM', _descriptor14, this);
 
+          this._parent = null;
           this._form = null;
 
           this.element = element;
@@ -128,13 +149,27 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           if (this.uiId5) this._form = new sap.ui.layout.form.ResponsiveGridLayout(this.ui5Id, params);else this._form = new sap.ui.layout.form.ResponsiveGridLayout(params);
 
           if ($(this.element).closest("[ui5-container]").length > 0) {
-            $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
-            attributeManager.addAttributes({ "ui5-container": '' });
+            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+            if (!this._parent.UIElement || this._parent.UIElement.sId != this._form.sId) {
+              this._parent.addChild(this._form, this.element);
+              attributeManager.addAttributes({ "ui5-container": '' });
+            } else {
+              this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+              this._parent.addChild(this._form, this.element);
+              attributeManager.addAttributes({ "ui5-container": '' });
+            }
           } else {
             this._form.placeAt(this.element.parentElement);
             attributeManager.addClasses("ui5-hide");
           }
         };
+
+        _createClass(Ui5ResponsiveGridLayout, [{
+          key: 'UIElement',
+          get: function get() {
+            return this._form;
+          }
+        }]);
 
         return Ui5ResponsiveGridLayout;
       }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
@@ -207,7 +242,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         initializer: function initializer() {
           return 600;
         }
-      })), _class2)) || _class) || _class));
+      }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec17], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
       _export('Ui5ResponsiveGridLayout', Ui5ResponsiveGridLayout);
     }
