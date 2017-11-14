@@ -22,6 +22,24 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     }
   }
 
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
+
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
     var desc = {};
     Object['ke' + 'ys'](descriptor).forEach(function (key) {
@@ -163,8 +181,15 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       });
       if ($(this.element).closest("[ui5-container]").length > 0) {
         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-        this._relation = this._parent.addChild(this._tab, this.element);
-        attributeManager.addAttributes({ "ui5-container": '' });
+        if (!this._parent.UIElement || this._parent.UIElement.sId != this._tab.sId) {
+
+          this._relation = this._parent.addChild(this._tab, this.element);
+          attributeManager.addAttributes({ "ui5-container": '' });
+        } else {
+          this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+          this._relation = this._parent.addChild(this._tab, this.element);
+          attributeManager.addAttributes({ "ui5-container": '' });
+        }
       } else {
         this._tab.placeAt(this.element.parentElement);
         attributeManager.addAttributes({ "ui5-container": '' });
@@ -251,6 +276,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         this._tab.setEnableTabReordering((0, _attributes.getBooleanFromAttributeValue)(newValue));
       }
     };
+
+    _createClass(Ui5IconTabBar, [{
+      key: 'UIElement',
+      get: function get() {
+        return this._tab;
+      }
+    }]);
 
     return Ui5IconTabBar;
   }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'showSelection', [_dec3], {

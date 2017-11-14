@@ -105,6 +105,20 @@ export declare class Ui5ActionSheet {
   showCancelButtonChanged(newValue?: any): any;
   cancelButtonTextChanged(newValue?: any): any;
 }
+export declare class Ui5Bar {
+  constructor(element?: any);
+  addChild(child?: any, elem?: any): any;
+  attached(): any;
+}
+export declare class Ui5BreadCrumbs {
+  ui5Id: any;
+  currentLocationText: any;
+  constructor(element?: any);
+  defaultFunc(): any;
+  attached(): any;
+  addChild(child?: any, elem?: any): any;
+  removeChild(child?: any, elem?: any): any;
+}
 export declare class MdBox {
   caption: any;
   constructor(element?: any);
@@ -137,14 +151,72 @@ export declare class Ui5Button {
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
 }
-export declare class Ui5BreadCrumbs {
-  ui5Id: any;
-  currentLocationText: any;
+
+/**
+ * Adds css classes to a given element only if these classes are not already
+ * present. Keeps a record of css classes which actually have been added.
+ * This way, they can also be removed in a way which keeps the original classes
+ * set by the user.
+ * Most useful in attached() and detached() handlers.
+ */
+export declare class AttributeManager {
+  addedClasses: any;
+  addedAttributes: any;
   constructor(element?: any);
-  defaultFunc(): any;
-  attached(): any;
-  addChild(child?: any, elem?: any): any;
-  removeChild(child?: any, elem?: any): any;
+  addAttributes(attrs?: any): any;
+  removeAttributes(attrs?: any): any;
+  addClasses(classes?: any): any;
+  removeClasses(classes?: any): any;
+}
+export declare function getBooleanFromAttributeValue(value?: any): any;
+export declare function showBusyIndicator(delay?: any): any;
+export declare function hideBusyIndicator(): any;
+export declare const constants: any;
+
+/**
+* Fire DOM event on an element
+* @param element The Element which the DOM event will be fired on
+* @param name The Event's name
+* @param data Addition data to attach to an event
+*/
+export declare function fireEvent(element: Element, name: string, data?: any): any;
+
+/**
+* Fire DOM event on an element with the md-on prefix
+* @param element The Element which the DOM event will be fired on
+* @param name The Event's name, without md-on prefix
+* @param data Addition data to attach to an event
+*/
+export declare function fireMaterializeEvent(element: Element, name: string, data?: any): any;
+
+/**
+* Initialize the plugin and respond with a promise
+*/
+export declare function ui5Initialize(): any;
+export declare function ui5SetTheme(name?: any, path?: any): any;
+export declare function findUi5DialogElement(name?: any): any;
+export declare function getUi5DialogElement(name?: any): any;
+export declare function showMessageBox(vMessage?: any, mOptions?: any): any;
+
+// https://github.com/jonathantneal/closest/blob/master/closest.js
+export declare function polyfillElementClosest(): any;
+export declare class SmoothScroll {
+  static defaultConfig: any;
+  static inject: any;
+  constructor(animator?: any, router?: any);
+  
+  //    this.scrollTo(this.element.getAttribute("href"),{},document.body);
+  /**
+       * Scroll to an element or named anchor
+       *
+       * @param elementOrHash   element to scroll to or named anchor
+       * @param options         animator options
+       * @param container       the container element (defaults to document.body)
+       *
+       * @returns {Promise} resolved when scrolling is done
+       */
+  scrollTo(elementOrHash?: any, options?: any, container?: any): any;
+  static getOffset(): any;
 }
 export declare class Ui5ColumnListItem {
   vAlign: any;
@@ -160,45 +232,19 @@ export declare class Ui5ColumnListItem {
   vAlignChanged(newValue?: any): any;
   selectedChanged(newValue?: any): any;
 }
-export declare class Ui5Column {
-  ui5Id: any;
-  width: any;
-  hAlign: any;
-  vAlign: any;
-  styleClass: any;
-  visible: any;
-  minScreenWidth: any;
-  demandPopin: any;
-  popinHAlign: any;
-  popinDisplay: any;
-  mergeDuplicates: any;
-  mergeFunctionName: any;
-  constructor(element?: any);
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
+export declare class Ui5Control extends Ui5Element {
+  
+  /*  as bindables are not inheritable (see https://github.com/aurelia/framework/issues/210  we will have to define the following
+      properties as bindable on all subclasses*/
+  busy: any;
+  constructor(elem?: any);
   addChild(child?: any, elem?: any): any;
-  widthChanged(newValue?: any): any;
-  hAlignChanged(newValue?: any): any;
-  vAlignChanged(newValue?: any): any;
-  styleClassChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  minScreenWidthChanged(newValue?: any): any;
-  demandPopinChanged(newValue?: any): any;
-  popinDisplayChanged(newValue?: any): any;
-  popinHAlignChanged(newValue?: any): any;
-  mergeDuplicatesChanged(newValue?: any): any;
-  mergeFunctionNameChanged(newValue?: any): any;
-}
-export declare class Ui5Container {
-  constructor(element?: any);
+  removeChild(child?: any, elem?: any): any;
   attached(): any;
-  detached(): any;
-}
-export declare class Ui5Bar {
-  constructor(element?: any);
-  addChild(child?: any, elem?: any): any;
-  attached(): any;
+  fillProperties(propertyObject?: any): any;
+  busyChanged(newValue?: any): any;
+  bind(param?: any): any;
+  unbind(): any;
 }
 export declare class Ui5DatePicker extends Ui5InputBase {
   ui5Id: any;
@@ -280,73 +326,6 @@ export declare class Ui5Dialog {
   draggableChanged(newValue?: any): any;
   escapeHandlerChanged(newValue?: any): any;
 }
-
-/**
- * Adds css classes to a given element only if these classes are not already
- * present. Keeps a record of css classes which actually have been added.
- * This way, they can also be removed in a way which keeps the original classes
- * set by the user.
- * Most useful in attached() and detached() handlers.
- */
-export declare class AttributeManager {
-  addedClasses: any;
-  addedAttributes: any;
-  constructor(element?: any);
-  addAttributes(attrs?: any): any;
-  removeAttributes(attrs?: any): any;
-  addClasses(classes?: any): any;
-  removeClasses(classes?: any): any;
-}
-export declare function getBooleanFromAttributeValue(value?: any): any;
-export declare function showBusyIndicator(delay?: any): any;
-export declare function hideBusyIndicator(): any;
-export declare const constants: any;
-
-/**
-* Fire DOM event on an element
-* @param element The Element which the DOM event will be fired on
-* @param name The Event's name
-* @param data Addition data to attach to an event
-*/
-export declare function fireEvent(element: Element, name: string, data?: any): any;
-
-/**
-* Fire DOM event on an element with the md-on prefix
-* @param element The Element which the DOM event will be fired on
-* @param name The Event's name, without md-on prefix
-* @param data Addition data to attach to an event
-*/
-export declare function fireMaterializeEvent(element: Element, name: string, data?: any): any;
-
-/**
-* Initialize the plugin and respond with a promise
-*/
-export declare function ui5Initialize(): any;
-export declare function ui5SetTheme(name?: any, path?: any): any;
-export declare function findUi5DialogElement(name?: any): any;
-export declare function getUi5DialogElement(name?: any): any;
-export declare function showMessageBox(vMessage?: any, mOptions?: any): any;
-
-// https://github.com/jonathantneal/closest/blob/master/closest.js
-export declare function polyfillElementClosest(): any;
-export declare class SmoothScroll {
-  static defaultConfig: any;
-  static inject: any;
-  constructor(animator?: any, router?: any);
-  
-  //    this.scrollTo(this.element.getAttribute("href"),{},document.body);
-  /**
-       * Scroll to an element or named anchor
-       *
-       * @param elementOrHash   element to scroll to or named anchor
-       * @param options         animator options
-       * @param container       the container element (defaults to document.body)
-       *
-       * @returns {Promise} resolved when scrolling is done
-       */
-  scrollTo(elementOrHash?: any, options?: any, container?: any): any;
-  static getOffset(): any;
-}
 export declare class Ui5DynamicPage {
   preserveHeaderStateOnScroll: any;
   headerExpanded: any;
@@ -367,6 +346,21 @@ export declare class Ui5DynamicPage {
   toggleHeaderOnTitleClickChanged(newValue?: any): any;
   fitContentChanged(newValue?: any): any;
 }
+export declare class Ui5Container {
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
+}
+export declare class Ui5DynamicPageHeader {
+  pinnable: any;
+  constructor(element?: any);
+  addChild(child?: any, elem?: any): any;
+  removeChild(child?: any, elem?: any): any;
+  defaultPress(): any;
+  attached(): any;
+  detached(): any;
+  pinnableChanged(newValue?: any): any;
+}
 export declare class Ui5DynamicPageTitle {
   constructor(element?: any);
   defaultFunc(): any;
@@ -374,18 +368,6 @@ export declare class Ui5DynamicPageTitle {
   removeChild(child?: any, elem?: any): any;
   attached(): any;
   detached(): any;
-}
-export declare class Ui5Element {
-  addChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  getCustomData(key?: any): any;
-  addCustomData(key?: any, value?: any): any;
-  removeCustomData(): any;
-  removeChild(child?: any, elem?: any): any;
-  attached(): any;
-  detached(): any;
-  bind(param?: any): any;
-  unbind(): any;
 }
 export declare class Ui5FeedContent {
   value: any;
@@ -456,6 +438,18 @@ export declare class Ui5FileUploader {
   buttonOnlyChanged(newValue?: any): any;
   useMultipartChanged(newValue?: any): any;
 }
+export declare class Ui5Element {
+  addChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  getCustomData(key?: any): any;
+  addCustomData(key?: any, value?: any): any;
+  removeCustomData(): any;
+  removeChild(child?: any, elem?: any): any;
+  attached(): any;
+  detached(): any;
+  bind(param?: any): any;
+  unbind(): any;
+}
 export declare class Ui5Form {
   ui5Id: any;
   width: any;
@@ -522,6 +516,49 @@ export declare class Ui5GenericTile {
   pressChanged(newValue?: any): any;
   frameTypeChanged(newValue?: any): any;
 }
+export declare class Ui5Column {
+  ui5Id: any;
+  width: any;
+  hAlign: any;
+  vAlign: any;
+  styleClass: any;
+  visible: any;
+  minScreenWidth: any;
+  demandPopin: any;
+  popinHAlign: any;
+  popinDisplay: any;
+  mergeDuplicates: any;
+  mergeFunctionName: any;
+  constructor(element?: any);
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any): any;
+  widthChanged(newValue?: any): any;
+  hAlignChanged(newValue?: any): any;
+  vAlignChanged(newValue?: any): any;
+  styleClassChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  minScreenWidthChanged(newValue?: any): any;
+  demandPopinChanged(newValue?: any): any;
+  popinDisplayChanged(newValue?: any): any;
+  popinHAlignChanged(newValue?: any): any;
+  mergeDuplicatesChanged(newValue?: any): any;
+  mergeFunctionNameChanged(newValue?: any): any;
+}
+export declare class Ui5GridData {
+  id: any;
+  span: any;
+  indent: any;
+  constructor(element?: any);
+  attached(): any;
+  indentChanged(newValue?: any): any;
+  spanChanged(newValue?: any): any;
+}
+export declare class Ui5Html {
+  constructor(element?: any);
+  attached(): any;
+}
 export declare class Ui5Grid {
   width: any;
   vSpacing: any;
@@ -546,18 +583,56 @@ export declare class Ui5Grid {
   defaultIdentChanged(newValue?: any): any;
   containerQueryChanged(newValue?: any): any;
 }
-export declare class Ui5GridData {
-  id: any;
-  span: any;
-  indent: any;
+export declare class Ui5IconTabBar {
+  showSelection: any;
+  expandable: any;
+  expanded: any;
+  selectedKey: any;
+  upperCase: any;
+  stretchContentHeight: any;
+  applyContentPadding: any;
+  backgroundDesign: any;
+  headerMode: any;
+  showOverflowSelectList: any;
+  headerBackgroundDesign: any;
+  enableTabReordering: any;
+  select: any;
   constructor(element?: any);
+  UIElement: any;
+  defaultFunc(event?: any): any;
+  addChild(child?: any, elem?: any): any;
+  removeChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
   attached(): any;
-  indentChanged(newValue?: any): any;
-  spanChanged(newValue?: any): any;
+  detached(): any;
+  showSelectionChanged(newValue?: any): any;
+  expandableChanged(newValue?: any): any;
+  expandedChanged(newValue?: any): any;
+  selectedKeyChanged(newValue?: any): any;
+  upperCaseChanged(newValue?: any): any;
+  stretchContentHeightChanged(newValue?: any): any;
+  applyContentPaddingChanged(newValue?: any): any;
+  backgroundDesignChanged(newValue?: any): any;
+  headerModeChanged(newValue?: any): any;
+  showOverflowSelectListChanged(newValue?: any): any;
+  headerBackgroundDesignChanged(newValue?: any): any;
+  enableTabReorderingChanged(newValue?: any): any;
 }
-export declare class Ui5Html {
+export declare class Ui5IconTabFilter {
+  text: any;
+  tabKey: any;
+  design: any;
   constructor(element?: any);
+  defaultFunc(event?: any): any;
+  UIElement: any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
   attached(): any;
+  detached(): any;
+  tabKeyChanged(newValue?: any): any;
+  textChanged(newValue?: any): any;
+  designChanged(newValue?: any): any;
 }
 export declare class Ui5Icon {
   ui5Id: any;
@@ -597,62 +672,38 @@ export declare class Ui5Icon {
   noTabStopChanged(newValue?: any): any;
   tooltipChanged(newValue?: any): any;
 }
-export declare class Ui5IconTabBar {
-  showSelection: any;
-  expandable: any;
-  expanded: any;
-  selectedKey: any;
-  upperCase: any;
-  stretchContentHeight: any;
-  applyContentPadding: any;
-  backgroundDesign: any;
-  headerMode: any;
-  showOverflowSelectList: any;
-  headerBackgroundDesign: any;
-  enableTabReordering: any;
-  select: any;
+export declare class Ui5InputBase extends Ui5Control {
+  value: any;
+  width: any;
+  enabled: any;
+  valueState: any;
+  name: any;
+  placeholder: any;
+  editable: any;
+  valueStateText: any;
+  showValueStateMessage: any;
+  textAlign: any;
+  textDirection: any;
+  required: any;
+  change: any;
   constructor(element?: any);
-  defaultFunc(event?: any): any;
+  defaultFunc(): any;
+  attached(): any;
   addChild(child?: any, elem?: any): any;
   removeChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  attached(): any;
-  detached(): any;
-  showSelectionChanged(newValue?: any): any;
-  expandableChanged(newValue?: any): any;
-  expandedChanged(newValue?: any): any;
-  selectedKeyChanged(newValue?: any): any;
-  upperCaseChanged(newValue?: any): any;
-  stretchContentHeightChanged(newValue?: any): any;
-  applyContentPaddingChanged(newValue?: any): any;
-  backgroundDesignChanged(newValue?: any): any;
-  headerModeChanged(newValue?: any): any;
-  showOverflowSelectListChanged(newValue?: any): any;
-  headerBackgroundDesignChanged(newValue?: any): any;
-  enableTabReorderingChanged(newValue?: any): any;
-}
-export declare class Ui5IconTabFilter {
-  text: any;
-  tabKey: any;
-  design: any;
-  constructor(element?: any);
-  defaultFunc(event?: any): any;
-  UIElement: any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  attached(): any;
-  detached(): any;
-  tabKeyChanged(newValue?: any): any;
-  textChanged(newValue?: any): any;
-  designChanged(newValue?: any): any;
-}
-export declare class Ui5ImageContent {
-  src: any;
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
-  srcChanged(newValue?: any): any;
+  valueChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+  enabledChanged(newValue?: any): any;
+  valueStateChanged(newValue?: any): any;
+  nameChanged(newValue?: any): any;
+  placeholderChanged(newValue?: any): any;
+  editableChanged(newValue?: any): any;
+  valueStateTextChanged(newValue?: any): any;
+  showValueStateMessageChanged(newValue?: any): any;
+  textAlignChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
+  requiredChanged(newValue?: any): any;
+  changeChanged(newValue?: any): any;
 }
 export declare class Ui5Input extends Ui5InputBase {
   ui5Id: any;
@@ -745,53 +796,12 @@ export declare class Ui5Input extends Ui5InputBase {
   changeChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
 }
-export declare class Ui5InputBase extends Ui5Control {
-  value: any;
-  width: any;
-  enabled: any;
-  valueState: any;
-  name: any;
-  placeholder: any;
-  editable: any;
-  valueStateText: any;
-  showValueStateMessage: any;
-  textAlign: any;
-  textDirection: any;
-  required: any;
-  change: any;
+export declare class Ui5ImageContent {
+  src: any;
   constructor(element?: any);
-  defaultFunc(): any;
   attached(): any;
-  addChild(child?: any, elem?: any): any;
-  removeChild(child?: any, elem?: any): any;
-  valueChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-  enabledChanged(newValue?: any): any;
-  valueStateChanged(newValue?: any): any;
-  nameChanged(newValue?: any): any;
-  placeholderChanged(newValue?: any): any;
-  editableChanged(newValue?: any): any;
-  valueStateTextChanged(newValue?: any): any;
-  showValueStateMessageChanged(newValue?: any): any;
-  textAlignChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
-  requiredChanged(newValue?: any): any;
-  changeChanged(newValue?: any): any;
-}
-export declare class Ui5Item {
-  key: any;
-  enabled: any;
-  text: any;
-  textDirection: any;
-  constructor(element?: any);
-  defaultFunc(): any;
-  attached(): any;
-  addChild(child?: any, elem?: any): any;
-  fillProperties(propertyObject?: any): any;
-  keyChanged(newValue?: any): any;
-  enabledChanged(newValue?: any): any;
-  textChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
+  detached(): any;
+  srcChanged(newValue?: any): any;
 }
 export declare class Ui5Label {
   ui5Id: any;
@@ -810,48 +820,6 @@ export declare class Ui5Label {
   textAlignChanged(newValue?: any): any;
   textDirectionChanged(newValue?: any): any;
   tooltipChanged(newValue?: any): any;
-}
-export declare class Ui5List extends Ui5ListBase {
-  backgroundDesign: any;
-  inset: any;
-  headerText: any;
-  headerDesign: any;
-  footerText: any;
-  mode: any;
-  width: any;
-  includeItemInSelection: any;
-  showUnread: any;
-  noDataText: any;
-  showNoData: any;
-  enableBusyIndicator: any;
-  modeAnimationOn: any;
-  showSeparator: any;
-  swipeDirection: any;
-  growing: any;
-  growingThreshold: any;
-  growingTriggerText: any;
-  growingScrollToLoad: any;
-  growingDirection: any;
-  rememberSelections: any;
-  keyboardMode: any;
-  delete: any;
-  itemPress: any;
-  selectionChange: any;
-  swipe: any;
-  updateFinished: any;
-  updateStarted: any;
-  busy: any;
-  constructor(element?: any);
-  UIElement: any;
-  defaultFunc(): any;
-  addChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  removeChild(child?: any, elem?: any): any;
-  resetLimit(): any;
-  attached(): any;
-  detached(): any;
-  backgroundDesignChanged(newValue?: any): any;
-  selectionChangeChanged(newValue?: any): any;
 }
 export declare class Ui5Link {
   enabled: any;
@@ -909,22 +877,16 @@ export declare class Ui5ListBase extends Ui5Control {
   fillProperties(propertyObject?: any): any;
   busyChanged(newValue?: any): any;
 }
-export declare class Ui5ListItem {
-  icon: any;
-  additionalText: any;
+export declare class Ui5Item {
   key: any;
   enabled: any;
   text: any;
   textDirection: any;
-  
-  /* inherited from list item*/
   constructor(element?: any);
   defaultFunc(): any;
   attached(): any;
-  detached(): any;
   addChild(child?: any, elem?: any): any;
-  iconChanged(newValue?: any): any;
-  additionalTextChanged(newValue?: any): any;
+  fillProperties(propertyObject?: any): any;
   keyChanged(newValue?: any): any;
   enabledChanged(newValue?: any): any;
   textChanged(newValue?: any): any;
@@ -954,15 +916,47 @@ export declare class Ui5ListItemBase extends Ui5Control {
   bind(param?: any): any;
   unbind(): any;
 }
-export declare class Ui5DynamicPageHeader {
-  pinnable: any;
+export declare class Ui5List extends Ui5ListBase {
+  backgroundDesign: any;
+  inset: any;
+  headerText: any;
+  headerDesign: any;
+  footerText: any;
+  mode: any;
+  width: any;
+  includeItemInSelection: any;
+  showUnread: any;
+  noDataText: any;
+  showNoData: any;
+  enableBusyIndicator: any;
+  modeAnimationOn: any;
+  showSeparator: any;
+  swipeDirection: any;
+  growing: any;
+  growingThreshold: any;
+  growingTriggerText: any;
+  growingScrollToLoad: any;
+  growingDirection: any;
+  rememberSelections: any;
+  keyboardMode: any;
+  delete: any;
+  itemPress: any;
+  selectionChange: any;
+  swipe: any;
+  updateFinished: any;
+  updateStarted: any;
+  busy: any;
   constructor(element?: any);
+  UIElement: any;
+  defaultFunc(): any;
   addChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
   removeChild(child?: any, elem?: any): any;
-  defaultPress(): any;
+  resetLimit(): any;
   attached(): any;
   detached(): any;
-  pinnableChanged(newValue?: any): any;
+  backgroundDesignChanged(newValue?: any): any;
+  selectionChangeChanged(newValue?: any): any;
 }
 export declare class Ui5MTitle {
   ui5Id: any;
@@ -974,6 +968,27 @@ export declare class Ui5MTitle {
   textChanged(newValue?: any): any;
   levelChanged(newValue?: any): any;
   titleStyleChanged(newValue?: any): any;
+}
+export declare class Ui5ListItem {
+  icon: any;
+  additionalText: any;
+  key: any;
+  enabled: any;
+  text: any;
+  textDirection: any;
+  
+  /* inherited from list item*/
+  constructor(element?: any);
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any): any;
+  iconChanged(newValue?: any): any;
+  additionalTextChanged(newValue?: any): any;
+  keyChanged(newValue?: any): any;
+  enabledChanged(newValue?: any): any;
+  textChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
 }
 export declare class Ui5MessageItem {
   ui5Id: any;
@@ -1001,16 +1016,6 @@ export declare class Ui5MessageItem {
   counterChanged(newValue?: any): any;
   groupNameChanged(newValue?: any): any;
 }
-export declare class Ui5MessageStrip {
-  ui5Id: any;
-  text: any;
-  wrapping: any;
-  textAlign: any;
-  maxLines: any;
-  constructor(element?: any);
-  attached(): any;
-  textChanged(newValue?: any): any;
-}
 export declare class Ui5MessageView {
   ui5Id: any;
   asyncDescriptionHandler: any;
@@ -1024,21 +1029,6 @@ export declare class Ui5MessageView {
   attached(): any;
   detached(): any;
   textChanged(newValue?: any): any;
-}
-export declare class Ui5NumericContent {
-  icon: any;
-  value: any;
-  indicator: any;
-  scale: any;
-  valueColor: any;
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
-  iconChanged(newValue?: any): any;
-  valueChanged(newValue?: any): any;
-  indicatorChanged(newValue?: any): any;
-  scaleChanged(newValue?: any): any;
-  valueColorChanged(newValue?: any): any;
 }
 export declare class Ui5ObjectIdentifier {
   ui5Id: any;
@@ -1055,6 +1045,36 @@ export declare class Ui5ObjectIdentifier {
   titleChanged(newValue?: any): any;
   visibleChanged(newValue?: any): any;
   titleActiveChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
+}
+export declare class Ui5MessageStrip {
+  ui5Id: any;
+  text: any;
+  wrapping: any;
+  textAlign: any;
+  maxLines: any;
+  constructor(element?: any);
+  attached(): any;
+  textChanged(newValue?: any): any;
+}
+export declare class Ui5ObjectNumber {
+  ui5Id: any;
+  number: any;
+  numberUnit: any;
+  emphasized: any;
+  state: any;
+  unit: any;
+  textDirection: any;
+  textAlign: any;
+  constructor(element?: any);
+  defaultFunc(): any;
+  attached(): any;
+  numberChanged(newValue?: any): any;
+  numberUnitChanged(newValue?: any): any;
+  emphasizedChanged(newValue?: any): any;
+  stateChanged(newValue?: any): any;
+  unitChanged(newValue?: any): any;
+  textAlignChanged(newValue?: any): any;
   textDirectionChanged(newValue?: any): any;
 }
 export declare class Ui5OverflowToolbar {
@@ -1079,39 +1099,20 @@ export declare class Ui5OverflowToolbar {
   designChanged(newValue?: any): any;
   pressChanged(newValue?: any): any;
 }
-export declare class Ui5Control extends Ui5Element {
-  
-  /*  as bindables are not inheritable (see https://github.com/aurelia/framework/issues/210  we will have to define the following
-      properties as bindable on all subclasses*/
-  busy: any;
-  constructor(elem?: any);
-  addChild(child?: any, elem?: any): any;
-  removeChild(child?: any, elem?: any): any;
-  attached(): any;
-  fillProperties(propertyObject?: any): any;
-  busyChanged(newValue?: any): any;
-  bind(param?: any): any;
-  unbind(): any;
-}
-export declare class Ui5ObjectNumber {
-  ui5Id: any;
-  number: any;
-  numberUnit: any;
-  emphasized: any;
-  state: any;
-  unit: any;
-  textDirection: any;
-  textAlign: any;
+export declare class Ui5NumericContent {
+  icon: any;
+  value: any;
+  indicator: any;
+  scale: any;
+  valueColor: any;
   constructor(element?: any);
-  defaultFunc(): any;
   attached(): any;
-  numberChanged(newValue?: any): any;
-  numberUnitChanged(newValue?: any): any;
-  emphasizedChanged(newValue?: any): any;
-  stateChanged(newValue?: any): any;
-  unitChanged(newValue?: any): any;
-  textAlignChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
+  detached(): any;
+  iconChanged(newValue?: any): any;
+  valueChanged(newValue?: any): any;
+  indicatorChanged(newValue?: any): any;
+  scaleChanged(newValue?: any): any;
+  valueColorChanged(newValue?: any): any;
 }
 export declare class Ui5ResponsiveGridLayout {
   ui5Id: any;
@@ -1131,21 +1132,6 @@ export declare class Ui5ResponsiveGridLayout {
   constructor(element?: any);
   addChild(child?: any, elem?: any): any;
   attached(): any;
-}
-export declare class Ui5SegmentedButton {
-  enabled: any;
-  width: any;
-  selectedKey: any;
-  select: any;
-  defaultFunc(): any;
-  constructor(element?: any);
-  UIElement: any;
-  addChild(child?: any, elem?: any): any;
-  attached(): any;
-  detached(): any;
-  enableChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-  selectedKeyChanged(newValue?: any): any;
 }
 export declare class Ui5ResponsivePopover {
   ui5Id: any;
@@ -1189,6 +1175,61 @@ export declare class Ui5ResponsivePopover {
   verticalScrollingChanged(newValue?: any): any;
   resizableChanged(newValue?: any): any;
 }
+export declare class Ui5Page {
+  title: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  showHeader: any;
+  showFooter: any;
+  showNavButton: any;
+  navButtonPress: any;
+  constructor(element?: any);
+  defaultFunc(): any;
+  addChild(child?: any, elem?: any): any;
+  removeChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  attached(): any;
+  detached(): any;
+  titleChanged(newValue?: any): any;
+  showHeaderChanged(newValue?: any): any;
+  showFooterChanged(newValue?: any): any;
+  showNavButtonChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+}
+export declare class Ui5SegmentedButton {
+  enabled: any;
+  width: any;
+  selectedKey: any;
+  select: any;
+  defaultFunc(): any;
+  constructor(element?: any);
+  UIElement: any;
+  addChild(child?: any, elem?: any): any;
+  attached(): any;
+  detached(): any;
+  enableChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+  selectedKeyChanged(newValue?: any): any;
+}
+export declare class Ui5SegmentedButtonItem extends Ui5Item {
+  icon: any;
+  visible: any;
+  width: any;
+  press: any;
+  key: any;
+  enabled: any;
+  text: any;
+  textDirection: any;
+  constructor(element?: any);
+  defaultFunc(): any;
+  attached(): any;
+  addChild(child?: any, elem?: any): any;
+  removeChild(child?: any, elem?: any): any;
+  iconChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+}
 export declare class Ui5SearchField extends Ui5Control {
   value: any;
   width: any;
@@ -1221,64 +1262,6 @@ export declare class Ui5SearchField extends Ui5Control {
   showSearchButtonChanged(newValue?: any): any;
   enableSuggestionsChanged(newValue?: any): any;
   selectOnFocusChanged(newValue?: any): any;
-}
-export declare class Ui5SegmentedButtonItem extends Ui5Item {
-  icon: any;
-  visible: any;
-  width: any;
-  press: any;
-  key: any;
-  enabled: any;
-  text: any;
-  textDirection: any;
-  constructor(element?: any);
-  defaultFunc(): any;
-  attached(): any;
-  addChild(child?: any, elem?: any): any;
-  removeChild(child?: any, elem?: any): any;
-  iconChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-}
-export declare class Ui5Select {
-  ui5Id: any;
-  name: any;
-  width: any;
-  maxWidth: any;
-  enabled: any;
-  selectedKey: any;
-  selectedItemId: any;
-  icon: any;
-  type: any;
-  autoAdjustWidth: any;
-  valueState: any;
-  valueStateText: any;
-  showSecondaryValues: any;
-  forceSelection: any;
-  items: any;
-  selectedItem: any;
-  change: any;
-  UIElement: any;
-  addChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  constructor(element?: any);
-  defaultFunc(): any;
-  attached(): any;
-  nameChanged(newValue?: any): any;
-  enabledChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-  maxWidthChanged(newValue?: any): any;
-  selectedKeyChanged(newValue?: any): any;
-  selectedItemIdChanged(newValue?: any): any;
-  iconChanged(newValue?: any): any;
-  typeChanged(newValue?: any): any;
-  autoAdjustWidthChanged(newValue?: any): any;
-  textAlignChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
-  valueStateChanged(newValue?: any): any;
-  valueStateTextChanged(newValue?: any): any;
-  showSecondaryValuesChanged(newValue?: any): any;
-  forceSelectionChanged(newValue?: any): any;
 }
 export declare class Ui5SelectDialog {
   ui5Id: any;
@@ -1320,6 +1303,105 @@ export declare class Ui5Shell {
   titleChanged(newValue?: any): any;
   appWidthLimitedChanged(newValue?: any): any;
 }
+export declare class Ui5Select {
+  ui5Id: any;
+  name: any;
+  width: any;
+  maxWidth: any;
+  enabled: any;
+  selectedKey: any;
+  selectedItemId: any;
+  icon: any;
+  type: any;
+  autoAdjustWidth: any;
+  valueState: any;
+  valueStateText: any;
+  showSecondaryValues: any;
+  forceSelection: any;
+  items: any;
+  selectedItem: any;
+  change: any;
+  UIElement: any;
+  addChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  constructor(element?: any);
+  defaultFunc(): any;
+  attached(): any;
+  nameChanged(newValue?: any): any;
+  enabledChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+  maxWidthChanged(newValue?: any): any;
+  selectedKeyChanged(newValue?: any): any;
+  selectedItemIdChanged(newValue?: any): any;
+  iconChanged(newValue?: any): any;
+  typeChanged(newValue?: any): any;
+  autoAdjustWidthChanged(newValue?: any): any;
+  textAlignChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
+  valueStateChanged(newValue?: any): any;
+  valueStateTextChanged(newValue?: any): any;
+  showSecondaryValuesChanged(newValue?: any): any;
+  forceSelectionChanged(newValue?: any): any;
+}
+export declare class Ui5SlideTile {
+  displayTime: any;
+  transitionTime: any;
+  constructor(element?: any);
+  addChild(child?: any, elem?: any): any;
+  removeChild(child?: any, elem?: any): any;
+  attached(): any;
+  detached(): any;
+  displayTimeChanged(newValue?: any): any;
+  transitionTimeChanged(newValue?: any): any;
+}
+export declare class MdSlider {
+  mdFillContainer: any;
+  mdHeight: any;
+  mdIndicators: any;
+  mdInterval: any;
+  mdTransition: any;
+  constructor(element?: any);
+  attached(): any;
+  pause(): any;
+  start(): any;
+  next(): any;
+  prev(): any;
+  refresh(): any;
+  mdIndicatorsChanged(): any;
+}
+export declare class Ui5SplitContainer {
+  defaultTransitionNameDetail: any;
+  defaultTransitionNameMaster: any;
+  mode: any;
+  masterButtonText: any;
+  backgroundColor: any;
+  backgroundImage: any;
+  backgroundRepeat: any;
+  backgroundOpacity: any;
+  masterNavigate: any;
+  afterMasterNavigate: any;
+  masterButton: any;
+  beforeMasterOpen: any;
+  afterMasterOpen: any;
+  beforeMasterClose: any;
+  afterMasterClose: any;
+  detailNavigate: any;
+  afterDetailNavigate: any;
+  constructor(element?: any);
+  defaultFunc(): any;
+  addChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  attached(): any;
+  detached(): any;
+  defaultTransitionNameDetailChanged(newValue?: any): any;
+  defaultTransitionNameMasterChanged(newValue?: any): any;
+  modeChanged(newValue?: any): any;
+  masterButtonTextChanged(newValue?: any): any;
+  backgroundColorChanged(newValue?: any): any;
+  backgroundImageChanged(newValue?: any): any;
+  backgroundOpacityChanged(newValue?: any): any;
+  backgroundRepeatChanged(newValue?: any): any;
+}
 export declare class Ui5SimpleForm {
   ui5Id: any;
   title: any;
@@ -1354,54 +1436,6 @@ export declare class Ui5SimpleForm {
   labelMinWidthChanged(newValue?: any): any;
   layoutChanged(newValue?: any): any;
   backgroundDesignChanged(newValue?: any): any;
-}
-export declare class Ui5SlideTile {
-  displayTime: any;
-  transitionTime: any;
-  constructor(element?: any);
-  addChild(child?: any, elem?: any): any;
-  removeChild(child?: any, elem?: any): any;
-  attached(): any;
-  detached(): any;
-  displayTimeChanged(newValue?: any): any;
-  transitionTimeChanged(newValue?: any): any;
-}
-export declare class MdSlider {
-  mdFillContainer: any;
-  mdHeight: any;
-  mdIndicators: any;
-  mdInterval: any;
-  mdTransition: any;
-  constructor(element?: any);
-  attached(): any;
-  pause(): any;
-  start(): any;
-  next(): any;
-  prev(): any;
-  refresh(): any;
-  mdIndicatorsChanged(): any;
-}
-export declare class Ui5Page {
-  title: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  showHeader: any;
-  showFooter: any;
-  showNavButton: any;
-  navButtonPress: any;
-  constructor(element?: any);
-  defaultFunc(): any;
-  addChild(child?: any, elem?: any): any;
-  removeChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  attached(): any;
-  detached(): any;
-  titleChanged(newValue?: any): any;
-  showHeaderChanged(newValue?: any): any;
-  showFooterChanged(newValue?: any): any;
-  showNavButtonChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
 }
 export declare class Ui5StandardListItem extends Ui5ListItemBase {
   title: any;
@@ -1467,18 +1501,19 @@ export declare class Ui5StandardTile extends Ui5Control {
   pressChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
 }
-export declare class MdSwitch {
-  mdChecked: any;
-  mdDisabled: any;
-  mdLabelOff: any;
-  mdLabelOn: any;
+export declare class Ui5TabContainer {
+  showAddNewButton: any;
+  selectedItem: any;
+  itemClose: any;
+  itemSelect: any;
+  addNewButtonPress: any;
   constructor(element?: any);
+  defaultFunc(event?: any): any;
+  addChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
   attached(): any;
   detached(): any;
-  handleChange(): any;
-  blur(): any;
-  mdCheckedChanged(newValue?: any): any;
-  mdDisabledChanged(newValue?: any): any;
+  showAddNewButtonChanged(newValue?: any): any;
 }
 export declare class Ui5TabContainerItem {
   name: any;
@@ -1495,20 +1530,6 @@ export declare class Ui5TabContainerItem {
   keyChanged(newValue?: any): any;
   nameChanged(newValue?: any): any;
   modifiedChanged(newValue?: any): any;
-}
-export declare class Ui5TabContainer {
-  showAddNewButton: any;
-  selectedItem: any;
-  itemClose: any;
-  itemSelect: any;
-  addNewButtonPress: any;
-  constructor(element?: any);
-  defaultFunc(event?: any): any;
-  addChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  attached(): any;
-  detached(): any;
-  showAddNewButtonChanged(newValue?: any): any;
 }
 export declare class Ui5Table extends Ui5ListBase {
   showOverlay: any;
@@ -1582,39 +1603,6 @@ export declare class Ui5TableSelectDialog {
   growingThresholdChanged(newValue?: any): any;
   rememberSelectionsChanged(newValue?: any): any;
 }
-export declare class Ui5SplitContainer {
-  defaultTransitionNameDetail: any;
-  defaultTransitionNameMaster: any;
-  mode: any;
-  masterButtonText: any;
-  backgroundColor: any;
-  backgroundImage: any;
-  backgroundRepeat: any;
-  backgroundOpacity: any;
-  masterNavigate: any;
-  afterMasterNavigate: any;
-  masterButton: any;
-  beforeMasterOpen: any;
-  afterMasterOpen: any;
-  beforeMasterClose: any;
-  afterMasterClose: any;
-  detailNavigate: any;
-  afterDetailNavigate: any;
-  constructor(element?: any);
-  defaultFunc(): any;
-  addChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  attached(): any;
-  detached(): any;
-  defaultTransitionNameDetailChanged(newValue?: any): any;
-  defaultTransitionNameMasterChanged(newValue?: any): any;
-  modeChanged(newValue?: any): any;
-  masterButtonTextChanged(newValue?: any): any;
-  backgroundColorChanged(newValue?: any): any;
-  backgroundImageChanged(newValue?: any): any;
-  backgroundOpacityChanged(newValue?: any): any;
-  backgroundRepeatChanged(newValue?: any): any;
-}
 export declare class Ui5Text {
   ui5Id: any;
   text: any;
@@ -1629,17 +1617,6 @@ export declare class Ui5Text {
   textChanged(newValue?: any): any;
   tooltipChanged(newValue?: any): any;
 }
-export declare class Ui5TileContent {
-  footer: any;
-  unit: any;
-  constructor(element?: any);
-  addChild(child?: any, elem?: any): any;
-  removeChild(child?: any, elem?: any): any;
-  attached(): any;
-  detached(): any;
-  footerChanged(newValue?: any): any;
-  unitChanged(newValue?: any): any;
-}
 export declare class Ui5TileContainer {
   constructor(element?: any);
   addChild(child?: any, elem?: any): any;
@@ -1647,8 +1624,33 @@ export declare class Ui5TileContainer {
   attached(): any;
   detached(): any;
 }
+export declare class MdSwitch {
+  mdChecked: any;
+  mdDisabled: any;
+  mdLabelOff: any;
+  mdLabelOn: any;
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
+  handleChange(): any;
+  blur(): any;
+  mdCheckedChanged(newValue?: any): any;
+  mdDisabledChanged(newValue?: any): any;
+}
 export declare class Ui5ToastService {
   show(message?: any, displayLength?: any): any;
+}
+export declare class Ui5Title {
+  text: any;
+  icon: any;
+  level: any;
+  emphasized: any;
+  constructor(element?: any);
+  attached(): any;
+  textChanged(newValue?: any): any;
+  iconChanged(newValue?: any): any;
+  levelChanged(newValue?: any): any;
+  emphasizedChanged(newValue?: any): any;
 }
 export declare class Ui5Toolbar {
   width: any;
@@ -1671,17 +1673,11 @@ export declare class Ui5Toolbar {
   designChanged(newValue?: any): any;
   pressChanged(newValue?: any): any;
 }
-export declare class Ui5Title {
-  text: any;
-  icon: any;
-  level: any;
-  emphasized: any;
+export declare class Ui5ToolbarSpacer {
+  width: any;
   constructor(element?: any);
   attached(): any;
-  textChanged(newValue?: any): any;
-  iconChanged(newValue?: any): any;
-  levelChanged(newValue?: any): any;
-  emphasizedChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
 }
 export declare class Ui5UploadCollection {
   fileType: any;
@@ -1732,6 +1728,30 @@ export declare class Ui5UploadCollection {
   uploadButtonVisibleChanged(newValue?: any): any;
   terminationEnabledChanged(newValue?: any): any;
 }
+export declare class Ui5TileContent {
+  footer: any;
+  unit: any;
+  constructor(element?: any);
+  addChild(child?: any, elem?: any): any;
+  removeChild(child?: any, elem?: any): any;
+  attached(): any;
+  detached(): any;
+  footerChanged(newValue?: any): any;
+  unitChanged(newValue?: any): any;
+}
+export declare class Ui5UploadCollectionParameter {
+  name: any;
+  value: any;
+  constructor(element?: any);
+  UIElement: any;
+  defaultFunc(event?: any): any;
+  addChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  attached(): any;
+  detached(): any;
+  nameChanged(newValue?: any): any;
+  valueChanged(newValue?: any): any;
+}
 export declare class Ui5UploadCollectionItem {
   contributor: any;
   documentId: any;
@@ -1767,20 +1787,6 @@ export declare class Ui5UploadCollectionItem {
   selectedChanged(newValue?: any): any;
   terminationEnabledChanged(newValue?: any): any;
 }
-export declare class Ui5ToolbarSpacer {
-  width: any;
-  constructor(element?: any);
-  attached(): any;
-  widthChanged(newValue?: any): any;
-}
-export declare class Ui5VerticalLayout {
-  constructor(element?: any);
-  defaultFunc(event?: any): any;
-  addChild(child?: any, elem?: any): any;
-  removeChild(child?: any, elem?: any): any;
-  attached(): any;
-  detached(): any;
-}
 export declare class MaterializeFormValidationRenderer {
   className: any;
   classNameFirst: any;
@@ -1790,38 +1796,6 @@ export declare class MaterializeFormValidationRenderer {
   remove(element?: any, result?: any): any;
   addMessage(element?: any, result?: any): any;
   removeMessage(element?: any, result?: any): any;
-}
-export declare class Ui5UploadCollectionParameter {
-  name: any;
-  value: any;
-  constructor(element?: any);
-  UIElement: any;
-  defaultFunc(event?: any): any;
-  addChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  attached(): any;
-  detached(): any;
-  nameChanged(newValue?: any): any;
-  valueChanged(newValue?: any): any;
-}
-export declare class Ui5ViewSettingsFilterItem extends Ui5Item {
-  multiSelect: any;
-  selected: any;
-  itemPropertyChanged: any;
-  key: any;
-  enabled: any;
-  text: any;
-  textDirection: any;
-  
-  /* inherited from list item*/
-  constructor(element?: any);
-  defaultFunc(): any;
-  addChild(child?: any, elem?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  attached(): any;
-  detached(): any;
-  selectedChanged(newValue?: any): any;
-  multiSelectChanged(newValue?: any): any;
 }
 export declare class Ui5ViewSettingsDialog {
   ui5Id: any;
@@ -1843,6 +1817,49 @@ export declare class Ui5ViewSettingsDialog {
   titleChanged(newValue?: any): any;
   sortDescendingChanged(newValue?: any): any;
   groupDescendingChanged(newValue?: any): any;
+}
+export declare class Ui5VerticalLayout {
+  constructor(element?: any);
+  defaultFunc(event?: any): any;
+  addChild(child?: any, elem?: any): any;
+  removeChild(child?: any, elem?: any): any;
+  attached(): any;
+  detached(): any;
+}
+export declare class Ui5ViewSettingsFilterItem extends Ui5Item {
+  multiSelect: any;
+  selected: any;
+  itemPropertyChanged: any;
+  key: any;
+  enabled: any;
+  text: any;
+  textDirection: any;
+  
+  /* inherited from list item*/
+  constructor(element?: any);
+  defaultFunc(): any;
+  addChild(child?: any, elem?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  attached(): any;
+  detached(): any;
+  selectedChanged(newValue?: any): any;
+  multiSelectChanged(newValue?: any): any;
+}
+export declare class Ui5ViewSettingsItem extends Ui5Item {
+  selected: any;
+  itemPropertyChanged: any;
+  key: any;
+  enabled: any;
+  text: any;
+  textDirection: any;
+  
+  /* inherited from list item*/
+  constructor(element?: any);
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any): any;
+  selectedChanged(newValue?: any): any;
 }
 export declare class Ui5Wizard {
   width: any;
@@ -1881,20 +1898,4 @@ export declare class Ui5WizardStep {
   defaultFunc(): any;
   attached(): any;
   detached(): any;
-}
-export declare class Ui5ViewSettingsItem extends Ui5Item {
-  selected: any;
-  itemPropertyChanged: any;
-  key: any;
-  enabled: any;
-  text: any;
-  textDirection: any;
-  
-  /* inherited from list item*/
-  constructor(element?: any);
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any): any;
-  selectedChanged(newValue?: any): any;
 }

@@ -43,11 +43,11 @@ export class Ui5OverflowToolbar {
       }
     }
   }
-  removeChildByRelation(child,relation){
+  removeChildByRelation(child, relation) {
     if (relation === 'content' && this._bar && child) {
-     this._bar.removeContent(child);
-   }
- }
+      this._bar.removeContent(child);
+    }
+  }
   attached() {
     var attributeManager = new AttributeManager(this.element);
     this._bar = new sap.m.OverflowToolbar({
@@ -61,8 +61,15 @@ export class Ui5OverflowToolbar {
 
     if ($(this.element).closest("[ui5-container]").length > 0) {
       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this._relation = this._parent.addChild(this._bar, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
+      if (!this._parent.UIElement || (this._parent.UIElement.sId != this._bar.sId)) {
+        this._relation = this._parent.addChild(this._bar, this.element);
+        attributeManager.addAttributes({ "ui5-container": '' });
+      }
+      else{
+        this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+        this._relation = this._parent.addChild(this._bar, this.element);
+        attributeManager.addAttributes({ "ui5-container": '' });
+      }
     }
     else {
       this._bar.placeAt(this.element.parentElement);

@@ -25,6 +25,9 @@ export class Ui5IconTabBar {
   constructor(element) {
     this.element = element;
   }
+  get UIElement() {
+    return this._tab;
+  }
   defaultFunc(event) {
 
   }
@@ -74,8 +77,16 @@ export class Ui5IconTabBar {
     });
     if ($(this.element).closest("[ui5-container]").length > 0) {
       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this._relation =  this._parent.addChild(this._tab, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
+      if (!this._parent.UIElement || (this._parent.UIElement.sId != this._tab.sId)) {
+
+        this._relation = this._parent.addChild(this._tab, this.element);
+        attributeManager.addAttributes({ "ui5-container": '' });
+      }
+      else {
+        this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+        this._relation = this._parent.addChild(this._tab, this.element);
+        attributeManager.addAttributes({ "ui5-container": '' });
+      }
     }
     else {
       this._tab.placeAt(this.element.parentElement);
