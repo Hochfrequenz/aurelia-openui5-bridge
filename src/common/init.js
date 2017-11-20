@@ -14,15 +14,18 @@ export function ui5SetTheme(name, path) {
   sap.ui.getCore().applyTheme(name, path);
 }
 export function findUi5DialogElement(name){
-  console.log(`querying [ui5-dialog-id="${name}"]`);
+  
+  jQuery.sap.log.warning(`querying [ui5-dialog-id="${name}"]`);
   return document.body.querySelector(`[ui5-dialog-id="${name}"]`); 
 }
 export function getUi5DialogElement(name) {
   try {
+    jQuery.sap.log.warning(`querying [ui5-dialog-id="${name}"]`);
     console.log(`querying [ui5-dialog-id="${name}"]`);
     return document.body.querySelector(`[ui5-dialog-id="${name}"]`).au.controller.viewModel.UIElement;
   }
   catch (exc) {
+    jQuery.sap.log.warning(exc);
     console.log(exc);
     return null;
   }
