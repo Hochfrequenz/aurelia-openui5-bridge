@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.4"></a>
+## [0.2.4](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.2.3...v0.2.4) (2017-11-20)
+
+
+### Bug Fixes
+
+* **common:** fix query string ([df5269d](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/df5269d))
+
+
+
 <a name="0.2.3"></a>
 ## [0.2.3](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.2.2...v0.2.3) (2017-11-14)
 
