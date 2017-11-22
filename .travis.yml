@@ -29,7 +29,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 
 script:
-  - npm run build-release
+  - npm run ci
 
 after_script:
   - greenkeeper-lockfile-upload
