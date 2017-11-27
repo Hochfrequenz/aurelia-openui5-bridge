@@ -1,6 +1,6 @@
 {
   "name": "aurelia-openui5-bridge",
-  "version": "0.2.7",
+  "version": "0.2.9",
   "registry": "github",
   "description": "Aurelia interface to https://github.com/SAP/openui5",
   "keywords": [
@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "gulp test",
-    "ci": "gulp ci"
+    "ci": "gulp build-release"
   },
   "main": "dist/commonjs/index.js",
   "typings": "dist/aurelia-openui5-bridge.d.ts",
