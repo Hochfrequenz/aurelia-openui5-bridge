@@ -108,6 +108,12 @@ var Ui5DynamicPageHeader = exports.Ui5DynamicPageHeader = (_dec = (0, _aureliaTe
         }
     };
 
+    Ui5DynamicPageHeader.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+        if (relation == 'content') {
+            this._header.removeContent(child);
+        }
+    };
+
     Ui5DynamicPageHeader.prototype.defaultPress = function defaultPress() {};
 
     Ui5DynamicPageHeader.prototype.attached = function attached() {

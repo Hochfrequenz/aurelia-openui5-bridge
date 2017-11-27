@@ -28,6 +28,11 @@ export class Ui5DynamicPageHeader {
             }
         }
     }
+    removeChildByRelation(child, relation) {
+        if (relation == 'content') {
+          this._header.removeContent(child);
+        }
+      }
     defaultPress() {
 
     }
