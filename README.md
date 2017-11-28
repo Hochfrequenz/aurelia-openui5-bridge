@@ -13,5 +13,12 @@ This repository is heavily based on aurelia-materialize-css, so kudos to them fo
 
 ## Running tests
 1. `npm install`
+
+    This installs all the dev dependencies (including jspm) to enable the build.
 2. `jspm install`
+    
+    This installs the systemjs dependencies (e.g. aurelia) to get all the dependencies needed for the application (library).
+
 3. `gulp test`
+
+    This runs the tests on the built aurelia openui5 library.
