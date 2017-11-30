@@ -78,7 +78,7 @@ var Ui5Select = exports.Ui5Select = (_dec = (0, _aureliaTemplating.customElement
       }
 
       if (elem.localName == 'item') {
-        this._select.addItem(child);
+        if (this._select.getItemByKey(child.mProperties.key) == null) this._select.addItem(child);
 
         var oldVal = this.selectedKey;
         this.selectedKey = null;

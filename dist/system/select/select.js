@@ -101,7 +101,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             }
 
             if (elem.localName == 'item') {
-              this._select.addItem(child);
+              if (this._select.getItemByKey(child.mProperties.key) == null) this._select.addItem(child);
 
               var oldVal = this.selectedKey;
               this.selectedKey = null;
