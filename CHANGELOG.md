@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.12"></a>
+## [0.2.12](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.2.11...v0.2.12) (2017-12-14)
+
+
+### Bug Fixes
+
+* **form-container:** allow dynamic addition to form-container ([a28ca2b](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/a28ca2b))
+
+
+
 <a name="0.2.11"></a>
 ## [0.2.11](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.2.10...v0.2.11) (2017-11-30)
 
