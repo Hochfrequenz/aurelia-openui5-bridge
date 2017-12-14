@@ -15,12 +15,12 @@ export class Ui5SearchField extends Ui5Control {
   @bindable() visible = true;
   @bindable() maxLength = 0;
   @bindable() placeholder = null;
-  @bindable() showMagnifier = true;
+  /*@bindable() showMagnifier = true; //deprecated */
   @bindable() showRefreshButton = false;
   @bindable() refreshButtonTooltip = null;
   @bindable() showSearchButton = true;
   @bindable() enableSuggestions = false;
-  @bindable() selectOnFocus = true;
+  /*@bindable() selectOnFocus = true; //deprecated */
 
   @bindable() liveChange = this.defaultFunc;
   @bindable() suggest = this.defaultFunc;
@@ -55,11 +55,11 @@ export class Ui5SearchField extends Ui5Control {
       width: this.width,
       enabled: getBooleanFromAttributeValue(this.enabled),
       placeholder: this.placeholder,
-      showMagnifier: getBooleanFromAttributeValue(this.showMagnifier),
+     // showMagnifier: getBooleanFromAttributeValue(this.showMagnifier),
       showRefreshButton: getBooleanFromAttributeValue(this.showRefreshButton),
       refreshButtonTooltip: this.refreshButtonTooltip,
       showSearchButton: getBooleanFromAttributeValue(this.showSearchButton),
-      selectOnFocus: getBooleanFromAttributeValue(this.selectOnFocus)
+      //selectOnFocus: getBooleanFromAttributeValue(this.selectOnFocus)
     };
     if (this.ui5Id)
       this._field = new sap.m.SearchField(this.ui5Id, params);
@@ -105,11 +105,11 @@ export class Ui5SearchField extends Ui5Control {
       this._field.setPlaceholder(newValue);
     }
   }
-  showMagnifierChanged(newValue) {
+  /*showMagnifierChanged(newValue) {
     if (this._field !== null) {
       this._field.setShowMagnifier(getBooleanFromAttributeValue(newValue));
     }
-  }
+  }*/
   showRefreshButtonChanged(newValue) {
     if (this._field !== null) {
       this._field.setShowRefreshButton(getBooleanFromAttributeValue(newValue));
@@ -130,10 +130,10 @@ export class Ui5SearchField extends Ui5Control {
       this._field.setEnableSuggestions(getBooleanFromAttributeValue(newValue));
     }
   }
-  selectOnFocusChanged(newValue) {
+ /* selectOnFocusChanged(newValue) {
     if (this._field !== null) {
       this._field.setSelectOnFocus(getBooleanFromAttributeValue(newValue));
     }
-  }
+  }*/
  /*Todo change event handlers*/
 }

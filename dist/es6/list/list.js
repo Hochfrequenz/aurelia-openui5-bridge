@@ -11,7 +11,7 @@ export class Ui5List extends Ui5ListBase {
   /*inherited from list-base*/
   @bindable() inset = false;
   @bindable() headerText = null;
-  @bindable() headerDesign = 'Standard';
+  /*@bindable() headerDesign = 'Standard'; //deprecated */
   @bindable() footerText = null;
   @bindable() mode = 'None';
   @bindable() width = '100%';

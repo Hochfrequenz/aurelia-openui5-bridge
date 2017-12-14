@@ -17,7 +17,7 @@ export class Ui5ActionSheet {
   @bindable() afterOpen = this.defaultFunc;
   @bindable() beforeClose = this.defaultFunc;
   @bindable() afterClose = this.defaultFunc;
-  @bindable() cancelButtonTap = this.defaultFunc;
+  /*@bindable() cancelButtonTap = this.defaultFunc; //deprecated */
   @bindable() cancelButtonPress = this.defaultFunc;
 
 
@@ -60,7 +60,7 @@ export class Ui5ActionSheet {
       beforeClose: this.beforeClose,
       afterClose: this.afterClose,
       cancelButtonPress: this.cancelButtonPress,
-      cancelButtonTap:this.cancelButtonTap
+     // cancelButtonTap:this.cancelButtonTap
     };
     if (this.ui5Id)
       this._sheet = new sap.m.ActionSheet(this.ui5Id, props);

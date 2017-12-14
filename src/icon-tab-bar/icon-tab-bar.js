@@ -9,7 +9,7 @@ export class Ui5IconTabBar {
   _tab = null;
   _parent = null;
   _relation = null;
-  @bindable() showSelection = true;
+  /*@bindable() showSelection = true; //deprecated */
   @bindable() expandable = true;
   @bindable() expanded = true;
   @bindable() selectedKey = null;
@@ -57,7 +57,7 @@ export class Ui5IconTabBar {
   attached() {
     var attributeManager = new AttributeManager(this.element);
     this._tab = new sap.m.IconTabBar({
-      showSelection: getBooleanFromAttributeValue(this.showSelection),
+      //showSelection: getBooleanFromAttributeValue(this.showSelection),
       expandable: getBooleanFromAttributeValue(this.expandable),
       expanded: getBooleanFromAttributeValue(this.expanded),
       selectedKey: this.selectedKey,
@@ -102,11 +102,11 @@ export class Ui5IconTabBar {
       this._tab.destroy();
     }
   }
-  showSelectionChanged(newValue) {
+  /*showSelectionChanged(newValue) {
     if (this._tab !== null) {
       this._tab.setShowSelection(getBooleanFromAttributeValue(newValue));
     }
-  }
+  }*/
   expandableChanged(newValue) {
     if (this._tab !== null) {
       this._tab.setExpandable(getBooleanFromAttributeValue(newValue));

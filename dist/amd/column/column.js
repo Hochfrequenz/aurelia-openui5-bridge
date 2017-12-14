@@ -55,9 +55,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11;
 
-  var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement)('ui5-column'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement)('ui5-column'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5Column(element) {
       _classCallCheck(this, Ui5Column);
 
@@ -81,13 +81,11 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
 
       _initDefineProp(this, 'demandPopin', _descriptor8, this);
 
-      _initDefineProp(this, 'popinHAlign', _descriptor9, this);
+      _initDefineProp(this, 'popinDisplay', _descriptor9, this);
 
-      _initDefineProp(this, 'popinDisplay', _descriptor10, this);
+      _initDefineProp(this, 'mergeDuplicates', _descriptor10, this);
 
-      _initDefineProp(this, 'mergeDuplicates', _descriptor11, this);
-
-      _initDefineProp(this, 'mergeFunctionName', _descriptor12, this);
+      _initDefineProp(this, 'mergeFunctionName', _descriptor11, this);
 
       this.element = element;
     }
@@ -105,7 +103,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
         minScreenWidth: this.minScreenWidth,
         demandPopin: (0, _attributes.getBooleanFromAttributeValue)(this.demandPopin),
         popinDisplay: this.popinDisplay,
-        popinHAlign: this.popinHAlign,
+
         mergeDuplicates: (0, _attributes.getBooleanFromAttributeValue)(this.mergeDuplicates),
         mergeFunctionName: this.mergeFunctionName
       };
@@ -193,12 +191,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       }
     };
 
-    Ui5Column.prototype.popinHAlignChanged = function popinHAlignChanged(newValue) {
-      if (this._column !== null) {
-        this._column.setPopinHAlign(newValue);
-      }
-    };
-
     Ui5Column.prototype.mergeDuplicatesChanged = function mergeDuplicatesChanged(newValue) {
       if (this._column !== null) {
         this._column.setMergeDuplicates((0, _attributes.getBooleanFromAttributeValue)(newValue));
@@ -250,22 +242,17 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
     initializer: function initializer() {
       return false;
     }
-  }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'popinHAlign', [_dec11], {
+  }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'popinDisplay', [_dec11], {
     enumerable: true,
     initializer: function initializer() {
       return null;
     }
-  }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'popinDisplay', [_dec12], {
-    enumerable: true,
-    initializer: function initializer() {
-      return null;
-    }
-  }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'mergeDuplicates', [_dec13], {
+  }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'mergeDuplicates', [_dec12], {
     enumerable: true,
     initializer: function initializer() {
       return false;
     }
-  }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'mergeFunctionName', [_dec14], {
+  }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'mergeFunctionName', [_dec13], {
     enumerable: true,
     initializer: function initializer() {
       return 'getText';

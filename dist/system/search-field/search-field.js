@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, Ui5SearchField;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, Ui5SearchField;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -93,7 +93,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       Ui5Control = _controlControl.Ui5Control;
     }],
     execute: function () {
-      _export('Ui5SearchField', Ui5SearchField = (_dec = customElement('ui5-search-field'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+      _export('Ui5SearchField', Ui5SearchField = (_dec = customElement('ui5-search-field'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
         _inherits(Ui5SearchField, _Ui5Control);
 
         Ui5SearchField.prototype.addChild = function addChild(child, elem) {
@@ -135,23 +135,19 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           _initDefineProp(_this, 'placeholder', _descriptor6, _this);
 
-          _initDefineProp(_this, 'showMagnifier', _descriptor7, _this);
+          _initDefineProp(_this, 'showRefreshButton', _descriptor7, _this);
 
-          _initDefineProp(_this, 'showRefreshButton', _descriptor8, _this);
+          _initDefineProp(_this, 'refreshButtonTooltip', _descriptor8, _this);
 
-          _initDefineProp(_this, 'refreshButtonTooltip', _descriptor9, _this);
+          _initDefineProp(_this, 'showSearchButton', _descriptor9, _this);
 
-          _initDefineProp(_this, 'showSearchButton', _descriptor10, _this);
+          _initDefineProp(_this, 'enableSuggestions', _descriptor10, _this);
 
-          _initDefineProp(_this, 'enableSuggestions', _descriptor11, _this);
+          _initDefineProp(_this, 'liveChange', _descriptor11, _this);
 
-          _initDefineProp(_this, 'selectOnFocus', _descriptor12, _this);
+          _initDefineProp(_this, 'suggest', _descriptor12, _this);
 
-          _initDefineProp(_this, 'liveChange', _descriptor13, _this);
-
-          _initDefineProp(_this, 'suggest', _descriptor14, _this);
-
-          _initDefineProp(_this, 'search', _descriptor15, _this);
+          _initDefineProp(_this, 'search', _descriptor13, _this);
 
           _this.element = element;
           return _this;
@@ -171,11 +167,10 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             width: this.width,
             enabled: getBooleanFromAttributeValue(this.enabled),
             placeholder: this.placeholder,
-            showMagnifier: getBooleanFromAttributeValue(this.showMagnifier),
+
             showRefreshButton: getBooleanFromAttributeValue(this.showRefreshButton),
             refreshButtonTooltip: this.refreshButtonTooltip,
-            showSearchButton: getBooleanFromAttributeValue(this.showSearchButton),
-            selectOnFocus: getBooleanFromAttributeValue(this.selectOnFocus)
+            showSearchButton: getBooleanFromAttributeValue(this.showSearchButton)
           };
           if (this.ui5Id) this._field = new sap.m.SearchField(this.ui5Id, params);else this._field = new sap.m.SearchField(params);
           $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._field, this.element);
@@ -225,12 +220,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
-        Ui5SearchField.prototype.showMagnifierChanged = function showMagnifierChanged(newValue) {
-          if (this._field !== null) {
-            this._field.setShowMagnifier(getBooleanFromAttributeValue(newValue));
-          }
-        };
-
         Ui5SearchField.prototype.showRefreshButtonChanged = function showRefreshButtonChanged(newValue) {
           if (this._field !== null) {
             this._field.setShowRefreshButton(getBooleanFromAttributeValue(newValue));
@@ -252,12 +241,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         Ui5SearchField.prototype.enableSuggestionsChanged = function enableSuggestionsChanged(newValue) {
           if (this._field !== null) {
             this._field.setEnableSuggestions(getBooleanFromAttributeValue(newValue));
-          }
-        };
-
-        Ui5SearchField.prototype.selectOnFocusChanged = function selectOnFocusChanged(newValue) {
-          if (this._field !== null) {
-            this._field.setSelectOnFocus(getBooleanFromAttributeValue(newValue));
           }
         };
 
@@ -292,47 +275,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'showMagnifier', [_dec9], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'showRefreshButton', [_dec10], {
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'showRefreshButton', [_dec9], {
         enumerable: true,
         initializer: function initializer() {
           return false;
         }
-      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'refreshButtonTooltip', [_dec11], {
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'refreshButtonTooltip', [_dec10], {
         enumerable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'showSearchButton', [_dec12], {
+      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'showSearchButton', [_dec11], {
         enumerable: true,
         initializer: function initializer() {
           return true;
         }
-      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'enableSuggestions', [_dec13], {
+      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'enableSuggestions', [_dec12], {
         enumerable: true,
         initializer: function initializer() {
           return false;
         }
-      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'selectOnFocus', [_dec14], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'liveChange', [_dec15], {
+      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'liveChange', [_dec13], {
         enumerable: true,
         initializer: function initializer() {
           return this.defaultFunc;
         }
-      }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'suggest', [_dec16], {
+      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'suggest', [_dec14], {
         enumerable: true,
         initializer: function initializer() {
           return this.defaultFunc;
         }
-      }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'search', [_dec17], {
+      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'search', [_dec15], {
         enumerable: true,
         initializer: function initializer() {
           return this.defaultFunc;

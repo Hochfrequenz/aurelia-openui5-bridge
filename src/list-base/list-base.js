@@ -9,7 +9,7 @@ export class Ui5ListBase extends Ui5Control {
 
   @bindable() inset = true;
   @bindable() headerText = null;
-  @bindable() headerDesign = 'Standard';
+  /*@bindable() headerDesign = 'Standard'; //deprecated */
   @bindable() footerText = null;
   @bindable() mode = 'None';
   @bindable() width = '100%';
@@ -57,7 +57,7 @@ export class Ui5ListBase extends Ui5Control {
   fillProperties(propertyObject) {
     propertyObject.inset = getBooleanFromAttributeValue(this.inset),
     propertyObject.headerText = this.headerText,
-    propertyObject.headerDesign = this.headerDesign,
+    //propertyObject.headerDesign = this.headerDesign,
     propertyObject.footerText = this.footerText,
     propertyObject.mode = this.mode,
     propertyObject.width = this.width,

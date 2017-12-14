@@ -18,7 +18,7 @@ export class Ui5Column {
   @bindable() visible = true;
   @bindable() minScreenWidth = null;
   @bindable() demandPopin = false;
-  @bindable() popinHAlign = null;
+  /*@bindable() popinHAlign = null; //deprecated */
   @bindable() popinDisplay = null;
   @bindable() mergeDuplicates = false;
   @bindable() mergeFunctionName = 'getText';
@@ -39,7 +39,7 @@ export class Ui5Column {
       minScreenWidth: this.minScreenWidth,
       demandPopin: getBooleanFromAttributeValue(this.demandPopin),
       popinDisplay: this.popinDisplay,
-      popinHAlign: this.popinHAlign,
+     // popinHAlign: this.popinHAlign,
       mergeDuplicates: getBooleanFromAttributeValue(this.mergeDuplicates),
       mergeFunctionName: this.mergeFunctionName
     };
@@ -109,11 +109,11 @@ export class Ui5Column {
       this._column.setPopinDisplay(newValue);
     }
   }
-  popinHAlignChanged(newValue) {
+  /*popinHAlignChanged(newValue) {
     if (this._column !== null) {
       this._column.setPopinHAlign(newValue);
     }
-  }
+  }*/
   mergeDuplicatesChanged(newValue) {
     if (this._column !== null) {
       this._column.setMergeDuplicates(getBooleanFromAttributeValue(newValue));

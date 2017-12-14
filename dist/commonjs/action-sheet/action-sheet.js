@@ -7,7 +7,7 @@ exports.Ui5ActionSheet = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -62,7 +62,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.customElement)('ui5-action-sheet'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.customElement)('ui5-action-sheet'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
   function Ui5ActionSheet(element) {
     _classCallCheck(this, Ui5ActionSheet);
 
@@ -87,9 +87,7 @@ var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.cus
 
     _initDefineProp(this, 'afterClose', _descriptor9, this);
 
-    _initDefineProp(this, 'cancelButtonTap', _descriptor10, this);
-
-    _initDefineProp(this, 'cancelButtonPress', _descriptor11, this);
+    _initDefineProp(this, 'cancelButtonPress', _descriptor10, this);
 
     this.element = element;
     this.attributeManager = new _attributeManager.AttributeManager(this.element);
@@ -134,8 +132,7 @@ var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.cus
       afterOpen: this.afterOpen,
       beforeClose: this.beforeClose,
       afterClose: this.afterClose,
-      cancelButtonPress: this.cancelButtonPress,
-      cancelButtonTap: this.cancelButtonTap
+      cancelButtonPress: this.cancelButtonPress
     };
     if (this.ui5Id) this._sheet = new sap.m.ActionSheet(this.ui5Id, props);else this._sheet = new sap.m.ActionSheet(props);
     this.attributeManager.addAttributes({ "ui5-dialog-id": this.ui5Id });
@@ -222,12 +219,7 @@ var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.cus
   initializer: function initializer() {
     return this.defaultFunc;
   }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'cancelButtonTap', [_dec12], {
-  enumerable: true,
-  initializer: function initializer() {
-    return this.defaultFunc;
-  }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'cancelButtonPress', [_dec13], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'cancelButtonPress', [_dec12], {
   enumerable: true,
   initializer: function initializer() {
     return this.defaultFunc;

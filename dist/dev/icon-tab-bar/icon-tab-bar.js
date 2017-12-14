@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, Ui5IconTabBar;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, Ui5IconTabBar;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -85,7 +85,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         };
       }();
 
-      _export('Ui5IconTabBar', Ui5IconTabBar = (_dec = customElement('ui5-icon-tab-bar'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Ui5IconTabBar', Ui5IconTabBar = (_dec = customElement('ui5-icon-tab-bar'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5IconTabBar(element) {
           _classCallCheck(this, Ui5IconTabBar);
 
@@ -93,31 +93,29 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           this._parent = null;
           this._relation = null;
 
-          _initDefineProp(this, 'showSelection', _descriptor, this);
+          _initDefineProp(this, 'expandable', _descriptor, this);
 
-          _initDefineProp(this, 'expandable', _descriptor2, this);
+          _initDefineProp(this, 'expanded', _descriptor2, this);
 
-          _initDefineProp(this, 'expanded', _descriptor3, this);
+          _initDefineProp(this, 'selectedKey', _descriptor3, this);
 
-          _initDefineProp(this, 'selectedKey', _descriptor4, this);
+          _initDefineProp(this, 'upperCase', _descriptor4, this);
 
-          _initDefineProp(this, 'upperCase', _descriptor5, this);
+          _initDefineProp(this, 'stretchContentHeight', _descriptor5, this);
 
-          _initDefineProp(this, 'stretchContentHeight', _descriptor6, this);
+          _initDefineProp(this, 'applyContentPadding', _descriptor6, this);
 
-          _initDefineProp(this, 'applyContentPadding', _descriptor7, this);
+          _initDefineProp(this, 'backgroundDesign', _descriptor7, this);
 
-          _initDefineProp(this, 'backgroundDesign', _descriptor8, this);
+          _initDefineProp(this, 'headerMode', _descriptor8, this);
 
-          _initDefineProp(this, 'headerMode', _descriptor9, this);
+          _initDefineProp(this, 'showOverflowSelectList', _descriptor9, this);
 
-          _initDefineProp(this, 'showOverflowSelectList', _descriptor10, this);
+          _initDefineProp(this, 'headerBackgroundDesign', _descriptor10, this);
 
-          _initDefineProp(this, 'headerBackgroundDesign', _descriptor11, this);
+          _initDefineProp(this, 'enableTabReordering', _descriptor11, this);
 
-          _initDefineProp(this, 'enableTabReordering', _descriptor12, this);
-
-          _initDefineProp(this, 'select', _descriptor13, this);
+          _initDefineProp(this, 'select', _descriptor12, this);
 
           this.element = element;
         }
@@ -171,7 +169,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         Ui5IconTabBar.prototype.attached = function attached() {
           var attributeManager = new AttributeManager(this.element);
           this._tab = new sap.m.IconTabBar({
-            showSelection: getBooleanFromAttributeValue(this.showSelection),
             expandable: getBooleanFromAttributeValue(this.expandable),
             expanded: getBooleanFromAttributeValue(this.expanded),
             selectedKey: this.selectedKey,
@@ -212,12 +209,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
             this._parent.removeChildByRelation(this._tab, this._relation);
           } else {
             this._tab.destroy();
-          }
-        };
-
-        Ui5IconTabBar.prototype.showSelectionChanged = function showSelectionChanged(newValue) {
-          if (this._tab !== null) {
-            this._tab.setShowSelection(getBooleanFromAttributeValue(newValue));
           }
         };
 
@@ -295,67 +286,62 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
         }]);
 
         return Ui5IconTabBar;
-      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'showSelection', [_dec3], {
+      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'expandable', [_dec3], {
         enumerable: true,
         initializer: function initializer() {
           return true;
         }
-      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'expandable', [_dec4], {
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'expanded', [_dec4], {
         enumerable: true,
         initializer: function initializer() {
           return true;
         }
-      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'expanded', [_dec5], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'selectedKey', [_dec6], {
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'selectedKey', [_dec5], {
         enumerable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'upperCase', [_dec7], {
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'upperCase', [_dec6], {
         enumerable: true,
         initializer: function initializer() {
           return false;
         }
-      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'stretchContentHeight', [_dec8], {
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'stretchContentHeight', [_dec7], {
         enumerable: true,
         initializer: function initializer() {
           return false;
         }
-      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'applyContentPadding', [_dec9], {
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'applyContentPadding', [_dec8], {
         enumerable: true,
         initializer: function initializer() {
           return true;
         }
-      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'backgroundDesign', [_dec10], {
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'backgroundDesign', [_dec9], {
         enumerable: true,
         initializer: function initializer() {
           return 'Solid';
         }
-      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'headerMode', [_dec11], {
+      }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'headerMode', [_dec10], {
         enumerable: true,
         initializer: function initializer() {
           return 'Standard';
         }
-      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'showOverflowSelectList', [_dec12], {
+      }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'showOverflowSelectList', [_dec11], {
         enumerable: true,
         initializer: function initializer() {
           return false;
         }
-      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'headerBackgroundDesign', [_dec13], {
+      }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'headerBackgroundDesign', [_dec12], {
         enumerable: true,
         initializer: function initializer() {
           return 'Solid';
         }
-      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'enableTabReordering', [_dec14], {
+      }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'enableTabReordering', [_dec13], {
         enumerable: true,
         initializer: function initializer() {
           return false;
         }
-      }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec15], {
+      }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec14], {
         enumerable: true,
         initializer: function initializer() {
           return this.defaultFunc;

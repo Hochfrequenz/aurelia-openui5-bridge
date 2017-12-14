@@ -13,7 +13,7 @@ export class Ui5Input extends Ui5InputBase {
   @bindable() ui5Id = null;
   @bindable() type = 'Text';
   @bindable() maxLength = 0;
-  @bindable() dateFormat = 'YYYY-MM-DD';
+  /*@bindable() dateFormat = 'YYYY-MM-DD'; //deprecated */
   @bindable() showValueHelp = false;
   @bindable() showSuggestion = false;
   @bindable() valueHelpOnly = false;
@@ -109,7 +109,7 @@ export class Ui5Input extends Ui5InputBase {
     var params = {
       type: this.type,
       maxLength: this.maxLength,
-      dateFormat: this.dateFormat,
+      /*dateFormat: this.dateFormat, //deprecated*/
       showValueHelp: getBooleanFromAttributeValue(this.showValueHelp),
       showSuggestion: getBooleanFromAttributeValue(this.showSuggestion),
       valueHelpOnly: getBooleanFromAttributeValue(this.valueHelpOnly),
@@ -189,11 +189,11 @@ export class Ui5Input extends Ui5InputBase {
       this._input.setMaxLength(newValue);
     }
   }
-  dateFormatChanged(newValue) {
+  /*dateFormatChanged(newValue) {
     if (this._input !== null) {
       this._input.setDateFormat(newValue);
     }
-  }
+  }*/
   showValueHelpChanged(newValue) {
     if (this._input !== null) {
       this._input.setShowValueHelp(getBooleanFromAttributeValue(newValue));
