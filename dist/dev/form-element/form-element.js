@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
+System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes', 'aurelia-framework'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, Ui5FormElement;
+  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, computedFrom, _createClass, _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, Ui5FormElement;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -65,9 +65,29 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
       AttributeManager = _commonAttributeManager.AttributeManager;
     }, function (_commonAttributes) {
       getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+    }, function (_aureliaFramework) {
+      computedFrom = _aureliaFramework.computedFrom;
     }],
     execute: function () {
-      _export('Ui5FormElement', Ui5FormElement = (_dec = customElement('ui5-form-element'), _dec2 = inject(Element), _dec3 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
+
+      _export('Ui5FormElement', Ui5FormElement = (_dec = customElement('ui5-form-element'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = computedFrom('_form'), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5FormElement(element) {
           _classCallCheck(this, Ui5FormElement);
 
@@ -118,8 +138,19 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
 
           if ($(this.element).closest("[ui5-container]").length > 0) {
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-            this._relation = this._parent.addChild(this._form, this.element);
-            attributeManager.addAttributes({ "ui5-container": '' });
+            if (!this._parent.UIElement || this._parent.UIElement.sId != this._form.sId) {
+              var prevSibling = null;
+              if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+              this._relation = this._parent.addChild(this._form, this.element, prevSibling);
+              attributeManager.addAttributes({ "ui5-container": '' });
+            } else {
+              this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+              var prevSibling = null;
+              if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+              this._relation = this._parent.addChild(this._form, this.element, prevSibling);
+              this._relation = this._parent.addChild(this._form, this.element);
+              attributeManager.addAttributes({ "ui5-container": '' });
+            }
           } else {
             this._form.placeAt(this.element.parentElement);
             attributeManager.addClasses("ui5-hide");
@@ -136,13 +167,20 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', '../commo
           }
         };
 
+        _createClass(Ui5FormElement, [{
+          key: 'UIElement',
+          get: function get() {
+            return this._form;
+          }
+        }]);
+
         return Ui5FormElement;
       }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
         enumerable: true,
         initializer: function initializer() {
           return null;
         }
-      })), _class2)) || _class) || _class));
+      }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec4], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
       _export('Ui5FormElement', Ui5FormElement);
     }

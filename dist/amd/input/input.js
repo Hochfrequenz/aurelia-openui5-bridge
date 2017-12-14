@@ -304,9 +304,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', '../com
       };
       if (this.ui5Id) this._input = new sap.m.Input(this.ui5Id, params);else this._input = new sap.m.Input(params);
       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this._relation = this._parent.addChild(this._input, this.element);
-      attributeManager.addAttributes({ "ui5-layout": '' });
-      attributeManager.addAttributes({ "ui5-container": '' });
+      if (!this._parent.UIElement || this._parent.UIElement.sId != this._input.sId) {
+        this._relation = this._parent.addChild(this._input, this.element);
+        attributeManager.addAttributes({ "ui5-layout": '' });
+        attributeManager.addAttributes({ "ui5-container": '' });
+      } else {
+        this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+        this._relation = this._parent.addChild(this._input, this.element);
+        attributeManager.addAttributes({ "ui5-layout": '' });
+        attributeManager.addAttributes({ "ui5-container": '' });
+      }
       var that = this;
       this._input.attachChange(function (event) {
         that.value = event.mParameters.value;

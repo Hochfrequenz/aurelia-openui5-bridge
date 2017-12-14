@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Ui5FormContainer = undefined;
 
-var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -14,6 +16,8 @@ var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 var _attributeManager = require('../common/attributeManager');
 
 var _attributes = require('../common/attributes');
+
+var _aureliaFramework = require('aurelia-framework');
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -60,7 +64,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5FormContainer = exports.Ui5FormContainer = (_dec = (0, _aureliaTemplating.customElement)('ui5-form-container'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5FormContainer = exports.Ui5FormContainer = (_dec = (0, _aureliaTemplating.customElement)('ui5-form-container'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaFramework.computedFrom)('_form'), _dec(_class = _dec2(_class = (_class2 = function () {
   function Ui5FormContainer(element) {
     _classCallCheck(this, Ui5FormContainer);
 
@@ -73,7 +77,7 @@ var Ui5FormContainer = exports.Ui5FormContainer = (_dec = (0, _aureliaTemplating
     this.element = element;
   }
 
-  Ui5FormContainer.prototype.addChild = function addChild(child, elem) {
+  Ui5FormContainer.prototype.addChild = function addChild(child, elem, afterElement) {
     var path = jQuery.makeArray($(elem).parentsUntil(this.element));
     for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
       if (_isArray) {
@@ -94,7 +98,9 @@ var Ui5FormContainer = exports.Ui5FormContainer = (_dec = (0, _aureliaTemplating
         return elem.localName;
       }
       if (elem.localName == 'element') {
-        this._form.addFormElement(child);
+        var _index = null;
+        if (afterElement) _index = this._form.indexOfFormElement(afterElement);
+        if (_index) this._form.insertFormElement(child, _index + 1);else this._form.insertFormElement(child, 0);
         return elem.localName;
       }
     }
@@ -128,6 +134,13 @@ var Ui5FormContainer = exports.Ui5FormContainer = (_dec = (0, _aureliaTemplating
     }
   };
 
+  _createClass(Ui5FormContainer, [{
+    key: 'UIElement',
+    get: function get() {
+      return this._form;
+    }
+  }]);
+
   return Ui5FormContainer;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
   enumerable: true,
@@ -139,4 +152,4 @@ var Ui5FormContainer = exports.Ui5FormContainer = (_dec = (0, _aureliaTemplating
   initializer: function initializer() {
     return null;
   }
-})), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec5], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

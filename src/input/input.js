@@ -151,9 +151,17 @@ export class Ui5Input extends Ui5InputBase {
     else
       this._input = new sap.m.Input(params);
     this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-    this._relation = this._parent.addChild(this._input, this.element);
-    attributeManager.addAttributes({ "ui5-layout": '' });
-    attributeManager.addAttributes({ "ui5-container": '' });
+    if (!this._parent.UIElement || (this._parent.UIElement.sId != this._input.sId)) {
+      this._relation = this._parent.addChild(this._input, this.element);
+      attributeManager.addAttributes({ "ui5-layout": '' });
+      attributeManager.addAttributes({ "ui5-container": '' });
+    }
+    else {
+      this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+      this._relation = this._parent.addChild(this._input, this.element);
+      attributeManager.addAttributes({ "ui5-layout": '' });
+      attributeManager.addAttributes({ "ui5-container": '' });
+    }
     var that = this;
     this._input.attachChange((event) => {
       that.value = event.mParameters.value;
@@ -166,9 +174,9 @@ export class Ui5Input extends Ui5InputBase {
     this._input.addEventDelegate(this.element);
     super.attached();
   }
-  detached(){
-    if(this._parent && this._parent.removeChildByRelation){
-      this._parent.removeChildByRelation(this._input,this._relation);
+  detached() {
+    if (this._parent && this._parent.removeChildByRelation) {
+      this._parent.removeChildByRelation(this._input, this._relation);
     }
   }
   typeChanged(newValue) {

@@ -2,7 +2,7 @@ import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { computedFrom } from 'aurelia-framework';
 @customElement('ui5-form-element')
 @inject(Element)
 export class Ui5FormElement {
@@ -13,6 +13,10 @@ export class Ui5FormElement {
   _relation = null;
   constructor(element) {
     this.element = element;
+  }
+  @computedFrom('_form')
+  get UIElement() {
+    return this._form;
   }
   addChild(child, elem) {
     var path = jQuery.makeArray($(elem).parentsUntil(this.element));
@@ -48,8 +52,22 @@ export class Ui5FormElement {
 
     if ($(this.element).closest("[ui5-container]").length > 0) {
       this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this._relation = this._parent.addChild(this._form, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
+      if (!this._parent.UIElement || (this._parent.UIElement.sId != this._form.sId)) {
+        var prevSibling = null;
+        if(this.element.previousElementSibling)
+          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+        this._relation = this._parent.addChild(this._form, this.element,prevSibling);
+        attributeManager.addAttributes({ "ui5-container": '' });
+      }
+      else{
+        this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+        var prevSibling = null;
+        if(this.element.previousElementSibling)
+          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+        this._relation = this._parent.addChild(this._form, this.element,prevSibling);
+        this._relation = this._parent.addChild(this._form, this.element);
+        attributeManager.addAttributes({ "ui5-container": '' });
+      }
     }
     else {
       this._form.placeAt(this.element.parentElement);
