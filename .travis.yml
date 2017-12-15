@@ -36,7 +36,7 @@ after_script:
   
 before_install:
   - npm install -g jspm
-  - npm install -g greenkeeper-lockfile-update
+  - npm install -g greenkeeper-lockfile@1
   - jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
   - yarn global add greenkeeper-lockfile@1
 deploy:
