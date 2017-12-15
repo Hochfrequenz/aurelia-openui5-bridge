@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.14"></a>
+## [0.2.14](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.2.12...v0.2.14) (2017-12-15)
+
+
+### Bug Fixes
+
+* **build:** update travis.yml for greenkeeper ([5c14532](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/5c14532))
+* **ui:** update some openui5 deprecations ([6095bf8](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/6095bf8))
+
+
+
 <a name="0.2.12"></a>
 ## [0.2.12](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.2.11...v0.2.12) (2017-12-14)
 
