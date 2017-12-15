@@ -35,7 +35,7 @@ export class Ui5FormContainer {
         if (_index)
           this._form.insertFormElement(child, _index + 1);
         else
-          this._form.insertFormElement(child,0);
+          this._form.addFormElement(child,0);
         return elem.localName;
       }
     }
