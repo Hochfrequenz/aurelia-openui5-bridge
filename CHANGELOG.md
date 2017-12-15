@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.15"></a>
+## [0.2.15](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.2.14...v0.2.15) (2017-12-15)
+
+
+### Bug Fixes
+
+* **build:** greenkeeper again ([1fac206](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/1fac206))
+* **form-element:** add instead of insert in container ([831693f](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/831693f))
+
+
+
 <a name="0.2.14"></a>
 ## [0.2.14](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.2.12...v0.2.14) (2017-12-15)
 
