@@ -1,9 +1,10 @@
 <template>
-    <header>
-        <slot name="header"></slot>
+  <div ref="Column">
+    <header ref="header">
+      <slot></slot>
     </header>
-    <footer>
-        <slot name="footer"></slot>
+    <footer ref="footer">
+      <slot name="footer"></slot>
     </footer>
-    <content><slot></slot></content>
+  </div>
 </template>

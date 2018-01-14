@@ -1,16 +1,16 @@
 <template>
-    <div >
-        <pagetitle>
-            <slot name="title"></slot>
-        </pagetitle>
-        <heading>
-            <slot name="header"></slot>
-        </heading>
-        <content >
-            <slot></slot>
-        </content>
-        <footer >
-            <slot name="footer"></slot>
-        </content>
-    </div>
+  <div ref="DynamicPage">
+    <title ref="title">
+      <slot name="title"></slot>
+    </title>
+    <header ref="header">
+      <slot name="header"></slot>
+    </header>
+    <content ref="content">
+      <slot name="content"></slot>
+    </content>
+    <footer ref="footer">
+      <slot name="footer"></slot>
+    </footer>
+  </div>
 </template>

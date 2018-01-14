@@ -1,17 +1,7 @@
 <template>
-    <div>
-        <header-toolbar>
-            <slot name="headerToolbar"></slot>
-        </header-toolbar>
-        <info-toolbar>
-            <slot name="infoToolbar">
-            </slot>
-        </info-toolbar>
-        <column>
-            <slot name="column"></slot>
-        </column>
-        <item>
-            <slot></slot>
-        </item>
-    </div>
+  <div ref="Table">
+    <columns ref="columns">
+      <slot name="columns"></slot>
+    </columns>
+  </div>
 </template>

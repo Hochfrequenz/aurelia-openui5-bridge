@@ -1,12 +1,10 @@
 <template>
-    <div ref="formElement">
-        
-        <label ref="label">
-         <slot name="label"></slot>
-        </toolbar>
-        
-         <field ref="fields">
-            <slot></slot>
-        </field>
-    </div>
+  <div ref="FormElement">
+    <label ref="label">
+      <slot name="label"></slot>
+    </label>
+    <fields ref="fields">
+      <slot></slot>
+    </fields>
+  </div>
 </template>

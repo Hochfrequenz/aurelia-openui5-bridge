@@ -1,7 +1,7 @@
 <template>
-    <div>
-         <content>
-            <slot></slot>
-        </content>
-    </div>
+  <div ref="TabContainer">
+    <items ref="items">
+      <slot name="items"></slot>
+    </items>
+  </div>
 </template>

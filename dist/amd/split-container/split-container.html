@@ -1,10 +1,10 @@
 <template>
-    <div ref="page">
-        <master>
-            <slot name="master"></slot>
-        </master>
-         <detail>
-            <slot></slot>
-        </detail>        
-    </div>
+  <div ref="SplitContainer">
+    <masterPages ref="masterPages">
+      <slot name="masterPages"></slot>
+    </masterPages>
+    <detailPages ref="detailPages">
+      <slot name="detailPages"></slot>
+    </detailPages>
+  </div>
 </template>

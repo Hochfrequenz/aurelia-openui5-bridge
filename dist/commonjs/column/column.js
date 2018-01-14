@@ -1,265 +1,327 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.Ui5Column = undefined;
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12;
 
 var _aureliaTemplating = require('aurelia-templating');
 
 var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 
+var _aureliaFramework = require('aurelia-framework');
+
 var _attributeManager = require('../common/attributeManager');
 
 var _attributes = require('../common/attributes');
 
-var _control = require('../control/control');
+var _element = require('../element/element');
 
 function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
-    enumerable: descriptor.enumerable,
-    configurable: descriptor.configurable,
-    writable: descriptor.writable,
-    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-  });
+    if (!descriptor) return;
+    Object.defineProperty(target, property, {
+        enumerable: descriptor.enumerable,
+        configurable: descriptor.configurable,
+        writable: descriptor.writable,
+        value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+    });
 }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-  var desc = {};
-  Object['ke' + 'ys'](descriptor).forEach(function (key) {
-    desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+        desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
 
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
+    if ('value' in desc || desc.initializer) {
+        desc.writable = true;
+    }
 
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-    return decorator(target, property, desc) || desc;
-  }, desc);
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+        return decorator(target, property, desc) || desc;
+    }, desc);
 
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
+    if (context && desc.initializer !== void 0) {
+        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+        desc.initializer = undefined;
+    }
 
-  if (desc.initializer === void 0) {
-    Object['define' + 'Property'](target, property, desc);
-    desc = null;
-  }
+    if (desc.initializer === void 0) {
+        Object['define' + 'Property'](target, property, desc);
+        desc = null;
+    }
 
-  return desc;
+    return desc;
 }
 
 function _initializerWarningHelper(descriptor, context) {
-  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+    throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement)('ui5-column'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec(_class = _dec2(_class = (_class2 = function () {
-  function Ui5Column(element) {
-    _classCallCheck(this, Ui5Column);
+var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement)('ui5-column'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaFramework.computedFrom)('_column'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
+    _inherits(Ui5Column, _Ui5Element);
 
-    this._column = null;
-    this._parent = null;
-    this._relation = null;
+    function Ui5Column(element) {
+        _classCallCheck(this, Ui5Column);
 
-    _initDefineProp(this, 'ui5Id', _descriptor, this);
+        var _this = _possibleConstructorReturn(this, _Ui5Element.call(this, element));
 
-    _initDefineProp(this, 'width', _descriptor2, this);
+        _this._column = null;
+        _this._parent = null;
+        _this._relation = null;
 
-    _initDefineProp(this, 'hAlign', _descriptor3, this);
+        _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-    _initDefineProp(this, 'vAlign', _descriptor4, this);
+        _initDefineProp(_this, 'width', _descriptor2, _this);
 
-    _initDefineProp(this, 'styleClass', _descriptor5, this);
+        _initDefineProp(_this, 'hAlign', _descriptor3, _this);
 
-    _initDefineProp(this, 'visible', _descriptor6, this);
+        _initDefineProp(_this, 'vAlign', _descriptor4, _this);
 
-    _initDefineProp(this, 'minScreenWidth', _descriptor7, this);
+        _initDefineProp(_this, 'styleClass', _descriptor5, _this);
 
-    _initDefineProp(this, 'demandPopin', _descriptor8, this);
+        _initDefineProp(_this, 'visible', _descriptor6, _this);
 
-    _initDefineProp(this, 'popinDisplay', _descriptor9, this);
+        _initDefineProp(_this, 'minScreenWidth', _descriptor7, _this);
 
-    _initDefineProp(this, 'mergeDuplicates', _descriptor10, this);
+        _initDefineProp(_this, 'demandPopin', _descriptor8, _this);
 
-    _initDefineProp(this, 'mergeFunctionName', _descriptor11, this);
+        _initDefineProp(_this, 'popinHAlign', _descriptor9, _this);
 
-    this.element = element;
-  }
+        _initDefineProp(_this, 'popinDisplay', _descriptor10, _this);
 
-  Ui5Column.prototype.defaultFunc = function defaultFunc() {};
+        _initDefineProp(_this, 'mergeDuplicates', _descriptor11, _this);
 
-  Ui5Column.prototype.attached = function attached() {
-    var attributeManager = new _attributeManager.AttributeManager(this.element);
-    var params = {
-      width: this.width,
-      hAlign: this.hAlign,
-      vAlign: this.vAlign,
-      styleClass: this.styleClass,
-      visible: (0, _attributes.getBooleanFromAttributeValue)(this.visible),
-      minScreenWidth: this.minScreenWidth,
-      demandPopin: (0, _attributes.getBooleanFromAttributeValue)(this.demandPopin),
-      popinDisplay: this.popinDisplay,
+        _initDefineProp(_this, 'mergeFunctionName', _descriptor12, _this);
 
-      mergeDuplicates: (0, _attributes.getBooleanFromAttributeValue)(this.mergeDuplicates),
-      mergeFunctionName: this.mergeFunctionName
+        _this.element = element;
+        _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
+        return _this;
+    }
+
+    Ui5Column.prototype.fillProperties = function fillProperties(params) {
+        params.width = this.width;
+        params.hAlign = this.hAlign;
+        params.vAlign = this.vAlign;
+        params.styleClass = this.styleClass;
+        params.visible = (0, _attributes.getBooleanFromAttributeValue)(this.visible);
+        params.minScreenWidth = this.minScreenWidth;
+        params.demandPopin = (0, _attributes.getBooleanFromAttributeValue)(this.demandPopin);
+        params.popinHAlign = this.popinHAlign;
+        params.popinDisplay = this.popinDisplay;
+        params.mergeDuplicates = (0, _attributes.getBooleanFromAttributeValue)(this.mergeDuplicates);
+        params.mergeFunctionName = this.mergeFunctionName;
     };
-    if (this.ui5Id) this._column = new sap.m.Column(this.ui5Id, params);else this._column = new sap.m.Column(params);
-    this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-    this._relation = this._parent.addChild(this._column, this.element);
-    attributeManager.addAttributes({ "ui5-container": '' });
-  };
 
-  Ui5Column.prototype.detached = function detached() {
-    if (this._parent && this._relation) {
-      this._parent.removeChildByRelation(this._column, this._relation);
+    Ui5Column.prototype.defaultFunc = function defaultFunc() {};
+
+    Ui5Column.prototype.attached = function attached() {
+        var that = this;
+        var params = {};
+        this.fillProperties(params);
+        _Ui5Element.prototype.fillProperties.call(this, params);
+        if (this.ui5Id) this._column = new sap.m.Column(this.ui5Id, params);else this._column = new sap.m.Column(params);
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+            if (!this._parent.UIElement || this._parent.UIElement.sId != this._column.sId) {
+                var prevSibling = null;
+                if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                this._relation = this._parent.addChild(this._column, this.element, prevSibling);
+                this.attributeManager.addAttributes({ "ui5-container": '' });
+            } else {
+                this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                var prevSibling = null;
+                if (this.element.previousElementSibling) {
+                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                    this._relation = this._parent.addChild(this._column, this.element, prevSibling);
+                } else this._relation = this._parent.addChild(this._column, this.element);
+                this.attributeManager.addAttributes({ "ui5-container": '' });
+            }
+        } else {
+            if (this._column.placeAt) this._column.placeAt(this.element.parentElement);
+            this.attributeManager.addAttributes({ "ui5-container": '' });
+            this.attributeManager.addClasses("ui5-hide");
+        }
+
+        this.attributeManager.addAttributes({ "ui5-id": this._column.sId });
+    };
+
+    Ui5Column.prototype.detached = function detached() {
+        if (this._parent && this._relation) {
+            this._parent.removeChildByRelation(this._column, this._relation);
+        } else {
+            this._column.destroy();
+        }
+        _Ui5Element.prototype.detached.call(this);
+    };
+
+    Ui5Column.prototype.addChild = function addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            if (_isArray) {
+                if (_i >= _iterator.length) break;
+                elem = _iterator[_i++];
+            } else {
+                _i = _iterator.next();
+                if (_i.done) break;
+                elem = _i.value;
+            }
+
+            if (elem.localName == 'header') {
+                this._column.setHeader(child);return elem.localName;
+            }
+            if (elem.localName == 'footer') {
+                this._column.setFooter(child);return elem.localName;
+            }
+        }
+    };
+
+    Ui5Column.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+
+    Ui5Column.prototype.widthChanged = function widthChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setWidth(newValue);
+        }
+    };
+
+    Ui5Column.prototype.hAlignChanged = function hAlignChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setHAlign(newValue);
+        }
+    };
+
+    Ui5Column.prototype.vAlignChanged = function vAlignChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setVAlign(newValue);
+        }
+    };
+
+    Ui5Column.prototype.styleClassChanged = function styleClassChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setStyleClass(newValue);
+        }
+    };
+
+    Ui5Column.prototype.visibleChanged = function visibleChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        }
+    };
+
+    Ui5Column.prototype.minScreenWidthChanged = function minScreenWidthChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setMinScreenWidth(newValue);
+        }
+    };
+
+    Ui5Column.prototype.demandPopinChanged = function demandPopinChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setDemandPopin((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        }
+    };
+
+    Ui5Column.prototype.popinHAlignChanged = function popinHAlignChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setPopinHAlign(newValue);
+        }
+    };
+
+    Ui5Column.prototype.popinDisplayChanged = function popinDisplayChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setPopinDisplay(newValue);
+        }
+    };
+
+    Ui5Column.prototype.mergeDuplicatesChanged = function mergeDuplicatesChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setMergeDuplicates((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        }
+    };
+
+    Ui5Column.prototype.mergeFunctionNameChanged = function mergeFunctionNameChanged(newValue) {
+        if (this._column !== null) {
+            this._column.setMergeFunctionName(newValue);
+        }
+    };
+
+    _createClass(Ui5Column, [{
+        key: 'UIElement',
+        get: function get() {
+            return this._column;
+        }
+    }]);
+
+    return Ui5Column;
+}(_element.Ui5Element), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_aureliaTemplating.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
     }
-  };
-
-  Ui5Column.prototype.addChild = function addChild(child, elem) {
-    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-    for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-      if (_isArray) {
-        if (_i >= _iterator.length) break;
-        elem = _iterator[_i++];
-      } else {
-        _i = _iterator.next();
-        if (_i.done) break;
-        elem = _i.value;
-      }
-
-      if (elem.localName == 'header') {
-        this._column.setHeader(child);break;
-      }
-      if (elem.localName == 'footer') {
-        this._column.setFooter(child);break;
-      }
-      if (elem.localName == 'content') {
-        this._column.addDependent(child);break;
-      }
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec3], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
     }
-  };
-
-  Ui5Column.prototype.widthChanged = function widthChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setWidth(newValue);
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'hAlign', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Begin';
     }
-  };
-
-  Ui5Column.prototype.hAlignChanged = function hAlignChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setHAlign(newValue);
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'vAlign', [_dec5], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Inherit';
     }
-  };
-
-  Ui5Column.prototype.vAlignChanged = function vAlignChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setVAlign(newValue);
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'styleClass', [_dec6], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
     }
-  };
-
-  Ui5Column.prototype.styleClassChanged = function styleClassChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setStyleClass(newValue);
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec7], {
+    enumerable: true,
+    initializer: function initializer() {
+        return true;
     }
-  };
-
-  Ui5Column.prototype.visibleChanged = function visibleChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'minScreenWidth', [_dec8], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
     }
-  };
-
-  Ui5Column.prototype.minScreenWidthChanged = function minScreenWidthChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setMinScreenWidth(newValue);
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'demandPopin', [_dec9], {
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
     }
-  };
-
-  Ui5Column.prototype.demandPopinChanged = function demandPopinChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setDemandPopin((0, _attributes.getBooleanFromAttributeValue)(newValue));
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'popinHAlign', [_dec10], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Begin';
     }
-  };
-
-  Ui5Column.prototype.popinDisplayChanged = function popinDisplayChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setPopinDisplay(newValue);
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'popinDisplay', [_dec11], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Block';
     }
-  };
-
-  Ui5Column.prototype.mergeDuplicatesChanged = function mergeDuplicatesChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setMergeDuplicates((0, _attributes.getBooleanFromAttributeValue)(newValue));
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'mergeDuplicates', [_dec12], {
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
     }
-  };
-
-  Ui5Column.prototype.mergeFunctionNameChanged = function mergeFunctionNameChanged(newValue) {
-    if (this._column !== null) {
-      this._column.setMergeFunctionName(newValue);
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'mergeFunctionName', [_dec13], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'getText';
     }
-  };
-
-  return Ui5Column;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_dec3], {
-  enumerable: true,
-  initializer: function initializer() {
-    return null;
-  }
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec4], {
-  enumerable: true,
-  initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'hAlign', [_dec5], {
-  enumerable: true,
-  initializer: function initializer() {
-    return 'Begin';
-  }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'vAlign', [_dec6], {
-  enumerable: true,
-  initializer: function initializer() {
-    return 'Inherit';
-  }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'styleClass', [_dec7], {
-  enumerable: true,
-  initializer: function initializer() {
-    return null;
-  }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec8], {
-  enumerable: true,
-  initializer: function initializer() {
-    return true;
-  }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'minScreenWidth', [_dec9], {
-  enumerable: true,
-  initializer: function initializer() {
-    return null;
-  }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'demandPopin', [_dec10], {
-  enumerable: true,
-  initializer: function initializer() {
-    return false;
-  }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'popinDisplay', [_dec11], {
-  enumerable: true,
-  initializer: function initializer() {
-    return null;
-  }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'mergeDuplicates', [_dec12], {
-  enumerable: true,
-  initializer: function initializer() {
-    return false;
-  }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'mergeFunctionName', [_dec13], {
-  enumerable: true,
-  initializer: function initializer() {
-    return 'getText';
-  }
-})), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec14], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

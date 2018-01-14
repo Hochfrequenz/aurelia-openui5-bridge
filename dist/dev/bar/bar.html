@@ -1,13 +1,13 @@
 <template>
-    <header ref="bar">
-        <content-left ref="contentLeft">
-            <slot name="contentLeft"></slot>
-        </content-left>
-        <content-middle ref="contentMiddle">
-            <slot name="contentMiddle"></slot>
-        </content-middle>
-        <content-right ref="contentRight">
-            <slot name="contentRight"></slot>
-        </content-right>
-    </header>
+  <div ref="Bar">
+    <contentLeft ref="contentLeft">
+      <slot name="contentLeft"></slot>
+    </contentLeft>
+    <contentMiddle ref="contentMiddle">
+      <slot name="contentMiddle"></slot>
+    </contentMiddle>
+    <contentRight ref="contentRight">
+      <slot name="contentRight"></slot>
+    </contentRight>
+  </div>
 </template>

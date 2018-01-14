@@ -1,19 +1,19 @@
 <template>
-    <dialog>
-        <subHeader>
-            <slot name="subHeader"></slot>
-        </subHeader>
-        <customHeader>
-            <slot name="customHeader"></slot>
-        </customHeader>
-        <leftButton>
-            <slot name="leftButton"></slot>
-        </leftButton>
-        <rightButton>
-            <slot name="rightButton"></slot>
-        </rightButton>
-        <content>
-            <slot></slot>
-        </content>
-    </dialog>
+  <div ref="ResponsivePopover">
+    <content ref="content">
+      <slot name="content"></slot>
+    </content>
+    <customHeader ref="customHeader">
+      <slot name="customHeader"></slot>
+    </customHeader>
+    <subHeader ref="subHeader">
+      <slot name="subHeader"></slot>
+    </subHeader>
+    <beginButton ref="beginButton">
+      <slot name="beginButton"></slot>
+    </beginButton>
+    <endButton ref="endButton">
+      <slot name="endButton"></slot>
+    </endButton>
+  </div>
 </template>

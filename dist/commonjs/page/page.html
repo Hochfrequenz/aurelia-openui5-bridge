@@ -1,17 +1,22 @@
 <template>
-    <div ref="page">
-        <header>
-            <slot name="header"></slot>
-        </header>
-        <subheader ref="subheader">
-            <slot name="subheader">
-            </slot>
-        </subheader>
-         <content ref="content">
-            <slot></slot>
-        </content>
-        <footer ref="footer">
-            <slot name="footer"></slot>
-        </footer>
-    </div>
+  <div ref="Page">
+    <content ref="content">
+      <slot></slot>
+    </content>
+    <customHeader ref="customHeader">
+      <slot name="customHeader"></slot>
+    </customHeader>
+    <footer ref="footer">
+      <slot name="footer"></slot>
+    </footer>
+    <subHeader ref="subHeader">
+      <slot name="subHeader"></slot>
+    </subHeader>
+    <headerContent ref="headerContent">
+      <slot name="headerContent"></slot>
+    </headerContent>
+    <landmarkInfo ref="landmarkInfo">
+      <slot name="landmarkInfo"></slot>
+    </landmarkInfo>
+  </div>
 </template>

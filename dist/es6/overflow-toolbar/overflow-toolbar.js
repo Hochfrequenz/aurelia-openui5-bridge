@@ -1,118 +1,94 @@
 import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
+import { computedFrom } from 'aurelia-framework';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-import { computedFrom } from 'aurelia-framework';
+import { Ui5Toolbar} from '../toolbar/toolbar';
 @customElement('ui5-overflow-toolbar')
 @inject(Element)
-export class Ui5OverflowToolbar {
-  _bar = null;
-  _parent = null;
-  _relation = null;
-  @bindable() width = null;
-  @bindable() active = false;
-  @bindable() enabled = true;
-  @bindable() height = null;
-  @bindable() design = null;
-  @bindable() press = this.defaultFunc;
-  constructor(element) {
-    this.element = element;
-  }
-  defaultFunc(event) {
-
-  }
-  @computedFrom('_bar')
-  get UIElement() {
-    return this._bar;
-  }
-  addChild(child, elem) {
-    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-    for (elem of path) {
-      if (elem.localName == 'content') {
-        this._bar.addContent(child);
-        return elem.localName;
+export class Ui5OverflowToolbar extends Ui5Toolbar{
+        _overflowtoolbar = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+        
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_overflowtoolbar')
+        get UIElement() {
+            return this._overflowtoolbar;
+          }
+        fillProperties(params){
+                           
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+                                         super.fillProperties(params);   
+         if (this.ui5Id)
+          this._overflowtoolbar = new sap.m.OverflowToolbar(this.ui5Id, params);
+        else
+          this._overflowtoolbar = new sap.m.OverflowToolbar(params);
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._overflowtoolbar.sId)) {
+        var prevSibling = null;
+        if (this.element.previousElementSibling)
+          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+        this._relation = this._parent.addChild(this._overflowtoolbar, this.element, prevSibling);
+        this.attributeManager.addAttributes({"ui5-container": '' });
       }
-    }
-  }
-  removeChild(child, elem) {
-    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-    for (elem of path) {
-      if (elem.localName == 'content') {
-        this._bar.removeContent(child);
-        break;
-      }
-    }
-  }
-  removeChildByRelation(child, relation) {
-    if (relation === 'content' && this._bar && child) {
-      this._bar.removeContent(child);
-    }
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    this._bar = new sap.m.OverflowToolbar({
-      width: this.width,
-      enabled: getBooleanFromAttributeValue(this.enabled),
-      active: getBooleanFromAttributeValue(this.active),
-      height: this.height,
-      design: this.design,
-      press: this.press
-    });
-
-    if ($(this.element).closest("[ui5-container]").length > 0) {
-      this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      if (!this._parent.UIElement || (this._parent.UIElement.sId != this._bar.sId)) {
-        this._relation = this._parent.addChild(this._bar, this.element);
-        attributeManager.addAttributes({ "ui5-container": '' });
-      }
-      else{
-        this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-        this._relation = this._parent.addChild(this._bar, this.element);
-        attributeManager.addAttributes({ "ui5-container": '' });
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+        if (this.element.previousElementSibling) {
+                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                                                this._relation = this._parent.addChild(this._overflowtoolbar, this.element, prevSibling);
+        }
+        else
+          this._relation = this._parent.addChild(this._overflowtoolbar, this.element);
+        this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-      this._bar.placeAt(this.element.parentElement);
-      attributeManager.addAttributes({ "ui5-container": '' });
-      attributeManager.addClasses("ui5-hide");
+                                                            if(this._overflowtoolbar.placeAt)
+                                                                this._overflowtoolbar.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
     }
-  }
-  detached() {
-    if (this._parent) {
-      this._parent.removeChildByRelation(this._bar, this._relation);
-    }
-    else {
-      this._bar.destroy();
-    }
-  }
-  widthChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setWidth(newValue);
-    }
-  }
-  enabledChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setEnabled(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  activeChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setActive(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  heightChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setHeight(newValue);
-    }
-  }
-  designChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setDesign(newValue);
-    }
-  }
-  pressChanged(newValue) {
-    if (this._bar !== null) {
-      this._bar.setPress(newValue);
-    }
-  }
-}
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._overflowtoolbar.sId});
+                                                                           
+           
+        }
+    detached() {
+        if (this._parent && this._relation) {
+                                                                this._parent.removeChildByRelation(this._overflowtoolbar, this._relation);
+                                                            }
+         else{
+                                                                this._overflowtoolbar.destroy();
+                                                            }
+         super.detached();
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+                                                                
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+                                                                        
+                                                                            }
+    
+
+                                                                                }

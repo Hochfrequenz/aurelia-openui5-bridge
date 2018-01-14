@@ -1,10 +1,7 @@
 <template>
-    <dialog>
-        <column>
-            <slot name="column"></slot>
-        </column>
-        <items>
-            <slot></slot>
-        </items>
-    </dialog>
+  <div ref="SelectDialog">
+    <items ref="items">
+      <slot></slot>
+    </items>
+  </div>
 </template>

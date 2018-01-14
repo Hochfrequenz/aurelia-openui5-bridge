@@ -1,0 +1,16 @@
+<template>
+  <div ref="ListBase">
+    <items ref="items">
+      <slot></slot>
+    </items>
+    <swipeContent ref="swipeContent">
+      <slot name="swipeContent"></slot>
+    </swipeContent>
+    <headerToolbar ref="headerToolbar">
+      <slot name="headerToolbar"></slot>
+    </headerToolbar>
+    <infoToolbar ref="infoToolbar">
+      <slot name="infoToolbar"></slot>
+    </infoToolbar>
+  </div>
+</template>

@@ -1,274 +1,527 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
-  "use strict";
+System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
+    "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, Ui5Page;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, Ui5Page;
 
-  function _initDefineProp(target, property, descriptor, context) {
-    if (!descriptor) return;
-    Object.defineProperty(target, property, {
-      enumerable: descriptor.enumerable,
-      configurable: descriptor.configurable,
-      writable: descriptor.writable,
-      value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-    });
-  }
-
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-    var desc = {};
-    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-      desc[key] = descriptor[key];
-    });
-    desc.enumerable = !!desc.enumerable;
-    desc.configurable = !!desc.configurable;
-
-    if ('value' in desc || desc.initializer) {
-      desc.writable = true;
+    function _initDefineProp(target, property, descriptor, context) {
+        if (!descriptor) return;
+        Object.defineProperty(target, property, {
+            enumerable: descriptor.enumerable,
+            configurable: descriptor.configurable,
+            writable: descriptor.writable,
+            value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+        });
     }
 
-    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-      return decorator(target, property, desc) || desc;
-    }, desc);
-
-    if (context && desc.initializer !== void 0) {
-      desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-      desc.initializer = undefined;
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
     }
 
-    if (desc.initializer === void 0) {
-      Object['define' + 'Property'](target, property, desc);
-      desc = null;
+    function _possibleConstructorReturn(self, call) {
+        if (!self) {
+            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+        }
+
+        return call && (typeof call === "object" || typeof call === "function") ? call : self;
     }
 
-    return desc;
-  }
-
-  function _initializerWarningHelper(descriptor, context) {
-    throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
-  }
-
-  return {
-    setters: [function (_aureliaTemplating) {
-      bindable = _aureliaTemplating.bindable;
-      customElement = _aureliaTemplating.customElement;
-      noView = _aureliaTemplating.noView;
-    }, function (_aureliaDependencyInjection) {
-      inject = _aureliaDependencyInjection.inject;
-    }, function (_commonAttributeManager) {
-      AttributeManager = _commonAttributeManager.AttributeManager;
-    }, function (_commonAttributes) {
-      getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
-    }],
-    execute: function () {
-      _export('Ui5Page', Ui5Page = (_dec = customElement('ui5-page'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec(_class = _dec2(_class = (_class2 = function () {
-        function Ui5Page(element) {
-          _classCallCheck(this, Ui5Page);
-
-          _initDefineProp(this, 'title', _descriptor, this);
-
-          _initDefineProp(this, 'busy', _descriptor2, this);
-
-          _initDefineProp(this, 'busyIndicatorDelay', _descriptor3, this);
-
-          _initDefineProp(this, 'showHeader', _descriptor4, this);
-
-          _initDefineProp(this, 'showFooter', _descriptor5, this);
-
-          _initDefineProp(this, 'showNavButton', _descriptor6, this);
-
-          _initDefineProp(this, 'navButtonPress', _descriptor7, this);
-
-          this._page = null;
-          this._relation = null;
-          this._parent = null;
-
-          this.element = element;
+    function _inherits(subClass, superClass) {
+        if (typeof superClass !== "function" && superClass !== null) {
+            throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
         }
 
-        Ui5Page.prototype.defaultFunc = function defaultFunc() {};
-
-        Ui5Page.prototype.addChild = function addChild(child, elem) {
-          var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-          for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-            if (_isArray) {
-              if (_i >= _iterator.length) break;
-              elem = _iterator[_i++];
-            } else {
-              _i = _iterator.next();
-              if (_i.done) break;
-              elem = _i.value;
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+            constructor: {
+                value: subClass,
+                enumerable: false,
+                writable: true,
+                configurable: true
             }
-
-            if (elem.localName == 'header') {
-              this._page.addHeaderContent(child);
-              return elem.localName;
-            }
-            if (elem.localName == 'subheader') {
-              this._page.setSubHeader(child);
-              return elem.localName;
-            }
-            if (elem.localName == 'content') {
-              this._page.addContent(child);
-              return elem.localName;
-            }
-            if (elem.localName == 'footer') {
-              this._page.setFooter(child);
-              return elem.localName;
-            }
-          }
-        };
-
-        Ui5Page.prototype.removeChild = function removeChild(child, elem) {
-          var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-          for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-            if (_isArray2) {
-              if (_i2 >= _iterator2.length) break;
-              elem = _iterator2[_i2++];
-            } else {
-              _i2 = _iterator2.next();
-              if (_i2.done) break;
-              elem = _i2.value;
-            }
-
-            if (elem.localName == 'header') {
-              this._page.removeHeaderContent(child);
-              break;
-            }
-            if (elem.localName == 'subheader') {
-              break;
-            }
-            if (elem.localName == 'content') {
-              this._page.removeContent(child);
-              break;
-            }
-            if (elem.localName == 'footer') {
-              break;
-            }
-          }
-        };
-
-        Ui5Page.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-          if (relation == 'header') {
-            this._page.removeHeaderContent(child);
-          } else if (relation == 'content') {
-            this._page.removeContent(child);
-          }
-        };
-
-        Ui5Page.prototype.attached = function attached() {
-          var attributeManager = new AttributeManager(this.element);
-          var page = new sap.m.Page({
-            title: this.title,
-            showHeader: getBooleanFromAttributeValue(this.showHeader),
-            showFooter: getBooleanFromAttributeValue(this.showFooter),
-            showNavButton: getBooleanFromAttributeValue(this.showNavButton),
-            navButtonPress: this.navButtonPress,
-            busy: getBooleanFromAttributeValue(this.busy),
-            busyIndicatorDelay: this.busyIndicatorDelay
-          });
-          this._page = page;
-
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-            this._relation = this._parent.addChild(this._page, this.element);
-            attributeManager.addAttributes({ "ui5-container": '' });
-          } else {
-            this._page.placeAt(this.element.parentElement);
-            attributeManager.addAttributes({ "ui5-container": '' });
-            attributeManager.addClasses("ui5-hide");
-          }
-        };
-
-        Ui5Page.prototype.detached = function detached() {
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-            if (this._parent && this._parent.removeChildByRelation) this._parent.removeChildByRelation(this._relation);else $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.removeChild(this._page, this.element);
-          } else {
-            this._page.destroy();
-          }
-        };
-
-        Ui5Page.prototype.titleChanged = function titleChanged(newValue) {
-          if (this._page !== null) {
-            this._page.setTitle(newValue);
-          }
-        };
-
-        Ui5Page.prototype.showHeaderChanged = function showHeaderChanged(newValue) {
-          if (this._page !== null) {
-            this._page.setShowHeader(getBooleanFromAttributeValue(newValue));
-          }
-        };
-
-        Ui5Page.prototype.showFooterChanged = function showFooterChanged(newValue) {
-          if (this._page !== null) {
-            this._page.setShowFooter(getBooleanFromAttributeValue(newValue));
-          }
-        };
-
-        Ui5Page.prototype.showNavButtonChanged = function showNavButtonChanged(newValue) {
-          if (this._page !== null) {
-            this._page.setShowNavButton(getBooleanFromAttributeValue(newValue));
-          }
-        };
-
-        Ui5Page.prototype.busyChanged = function busyChanged(newValue) {
-          if (this._page !== null) {
-            this._page.setBusy(getBooleanFromAttributeValue(newValue));
-          }
-        };
-
-        Ui5Page.prototype.busyIndicatorDelayChanged = function busyIndicatorDelayChanged(newValue) {
-          if (this._page !== null) {
-            this._page.setBusyIndicatorDelay(newValue);
-          }
-        };
-
-        return Ui5Page;
-      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'title', [_dec3], {
-        enumerable: true,
-        initializer: function initializer() {
-          return '';
-        }
-      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec4], {
-        enumerable: true,
-        initializer: function initializer() {
-          return false;
-        }
-      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec5], {
-        enumerable: true,
-        initializer: function initializer() {
-          return 1000;
-        }
-      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'showHeader', [_dec6], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'showFooter', [_dec7], {
-        enumerable: true,
-        initializer: function initializer() {
-          return true;
-        }
-      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'showNavButton', [_dec8], {
-        enumerable: true,
-        initializer: function initializer() {
-          return false;
-        }
-      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonPress', [_dec9], {
-        enumerable: true,
-        initializer: function initializer() {
-          return this.defaultFunc;
-        }
-      })), _class2)) || _class) || _class));
-
-      _export('Ui5Page', Ui5Page);
+        });
+        if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
-  };
+
+    function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+        var desc = {};
+        Object['ke' + 'ys'](descriptor).forEach(function (key) {
+            desc[key] = descriptor[key];
+        });
+        desc.enumerable = !!desc.enumerable;
+        desc.configurable = !!desc.configurable;
+
+        if ('value' in desc || desc.initializer) {
+            desc.writable = true;
+        }
+
+        desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+            return decorator(target, property, desc) || desc;
+        }, desc);
+
+        if (context && desc.initializer !== void 0) {
+            desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+            desc.initializer = undefined;
+        }
+
+        if (desc.initializer === void 0) {
+            Object['define' + 'Property'](target, property, desc);
+            desc = null;
+        }
+
+        return desc;
+    }
+
+    function _initializerWarningHelper(descriptor, context) {
+        throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+    }
+
+    return {
+        setters: [function (_aureliaTemplating) {
+            bindable = _aureliaTemplating.bindable;
+            customElement = _aureliaTemplating.customElement;
+            noView = _aureliaTemplating.noView;
+        }, function (_aureliaDependencyInjection) {
+            inject = _aureliaDependencyInjection.inject;
+        }, function (_aureliaFramework) {
+            computedFrom = _aureliaFramework.computedFrom;
+        }, function (_commonAttributeManager) {
+            AttributeManager = _commonAttributeManager.AttributeManager;
+        }, function (_commonAttributes) {
+            getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+        }, function (_controlControl) {
+            Ui5Control = _controlControl.Ui5Control;
+        }],
+        execute: function () {
+            _createClass = function () {
+                function defineProperties(target, props) {
+                    for (var i = 0; i < props.length; i++) {
+                        var descriptor = props[i];
+                        descriptor.enumerable = descriptor.enumerable || false;
+                        descriptor.configurable = true;
+                        if ("value" in descriptor) descriptor.writable = true;
+                        Object.defineProperty(target, descriptor.key, descriptor);
+                    }
+                }
+
+                return function (Constructor, protoProps, staticProps) {
+                    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+                    if (staticProps) defineProperties(Constructor, staticProps);
+                    return Constructor;
+                };
+            }();
+
+            _export('Ui5Page', Ui5Page = (_dec = customElement('ui5-page'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = computedFrom('_page'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+                _inherits(Ui5Page, _Ui5Control);
+
+                function Ui5Page(element) {
+                    _classCallCheck(this, Ui5Page);
+
+                    var _this = _possibleConstructorReturn(this, _Ui5Control.call(this, element));
+
+                    _this._page = null;
+                    _this._parent = null;
+                    _this._relation = null;
+
+                    _initDefineProp(_this, 'ui5Id', _descriptor, _this);
+
+                    _initDefineProp(_this, 'title', _descriptor2, _this);
+
+                    _initDefineProp(_this, 'titleLevel', _descriptor3, _this);
+
+                    _initDefineProp(_this, 'showNavButton', _descriptor4, _this);
+
+                    _initDefineProp(_this, 'showHeader', _descriptor5, _this);
+
+                    _initDefineProp(_this, 'showSubHeader', _descriptor6, _this);
+
+                    _initDefineProp(_this, 'navButtonText', _descriptor7, _this);
+
+                    _initDefineProp(_this, 'navButtonTooltip', _descriptor8, _this);
+
+                    _initDefineProp(_this, 'enableScrolling', _descriptor9, _this);
+
+                    _initDefineProp(_this, 'icon', _descriptor10, _this);
+
+                    _initDefineProp(_this, 'backgroundDesign', _descriptor11, _this);
+
+                    _initDefineProp(_this, 'navButtonType', _descriptor12, _this);
+
+                    _initDefineProp(_this, 'showFooter', _descriptor13, _this);
+
+                    _initDefineProp(_this, 'contentOnlyBusy', _descriptor14, _this);
+
+                    _initDefineProp(_this, 'floatingFooter', _descriptor15, _this);
+
+                    _initDefineProp(_this, 'navButtonTap', _descriptor16, _this);
+
+                    _initDefineProp(_this, 'navButtonPress', _descriptor17, _this);
+
+                    _initDefineProp(_this, 'busy', _descriptor18, _this);
+
+                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor19, _this);
+
+                    _initDefineProp(_this, 'visible', _descriptor20, _this);
+
+                    _initDefineProp(_this, 'fieldGroupIds', _descriptor21, _this);
+
+                    _initDefineProp(_this, 'validateFieldGroup', _descriptor22, _this);
+
+                    _this.element = element;
+                    _this.attributeManager = new AttributeManager(_this.element);
+                    return _this;
+                }
+
+                Ui5Page.prototype.fillProperties = function fillProperties(params) {
+                    params.title = this.title;
+                    params.titleLevel = this.titleLevel;
+                    params.showNavButton = getBooleanFromAttributeValue(this.showNavButton);
+                    params.showHeader = getBooleanFromAttributeValue(this.showHeader);
+                    params.showSubHeader = getBooleanFromAttributeValue(this.showSubHeader);
+                    params.navButtonText = this.navButtonText;
+                    params.navButtonTooltip = this.navButtonTooltip;
+                    params.enableScrolling = getBooleanFromAttributeValue(this.enableScrolling);
+                    params.icon = this.icon;
+                    params.backgroundDesign = this.backgroundDesign;
+                    params.navButtonType = this.navButtonType;
+                    params.showFooter = getBooleanFromAttributeValue(this.showFooter);
+                    params.contentOnlyBusy = getBooleanFromAttributeValue(this.contentOnlyBusy);
+                    params.floatingFooter = getBooleanFromAttributeValue(this.floatingFooter);
+                };
+
+                Ui5Page.prototype.defaultFunc = function defaultFunc() {};
+
+                Ui5Page.prototype.attached = function attached() {
+                    var that = this;
+                    var params = {};
+                    this.fillProperties(params);
+                    _Ui5Control.prototype.fillProperties.call(this, params);
+                    if (this.ui5Id) this._page = new sap.m.Page(this.ui5Id, params);else this._page = new sap.m.Page(params);
+                    if ($(this.element).closest("[ui5-container]").length > 0) {
+                        this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                        if (!this._parent.UIElement || this._parent.UIElement.sId != this._page.sId) {
+                            var prevSibling = null;
+                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            this._relation = this._parent.addChild(this._page, this.element, prevSibling);
+                            this.attributeManager.addAttributes({ "ui5-container": '' });
+                        } else {
+                            this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                            var prevSibling = null;
+                            if (this.element.previousElementSibling) {
+                                prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                                this._relation = this._parent.addChild(this._page, this.element, prevSibling);
+                            } else this._relation = this._parent.addChild(this._page, this.element);
+                            this.attributeManager.addAttributes({ "ui5-container": '' });
+                        }
+                    } else {
+                        if (this._page.placeAt) this._page.placeAt(this.element.parentElement);
+                        this.attributeManager.addAttributes({ "ui5-container": '' });
+                        this.attributeManager.addClasses("ui5-hide");
+                    }
+
+                    this.attributeManager.addAttributes({ "ui5-id": this._page.sId });
+                };
+
+                Ui5Page.prototype.detached = function detached() {
+                    if (this._parent && this._relation) {
+                        this._parent.removeChildByRelation(this._page, this._relation);
+                    } else {
+                        this._page.destroy();
+                    }
+                    _Ui5Control.prototype.detached.call(this);
+                };
+
+                Ui5Page.prototype.addChild = function addChild(child, elem, afterElement) {
+                    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+                    for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+                        if (_isArray) {
+                            if (_i >= _iterator.length) break;
+                            elem = _iterator[_i++];
+                        } else {
+                            _i = _iterator.next();
+                            if (_i.done) break;
+                            elem = _i.value;
+                        }
+
+                        if (elem.localName == 'content') {
+                            var _index = null;if (afterElement) _index = this._page.indexOfContent(afterElement);if (_index) this._page.insertContent(child, _index + 1);else this._page.addContent(child, 0);return elem.localName;
+                        }
+                        if (elem.localName == 'customHeader') {
+                            this._page.setCustomHeader(child);return elem.localName;
+                        }
+                        if (elem.localName == 'footer') {
+                            this._page.setFooter(child);return elem.localName;
+                        }
+                        if (elem.localName == 'subHeader') {
+                            this._page.setSubHeader(child);return elem.localName;
+                        }
+                        if (elem.localName == 'headerContent') {
+                            var _index = null;if (afterElement) _index = this._page.indexOfHeaderContent(afterElement);if (_index) this._page.insertHeaderContent(child, _index + 1);else this._page.addHeaderContent(child, 0);return elem.localName;
+                        }
+                        if (elem.localName == 'landmarkInfo') {
+                            this._page.setLandmarkInfo(child);return elem.localName;
+                        }
+                    }
+                };
+
+                Ui5Page.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+                    if (relation == 'content') {
+                        this._page.removeContent(child);
+                    }
+                    if (relation == 'headerContent') {
+                        this._page.removeHeaderContent(child);
+                    }
+                };
+
+                Ui5Page.prototype.titleChanged = function titleChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setTitle(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.titleLevelChanged = function titleLevelChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setTitleLevel(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.showNavButtonChanged = function showNavButtonChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setShowNavButton(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Page.prototype.showHeaderChanged = function showHeaderChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setShowHeader(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Page.prototype.showSubHeaderChanged = function showSubHeaderChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setShowSubHeader(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Page.prototype.navButtonTextChanged = function navButtonTextChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setNavButtonText(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.navButtonTooltipChanged = function navButtonTooltipChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setNavButtonTooltip(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.enableScrollingChanged = function enableScrollingChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setEnableScrolling(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Page.prototype.iconChanged = function iconChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setIcon(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setBackgroundDesign(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.navButtonTypeChanged = function navButtonTypeChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setNavButtonType(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.showFooterChanged = function showFooterChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setShowFooter(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Page.prototype.contentOnlyBusyChanged = function contentOnlyBusyChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setContentOnlyBusy(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Page.prototype.floatingFooterChanged = function floatingFooterChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setFloatingFooter(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Page.prototype.navButtonTapChanged = function navButtonTapChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.attachNavButtonTap(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.navButtonPressChanged = function navButtonPressChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.attachNavButtonPress(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.busyChanged = function busyChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setBusy(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Page.prototype.busyIndicatorDelayChanged = function busyIndicatorDelayChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setBusyIndicatorDelay(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.visibleChanged = function visibleChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setVisible(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Page.prototype.fieldGroupIdsChanged = function fieldGroupIdsChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.setFieldGroupIds(newValue);
+                    }
+                };
+
+                Ui5Page.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
+                    if (this._page !== null) {
+                        this._page.attachValidateFieldGroup(newValue);
+                    }
+                };
+
+                _createClass(Ui5Page, [{
+                    key: 'UIElement',
+                    get: function get() {
+                        return this._page;
+                    }
+                }]);
+
+                return Ui5Page;
+            }(Ui5Control), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [bindable], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'title', [_dec3], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'titleLevel', [_dec4], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 'Auto';
+                }
+            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'showNavButton', [_dec5], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'showHeader', [_dec6], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'showSubHeader', [_dec7], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonText', [_dec8], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonTooltip', [_dec9], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'enableScrolling', [_dec10], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec11], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'backgroundDesign', [_dec12], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 'Standard';
+                }
+            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonType', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 'Back';
+                }
+            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'showFooter', [_dec14], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'contentOnlyBusy', [_dec15], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'floatingFooter', [_dec16], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonTap', [_dec17], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonPress', [_dec18], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec19], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec20], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 1000;
+                }
+            }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec21], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec22], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return '[]';
+                }
+            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec23], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec24], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+
+            _export('Ui5Page', Ui5Page);
+        }
+    };
 });

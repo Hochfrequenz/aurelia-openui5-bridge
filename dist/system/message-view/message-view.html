@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <items>
+  <div ref="MessageView">
+    <items ref="items">
       <slot></slot>
     </items>
+    <headerButton ref="headerButton">
+      <slot name="headerButton"></slot>
+    </headerButton>
   </div>
 </template>

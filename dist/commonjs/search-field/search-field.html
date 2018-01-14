@@ -1,5 +1,7 @@
 <template>
-    <div>
-        <suggestion-item><slot name="suggestionItem"></slot></suggestion-item>
-    </div>
+  <div ref="SearchField">
+    <suggestionItems ref="suggestionItems">
+      <slot></slot>
+    </suggestionItems>
+  </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <item>
-            <slot></slot>
-        </item>
-    </div>
+  <div ref="List">
+    <columns ref="columns">
+      <slot name="columns"></slot>
+    </columns>
+  </div>
 </template>

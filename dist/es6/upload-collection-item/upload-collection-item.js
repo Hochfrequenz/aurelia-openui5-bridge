@@ -1,165 +1,146 @@
 import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
+import { computedFrom } from 'aurelia-framework';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { Ui5Element} from '../element/element';
 @customElement('ui5-upload-collection-item')
 @inject(Element)
-export class Ui5UploadCollectionItem {
-  @bindable() contributor = null;
-  @bindable() documentId = null;
-  @bindable() fileName = null;
-  @bindable() fileSize = null;
-  @bindable() enableEdit = true;
-  @bindable() mimeType = null;
-  @bindable() thumbnailUrl = null;
-  @bindable() enableDelete = true;
-  @bindable() uploadedDate = null;
-  @bindable() visibleEdit = true;
-  @bindable() url = null;
-  @bindable() visibleDelete = true;
-  @bindable() ariaLabelForPicture = null;
-  @bindable() selected = false;
+export class Ui5UploadCollectionItem extends Ui5Element{
+        _uploadcollectionitem = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+        @bindable() contributor = null;
+@bindable() documentId = null;
+@bindable() fileName = null;
+@bindable() fileSize = null;
+@bindable() mimeType = null;
+@bindable() thumbnailUrl = null;
+@bindable() uploadedDate = null;
+@bindable() url = null;
+@bindable() enableEdit = true;
+@bindable() enableDelete = true;
+@bindable() visibleEdit = true;
+@bindable() visibleDelete = true;
+@bindable() ariaLabelForPicture = null;
+@bindable() selected = false;
+@bindable() press = this.defaultFunc;
+@bindable() deletePress = this.defaultFunc;
 
-  _upload = null;
-  _parent = null;
-  _relation = null;
-  constructor(element) {
-    
-    this.element = element;
-  }
-  defaultFunc(event) {
-
-  }
-  addChild(child, elem) {
-    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-    for (elem of path) {
-      if (elem.localName == 'attributes') {
-        this._upload.addAttribute(child);
-        return elem.localName;
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_uploadcollectionitem')
+        get UIElement() {
+            return this._uploadcollectionitem;
+          }
+        fillProperties(params){
+               params.contributor = this.contributor;
+params.documentId = this.documentId;
+params.fileName = this.fileName;
+params.fileSize = this.fileSize;
+params.mimeType = this.mimeType;
+params.thumbnailUrl = this.thumbnailUrl;
+params.uploadedDate = this.uploadedDate;
+params.url = this.url;
+params.enableEdit = getBooleanFromAttributeValue(this.enableEdit);
+params.enableDelete = getBooleanFromAttributeValue(this.enableDelete);
+params.visibleEdit = getBooleanFromAttributeValue(this.visibleEdit);
+params.visibleDelete = getBooleanFromAttributeValue(this.visibleDelete);
+params.ariaLabelForPicture = this.ariaLabelForPicture;
+params.selected = getBooleanFromAttributeValue(this.selected);
+            
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+                                         super.fillProperties(params);   
+         if (this.ui5Id)
+          this._uploadcollectionitem = new sap.m.UploadCollectionItem(this.ui5Id, params);
+        else
+          this._uploadcollectionitem = new sap.m.UploadCollectionItem(params);
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._uploadcollectionitem.sId)) {
+        var prevSibling = null;
+        if (this.element.previousElementSibling)
+          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+        this._relation = this._parent.addChild(this._uploadcollectionitem, this.element, prevSibling);
+        this.attributeManager.addAttributes({"ui5-container": '' });
       }
-      else if (elem.localName == 'statuses') {
-        this._upload.addStatus(child);
-        return elem.localName;
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+        if (this.element.previousElementSibling) {
+                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                                                this._relation = this._parent.addChild(this._uploadcollectionitem, this.element, prevSibling);
+        }
+        else
+          this._relation = this._parent.addChild(this._uploadcollectionitem, this.element);
+        this.attributeManager.addAttributes({"ui5-container": '' });
       }
-      else if (elem.localName == 'markers') {
-        this._upload.addMarker(child);
-        return elem.localName;
-      }
-    }
-  }
-  removeChildByRelation(child, relation) {
-    if (relation === 'attributes' && this._upload) {
-      this._upload.removeAttribute(child);
-    }
-    else if (relation === 'statuses' && this._upload) {
-      this._upload.removeStatus(null);
-    }
-    else if (relation === 'markers' && this._upload) {
-      this._upload.removeMarker(null);
-    }
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    this._upload = new sap.m.UploadCollectionItem({
-      contributor: this.contributor,
-      documentId: this.documentId,
-      fileName: this.fileName,
-      fileSize: this.fileSize,
-      mimeType: this.mimeType,
-      thumbnailUrl: this.thumbnailUrl,
-      enableDelete: getBooleanFromAttributeValue(this.enableDelete),
-      uploadedDate: this.uploadedDate,
-      visibleEdit: getBooleanFromAttributeValue(this.visibleEdit),
-      url: this.url,
-      visibleDelete: getBooleanFromAttributeValue(this.visibleDelete),
-      ariaLabelForPicture: this.ariaLabelForPicture,
-    });
-
-    if ($(this.element).closest("[ui5-container]").length > 0) {
-      this._parent =$(this.element).closest("[ui5-container]")[0].au.controller.viewModel; 
-      this._relation = this._parent.addChild(this._upload, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
     }
     else {
-      this._upload.placeAt(this.element.parentElement);
-      attributeManager.addAttributes({ "ui5-container": '' });
-      attributeManager.addClasses("ui5-hide");
+                                                            if(this._uploadcollectionitem.placeAt)
+                                                                this._uploadcollectionitem.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
     }
-  }
-  detached() {
-    if (this._parent && this._parent.removeChildByRelation) {
-      this._parent.removeChildByRelation(this._upload, this._relation);
-    }
-    else {
-      this._upload.destroy();
-    }
-  }
-  contributorChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setContributor(newValue);
-    }
-  }
-  documentIdChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setDocumentId(newValue);
-    }
-  }
-  fileSizeChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setFileSize(newValue);
-    }
-  }
-  mimeTypeChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setMimeType(newValue);
-    }
-  }
-  thumbnailUrlChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setThumbnailUrl(newValue);
-    }
-  }
-  enableDeleteChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setEnableDelete(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  uploadedDateChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setUploadedDate(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  visibleEditChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setVisibleEdit(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  urlChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setUrl(newValue);
-    }
-  }
-  visibleDeleteChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setVisibleDelete(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  ariaLabelForPictureChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setAriaLabelForPicture(newValue);
-    }
-  }
-  selectedChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setSelected(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  terminationEnabledChanged(newValue) {
-    if (this._upload !== null) {
-      this._upload.setterminationEnabled(getBooleanFromAttributeValue(newValue));
-    }
-  }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._uploadcollectionitem.sId});
+                                                                           
+           
+        }
+    detached() {
+        if (this._parent && this._relation) {
+                                                                this._parent.removeChildByRelation(this._uploadcollectionitem, this._relation);
+                                                            }
+         else{
+                                                                this._uploadcollectionitem.destroy();
+                                                            }
+         super.detached();
+        }
 
-  /*TODO: Add change bindings for event handlers */
-}
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+                                                                if (elem.localName == 'attributes') { var _index = null; if (afterElement) _index = this._uploadcollectionitem.indexOfAttribute(afterElement); if (_index)this._uploadcollectionitem.insertAttribute(child, _index + 1); else this._uploadcollectionitem.addAttribute(child, 0);  return elem.localName; }
+if (elem.localName == 'statuses') { var _index = null; if (afterElement) _index = this._uploadcollectionitem.indexOfStatus(afterElement); if (_index)this._uploadcollectionitem.insertStatus(child, _index + 1); else this._uploadcollectionitem.addStatus(child, 0);  return elem.localName; }
+if (elem.localName == 'markers') { var _index = null; if (afterElement) _index = this._uploadcollectionitem.indexOfMarker(afterElement); if (_index)this._uploadcollectionitem.insertMarker(child, _index + 1); else this._uploadcollectionitem.addMarker(child, 0);  return elem.localName; }
+
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+                                                                        if (relation == 'attributes') {  this._uploadcollectionitem.removeAttribute(child); }
+if (relation == 'statuses') {  this._uploadcollectionitem.removeStatus(child); }
+if (relation == 'markers') {  this._uploadcollectionitem.removeMarker(child); }
+
+                                                                            }
+    contributorChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setContributor(newValue);}}
+documentIdChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setDocumentId(newValue);}}
+fileNameChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setFileName(newValue);}}
+fileSizeChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setFileSize(newValue);}}
+mimeTypeChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setMimeType(newValue);}}
+thumbnailUrlChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setThumbnailUrl(newValue);}}
+uploadedDateChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setUploadedDate(newValue);}}
+urlChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setUrl(newValue);}}
+enableEditChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setEnableEdit(getBooleanFromAttributeValue(newValue));}}
+enableDeleteChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setEnableDelete(getBooleanFromAttributeValue(newValue));}}
+visibleEditChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setVisibleEdit(getBooleanFromAttributeValue(newValue));}}
+visibleDeleteChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setVisibleDelete(getBooleanFromAttributeValue(newValue));}}
+ariaLabelForPictureChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setAriaLabelForPicture(newValue);}}
+selectedChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setSelected(getBooleanFromAttributeValue(newValue));}}
+pressChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachPress(newValue);}}
+deletePressChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachDeletePress(newValue);}}
+
+
+                                                                                }

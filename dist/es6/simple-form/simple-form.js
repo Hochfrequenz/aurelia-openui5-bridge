@@ -1,126 +1,179 @@
 import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
+import { computedFrom } from 'aurelia-framework';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { Ui5Control} from '../control/control';
 @customElement('ui5-simple-form')
 @inject(Element)
-export class Ui5SimpleForm {
-  @bindable() ui5Id = null;
-  @bindable() title = '';
-  @bindable() maxContainerCols = 2;
-  @bindable() minWidth = -1;
-  @bindable() width = null;
-  @bindable() editable = true;
-  @bindable() labelMinWidth = 192;
-  @bindable() layout = 'ResponsiveLayout';
-  @bindable() backgroundDesign = 'Translucent';
-  @bindable() labelSpanXL = -1;
-  @bindable() labelSpanL = 4;
-  @bindable() labelSpanM = 2;
-  @bindable() labelSpanS = 12;
-  @bindable() adjustLabelSpan = true;
-  @bindable() emptySpanXL = -1;
-  @bindable() emptySpanL = 0;
-  @bindable() emptySpanM = 0;
-  @bindable() emptySpanS = 0;
-  @bindable() singleContainerFullSize = false;
-  @bindable() breakpointXL = 1440;
-  @bindable() breakpointL = 1024;
-  @bindable() breakpointM = 600;
+export class Ui5SimpleForm extends Ui5Control{
+        _simpleform = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+        @bindable() maxContainerCols = 2;
+@bindable() minWidth = -1;
+@bindable() width = null;
+@bindable() editable = null;
+@bindable() labelMinWidth = 192;
+@bindable() layout = 'ResponsiveLayout';
+@bindable() labelSpanXL = -1;
+@bindable() labelSpanL = 4;
+@bindable() labelSpanM = 2;
+@bindable() labelSpanS = 12;
+@bindable() adjustLabelSpan = true;
+@bindable() emptySpanXL = -1;
+@bindable() emptySpanL = 0;
+@bindable() emptySpanM = 0;
+@bindable() emptySpanS = 0;
+@bindable() columnsXL = -1;
+@bindable() columnsL = 2;
+@bindable() columnsM = 1;
+@bindable() singleContainerFullSize = true;
+@bindable() breakpointXL = 1440;
+@bindable() breakpointL = 1024;
+@bindable() breakpointM = 600;
+@bindable() backgroundDesign = 'Translucent';
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
 
-  _form = null;
-  constructor(element) {
-    this.element = element;
-  }
-  addChild(child, elem) {
-    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-    for (elem of path) {
-      if (elem.localName == 'toolbar')
-        this._form.setToolbar(child);
-      if (elem.localName == 'content')
-        this._form.addContent(child);
-    }
-  }
-  attached() {
-    var attributeManager = new AttributeManager(this.element);
-    var params = {
-      title: this.title,
-      editable: getBooleanFromAttributeValue(this.editable),
-      maxContainerCols: parseInt(this.maxContainerCols),
-      minWidth: parseInt(this.minWidth),
-      width: this.width,
-      labelMinWidth: parseInt(this.labelMinWidth),
-      layout: this.layout,
-      backgroundDesign: this.backgroundDesign,
-      labelSpanXL: parseInt(this.labelSpanXL),
-      labelSpanL: parseInt(this.labelSpanL),
-      labelSpanM: parseInt(this.labelSpanM),
-      labelSpanS: parseInt(this.labelSpanS),
-      adjustLabelSpan: getBooleanFromAttributeValue(this.adjustLabelSpan),
-      emptySpanXL: parseInt(this.emptySpanXL),
-      emptySpanL: parseInt(this.emptySpanL),
-      emptySpanM: parseInt(this.emptySpanM),
-      emptySpanS: parseInt(this.emptySpanS),
-      singleContainerFullSize: getBooleanFromAttributeValue(this.singleContainerFullSize),
-      breakpointXL: parseInt(this.breakpointXL),
-      breakpointL: parseInt(this.breakpointL),
-      breakpointM: parseInt(this.breakpointM),
-
-    };
-    if (this.uiId5)
-      this._form = new sap.ui.layout.form.SimpleForm(this.ui5Id, params);
-    else
-      this._form = new sap.ui.layout.form.SimpleForm(params);
-
-    if ($(this.element).closest("[ui5-container]").length > 0) {
-      $(this.element).closest("[ui5-container]")[0].au.controller.viewModel.addChild(this._form, this.element);
-      attributeManager.addAttributes({ "ui5-container": '' });
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_simpleform')
+        get UIElement() {
+            return this._simpleform;
+          }
+        fillProperties(params){
+               params.maxContainerCols = this.maxContainerCols?parseInt(this.maxContainerCols):0;
+params.minWidth = this.minWidth?parseInt(this.minWidth):0;
+params.width = this.width;
+params.editable = getBooleanFromAttributeValue(this.editable);
+params.labelMinWidth = this.labelMinWidth?parseInt(this.labelMinWidth):0;
+params.layout = this.layout;
+params.labelSpanXL = this.labelSpanXL?parseInt(this.labelSpanXL):0;
+params.labelSpanL = this.labelSpanL?parseInt(this.labelSpanL):0;
+params.labelSpanM = this.labelSpanM?parseInt(this.labelSpanM):0;
+params.labelSpanS = this.labelSpanS?parseInt(this.labelSpanS):0;
+params.adjustLabelSpan = getBooleanFromAttributeValue(this.adjustLabelSpan);
+params.emptySpanXL = this.emptySpanXL?parseInt(this.emptySpanXL):0;
+params.emptySpanL = this.emptySpanL?parseInt(this.emptySpanL):0;
+params.emptySpanM = this.emptySpanM?parseInt(this.emptySpanM):0;
+params.emptySpanS = this.emptySpanS?parseInt(this.emptySpanS):0;
+params.columnsXL = this.columnsXL?parseInt(this.columnsXL):0;
+params.columnsL = this.columnsL?parseInt(this.columnsL):0;
+params.columnsM = this.columnsM?parseInt(this.columnsM):0;
+params.singleContainerFullSize = getBooleanFromAttributeValue(this.singleContainerFullSize);
+params.breakpointXL = this.breakpointXL?parseInt(this.breakpointXL):0;
+params.breakpointL = this.breakpointL?parseInt(this.breakpointL):0;
+params.breakpointM = this.breakpointM?parseInt(this.breakpointM):0;
+params.backgroundDesign = this.backgroundDesign;
+            
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+                                         super.fillProperties(params);   
+         if (this.ui5Id)
+          this._simpleform = new sap.ui.layout.form.SimpleForm(this.ui5Id, params);
+        else
+          this._simpleform = new sap.ui.layout.form.SimpleForm(params);
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._simpleform.sId)) {
+        var prevSibling = null;
+        if (this.element.previousElementSibling)
+          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+        this._relation = this._parent.addChild(this._simpleform, this.element, prevSibling);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+        if (this.element.previousElementSibling) {
+                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                                                this._relation = this._parent.addChild(this._simpleform, this.element, prevSibling);
+        }
+        else
+          this._relation = this._parent.addChild(this._simpleform, this.element);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
     }
     else {
-      this._form.placeAt(this.element.parentElement);
-      attributeManager.addClasses("ui5-hide");
+                                                            if(this._simpleform.placeAt)
+                                                                this._simpleform.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
     }
-  }
-  titleChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setTitle(newValue);
-    }
-  }
-  maxContainerColsChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setMaxContainerCols(newValue);
-    }
-  }
-  editableChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setEditable(getBooleanFromAttributeValue(newValue));
-    }
-  }
-  minWidthChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setMinWidth(newValue);
-    }
-  }
-  widthChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setWidth(newValue);
-    }
-  }
-  labelMinWidthChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setLabelMinWidth(newValue);
-    }
-  }
-  layoutChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setLayout(newValue);
-    }
-  }
-  backgroundDesignChanged(newValue) {
-    if (this._form !== null) {
-      this._form.setBackgroundDesign(newValue);
-    }
-  }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._simpleform.sId});
+                                                                           
+           
+        }
+    detached() {
+        if (this._parent && this._relation) {
+                                                                this._parent.removeChildByRelation(this._simpleform, this._relation);
+                                                            }
+         else{
+                                                                this._simpleform.destroy();
+                                                            }
+         super.detached();
+        }
 
-}
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+                                                                if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._simpleform.indexOfContent(afterElement); if (_index)this._simpleform.insertContent(child, _index + 1); else this._simpleform.addContent(child, 0);  return elem.localName; }
+if (elem.localName == 'title') { this._simpleform.setTitle(child); return elem.localName;}
+if (elem.localName == 'toolbar') { this._simpleform.setToolbar(child); return elem.localName;}
+
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+                                                                        if (relation == 'content') {  this._simpleform.removeContent(child); }
+
+                                                                            }
+    maxContainerColsChanged(newValue){if(this._simpleform!==null){ this._simpleform.setMaxContainerCols(newValue);}}
+minWidthChanged(newValue){if(this._simpleform!==null){ this._simpleform.setMinWidth(newValue);}}
+widthChanged(newValue){if(this._simpleform!==null){ this._simpleform.setWidth(newValue);}}
+editableChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEditable(getBooleanFromAttributeValue(newValue));}}
+labelMinWidthChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelMinWidth(newValue);}}
+layoutChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLayout(newValue);}}
+labelSpanXLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelSpanXL(newValue);}}
+labelSpanLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelSpanL(newValue);}}
+labelSpanMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelSpanM(newValue);}}
+labelSpanSChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelSpanS(newValue);}}
+adjustLabelSpanChanged(newValue){if(this._simpleform!==null){ this._simpleform.setAdjustLabelSpan(getBooleanFromAttributeValue(newValue));}}
+emptySpanXLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEmptySpanXL(newValue);}}
+emptySpanLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEmptySpanL(newValue);}}
+emptySpanMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEmptySpanM(newValue);}}
+emptySpanSChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEmptySpanS(newValue);}}
+columnsXLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setColumnsXL(newValue);}}
+columnsLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setColumnsL(newValue);}}
+columnsMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setColumnsM(newValue);}}
+singleContainerFullSizeChanged(newValue){if(this._simpleform!==null){ this._simpleform.setSingleContainerFullSize(getBooleanFromAttributeValue(newValue));}}
+breakpointXLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBreakpointXL(newValue);}}
+breakpointLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBreakpointL(newValue);}}
+breakpointMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBreakpointM(newValue);}}
+backgroundDesignChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBackgroundDesign(newValue);}}
+busyChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusyIndicatorDelay(newValue);}}
+visibleChanged(newValue){if(this._simpleform!==null){ this._simpleform.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._simpleform!==null){ this._simpleform.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachValidateFieldGroup(newValue);}}
+
+
+                                                                                }

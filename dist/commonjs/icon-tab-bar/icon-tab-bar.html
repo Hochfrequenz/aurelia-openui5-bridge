@@ -1,7 +1,10 @@
 <template>
-    <div>
-         <content>
-            <slot></slot>
-        </content>
-    </div>
+  <div ref="IconTabBar">
+    <items ref="items">
+      <slot name="items"></slot>
+    </items>
+    <content ref="content">
+      <slot name="content"></slot>
+    </content>
+  </div>
 </template>

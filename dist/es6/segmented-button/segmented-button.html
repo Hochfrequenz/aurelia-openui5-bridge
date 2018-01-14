@@ -1,7 +1,10 @@
 <template>
-    <div>
-        <item>
-            <slot></slot>
-        </item>
-    </div>
+  <div ref="SegmentedButton">
+    <buttons ref="buttons">
+      <slot></slot>
+    </buttons>
+    <items ref="items">
+      <slot name="items"></slot>
+    </items>
+  </div>
 </template>

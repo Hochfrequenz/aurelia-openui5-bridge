@@ -1,10 +1,10 @@
 <template>
-    <dialog>
-        <column>
-            <slot name="column"></slot>
-        </column>
-        <item>
-            <slot></slot>
-        </item>
-    </dialog>
+  <div ref="TableSelectDialog">
+    <items ref="items">
+      <slot></slot>
+    </items>
+    <columns ref="columns">
+      <slot name="columns"></slot>
+    </columns>
+  </div>
 </template>

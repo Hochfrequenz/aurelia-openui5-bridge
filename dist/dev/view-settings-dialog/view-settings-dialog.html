@@ -1,19 +1,19 @@
 <template>
-    <dialog>
-        <sortItems>
-            <slot name="sortItems"></slot>
-        </sortItems>
-        <groupItems>
-            <slot name="groupItems"></slot>
-        </groupItems>
-        <filterItems>
-            <slot name="filterItems"></slot>
-        </filterItems>
-        <presetFilterItems>
-            <slot name="presetFilterItems"></slot>
-        </presetFilterItems>
-        <customTabs>
-            <slot></slot>
-        </customTabs>
-    </dialog>
+  <div ref="ViewSettingsDialog">
+    <sortItems ref="sortItems">
+      <slot name="sortItems"></slot>
+    </sortItems>
+    <groupItems ref="groupItems">
+      <slot name="groupItems"></slot>
+    </groupItems>
+    <filterItems ref="filterItems">
+      <slot name="filterItems"></slot>
+    </filterItems>
+    <presetFilterItems ref="presetFilterItems">
+      <slot name="presetFilterItems"></slot>
+    </presetFilterItems>
+    <customTabs ref="customTabs">
+      <slot name="customTabs"></slot>
+    </customTabs>
+  </div>
 </template>
