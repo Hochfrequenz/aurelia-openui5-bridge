@@ -1,13 +1,23 @@
 <template>
-  <div ref="Input">
-    <suggestionItems ref="suggestionItems">
-      <slot></slot>
-    </suggestionItems>
-    <suggestionColumns ref="suggestionColumns">
-      <slot name="suggestionColumns"></slot>
-    </suggestionColumns>
-    <suggestionRows ref="suggestionRows">
-      <slot name="suggestionRows"></slot>
-    </suggestionRows>
-  </div>
+  <suggestionItems ref="suggestionItems">
+    <slot></slot>
+  </suggestionItems>
+  <suggestionColumns ref="suggestionColumns">
+    <slot name="suggestionColumns"></slot>
+  </suggestionColumns>
+  <suggestionRows ref="suggestionRows">
+    <slot name="suggestionRows"></slot>
+  </suggestionRows>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

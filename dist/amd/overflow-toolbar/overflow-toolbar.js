@@ -97,9 +97,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
 
-    var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTemplating.customElement)('ui5-overflow-toolbar'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaFramework.computedFrom)('_overflowtoolbar'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Toolbar) {
+    var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTemplating.customElement)('ui5-overflow-toolbar'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaFramework.computedFrom)('_overflowtoolbar'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Toolbar) {
         _inherits(Ui5OverflowToolbar, _Ui5Toolbar);
 
         function Ui5OverflowToolbar(element) {
@@ -112,6 +112,38 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             _this._relation = null;
 
             _initDefineProp(_this, 'ui5Id', _descriptor, _this);
+
+            _initDefineProp(_this, 'width', _descriptor2, _this);
+
+            _initDefineProp(_this, 'active', _descriptor3, _this);
+
+            _initDefineProp(_this, 'enabled', _descriptor4, _this);
+
+            _initDefineProp(_this, 'height', _descriptor5, _this);
+
+            _initDefineProp(_this, 'design', _descriptor6, _this);
+
+            _initDefineProp(_this, 'press', _descriptor7, _this);
+
+            _initDefineProp(_this, 'busy', _descriptor8, _this);
+
+            _initDefineProp(_this, 'busyIndicatorDelay', _descriptor9, _this);
+
+            _initDefineProp(_this, 'visible', _descriptor10, _this);
+
+            _initDefineProp(_this, 'fieldGroupIds', _descriptor11, _this);
+
+            _initDefineProp(_this, 'validateFieldGroup', _descriptor12, _this);
+
+            _initDefineProp(_this, 'validationSuccess', _descriptor13, _this);
+
+            _initDefineProp(_this, 'validationError', _descriptor14, _this);
+
+            _initDefineProp(_this, 'parseError', _descriptor15, _this);
+
+            _initDefineProp(_this, 'formatError', _descriptor16, _this);
+
+            _initDefineProp(_this, 'modelContextChange', _descriptor17, _this);
 
             _this.element = element;
             _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -128,17 +160,18 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             this.fillProperties(params);
             _Ui5Toolbar.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._overflowtoolbar = new sap.m.OverflowToolbar(this.ui5Id, params);else this._overflowtoolbar = new sap.m.OverflowToolbar(params);
+
             if ($(this.element).closest("[ui5-container]").length > 0) {
                 this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                 if (!this._parent.UIElement || this._parent.UIElement.sId != this._overflowtoolbar.sId) {
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                     this._relation = this._parent.addChild(this._overflowtoolbar, this.element, prevSibling);
                     this.attributeManager.addAttributes({ "ui5-container": '' });
                 } else {
                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) {
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                         prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                         this._relation = this._parent.addChild(this._overflowtoolbar, this.element, prevSibling);
                     } else this._relation = this._parent.addChild(this._overflowtoolbar, this.element);
@@ -154,12 +187,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5OverflowToolbar.prototype.detached = function detached() {
-            if (this._parent && this._relation) {
-                this._parent.removeChildByRelation(this._overflowtoolbar, this._relation);
-            } else {
-                this._overflowtoolbar.destroy();
-            }
-            _Ui5Toolbar.prototype.detached.call(this);
+            try {
+                if ($(this.element).closest("[ui5-container]").length > 0) {
+                    if (this._parent && this._relation) {
+                        this._parent.removeChildByRelation(this._overflowtoolbar, this._relation);
+                    }
+                } else {
+                    this._overflowtoolbar.destroy();
+                }
+                _Ui5Toolbar.prototype.detached.call(this);
+            } catch (err) {}
         };
 
         Ui5OverflowToolbar.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -173,10 +210,142 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                     if (_i.done) break;
                     elem = _i.value;
                 }
+
+                try {
+                    if (elem.localName == 'content') {
+                        var _index = null;if (afterElement) _index = this._overflowtoolbar.indexOfContent(afterElement);if (_index) this._overflowtoolbar.insertContent(child, _index + 1);else this._overflowtoolbar.addContent(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'tooltip') {
+                        this._overflowtoolbar.setTooltip(child);return elem.localName;
+                    }
+                    if (elem.localName == 'customdata') {
+                        var _index = null;if (afterElement) _index = this._overflowtoolbar.indexOfCustomData(afterElement);if (_index) this._overflowtoolbar.insertCustomData(child, _index + 1);else this._overflowtoolbar.addCustomData(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'layoutdata') {
+                        this._overflowtoolbar.setLayoutData(child);return elem.localName;
+                    }
+                    if (elem.localName == 'dependents') {
+                        var _index = null;if (afterElement) _index = this._overflowtoolbar.indexOfDependent(afterElement);if (_index) this._overflowtoolbar.insertDependent(child, _index + 1);else this._overflowtoolbar.addDependent(child, 0);return elem.localName;
+                    }
+                } catch (err) {}
             }
         };
 
-        Ui5OverflowToolbar.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+        Ui5OverflowToolbar.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+            try {
+                if (relation == 'content') {
+                    this._overflowtoolbar.removeContent(child);
+                }
+                if (relation == 'tooltip') {
+                    this._overflowtoolbar.destroyTooltip(child);
+                }
+                if (relation == 'customdata') {
+                    this._overflowtoolbar.removeCustomData(child);
+                }
+                if (relation == 'layoutData') {
+                    this._overflowtoolbar.destroyLayoutData(child);
+                }
+                if (relation == 'dependents') {
+                    this._overflowtoolbar.removeDependent(child);
+                }
+            } catch (err) {}
+        };
+
+        Ui5OverflowToolbar.prototype.widthChanged = function widthChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.setWidth(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.activeChanged = function activeChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.setActive((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.enabledChanged = function enabledChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.heightChanged = function heightChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.setHeight(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.designChanged = function designChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.setDesign(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.pressChanged = function pressChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.attachPress(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.busyChanged = function busyChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.setBusy((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.busyIndicatorDelayChanged = function busyIndicatorDelayChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.setBusyIndicatorDelay(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.visibleChanged = function visibleChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.fieldGroupIdsChanged = function fieldGroupIdsChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.setFieldGroupIds(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.attachValidateFieldGroup(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.attachValidationSuccess(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.attachValidationError(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.attachParseError(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.attachFormatError(newValue);
+            }
+        };
+
+        Ui5OverflowToolbar.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+            if (this._overflowtoolbar !== null) {
+                this._overflowtoolbar.attachModelContextChange(newValue);
+            }
+        };
 
         _createClass(Ui5OverflowToolbar, [{
             key: 'UIElement',
@@ -191,5 +360,85 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return null;
         }
-    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec3], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'active', [_dec4], {
+        enumerable: true,
+        initializer: function initializer() {
+            return false;
+        }
+    }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec5], {
+        enumerable: true,
+        initializer: function initializer() {
+            return true;
+        }
+    }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'height', [_dec6], {
+        enumerable: true,
+        initializer: function initializer() {
+            return '';
+        }
+    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'design', [_dec7], {
+        enumerable: true,
+        initializer: function initializer() {
+            return 'Auto';
+        }
+    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec8], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec9], {
+        enumerable: true,
+        initializer: function initializer() {
+            return false;
+        }
+    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec10], {
+        enumerable: true,
+        initializer: function initializer() {
+            return 1000;
+        }
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec11], {
+        enumerable: true,
+        initializer: function initializer() {
+            return true;
+        }
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec12], {
+        enumerable: true,
+        initializer: function initializer() {
+            return '[]';
+        }
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec13], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec14], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec15], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec16], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec17], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec18], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec19], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

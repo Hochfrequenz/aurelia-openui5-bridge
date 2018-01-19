@@ -1,10 +1,20 @@
 <template>
-  <div ref="Column">
-    <header ref="header">
-      <slot></slot>
-    </header>
-    <footer ref="footer">
-      <slot name="footer"></slot>
-    </footer>
-  </div>
+  <header ref="header">
+    <slot name="header"></slot>
+  </header>
+  <footer ref="footer">
+    <slot name="footer"></slot>
+  </footer>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot></slot>
+  </dependents>
 </template>

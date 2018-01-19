@@ -128,17 +128,18 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             this.fillProperties(params);
             _Ui5Object.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._eventprovider = new sap.ui.base.EventProvider(this.ui5Id, params);else this._eventprovider = new sap.ui.base.EventProvider(params);
+
             if ($(this.element).closest("[ui5-container]").length > 0) {
                 this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                 if (!this._parent.UIElement || this._parent.UIElement.sId != this._eventprovider.sId) {
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                     this._relation = this._parent.addChild(this._eventprovider, this.element, prevSibling);
                     this.attributeManager.addAttributes({ "ui5-container": '' });
                 } else {
                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) {
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                         prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                         this._relation = this._parent.addChild(this._eventprovider, this.element, prevSibling);
                     } else this._relation = this._parent.addChild(this._eventprovider, this.element);
@@ -154,12 +155,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5EventProvider.prototype.detached = function detached() {
-            if (this._parent && this._relation) {
-                this._parent.removeChildByRelation(this._eventprovider, this._relation);
-            } else {
-                this._eventprovider.destroy();
-            }
-            _Ui5Object.prototype.detached.call(this);
+            try {
+                if ($(this.element).closest("[ui5-container]").length > 0) {
+                    if (this._parent && this._relation) {
+                        this._parent.removeChildByRelation(this._eventprovider, this._relation);
+                    }
+                } else {
+                    this._eventprovider.destroy();
+                }
+                _Ui5Object.prototype.detached.call(this);
+            } catch (err) {}
         };
 
         Ui5EventProvider.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -173,10 +178,14 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                     if (_i.done) break;
                     elem = _i.value;
                 }
+
+                try {} catch (err) {}
             }
         };
 
-        Ui5EventProvider.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+        Ui5EventProvider.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+            try {} catch (err) {}
+        };
 
         _createClass(Ui5EventProvider, [{
             key: 'UIElement',

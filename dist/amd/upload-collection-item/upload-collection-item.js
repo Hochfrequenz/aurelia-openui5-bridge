@@ -97,9 +97,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19;
 
-    var Ui5UploadCollectionItem = exports.Ui5UploadCollectionItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-upload-collection-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaFramework.computedFrom)('_uploadcollectionitem'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
+    var Ui5UploadCollectionItem = exports.Ui5UploadCollectionItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-upload-collection-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaFramework.computedFrom)('_uploadcollectionitem'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
         _inherits(Ui5UploadCollectionItem, _Ui5Element);
 
         function Ui5UploadCollectionItem(element) {
@@ -113,37 +113,41 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-            _initDefineProp(_this, 'contributor', _descriptor2, _this);
+            _initDefineProp(_this, 'documentId', _descriptor2, _this);
 
-            _initDefineProp(_this, 'documentId', _descriptor3, _this);
+            _initDefineProp(_this, 'fileName', _descriptor3, _this);
 
-            _initDefineProp(_this, 'fileName', _descriptor4, _this);
+            _initDefineProp(_this, 'mimeType', _descriptor4, _this);
 
-            _initDefineProp(_this, 'fileSize', _descriptor5, _this);
+            _initDefineProp(_this, 'thumbnailUrl', _descriptor5, _this);
 
-            _initDefineProp(_this, 'mimeType', _descriptor6, _this);
+            _initDefineProp(_this, 'url', _descriptor6, _this);
 
-            _initDefineProp(_this, 'thumbnailUrl', _descriptor7, _this);
+            _initDefineProp(_this, 'enableEdit', _descriptor7, _this);
 
-            _initDefineProp(_this, 'uploadedDate', _descriptor8, _this);
+            _initDefineProp(_this, 'enableDelete', _descriptor8, _this);
 
-            _initDefineProp(_this, 'url', _descriptor9, _this);
+            _initDefineProp(_this, 'visibleEdit', _descriptor9, _this);
 
-            _initDefineProp(_this, 'enableEdit', _descriptor10, _this);
+            _initDefineProp(_this, 'visibleDelete', _descriptor10, _this);
 
-            _initDefineProp(_this, 'enableDelete', _descriptor11, _this);
+            _initDefineProp(_this, 'ariaLabelForPicture', _descriptor11, _this);
 
-            _initDefineProp(_this, 'visibleEdit', _descriptor12, _this);
+            _initDefineProp(_this, 'selected', _descriptor12, _this);
 
-            _initDefineProp(_this, 'visibleDelete', _descriptor13, _this);
+            _initDefineProp(_this, 'press', _descriptor13, _this);
 
-            _initDefineProp(_this, 'ariaLabelForPicture', _descriptor14, _this);
+            _initDefineProp(_this, 'deletePress', _descriptor14, _this);
 
-            _initDefineProp(_this, 'selected', _descriptor15, _this);
+            _initDefineProp(_this, 'validationSuccess', _descriptor15, _this);
 
-            _initDefineProp(_this, 'press', _descriptor16, _this);
+            _initDefineProp(_this, 'validationError', _descriptor16, _this);
 
-            _initDefineProp(_this, 'deletePress', _descriptor17, _this);
+            _initDefineProp(_this, 'parseError', _descriptor17, _this);
+
+            _initDefineProp(_this, 'formatError', _descriptor18, _this);
+
+            _initDefineProp(_this, 'modelContextChange', _descriptor19, _this);
 
             _this.element = element;
             _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -151,13 +155,10 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         }
 
         Ui5UploadCollectionItem.prototype.fillProperties = function fillProperties(params) {
-            params.contributor = this.contributor;
             params.documentId = this.documentId;
             params.fileName = this.fileName;
-            params.fileSize = this.fileSize;
             params.mimeType = this.mimeType;
             params.thumbnailUrl = this.thumbnailUrl;
-            params.uploadedDate = this.uploadedDate;
             params.url = this.url;
             params.enableEdit = (0, _attributes.getBooleanFromAttributeValue)(this.enableEdit);
             params.enableDelete = (0, _attributes.getBooleanFromAttributeValue)(this.enableDelete);
@@ -165,6 +166,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.visibleDelete = (0, _attributes.getBooleanFromAttributeValue)(this.visibleDelete);
             params.ariaLabelForPicture = this.ariaLabelForPicture;
             params.selected = (0, _attributes.getBooleanFromAttributeValue)(this.selected);
+            params.press = this.press == null ? this.defaultFunc : this.press;
+            params.deletePress = this.deletePress == null ? this.defaultFunc : this.deletePress;
         };
 
         Ui5UploadCollectionItem.prototype.defaultFunc = function defaultFunc() {};
@@ -175,17 +178,18 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             this.fillProperties(params);
             _Ui5Element.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._uploadcollectionitem = new sap.m.UploadCollectionItem(this.ui5Id, params);else this._uploadcollectionitem = new sap.m.UploadCollectionItem(params);
+
             if ($(this.element).closest("[ui5-container]").length > 0) {
                 this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                 if (!this._parent.UIElement || this._parent.UIElement.sId != this._uploadcollectionitem.sId) {
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                     this._relation = this._parent.addChild(this._uploadcollectionitem, this.element, prevSibling);
                     this.attributeManager.addAttributes({ "ui5-container": '' });
                 } else {
                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) {
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                         prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                         this._relation = this._parent.addChild(this._uploadcollectionitem, this.element, prevSibling);
                     } else this._relation = this._parent.addChild(this._uploadcollectionitem, this.element);
@@ -201,12 +205,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5UploadCollectionItem.prototype.detached = function detached() {
-            if (this._parent && this._relation) {
-                this._parent.removeChildByRelation(this._uploadcollectionitem, this._relation);
-            } else {
-                this._uploadcollectionitem.destroy();
-            }
-            _Ui5Element.prototype.detached.call(this);
+            try {
+                if ($(this.element).closest("[ui5-container]").length > 0) {
+                    if (this._parent && this._relation) {
+                        this._parent.removeChildByRelation(this._uploadcollectionitem, this._relation);
+                    }
+                } else {
+                    this._uploadcollectionitem.destroy();
+                }
+                _Ui5Element.prototype.detached.call(this);
+            } catch (err) {}
         };
 
         Ui5UploadCollectionItem.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -221,34 +229,56 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                     elem = _i.value;
                 }
 
-                if (elem.localName == 'attributes') {
-                    var _index = null;if (afterElement) _index = this._uploadcollectionitem.indexOfAttribute(afterElement);if (_index) this._uploadcollectionitem.insertAttribute(child, _index + 1);else this._uploadcollectionitem.addAttribute(child, 0);return elem.localName;
-                }
-                if (elem.localName == 'statuses') {
-                    var _index = null;if (afterElement) _index = this._uploadcollectionitem.indexOfStatus(afterElement);if (_index) this._uploadcollectionitem.insertStatus(child, _index + 1);else this._uploadcollectionitem.addStatus(child, 0);return elem.localName;
-                }
-                if (elem.localName == 'markers') {
-                    var _index = null;if (afterElement) _index = this._uploadcollectionitem.indexOfMarker(afterElement);if (_index) this._uploadcollectionitem.insertMarker(child, _index + 1);else this._uploadcollectionitem.addMarker(child, 0);return elem.localName;
-                }
+                try {
+                    if (elem.localName == 'attributes') {
+                        var _index = null;if (afterElement) _index = this._uploadcollectionitem.indexOfAttribute(afterElement);if (_index) this._uploadcollectionitem.insertAttribute(child, _index + 1);else this._uploadcollectionitem.addAttribute(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'statuses') {
+                        var _index = null;if (afterElement) _index = this._uploadcollectionitem.indexOfStatus(afterElement);if (_index) this._uploadcollectionitem.insertStatus(child, _index + 1);else this._uploadcollectionitem.addStatus(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'markers') {
+                        var _index = null;if (afterElement) _index = this._uploadcollectionitem.indexOfMarker(afterElement);if (_index) this._uploadcollectionitem.insertMarker(child, _index + 1);else this._uploadcollectionitem.addMarker(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'tooltip') {
+                        this._uploadcollectionitem.setTooltip(child);return elem.localName;
+                    }
+                    if (elem.localName == 'customdata') {
+                        var _index = null;if (afterElement) _index = this._uploadcollectionitem.indexOfCustomData(afterElement);if (_index) this._uploadcollectionitem.insertCustomData(child, _index + 1);else this._uploadcollectionitem.addCustomData(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'layoutdata') {
+                        this._uploadcollectionitem.setLayoutData(child);return elem.localName;
+                    }
+                    if (elem.localName == 'dependents') {
+                        var _index = null;if (afterElement) _index = this._uploadcollectionitem.indexOfDependent(afterElement);if (_index) this._uploadcollectionitem.insertDependent(child, _index + 1);else this._uploadcollectionitem.addDependent(child, 0);return elem.localName;
+                    }
+                } catch (err) {}
             }
         };
 
         Ui5UploadCollectionItem.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-            if (relation == 'attributes') {
-                this._uploadcollectionitem.removeAttribute(child);
-            }
-            if (relation == 'statuses') {
-                this._uploadcollectionitem.removeStatus(child);
-            }
-            if (relation == 'markers') {
-                this._uploadcollectionitem.removeMarker(child);
-            }
-        };
-
-        Ui5UploadCollectionItem.prototype.contributorChanged = function contributorChanged(newValue) {
-            if (this._uploadcollectionitem !== null) {
-                this._uploadcollectionitem.setContributor(newValue);
-            }
+            try {
+                if (relation == 'attributes') {
+                    this._uploadcollectionitem.removeAttribute(child);
+                }
+                if (relation == 'statuses') {
+                    this._uploadcollectionitem.removeStatus(child);
+                }
+                if (relation == 'markers') {
+                    this._uploadcollectionitem.removeMarker(child);
+                }
+                if (relation == 'tooltip') {
+                    this._uploadcollectionitem.destroyTooltip(child);
+                }
+                if (relation == 'customdata') {
+                    this._uploadcollectionitem.removeCustomData(child);
+                }
+                if (relation == 'layoutData') {
+                    this._uploadcollectionitem.destroyLayoutData(child);
+                }
+                if (relation == 'dependents') {
+                    this._uploadcollectionitem.removeDependent(child);
+                }
+            } catch (err) {}
         };
 
         Ui5UploadCollectionItem.prototype.documentIdChanged = function documentIdChanged(newValue) {
@@ -263,12 +293,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             }
         };
 
-        Ui5UploadCollectionItem.prototype.fileSizeChanged = function fileSizeChanged(newValue) {
-            if (this._uploadcollectionitem !== null) {
-                this._uploadcollectionitem.setFileSize(newValue);
-            }
-        };
-
         Ui5UploadCollectionItem.prototype.mimeTypeChanged = function mimeTypeChanged(newValue) {
             if (this._uploadcollectionitem !== null) {
                 this._uploadcollectionitem.setMimeType(newValue);
@@ -278,12 +302,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         Ui5UploadCollectionItem.prototype.thumbnailUrlChanged = function thumbnailUrlChanged(newValue) {
             if (this._uploadcollectionitem !== null) {
                 this._uploadcollectionitem.setThumbnailUrl(newValue);
-            }
-        };
-
-        Ui5UploadCollectionItem.prototype.uploadedDateChanged = function uploadedDateChanged(newValue) {
-            if (this._uploadcollectionitem !== null) {
-                this._uploadcollectionitem.setUploadedDate(newValue);
             }
         };
 
@@ -341,6 +359,36 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             }
         };
 
+        Ui5UploadCollectionItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+            if (this._uploadcollectionitem !== null) {
+                this._uploadcollectionitem.attachValidationSuccess(newValue);
+            }
+        };
+
+        Ui5UploadCollectionItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+            if (this._uploadcollectionitem !== null) {
+                this._uploadcollectionitem.attachValidationError(newValue);
+            }
+        };
+
+        Ui5UploadCollectionItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+            if (this._uploadcollectionitem !== null) {
+                this._uploadcollectionitem.attachParseError(newValue);
+            }
+        };
+
+        Ui5UploadCollectionItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+            if (this._uploadcollectionitem !== null) {
+                this._uploadcollectionitem.attachFormatError(newValue);
+            }
+        };
+
+        Ui5UploadCollectionItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+            if (this._uploadcollectionitem !== null) {
+                this._uploadcollectionitem.attachModelContextChange(newValue);
+            }
+        };
+
         _createClass(Ui5UploadCollectionItem, [{
             key: 'UIElement',
             get: function get() {
@@ -354,85 +402,95 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'contributor', [_dec3], {
+    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'documentId', [_dec3], {
         enumerable: true,
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'documentId', [_dec4], {
+    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'fileName', [_dec4], {
         enumerable: true,
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'fileName', [_dec5], {
+    }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'mimeType', [_dec5], {
         enumerable: true,
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'fileSize', [_dec6], {
+    }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'thumbnailUrl', [_dec6], {
         enumerable: true,
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'mimeType', [_dec7], {
+    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'url', [_dec7], {
         enumerable: true,
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'thumbnailUrl', [_dec8], {
-        enumerable: true,
-        initializer: function initializer() {
-            return null;
-        }
-    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'uploadedDate', [_dec9], {
-        enumerable: true,
-        initializer: function initializer() {
-            return null;
-        }
-    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'url', [_dec10], {
-        enumerable: true,
-        initializer: function initializer() {
-            return null;
-        }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'enableEdit', [_dec11], {
+    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'enableEdit', [_dec8], {
         enumerable: true,
         initializer: function initializer() {
             return true;
         }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'enableDelete', [_dec12], {
+    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'enableDelete', [_dec9], {
         enumerable: true,
         initializer: function initializer() {
             return true;
         }
-    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'visibleEdit', [_dec13], {
+    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'visibleEdit', [_dec10], {
         enumerable: true,
         initializer: function initializer() {
             return true;
         }
-    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'visibleDelete', [_dec14], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'visibleDelete', [_dec11], {
         enumerable: true,
         initializer: function initializer() {
             return true;
         }
-    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'ariaLabelForPicture', [_dec15], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'ariaLabelForPicture', [_dec12], {
         enumerable: true,
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'selected', [_dec16], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'selected', [_dec13], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec17], {
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec14], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'deletePress', [_dec18], {
+    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'deletePress', [_dec15], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec19], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec16], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec17], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec18], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec19], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec20], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec21], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

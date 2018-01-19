@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, Ui5SlideTile;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, Ui5SlideTile;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5SlideTile', Ui5SlideTile = (_dec = customElement('ui5-slide-tile'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = computedFrom('_slidetile'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5SlideTile', Ui5SlideTile = (_dec = customElement('ui5-slide-tile'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = computedFrom('_slidetile'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5SlideTile, _Ui5Control);
 
                 function Ui5SlideTile(element) {
@@ -145,6 +145,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'validateFieldGroup', _descriptor10, _this);
 
+                    _initDefineProp(_this, 'validationSuccess', _descriptor11, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor12, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor13, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor14, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor15, _this);
+
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
                     return _this;
@@ -154,6 +164,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.displayTime = this.displayTime ? parseInt(this.displayTime) : 0;
                     params.transitionTime = this.transitionTime ? parseInt(this.transitionTime) : 0;
                     params.scope = this.scope;
+                    params.press = this.press == null ? this.defaultFunc : this.press;
                 };
 
                 Ui5SlideTile.prototype.defaultFunc = function defaultFunc() {};
@@ -164,17 +175,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
                     _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._slidetile = new sap.m.SlideTile(this.ui5Id, params);else this._slidetile = new sap.m.SlideTile(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._slidetile.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._slidetile, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._slidetile, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._slidetile, this.element);
@@ -190,12 +202,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5SlideTile.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._slidetile, this._relation);
-                    } else {
-                        this._slidetile.destroy();
-                    }
-                    _Ui5Control.prototype.detached.call(this);
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._slidetile, this._relation);
+                            }
+                        } else {
+                            this._slidetile.destroy();
+                        }
+                        _Ui5Control.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5SlideTile.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -210,16 +226,44 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             elem = _i.value;
                         }
 
-                        if (elem.localName == 'tiles') {
-                            var _index = null;if (afterElement) _index = this._slidetile.indexOfTile(afterElement);if (_index) this._slidetile.insertTile(child, _index + 1);else this._slidetile.addTile(child, 0);return elem.localName;
-                        }
+                        try {
+                            if (elem.localName == 'tiles') {
+                                var _index = null;if (afterElement) _index = this._slidetile.indexOfTile(afterElement);if (_index) this._slidetile.insertTile(child, _index + 1);else this._slidetile.addTile(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'tooltip') {
+                                this._slidetile.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._slidetile.indexOfCustomData(afterElement);if (_index) this._slidetile.insertCustomData(child, _index + 1);else this._slidetile.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._slidetile.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._slidetile.indexOfDependent(afterElement);if (_index) this._slidetile.insertDependent(child, _index + 1);else this._slidetile.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
                 Ui5SlideTile.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-                    if (relation == 'tiles') {
-                        this._slidetile.removeTile(child);
-                    }
+                    try {
+                        if (relation == 'tiles') {
+                            this._slidetile.removeTile(child);
+                        }
+                        if (relation == 'tooltip') {
+                            this._slidetile.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._slidetile.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._slidetile.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._slidetile.removeDependent(child);
+                        }
+                    } catch (err) {}
                 };
 
                 Ui5SlideTile.prototype.displayTimeChanged = function displayTimeChanged(newValue) {
@@ -273,6 +317,36 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5SlideTile.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
                     if (this._slidetile !== null) {
                         this._slidetile.attachValidateFieldGroup(newValue);
+                    }
+                };
+
+                Ui5SlideTile.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._slidetile !== null) {
+                        this._slidetile.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5SlideTile.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._slidetile !== null) {
+                        this._slidetile.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5SlideTile.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._slidetile !== null) {
+                        this._slidetile.attachParseError(newValue);
+                    }
+                };
+
+                Ui5SlideTile.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._slidetile !== null) {
+                        this._slidetile.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5SlideTile.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._slidetile !== null) {
+                        this._slidetile.attachModelContextChange(newValue);
                     }
                 };
 
@@ -334,7 +408,32 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec12], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec12], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec14], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec15], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec16], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec17], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5SlideTile', Ui5SlideTile);
         }

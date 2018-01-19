@@ -33,6 +33,11 @@ export class Ui5MessageView {
                params.asyncDescriptionHandler = this.asyncDescriptionHandler;
 params.asyncURLHandler = this.asyncURLHandler;
 params.groupItems = getBooleanFromAttributeValue(this.groupItems);
+params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
+params.itemSelect = this.itemSelect==null ? this.defaultFunc: this.itemSelect;
+params.listSelect = this.listSelect==null ? this.defaultFunc: this.listSelect;
+params.longtextLoaded = this.longtextLoaded==null ? this.defaultFunc: this.longtextLoaded;
+params.urlValidated = this.urlValidated==null ? this.defaultFunc: this.urlValidated;
             
         }
         defaultFunc() {
@@ -46,11 +51,12 @@ params.groupItems = getBooleanFromAttributeValue(this.groupItems);
           this._messageview = new sap.m.MessageView(this.ui5Id, params);
         else
           this._messageview = new sap.m.MessageView(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._messageview.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._messageview, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -58,7 +64,7 @@ params.groupItems = getBooleanFromAttributeValue(this.groupItems);
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._messageview, this.element, prevSibling);
         }
@@ -82,26 +88,38 @@ params.groupItems = getBooleanFromAttributeValue(this.groupItems);
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._messageview, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._messageview.destroy();
                                                             }
          
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._messageview.indexOfItem(afterElement); if (_index)this._messageview.insertItem(child, _index + 1); else this._messageview.addItem(child, 0);  return elem.localName; }
-if (elem.localName == 'headerButton') { this._messageview.setHeaderButton(child); return elem.localName;}
+        try{
+                 if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._messageview.indexOfItem(afterElement); if (_index)this._messageview.insertItem(child, _index + 1); else this._messageview.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'headerbutton') { this._messageview.setHeaderButton(child); return elem.localName;}
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'items') {  this._messageview.removeItem(child); }
+      try{
+               if (relation == 'items') {  this._messageview.removeItem(child);}
+if (relation == 'headerButton') {  this._messageview.destroyHeaderButton(child); }
 
+      }
+      catch(err){}
                                                                             }
     asyncDescriptionHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncDescriptionHandler(newValue);}}
 asyncURLHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncURLHandler(newValue);}}

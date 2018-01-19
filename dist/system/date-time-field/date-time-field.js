@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../input-base/input-base'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5InputBase, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, Ui5DateTimeField;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5InputBase, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, Ui5DateTimeField;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5DateTimeField', Ui5DateTimeField = (_dec = customElement('ui5-date-time-field'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = computedFrom('_datetimefield'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5InputBase) {
+            _export('Ui5DateTimeField', Ui5DateTimeField = (_dec = customElement('ui5-date-time-field'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = bindable(), _dec27 = bindable(), _dec28 = bindable(), _dec29 = computedFrom('_datetimefield'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5InputBase) {
                 _inherits(Ui5DateTimeField, _Ui5InputBase);
 
                 function Ui5DateTimeField(element) {
@@ -169,6 +169,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'validateFieldGroup', _descriptor22, _this);
 
+                    _initDefineProp(_this, 'validationSuccess', _descriptor23, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor24, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor25, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor26, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor27, _this);
+
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
                     return _this;
@@ -188,17 +198,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
                     _Ui5InputBase.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._datetimefield = new sap.m.DateTimeField(this.ui5Id, params);else this._datetimefield = new sap.m.DateTimeField(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._datetimefield.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._datetimefield, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._datetimefield, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._datetimefield, this.element);
@@ -214,12 +225,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5DateTimeField.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._datetimefield, this._relation);
-                    } else {
-                        this._datetimefield.destroy();
-                    }
-                    _Ui5InputBase.prototype.detached.call(this);
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._datetimefield, this._relation);
+                            }
+                        } else {
+                            this._datetimefield.destroy();
+                        }
+                        _Ui5InputBase.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5DateTimeField.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -233,10 +248,40 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             if (_i.done) break;
                             elem = _i.value;
                         }
+
+                        try {
+                            if (elem.localName == 'tooltip') {
+                                this._datetimefield.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._datetimefield.indexOfCustomData(afterElement);if (_index) this._datetimefield.insertCustomData(child, _index + 1);else this._datetimefield.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._datetimefield.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._datetimefield.indexOfDependent(afterElement);if (_index) this._datetimefield.insertDependent(child, _index + 1);else this._datetimefield.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
-                Ui5DateTimeField.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+                Ui5DateTimeField.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+                    try {
+                        if (relation == 'tooltip') {
+                            this._datetimefield.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._datetimefield.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._datetimefield.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._datetimefield.removeDependent(child);
+                        }
+                    } catch (err) {}
+                };
 
                 Ui5DateTimeField.prototype.displayFormatChanged = function displayFormatChanged(newValue) {
                     if (this._datetimefield !== null) {
@@ -364,6 +409,36 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     }
                 };
 
+                Ui5DateTimeField.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._datetimefield !== null) {
+                        this._datetimefield.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5DateTimeField.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._datetimefield !== null) {
+                        this._datetimefield.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5DateTimeField.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._datetimefield !== null) {
+                        this._datetimefield.attachParseError(newValue);
+                    }
+                };
+
+                Ui5DateTimeField.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._datetimefield !== null) {
+                        this._datetimefield.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5DateTimeField.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._datetimefield !== null) {
+                        this._datetimefield.attachModelContextChange(newValue);
+                    }
+                };
+
                 _createClass(Ui5DateTimeField, [{
                     key: 'UIElement',
                     get: function get() {
@@ -482,7 +557,32 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec24], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec24], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec25], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec26], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec27], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec28], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec29], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5DateTimeField', Ui5DateTimeField);
         }

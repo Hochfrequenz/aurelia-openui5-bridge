@@ -21,6 +21,15 @@ export class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem{
 @bindable() enabled = true;
 @bindable() textDirection = 'Inherit';
 @bindable() key = null;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -33,6 +42,7 @@ export class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem{
           }
         fillProperties(params){
                params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
+params.filterDetailItemsAggregationChange = this.filterDetailItemsAggregationChange==null ? this.defaultFunc: this.filterDetailItemsAggregationChange;
             
         }
         defaultFunc() {
@@ -46,11 +56,12 @@ export class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem{
           this._viewsettingsfilteritem = new sap.m.ViewSettingsFilterItem(this.ui5Id, params);
         else
           this._viewsettingsfilteritem = new sap.m.ViewSettingsFilterItem(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._viewsettingsfilteritem.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._viewsettingsfilteritem, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -58,7 +69,7 @@ export class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem{
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._viewsettingsfilteritem, this.element, prevSibling);
         }
@@ -82,25 +93,44 @@ export class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem{
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._viewsettingsfilteritem, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._viewsettingsfilteritem.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._viewsettingsfilteritem.indexOfItem(afterElement); if (_index)this._viewsettingsfilteritem.insertItem(child, _index + 1); else this._viewsettingsfilteritem.addItem(child, 0);  return elem.localName; }
+        try{
+                 if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._viewsettingsfilteritem.indexOfItem(afterElement); if (_index)this._viewsettingsfilteritem.insertItem(child, _index + 1); else this._viewsettingsfilteritem.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._viewsettingsfilteritem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._viewsettingsfilteritem.indexOfCustomData(afterElement); if (_index)this._viewsettingsfilteritem.insertCustomData(child, _index + 1); else this._viewsettingsfilteritem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._viewsettingsfilteritem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._viewsettingsfilteritem.indexOfDependent(afterElement); if (_index)this._viewsettingsfilteritem.insertDependent(child, _index + 1); else this._viewsettingsfilteritem.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'items') {  this._viewsettingsfilteritem.removeItem(child); }
+      try{
+               if (relation == 'items') {  this._viewsettingsfilteritem.removeItem(child);}
+if (relation == 'tooltip') {  this._viewsettingsfilteritem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._viewsettingsfilteritem.removeCustomData(child);}
+if (relation == 'layoutData') {  this._viewsettingsfilteritem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._viewsettingsfilteritem.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
     multiSelectChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
 filterDetailItemsAggregationChangeChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.attachFilterDetailItemsAggregationChange(newValue);}}
@@ -112,6 +142,15 @@ enabledChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsett
 textDirectionChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.setTextDirection(newValue);}}
 keyChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.setKey(newValue);}}
 /* inherited from sap.ui.core.Item*/
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

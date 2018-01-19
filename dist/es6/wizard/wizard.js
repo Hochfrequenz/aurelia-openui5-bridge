@@ -16,6 +16,7 @@ export class Ui5Wizard extends Ui5Control{
 @bindable() showNextButton = true;
 @bindable() finishButtonText = 'Review';
 @bindable() enableBranching = false;
+@bindable() lastStep = false;
 @bindable() stepActivate = this.defaultFunc;
 @bindable() complete = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
@@ -24,6 +25,15 @@ export class Ui5Wizard extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -40,6 +50,8 @@ params.height = this.height;
 params.showNextButton = getBooleanFromAttributeValue(this.showNextButton);
 params.finishButtonText = this.finishButtonText;
 params.enableBranching = getBooleanFromAttributeValue(this.enableBranching);
+params.stepActivate = this.stepActivate==null ? this.defaultFunc: this.stepActivate;
+params.complete = this.complete==null ? this.defaultFunc: this.complete;
             
         }
         defaultFunc() {
@@ -53,11 +65,12 @@ params.enableBranching = getBooleanFromAttributeValue(this.enableBranching);
           this._wizard = new sap.m.Wizard(this.ui5Id, params);
         else
           this._wizard = new sap.m.Wizard(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._wizard.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._wizard, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -65,7 +78,7 @@ params.enableBranching = getBooleanFromAttributeValue(this.enableBranching);
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._wizard, this.element, prevSibling);
         }
@@ -80,7 +93,8 @@ params.enableBranching = getBooleanFromAttributeValue(this.enableBranching);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
-        
+        this._wizard.attachStepActivate((event) => { that.lastStep = event.mParameters.index == that._wizard.getSteps().length;; });
+
                                                         //<!container>
            
                                                         //</!container>
@@ -89,25 +103,44 @@ params.enableBranching = getBooleanFromAttributeValue(this.enableBranching);
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._wizard, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._wizard.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'steps') { var _index = null; if (afterElement) _index = this._wizard.indexOfStep(afterElement); if (_index)this._wizard.insertStep(child, _index + 1); else this._wizard.addStep(child, 0);  return elem.localName; }
+        try{
+                 if (elem.localName == 'steps') { var _index = null; if (afterElement) _index = this._wizard.indexOfStep(afterElement); if (_index)this._wizard.addStep(child, _index + 1); else this._wizard.addStep(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._wizard.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._wizard.indexOfCustomData(afterElement); if (_index)this._wizard.addCustomData(child, _index + 1); else this._wizard.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._wizard.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._wizard.indexOfDependent(afterElement); if (_index)this._wizard.addDependent(child, _index + 1); else this._wizard.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'steps') {  this._wizard.removeStep(child); }
+      try{
+               if (relation == 'steps') {  this._wizard.removeStep(child);}
+if (relation == 'tooltip') {  this._wizard.destroyTooltip(child); }
+if (relation == 'customdata') {  this._wizard.removeCustomData(child);}
+if (relation == 'layoutData') {  this._wizard.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._wizard.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
     widthChanged(newValue){if(this._wizard!==null){ this._wizard.setWidth(newValue);}}
 heightChanged(newValue){if(this._wizard!==null){ this._wizard.setHeight(newValue);}}
@@ -122,6 +155,15 @@ visibleChanged(newValue){if(this._wizard!==null){ this._wizard.setVisible(getBoo
 fieldGroupIdsChanged(newValue){if(this._wizard!==null){ this._wizard.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._wizard!==null){ this._wizard.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._wizard!==null){ this._wizard.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._wizard!==null){ this._wizard.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._wizard!==null){ this._wizard.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._wizard!==null){ this._wizard.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._wizard!==null){ this._wizard.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

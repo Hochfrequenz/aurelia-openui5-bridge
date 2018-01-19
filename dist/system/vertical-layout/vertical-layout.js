@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, Ui5VerticalLayout;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, Ui5VerticalLayout;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5VerticalLayout', Ui5VerticalLayout = (_dec = customElement('ui5-vertical-layout'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = computedFrom('_verticallayout'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5VerticalLayout', Ui5VerticalLayout = (_dec = customElement('ui5-vertical-layout'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = computedFrom('_verticallayout'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5VerticalLayout, _Ui5Control);
 
                 function Ui5VerticalLayout(element) {
@@ -141,6 +141,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'validateFieldGroup', _descriptor8, _this);
 
+                    _initDefineProp(_this, 'validationSuccess', _descriptor9, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor10, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor11, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor12, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor13, _this);
+
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
                     return _this;
@@ -159,17 +169,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
                     _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._verticallayout = new sap.ui.layout.VerticalLayout(this.ui5Id, params);else this._verticallayout = new sap.ui.layout.VerticalLayout(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._verticallayout.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._verticallayout, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._verticallayout, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._verticallayout, this.element);
@@ -185,12 +196,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5VerticalLayout.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._verticallayout, this._relation);
-                    } else {
-                        this._verticallayout.destroy();
-                    }
-                    _Ui5Control.prototype.detached.call(this);
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._verticallayout, this._relation);
+                            }
+                        } else {
+                            this._verticallayout.destroy();
+                        }
+                        _Ui5Control.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5VerticalLayout.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -205,16 +220,44 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             elem = _i.value;
                         }
 
-                        if (elem.localName == 'content') {
-                            var _index = null;if (afterElement) _index = this._verticallayout.indexOfContent(afterElement);if (_index) this._verticallayout.insertContent(child, _index + 1);else this._verticallayout.addContent(child, 0);return elem.localName;
-                        }
+                        try {
+                            if (elem.localName == 'content') {
+                                var _index = null;if (afterElement) _index = this._verticallayout.indexOfContent(afterElement);if (_index) this._verticallayout.insertContent(child, _index + 1);else this._verticallayout.addContent(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'tooltip') {
+                                this._verticallayout.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._verticallayout.indexOfCustomData(afterElement);if (_index) this._verticallayout.insertCustomData(child, _index + 1);else this._verticallayout.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._verticallayout.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._verticallayout.indexOfDependent(afterElement);if (_index) this._verticallayout.insertDependent(child, _index + 1);else this._verticallayout.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
                 Ui5VerticalLayout.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-                    if (relation == 'content') {
-                        this._verticallayout.removeContent(child);
-                    }
+                    try {
+                        if (relation == 'content') {
+                            this._verticallayout.removeContent(child);
+                        }
+                        if (relation == 'tooltip') {
+                            this._verticallayout.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._verticallayout.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._verticallayout.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._verticallayout.removeDependent(child);
+                        }
+                    } catch (err) {}
                 };
 
                 Ui5VerticalLayout.prototype.widthChanged = function widthChanged(newValue) {
@@ -256,6 +299,36 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5VerticalLayout.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
                     if (this._verticallayout !== null) {
                         this._verticallayout.attachValidateFieldGroup(newValue);
+                    }
+                };
+
+                Ui5VerticalLayout.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._verticallayout !== null) {
+                        this._verticallayout.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5VerticalLayout.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._verticallayout !== null) {
+                        this._verticallayout.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5VerticalLayout.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._verticallayout !== null) {
+                        this._verticallayout.attachParseError(newValue);
+                    }
+                };
+
+                Ui5VerticalLayout.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._verticallayout !== null) {
+                        this._verticallayout.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5VerticalLayout.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._verticallayout !== null) {
+                        this._verticallayout.attachModelContextChange(newValue);
                     }
                 };
 
@@ -307,7 +380,32 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec10], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec10], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec11], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec12], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec14], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec15], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5VerticalLayout', Ui5VerticalLayout);
         }

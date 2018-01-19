@@ -35,6 +35,15 @@ export class Ui5ResponsivePopover extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -60,6 +69,10 @@ params.horizontalScrolling = getBooleanFromAttributeValue(this.horizontalScrolli
 params.verticalScrolling = getBooleanFromAttributeValue(this.verticalScrolling);
 params.showCloseButton = getBooleanFromAttributeValue(this.showCloseButton);
 params.resizable = getBooleanFromAttributeValue(this.resizable);
+params.beforeOpen = this.beforeOpen==null ? this.defaultFunc: this.beforeOpen;
+params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
+params.beforeClose = this.beforeClose==null ? this.defaultFunc: this.beforeClose;
+params.afterClose = this.afterClose==null ? this.defaultFunc: this.afterClose;
             
         }
         defaultFunc() {
@@ -73,11 +86,12 @@ params.resizable = getBooleanFromAttributeValue(this.resizable);
           this._responsivepopover = new sap.m.ResponsivePopover(this.ui5Id, params);
         else
           this._responsivepopover = new sap.m.ResponsivePopover(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._responsivepopover.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._responsivepopover, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -85,7 +99,7 @@ params.resizable = getBooleanFromAttributeValue(this.resizable);
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._responsivepopover, this.element, prevSibling);
         }
@@ -109,29 +123,52 @@ params.resizable = getBooleanFromAttributeValue(this.resizable);
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._responsivepopover, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._responsivepopover.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._responsivepopover.indexOfContent(afterElement); if (_index)this._responsivepopover.insertContent(child, _index + 1); else this._responsivepopover.addContent(child, 0);  return elem.localName; }
-if (elem.localName == 'customHeader') { this._responsivepopover.setCustomHeader(child); return elem.localName;}
-if (elem.localName == 'subHeader') { this._responsivepopover.setSubHeader(child); return elem.localName;}
-if (elem.localName == 'beginButton') { this._responsivepopover.setBeginButton(child); return elem.localName;}
-if (elem.localName == 'endButton') { this._responsivepopover.setEndButton(child); return elem.localName;}
+        try{
+                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._responsivepopover.indexOfContent(afterElement); if (_index)this._responsivepopover.insertContent(child, _index + 1); else this._responsivepopover.addContent(child, 0);  return elem.localName; }
+if (elem.localName == 'customheader') { this._responsivepopover.setCustomHeader(child); return elem.localName;}
+if (elem.localName == 'subheader') { this._responsivepopover.setSubHeader(child); return elem.localName;}
+if (elem.localName == 'beginbutton') { this._responsivepopover.setBeginButton(child); return elem.localName;}
+if (elem.localName == 'endbutton') { this._responsivepopover.setEndButton(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._responsivepopover.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._responsivepopover.indexOfCustomData(afterElement); if (_index)this._responsivepopover.insertCustomData(child, _index + 1); else this._responsivepopover.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._responsivepopover.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._responsivepopover.indexOfDependent(afterElement); if (_index)this._responsivepopover.insertDependent(child, _index + 1); else this._responsivepopover.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'content') {  this._responsivepopover.removeContent(child); }
+      try{
+               if (relation == 'content') {  this._responsivepopover.removeContent(child);}
+if (relation == 'customHeader') {  this._responsivepopover.destroyCustomHeader(child); }
+if (relation == 'subHeader') {  this._responsivepopover.destroySubHeader(child); }
+if (relation == 'beginButton') {  this._responsivepopover.destroyBeginButton(child); }
+if (relation == 'endButton') {  this._responsivepopover.destroyEndButton(child); }
+if (relation == 'tooltip') {  this._responsivepopover.destroyTooltip(child); }
+if (relation == 'customdata') {  this._responsivepopover.removeCustomData(child);}
+if (relation == 'layoutData') {  this._responsivepopover.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._responsivepopover.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
     placementChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setPlacement(newValue);}}
 showHeaderChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setShowHeader(getBooleanFromAttributeValue(newValue));}}
@@ -157,6 +194,15 @@ visibleChanged(newValue){if(this._responsivepopover!==null){ this._responsivepop
 fieldGroupIdsChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

@@ -33,6 +33,15 @@ export class Ui5Select extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -59,6 +68,7 @@ params.valueState = this.valueState;
 params.valueStateText = this.valueStateText;
 params.showSecondaryValues = getBooleanFromAttributeValue(this.showSecondaryValues);
 params.forceSelection = getBooleanFromAttributeValue(this.forceSelection);
+params.change = this.change==null ? this.defaultFunc: this.change;
             
         }
         defaultFunc() {
@@ -72,11 +82,12 @@ params.forceSelection = getBooleanFromAttributeValue(this.forceSelection);
           this._select = new sap.m.Select(this.ui5Id, params);
         else
           this._select = new sap.m.Select(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._select.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._select, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -84,7 +95,7 @@ params.forceSelection = getBooleanFromAttributeValue(this.forceSelection);
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._select, this.element, prevSibling);
         }
@@ -99,7 +110,8 @@ params.forceSelection = getBooleanFromAttributeValue(this.forceSelection);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
-        
+        this._select.attachChange((event) => { that.selectedItem = event.mParameters.selectedItem;   if (event.mParameters.selectedItem)  that.selectedKey = event.mParameters.selectedItem.mProperties.key;  else    that.selectedKey = null;; });
+
                                                         //<!container>
            
                                                         //</!container>
@@ -108,25 +120,44 @@ params.forceSelection = getBooleanFromAttributeValue(this.forceSelection);
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._select, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._select.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._select.indexOfItem(afterElement); if (_index)this._select.insertItem(child, _index + 1); else this._select.addItem(child, 0);  return elem.localName; }
+        try{
+                 if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._select.indexOfItem(afterElement); if (_index)this._select.insertItem(child, _index + 1); else this._select.addItem(child, 0);  var oldVal = this.selectedKey; this.selectedKey = null; this.selectedKey = oldVal; return elem.localName; }
+if (elem.localName == 'tooltip') { this._select.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._select.indexOfCustomData(afterElement); if (_index)this._select.insertCustomData(child, _index + 1); else this._select.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._select.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._select.indexOfDependent(afterElement); if (_index)this._select.insertDependent(child, _index + 1); else this._select.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'items') {  this._select.removeItem(child); }
+      try{
+               if (relation == 'items') {  this._select.removeItem(child);  var oldVal = this.selectedKey; this.selectedKey = null; this.selectedKey = oldVal;}
+if (relation == 'tooltip') {  this._select.destroyTooltip(child); }
+if (relation == 'customdata') {  this._select.removeCustomData(child);}
+if (relation == 'layoutData') {  this._select.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._select.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
     nameChanged(newValue){if(this._select!==null){ this._select.setName(newValue);}}
 enabledChanged(newValue){if(this._select!==null){ this._select.setEnabled(getBooleanFromAttributeValue(newValue));}}
@@ -150,6 +181,15 @@ visibleChanged(newValue){if(this._select!==null){ this._select.setVisible(getBoo
 fieldGroupIdsChanged(newValue){if(this._select!==null){ this._select.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._select!==null){ this._select.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._select!==null){ this._select.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._select!==null){ this._select.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._select!==null){ this._select.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._select!==null){ this._select.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._select!==null){ this._select.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

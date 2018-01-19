@@ -19,6 +19,15 @@ export class Ui5Tile extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -31,6 +40,7 @@ export class Ui5Tile extends Ui5Control{
           }
         fillProperties(params){
                params.removable = getBooleanFromAttributeValue(this.removable);
+params.press = this.press==null ? this.defaultFunc: this.press;
             
         }
         defaultFunc() {
@@ -44,11 +54,12 @@ export class Ui5Tile extends Ui5Control{
           this._tile = new sap.m.Tile(this.ui5Id, params);
         else
           this._tile = new sap.m.Tile(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._tile.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._tile, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -56,7 +67,7 @@ export class Ui5Tile extends Ui5Control{
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._tile, this.element, prevSibling);
         }
@@ -80,23 +91,42 @@ export class Ui5Tile extends Ui5Control{
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._tile, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._tile.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                
+        try{
+                 if (elem.localName == 'tooltip') { this._tile.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._tile.indexOfCustomData(afterElement); if (_index)this._tile.insertCustomData(child, _index + 1); else this._tile.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._tile.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._tile.indexOfDependent(afterElement); if (_index)this._tile.insertDependent(child, _index + 1); else this._tile.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        
+      try{
+               if (relation == 'tooltip') {  this._tile.destroyTooltip(child); }
+if (relation == 'customdata') {  this._tile.removeCustomData(child);}
+if (relation == 'layoutData') {  this._tile.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._tile.removeDependent(child);}
+
+      }
+      catch(err){}
                                                                             }
     removableChanged(newValue){if(this._tile!==null){ this._tile.setRemovable(getBooleanFromAttributeValue(newValue));}}
 pressChanged(newValue){if(this._tile!==null){ this._tile.attachPress(newValue);}}
@@ -106,6 +136,15 @@ visibleChanged(newValue){if(this._tile!==null){ this._tile.setVisible(getBoolean
 fieldGroupIdsChanged(newValue){if(this._tile!==null){ this._tile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._tile!==null){ this._tile.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._tile!==null){ this._tile.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._tile!==null){ this._tile.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._tile!==null){ this._tile.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._tile!==null){ this._tile.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._tile!==null){ this._tile.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

@@ -25,6 +25,15 @@ export class Ui5Label extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -57,11 +66,12 @@ params.wrapping = getBooleanFromAttributeValue(this.wrapping);
           this._label = new sap.m.Label(this.ui5Id, params);
         else
           this._label = new sap.m.Label(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._label.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._label, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -69,7 +79,7 @@ params.wrapping = getBooleanFromAttributeValue(this.wrapping);
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._label, this.element, prevSibling);
         }
@@ -93,23 +103,42 @@ params.wrapping = getBooleanFromAttributeValue(this.wrapping);
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._label, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._label.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                
+        try{
+                 if (elem.localName == 'tooltip') { this._label.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._label.indexOfCustomData(afterElement); if (_index)this._label.insertCustomData(child, _index + 1); else this._label.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._label.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._label.indexOfDependent(afterElement); if (_index)this._label.insertDependent(child, _index + 1); else this._label.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        
+      try{
+               if (relation == 'tooltip') {  this._label.destroyTooltip(child); }
+if (relation == 'customdata') {  this._label.removeCustomData(child);}
+if (relation == 'layoutData') {  this._label.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._label.removeDependent(child);}
+
+      }
+      catch(err){}
                                                                             }
     designChanged(newValue){if(this._label!==null){ this._label.setDesign(newValue);}}
 textChanged(newValue){if(this._label!==null){ this._label.setText(newValue);}}
@@ -125,6 +154,15 @@ visibleChanged(newValue){if(this._label!==null){ this._label.setVisible(getBoole
 fieldGroupIdsChanged(newValue){if(this._label!==null){ this._label.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._label!==null){ this._label.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._label!==null){ this._label.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._label!==null){ this._label.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._label!==null){ this._label.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._label!==null){ this._label.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._label!==null){ this._label.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

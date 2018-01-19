@@ -97,9 +97,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14;
 
-    var Ui5ViewSettingsFilterItem = exports.Ui5ViewSettingsFilterItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-view-settings-filter-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaFramework.computedFrom)('_viewsettingsfilteritem'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5ViewSettingsItem) {
+    var Ui5ViewSettingsFilterItem = exports.Ui5ViewSettingsFilterItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-view-settings-filter-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaFramework.computedFrom)('_viewsettingsfilteritem'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5ViewSettingsItem) {
         _inherits(Ui5ViewSettingsFilterItem, _Ui5ViewSettingsItem);
 
         function Ui5ViewSettingsFilterItem(element) {
@@ -129,6 +129,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'key', _descriptor9, _this);
 
+            _initDefineProp(_this, 'validationSuccess', _descriptor10, _this);
+
+            _initDefineProp(_this, 'validationError', _descriptor11, _this);
+
+            _initDefineProp(_this, 'parseError', _descriptor12, _this);
+
+            _initDefineProp(_this, 'formatError', _descriptor13, _this);
+
+            _initDefineProp(_this, 'modelContextChange', _descriptor14, _this);
+
             _this.element = element;
             _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
             return _this;
@@ -136,6 +146,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
         Ui5ViewSettingsFilterItem.prototype.fillProperties = function fillProperties(params) {
             params.multiSelect = (0, _attributes.getBooleanFromAttributeValue)(this.multiSelect);
+            params.filterDetailItemsAggregationChange = this.filterDetailItemsAggregationChange == null ? this.defaultFunc : this.filterDetailItemsAggregationChange;
         };
 
         Ui5ViewSettingsFilterItem.prototype.defaultFunc = function defaultFunc() {};
@@ -146,17 +157,18 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             this.fillProperties(params);
             _Ui5ViewSettingsItem.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._viewsettingsfilteritem = new sap.m.ViewSettingsFilterItem(this.ui5Id, params);else this._viewsettingsfilteritem = new sap.m.ViewSettingsFilterItem(params);
+
             if ($(this.element).closest("[ui5-container]").length > 0) {
                 this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                 if (!this._parent.UIElement || this._parent.UIElement.sId != this._viewsettingsfilteritem.sId) {
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                     this._relation = this._parent.addChild(this._viewsettingsfilteritem, this.element, prevSibling);
                     this.attributeManager.addAttributes({ "ui5-container": '' });
                 } else {
                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) {
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                         prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                         this._relation = this._parent.addChild(this._viewsettingsfilteritem, this.element, prevSibling);
                     } else this._relation = this._parent.addChild(this._viewsettingsfilteritem, this.element);
@@ -172,12 +184,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5ViewSettingsFilterItem.prototype.detached = function detached() {
-            if (this._parent && this._relation) {
-                this._parent.removeChildByRelation(this._viewsettingsfilteritem, this._relation);
-            } else {
-                this._viewsettingsfilteritem.destroy();
-            }
-            _Ui5ViewSettingsItem.prototype.detached.call(this);
+            try {
+                if ($(this.element).closest("[ui5-container]").length > 0) {
+                    if (this._parent && this._relation) {
+                        this._parent.removeChildByRelation(this._viewsettingsfilteritem, this._relation);
+                    }
+                } else {
+                    this._viewsettingsfilteritem.destroy();
+                }
+                _Ui5ViewSettingsItem.prototype.detached.call(this);
+            } catch (err) {}
         };
 
         Ui5ViewSettingsFilterItem.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -192,16 +208,44 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                     elem = _i.value;
                 }
 
-                if (elem.localName == 'items') {
-                    var _index = null;if (afterElement) _index = this._viewsettingsfilteritem.indexOfItem(afterElement);if (_index) this._viewsettingsfilteritem.insertItem(child, _index + 1);else this._viewsettingsfilteritem.addItem(child, 0);return elem.localName;
-                }
+                try {
+                    if (elem.localName == 'items') {
+                        var _index = null;if (afterElement) _index = this._viewsettingsfilteritem.indexOfItem(afterElement);if (_index) this._viewsettingsfilteritem.insertItem(child, _index + 1);else this._viewsettingsfilteritem.addItem(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'tooltip') {
+                        this._viewsettingsfilteritem.setTooltip(child);return elem.localName;
+                    }
+                    if (elem.localName == 'customdata') {
+                        var _index = null;if (afterElement) _index = this._viewsettingsfilteritem.indexOfCustomData(afterElement);if (_index) this._viewsettingsfilteritem.insertCustomData(child, _index + 1);else this._viewsettingsfilteritem.addCustomData(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'layoutdata') {
+                        this._viewsettingsfilteritem.setLayoutData(child);return elem.localName;
+                    }
+                    if (elem.localName == 'dependents') {
+                        var _index = null;if (afterElement) _index = this._viewsettingsfilteritem.indexOfDependent(afterElement);if (_index) this._viewsettingsfilteritem.insertDependent(child, _index + 1);else this._viewsettingsfilteritem.addDependent(child, 0);return elem.localName;
+                    }
+                } catch (err) {}
             }
         };
 
         Ui5ViewSettingsFilterItem.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-            if (relation == 'items') {
-                this._viewsettingsfilteritem.removeItem(child);
-            }
+            try {
+                if (relation == 'items') {
+                    this._viewsettingsfilteritem.removeItem(child);
+                }
+                if (relation == 'tooltip') {
+                    this._viewsettingsfilteritem.destroyTooltip(child);
+                }
+                if (relation == 'customdata') {
+                    this._viewsettingsfilteritem.removeCustomData(child);
+                }
+                if (relation == 'layoutData') {
+                    this._viewsettingsfilteritem.destroyLayoutData(child);
+                }
+                if (relation == 'dependents') {
+                    this._viewsettingsfilteritem.removeDependent(child);
+                }
+            } catch (err) {}
         };
 
         Ui5ViewSettingsFilterItem.prototype.multiSelectChanged = function multiSelectChanged(newValue) {
@@ -249,6 +293,36 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         Ui5ViewSettingsFilterItem.prototype.keyChanged = function keyChanged(newValue) {
             if (this._viewsettingsfilteritem !== null) {
                 this._viewsettingsfilteritem.setKey(newValue);
+            }
+        };
+
+        Ui5ViewSettingsFilterItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+            if (this._viewsettingsfilteritem !== null) {
+                this._viewsettingsfilteritem.attachValidationSuccess(newValue);
+            }
+        };
+
+        Ui5ViewSettingsFilterItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+            if (this._viewsettingsfilteritem !== null) {
+                this._viewsettingsfilteritem.attachValidationError(newValue);
+            }
+        };
+
+        Ui5ViewSettingsFilterItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+            if (this._viewsettingsfilteritem !== null) {
+                this._viewsettingsfilteritem.attachParseError(newValue);
+            }
+        };
+
+        Ui5ViewSettingsFilterItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+            if (this._viewsettingsfilteritem !== null) {
+                this._viewsettingsfilteritem.attachFormatError(newValue);
+            }
+        };
+
+        Ui5ViewSettingsFilterItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+            if (this._viewsettingsfilteritem !== null) {
+                this._viewsettingsfilteritem.attachModelContextChange(newValue);
             }
         };
 
@@ -305,5 +379,30 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return null;
         }
-    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec11], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec11], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec12], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec13], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec14], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec15], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec16], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

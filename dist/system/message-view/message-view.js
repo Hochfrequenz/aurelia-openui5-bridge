@@ -121,6 +121,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.asyncDescriptionHandler = this.asyncDescriptionHandler;
                     params.asyncURLHandler = this.asyncURLHandler;
                     params.groupItems = getBooleanFromAttributeValue(this.groupItems);
+                    params.afterOpen = this.afterOpen == null ? this.defaultFunc : this.afterOpen;
+                    params.itemSelect = this.itemSelect == null ? this.defaultFunc : this.itemSelect;
+                    params.listSelect = this.listSelect == null ? this.defaultFunc : this.listSelect;
+                    params.longtextLoaded = this.longtextLoaded == null ? this.defaultFunc : this.longtextLoaded;
+                    params.urlValidated = this.urlValidated == null ? this.defaultFunc : this.urlValidated;
                 };
 
                 Ui5MessageView.prototype.defaultFunc = function defaultFunc() {};
@@ -131,17 +136,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
 
                     if (this.ui5Id) this._messageview = new sap.m.MessageView(this.ui5Id, params);else this._messageview = new sap.m.MessageView(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._messageview.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._messageview, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._messageview, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._messageview, this.element);
@@ -157,11 +163,15 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5MessageView.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._messageview, this._relation);
-                    } else {
-                        this._messageview.destroy();
-                    }
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._messageview, this._relation);
+                            }
+                        } else {
+                            this._messageview.destroy();
+                        }
+                    } catch (err) {}
                 };
 
                 Ui5MessageView.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -176,19 +186,26 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             elem = _i.value;
                         }
 
-                        if (elem.localName == 'items') {
-                            var _index = null;if (afterElement) _index = this._messageview.indexOfItem(afterElement);if (_index) this._messageview.insertItem(child, _index + 1);else this._messageview.addItem(child, 0);return elem.localName;
-                        }
-                        if (elem.localName == 'headerButton') {
-                            this._messageview.setHeaderButton(child);return elem.localName;
-                        }
+                        try {
+                            if (elem.localName == 'items') {
+                                var _index = null;if (afterElement) _index = this._messageview.indexOfItem(afterElement);if (_index) this._messageview.insertItem(child, _index + 1);else this._messageview.addItem(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'headerbutton') {
+                                this._messageview.setHeaderButton(child);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
                 Ui5MessageView.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-                    if (relation == 'items') {
-                        this._messageview.removeItem(child);
-                    }
+                    try {
+                        if (relation == 'items') {
+                            this._messageview.removeItem(child);
+                        }
+                        if (relation == 'headerButton') {
+                            this._messageview.destroyHeaderButton(child);
+                        }
+                    } catch (err) {}
                 };
 
                 Ui5MessageView.prototype.asyncDescriptionHandlerChanged = function asyncDescriptionHandlerChanged(newValue) {

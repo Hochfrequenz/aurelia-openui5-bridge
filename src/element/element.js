@@ -11,7 +11,15 @@ export class Ui5Element extends Ui5ManagedObject{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
-        
+        /* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
                 constructor(element) {
                     super(element);                    
                 this.element = element;
@@ -35,11 +43,12 @@ export class Ui5Element extends Ui5ManagedObject{
           this._element = new sap.ui.core.Element(this.ui5Id, params);
         else
           this._element = new sap.ui.core.Element(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._element.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._element, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -47,7 +56,7 @@ export class Ui5Element extends Ui5ManagedObject{
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._element, this.element, prevSibling);
         }
@@ -71,30 +80,51 @@ export class Ui5Element extends Ui5ManagedObject{
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._element, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._element.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'tooltip') { this._element.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customData') { var _index = null; if (afterElement) _index = this._element.indexOfCustomData(afterElement); if (_index)this._element.insertCustomData(child, _index + 1); else this._element.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutData') { this._element.setLayoutData(child); return elem.localName;}
+        try{
+                 if (elem.localName == 'tooltip') { this._element.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._element.indexOfCustomData(afterElement); if (_index)this._element.insertCustomData(child, _index + 1); else this._element.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._element.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._element.indexOfDependent(afterElement); if (_index)this._element.insertDependent(child, _index + 1); else this._element.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'customData') {  this._element.removeCustomData(child); }
-if (relation == 'dependents') {  this._element.removeDependent(child); }
+      try{
+               if (relation == 'tooltip') {  this._element.destroyTooltip(child); }
+if (relation == 'customdata') {  this._element.removeCustomData(child);}
+if (relation == 'layoutData') {  this._element.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._element.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
-    
+    /* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._element!==null){ this._element.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._element!==null){ this._element.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._element!==null){ this._element.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._element!==null){ this._element.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._element!==null){ this._element.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
 
                                                                                 }

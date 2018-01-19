@@ -1,10 +1,20 @@
 <template>
-  <div ref="GenericTile">
-    <tileContent ref="tileContent">
-      <slot></slot>
-    </tileContent>
-    <icon ref="icon">
-      <slot name="icon"></slot>
-    </icon>
-  </div>
+  <tileContent ref="tileContent">
+    <slot></slot>
+  </tileContent>
+  <icon ref="icon">
+    <slot name="icon"></slot>
+  </icon>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

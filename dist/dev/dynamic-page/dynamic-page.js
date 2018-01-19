@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, Ui5DynamicPage;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, Ui5DynamicPage;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5DynamicPage', Ui5DynamicPage = (_dec = customElement('ui5-dynamic-page'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = computedFrom('_dynamicpage'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5DynamicPage', Ui5DynamicPage = (_dec = customElement('ui5-dynamic-page'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = computedFrom('_dynamicpage'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5DynamicPage, _Ui5Control);
 
                 function Ui5DynamicPage(element) {
@@ -147,6 +147,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'validateFieldGroup', _descriptor11, _this);
 
+                    _initDefineProp(_this, 'validationSuccess', _descriptor12, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor13, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor14, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor15, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor16, _this);
+
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
                     return _this;
@@ -168,17 +178,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
                     _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._dynamicpage = new sap.f.DynamicPage(this.ui5Id, params);else this._dynamicpage = new sap.f.DynamicPage(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._dynamicpage.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._dynamicpage, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._dynamicpage, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._dynamicpage, this.element);
@@ -194,12 +205,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5DynamicPage.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._dynamicpage, this._relation);
-                    } else {
-                        this._dynamicpage.destroy();
-                    }
-                    _Ui5Control.prototype.detached.call(this);
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._dynamicpage, this._relation);
+                            }
+                        } else {
+                            this._dynamicpage.destroy();
+                        }
+                        _Ui5Control.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5DynamicPage.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -214,22 +229,63 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             elem = _i.value;
                         }
 
-                        if (elem.localName == 'title') {
-                            this._dynamicpage.setTitle(child);return elem.localName;
-                        }
-                        if (elem.localName == 'header') {
-                            this._dynamicpage.setHeader(child);return elem.localName;
-                        }
-                        if (elem.localName == 'content') {
-                            this._dynamicpage.setContent(child);return elem.localName;
-                        }
-                        if (elem.localName == 'footer') {
-                            this._dynamicpage.setFooter(child);return elem.localName;
-                        }
+                        try {
+                            if (elem.localName == 'title') {
+                                this._dynamicpage.setTitle(child);return elem.localName;
+                            }
+                            if (elem.localName == 'header') {
+                                this._dynamicpage.setHeader(child);return elem.localName;
+                            }
+                            if (elem.localName == 'content') {
+                                this._dynamicpage.setContent(child);return elem.localName;
+                            }
+                            if (elem.localName == 'footer') {
+                                this._dynamicpage.setFooter(child);return elem.localName;
+                            }
+                            if (elem.localName == 'tooltip') {
+                                this._dynamicpage.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._dynamicpage.indexOfCustomData(afterElement);if (_index) this._dynamicpage.insertCustomData(child, _index + 1);else this._dynamicpage.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._dynamicpage.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._dynamicpage.indexOfDependent(afterElement);if (_index) this._dynamicpage.insertDependent(child, _index + 1);else this._dynamicpage.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
-                Ui5DynamicPage.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+                Ui5DynamicPage.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+                    try {
+                        if (relation == 'title') {
+                            this._dynamicpage.destroyTitle(child);
+                        }
+                        if (relation == 'header') {
+                            this._dynamicpage.destroyHeader(child);
+                        }
+                        if (relation == 'content') {
+                            this._dynamicpage.destroyContent(child);
+                        }
+                        if (relation == 'footer') {
+                            this._dynamicpage.destroyFooter(child);
+                        }
+                        if (relation == 'tooltip') {
+                            this._dynamicpage.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._dynamicpage.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._dynamicpage.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._dynamicpage.removeDependent(child);
+                        }
+                    } catch (err) {}
+                };
 
                 Ui5DynamicPage.prototype.preserveHeaderStateOnScrollChanged = function preserveHeaderStateOnScrollChanged(newValue) {
                     if (this._dynamicpage !== null) {
@@ -288,6 +344,36 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5DynamicPage.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
                     if (this._dynamicpage !== null) {
                         this._dynamicpage.attachValidateFieldGroup(newValue);
+                    }
+                };
+
+                Ui5DynamicPage.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._dynamicpage !== null) {
+                        this._dynamicpage.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5DynamicPage.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._dynamicpage !== null) {
+                        this._dynamicpage.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5DynamicPage.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._dynamicpage !== null) {
+                        this._dynamicpage.attachParseError(newValue);
+                    }
+                };
+
+                Ui5DynamicPage.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._dynamicpage !== null) {
+                        this._dynamicpage.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5DynamicPage.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._dynamicpage !== null) {
+                        this._dynamicpage.attachModelContextChange(newValue);
                     }
                 };
 
@@ -354,7 +440,32 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec13], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec14], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec15], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec16], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec17], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec18], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5DynamicPage', Ui5DynamicPage);
         }

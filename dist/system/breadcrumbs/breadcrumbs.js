@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, Ui5Breadcrumbs;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, Ui5Breadcrumbs;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5Breadcrumbs', Ui5Breadcrumbs = (_dec = customElement('ui5-breadcrumbs'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = computedFrom('_breadcrumbs'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5Breadcrumbs', Ui5Breadcrumbs = (_dec = customElement('ui5-breadcrumbs'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = computedFrom('_breadcrumbs'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5Breadcrumbs, _Ui5Control);
 
                 function Ui5Breadcrumbs(element) {
@@ -139,6 +139,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'validateFieldGroup', _descriptor7, _this);
 
+                    _initDefineProp(_this, 'validationSuccess', _descriptor8, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor9, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor10, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor11, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor12, _this);
+
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
                     return _this;
@@ -156,17 +166,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
                     _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._breadcrumbs = new sap.m.Breadcrumbs(this.ui5Id, params);else this._breadcrumbs = new sap.m.Breadcrumbs(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._breadcrumbs.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._breadcrumbs, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._breadcrumbs, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._breadcrumbs, this.element);
@@ -182,12 +193,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Breadcrumbs.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._breadcrumbs, this._relation);
-                    } else {
-                        this._breadcrumbs.destroy();
-                    }
-                    _Ui5Control.prototype.detached.call(this);
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._breadcrumbs, this._relation);
+                            }
+                        } else {
+                            this._breadcrumbs.destroy();
+                        }
+                        _Ui5Control.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5Breadcrumbs.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -202,16 +217,44 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             elem = _i.value;
                         }
 
-                        if (elem.localName == 'links') {
-                            var _index = null;if (afterElement) _index = this._breadcrumbs.indexOfLink(afterElement);if (_index) this._breadcrumbs.insertLink(child, _index + 1);else this._breadcrumbs.addLink(child, 0);return elem.localName;
-                        }
+                        try {
+                            if (elem.localName == 'links') {
+                                var _index = null;if (afterElement) _index = this._breadcrumbs.indexOfLink(afterElement);if (_index) this._breadcrumbs.insertLink(child, _index + 1);else this._breadcrumbs.addLink(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'tooltip') {
+                                this._breadcrumbs.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._breadcrumbs.indexOfCustomData(afterElement);if (_index) this._breadcrumbs.insertCustomData(child, _index + 1);else this._breadcrumbs.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._breadcrumbs.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._breadcrumbs.indexOfDependent(afterElement);if (_index) this._breadcrumbs.insertDependent(child, _index + 1);else this._breadcrumbs.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
                 Ui5Breadcrumbs.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-                    if (relation == 'links') {
-                        this._breadcrumbs.removeLink(child);
-                    }
+                    try {
+                        if (relation == 'links') {
+                            this._breadcrumbs.removeLink(child);
+                        }
+                        if (relation == 'tooltip') {
+                            this._breadcrumbs.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._breadcrumbs.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._breadcrumbs.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._breadcrumbs.removeDependent(child);
+                        }
+                    } catch (err) {}
                 };
 
                 Ui5Breadcrumbs.prototype.currentLocationTextChanged = function currentLocationTextChanged(newValue) {
@@ -247,6 +290,36 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5Breadcrumbs.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
                     if (this._breadcrumbs !== null) {
                         this._breadcrumbs.attachValidateFieldGroup(newValue);
+                    }
+                };
+
+                Ui5Breadcrumbs.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._breadcrumbs !== null) {
+                        this._breadcrumbs.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5Breadcrumbs.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._breadcrumbs !== null) {
+                        this._breadcrumbs.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5Breadcrumbs.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._breadcrumbs !== null) {
+                        this._breadcrumbs.attachParseError(newValue);
+                    }
+                };
+
+                Ui5Breadcrumbs.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._breadcrumbs !== null) {
+                        this._breadcrumbs.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5Breadcrumbs.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._breadcrumbs !== null) {
+                        this._breadcrumbs.attachModelContextChange(newValue);
                     }
                 };
 
@@ -293,7 +366,32 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec9], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec9], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec10], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec11], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec12], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec14], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5Breadcrumbs', Ui5Breadcrumbs);
         }

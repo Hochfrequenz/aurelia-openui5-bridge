@@ -29,6 +29,15 @@ export class Ui5Shell extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -51,6 +60,7 @@ params.backgroundRepeat = getBooleanFromAttributeValue(this.backgroundRepeat);
 params.backgroundOpacity = this.backgroundOpacity;
 params.homeIcon = this.homeIcon;
 params.titleLevel = this.titleLevel;
+params.logout = this.logout==null ? this.defaultFunc: this.logout;
             
         }
         defaultFunc() {
@@ -64,11 +74,12 @@ params.titleLevel = this.titleLevel;
           this._shell = new sap.m.Shell(this.ui5Id, params);
         else
           this._shell = new sap.m.Shell(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._shell.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._shell, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -76,7 +87,7 @@ params.titleLevel = this.titleLevel;
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._shell, this.element, prevSibling);
         }
@@ -100,24 +111,44 @@ params.titleLevel = this.titleLevel;
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._shell, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._shell.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'content') { this._shell.setApp(child); return elem.localName;}
+        try{
+                 if (elem.localName == 'content') { this._shell.setApp(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._shell.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._shell.indexOfCustomData(afterElement); if (_index)this._shell.insertCustomData(child, _index + 1); else this._shell.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._shell.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._shell.indexOfDependent(afterElement); if (_index)this._shell.insertDependent(child, _index + 1); else this._shell.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        
+      try{
+               if (relation == 'content') {  this._shell.destroyApp(child); }
+if (relation == 'tooltip') {  this._shell.destroyTooltip(child); }
+if (relation == 'customdata') {  this._shell.removeCustomData(child);}
+if (relation == 'layoutData') {  this._shell.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._shell.removeDependent(child);}
+
+      }
+      catch(err){}
                                                                             }
     titleChanged(newValue){if(this._shell!==null){ this._shell.setTitle(newValue);}}
 logoChanged(newValue){if(this._shell!==null){ this._shell.setLogo(newValue);}}
@@ -137,6 +168,15 @@ visibleChanged(newValue){if(this._shell!==null){ this._shell.setVisible(getBoole
 fieldGroupIdsChanged(newValue){if(this._shell!==null){ this._shell.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._shell!==null){ this._shell.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._shell!==null){ this._shell.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._shell!==null){ this._shell.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._shell!==null){ this._shell.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._shell!==null){ this._shell.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._shell!==null){ this._shell.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

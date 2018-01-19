@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../element/element'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Element, _createClass, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, Ui5LayoutData;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Element, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, Ui5LayoutData;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5LayoutData', Ui5LayoutData = (_dec = customElement('ui5-layout-data'), _dec2 = inject(Element), _dec3 = computedFrom('_layoutdata'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
+            _export('Ui5LayoutData', Ui5LayoutData = (_dec = customElement('ui5-layout-data'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = computedFrom('_layoutdata'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
                 _inherits(Ui5LayoutData, _Ui5Element);
 
                 function Ui5LayoutData(element) {
@@ -126,6 +126,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     _this._relation = null;
 
                     _initDefineProp(_this, 'ui5Id', _descriptor, _this);
+
+                    _initDefineProp(_this, 'validationSuccess', _descriptor2, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor3, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor4, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor5, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor6, _this);
 
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
@@ -142,17 +152,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
                     _Ui5Element.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._layoutdata = new sap.ui.core.LayoutData(this.ui5Id, params);else this._layoutdata = new sap.ui.core.LayoutData(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._layoutdata.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._layoutdata, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._layoutdata, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._layoutdata, this.element);
@@ -168,12 +179,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5LayoutData.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._layoutdata, this._relation);
-                    } else {
-                        this._layoutdata.destroy();
-                    }
-                    _Ui5Element.prototype.detached.call(this);
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._layoutdata, this._relation);
+                            }
+                        } else {
+                            this._layoutdata.destroy();
+                        }
+                        _Ui5Element.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5LayoutData.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -187,10 +202,70 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             if (_i.done) break;
                             elem = _i.value;
                         }
+
+                        try {
+                            if (elem.localName == 'tooltip') {
+                                this._layoutdata.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._layoutdata.indexOfCustomData(afterElement);if (_index) this._layoutdata.insertCustomData(child, _index + 1);else this._layoutdata.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._layoutdata.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._layoutdata.indexOfDependent(afterElement);if (_index) this._layoutdata.insertDependent(child, _index + 1);else this._layoutdata.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
-                Ui5LayoutData.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+                Ui5LayoutData.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+                    try {
+                        if (relation == 'tooltip') {
+                            this._layoutdata.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._layoutdata.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._layoutdata.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._layoutdata.removeDependent(child);
+                        }
+                    } catch (err) {}
+                };
+
+                Ui5LayoutData.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._layoutdata !== null) {
+                        this._layoutdata.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5LayoutData.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._layoutdata !== null) {
+                        this._layoutdata.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5LayoutData.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._layoutdata !== null) {
+                        this._layoutdata.attachParseError(newValue);
+                    }
+                };
+
+                Ui5LayoutData.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._layoutdata !== null) {
+                        this._layoutdata.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5LayoutData.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._layoutdata !== null) {
+                        this._layoutdata.attachModelContextChange(newValue);
+                    }
+                };
 
                 _createClass(Ui5LayoutData, [{
                     key: 'UIElement',
@@ -205,7 +280,32 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return null;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec3], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec4], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec5], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec6], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec7], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec8], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5LayoutData', Ui5LayoutData);
         }

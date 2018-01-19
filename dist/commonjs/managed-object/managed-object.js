@@ -7,7 +7,7 @@ exports.Ui5ManagedObject = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -70,7 +70,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5ManagedObject = exports.Ui5ManagedObject = (_dec = (0, _aureliaTemplating.customElement)('ui5-managed-object'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaFramework.computedFrom)('_managedobject'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5EventProvider) {
+var Ui5ManagedObject = exports.Ui5ManagedObject = (_dec = (0, _aureliaTemplating.customElement)('ui5-managed-object'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaFramework.computedFrom)('_managedobject'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5EventProvider) {
     _inherits(Ui5ManagedObject, _Ui5EventProvider);
 
     function Ui5ManagedObject(element) {
@@ -84,12 +84,28 @@ var Ui5ManagedObject = exports.Ui5ManagedObject = (_dec = (0, _aureliaTemplating
 
         _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
+        _initDefineProp(_this, 'validationSuccess', _descriptor2, _this);
+
+        _initDefineProp(_this, 'validationError', _descriptor3, _this);
+
+        _initDefineProp(_this, 'parseError', _descriptor4, _this);
+
+        _initDefineProp(_this, 'formatError', _descriptor5, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor6, _this);
+
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
         return _this;
     }
 
-    Ui5ManagedObject.prototype.fillProperties = function fillProperties(params) {};
+    Ui5ManagedObject.prototype.fillProperties = function fillProperties(params) {
+        params.validationSuccess = this.validationSuccess == null ? this.defaultFunc : this.validationSuccess;
+        params.validationError = this.validationError == null ? this.defaultFunc : this.validationError;
+        params.parseError = this.parseError == null ? this.defaultFunc : this.parseError;
+        params.formatError = this.formatError == null ? this.defaultFunc : this.formatError;
+        params.modelContextChange = this.modelContextChange == null ? this.defaultFunc : this.modelContextChange;
+    };
 
     Ui5ManagedObject.prototype.defaultFunc = function defaultFunc() {};
 
@@ -99,17 +115,18 @@ var Ui5ManagedObject = exports.Ui5ManagedObject = (_dec = (0, _aureliaTemplating
         this.fillProperties(params);
         _Ui5EventProvider.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._managedobject = new sap.ui.base.ManagedObject(this.ui5Id, params);else this._managedobject = new sap.ui.base.ManagedObject(params);
+
         if ($(this.element).closest("[ui5-container]").length > 0) {
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
             if (!this._parent.UIElement || this._parent.UIElement.sId != this._managedobject.sId) {
                 var prevSibling = null;
-                if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                 this._relation = this._parent.addChild(this._managedobject, this.element, prevSibling);
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             } else {
                 this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                 var prevSibling = null;
-                if (this.element.previousElementSibling) {
+                if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                     this._relation = this._parent.addChild(this._managedobject, this.element, prevSibling);
                 } else this._relation = this._parent.addChild(this._managedobject, this.element);
@@ -125,12 +142,16 @@ var Ui5ManagedObject = exports.Ui5ManagedObject = (_dec = (0, _aureliaTemplating
     };
 
     Ui5ManagedObject.prototype.detached = function detached() {
-        if (this._parent && this._relation) {
-            this._parent.removeChildByRelation(this._managedobject, this._relation);
-        } else {
-            this._managedobject.destroy();
-        }
-        _Ui5EventProvider.prototype.detached.call(this);
+        try {
+            if ($(this.element).closest("[ui5-container]").length > 0) {
+                if (this._parent && this._relation) {
+                    this._parent.removeChildByRelation(this._managedobject, this._relation);
+                }
+            } else {
+                this._managedobject.destroy();
+            }
+            _Ui5EventProvider.prototype.detached.call(this);
+        } catch (err) {}
     };
 
     Ui5ManagedObject.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -144,10 +165,44 @@ var Ui5ManagedObject = exports.Ui5ManagedObject = (_dec = (0, _aureliaTemplating
                 if (_i.done) break;
                 elem = _i.value;
             }
+
+            try {} catch (err) {}
         }
     };
 
-    Ui5ManagedObject.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+    Ui5ManagedObject.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+        try {} catch (err) {}
+    };
+
+    Ui5ManagedObject.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+        if (this._managedobject !== null) {
+            this._managedobject.attachValidationSuccess(newValue);
+        }
+    };
+
+    Ui5ManagedObject.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+        if (this._managedobject !== null) {
+            this._managedobject.attachValidationError(newValue);
+        }
+    };
+
+    Ui5ManagedObject.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+        if (this._managedobject !== null) {
+            this._managedobject.attachParseError(newValue);
+        }
+    };
+
+    Ui5ManagedObject.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+        if (this._managedobject !== null) {
+            this._managedobject.attachFormatError(newValue);
+        }
+    };
+
+    Ui5ManagedObject.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+        if (this._managedobject !== null) {
+            this._managedobject.attachModelContextChange(newValue);
+        }
+    };
 
     _createClass(Ui5ManagedObject, [{
         key: 'UIElement',
@@ -162,4 +217,29 @@ var Ui5ManagedObject = exports.Ui5ManagedObject = (_dec = (0, _aureliaTemplating
     initializer: function initializer() {
         return null;
     }
-}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec3], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec5], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec6], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec7], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec8], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

@@ -1,19 +1,29 @@
 <template>
-  <div ref="DynamicPageTitle">
-    <heading ref="heading">
-      <slot name="heading"></slot>
-    </heading>
-    <actions ref="actions">
-      <slot name="actions"></slot>
-    </actions>
-    <content ref="content">
-      <slot name="content"></slot>
-    </content>
-    <snappedContent ref="snappedContent">
-      <slot name="snappedContent"></slot>
-    </snappedContent>
-    <expandedContent ref="expandedContent">
-      <slot name="expandedContent"></slot>
-    </expandedContent>
-  </div>
+  <heading ref="heading">
+    <slot name="heading"></slot>
+  </heading>
+  <actions ref="actions">
+    <slot name="actions"></slot>
+  </actions>
+  <content ref="content">
+    <slot></slot>
+  </content>
+  <snappedContent ref="snappedContent">
+    <slot name="snappedContent"></slot>
+  </snappedContent>
+  <expandedContent ref="expandedContent">
+    <slot name="expandedContent"></slot>
+  </expandedContent>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

@@ -4,6 +4,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _customData = require('./custom-data/custom-data');
+
+Object.keys(_customData).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _customData[key];
+    }
+  });
+});
+
 var _page = require('./page/page');
 
 Object.keys(_page).forEach(function (key) {

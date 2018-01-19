@@ -32,15 +32,16 @@ export class Ui5GridData extends Ui5LayoutData{
 @bindable() linebreakL = false;
 @bindable() linebreakM = false;
 @bindable() linebreakS = false;
-@bindable() spanLarge = null;
-@bindable() spanMedium = null;
-@bindable() spanSmall = null;
-@bindable() indentLarge = null;
-@bindable() indentMedium = null;
-@bindable() indentSmall = null;
-@bindable() visibleOnLarge = true;
-@bindable() visibleOnMedium = true;
-@bindable() visibleOnSmall = true;
+/* inherited from sap.ui.core.LayoutData*/
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -73,15 +74,6 @@ params.linebreakXL = getBooleanFromAttributeValue(this.linebreakXL);
 params.linebreakL = getBooleanFromAttributeValue(this.linebreakL);
 params.linebreakM = getBooleanFromAttributeValue(this.linebreakM);
 params.linebreakS = getBooleanFromAttributeValue(this.linebreakS);
-params.spanLarge = this.spanLarge?parseInt(this.spanLarge):0;
-params.spanMedium = this.spanMedium?parseInt(this.spanMedium):0;
-params.spanSmall = this.spanSmall?parseInt(this.spanSmall):0;
-params.indentLarge = this.indentLarge?parseInt(this.indentLarge):0;
-params.indentMedium = this.indentMedium?parseInt(this.indentMedium):0;
-params.indentSmall = this.indentSmall?parseInt(this.indentSmall):0;
-params.visibleOnLarge = getBooleanFromAttributeValue(this.visibleOnLarge);
-params.visibleOnMedium = getBooleanFromAttributeValue(this.visibleOnMedium);
-params.visibleOnSmall = getBooleanFromAttributeValue(this.visibleOnSmall);
             
         }
         defaultFunc() {
@@ -95,11 +87,12 @@ params.visibleOnSmall = getBooleanFromAttributeValue(this.visibleOnSmall);
           this._griddata = new sap.ui.layout.GridData(this.ui5Id, params);
         else
           this._griddata = new sap.ui.layout.GridData(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._griddata.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._griddata, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -107,7 +100,7 @@ params.visibleOnSmall = getBooleanFromAttributeValue(this.visibleOnSmall);
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._griddata, this.element, prevSibling);
         }
@@ -131,23 +124,42 @@ params.visibleOnSmall = getBooleanFromAttributeValue(this.visibleOnSmall);
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._griddata, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._griddata.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                
+        try{
+                 if (elem.localName == 'tooltip') { this._griddata.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._griddata.indexOfCustomData(afterElement); if (_index)this._griddata.insertCustomData(child, _index + 1); else this._griddata.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._griddata.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._griddata.indexOfDependent(afterElement); if (_index)this._griddata.insertDependent(child, _index + 1); else this._griddata.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        
+      try{
+               if (relation == 'tooltip') {  this._griddata.destroyTooltip(child); }
+if (relation == 'customdata') {  this._griddata.removeCustomData(child);}
+if (relation == 'layoutData') {  this._griddata.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._griddata.removeDependent(child);}
+
+      }
+      catch(err){}
                                                                             }
     spanChanged(newValue){if(this._griddata!==null){ this._griddata.setSpan(newValue);}}
 spanXLChanged(newValue){if(this._griddata!==null){ this._griddata.setSpanXL(newValue);}}
@@ -170,15 +182,16 @@ linebreakXLChanged(newValue){if(this._griddata!==null){ this._griddata.setLinebr
 linebreakLChanged(newValue){if(this._griddata!==null){ this._griddata.setLinebreakL(getBooleanFromAttributeValue(newValue));}}
 linebreakMChanged(newValue){if(this._griddata!==null){ this._griddata.setLinebreakM(getBooleanFromAttributeValue(newValue));}}
 linebreakSChanged(newValue){if(this._griddata!==null){ this._griddata.setLinebreakS(getBooleanFromAttributeValue(newValue));}}
-spanLargeChanged(newValue){if(this._griddata!==null){ this._griddata.setSpanLarge(newValue);}}
-spanMediumChanged(newValue){if(this._griddata!==null){ this._griddata.setSpanMedium(newValue);}}
-spanSmallChanged(newValue){if(this._griddata!==null){ this._griddata.setSpanSmall(newValue);}}
-indentLargeChanged(newValue){if(this._griddata!==null){ this._griddata.setIndentLarge(newValue);}}
-indentMediumChanged(newValue){if(this._griddata!==null){ this._griddata.setIndentMedium(newValue);}}
-indentSmallChanged(newValue){if(this._griddata!==null){ this._griddata.setIndentSmall(newValue);}}
-visibleOnLargeChanged(newValue){if(this._griddata!==null){ this._griddata.setVisibleOnLarge(getBooleanFromAttributeValue(newValue));}}
-visibleOnMediumChanged(newValue){if(this._griddata!==null){ this._griddata.setVisibleOnMedium(getBooleanFromAttributeValue(newValue));}}
-visibleOnSmallChanged(newValue){if(this._griddata!==null){ this._griddata.setVisibleOnSmall(getBooleanFromAttributeValue(newValue));}}
+/* inherited from sap.ui.core.LayoutData*/
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._griddata!==null){ this._griddata.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._griddata!==null){ this._griddata.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._griddata!==null){ this._griddata.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._griddata!==null){ this._griddata.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._griddata!==null){ this._griddata.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

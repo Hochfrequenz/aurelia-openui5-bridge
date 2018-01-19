@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
+System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, Ui5Icon;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, Ui5Icon;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -19,6 +19,30 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
         if (!(instance instanceof Constructor)) {
             throw new TypeError("Cannot call a class as a function");
         }
+    }
+
+    function _possibleConstructorReturn(self, call) {
+        if (!self) {
+            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+        }
+
+        return call && (typeof call === "object" || typeof call === "function") ? call : self;
+    }
+
+    function _inherits(subClass, superClass) {
+        if (typeof superClass !== "function" && superClass !== null) {
+            throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+        }
+
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+            constructor: {
+                value: subClass,
+                enumerable: false,
+                writable: true,
+                configurable: true
+            }
+        });
+        if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
     function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -67,6 +91,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
             AttributeManager = _commonAttributeManager.AttributeManager;
         }, function (_commonAttributes) {
             getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+        }, function (_controlControl) {
+            Ui5Control = _controlControl.Ui5Control;
         }],
         execute: function () {
             _createClass = function () {
@@ -87,21 +113,92 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5Icon', Ui5Icon = (_dec = customElement('ui5-icon'), _dec2 = inject(Element), _dec3 = computedFrom('_icon'), _dec(_class = _dec2(_class = (_class2 = function () {
+            _export('Ui5Icon', Ui5Icon = (_dec = customElement('ui5-icon'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = bindable(), _dec27 = bindable(), _dec28 = computedFrom('_icon'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+                _inherits(Ui5Icon, _Ui5Control);
+
                 function Ui5Icon(element) {
                     _classCallCheck(this, Ui5Icon);
 
-                    this._icon = null;
-                    this._parent = null;
-                    this._relation = null;
+                    var _this = _possibleConstructorReturn(this, _Ui5Control.call(this, element));
 
-                    _initDefineProp(this, 'ui5Id', _descriptor, this);
+                    _this._icon = null;
+                    _this._parent = null;
+                    _this._relation = null;
 
-                    this.element = element;
-                    this.attributeManager = new AttributeManager(this.element);
+                    _initDefineProp(_this, 'ui5Id', _descriptor, _this);
+
+                    _initDefineProp(_this, 'src', _descriptor2, _this);
+
+                    _initDefineProp(_this, 'size', _descriptor3, _this);
+
+                    _initDefineProp(_this, 'color', _descriptor4, _this);
+
+                    _initDefineProp(_this, 'hoverColor', _descriptor5, _this);
+
+                    _initDefineProp(_this, 'activeColor', _descriptor6, _this);
+
+                    _initDefineProp(_this, 'width', _descriptor7, _this);
+
+                    _initDefineProp(_this, 'height', _descriptor8, _this);
+
+                    _initDefineProp(_this, 'backgroundColor', _descriptor9, _this);
+
+                    _initDefineProp(_this, 'hoverBackgroundColor', _descriptor10, _this);
+
+                    _initDefineProp(_this, 'activeBackgroundColor', _descriptor11, _this);
+
+                    _initDefineProp(_this, 'decorative', _descriptor12, _this);
+
+                    _initDefineProp(_this, 'useIconTooltip', _descriptor13, _this);
+
+                    _initDefineProp(_this, 'alt', _descriptor14, _this);
+
+                    _initDefineProp(_this, 'noTabStop', _descriptor15, _this);
+
+                    _initDefineProp(_this, 'press', _descriptor16, _this);
+
+                    _initDefineProp(_this, 'busy', _descriptor17, _this);
+
+                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor18, _this);
+
+                    _initDefineProp(_this, 'visible', _descriptor19, _this);
+
+                    _initDefineProp(_this, 'fieldGroupIds', _descriptor20, _this);
+
+                    _initDefineProp(_this, 'validateFieldGroup', _descriptor21, _this);
+
+                    _initDefineProp(_this, 'validationSuccess', _descriptor22, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor23, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor24, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor25, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor26, _this);
+
+                    _this.element = element;
+                    _this.attributeManager = new AttributeManager(_this.element);
+                    return _this;
                 }
 
-                Ui5Icon.prototype.fillProperties = function fillProperties(params) {};
+                Ui5Icon.prototype.fillProperties = function fillProperties(params) {
+                    params.src = this.src;
+                    params.size = this.size;
+                    params.color = this.color;
+                    params.hoverColor = this.hoverColor;
+                    params.activeColor = this.activeColor;
+                    params.width = this.width;
+                    params.height = this.height;
+                    params.backgroundColor = this.backgroundColor;
+                    params.hoverBackgroundColor = this.hoverBackgroundColor;
+                    params.activeBackgroundColor = this.activeBackgroundColor;
+                    params.decorative = getBooleanFromAttributeValue(this.decorative);
+                    params.useIconTooltip = getBooleanFromAttributeValue(this.useIconTooltip);
+                    params.alt = this.alt;
+                    params.noTabStop = getBooleanFromAttributeValue(this.noTabStop);
+                    params.press = this.press == null ? this.defaultFunc : this.press;
+                };
 
                 Ui5Icon.prototype.defaultFunc = function defaultFunc() {};
 
@@ -109,19 +206,20 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
+                    _Ui5Control.prototype.fillProperties.call(this, params);
+                    if (this.ui5Id) this._icon = new sap.ui.core.Icon(this.ui5Id, params);else this._icon = new sap.ui.core.Icon(params);
 
-                    if (this.ui5Id) this._icon = new sap.m.MessageBox.Icon(this.ui5Id, params);else this._icon = new sap.m.MessageBox.Icon(params);
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._icon.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._icon, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._icon, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._icon, this.element);
@@ -137,11 +235,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Icon.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._icon, this._relation);
-                    } else {
-                        this._icon.destroy();
-                    }
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._icon, this._relation);
+                            }
+                        } else {
+                            this._icon.destroy();
+                        }
+                        _Ui5Control.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5Icon.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -155,10 +258,190 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             if (_i.done) break;
                             elem = _i.value;
                         }
+
+                        try {
+                            if (elem.localName == 'tooltip') {
+                                this._icon.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._icon.indexOfCustomData(afterElement);if (_index) this._icon.insertCustomData(child, _index + 1);else this._icon.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._icon.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._icon.indexOfDependent(afterElement);if (_index) this._icon.insertDependent(child, _index + 1);else this._icon.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
-                Ui5Icon.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+                Ui5Icon.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+                    try {
+                        if (relation == 'tooltip') {
+                            this._icon.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._icon.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._icon.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._icon.removeDependent(child);
+                        }
+                    } catch (err) {}
+                };
+
+                Ui5Icon.prototype.srcChanged = function srcChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setSrc(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.sizeChanged = function sizeChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setSize(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.colorChanged = function colorChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setColor(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.hoverColorChanged = function hoverColorChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setHoverColor(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.activeColorChanged = function activeColorChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setActiveColor(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.widthChanged = function widthChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setWidth(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.heightChanged = function heightChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setHeight(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.backgroundColorChanged = function backgroundColorChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setBackgroundColor(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.hoverBackgroundColorChanged = function hoverBackgroundColorChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setHoverBackgroundColor(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.activeBackgroundColorChanged = function activeBackgroundColorChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setActiveBackgroundColor(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.decorativeChanged = function decorativeChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setDecorative(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Icon.prototype.useIconTooltipChanged = function useIconTooltipChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setUseIconTooltip(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Icon.prototype.altChanged = function altChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setAlt(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.noTabStopChanged = function noTabStopChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setNoTabStop(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Icon.prototype.pressChanged = function pressChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.attachPress(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.busyChanged = function busyChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setBusy(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Icon.prototype.busyIndicatorDelayChanged = function busyIndicatorDelayChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setBusyIndicatorDelay(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.visibleChanged = function visibleChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setVisible(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5Icon.prototype.fieldGroupIdsChanged = function fieldGroupIdsChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.setFieldGroupIds(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.attachValidateFieldGroup(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.attachParseError(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5Icon.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._icon !== null) {
+                        this._icon.attachModelContextChange(newValue);
+                    }
+                };
 
                 _createClass(Ui5Icon, [{
                     key: 'UIElement',
@@ -168,12 +451,137 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 }]);
 
                 return Ui5Icon;
-            }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [bindable], {
+            }(Ui5Control), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return null;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'src', [_dec3], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'size', [_dec4], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'color', [_dec5], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'hoverColor', [_dec6], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'activeColor', [_dec7], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec8], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'height', [_dec9], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'backgroundColor', [_dec10], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'hoverBackgroundColor', [_dec11], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'activeBackgroundColor', [_dec12], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'decorative', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'useIconTooltip', [_dec14], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'alt', [_dec15], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'noTabStop', [_dec16], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec17], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec18], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec19], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 1000;
+                }
+            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec20], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec21], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return '[]';
+                }
+            }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec22], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec23], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec24], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec25], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec26], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec27], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec28], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5Icon', Ui5Icon);
         }

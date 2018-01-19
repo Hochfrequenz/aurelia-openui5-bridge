@@ -22,6 +22,15 @@ export class Ui5WizardStep extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -36,6 +45,8 @@ export class Ui5WizardStep extends Ui5Control{
                params.title = this.title;
 params.icon = this.icon;
 params.validated = getBooleanFromAttributeValue(this.validated);
+params.complete = this.complete==null ? this.defaultFunc: this.complete;
+params.activate = this.activate==null ? this.defaultFunc: this.activate;
             
         }
         defaultFunc() {
@@ -49,11 +60,12 @@ params.validated = getBooleanFromAttributeValue(this.validated);
           this._wizardstep = new sap.m.WizardStep(this.ui5Id, params);
         else
           this._wizardstep = new sap.m.WizardStep(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._wizardstep.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._wizardstep, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -61,7 +73,7 @@ params.validated = getBooleanFromAttributeValue(this.validated);
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._wizardstep, this.element, prevSibling);
         }
@@ -85,25 +97,44 @@ params.validated = getBooleanFromAttributeValue(this.validated);
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._wizardstep, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._wizardstep.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._wizardstep.indexOfContent(afterElement); if (_index)this._wizardstep.insertContent(child, _index + 1); else this._wizardstep.addContent(child, 0);  return elem.localName; }
+        try{
+                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._wizardstep.indexOfContent(afterElement); if (_index)this._wizardstep.insertContent(child, _index + 1); else this._wizardstep.addContent(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._wizardstep.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._wizardstep.indexOfCustomData(afterElement); if (_index)this._wizardstep.insertCustomData(child, _index + 1); else this._wizardstep.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._wizardstep.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._wizardstep.indexOfDependent(afterElement); if (_index)this._wizardstep.insertDependent(child, _index + 1); else this._wizardstep.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'content') {  this._wizardstep.removeContent(child); }
+      try{
+               if (relation == 'content') {  this._wizardstep.removeContent(child);}
+if (relation == 'tooltip') {  this._wizardstep.destroyTooltip(child); }
+if (relation == 'customdata') {  this._wizardstep.removeCustomData(child);}
+if (relation == 'layoutData') {  this._wizardstep.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._wizardstep.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
     titleChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setTitle(newValue);}}
 iconChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setIcon(newValue);}}
@@ -116,6 +147,15 @@ visibleChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setVisibl
 fieldGroupIdsChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

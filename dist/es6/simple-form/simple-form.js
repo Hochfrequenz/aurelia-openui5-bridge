@@ -40,6 +40,15 @@ export class Ui5SimpleForm extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -87,11 +96,12 @@ params.backgroundDesign = this.backgroundDesign;
           this._simpleform = new sap.ui.layout.form.SimpleForm(this.ui5Id, params);
         else
           this._simpleform = new sap.ui.layout.form.SimpleForm(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._simpleform.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._simpleform, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -99,7 +109,7 @@ params.backgroundDesign = this.backgroundDesign;
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._simpleform, this.element, prevSibling);
         }
@@ -123,27 +133,48 @@ params.backgroundDesign = this.backgroundDesign;
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._simpleform, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._simpleform.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._simpleform.indexOfContent(afterElement); if (_index)this._simpleform.insertContent(child, _index + 1); else this._simpleform.addContent(child, 0);  return elem.localName; }
+        try{
+                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._simpleform.indexOfContent(afterElement); if (_index)this._simpleform.insertContent(child, _index + 1); else this._simpleform.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'title') { this._simpleform.setTitle(child); return elem.localName;}
 if (elem.localName == 'toolbar') { this._simpleform.setToolbar(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._simpleform.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._simpleform.indexOfCustomData(afterElement); if (_index)this._simpleform.insertCustomData(child, _index + 1); else this._simpleform.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._simpleform.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._simpleform.indexOfDependent(afterElement); if (_index)this._simpleform.insertDependent(child, _index + 1); else this._simpleform.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'content') {  this._simpleform.removeContent(child); }
+      try{
+               if (relation == 'content') {  this._simpleform.removeContent(child);}
+if (relation == 'title') {  this._simpleform.destroyTitle(child); }
+if (relation == 'toolbar') {  this._simpleform.destroyToolbar(child); }
+if (relation == 'tooltip') {  this._simpleform.destroyTooltip(child); }
+if (relation == 'customdata') {  this._simpleform.removeCustomData(child);}
+if (relation == 'layoutData') {  this._simpleform.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._simpleform.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
     maxContainerColsChanged(newValue){if(this._simpleform!==null){ this._simpleform.setMaxContainerCols(newValue);}}
 minWidthChanged(newValue){if(this._simpleform!==null){ this._simpleform.setMinWidth(newValue);}}
@@ -174,6 +205,15 @@ visibleChanged(newValue){if(this._simpleform!==null){ this._simpleform.setVisibl
 fieldGroupIdsChanged(newValue){if(this._simpleform!==null){ this._simpleform.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

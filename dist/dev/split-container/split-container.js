@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, Ui5SplitContainer;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, Ui5SplitContainer;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5SplitContainer', Ui5SplitContainer = (_dec = customElement('ui5-split-container'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = computedFrom('_splitcontainer'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5SplitContainer', Ui5SplitContainer = (_dec = customElement('ui5-split-container'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = bindable(), _dec27 = bindable(), _dec28 = bindable(), _dec29 = bindable(), _dec30 = bindable(), _dec31 = computedFrom('_splitcontainer'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5SplitContainer, _Ui5Control);
 
                 function Ui5SplitContainer(element) {
@@ -173,6 +173,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'validateFieldGroup', _descriptor24, _this);
 
+                    _initDefineProp(_this, 'validationSuccess', _descriptor25, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor26, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor27, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor28, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor29, _this);
+
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
                     return _this;
@@ -188,6 +198,15 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.backgroundImage = this.backgroundImage;
                     params.backgroundRepeat = getBooleanFromAttributeValue(this.backgroundRepeat);
                     params.backgroundOpacity = this.backgroundOpacity;
+                    params.masterNavigate = this.masterNavigate == null ? this.defaultFunc : this.masterNavigate;
+                    params.afterMasterNavigate = this.afterMasterNavigate == null ? this.defaultFunc : this.afterMasterNavigate;
+                    params.masterButton = this.masterButton == null ? this.defaultFunc : this.masterButton;
+                    params.beforeMasterOpen = this.beforeMasterOpen == null ? this.defaultFunc : this.beforeMasterOpen;
+                    params.afterMasterOpen = this.afterMasterOpen == null ? this.defaultFunc : this.afterMasterOpen;
+                    params.beforeMasterClose = this.beforeMasterClose == null ? this.defaultFunc : this.beforeMasterClose;
+                    params.afterMasterClose = this.afterMasterClose == null ? this.defaultFunc : this.afterMasterClose;
+                    params.detailNavigate = this.detailNavigate == null ? this.defaultFunc : this.detailNavigate;
+                    params.afterDetailNavigate = this.afterDetailNavigate == null ? this.defaultFunc : this.afterDetailNavigate;
                 };
 
                 Ui5SplitContainer.prototype.defaultFunc = function defaultFunc() {};
@@ -198,17 +217,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
                     _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._splitcontainer = new sap.m.SplitContainer(this.ui5Id, params);else this._splitcontainer = new sap.m.SplitContainer(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._splitcontainer.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._splitcontainer, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._splitcontainer, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._splitcontainer, this.element);
@@ -224,12 +244,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5SplitContainer.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._splitcontainer, this._relation);
-                    } else {
-                        this._splitcontainer.destroy();
-                    }
-                    _Ui5Control.prototype.detached.call(this);
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._splitcontainer, this._relation);
+                            }
+                        } else {
+                            this._splitcontainer.destroy();
+                        }
+                        _Ui5Control.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5SplitContainer.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -244,22 +268,50 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             elem = _i.value;
                         }
 
-                        if (elem.localName == 'masterPages') {
-                            var _index = null;if (afterElement) _index = this._splitcontainer.indexOfMasterPage(afterElement);if (_index) this._splitcontainer.insertMasterPage(child, _index + 1);else this._splitcontainer.addMasterPage(child, 0);return elem.localName;
-                        }
-                        if (elem.localName == 'detailPages') {
-                            var _index = null;if (afterElement) _index = this._splitcontainer.indexOfDetailPage(afterElement);if (_index) this._splitcontainer.insertDetailPage(child, _index + 1);else this._splitcontainer.addDetailPage(child, 0);return elem.localName;
-                        }
+                        try {
+                            if (elem.localName == 'masterpages') {
+                                var _index = null;if (afterElement) _index = this._splitcontainer.indexOfMasterPage(afterElement);if (_index) this._splitcontainer.insertMasterPage(child, _index + 1);else this._splitcontainer.addMasterPage(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'detailpages') {
+                                var _index = null;if (afterElement) _index = this._splitcontainer.indexOfDetailPage(afterElement);if (_index) this._splitcontainer.insertDetailPage(child, _index + 1);else this._splitcontainer.addDetailPage(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'tooltip') {
+                                this._splitcontainer.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._splitcontainer.indexOfCustomData(afterElement);if (_index) this._splitcontainer.insertCustomData(child, _index + 1);else this._splitcontainer.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._splitcontainer.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._splitcontainer.indexOfDependent(afterElement);if (_index) this._splitcontainer.insertDependent(child, _index + 1);else this._splitcontainer.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
                 Ui5SplitContainer.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-                    if (relation == 'masterPages') {
-                        this._splitcontainer.removeMasterPage(child);
-                    }
-                    if (relation == 'detailPages') {
-                        this._splitcontainer.removeDetailPage(child);
-                    }
+                    try {
+                        if (relation == 'masterpages') {
+                            this._splitcontainer.removeMasterPage(child);
+                        }
+                        if (relation == 'detailpages') {
+                            this._splitcontainer.removeDetailPage(child);
+                        }
+                        if (relation == 'tooltip') {
+                            this._splitcontainer.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._splitcontainer.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._splitcontainer.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._splitcontainer.removeDependent(child);
+                        }
+                    } catch (err) {}
                 };
 
                 Ui5SplitContainer.prototype.defaultTransitionNameDetailChanged = function defaultTransitionNameDetailChanged(newValue) {
@@ -400,6 +452,36 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     }
                 };
 
+                Ui5SplitContainer.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._splitcontainer !== null) {
+                        this._splitcontainer.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5SplitContainer.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._splitcontainer !== null) {
+                        this._splitcontainer.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5SplitContainer.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._splitcontainer !== null) {
+                        this._splitcontainer.attachParseError(newValue);
+                    }
+                };
+
+                Ui5SplitContainer.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._splitcontainer !== null) {
+                        this._splitcontainer.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5SplitContainer.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._splitcontainer !== null) {
+                        this._splitcontainer.attachModelContextChange(newValue);
+                    }
+                };
+
                 _createClass(Ui5SplitContainer, [{
                     key: 'UIElement',
                     get: function get() {
@@ -528,7 +610,32 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec26], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec26], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec27], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec28], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec29], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec30], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec31], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5SplitContainer', Ui5SplitContainer);
         }

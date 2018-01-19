@@ -97,9 +97,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15;
 
-    var Ui5SegmentedButton = exports.Ui5SegmentedButton = (_dec = (0, _aureliaTemplating.customElement)('ui5-segmented-button'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaFramework.computedFrom)('_segmentedbutton'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+    var Ui5SegmentedButton = exports.Ui5SegmentedButton = (_dec = (0, _aureliaTemplating.customElement)('ui5-segmented-button'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaFramework.computedFrom)('_segmentedbutton'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
         _inherits(Ui5SegmentedButton, _Ui5Control);
 
         function Ui5SegmentedButton(element) {
@@ -131,6 +131,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'validateFieldGroup', _descriptor10, _this);
 
+            _initDefineProp(_this, 'validationSuccess', _descriptor11, _this);
+
+            _initDefineProp(_this, 'validationError', _descriptor12, _this);
+
+            _initDefineProp(_this, 'parseError', _descriptor13, _this);
+
+            _initDefineProp(_this, 'formatError', _descriptor14, _this);
+
+            _initDefineProp(_this, 'modelContextChange', _descriptor15, _this);
+
             _this.element = element;
             _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
             return _this;
@@ -140,6 +150,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.width = this.width;
             params.enabled = (0, _attributes.getBooleanFromAttributeValue)(this.enabled);
             params.selectedKey = this.selectedKey;
+            params.select = this.select == null ? this.defaultFunc : this.select;
         };
 
         Ui5SegmentedButton.prototype.defaultFunc = function defaultFunc() {};
@@ -150,17 +161,18 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             this.fillProperties(params);
             _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._segmentedbutton = new sap.m.SegmentedButton(this.ui5Id, params);else this._segmentedbutton = new sap.m.SegmentedButton(params);
+
             if ($(this.element).closest("[ui5-container]").length > 0) {
                 this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                 if (!this._parent.UIElement || this._parent.UIElement.sId != this._segmentedbutton.sId) {
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                     this._relation = this._parent.addChild(this._segmentedbutton, this.element, prevSibling);
                     this.attributeManager.addAttributes({ "ui5-container": '' });
                 } else {
                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                     var prevSibling = null;
-                    if (this.element.previousElementSibling) {
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                         prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                         this._relation = this._parent.addChild(this._segmentedbutton, this.element, prevSibling);
                     } else this._relation = this._parent.addChild(this._segmentedbutton, this.element);
@@ -171,17 +183,24 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 this.attributeManager.addAttributes({ "ui5-container": '' });
                 this.attributeManager.addClasses("ui5-hide");
             }
+            this._segmentedbutton.attachSelect(function (event) {
+                that.selectedKey = event.mParameters.key;;
+            });
 
             this.attributeManager.addAttributes({ "ui5-id": this._segmentedbutton.sId });
         };
 
         Ui5SegmentedButton.prototype.detached = function detached() {
-            if (this._parent && this._relation) {
-                this._parent.removeChildByRelation(this._segmentedbutton, this._relation);
-            } else {
-                this._segmentedbutton.destroy();
-            }
-            _Ui5Control.prototype.detached.call(this);
+            try {
+                if ($(this.element).closest("[ui5-container]").length > 0) {
+                    if (this._parent && this._relation) {
+                        this._parent.removeChildByRelation(this._segmentedbutton, this._relation);
+                    }
+                } else {
+                    this._segmentedbutton.destroy();
+                }
+                _Ui5Control.prototype.detached.call(this);
+            } catch (err) {}
         };
 
         Ui5SegmentedButton.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -196,22 +215,50 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                     elem = _i.value;
                 }
 
-                if (elem.localName == 'buttons') {
-                    var _index = null;if (afterElement) _index = this._segmentedbutton.indexOfButton(afterElement);if (_index) this._segmentedbutton.insertButton(child, _index + 1);else this._segmentedbutton.addButton(child, 0);return elem.localName;
-                }
-                if (elem.localName == 'items') {
-                    var _index = null;if (afterElement) _index = this._segmentedbutton.indexOfItem(afterElement);if (_index) this._segmentedbutton.insertItem(child, _index + 1);else this._segmentedbutton.addItem(child, 0);return elem.localName;
-                }
+                try {
+                    if (elem.localName == 'buttons') {
+                        var _index = null;if (afterElement) _index = this._segmentedbutton.indexOfButton(afterElement);if (_index) this._segmentedbutton.insertButton(child, _index + 1);else this._segmentedbutton.addButton(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'items') {
+                        var _index = null;if (afterElement) _index = this._segmentedbutton.indexOfItem(afterElement);if (_index) this._segmentedbutton.insertItem(child, _index + 1);else this._segmentedbutton.addItem(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'tooltip') {
+                        this._segmentedbutton.setTooltip(child);return elem.localName;
+                    }
+                    if (elem.localName == 'customdata') {
+                        var _index = null;if (afterElement) _index = this._segmentedbutton.indexOfCustomData(afterElement);if (_index) this._segmentedbutton.insertCustomData(child, _index + 1);else this._segmentedbutton.addCustomData(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'layoutdata') {
+                        this._segmentedbutton.setLayoutData(child);return elem.localName;
+                    }
+                    if (elem.localName == 'dependents') {
+                        var _index = null;if (afterElement) _index = this._segmentedbutton.indexOfDependent(afterElement);if (_index) this._segmentedbutton.insertDependent(child, _index + 1);else this._segmentedbutton.addDependent(child, 0);return elem.localName;
+                    }
+                } catch (err) {}
             }
         };
 
         Ui5SegmentedButton.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-            if (relation == 'buttons') {
-                this._segmentedbutton.removeButton(child);
-            }
-            if (relation == 'items') {
-                this._segmentedbutton.removeItem(child);
-            }
+            try {
+                if (relation == 'buttons') {
+                    this._segmentedbutton.removeButton(child);
+                }
+                if (relation == 'items') {
+                    this._segmentedbutton.removeItem(child);
+                }
+                if (relation == 'tooltip') {
+                    this._segmentedbutton.destroyTooltip(child);
+                }
+                if (relation == 'customdata') {
+                    this._segmentedbutton.removeCustomData(child);
+                }
+                if (relation == 'layoutData') {
+                    this._segmentedbutton.destroyLayoutData(child);
+                }
+                if (relation == 'dependents') {
+                    this._segmentedbutton.removeDependent(child);
+                }
+            } catch (err) {}
         };
 
         Ui5SegmentedButton.prototype.widthChanged = function widthChanged(newValue) {
@@ -265,6 +312,36 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         Ui5SegmentedButton.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
             if (this._segmentedbutton !== null) {
                 this._segmentedbutton.attachValidateFieldGroup(newValue);
+            }
+        };
+
+        Ui5SegmentedButton.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+            if (this._segmentedbutton !== null) {
+                this._segmentedbutton.attachValidationSuccess(newValue);
+            }
+        };
+
+        Ui5SegmentedButton.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+            if (this._segmentedbutton !== null) {
+                this._segmentedbutton.attachValidationError(newValue);
+            }
+        };
+
+        Ui5SegmentedButton.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+            if (this._segmentedbutton !== null) {
+                this._segmentedbutton.attachParseError(newValue);
+            }
+        };
+
+        Ui5SegmentedButton.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+            if (this._segmentedbutton !== null) {
+                this._segmentedbutton.attachFormatError(newValue);
+            }
+        };
+
+        Ui5SegmentedButton.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+            if (this._segmentedbutton !== null) {
+                this._segmentedbutton.attachModelContextChange(newValue);
             }
         };
 
@@ -326,5 +403,30 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec12], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec12], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec13], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec14], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec15], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec16], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec17], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

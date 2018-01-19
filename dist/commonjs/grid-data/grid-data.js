@@ -7,7 +7,7 @@ exports.Ui5GridData = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -70,7 +70,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customElement)('ui5-grid-data'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaTemplating.bindable)(), _dec27 = (0, _aureliaTemplating.bindable)(), _dec28 = (0, _aureliaTemplating.bindable)(), _dec29 = (0, _aureliaTemplating.bindable)(), _dec30 = (0, _aureliaTemplating.bindable)(), _dec31 = (0, _aureliaTemplating.bindable)(), _dec32 = (0, _aureliaTemplating.bindable)(), _dec33 = (0, _aureliaFramework.computedFrom)('_griddata'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5LayoutData) {
+var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customElement)('ui5-grid-data'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaTemplating.bindable)(), _dec27 = (0, _aureliaTemplating.bindable)(), _dec28 = (0, _aureliaTemplating.bindable)(), _dec29 = (0, _aureliaFramework.computedFrom)('_griddata'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5LayoutData) {
     _inherits(Ui5GridData, _Ui5LayoutData);
 
     function Ui5GridData(element) {
@@ -126,23 +126,15 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
 
         _initDefineProp(_this, 'linebreakS', _descriptor22, _this);
 
-        _initDefineProp(_this, 'spanLarge', _descriptor23, _this);
+        _initDefineProp(_this, 'validationSuccess', _descriptor23, _this);
 
-        _initDefineProp(_this, 'spanMedium', _descriptor24, _this);
+        _initDefineProp(_this, 'validationError', _descriptor24, _this);
 
-        _initDefineProp(_this, 'spanSmall', _descriptor25, _this);
+        _initDefineProp(_this, 'parseError', _descriptor25, _this);
 
-        _initDefineProp(_this, 'indentLarge', _descriptor26, _this);
+        _initDefineProp(_this, 'formatError', _descriptor26, _this);
 
-        _initDefineProp(_this, 'indentMedium', _descriptor27, _this);
-
-        _initDefineProp(_this, 'indentSmall', _descriptor28, _this);
-
-        _initDefineProp(_this, 'visibleOnLarge', _descriptor29, _this);
-
-        _initDefineProp(_this, 'visibleOnMedium', _descriptor30, _this);
-
-        _initDefineProp(_this, 'visibleOnSmall', _descriptor31, _this);
+        _initDefineProp(_this, 'modelContextChange', _descriptor27, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -171,15 +163,6 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
         params.linebreakL = (0, _attributes.getBooleanFromAttributeValue)(this.linebreakL);
         params.linebreakM = (0, _attributes.getBooleanFromAttributeValue)(this.linebreakM);
         params.linebreakS = (0, _attributes.getBooleanFromAttributeValue)(this.linebreakS);
-        params.spanLarge = this.spanLarge ? parseInt(this.spanLarge) : 0;
-        params.spanMedium = this.spanMedium ? parseInt(this.spanMedium) : 0;
-        params.spanSmall = this.spanSmall ? parseInt(this.spanSmall) : 0;
-        params.indentLarge = this.indentLarge ? parseInt(this.indentLarge) : 0;
-        params.indentMedium = this.indentMedium ? parseInt(this.indentMedium) : 0;
-        params.indentSmall = this.indentSmall ? parseInt(this.indentSmall) : 0;
-        params.visibleOnLarge = (0, _attributes.getBooleanFromAttributeValue)(this.visibleOnLarge);
-        params.visibleOnMedium = (0, _attributes.getBooleanFromAttributeValue)(this.visibleOnMedium);
-        params.visibleOnSmall = (0, _attributes.getBooleanFromAttributeValue)(this.visibleOnSmall);
     };
 
     Ui5GridData.prototype.defaultFunc = function defaultFunc() {};
@@ -190,17 +173,18 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
         this.fillProperties(params);
         _Ui5LayoutData.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._griddata = new sap.ui.layout.GridData(this.ui5Id, params);else this._griddata = new sap.ui.layout.GridData(params);
+
         if ($(this.element).closest("[ui5-container]").length > 0) {
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
             if (!this._parent.UIElement || this._parent.UIElement.sId != this._griddata.sId) {
                 var prevSibling = null;
-                if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                 this._relation = this._parent.addChild(this._griddata, this.element, prevSibling);
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             } else {
                 this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                 var prevSibling = null;
-                if (this.element.previousElementSibling) {
+                if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                     this._relation = this._parent.addChild(this._griddata, this.element, prevSibling);
                 } else this._relation = this._parent.addChild(this._griddata, this.element);
@@ -216,12 +200,16 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
     };
 
     Ui5GridData.prototype.detached = function detached() {
-        if (this._parent && this._relation) {
-            this._parent.removeChildByRelation(this._griddata, this._relation);
-        } else {
-            this._griddata.destroy();
-        }
-        _Ui5LayoutData.prototype.detached.call(this);
+        try {
+            if ($(this.element).closest("[ui5-container]").length > 0) {
+                if (this._parent && this._relation) {
+                    this._parent.removeChildByRelation(this._griddata, this._relation);
+                }
+            } else {
+                this._griddata.destroy();
+            }
+            _Ui5LayoutData.prototype.detached.call(this);
+        } catch (err) {}
     };
 
     Ui5GridData.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -235,10 +223,40 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
                 if (_i.done) break;
                 elem = _i.value;
             }
+
+            try {
+                if (elem.localName == 'tooltip') {
+                    this._griddata.setTooltip(child);return elem.localName;
+                }
+                if (elem.localName == 'customdata') {
+                    var _index = null;if (afterElement) _index = this._griddata.indexOfCustomData(afterElement);if (_index) this._griddata.insertCustomData(child, _index + 1);else this._griddata.addCustomData(child, 0);return elem.localName;
+                }
+                if (elem.localName == 'layoutdata') {
+                    this._griddata.setLayoutData(child);return elem.localName;
+                }
+                if (elem.localName == 'dependents') {
+                    var _index = null;if (afterElement) _index = this._griddata.indexOfDependent(afterElement);if (_index) this._griddata.insertDependent(child, _index + 1);else this._griddata.addDependent(child, 0);return elem.localName;
+                }
+            } catch (err) {}
         }
     };
 
-    Ui5GridData.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+    Ui5GridData.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+        try {
+            if (relation == 'tooltip') {
+                this._griddata.destroyTooltip(child);
+            }
+            if (relation == 'customdata') {
+                this._griddata.removeCustomData(child);
+            }
+            if (relation == 'layoutData') {
+                this._griddata.destroyLayoutData(child);
+            }
+            if (relation == 'dependents') {
+                this._griddata.removeDependent(child);
+            }
+        } catch (err) {}
+    };
 
     Ui5GridData.prototype.spanChanged = function spanChanged(newValue) {
         if (this._griddata !== null) {
@@ -366,57 +384,33 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
         }
     };
 
-    Ui5GridData.prototype.spanLargeChanged = function spanLargeChanged(newValue) {
+    Ui5GridData.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
         if (this._griddata !== null) {
-            this._griddata.setSpanLarge(newValue);
+            this._griddata.attachValidationSuccess(newValue);
         }
     };
 
-    Ui5GridData.prototype.spanMediumChanged = function spanMediumChanged(newValue) {
+    Ui5GridData.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
         if (this._griddata !== null) {
-            this._griddata.setSpanMedium(newValue);
+            this._griddata.attachValidationError(newValue);
         }
     };
 
-    Ui5GridData.prototype.spanSmallChanged = function spanSmallChanged(newValue) {
+    Ui5GridData.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
         if (this._griddata !== null) {
-            this._griddata.setSpanSmall(newValue);
+            this._griddata.attachParseError(newValue);
         }
     };
 
-    Ui5GridData.prototype.indentLargeChanged = function indentLargeChanged(newValue) {
+    Ui5GridData.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
         if (this._griddata !== null) {
-            this._griddata.setIndentLarge(newValue);
+            this._griddata.attachFormatError(newValue);
         }
     };
 
-    Ui5GridData.prototype.indentMediumChanged = function indentMediumChanged(newValue) {
+    Ui5GridData.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
         if (this._griddata !== null) {
-            this._griddata.setIndentMedium(newValue);
-        }
-    };
-
-    Ui5GridData.prototype.indentSmallChanged = function indentSmallChanged(newValue) {
-        if (this._griddata !== null) {
-            this._griddata.setIndentSmall(newValue);
-        }
-    };
-
-    Ui5GridData.prototype.visibleOnLargeChanged = function visibleOnLargeChanged(newValue) {
-        if (this._griddata !== null) {
-            this._griddata.setVisibleOnLarge((0, _attributes.getBooleanFromAttributeValue)(newValue));
-        }
-    };
-
-    Ui5GridData.prototype.visibleOnMediumChanged = function visibleOnMediumChanged(newValue) {
-        if (this._griddata !== null) {
-            this._griddata.setVisibleOnMedium((0, _attributes.getBooleanFromAttributeValue)(newValue));
-        }
-    };
-
-    Ui5GridData.prototype.visibleOnSmallChanged = function visibleOnSmallChanged(newValue) {
-        if (this._griddata !== null) {
-            this._griddata.setVisibleOnSmall((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            this._griddata.attachModelContextChange(newValue);
         }
     };
 
@@ -538,49 +532,29 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
     initializer: function initializer() {
         return false;
     }
-}), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'spanLarge', [_dec24], {
+}), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec24], {
     enumerable: true,
     initializer: function initializer() {
-        return null;
+        return this.defaultFunc;
     }
-}), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'spanMedium', [_dec25], {
+}), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec25], {
     enumerable: true,
     initializer: function initializer() {
-        return null;
+        return this.defaultFunc;
     }
-}), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'spanSmall', [_dec26], {
+}), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec26], {
     enumerable: true,
     initializer: function initializer() {
-        return null;
+        return this.defaultFunc;
     }
-}), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'indentLarge', [_dec27], {
+}), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec27], {
     enumerable: true,
     initializer: function initializer() {
-        return null;
+        return this.defaultFunc;
     }
-}), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'indentMedium', [_dec28], {
+}), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec28], {
     enumerable: true,
     initializer: function initializer() {
-        return null;
+        return this.defaultFunc;
     }
-}), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'indentSmall', [_dec29], {
-    enumerable: true,
-    initializer: function initializer() {
-        return null;
-    }
-}), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'visibleOnLarge', [_dec30], {
-    enumerable: true,
-    initializer: function initializer() {
-        return true;
-    }
-}), _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, 'visibleOnMedium', [_dec31], {
-    enumerable: true,
-    initializer: function initializer() {
-        return true;
-    }
-}), _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, 'visibleOnSmall', [_dec32], {
-    enumerable: true,
-    initializer: function initializer() {
-        return true;
-    }
-}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec33], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec29], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

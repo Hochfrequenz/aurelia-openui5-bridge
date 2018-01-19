@@ -1,14 +1,14 @@
 Arguments: 
-  /usr/bin/nodejs /usr/share/yarn/bin/yarn.js add karma --dev
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add marked
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Users/joscha.metze/Downloads/cmder/vendor/conemu-maximus5/ConEmu/Scripts:/mnt/c/Users/joscha.metze/Downloads/cmder/vendor/conemu-maximus5:/mnt/c/Users/joscha.metze/Downloads/cmder/vendor/conemu-maximus5/ConEmu:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files (x86)/Business Objects/Common/3.5/bin/NOTES:/mnt/c/Program Files (x86)/PHP/v5.6:/mnt/c/Windows/System32/inetsrv:/mnt/c/Python27:/mnt/c/Python27/Scripts:/mnt/c/ProgramData/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Intel/iCLS Client:/mnt/c/Program Files/Intel/iCLS Client:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Program Files/Lenovo/Fingerprint Manager Pro:/mnt/c/Program Files (x86)/Common Files/LENOVO:/mnt/c/SWTOOLS/readyapps:/mnt/c/Program Files (x86)/Windows Kits/8.1/Windows Performance Toolkit:/mnt/c/Program Files/Microsoft SQL Server/110/Tools/Binn:/mnt/c/Program Files/Microsoft SQL Server/120/Tools/Binn:/mnt/c/Program Files (x86)/Microsoft SQL Server/110/Tools/Binn/ManagementStudio:/mnt/c/Program Files (x86)/Microsoft SQL Server/110/Tools/Binn:/mnt/c/Program Files (x86)/Microsoft SQL Server/110/DTS/Binn:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files (x86)/Livestreamer:/mnt/c/Program Files (x86)/nodejs:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn:/mnt/c/Program Files/Microsoft DNX/Dnvm:/mnt/c/Program Files/Cloud Foundry:/mnt/c/Program Files/dotnet:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Intel/WiFi/bin:/mnt/c/Program Files/Common Files/Intel/WirelessCommon:/mnt/c/Users/joscha.metze/AppData/Local/Programs/Git/cmd:/mnt/c/Users/joscha.metze/.dnx/runtimes/dnx-clr-win-x86.1.0.0-rc1-final/bin:/mnt/c/Users/joscha.metze/.dnx/bin:/mnt/c/Users/joscha.metze/AppData/Local/atom/bin:/mnt/c/Users/joscha.metze/AppData/Local/Programs/Git/cmd:/mnt/c/Program Files/Docker Toolbox:/mnt/c/Users/joscha.metze/AppData/Roaming/npm:/mnt/c/Users/joscha.metze/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files (x86)/Microsoft VS Code/bin:/mnt/c/Program Files/Intel/WiFi/bin:/mnt/c/Program Files/Common Files/Intel/WirelessCommon:/mnt/c/Users/joscha.metze/AppData/Local/Programs/Fiddler
+  /home/joscha/bin:/home/joscha/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Users/Joscha/Downloads/cmder/vendor/conemu-maximus5/ConEmu/Scripts:/mnt/c/Users/Joscha/Downloads/cmder/vendor/conemu-maximus5:/mnt/c/Users/Joscha/Downloads/cmder/vendor/conemu-maximus5/ConEmu:/mnt/c/ProgramData/Oracle/Java/javapath_target_1436578843:/mnt/c/Program Files (x86)/Intel/iCLS Client:/mnt/c/Program Files/Intel/iCLS Client:/mnt/c/Program Files (x86)/Business Objects/Common/3.5/bin/NOTES:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Users/Joscha/.dnx/bin:/mnt/c/Program Files/Microsoft DNX/Dnvm:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/Git/cmd:/mnt/c/Program Files/Microsoft SQL Server/Client SDK/ODBC/110/Tools/Binn:/mnt/c/Program Files (x86)/Microsoft SQL Server/120/Tools/Binn:/mnt/c/Program Files/Microsoft SQL Server/120/Tools/Binn:/mnt/c/Program Files/Microsoft SQL Server/120/DTS/Binn:/mnt/c/Program Files (x86)/Microsoft SQL Server/120/Tools/Binn/ManagementStudio:/mnt/c/Program Files (x86)/Microsoft SQL Server/120/DTS/Binn:/mnt/c/Program Files (x86)/Windows Kits/8.1/Windows Performance Toolkit:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/dotnet:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn:/mnt/c/Windows/System32/LibreSSL:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/nodejs:/mnt/c/Users/Joscha/.dnx/bin:/mnt/c/Users/Joscha/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Users/Joscha/AppData/Local/Programs/Fiddler:/mnt/c/Users/Joscha/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Joscha/AppData/Roaming/npm:/snap/bin
 
 Yarn version: 
-  1.0.1
+  1.3.2
 
 Node version: 
-  7.10.1
+  8.7.0
 
 Platform: 
   linux x64
@@ -16,7 +16,7 @@ Platform:
 npm manifest: 
   {
     "name": "aurelia-openui5-bridge",
-    "version": "0.1.4",
+    "version": "0.2.16",
     "registry": "github",
     "description": "Aurelia interface to https://github.com/SAP/openui5",
     "keywords": [
@@ -35,7 +35,7 @@ npm manifest:
     },
     "scripts": {
       "test": "gulp test",
-      "ci": "gulp ci"
+      "ci": "gulp build-release"
     },
     "main": "dist/commonjs/index.js",
     "typings": "dist/aurelia-openui5-bridge.d.ts",
@@ -75,8 +75,8 @@ npm manifest:
     "devDependencies": {
       "aurelia-tools": "^1.0.0",
       "babel": "^6.5.2",
-      "babel-core": "^7.0.0-beta.2",
-      "babel-dts-generator": "^0.6.1",
+      "babel-core": "6",
+      "babel-dts-generator": "^0.6.3",
       "babel-eslint": "^8.0.1",
       "babel-plugin-syntax-flow": "^6.5.0",
       "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -86,14 +86,15 @@ npm manifest:
       "babel-plugin-transform-flow-strip-types": "^6.7.0",
       "babel-plugin-transform-remove-strict-mode": "0.0.2",
       "babel-preset-es2015": "^6.6.0",
-      "babel-preset-es2015-loose": "^8.0.0",
+      "babel-preset-es2015-loose": "7",
       "babel-preset-stage-1": "^6.5.0",
       "babel-runtime": "^6.26.0",
       "browser-sync": "^2.9.3",
       "conventional-changelog": "^1.1.0",
       "del": "^3.0.0",
+      "dev-ip": "^1.0.1",
       "gulp": "^3.9.1",
-      "gulp-babel": "^7.0.0",
+      "gulp-babel": "6",
       "gulp-bump": "^2.8.0",
       "gulp-concat": "^2.6.0",
       "gulp-conventional-changelog": "^1.1.0",
@@ -110,7 +111,7 @@ npm manifest:
       "jspm": "0.16.53",
       "jspm-git": "^0.6.1",
       "karma": "^1.7.1",
-      "karma-babel-preprocessor": "^7.0.0",
+      "karma-babel-preprocessor": "6",
       "karma-chrome-launcher": "^2.2.0",
       "karma-coverage": "^1.1.1",
       "karma-jasmine": "^1.1.0",
@@ -121,6 +122,7 @@ npm manifest:
       "require-dir": "^0.3.2",
       "run-sequence": "^2.2.0",
       "through2": "^2.0.0",
+      "typedoc": "^0.9.0",
       "vinyl": "^2.1.0",
       "vinyl-paths": "^2.1.0",
       "yargs": "^9.0.1"
@@ -186,6 +188,12 @@ Lockfile:
       normalize-path "^2.0.1"
       through2 "^2.0.3"
   
+  "@types/fs-extra@4.0.0":
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-4.0.0.tgz#1dd742ad5c9bce308f7a52d02ebc01421bc9102f"
+    dependencies:
+      "@types/node" "*"
+  
   "@types/fs-extra@^4.0.0":
     version "4.0.2"
     resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-4.0.2.tgz#7b9b1bbf85962cbe029b5a83c9b530d7c75af3ba"
@@ -199,13 +207,25 @@ Lockfile:
       "@types/minimatch" "*"
       "@types/node" "*"
   
+  "@types/handlebars@4.0.31":
+    version "4.0.31"
+    resolved "https://registry.yarnpkg.com/@types/handlebars/-/handlebars-4.0.31.tgz#a7fba66fafe42713aee88eeca8db91192efe6e72"
+  
   "@types/handlebars@^4.0.31":
     version "4.0.36"
     resolved "https://registry.yarnpkg.com/@types/handlebars/-/handlebars-4.0.36.tgz#ff57c77fa1ab6713bb446534ddc4d979707a3a79"
   
+  "@types/highlight.js@9.1.8":
+    version "9.1.8"
+    resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.1.8.tgz#d227f18bcb8f3f187e16965f2444859a04689758"
+  
   "@types/highlight.js@^9.1.8":
     version "9.1.10"
     resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.1.10.tgz#b621f809cd9573b80992b90cffc5788208e3069c"
+  
+  "@types/lodash@4.14.74":
+    version "4.14.74"
+    resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.74.tgz#ac3bd8db988e7f7038e5d22bd76a7ba13f876168"
   
   "@types/lodash@^4.14.37":
     version "4.14.77"
@@ -215,17 +235,27 @@ Lockfile:
     version "0.0.28"
     resolved "https://registry.yarnpkg.com/@types/marked/-/marked-0.0.28.tgz#44ba754e9fa51432583e8eb30a7c4dd249b52faa"
   
+  "@types/marked@0.3.0":
+    version "0.3.0"
+    resolved "https://registry.yarnpkg.com/@types/marked/-/marked-0.3.0.tgz#583c223dd33385a1dda01aaf77b0cd0411c4b524"
+  
   "@types/minimatch@*":
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.1.tgz#b683eb60be358304ef146f5775db4c0e3696a550"
   
-  "@types/minimatch@^2.0.29":
+  "@types/minimatch@2.0.29", "@types/minimatch@^2.0.29":
     version "2.0.29"
     resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-2.0.29.tgz#5002e14f75e2d71e564281df0431c8c1b4a2a36a"
   
   "@types/node@*":
     version "8.0.32"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.32.tgz#869a716538b6eec65ab3893f183d557be3cda206"
+  
+  "@types/shelljs@0.7.0":
+    version "0.7.0"
+    resolved "https://registry.yarnpkg.com/@types/shelljs/-/shelljs-0.7.0.tgz#229c157c6bc1e67d6b990e6c5e18dbd2ff58cff0"
+    dependencies:
+      "@types/node" "*"
   
   "@types/shelljs@^0.7.0":
     version "0.7.4"
@@ -587,14 +617,6 @@ Lockfile:
       esutils "^2.0.2"
       js-tokens "^3.0.0"
   
-  babel-code-frame@7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-7.0.0-beta.2.tgz#fd02b03243d907063e042630a561c50661d03684"
-    dependencies:
-      chalk "^2.0.0"
-      esutils "^2.0.2"
-      js-tokens "^3.0.0"
-  
   babel-code-frame@^6.22.0:
     version "6.22.0"
     resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.22.0.tgz#027620bee567a88c32561574e7fd0801d33118e4"
@@ -610,6 +632,30 @@ Lockfile:
       chalk "^1.1.3"
       esutils "^2.0.2"
       js-tokens "^3.0.2"
+  
+  babel-core@6, babel-core@^6.0.0, babel-core@^6.0.2, babel-core@^6.26.0, babel-core@^6.9.0:
+    version "6.26.0"
+    resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.0.tgz#af32f78b31a6fcef119c87b0fd8d9753f03a0bb8"
+    dependencies:
+      babel-code-frame "^6.26.0"
+      babel-generator "^6.26.0"
+      babel-helpers "^6.24.1"
+      babel-messages "^6.23.0"
+      babel-register "^6.26.0"
+      babel-runtime "^6.26.0"
+      babel-template "^6.26.0"
+      babel-traverse "^6.26.0"
+      babel-types "^6.26.0"
+      babylon "^6.18.0"
+      convert-source-map "^1.5.0"
+      debug "^2.6.8"
+      json5 "^0.5.1"
+      lodash "^4.17.4"
+      minimatch "^3.0.4"
+      path-is-absolute "^1.0.1"
+      private "^0.1.7"
+      slash "^1.0.0"
+      source-map "^0.5.6"
   
   babel-core@^6.1.4, babel-core@^6.24.0:
     version "6.24.0"
@@ -635,51 +681,7 @@ Lockfile:
       slash "^1.0.0"
       source-map "^0.5.0"
   
-  babel-core@^6.26.0, babel-core@^6.9.0:
-    version "6.26.0"
-    resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.0.tgz#af32f78b31a6fcef119c87b0fd8d9753f03a0bb8"
-    dependencies:
-      babel-code-frame "^6.26.0"
-      babel-generator "^6.26.0"
-      babel-helpers "^6.24.1"
-      babel-messages "^6.23.0"
-      babel-register "^6.26.0"
-      babel-runtime "^6.26.0"
-      babel-template "^6.26.0"
-      babel-traverse "^6.26.0"
-      babel-types "^6.26.0"
-      babylon "^6.18.0"
-      convert-source-map "^1.5.0"
-      debug "^2.6.8"
-      json5 "^0.5.1"
-      lodash "^4.17.4"
-      minimatch "^3.0.4"
-      path-is-absolute "^1.0.1"
-      private "^0.1.7"
-      slash "^1.0.0"
-      source-map "^0.5.6"
-  
-  babel-core@^7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-beta.2.tgz#33826a99ba63b172ad5bfeb1f2f13652fe79d402"
-    dependencies:
-      babel-code-frame "7.0.0-beta.2"
-      babel-generator "7.0.0-beta.2"
-      babel-helpers "7.0.0-beta.2"
-      babel-messages "7.0.0-beta.2"
-      babel-template "7.0.0-beta.2"
-      babel-traverse "7.0.0-beta.2"
-      babel-types "7.0.0-beta.2"
-      babylon "7.0.0-beta.25"
-      convert-source-map "^1.1.0"
-      debug "^3.0.1"
-      json5 "^0.5.0"
-      lodash "^4.2.0"
-      micromatch "^2.3.11"
-      resolve "^1.3.2"
-      source-map "^0.5.0"
-  
-  babel-dts-generator@^0.6.1:
+  babel-dts-generator@^0.6.3:
     version "0.6.3"
     resolved "https://registry.yarnpkg.com/babel-dts-generator/-/babel-dts-generator-0.6.3.tgz#b5ce3e438255a3029b34adc092a9bb8b3df81c07"
   
@@ -691,17 +693,6 @@ Lockfile:
       babel-traverse "7.0.0-beta.0"
       babel-types "7.0.0-beta.0"
       babylon "7.0.0-beta.22"
-  
-  babel-generator@7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-generator/-/babel-generator-7.0.0-beta.2.tgz#e09bbd818c006486c3af938e4d71f99532614115"
-    dependencies:
-      babel-messages "7.0.0-beta.2"
-      babel-types "7.0.0-beta.2"
-      jsesc "^2.5.1"
-      lodash "^4.2.0"
-      source-map "^0.5.0"
-      trim-right "^1.0.1"
   
   babel-generator@^6.24.0:
     version "6.24.0"
@@ -789,15 +780,6 @@ Lockfile:
       babel-traverse "7.0.0-beta.0"
       babel-types "7.0.0-beta.0"
   
-  babel-helper-function-name@7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-helper-function-name/-/babel-helper-function-name-7.0.0-beta.2.tgz#f051ccee25525210e113738e46e1a122654a6bee"
-    dependencies:
-      babel-helper-get-function-arity "7.0.0-beta.2"
-      babel-template "7.0.0-beta.2"
-      babel-traverse "7.0.0-beta.2"
-      babel-types "7.0.0-beta.2"
-  
   babel-helper-function-name@^6.22.0, babel-helper-function-name@^6.23.0:
     version "6.23.0"
     resolved "https://registry.yarnpkg.com/babel-helper-function-name/-/babel-helper-function-name-6.23.0.tgz#25742d67175c8903dbe4b6cb9d9e1fcb8dcf23a6"
@@ -813,12 +795,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/babel-helper-get-function-arity/-/babel-helper-get-function-arity-7.0.0-beta.0.tgz#9d1ab7213bb5efe1ef1638a8ea1489969b5a8b6e"
     dependencies:
       babel-types "7.0.0-beta.0"
-  
-  babel-helper-get-function-arity@7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-helper-get-function-arity/-/babel-helper-get-function-arity-7.0.0-beta.2.tgz#65df223685018f8f7e199f6b8f2ccc3cb9079d84"
-    dependencies:
-      babel-types "7.0.0-beta.2"
   
   babel-helper-get-function-arity@^6.22.0:
     version "6.22.0"
@@ -870,14 +846,6 @@ Lockfile:
       babel-traverse "^6.23.0"
       babel-types "^6.23.0"
   
-  babel-helpers@7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-helpers/-/babel-helpers-7.0.0-beta.2.tgz#a2f5f85e6c8e2739fa68e9137fdc0966538150f5"
-    dependencies:
-      babel-template "7.0.0-beta.2"
-      babel-traverse "7.0.0-beta.2"
-      babel-types "7.0.0-beta.2"
-  
   babel-helpers@^6.23.0:
     version "6.23.0"
     resolved "https://registry.yarnpkg.com/babel-helpers/-/babel-helpers-6.23.0.tgz#4f8f2e092d0b6a8808a4bde79c27f1e2ecf0d992"
@@ -895,10 +863,6 @@ Lockfile:
   babel-messages@7.0.0-beta.0:
     version "7.0.0-beta.0"
     resolved "https://registry.yarnpkg.com/babel-messages/-/babel-messages-7.0.0-beta.0.tgz#6df01296e49fc8fbd0637394326a167f36da817b"
-  
-  babel-messages@7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-messages/-/babel-messages-7.0.0-beta.2.tgz#b6f685a7e81d8995ca72b70fc8039466990f81d8"
   
   babel-messages@^6.23.0:
     version "6.23.0"
@@ -1237,11 +1201,11 @@ Lockfile:
     version "0.0.1"
     resolved "https://registry.yarnpkg.com/babel-plugin-transform-system-register/-/babel-plugin-transform-system-register-0.0.1.tgz#9dff40390c2763ac518f0b2ad7c5ea4f65a5be25"
   
-  babel-preset-es2015-loose@^8.0.0:
-    version "8.0.0"
-    resolved "https://registry.yarnpkg.com/babel-preset-es2015-loose/-/babel-preset-es2015-loose-8.0.0.tgz#82ee293ab31329c7a94686b644b62adfbcdc3f57"
+  babel-preset-es2015-loose@7:
+    version "7.0.0"
+    resolved "https://registry.yarnpkg.com/babel-preset-es2015-loose/-/babel-preset-es2015-loose-7.0.0.tgz#fd80c85d3b20cbf309bd0ce30a36380c5784bf06"
     dependencies:
-      modify-babel-preset "^3.1.0"
+      modify-babel-preset "^1.0.0"
   
   babel-preset-es2015@^6.6.0:
     version "6.24.0"
@@ -1346,15 +1310,6 @@ Lockfile:
       babylon "7.0.0-beta.22"
       lodash "^4.2.0"
   
-  babel-template@7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-template/-/babel-template-7.0.0-beta.2.tgz#e5140a36854c113e12680110f0975daf09d4b4c0"
-    dependencies:
-      babel-traverse "7.0.0-beta.2"
-      babel-types "7.0.0-beta.2"
-      babylon "7.0.0-beta.25"
-      lodash "^4.2.0"
-  
   babel-template@^6.22.0, babel-template@^6.23.0, babel-template@^6.3.0:
     version "6.23.0"
     resolved "https://registry.yarnpkg.com/babel-template/-/babel-template-6.23.0.tgz#04d4f270adbb3aa704a8143ae26faa529238e638"
@@ -1384,20 +1339,6 @@ Lockfile:
       babel-messages "7.0.0-beta.0"
       babel-types "7.0.0-beta.0"
       babylon "7.0.0-beta.22"
-      debug "^3.0.1"
-      globals "^10.0.0"
-      invariant "^2.2.0"
-      lodash "^4.2.0"
-  
-  babel-traverse@7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-traverse/-/babel-traverse-7.0.0-beta.2.tgz#4073ace28b2602bb250cc6473a49730f516214bb"
-    dependencies:
-      babel-code-frame "7.0.0-beta.2"
-      babel-helper-function-name "7.0.0-beta.2"
-      babel-messages "7.0.0-beta.2"
-      babel-types "7.0.0-beta.2"
-      babylon "7.0.0-beta.25"
       debug "^3.0.1"
       globals "^10.0.0"
       invariant "^2.2.0"
@@ -1439,14 +1380,6 @@ Lockfile:
       lodash "^4.2.0"
       to-fast-properties "^2.0.0"
   
-  babel-types@7.0.0-beta.2:
-    version "7.0.0-beta.2"
-    resolved "https://registry.yarnpkg.com/babel-types/-/babel-types-7.0.0-beta.2.tgz#ea2352b5a439cdcf892966abccadc585a0244c65"
-    dependencies:
-      esutils "^2.0.2"
-      lodash "^4.2.0"
-      to-fast-properties "^2.0.0"
-  
   babel-types@^6.19.0, babel-types@^6.22.0, babel-types@^6.23.0:
     version "6.23.0"
     resolved "https://registry.yarnpkg.com/babel-types/-/babel-types-6.23.0.tgz#bb17179d7538bad38cd0c9e115d340f77e7e9acf"
@@ -1472,10 +1405,6 @@ Lockfile:
   babylon@7.0.0-beta.22:
     version "7.0.0-beta.22"
     resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.22.tgz#74f0ad82ed7c7c3cfeab74cf684f815104161b65"
-  
-  babylon@7.0.0-beta.25:
-    version "7.0.0-beta.25"
-    resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.25.tgz#5fff5062b7082203b1bc5cab488e154cfee0202a"
   
   babylon@^6.11.0, babylon@^6.15.0:
     version "6.16.1"
@@ -3315,11 +3244,13 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
   
-  gulp-babel@^7.0.0:
-    version "7.0.0"
-    resolved "https://registry.yarnpkg.com/gulp-babel/-/gulp-babel-7.0.0.tgz#7b93c975159f7a0553e4263b4a55100ccc239b28"
+  gulp-babel@6:
+    version "6.1.2"
+    resolved "https://registry.yarnpkg.com/gulp-babel/-/gulp-babel-6.1.2.tgz#7c0176e4ba3f244c60588a0c4b320a45d1adefce"
     dependencies:
+      babel-core "^6.0.2"
       gulp-util "^3.0.0"
+      object-assign "^4.0.1"
       replace-ext "0.0.1"
       through2 "^2.0.0"
       vinyl-sourcemaps-apply "^0.2.0"
@@ -4012,10 +3943,6 @@ Lockfile:
     version "1.3.0"
     resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-1.3.0.tgz#46c3fec8c1892b12b0833db9bc7622176dbab34b"
   
-  jsesc@^2.5.1:
-    version "2.5.1"
-    resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.1.tgz#e421a2a8e20d6b0819df28908f782526b96dd1fe"
-  
   jsesc@~0.5.0:
     version "0.5.0"
     resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
@@ -4159,9 +4086,11 @@ Lockfile:
       json-schema "0.2.3"
       verror "1.3.6"
   
-  karma-babel-preprocessor@^7.0.0:
-    version "7.0.0"
-    resolved "https://registry.yarnpkg.com/karma-babel-preprocessor/-/karma-babel-preprocessor-7.0.0.tgz#18756d818f97a5e88f91902674cd9130177a8dce"
+  karma-babel-preprocessor@6:
+    version "6.0.1"
+    resolved "https://registry.yarnpkg.com/karma-babel-preprocessor/-/karma-babel-preprocessor-6.0.1.tgz#7ae1d3e64950dbe11f421b74040ab08fb5a66c21"
+    dependencies:
+      babel-core "^6.0.0"
   
   karma-chrome-launcher@^2.2.0:
     version "2.2.0"
@@ -4559,7 +4488,7 @@ Lockfile:
       redent "^1.0.0"
       trim-newlines "^1.0.0"
   
-  micromatch@2.3.11, micromatch@^2.1.5, micromatch@^2.3.11, micromatch@^2.3.7:
+  micromatch@2.3.11, micromatch@^2.1.5, micromatch@^2.3.7:
     version "2.3.11"
     resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-2.3.11.tgz#86677c97d1720b363431d04d0d15293bd38c1565"
     dependencies:
@@ -4652,9 +4581,9 @@ Lockfile:
     dependencies:
       minimist "0.0.8"
   
-  modify-babel-preset@^3.1.0:
-    version "3.2.1"
-    resolved "https://registry.yarnpkg.com/modify-babel-preset/-/modify-babel-preset-3.2.1.tgz#d7172aa3c0822ed3fc08e308fd0971295136ab50"
+  modify-babel-preset@^1.0.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/modify-babel-preset/-/modify-babel-preset-1.2.0.tgz#d1b7c8c24896e19dbc4847347213e6b7144d1bc7"
     dependencies:
       require-relative "^0.8.7"
   
@@ -5040,10 +4969,6 @@ Lockfile:
   path-key@^2.0.0:
     version "2.0.1"
     resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
-  
-  path-parse@^1.0.5:
-    version "1.0.5"
-    resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
   
   path-root-regex@^0.1.0:
     version "0.1.2"
@@ -5549,12 +5474,6 @@ Lockfile:
   resolve@1.1.x, resolve@^1.1.6, resolve@^1.1.7:
     version "1.1.7"
     resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
-  
-  resolve@^1.3.2:
-    version "1.4.0"
-    resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
-    dependencies:
-      path-parse "^1.0.5"
   
   resp-modifier@6.0.2:
     version "6.0.2"
@@ -6330,6 +6249,28 @@ Lockfile:
       typedoc-default-themes "^0.5.0"
       typescript "2.4.1"
   
+  typedoc@^0.9.0:
+    version "0.9.0"
+    resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.9.0.tgz#159bff7c7784ce5b91d86f3e4cc8928e62040957"
+    dependencies:
+      "@types/fs-extra" "4.0.0"
+      "@types/handlebars" "4.0.31"
+      "@types/highlight.js" "9.1.8"
+      "@types/lodash" "4.14.74"
+      "@types/marked" "0.3.0"
+      "@types/minimatch" "2.0.29"
+      "@types/shelljs" "0.7.0"
+      fs-extra "^4.0.0"
+      handlebars "^4.0.6"
+      highlight.js "^9.0.0"
+      lodash "^4.13.1"
+      marked "^0.3.5"
+      minimatch "^3.0.0"
+      progress "^2.0.0"
+      shelljs "^0.7.0"
+      typedoc-default-themes "^0.5.0"
+      typescript "2.4.1"
+  
   typescript@2.4.1:
     version "2.4.1"
     resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.1.tgz#c3ccb16ddaa0b2314de031e7e6fee89e5ba346bc"
@@ -6736,8 +6677,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
 
 Trace: 
-  Error: https://registry.yarnpkg.com/karma: ETIMEDOUT
-      at Timeout._onTimeout (/usr/share/yarn/lib/cli.js:117988:19)
-      at ontimeout (timers.js:386:14)
-      at tryOnTimeout (timers.js:250:5)
-      at Timer.listOnTimeout (timers.js:214:5)
+  Error: ENOENT: no such file or directory, scandir '/mnt/c/Develop/aurelia-openui5-bridge/node_modules/babel-helpers/node_modules/babel-template/node_modules/babel-runtime/core-js/error'

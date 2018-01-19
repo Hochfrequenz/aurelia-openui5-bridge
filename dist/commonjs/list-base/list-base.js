@@ -7,7 +7,7 @@ exports.Ui5ListBase = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _dec34, _dec35, _dec36, _dec37, _dec38, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31, _descriptor32, _descriptor33, _descriptor34, _descriptor35, _descriptor36;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _dec34, _dec35, _dec36, _dec37, _dec38, _dec39, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31, _descriptor32, _descriptor33, _descriptor34, _descriptor35, _descriptor36, _descriptor37;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -70,7 +70,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customElement)('ui5-list-base'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaTemplating.bindable)(), _dec27 = (0, _aureliaTemplating.bindable)(), _dec28 = (0, _aureliaTemplating.bindable)(), _dec29 = (0, _aureliaTemplating.bindable)(), _dec30 = (0, _aureliaTemplating.bindable)(), _dec31 = (0, _aureliaTemplating.bindable)(), _dec32 = (0, _aureliaTemplating.bindable)(), _dec33 = (0, _aureliaTemplating.bindable)(), _dec34 = (0, _aureliaTemplating.bindable)(), _dec35 = (0, _aureliaTemplating.bindable)(), _dec36 = (0, _aureliaTemplating.bindable)(), _dec37 = (0, _aureliaTemplating.bindable)(), _dec38 = (0, _aureliaFramework.computedFrom)('_listbase'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customElement)('ui5-list-base'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaTemplating.bindable)(), _dec27 = (0, _aureliaTemplating.bindable)(), _dec28 = (0, _aureliaTemplating.bindable)(), _dec29 = (0, _aureliaTemplating.bindable)(), _dec30 = (0, _aureliaTemplating.bindable)(), _dec31 = (0, _aureliaTemplating.bindable)(), _dec32 = (0, _aureliaTemplating.bindable)(), _dec33 = (0, _aureliaTemplating.bindable)(), _dec34 = (0, _aureliaTemplating.bindable)(), _dec35 = (0, _aureliaTemplating.bindable)(), _dec36 = (0, _aureliaTemplating.bindable)(), _dec37 = (0, _aureliaTemplating.bindable)(), _dec38 = (0, _aureliaTemplating.bindable)(), _dec39 = (0, _aureliaFramework.computedFrom)('_listbase'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
     _inherits(Ui5ListBase, _Ui5Control);
 
     function Ui5ListBase(element) {
@@ -88,71 +88,73 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
 
         _initDefineProp(_this, 'headerText', _descriptor3, _this);
 
-        _initDefineProp(_this, 'headerDesign', _descriptor4, _this);
+        _initDefineProp(_this, 'footerText', _descriptor4, _this);
 
-        _initDefineProp(_this, 'footerText', _descriptor5, _this);
+        _initDefineProp(_this, 'mode', _descriptor5, _this);
 
-        _initDefineProp(_this, 'mode', _descriptor6, _this);
+        _initDefineProp(_this, 'width', _descriptor6, _this);
 
-        _initDefineProp(_this, 'width', _descriptor7, _this);
+        _initDefineProp(_this, 'includeItemInSelection', _descriptor7, _this);
 
-        _initDefineProp(_this, 'includeItemInSelection', _descriptor8, _this);
+        _initDefineProp(_this, 'showUnread', _descriptor8, _this);
 
-        _initDefineProp(_this, 'showUnread', _descriptor9, _this);
+        _initDefineProp(_this, 'noDataText', _descriptor9, _this);
 
-        _initDefineProp(_this, 'noDataText', _descriptor10, _this);
+        _initDefineProp(_this, 'showNoData', _descriptor10, _this);
 
-        _initDefineProp(_this, 'showNoData', _descriptor11, _this);
+        _initDefineProp(_this, 'enableBusyIndicator', _descriptor11, _this);
 
-        _initDefineProp(_this, 'enableBusyIndicator', _descriptor12, _this);
+        _initDefineProp(_this, 'modeAnimationOn', _descriptor12, _this);
 
-        _initDefineProp(_this, 'modeAnimationOn', _descriptor13, _this);
+        _initDefineProp(_this, 'showSeparators', _descriptor13, _this);
 
-        _initDefineProp(_this, 'showSeparators', _descriptor14, _this);
+        _initDefineProp(_this, 'swipeDirection', _descriptor14, _this);
 
-        _initDefineProp(_this, 'swipeDirection', _descriptor15, _this);
+        _initDefineProp(_this, 'growing', _descriptor15, _this);
 
-        _initDefineProp(_this, 'growing', _descriptor16, _this);
+        _initDefineProp(_this, 'growingThreshold', _descriptor16, _this);
 
-        _initDefineProp(_this, 'growingThreshold', _descriptor17, _this);
+        _initDefineProp(_this, 'growingTriggerText', _descriptor17, _this);
 
-        _initDefineProp(_this, 'growingTriggerText', _descriptor18, _this);
+        _initDefineProp(_this, 'growingScrollToLoad', _descriptor18, _this);
 
-        _initDefineProp(_this, 'growingScrollToLoad', _descriptor19, _this);
+        _initDefineProp(_this, 'growingDirection', _descriptor19, _this);
 
-        _initDefineProp(_this, 'growingDirection', _descriptor20, _this);
+        _initDefineProp(_this, 'rememberSelections', _descriptor20, _this);
 
-        _initDefineProp(_this, 'rememberSelections', _descriptor21, _this);
+        _initDefineProp(_this, 'keyboardMode', _descriptor21, _this);
 
-        _initDefineProp(_this, 'keyboardMode', _descriptor22, _this);
+        _initDefineProp(_this, 'selectionChange', _descriptor22, _this);
 
-        _initDefineProp(_this, 'select', _descriptor23, _this);
+        _initDefineProp(_this, 'delete', _descriptor23, _this);
 
-        _initDefineProp(_this, 'selectionChange', _descriptor24, _this);
+        _initDefineProp(_this, 'swipe', _descriptor24, _this);
 
-        _initDefineProp(_this, 'delete', _descriptor25, _this);
+        _initDefineProp(_this, 'updateStarted', _descriptor25, _this);
 
-        _initDefineProp(_this, 'swipe', _descriptor26, _this);
+        _initDefineProp(_this, 'updateFinished', _descriptor26, _this);
 
-        _initDefineProp(_this, 'growingStarted', _descriptor27, _this);
+        _initDefineProp(_this, 'itemPress', _descriptor27, _this);
 
-        _initDefineProp(_this, 'growingFinished', _descriptor28, _this);
+        _initDefineProp(_this, 'busy', _descriptor28, _this);
 
-        _initDefineProp(_this, 'updateStarted', _descriptor29, _this);
+        _initDefineProp(_this, 'busyIndicatorDelay', _descriptor29, _this);
 
-        _initDefineProp(_this, 'updateFinished', _descriptor30, _this);
+        _initDefineProp(_this, 'visible', _descriptor30, _this);
 
-        _initDefineProp(_this, 'itemPress', _descriptor31, _this);
+        _initDefineProp(_this, 'fieldGroupIds', _descriptor31, _this);
 
-        _initDefineProp(_this, 'busy', _descriptor32, _this);
+        _initDefineProp(_this, 'validateFieldGroup', _descriptor32, _this);
 
-        _initDefineProp(_this, 'busyIndicatorDelay', _descriptor33, _this);
+        _initDefineProp(_this, 'validationSuccess', _descriptor33, _this);
 
-        _initDefineProp(_this, 'visible', _descriptor34, _this);
+        _initDefineProp(_this, 'validationError', _descriptor34, _this);
 
-        _initDefineProp(_this, 'fieldGroupIds', _descriptor35, _this);
+        _initDefineProp(_this, 'parseError', _descriptor35, _this);
 
-        _initDefineProp(_this, 'validateFieldGroup', _descriptor36, _this);
+        _initDefineProp(_this, 'formatError', _descriptor36, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor37, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -162,7 +164,6 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
     Ui5ListBase.prototype.fillProperties = function fillProperties(params) {
         params.inset = (0, _attributes.getBooleanFromAttributeValue)(this.inset);
         params.headerText = this.headerText;
-        params.headerDesign = this.headerDesign;
         params.footerText = this.footerText;
         params.mode = this.mode;
         params.width = this.width;
@@ -181,6 +182,12 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
         params.growingDirection = this.growingDirection;
         params.rememberSelections = (0, _attributes.getBooleanFromAttributeValue)(this.rememberSelections);
         params.keyboardMode = this.keyboardMode;
+        params.selectionChange = this.selectionChange == null ? this.defaultFunc : this.selectionChange;
+        params.delete = this.delete == null ? this.defaultFunc : this.delete;
+        params.swipe = this.swipe == null ? this.defaultFunc : this.swipe;
+        params.updateStarted = this.updateStarted == null ? this.defaultFunc : this.updateStarted;
+        params.updateFinished = this.updateFinished == null ? this.defaultFunc : this.updateFinished;
+        params.itemPress = this.itemPress == null ? this.defaultFunc : this.itemPress;
     };
 
     Ui5ListBase.prototype.defaultFunc = function defaultFunc() {};
@@ -191,17 +198,18 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
         this.fillProperties(params);
         _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._listbase = new sap.m.ListBase(this.ui5Id, params);else this._listbase = new sap.m.ListBase(params);
+
         if ($(this.element).closest("[ui5-container]").length > 0) {
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
             if (!this._parent.UIElement || this._parent.UIElement.sId != this._listbase.sId) {
                 var prevSibling = null;
-                if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                 this._relation = this._parent.addChild(this._listbase, this.element, prevSibling);
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             } else {
                 this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                 var prevSibling = null;
-                if (this.element.previousElementSibling) {
+                if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                     this._relation = this._parent.addChild(this._listbase, this.element, prevSibling);
                 } else this._relation = this._parent.addChild(this._listbase, this.element);
@@ -217,12 +225,16 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
     };
 
     Ui5ListBase.prototype.detached = function detached() {
-        if (this._parent && this._relation) {
-            this._parent.removeChildByRelation(this._listbase, this._relation);
-        } else {
-            this._listbase.destroy();
-        }
-        _Ui5Control.prototype.detached.call(this);
+        try {
+            if ($(this.element).closest("[ui5-container]").length > 0) {
+                if (this._parent && this._relation) {
+                    this._parent.removeChildByRelation(this._listbase, this._relation);
+                }
+            } else {
+                this._listbase.destroy();
+            }
+            _Ui5Control.prototype.detached.call(this);
+        } catch (err) {}
     };
 
     Ui5ListBase.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -237,25 +249,62 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
                 elem = _i.value;
             }
 
-            if (elem.localName == 'items') {
-                var _index = null;if (afterElement) _index = this._listbase.indexOfItem(afterElement);if (_index) this._listbase.insertItem(child, _index + 1);else this._listbase.addItem(child, 0);return elem.localName;
-            }
-            if (elem.localName == 'swipeContent') {
-                this._listbase.setSwipeContent(child);return elem.localName;
-            }
-            if (elem.localName == 'headerToolbar') {
-                this._listbase.setHeaderToolbar(child);return elem.localName;
-            }
-            if (elem.localName == 'infoToolbar') {
-                this._listbase.setInfoToolbar(child);return elem.localName;
-            }
+            try {
+                if (elem.localName == 'items') {
+                    var _index = null;if (afterElement) _index = this._listbase.indexOfItem(afterElement);if (_index) this._listbase.insertItem(child, _index + 1);else this._listbase.addItem(child, 0);return elem.localName;
+                }
+                if (elem.localName == 'swipecontent') {
+                    this._listbase.setSwipeContent(child);return elem.localName;
+                }
+                if (elem.localName == 'headertoolbar') {
+                    this._listbase.setHeaderToolbar(child);return elem.localName;
+                }
+                if (elem.localName == 'infotoolbar') {
+                    this._listbase.setInfoToolbar(child);return elem.localName;
+                }
+                if (elem.localName == 'tooltip') {
+                    this._listbase.setTooltip(child);return elem.localName;
+                }
+                if (elem.localName == 'customdata') {
+                    var _index = null;if (afterElement) _index = this._listbase.indexOfCustomData(afterElement);if (_index) this._listbase.insertCustomData(child, _index + 1);else this._listbase.addCustomData(child, 0);return elem.localName;
+                }
+                if (elem.localName == 'layoutdata') {
+                    this._listbase.setLayoutData(child);return elem.localName;
+                }
+                if (elem.localName == 'dependents') {
+                    var _index = null;if (afterElement) _index = this._listbase.indexOfDependent(afterElement);if (_index) this._listbase.insertDependent(child, _index + 1);else this._listbase.addDependent(child, 0);return elem.localName;
+                }
+            } catch (err) {}
         }
     };
 
     Ui5ListBase.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-        if (relation == 'items') {
-            this._listbase.removeItem(child);
-        }
+        try {
+            if (relation == 'items') {
+                this._listbase.removeItem(child);
+            }
+            if (relation == 'swipeContent') {
+                this._listbase.destroySwipeContent(child);
+            }
+            if (relation == 'headerToolbar') {
+                this._listbase.destroyHeaderToolbar(child);
+            }
+            if (relation == 'infoToolbar') {
+                this._listbase.destroyInfoToolbar(child);
+            }
+            if (relation == 'tooltip') {
+                this._listbase.destroyTooltip(child);
+            }
+            if (relation == 'customdata') {
+                this._listbase.removeCustomData(child);
+            }
+            if (relation == 'layoutData') {
+                this._listbase.destroyLayoutData(child);
+            }
+            if (relation == 'dependents') {
+                this._listbase.removeDependent(child);
+            }
+        } catch (err) {}
     };
 
     Ui5ListBase.prototype.insetChanged = function insetChanged(newValue) {
@@ -267,12 +316,6 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
     Ui5ListBase.prototype.headerTextChanged = function headerTextChanged(newValue) {
         if (this._listbase !== null) {
             this._listbase.setHeaderText(newValue);
-        }
-    };
-
-    Ui5ListBase.prototype.headerDesignChanged = function headerDesignChanged(newValue) {
-        if (this._listbase !== null) {
-            this._listbase.setHeaderDesign(newValue);
         }
     };
 
@@ -384,12 +427,6 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
         }
     };
 
-    Ui5ListBase.prototype.selectChanged = function selectChanged(newValue) {
-        if (this._listbase !== null) {
-            this._listbase.attachSelect(newValue);
-        }
-    };
-
     Ui5ListBase.prototype.selectionChangeChanged = function selectionChangeChanged(newValue) {
         if (this._listbase !== null) {
             this._listbase.attachSelectionChange(newValue);
@@ -405,18 +442,6 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
     Ui5ListBase.prototype.swipeChanged = function swipeChanged(newValue) {
         if (this._listbase !== null) {
             this._listbase.attachSwipe(newValue);
-        }
-    };
-
-    Ui5ListBase.prototype.growingStartedChanged = function growingStartedChanged(newValue) {
-        if (this._listbase !== null) {
-            this._listbase.attachGrowingStarted(newValue);
-        }
-    };
-
-    Ui5ListBase.prototype.growingFinishedChanged = function growingFinishedChanged(newValue) {
-        if (this._listbase !== null) {
-            this._listbase.attachGrowingFinished(newValue);
         }
     };
 
@@ -468,6 +493,36 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
         }
     };
 
+    Ui5ListBase.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+        if (this._listbase !== null) {
+            this._listbase.attachValidationSuccess(newValue);
+        }
+    };
+
+    Ui5ListBase.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+        if (this._listbase !== null) {
+            this._listbase.attachValidationError(newValue);
+        }
+    };
+
+    Ui5ListBase.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+        if (this._listbase !== null) {
+            this._listbase.attachParseError(newValue);
+        }
+    };
+
+    Ui5ListBase.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+        if (this._listbase !== null) {
+            this._listbase.attachFormatError(newValue);
+        }
+    };
+
+    Ui5ListBase.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+        if (this._listbase !== null) {
+            this._listbase.attachModelContextChange(newValue);
+        }
+    };
+
     _createClass(Ui5ListBase, [{
         key: 'UIElement',
         get: function get() {
@@ -491,169 +546,174 @@ var Ui5ListBase = exports.Ui5ListBase = (_dec = (0, _aureliaTemplating.customEle
     initializer: function initializer() {
         return null;
     }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'headerDesign', [_dec5], {
-    enumerable: true,
-    initializer: function initializer() {
-        return 'Standard';
-    }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'footerText', [_dec6], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'footerText', [_dec5], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'mode', [_dec7], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'mode', [_dec6], {
     enumerable: true,
     initializer: function initializer() {
         return 'None';
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec8], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec7], {
     enumerable: true,
     initializer: function initializer() {
         return '100%';
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'includeItemInSelection', [_dec9], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'includeItemInSelection', [_dec8], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'showUnread', [_dec10], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'showUnread', [_dec9], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'noDataText', [_dec11], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'noDataText', [_dec10], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'showNoData', [_dec12], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'showNoData', [_dec11], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'enableBusyIndicator', [_dec13], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'enableBusyIndicator', [_dec12], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'modeAnimationOn', [_dec14], {
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'modeAnimationOn', [_dec13], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'showSeparators', [_dec15], {
+}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'showSeparators', [_dec14], {
     enumerable: true,
     initializer: function initializer() {
         return 'All';
     }
-}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'swipeDirection', [_dec16], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'swipeDirection', [_dec15], {
     enumerable: true,
     initializer: function initializer() {
         return 'Both';
     }
-}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'growing', [_dec17], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'growing', [_dec16], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'growingThreshold', [_dec18], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'growingThreshold', [_dec17], {
     enumerable: true,
     initializer: function initializer() {
         return 20;
     }
-}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'growingTriggerText', [_dec19], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'growingTriggerText', [_dec18], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'growingScrollToLoad', [_dec20], {
+}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'growingScrollToLoad', [_dec19], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'growingDirection', [_dec21], {
+}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'growingDirection', [_dec20], {
     enumerable: true,
     initializer: function initializer() {
         return 'Downwards';
     }
-}), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'rememberSelections', [_dec22], {
+}), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'rememberSelections', [_dec21], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'keyboardMode', [_dec23], {
+}), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'keyboardMode', [_dec22], {
     enumerable: true,
     initializer: function initializer() {
         return 'Navigation';
     }
-}), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec24], {
+}), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'selectionChange', [_dec23], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'selectionChange', [_dec25], {
+}), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'delete', [_dec24], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'delete', [_dec26], {
+}), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'swipe', [_dec25], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'swipe', [_dec27], {
+}), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'updateStarted', [_dec26], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'growingStarted', [_dec28], {
+}), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'updateFinished', [_dec27], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'growingFinished', [_dec29], {
+}), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'itemPress', [_dec28], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'updateStarted', [_dec30], {
-    enumerable: true,
-    initializer: function initializer() {
-        return this.defaultFunc;
-    }
-}), _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, 'updateFinished', [_dec31], {
-    enumerable: true,
-    initializer: function initializer() {
-        return this.defaultFunc;
-    }
-}), _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, 'itemPress', [_dec32], {
-    enumerable: true,
-    initializer: function initializer() {
-        return this.defaultFunc;
-    }
-}), _descriptor32 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec33], {
+}), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec29], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor33 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec34], {
+}), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec30], {
     enumerable: true,
     initializer: function initializer() {
         return 1000;
     }
-}), _descriptor34 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec35], {
+}), _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec31], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor35 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec36], {
+}), _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec32], {
     enumerable: true,
     initializer: function initializer() {
         return '[]';
     }
-}), _descriptor36 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec37], {
+}), _descriptor32 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec33], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec38], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+}), _descriptor33 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec34], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor34 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec35], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor35 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec36], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor36 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec37], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor37 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec38], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec39], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

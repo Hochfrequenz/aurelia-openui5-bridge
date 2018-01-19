@@ -7,7 +7,7 @@ exports.Ui5ResponsiveGridLayout = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -70,7 +70,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aureliaTemplating.customElement)('ui5-responsive-grid-layout'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaFramework.computedFrom)('_responsivegridlayout'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5FormLayout) {
+var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aureliaTemplating.customElement)('ui5-responsive-grid-layout'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaTemplating.bindable)(), _dec27 = (0, _aureliaTemplating.bindable)(), _dec28 = (0, _aureliaTemplating.bindable)(), _dec29 = (0, _aureliaTemplating.bindable)(), _dec30 = (0, _aureliaFramework.computedFrom)('_responsivegridlayout'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5FormLayout) {
     _inherits(Ui5ResponsiveGridLayout, _Ui5FormLayout);
 
     function Ui5ResponsiveGridLayout(element) {
@@ -128,6 +128,16 @@ var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aur
 
         _initDefineProp(_this, 'validateFieldGroup', _descriptor23, _this);
 
+        _initDefineProp(_this, 'validationSuccess', _descriptor24, _this);
+
+        _initDefineProp(_this, 'validationError', _descriptor25, _this);
+
+        _initDefineProp(_this, 'parseError', _descriptor26, _this);
+
+        _initDefineProp(_this, 'formatError', _descriptor27, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor28, _this);
+
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
         return _this;
@@ -160,17 +170,18 @@ var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aur
         this.fillProperties(params);
         _Ui5FormLayout.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._responsivegridlayout = new sap.ui.layout.form.ResponsiveGridLayout(this.ui5Id, params);else this._responsivegridlayout = new sap.ui.layout.form.ResponsiveGridLayout(params);
+
         if ($(this.element).closest("[ui5-container]").length > 0) {
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
             if (!this._parent.UIElement || this._parent.UIElement.sId != this._responsivegridlayout.sId) {
                 var prevSibling = null;
-                if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                 this._relation = this._parent.addChild(this._responsivegridlayout, this.element, prevSibling);
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             } else {
                 this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                 var prevSibling = null;
-                if (this.element.previousElementSibling) {
+                if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                     this._relation = this._parent.addChild(this._responsivegridlayout, this.element, prevSibling);
                 } else this._relation = this._parent.addChild(this._responsivegridlayout, this.element);
@@ -186,12 +197,16 @@ var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aur
     };
 
     Ui5ResponsiveGridLayout.prototype.detached = function detached() {
-        if (this._parent && this._relation) {
-            this._parent.removeChildByRelation(this._responsivegridlayout, this._relation);
-        } else {
-            this._responsivegridlayout.destroy();
-        }
-        _Ui5FormLayout.prototype.detached.call(this);
+        try {
+            if ($(this.element).closest("[ui5-container]").length > 0) {
+                if (this._parent && this._relation) {
+                    this._parent.removeChildByRelation(this._responsivegridlayout, this._relation);
+                }
+            } else {
+                this._responsivegridlayout.destroy();
+            }
+            _Ui5FormLayout.prototype.detached.call(this);
+        } catch (err) {}
     };
 
     Ui5ResponsiveGridLayout.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -205,10 +220,40 @@ var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aur
                 if (_i.done) break;
                 elem = _i.value;
             }
+
+            try {
+                if (elem.localName == 'tooltip') {
+                    this._responsivegridlayout.setTooltip(child);return elem.localName;
+                }
+                if (elem.localName == 'customdata') {
+                    var _index = null;if (afterElement) _index = this._responsivegridlayout.indexOfCustomData(afterElement);if (_index) this._responsivegridlayout.insertCustomData(child, _index + 1);else this._responsivegridlayout.addCustomData(child, 0);return elem.localName;
+                }
+                if (elem.localName == 'layoutdata') {
+                    this._responsivegridlayout.setLayoutData(child);return elem.localName;
+                }
+                if (elem.localName == 'dependents') {
+                    var _index = null;if (afterElement) _index = this._responsivegridlayout.indexOfDependent(afterElement);if (_index) this._responsivegridlayout.insertDependent(child, _index + 1);else this._responsivegridlayout.addDependent(child, 0);return elem.localName;
+                }
+            } catch (err) {}
         }
     };
 
-    Ui5ResponsiveGridLayout.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {};
+    Ui5ResponsiveGridLayout.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+        try {
+            if (relation == 'tooltip') {
+                this._responsivegridlayout.destroyTooltip(child);
+            }
+            if (relation == 'customdata') {
+                this._responsivegridlayout.removeCustomData(child);
+            }
+            if (relation == 'layoutData') {
+                this._responsivegridlayout.destroyLayoutData(child);
+            }
+            if (relation == 'dependents') {
+                this._responsivegridlayout.removeDependent(child);
+            }
+        } catch (err) {}
+    };
 
     Ui5ResponsiveGridLayout.prototype.labelSpanXLChanged = function labelSpanXLChanged(newValue) {
         if (this._responsivegridlayout !== null) {
@@ -342,6 +387,36 @@ var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aur
         }
     };
 
+    Ui5ResponsiveGridLayout.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+        if (this._responsivegridlayout !== null) {
+            this._responsivegridlayout.attachValidationSuccess(newValue);
+        }
+    };
+
+    Ui5ResponsiveGridLayout.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+        if (this._responsivegridlayout !== null) {
+            this._responsivegridlayout.attachValidationError(newValue);
+        }
+    };
+
+    Ui5ResponsiveGridLayout.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+        if (this._responsivegridlayout !== null) {
+            this._responsivegridlayout.attachParseError(newValue);
+        }
+    };
+
+    Ui5ResponsiveGridLayout.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+        if (this._responsivegridlayout !== null) {
+            this._responsivegridlayout.attachFormatError(newValue);
+        }
+    };
+
+    Ui5ResponsiveGridLayout.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+        if (this._responsivegridlayout !== null) {
+            this._responsivegridlayout.attachModelContextChange(newValue);
+        }
+    };
+
     _createClass(Ui5ResponsiveGridLayout, [{
         key: 'UIElement',
         get: function get() {
@@ -465,4 +540,29 @@ var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aur
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec25], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+}), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec25], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec26], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec27], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec28], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec29], {
+    enumerable: true,
+    initializer: function initializer() {
+        return this.defaultFunc;
+    }
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec30], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

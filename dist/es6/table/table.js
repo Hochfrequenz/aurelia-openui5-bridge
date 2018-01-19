@@ -17,7 +17,6 @@ export class Ui5Table extends Ui5ListBase{
 /* inherited from sap.m.ListBase*/
 @bindable() inset = false;
 @bindable() headerText = null;
-@bindable() headerDesign = 'Standard';
 @bindable() footerText = null;
 @bindable() mode = 'None';
 @bindable() width = '100%';
@@ -36,12 +35,9 @@ export class Ui5Table extends Ui5ListBase{
 @bindable() growingDirection = 'Downwards';
 @bindable() rememberSelections = true;
 @bindable() keyboardMode = 'Navigation';
-@bindable() select = this.defaultFunc;
 @bindable() selectionChange = this.defaultFunc;
 @bindable() delete = this.defaultFunc;
 @bindable() swipe = this.defaultFunc;
-@bindable() growingStarted = this.defaultFunc;
-@bindable() growingFinished = this.defaultFunc;
 @bindable() updateStarted = this.defaultFunc;
 @bindable() updateFinished = this.defaultFunc;
 @bindable() itemPress = this.defaultFunc;
@@ -51,6 +47,15 @@ export class Ui5Table extends Ui5ListBase{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -78,11 +83,12 @@ params.showOverlay = getBooleanFromAttributeValue(this.showOverlay);
           this._table = new sap.m.Table(this.ui5Id, params);
         else
           this._table = new sap.m.Table(params);
+        if (this._table._oGrowingDelegate){this._table._oGrowingDelegate.updateItems = function(sChangeReason) { this._onBeforePageLoaded(sChangeReason);this._onAfterPageLoaded(sChangeReason); }; }
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._table.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._table, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -90,7 +96,7 @@ params.showOverlay = getBooleanFromAttributeValue(this.showOverlay);
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._table, this.element, prevSibling);
         }
@@ -114,32 +120,58 @@ params.showOverlay = getBooleanFromAttributeValue(this.showOverlay);
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._table, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._table.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'columns') { var _index = null; if (afterElement) _index = this._table.indexOfColumn(afterElement); if (_index)this._table.insertColumn(child, _index + 1); else this._table.addColumn(child, 0);  return elem.localName; }
+        try{
+                 if (elem.localName == 'columns') { var _index = null; if (afterElement) _index = this._table.indexOfColumn(afterElement); if (_index)this._table.insertColumn(child, _index + 1); else this._table.addColumn(child, 0);  return elem.localName; }
+if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._table.indexOfItem(afterElement); if (_index)this._table.insertItem(child, _index + 1); else this._table.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'swipecontent') { this._table.setSwipeContent(child); return elem.localName;}
+if (elem.localName == 'headertoolbar') { this._table.setHeaderToolbar(child); return elem.localName;}
+if (elem.localName == 'infotoolbar') { this._table.setInfoToolbar(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._table.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._table.indexOfCustomData(afterElement); if (_index)this._table.insertCustomData(child, _index + 1); else this._table.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._table.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._table.indexOfDependent(afterElement); if (_index)this._table.insertDependent(child, _index + 1); else this._table.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'columns') {  this._table.removeColumn(child); }
+      try{
+               if (relation == 'columns') {  this._table.removeColumn(child);}
+if (relation == 'items') {  this._table.removeItem(child);}
+if (relation == 'swipeContent') {  this._table.destroySwipeContent(child); }
+if (relation == 'headerToolbar') {  this._table.destroyHeaderToolbar(child); }
+if (relation == 'infoToolbar') {  this._table.destroyInfoToolbar(child); }
+if (relation == 'tooltip') {  this._table.destroyTooltip(child); }
+if (relation == 'customdata') {  this._table.removeCustomData(child);}
+if (relation == 'layoutData') {  this._table.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._table.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
     backgroundDesignChanged(newValue){if(this._table!==null){ this._table.setBackgroundDesign(newValue);}}
 fixedLayoutChanged(newValue){if(this._table!==null){ this._table.setFixedLayout(getBooleanFromAttributeValue(newValue));}}
 showOverlayChanged(newValue){if(this._table!==null){ this._table.setShowOverlay(getBooleanFromAttributeValue(newValue));}}
 insetChanged(newValue){if(this._table!==null){ this._table.setInset(getBooleanFromAttributeValue(newValue));}}
 headerTextChanged(newValue){if(this._table!==null){ this._table.setHeaderText(newValue);}}
-headerDesignChanged(newValue){if(this._table!==null){ this._table.setHeaderDesign(newValue);}}
 footerTextChanged(newValue){if(this._table!==null){ this._table.setFooterText(newValue);}}
 modeChanged(newValue){if(this._table!==null){ this._table.setMode(newValue);}}
 widthChanged(newValue){if(this._table!==null){ this._table.setWidth(newValue);}}
@@ -159,12 +191,9 @@ growingDirectionChanged(newValue){if(this._table!==null){ this._table.setGrowing
 rememberSelectionsChanged(newValue){if(this._table!==null){ this._table.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
 keyboardModeChanged(newValue){if(this._table!==null){ this._table.setKeyboardMode(newValue);}}
 /* inherited from sap.m.ListBase*/
-selectChanged(newValue){if(this._table!==null){ this._table.attachSelect(newValue);}}
 selectionChangeChanged(newValue){if(this._table!==null){ this._table.attachSelectionChange(newValue);}}
 deleteChanged(newValue){if(this._table!==null){ this._table.attachDelete(newValue);}}
 swipeChanged(newValue){if(this._table!==null){ this._table.attachSwipe(newValue);}}
-growingStartedChanged(newValue){if(this._table!==null){ this._table.attachGrowingStarted(newValue);}}
-growingFinishedChanged(newValue){if(this._table!==null){ this._table.attachGrowingFinished(newValue);}}
 updateStartedChanged(newValue){if(this._table!==null){ this._table.attachUpdateStarted(newValue);}}
 updateFinishedChanged(newValue){if(this._table!==null){ this._table.attachUpdateFinished(newValue);}}
 itemPressChanged(newValue){if(this._table!==null){ this._table.attachItemPress(newValue);}}
@@ -174,6 +203,15 @@ visibleChanged(newValue){if(this._table!==null){ this._table.setVisible(getBoole
 fieldGroupIdsChanged(newValue){if(this._table!==null){ this._table.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._table!==null){ this._table.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._table!==null){ this._table.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._table!==null){ this._table.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._table!==null){ this._table.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._table!==null){ this._table.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._table!==null){ this._table.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

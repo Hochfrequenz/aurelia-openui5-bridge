@@ -13,7 +13,6 @@ export class Ui5TileContent extends Ui5Control{
          @bindable ui5Id = null;
         @bindable() footer = null;
 @bindable() footerColor = 'Neutral';
-@bindable() size = 'Auto';
 @bindable() unit = null;
 @bindable() disabled = false;
 @bindable() frameType = 'Auto';
@@ -23,6 +22,15 @@ export class Ui5TileContent extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -36,7 +44,6 @@ export class Ui5TileContent extends Ui5Control{
         fillProperties(params){
                params.footer = this.footer;
 params.footerColor = this.footerColor;
-params.size = this.size;
 params.unit = this.unit;
 params.disabled = getBooleanFromAttributeValue(this.disabled);
 params.frameType = this.frameType;
@@ -53,11 +60,12 @@ params.frameType = this.frameType;
           this._tilecontent = new sap.m.TileContent(this.ui5Id, params);
         else
           this._tilecontent = new sap.m.TileContent(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._tilecontent.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._tilecontent, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -65,7 +73,7 @@ params.frameType = this.frameType;
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._tilecontent, this.element, prevSibling);
         }
@@ -89,28 +97,47 @@ params.frameType = this.frameType;
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._tilecontent, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._tilecontent.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'content') { this._tilecontent.setContent(child); return elem.localName;}
+        try{
+                 if (elem.localName == 'content') { this._tilecontent.setContent(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._tilecontent.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._tilecontent.indexOfCustomData(afterElement); if (_index)this._tilecontent.insertCustomData(child, _index + 1); else this._tilecontent.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._tilecontent.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._tilecontent.indexOfDependent(afterElement); if (_index)this._tilecontent.insertDependent(child, _index + 1); else this._tilecontent.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        
+      try{
+               if (relation == 'content') {  this._tilecontent.destroyContent(child); }
+if (relation == 'tooltip') {  this._tilecontent.destroyTooltip(child); }
+if (relation == 'customdata') {  this._tilecontent.removeCustomData(child);}
+if (relation == 'layoutData') {  this._tilecontent.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._tilecontent.removeDependent(child);}
+
+      }
+      catch(err){}
                                                                             }
     footerChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFooter(newValue);}}
 footerColorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFooterColor(newValue);}}
-sizeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setSize(newValue);}}
 unitChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setUnit(newValue);}}
 disabledChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setDisabled(getBooleanFromAttributeValue(newValue));}}
 frameTypeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFrameType(newValue);}}
@@ -120,6 +147,15 @@ visibleChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setVisi
 fieldGroupIdsChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

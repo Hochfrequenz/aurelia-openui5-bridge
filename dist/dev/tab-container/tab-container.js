@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, Ui5TabContainer;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, Ui5TabContainer;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5TabContainer', Ui5TabContainer = (_dec = customElement('ui5-tab-container'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = computedFrom('_tabcontainer'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5TabContainer', Ui5TabContainer = (_dec = customElement('ui5-tab-container'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = computedFrom('_tabcontainer'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5TabContainer, _Ui5Control);
 
                 function Ui5TabContainer(element) {
@@ -145,6 +145,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'validateFieldGroup', _descriptor10, _this);
 
+                    _initDefineProp(_this, 'validationSuccess', _descriptor11, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor12, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor13, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor14, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor15, _this);
+
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
                     return _this;
@@ -152,6 +162,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                 Ui5TabContainer.prototype.fillProperties = function fillProperties(params) {
                     params.showAddNewButton = getBooleanFromAttributeValue(this.showAddNewButton);
+                    params.itemClose = this.itemClose == null ? this.defaultFunc : this.itemClose;
+                    params.itemSelect = this.itemSelect == null ? this.defaultFunc : this.itemSelect;
+                    params.addNewButtonPress = this.addNewButtonPress == null ? this.defaultFunc : this.addNewButtonPress;
                 };
 
                 Ui5TabContainer.prototype.defaultFunc = function defaultFunc() {};
@@ -162,17 +175,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
                     _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._tabcontainer = new sap.m.TabContainer(this.ui5Id, params);else this._tabcontainer = new sap.m.TabContainer(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._tabcontainer.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._tabcontainer, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._tabcontainer, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._tabcontainer, this.element);
@@ -188,12 +202,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5TabContainer.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._tabcontainer, this._relation);
-                    } else {
-                        this._tabcontainer.destroy();
-                    }
-                    _Ui5Control.prototype.detached.call(this);
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._tabcontainer, this._relation);
+                            }
+                        } else {
+                            this._tabcontainer.destroy();
+                        }
+                        _Ui5Control.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5TabContainer.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -208,16 +226,44 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             elem = _i.value;
                         }
 
-                        if (elem.localName == 'items') {
-                            var _index = null;if (afterElement) _index = this._tabcontainer.indexOfItem(afterElement);if (_index) this._tabcontainer.insertItem(child, _index + 1);else this._tabcontainer.addItem(child, 0);return elem.localName;
-                        }
+                        try {
+                            if (elem.localName == 'items') {
+                                var _index = null;if (afterElement) _index = this._tabcontainer.indexOfItem(afterElement);if (_index) this._tabcontainer.insertItem(child, _index + 1);else this._tabcontainer.addItem(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'tooltip') {
+                                this._tabcontainer.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._tabcontainer.indexOfCustomData(afterElement);if (_index) this._tabcontainer.insertCustomData(child, _index + 1);else this._tabcontainer.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._tabcontainer.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._tabcontainer.indexOfDependent(afterElement);if (_index) this._tabcontainer.insertDependent(child, _index + 1);else this._tabcontainer.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
                 Ui5TabContainer.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-                    if (relation == 'items') {
-                        this._tabcontainer.removeItem(child);
-                    }
+                    try {
+                        if (relation == 'items') {
+                            this._tabcontainer.removeItem(child);
+                        }
+                        if (relation == 'tooltip') {
+                            this._tabcontainer.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._tabcontainer.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._tabcontainer.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._tabcontainer.removeDependent(child);
+                        }
+                    } catch (err) {}
                 };
 
                 Ui5TabContainer.prototype.showAddNewButtonChanged = function showAddNewButtonChanged(newValue) {
@@ -271,6 +317,36 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5TabContainer.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
                     if (this._tabcontainer !== null) {
                         this._tabcontainer.attachValidateFieldGroup(newValue);
+                    }
+                };
+
+                Ui5TabContainer.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._tabcontainer !== null) {
+                        this._tabcontainer.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5TabContainer.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._tabcontainer !== null) {
+                        this._tabcontainer.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5TabContainer.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._tabcontainer !== null) {
+                        this._tabcontainer.attachParseError(newValue);
+                    }
+                };
+
+                Ui5TabContainer.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._tabcontainer !== null) {
+                        this._tabcontainer.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5TabContainer.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._tabcontainer !== null) {
+                        this._tabcontainer.attachModelContextChange(newValue);
                     }
                 };
 
@@ -332,7 +408,32 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec12], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec12], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec14], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec15], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec16], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec17], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5TabContainer', Ui5TabContainer);
         }

@@ -29,8 +29,6 @@ export class Ui5StandardListItem extends Ui5ListItemBase{
 @bindable() selected = false;
 @bindable() counter = null;
 @bindable() highlight = 'None';
-@bindable() tap = this.defaultFunc;
-@bindable() detailTap = this.defaultFunc;
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
@@ -39,6 +37,15 @@ export class Ui5StandardListItem extends Ui5ListItemBase{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -74,11 +81,12 @@ params.infoTextDirection = this.infoTextDirection;
           this._standardlistitem = new sap.m.StandardListItem(this.ui5Id, params);
         else
           this._standardlistitem = new sap.m.StandardListItem(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._standardlistitem.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._standardlistitem, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -86,7 +94,7 @@ params.infoTextDirection = this.infoTextDirection;
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._standardlistitem, this.element, prevSibling);
         }
@@ -110,23 +118,42 @@ params.infoTextDirection = this.infoTextDirection;
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._standardlistitem, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._standardlistitem.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                
+        try{
+                 if (elem.localName == 'tooltip') { this._standardlistitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._standardlistitem.indexOfCustomData(afterElement); if (_index)this._standardlistitem.insertCustomData(child, _index + 1); else this._standardlistitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._standardlistitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._standardlistitem.indexOfDependent(afterElement); if (_index)this._standardlistitem.insertDependent(child, _index + 1); else this._standardlistitem.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        
+      try{
+               if (relation == 'tooltip') {  this._standardlistitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._standardlistitem.removeCustomData(child);}
+if (relation == 'layoutData') {  this._standardlistitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._standardlistitem.removeDependent(child);}
+
+      }
+      catch(err){}
                                                                             }
     titleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setTitle(newValue);}}
 descriptionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setDescription(newValue);}}
@@ -146,8 +173,6 @@ selectedChanged(newValue){if(this._standardlistitem!==null){ this._standardlisti
 counterChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setCounter(newValue);}}
 highlightChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setHighlight(newValue);}}
 /* inherited from sap.m.ListItemBase*/
-tapChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachTap(newValue);}}
-detailTapChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachDetailTap(newValue);}}
 pressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachPress(newValue);}}
 detailPressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachDetailPress(newValue);}}
 busyChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
@@ -156,6 +181,15 @@ visibleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistit
 fieldGroupIdsChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

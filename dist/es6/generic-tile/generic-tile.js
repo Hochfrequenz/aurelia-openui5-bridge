@@ -15,7 +15,6 @@ export class Ui5GenericTile extends Ui5Control{
 @bindable() header = null;
 @bindable() subheader = null;
 @bindable() failedText = null;
-@bindable() size = 'Auto';
 @bindable() frameType = 'OneByOne';
 @bindable() backgroundImage = null;
 @bindable() headerImage = null;
@@ -30,6 +29,15 @@ export class Ui5GenericTile extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -45,7 +53,6 @@ export class Ui5GenericTile extends Ui5Control{
 params.header = this.header;
 params.subheader = this.subheader;
 params.failedText = this.failedText;
-params.size = this.size;
 params.frameType = this.frameType;
 params.backgroundImage = this.backgroundImage;
 params.headerImage = this.headerImage;
@@ -53,6 +60,7 @@ params.state = this.state;
 params.imageDescription = this.imageDescription;
 params.scope = this.scope;
 params.ariaLabel = this.ariaLabel;
+params.press = this.press==null ? this.defaultFunc: this.press;
             
         }
         defaultFunc() {
@@ -66,11 +74,12 @@ params.ariaLabel = this.ariaLabel;
           this._generictile = new sap.m.GenericTile(this.ui5Id, params);
         else
           this._generictile = new sap.m.GenericTile(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._generictile.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._generictile, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -78,7 +87,7 @@ params.ariaLabel = this.ariaLabel;
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._generictile, this.element, prevSibling);
         }
@@ -102,32 +111,51 @@ params.ariaLabel = this.ariaLabel;
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._generictile, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._generictile.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'tileContent') { var _index = null; if (afterElement) _index = this._generictile.indexOfTileContent(afterElement); if (_index)this._generictile.insertTileContent(child, _index + 1); else this._generictile.addTileContent(child, 0);  return elem.localName; }
+        try{
+                 if (elem.localName == 'tilecontent') { var _index = null; if (afterElement) _index = this._generictile.indexOfTileContent(afterElement); if (_index)this._generictile.insertTileContent(child, _index + 1); else this._generictile.addTileContent(child, 0);  return elem.localName; }
 if (elem.localName == 'icon') { this._generictile.setIcon(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._generictile.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._generictile.indexOfCustomData(afterElement); if (_index)this._generictile.insertCustomData(child, _index + 1); else this._generictile.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._generictile.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._generictile.indexOfDependent(afterElement); if (_index)this._generictile.insertDependent(child, _index + 1); else this._generictile.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'tileContent') {  this._generictile.removeTileContent(child); }
+      try{
+               if (relation == 'tilecontent') {  this._generictile.removeTileContent(child);}
+if (relation == 'icon') {  this._generictile.destroyIcon(child); }
+if (relation == 'tooltip') {  this._generictile.destroyTooltip(child); }
+if (relation == 'customdata') {  this._generictile.removeCustomData(child);}
+if (relation == 'layoutData') {  this._generictile.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._generictile.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
     modeChanged(newValue){if(this._generictile!==null){ this._generictile.setMode(newValue);}}
 headerChanged(newValue){if(this._generictile!==null){ this._generictile.setHeader(newValue);}}
 subheaderChanged(newValue){if(this._generictile!==null){ this._generictile.setSubheader(newValue);}}
 failedTextChanged(newValue){if(this._generictile!==null){ this._generictile.setFailedText(newValue);}}
-sizeChanged(newValue){if(this._generictile!==null){ this._generictile.setSize(newValue);}}
 frameTypeChanged(newValue){if(this._generictile!==null){ this._generictile.setFrameType(newValue);}}
 backgroundImageChanged(newValue){if(this._generictile!==null){ this._generictile.setBackgroundImage(newValue);}}
 headerImageChanged(newValue){if(this._generictile!==null){ this._generictile.setHeaderImage(newValue);}}
@@ -142,6 +170,15 @@ visibleChanged(newValue){if(this._generictile!==null){ this._generictile.setVisi
 fieldGroupIdsChanged(newValue){if(this._generictile!==null){ this._generictile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._generictile!==null){ this._generictile.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._generictile!==null){ this._generictile.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._generictile!==null){ this._generictile.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._generictile!==null){ this._generictile.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._generictile!==null){ this._generictile.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._generictile!==null){ this._generictile.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

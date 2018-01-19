@@ -1,7 +1,17 @@
 <template>
-  <div ref="ViewSettingsFilterItem">
-    <items ref="items">
-      <slot name="items"></slot>
-    </items>
-  </div>
+  <items ref="items">
+    <slot name="items"></slot>
+  </items>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

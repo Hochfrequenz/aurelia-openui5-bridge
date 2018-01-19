@@ -20,6 +20,15 @@ export class Ui5SegmentedButtonItem extends Ui5Item{
 @bindable() enabled = true;
 @bindable() textDirection = 'Inherit';
 @bindable() key = null;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -34,6 +43,7 @@ export class Ui5SegmentedButtonItem extends Ui5Item{
                params.icon = this.icon;
 params.visible = getBooleanFromAttributeValue(this.visible);
 params.width = this.width;
+params.press = this.press==null ? this.defaultFunc: this.press;
             
         }
         defaultFunc() {
@@ -47,11 +57,12 @@ params.width = this.width;
           this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(this.ui5Id, params);
         else
           this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._segmentedbuttonitem.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._segmentedbuttonitem, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -59,7 +70,7 @@ params.width = this.width;
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._segmentedbuttonitem, this.element, prevSibling);
         }
@@ -83,23 +94,42 @@ params.width = this.width;
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._segmentedbuttonitem, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._segmentedbuttonitem.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                
+        try{
+                 if (elem.localName == 'tooltip') { this._segmentedbuttonitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._segmentedbuttonitem.indexOfCustomData(afterElement); if (_index)this._segmentedbuttonitem.insertCustomData(child, _index + 1); else this._segmentedbuttonitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._segmentedbuttonitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._segmentedbuttonitem.indexOfDependent(afterElement); if (_index)this._segmentedbuttonitem.insertDependent(child, _index + 1); else this._segmentedbuttonitem.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        
+      try{
+               if (relation == 'tooltip') {  this._segmentedbuttonitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._segmentedbuttonitem.removeCustomData(child);}
+if (relation == 'layoutData') {  this._segmentedbuttonitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._segmentedbuttonitem.removeDependent(child);}
+
+      }
+      catch(err){}
                                                                             }
     iconChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setIcon(newValue);}}
 visibleChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setVisible(getBooleanFromAttributeValue(newValue));}}
@@ -110,6 +140,15 @@ enabledChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbu
 textDirectionChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setTextDirection(newValue);}}
 keyChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setKey(newValue);}}
 /* inherited from sap.ui.core.Item*/
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

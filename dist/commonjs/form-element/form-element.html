@@ -1,10 +1,20 @@
 <template>
-  <div ref="FormElement">
-    <label ref="label">
-      <slot name="label"></slot>
-    </label>
-    <fields ref="fields">
-      <slot></slot>
-    </fields>
-  </div>
+  <label ref="label">
+    <slot name="label"></slot>
+  </label>
+  <fields ref="fields">
+    <slot></slot>
+  </fields>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

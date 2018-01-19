@@ -43,6 +43,15 @@ export class Ui5UploadCollection extends Ui5Control{
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
                     super(element);                    
@@ -70,6 +79,16 @@ params.numberOfAttachmentsText = this.numberOfAttachmentsText;
 params.mode = this.mode;
 params.uploadButtonInvisible = getBooleanFromAttributeValue(this.uploadButtonInvisible);
 params.terminationEnabled = getBooleanFromAttributeValue(this.terminationEnabled);
+params.change = this.change==null ? this.defaultFunc: this.change;
+params.fileDeleted = this.fileDeleted==null ? this.defaultFunc: this.fileDeleted;
+params.filenameLengthExceed = this.filenameLengthExceed==null ? this.defaultFunc: this.filenameLengthExceed;
+params.fileRenamed = this.fileRenamed==null ? this.defaultFunc: this.fileRenamed;
+params.fileSizeExceed = this.fileSizeExceed==null ? this.defaultFunc: this.fileSizeExceed;
+params.typeMissmatch = this.typeMissmatch==null ? this.defaultFunc: this.typeMissmatch;
+params.uploadComplete = this.uploadComplete==null ? this.defaultFunc: this.uploadComplete;
+params.uploadTerminated = this.uploadTerminated==null ? this.defaultFunc: this.uploadTerminated;
+params.beforeUploadStarts = this.beforeUploadStarts==null ? this.defaultFunc: this.beforeUploadStarts;
+params.selectionChange = this.selectionChange==null ? this.defaultFunc: this.selectionChange;
             
         }
         defaultFunc() {
@@ -83,11 +102,12 @@ params.terminationEnabled = getBooleanFromAttributeValue(this.terminationEnabled
           this._uploadcollection = new sap.m.UploadCollection(this.ui5Id, params);
         else
           this._uploadcollection = new sap.m.UploadCollection(params);
+        
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._uploadcollection.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling)
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
           prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
         this._relation = this._parent.addChild(this._uploadcollection, this.element, prevSibling);
         this.attributeManager.addAttributes({"ui5-container": '' });
@@ -95,7 +115,7 @@ params.terminationEnabled = getBooleanFromAttributeValue(this.terminationEnabled
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling) {
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                                     prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                                 this._relation = this._parent.addChild(this._uploadcollection, this.element, prevSibling);
         }
@@ -119,31 +139,52 @@ params.terminationEnabled = getBooleanFromAttributeValue(this.terminationEnabled
            
         }
     detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
                                                                 this._parent.removeChildByRelation(this._uploadcollection, this._relation);
                                                             }
+                                                                                }
          else{
                                                                 this._uploadcollection.destroy();
                                                             }
          super.detached();
+          }
+         catch(err){}
         }
 
     addChild(child, elem, afterElement) {
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
-                                                                if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfItem(afterElement); if (_index)this._uploadcollection.insertItem(child, _index + 1); else this._uploadcollection.addItem(child, 0);  return elem.localName; }
-if (elem.localName == 'headerParameters') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfHeaderParameter(afterElement); if (_index)this._uploadcollection.insertHeaderParameter(child, _index + 1); else this._uploadcollection.addHeaderParameter(child, 0);  return elem.localName; }
+        try{
+                 if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfItem(afterElement); if (_index)this._uploadcollection.insertItem(child, _index + 1); else this._uploadcollection.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'headerparameters') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfHeaderParameter(afterElement); if (_index)this._uploadcollection.insertHeaderParameter(child, _index + 1); else this._uploadcollection.addHeaderParameter(child, 0);  return elem.localName; }
 if (elem.localName == 'parameters') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfParameter(afterElement); if (_index)this._uploadcollection.insertParameter(child, _index + 1); else this._uploadcollection.addParameter(child, 0);  return elem.localName; }
 if (elem.localName == 'toolbar') { this._uploadcollection.setToolbar(child); return elem.localName;}
-if (elem.localName == 'infoToolbar') { this._uploadcollection.setInfoToolbar(child); return elem.localName;}
+if (elem.localName == 'infotoolbar') { this._uploadcollection.setInfoToolbar(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._uploadcollection.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfCustomData(afterElement); if (_index)this._uploadcollection.insertCustomData(child, _index + 1); else this._uploadcollection.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._uploadcollection.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfDependent(afterElement); if (_index)this._uploadcollection.insertDependent(child, _index + 1); else this._uploadcollection.addDependent(child, 0);  return elem.localName; }
 
+           }
+           catch(err){}
                                                                     }
       }
       removeChildByRelation(child, relation) {
-                                                                        if (relation == 'items') {  this._uploadcollection.removeItem(child); }
-if (relation == 'headerParameters') {  this._uploadcollection.removeHeaderParameter(child); }
-if (relation == 'parameters') {  this._uploadcollection.removeParameter(child); }
+      try{
+               if (relation == 'items') {  this._uploadcollection.removeItem(child);}
+if (relation == 'headerparameters') {  this._uploadcollection.removeHeaderParameter(child);}
+if (relation == 'parameters') {  this._uploadcollection.removeParameter(child);}
+if (relation == 'toolbar') {  this._uploadcollection.destroyToolbar(child); }
+if (relation == 'infoToolbar') {  this._uploadcollection.destroyInfoToolbar(child); }
+if (relation == 'tooltip') {  this._uploadcollection.destroyTooltip(child); }
+if (relation == 'customdata') {  this._uploadcollection.removeCustomData(child);}
+if (relation == 'layoutData') {  this._uploadcollection.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._uploadcollection.removeDependent(child);}
 
+      }
+      catch(err){}
                                                                             }
     fileTypeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setFileType(newValue);}}
 maximumFilenameLengthChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setMaximumFilenameLength(newValue);}}
@@ -177,6 +218,15 @@ visibleChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollecti
 fieldGroupIdsChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
 validateFieldGroupChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
 
                                                                                 }

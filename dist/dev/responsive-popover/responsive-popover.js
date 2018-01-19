@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, Ui5ResponsivePopover;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, Ui5ResponsivePopover;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5ResponsivePopover', Ui5ResponsivePopover = (_dec = customElement('ui5-responsive-popover'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = computedFrom('_responsivepopover'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5ResponsivePopover', Ui5ResponsivePopover = (_dec = customElement('ui5-responsive-popover'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = bindable(), _dec27 = bindable(), _dec28 = bindable(), _dec29 = bindable(), _dec30 = bindable(), _dec31 = computedFrom('_responsivepopover'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5ResponsivePopover, _Ui5Control);
 
                 function Ui5ResponsivePopover(element) {
@@ -173,6 +173,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'validateFieldGroup', _descriptor24, _this);
 
+                    _initDefineProp(_this, 'validationSuccess', _descriptor25, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor26, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor27, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor28, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor29, _this);
+
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
                     return _this;
@@ -193,6 +203,10 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.verticalScrolling = getBooleanFromAttributeValue(this.verticalScrolling);
                     params.showCloseButton = getBooleanFromAttributeValue(this.showCloseButton);
                     params.resizable = getBooleanFromAttributeValue(this.resizable);
+                    params.beforeOpen = this.beforeOpen == null ? this.defaultFunc : this.beforeOpen;
+                    params.afterOpen = this.afterOpen == null ? this.defaultFunc : this.afterOpen;
+                    params.beforeClose = this.beforeClose == null ? this.defaultFunc : this.beforeClose;
+                    params.afterClose = this.afterClose == null ? this.defaultFunc : this.afterClose;
                 };
 
                 Ui5ResponsivePopover.prototype.defaultFunc = function defaultFunc() {};
@@ -203,17 +217,18 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     this.fillProperties(params);
                     _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._responsivepopover = new sap.m.ResponsivePopover(this.ui5Id, params);else this._responsivepopover = new sap.m.ResponsivePopover(params);
+
                     if ($(this.element).closest("[ui5-container]").length > 0) {
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._responsivepopover.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                             this._relation = this._parent.addChild(this._responsivepopover, this.element, prevSibling);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling) {
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
                                 prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
                                 this._relation = this._parent.addChild(this._responsivepopover, this.element, prevSibling);
                             } else this._relation = this._parent.addChild(this._responsivepopover, this.element);
@@ -229,12 +244,16 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ResponsivePopover.prototype.detached = function detached() {
-                    if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._responsivepopover, this._relation);
-                    } else {
-                        this._responsivepopover.destroy();
-                    }
-                    _Ui5Control.prototype.detached.call(this);
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._responsivepopover, this._relation);
+                            }
+                        } else {
+                            this._responsivepopover.destroy();
+                        }
+                        _Ui5Control.prototype.detached.call(this);
+                    } catch (err) {}
                 };
 
                 Ui5ResponsivePopover.prototype.addChild = function addChild(child, elem, afterElement) {
@@ -249,28 +268,68 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             elem = _i.value;
                         }
 
-                        if (elem.localName == 'content') {
-                            var _index = null;if (afterElement) _index = this._responsivepopover.indexOfContent(afterElement);if (_index) this._responsivepopover.insertContent(child, _index + 1);else this._responsivepopover.addContent(child, 0);return elem.localName;
-                        }
-                        if (elem.localName == 'customHeader') {
-                            this._responsivepopover.setCustomHeader(child);return elem.localName;
-                        }
-                        if (elem.localName == 'subHeader') {
-                            this._responsivepopover.setSubHeader(child);return elem.localName;
-                        }
-                        if (elem.localName == 'beginButton') {
-                            this._responsivepopover.setBeginButton(child);return elem.localName;
-                        }
-                        if (elem.localName == 'endButton') {
-                            this._responsivepopover.setEndButton(child);return elem.localName;
-                        }
+                        try {
+                            if (elem.localName == 'content') {
+                                var _index = null;if (afterElement) _index = this._responsivepopover.indexOfContent(afterElement);if (_index) this._responsivepopover.insertContent(child, _index + 1);else this._responsivepopover.addContent(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'customheader') {
+                                this._responsivepopover.setCustomHeader(child);return elem.localName;
+                            }
+                            if (elem.localName == 'subheader') {
+                                this._responsivepopover.setSubHeader(child);return elem.localName;
+                            }
+                            if (elem.localName == 'beginbutton') {
+                                this._responsivepopover.setBeginButton(child);return elem.localName;
+                            }
+                            if (elem.localName == 'endbutton') {
+                                this._responsivepopover.setEndButton(child);return elem.localName;
+                            }
+                            if (elem.localName == 'tooltip') {
+                                this._responsivepopover.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._responsivepopover.indexOfCustomData(afterElement);if (_index) this._responsivepopover.insertCustomData(child, _index + 1);else this._responsivepopover.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._responsivepopover.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._responsivepopover.indexOfDependent(afterElement);if (_index) this._responsivepopover.insertDependent(child, _index + 1);else this._responsivepopover.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
-                    if (relation == 'content') {
-                        this._responsivepopover.removeContent(child);
-                    }
+                    try {
+                        if (relation == 'content') {
+                            this._responsivepopover.removeContent(child);
+                        }
+                        if (relation == 'customHeader') {
+                            this._responsivepopover.destroyCustomHeader(child);
+                        }
+                        if (relation == 'subHeader') {
+                            this._responsivepopover.destroySubHeader(child);
+                        }
+                        if (relation == 'beginButton') {
+                            this._responsivepopover.destroyBeginButton(child);
+                        }
+                        if (relation == 'endButton') {
+                            this._responsivepopover.destroyEndButton(child);
+                        }
+                        if (relation == 'tooltip') {
+                            this._responsivepopover.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._responsivepopover.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._responsivepopover.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._responsivepopover.removeDependent(child);
+                        }
+                    } catch (err) {}
                 };
 
                 Ui5ResponsivePopover.prototype.placementChanged = function placementChanged(newValue) {
@@ -411,6 +470,36 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     }
                 };
 
+                Ui5ResponsivePopover.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._responsivepopover !== null) {
+                        this._responsivepopover.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5ResponsivePopover.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._responsivepopover !== null) {
+                        this._responsivepopover.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5ResponsivePopover.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._responsivepopover !== null) {
+                        this._responsivepopover.attachParseError(newValue);
+                    }
+                };
+
+                Ui5ResponsivePopover.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._responsivepopover !== null) {
+                        this._responsivepopover.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5ResponsivePopover.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._responsivepopover !== null) {
+                        this._responsivepopover.attachModelContextChange(newValue);
+                    }
+                };
+
                 _createClass(Ui5ResponsivePopover, [{
                     key: 'UIElement',
                     get: function get() {
@@ -539,7 +628,32 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec26], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec26], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec27], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec28], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec29], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec30], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec31], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5ResponsivePopover', Ui5ResponsivePopover);
         }
