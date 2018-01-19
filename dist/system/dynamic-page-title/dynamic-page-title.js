@@ -1,125 +1,423 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
-  "use strict";
+System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
+    "use strict";
 
-  var bindable, customElement, noView, inject, AttributeManager, getBooleanFromAttributeValue, _dec, _dec2, _class, Ui5DynamicPageTitle;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, Ui5DynamicPageTitle;
 
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
+    function _initDefineProp(target, property, descriptor, context) {
+        if (!descriptor) return;
+        Object.defineProperty(target, property, {
+            enumerable: descriptor.enumerable,
+            configurable: descriptor.configurable,
+            writable: descriptor.writable,
+            value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+        });
     }
-  }
 
-  return {
-    setters: [function (_aureliaTemplating) {
-      bindable = _aureliaTemplating.bindable;
-      customElement = _aureliaTemplating.customElement;
-      noView = _aureliaTemplating.noView;
-    }, function (_aureliaDependencyInjection) {
-      inject = _aureliaDependencyInjection.inject;
-    }, function (_commonAttributeManager) {
-      AttributeManager = _commonAttributeManager.AttributeManager;
-    }, function (_commonAttributes) {
-      getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
-    }],
-    execute: function () {
-      _export('Ui5DynamicPageTitle', Ui5DynamicPageTitle = (_dec = customElement('ui5-dynamic-page-title'), _dec2 = inject(Element), _dec(_class = _dec2(_class = function () {
-        function Ui5DynamicPageTitle(element) {
-          _classCallCheck(this, Ui5DynamicPageTitle);
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
+    }
 
-          this._title = null;
-          this._parent = null;
-
-          this.element = element;
+    function _possibleConstructorReturn(self, call) {
+        if (!self) {
+            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
         }
 
-        Ui5DynamicPageTitle.prototype.defaultFunc = function defaultFunc() {};
-
-        Ui5DynamicPageTitle.prototype.addChild = function addChild(child, elem) {
-          var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-          for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-            if (_isArray) {
-              if (_i >= _iterator.length) break;
-              elem = _iterator[_i++];
-            } else {
-              _i = _iterator.next();
-              if (_i.done) break;
-              elem = _i.value;
-            }
-
-            if (elem.localName == 'heading') {
-              this._title.setHeading(child);
-              break;
-            }
-            if (elem.localName == 'actions') {
-              this._title.addAction(child);
-              break;
-            }
-            if (elem.localName == 'snapped') {
-              this._title.addSnappedContent(child);
-              break;
-            }
-            if (elem.localName == 'expanded') {
-              this._title.addExpandedContent(child);
-              break;
-            }
-          }
-        };
-
-        Ui5DynamicPageTitle.prototype.removeChild = function removeChild(child, elem) {
-          var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-          for (var _iterator2 = path, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-            if (_isArray2) {
-              if (_i2 >= _iterator2.length) break;
-              elem = _iterator2[_i2++];
-            } else {
-              _i2 = _iterator2.next();
-              if (_i2.done) break;
-              elem = _i2.value;
-            }
-
-            if (elem.localName == 'heading') {
-              break;
-            }
-            if (elem.localName == 'actions') {
-              this._title.removeAction(child);
-              break;
-            }
-            if (elem.localName == 'snapped') {
-              this._title.removeSnappedContent(child);
-              break;
-            }
-            if (elem.localName == 'expanded') {
-              this._title.removeExpandedContent(child);
-              break;
-            }
-          }
-        };
-
-        Ui5DynamicPageTitle.prototype.attached = function attached() {
-          var attributeManager = new AttributeManager(this.element);
-          this._title = new sap.f.DynamicPageTitle({});
-
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-            this._parent.addChild(this._title, this.element);
-            attributeManager.addAttributes({ "ui5-container": '' });
-          }
-        };
-
-        Ui5DynamicPageTitle.prototype.detached = function detached() {
-          if (this._parent) {
-            this._parent.removeChild(this._title, this.element);
-          } else {
-            this._title.destroy();
-          }
-        };
-
-        return Ui5DynamicPageTitle;
-      }()) || _class) || _class));
-
-      _export('Ui5DynamicPageTitle', Ui5DynamicPageTitle);
+        return call && (typeof call === "object" || typeof call === "function") ? call : self;
     }
-  };
+
+    function _inherits(subClass, superClass) {
+        if (typeof superClass !== "function" && superClass !== null) {
+            throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+        }
+
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+            constructor: {
+                value: subClass,
+                enumerable: false,
+                writable: true,
+                configurable: true
+            }
+        });
+        if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+    }
+
+    function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+        var desc = {};
+        Object['ke' + 'ys'](descriptor).forEach(function (key) {
+            desc[key] = descriptor[key];
+        });
+        desc.enumerable = !!desc.enumerable;
+        desc.configurable = !!desc.configurable;
+
+        if ('value' in desc || desc.initializer) {
+            desc.writable = true;
+        }
+
+        desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+            return decorator(target, property, desc) || desc;
+        }, desc);
+
+        if (context && desc.initializer !== void 0) {
+            desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+            desc.initializer = undefined;
+        }
+
+        if (desc.initializer === void 0) {
+            Object['define' + 'Property'](target, property, desc);
+            desc = null;
+        }
+
+        return desc;
+    }
+
+    function _initializerWarningHelper(descriptor, context) {
+        throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+    }
+
+    return {
+        setters: [function (_aureliaTemplating) {
+            bindable = _aureliaTemplating.bindable;
+            customElement = _aureliaTemplating.customElement;
+            noView = _aureliaTemplating.noView;
+        }, function (_aureliaDependencyInjection) {
+            inject = _aureliaDependencyInjection.inject;
+        }, function (_aureliaFramework) {
+            computedFrom = _aureliaFramework.computedFrom;
+        }, function (_commonAttributeManager) {
+            AttributeManager = _commonAttributeManager.AttributeManager;
+        }, function (_commonAttributes) {
+            getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+        }, function (_controlControl) {
+            Ui5Control = _controlControl.Ui5Control;
+        }],
+        execute: function () {
+            _createClass = function () {
+                function defineProperties(target, props) {
+                    for (var i = 0; i < props.length; i++) {
+                        var descriptor = props[i];
+                        descriptor.enumerable = descriptor.enumerable || false;
+                        descriptor.configurable = true;
+                        if ("value" in descriptor) descriptor.writable = true;
+                        Object.defineProperty(target, descriptor.key, descriptor);
+                    }
+                }
+
+                return function (Constructor, protoProps, staticProps) {
+                    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+                    if (staticProps) defineProperties(Constructor, staticProps);
+                    return Constructor;
+                };
+            }();
+
+            _export('Ui5DynamicPageTitle', Ui5DynamicPageTitle = (_dec = customElement('ui5-dynamic-page-title'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = computedFrom('_dynamicpagetitle'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+                _inherits(Ui5DynamicPageTitle, _Ui5Control);
+
+                function Ui5DynamicPageTitle(element) {
+                    _classCallCheck(this, Ui5DynamicPageTitle);
+
+                    var _this = _possibleConstructorReturn(this, _Ui5Control.call(this, element));
+
+                    _this._dynamicpagetitle = null;
+                    _this._parent = null;
+                    _this._relation = null;
+
+                    _initDefineProp(_this, 'ui5Id', _descriptor, _this);
+
+                    _initDefineProp(_this, 'primaryArea', _descriptor2, _this);
+
+                    _initDefineProp(_this, 'busy', _descriptor3, _this);
+
+                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor4, _this);
+
+                    _initDefineProp(_this, 'visible', _descriptor5, _this);
+
+                    _initDefineProp(_this, 'fieldGroupIds', _descriptor6, _this);
+
+                    _initDefineProp(_this, 'validateFieldGroup', _descriptor7, _this);
+
+                    _initDefineProp(_this, 'validationSuccess', _descriptor8, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor9, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor10, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor11, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor12, _this);
+
+                    _this.element = element;
+                    _this.attributeManager = new AttributeManager(_this.element);
+                    return _this;
+                }
+
+                Ui5DynamicPageTitle.prototype.fillProperties = function fillProperties(params) {
+                    params.primaryArea = this.primaryArea;
+                };
+
+                Ui5DynamicPageTitle.prototype.defaultFunc = function defaultFunc() {};
+
+                Ui5DynamicPageTitle.prototype.attached = function attached() {
+                    var that = this;
+                    var params = {};
+                    this.fillProperties(params);
+                    _Ui5Control.prototype.fillProperties.call(this, params);
+                    if (this.ui5Id) this._dynamicpagetitle = new sap.f.DynamicPageTitle(this.ui5Id, params);else this._dynamicpagetitle = new sap.f.DynamicPageTitle(params);
+
+                    if ($(this.element).closest("[ui5-container]").length > 0) {
+                        this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                        if (!this._parent.UIElement || this._parent.UIElement.sId != this._dynamicpagetitle.sId) {
+                            var prevSibling = null;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                            this._relation = this._parent.addChild(this._dynamicpagetitle, this.element, prevSibling);
+                            this.attributeManager.addAttributes({ "ui5-container": '' });
+                        } else {
+                            this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                            var prevSibling = null;
+                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
+                                prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                                this._relation = this._parent.addChild(this._dynamicpagetitle, this.element, prevSibling);
+                            } else this._relation = this._parent.addChild(this._dynamicpagetitle, this.element);
+                            this.attributeManager.addAttributes({ "ui5-container": '' });
+                        }
+                    } else {
+                        if (this._dynamicpagetitle.placeAt) this._dynamicpagetitle.placeAt(this.element.parentElement);
+                        this.attributeManager.addAttributes({ "ui5-container": '' });
+                        this.attributeManager.addClasses("ui5-hide");
+                    }
+
+                    this.attributeManager.addAttributes({ "ui5-id": this._dynamicpagetitle.sId });
+                };
+
+                Ui5DynamicPageTitle.prototype.detached = function detached() {
+                    try {
+                        if ($(this.element).closest("[ui5-container]").length > 0) {
+                            if (this._parent && this._relation) {
+                                this._parent.removeChildByRelation(this._dynamicpagetitle, this._relation);
+                            }
+                        } else {
+                            this._dynamicpagetitle.destroy();
+                        }
+                        _Ui5Control.prototype.detached.call(this);
+                    } catch (err) {}
+                };
+
+                Ui5DynamicPageTitle.prototype.addChild = function addChild(child, elem, afterElement) {
+                    var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+                    for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+                        if (_isArray) {
+                            if (_i >= _iterator.length) break;
+                            elem = _iterator[_i++];
+                        } else {
+                            _i = _iterator.next();
+                            if (_i.done) break;
+                            elem = _i.value;
+                        }
+
+                        try {
+                            if (elem.localName == 'heading') {
+                                this._dynamicpagetitle.setHeading(child);return elem.localName;
+                            }
+                            if (elem.localName == 'actions') {
+                                var _index = null;if (afterElement) _index = this._dynamicpagetitle.indexOfAction(afterElement);if (_index) this._dynamicpagetitle.insertAction(child, _index + 1);else this._dynamicpagetitle.addAction(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'content') {
+                                var _index = null;if (afterElement) _index = this._dynamicpagetitle.indexOfContent(afterElement);if (_index) this._dynamicpagetitle.insertContent(child, _index + 1);else this._dynamicpagetitle.addContent(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'snappedcontent') {
+                                var _index = null;if (afterElement) _index = this._dynamicpagetitle.indexOfSnappedContent(afterElement);if (_index) this._dynamicpagetitle.insertSnappedContent(child, _index + 1);else this._dynamicpagetitle.addSnappedContent(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'expandedcontent') {
+                                var _index = null;if (afterElement) _index = this._dynamicpagetitle.indexOfExpandedContent(afterElement);if (_index) this._dynamicpagetitle.insertExpandedContent(child, _index + 1);else this._dynamicpagetitle.addExpandedContent(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'tooltip') {
+                                this._dynamicpagetitle.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = null;if (afterElement) _index = this._dynamicpagetitle.indexOfCustomData(afterElement);if (_index) this._dynamicpagetitle.insertCustomData(child, _index + 1);else this._dynamicpagetitle.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._dynamicpagetitle.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = null;if (afterElement) _index = this._dynamicpagetitle.indexOfDependent(afterElement);if (_index) this._dynamicpagetitle.insertDependent(child, _index + 1);else this._dynamicpagetitle.addDependent(child, 0);return elem.localName;
+                            }
+                        } catch (err) {}
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+                    try {
+                        if (relation == 'heading') {
+                            this._dynamicpagetitle.destroyHeading(child);
+                        }
+                        if (relation == 'actions') {
+                            this._dynamicpagetitle.removeAction(child);
+                        }
+                        if (relation == 'content') {
+                            this._dynamicpagetitle.removeContent(child);
+                        }
+                        if (relation == 'snappedcontent') {
+                            this._dynamicpagetitle.removeSnappedContent(child);
+                        }
+                        if (relation == 'expandedcontent') {
+                            this._dynamicpagetitle.removeExpandedContent(child);
+                        }
+                        if (relation == 'tooltip') {
+                            this._dynamicpagetitle.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._dynamicpagetitle.removeCustomData(child);
+                        }
+                        if (relation == 'layoutData') {
+                            this._dynamicpagetitle.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._dynamicpagetitle.removeDependent(child);
+                        }
+                    } catch (err) {}
+                };
+
+                Ui5DynamicPageTitle.prototype.primaryAreaChanged = function primaryAreaChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.setPrimaryArea(newValue);
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.busyChanged = function busyChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.setBusy(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.busyIndicatorDelayChanged = function busyIndicatorDelayChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.setBusyIndicatorDelay(newValue);
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.visibleChanged = function visibleChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.setVisible(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.fieldGroupIdsChanged = function fieldGroupIdsChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.setFieldGroupIds(newValue);
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.attachValidateFieldGroup(newValue);
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.attachParseError(newValue);
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5DynamicPageTitle.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._dynamicpagetitle !== null) {
+                        this._dynamicpagetitle.attachModelContextChange(newValue);
+                    }
+                };
+
+                _createClass(Ui5DynamicPageTitle, [{
+                    key: 'UIElement',
+                    get: function get() {
+                        return this._dynamicpagetitle;
+                    }
+                }]);
+
+                return Ui5DynamicPageTitle;
+            }(Ui5Control), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [bindable], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'primaryArea', [_dec3], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 'Begin';
+                }
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec4], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec5], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 1000;
+                }
+            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec6], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec7], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return '[]';
+                }
+            }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec8], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec9], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec10], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec11], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec12], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec14], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+
+            _export('Ui5DynamicPageTitle', Ui5DynamicPageTitle);
+        }
+    };
 });

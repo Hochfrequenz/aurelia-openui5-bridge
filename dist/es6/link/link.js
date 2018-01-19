@@ -1,80 +1,177 @@
 import { bindable, customElement, noView } from 'aurelia-templating';
 import { inject } from 'aurelia-dependency-injection';
+import { computedFrom } from 'aurelia-framework';
 import { AttributeManager } from '../common/attributeManager';
 import { getBooleanFromAttributeValue } from '../common/attributes';
-
+import { Ui5Control} from '../control/control';
 @customElement('ui5-link')
 @inject(Element)
-export class Ui5Link {
-  @bindable() enabled = true;
-  @bindable() subtle = false;
-  @bindable() emphasized = false;
-  @bindable() text = '';
-  @bindable() press = this.defaultPress;
-  @bindable() target = null;
-  @bindable() href = null;
-  _link = null;
-  _parent = null;
-  constructor(element) {
-    this.attributeManager = new AttributeManager(element);
-    this.element = element;
-  }
+export class Ui5Link extends Ui5Control{
+        _link = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+        @bindable() text = '';
+@bindable() enabled = true;
+@bindable() target = null;
+@bindable() width = null;
+@bindable() href = null;
+@bindable() wrapping = false;
+@bindable() textAlign = 'Initial';
+@bindable() textDirection = 'Inherit';
+@bindable() subtle = false;
+@bindable() emphasized = false;
+@bindable() press = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
 
-  attached() {
-    this._link = new sap.m.Link({
-      text: this.text,
-      target: this.target,
-      href: this.href,
-      subtle: getBooleanFromAttributeValue(this.subtle),
-      emphasized: getBooleanFromAttributeValue(this.emphasized),
-      enabled: getBooleanFromAttributeValue(this.enabled),
-      press: this.press != null ? this.press : this.defaultPress
-    });
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_link')
+        get UIElement() {
+            return this._link;
+          }
+        fillProperties(params){
+               params.text = this.text;
+params.enabled = getBooleanFromAttributeValue(this.enabled);
+params.target = this.target;
+params.width = this.width;
+params.href = this.href;
+params.wrapping = getBooleanFromAttributeValue(this.wrapping);
+params.textAlign = this.textAlign;
+params.textDirection = this.textDirection;
+params.subtle = getBooleanFromAttributeValue(this.subtle);
+params.emphasized = getBooleanFromAttributeValue(this.emphasized);
+params.press = this.press==null ? this.defaultFunc: this.press;
+            
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+                                         super.fillProperties(params);   
+         if (this.ui5Id)
+          this._link = new sap.m.Link(this.ui5Id, params);
+        else
+          this._link = new sap.m.Link(params);
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._link.sId)) {
+        var prevSibling = null;
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
+          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+        this._relation = this._parent.addChild(this._link, this.element, prevSibling);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
+                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                                                this._relation = this._parent.addChild(this._link, this.element, prevSibling);
+        }
+        else
+          this._relation = this._parent.addChild(this._link, this.element);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._link.placeAt)
+                                                                this._link.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._link.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                this._parent.removeChildByRelation(this._link, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._link.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
 
-    if ($(this.element).closest("[ui5-container]").length > 0) {
-      this.parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-      this.parent.addChild(this._link, this.element);
-    }
-  }
-  defaultPress() {
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._link.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._link.indexOfCustomData(afterElement); if (_index)this._link.insertCustomData(child, _index + 1); else this._link.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._link.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._link.indexOfDependent(afterElement); if (_index)this._link.insertDependent(child, _index + 1); else this._link.addDependent(child, 0);  return elem.localName; }
 
-  }
-  detached() {
-    if (this.parent && this.parent.removeChild) {
-      this.parent.removeChild(this._link, this.elememt);
-    }
-  }
-  hrefChanged(newValue) {
-    if (this._link !== null) {
-      this._link.setHref(newValue);
-    }
-  }
-  typeChanged(newValue) {
-    if (this._link !== null) {
-      this._link.setType(newValue);
-    }
-  }
-  enabledChanged(newValue) {
-    if (this._link !== null) {
-      this._link.setEnabled(getBooleanFromAttributeValue(newValue));
-    }
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._link.destroyTooltip(child); }
+if (relation == 'customdata') {  this._link.removeCustomData(child);}
+if (relation == 'layoutData') {  this._link.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._link.removeDependent(child);}
 
-  }
-  targetChanged(newValue) {
-    if (this._link !== null) {
-      this._link.setTarget(newValue);
-    }
-  }
-  textChanged(newValue) {
-    if (this._link !== null) {
-      this._link.setText(newValue);
-    }
-  }
-  pressChanged(newValue) {
-    if (this._link !== null) {
-      if (newValue == null)
-        newValue = this.defaultPress;
-      this._link.attachPress(newValue);
-    }
-  }
-}
+      }
+      catch(err){}
+                                                                            }
+    textChanged(newValue){if(this._link!==null){ this._link.setText(newValue);}}
+enabledChanged(newValue){if(this._link!==null){ this._link.setEnabled(getBooleanFromAttributeValue(newValue));}}
+targetChanged(newValue){if(this._link!==null){ this._link.setTarget(newValue);}}
+widthChanged(newValue){if(this._link!==null){ this._link.setWidth(newValue);}}
+hrefChanged(newValue){if(this._link!==null){ this._link.setHref(newValue);}}
+wrappingChanged(newValue){if(this._link!==null){ this._link.setWrapping(getBooleanFromAttributeValue(newValue));}}
+textAlignChanged(newValue){if(this._link!==null){ this._link.setTextAlign(newValue);}}
+textDirectionChanged(newValue){if(this._link!==null){ this._link.setTextDirection(newValue);}}
+subtleChanged(newValue){if(this._link!==null){ this._link.setSubtle(getBooleanFromAttributeValue(newValue));}}
+emphasizedChanged(newValue){if(this._link!==null){ this._link.setEmphasized(getBooleanFromAttributeValue(newValue));}}
+pressChanged(newValue){if(this._link!==null){ this._link.attachPress(newValue);}}
+busyChanged(newValue){if(this._link!==null){ this._link.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._link!==null){ this._link.setBusyIndicatorDelay(newValue);}}
+visibleChanged(newValue){if(this._link!==null){ this._link.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._link!==null){ this._link.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._link!==null){ this._link.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._link!==null){ this._link.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._link!==null){ this._link.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._link!==null){ this._link.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._link!==null){ this._link.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._link!==null){ this._link.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }

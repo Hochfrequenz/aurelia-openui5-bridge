@@ -1,17 +1,29 @@
 <template>
-    <div>
-        <header-toolbar>
-            <slot name="headerToolbar"></slot>
-        </header-toolbar>
-        <info-toolbar>
-            <slot name="infoToolbar">
-            </slot>
-        </info-toolbar>
-        <column>
-            <slot name="column"></slot>
-        </column>
-        <item>
-            <slot></slot>
-        </item>
-    </div>
+  <columns ref="columns">
+    <slot name="columns"></slot>
+  </columns>
+  <items ref="items">
+    <slot></slot>
+  </items>
+  <swipeContent ref="swipeContent">
+    <slot name="swipeContent"></slot>
+  </swipeContent>
+  <headerToolbar ref="headerToolbar">
+    <slot name="headerToolbar"></slot>
+  </headerToolbar>
+  <infoToolbar ref="infoToolbar">
+    <slot name="infoToolbar"></slot>
+  </infoToolbar>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

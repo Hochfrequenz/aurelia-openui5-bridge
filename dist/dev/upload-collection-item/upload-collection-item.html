@@ -1,14 +1,23 @@
 <template>
-    <div>
-        <markers>
-            <slot name="marker"></slot>
-        </markers>
-        <statuses>
-            <slot name="status">
-            </slot>
-        </statuses>
-        <attributes>
-            <slot name="attribute"></slot>
-        </attributes>
-    </div>
+  <attributes ref="attributes">
+    <slot></slot>
+  </attributes>
+  <statuses ref="statuses">
+    <slot name="statuses"></slot>
+  </statuses>
+  <markers ref="markers">
+    <slot name="markers"></slot>
+  </markers>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

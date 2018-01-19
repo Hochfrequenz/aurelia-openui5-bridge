@@ -1,4 +1,5 @@
 // build-index-remove start
+export * from './custom-data/custom-data';
 export * from './page/page';
 export * from './shell/shell';
 export * from './bar/bar';

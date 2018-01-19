@@ -1,10 +1,14 @@
 <template>
-    <div ref="form">
-        <toolbar ref="toolbar">
-         <slot name="toolbar"></slot>
-        </toolbar>
-         <content ref="content">
-            <slot></slot>
-        </content>
-    </div>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

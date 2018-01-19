@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <items>
-      <slot></slot>
-    </items>
-  </div>
+  <items ref="items">
+    <slot></slot>
+  </items>
+  <headerButton ref="headerButton">
+    <slot name="headerButton"></slot>
+  </headerButton>
 </template>

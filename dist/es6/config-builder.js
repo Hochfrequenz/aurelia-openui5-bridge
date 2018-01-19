@@ -52,6 +52,7 @@ export class ConfigBuilder {
   usePage(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./page/page'));
     this.globalResources.push(PLATFORM.moduleName('./shell/shell'));
+    this.globalResources.push(PLATFORM.moduleName('./custom-data/custom-data'));
     return this;
   }
   useBar(): ConfigBuilder {

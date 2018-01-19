@@ -1,13 +1,23 @@
 <template>
-    <header ref="bar">
-        <content-left ref="contentLeft">
-            <slot name="contentLeft"></slot>
-        </content-left>
-        <content-middle ref="contentMiddle">
-            <slot name="contentMiddle"></slot>
-        </content-middle>
-        <content-right ref="contentRight">
-            <slot name="contentRight"></slot>
-        </content-right>
-    </header>
+  <contentLeft ref="contentLeft">
+    <slot name="contentLeft"></slot>
+  </contentLeft>
+  <contentMiddle ref="contentMiddle">
+    <slot name="contentMiddle"></slot>
+  </contentMiddle>
+  <contentRight ref="contentRight">
+    <slot name="contentRight"></slot>
+  </contentRight>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

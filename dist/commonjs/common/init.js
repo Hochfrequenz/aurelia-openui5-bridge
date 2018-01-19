@@ -20,12 +20,12 @@ function ui5SetTheme(name, path) {
   sap.ui.getCore().applyTheme(name, path);
 }
 function findUi5DialogElement(name) {
-  return document.body.querySelector("[ui5-dialog-id=\"" + name + "\"]");
+  return document.body.querySelector("[ui5-id=\"" + name + "\"]");
 }
 function getUi5DialogElement(name) {
   try {
-    console.log("querying [ui5-dialog-id=\"" + name + "\"]");
-    return document.body.querySelector("[ui5-dialog-id=\"" + name + "\"]").au.controller.viewModel.UIElement;
+    console.log("querying [ui5-id=\"" + name + "\"]");
+    return document.body.querySelector("[ui5-id=\"" + name + "\"]").au.controller.viewModel.UIElement;
   } catch (exc) {
     console.log(exc);
     return null;

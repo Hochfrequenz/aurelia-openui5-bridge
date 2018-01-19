@@ -36,6 +36,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         ConfigBuilder.prototype.usePage = function usePage() {
           this.globalResources.push(PLATFORM.moduleName('./page/page'));
           this.globalResources.push(PLATFORM.moduleName('./shell/shell'));
+          this.globalResources.push(PLATFORM.moduleName('./custom-data/custom-data'));
           return this;
         };
 

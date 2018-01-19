@@ -1,16 +1,26 @@
 <template>
-    <div >
-        <pagetitle>
-            <slot name="title"></slot>
-        </pagetitle>
-        <heading>
-            <slot name="header"></slot>
-        </heading>
-        <content >
-            <slot></slot>
-        </content>
-        <footer >
-            <slot name="footer"></slot>
-        </content>
-    </div>
+  <title ref="title">
+    <slot name="title"></slot>
+  </title>
+  <header ref="header">
+    <slot name="header"></slot>
+  </header>
+  <content ref="content">
+    <slot></slot>
+  </content>
+  <footer ref="footer">
+    <slot name="footer"></slot>
+  </footer>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

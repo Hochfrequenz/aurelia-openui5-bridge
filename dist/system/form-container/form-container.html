@@ -1,14 +1,23 @@
 <template>
-    <div ref="formContainer">
-        <toolbar ref="toolbar">
-         <slot name="toolbar"></slot>
-        </toolbar>
-        <titleElement ref="titleElement">
-         <slot name="title"></slot>
-        </titleElement>
-        
-         <element ref="elements">
-            <slot></slot>
-        </element>
-    </div>
+  <formElements ref="formElements">
+    <slot></slot>
+  </formElements>
+  <title ref="title">
+    <slot name="title"></slot>
+  </title>
+  <toolbar ref="toolbar">
+    <slot name="toolbar"></slot>
+  </toolbar>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

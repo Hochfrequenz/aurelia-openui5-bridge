@@ -1,10 +1,17 @@
 <template>
-    <dialog>
-        <column>
-            <slot name="column"></slot>
-        </column>
-        <items>
-            <slot></slot>
-        </items>
-    </dialog>
+  <items ref="items">
+    <slot></slot>
+  </items>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

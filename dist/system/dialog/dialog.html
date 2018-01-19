@@ -1,16 +1,32 @@
 <template>
-    <dialog>
-        <subHeader>
-            <slot name="subHeader"></slot>
-        </subHeader>
-        <customHeader>
-            <slot name="customHeader"></slot>
-        </customHeader>
-        <buttons>
-            <slot name="buttons"></slot>
-        </buttons>
-        <content>
-            <slot></slot>
-        </content>
-    </dialog>
+  <content ref="content">
+    <slot></slot>
+  </content>
+  <subHeader ref="subHeader">
+    <slot name="subHeader"></slot>
+  </subHeader>
+  <customHeader ref="customHeader">
+    <slot name="customHeader"></slot>
+  </customHeader>
+  <beginButton ref="beginButton">
+    <slot name="beginButton"></slot>
+  </beginButton>
+  <endButton ref="endButton">
+    <slot name="endButton"></slot>
+  </endButton>
+  <buttons ref="buttons">
+    <slot name="buttons"></slot>
+  </buttons>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
 </template>

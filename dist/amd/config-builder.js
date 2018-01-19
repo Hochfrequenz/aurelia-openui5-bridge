@@ -32,6 +32,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     ConfigBuilder.prototype.usePage = function usePage() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./page/page'));
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./shell/shell'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./custom-data/custom-data'));
       return this;
     };
 
