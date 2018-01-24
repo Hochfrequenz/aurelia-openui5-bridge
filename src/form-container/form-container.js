@@ -34,10 +34,11 @@ export class Ui5FormContainer extends Ui5Element{
             return this._formcontainer;
           }
         fillProperties(params){
-               params.expanded = getBooleanFromAttributeValue(this.expanded);
+                                        params.expanded = getBooleanFromAttributeValue(this.expanded);
 params.expandable = getBooleanFromAttributeValue(this.expandable);
 params.visible = getBooleanFromAttributeValue(this.visible);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -45,7 +46,6 @@ params.visible = getBooleanFromAttributeValue(this.visible);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._formcontainer = new sap.ui.layout.form.FormContainer(this.ui5Id, params);
         else

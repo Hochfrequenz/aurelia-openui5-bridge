@@ -144,6 +144,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.visible = (0, _attributes.getBooleanFromAttributeValue)(this.visible);
             params.fieldGroupIds = this.fieldGroupIds;
             params.validateFieldGroup = this.validateFieldGroup == null ? this.defaultFunc : this.validateFieldGroup;
+
+            _Ui5Element.prototype.fillProperties.call(this, params);
         };
 
         Ui5Control.prototype.defaultFunc = function defaultFunc() {};
@@ -152,7 +154,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Element.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._control = new sap.ui.core.Control(this.ui5Id, params);else this._control = new sap.ui.core.Control(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

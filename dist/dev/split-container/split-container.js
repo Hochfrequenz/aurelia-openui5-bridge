@@ -207,6 +207,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.afterMasterClose = this.afterMasterClose == null ? this.defaultFunc : this.afterMasterClose;
                     params.detailNavigate = this.detailNavigate == null ? this.defaultFunc : this.detailNavigate;
                     params.afterDetailNavigate = this.afterDetailNavigate == null ? this.defaultFunc : this.afterDetailNavigate;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5SplitContainer.prototype.defaultFunc = function defaultFunc() {};
@@ -215,7 +217,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._splitcontainer = new sap.m.SplitContainer(this.ui5Id, params);else this._splitcontainer = new sap.m.SplitContainer(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

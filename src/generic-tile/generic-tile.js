@@ -49,7 +49,7 @@ export class Ui5GenericTile extends Ui5Control{
             return this._generictile;
           }
         fillProperties(params){
-               params.mode = this.mode;
+                                        params.mode = this.mode;
 params.header = this.header;
 params.subheader = this.subheader;
 params.failedText = this.failedText;
@@ -62,6 +62,7 @@ params.scope = this.scope;
 params.ariaLabel = this.ariaLabel;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -69,7 +70,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._generictile = new sap.m.GenericTile(this.ui5Id, params);
         else

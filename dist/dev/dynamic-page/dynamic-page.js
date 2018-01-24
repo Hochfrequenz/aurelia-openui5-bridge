@@ -168,6 +168,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.toggleHeaderOnTitleClick = getBooleanFromAttributeValue(this.toggleHeaderOnTitleClick);
                     params.showFooter = getBooleanFromAttributeValue(this.showFooter);
                     params.fitContent = getBooleanFromAttributeValue(this.fitContent);
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5DynamicPage.prototype.defaultFunc = function defaultFunc() {};
@@ -176,7 +178,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._dynamicpage = new sap.f.DynamicPage(this.ui5Id, params);else this._dynamicpage = new sap.f.DynamicPage(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

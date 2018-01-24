@@ -39,9 +39,10 @@ export class Ui5Tile extends Ui5Control{
             return this._tile;
           }
         fillProperties(params){
-               params.removable = getBooleanFromAttributeValue(this.removable);
+                                        params.removable = getBooleanFromAttributeValue(this.removable);
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -49,7 +50,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._tile = new sap.m.Tile(this.ui5Id, params);
         else

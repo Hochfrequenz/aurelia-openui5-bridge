@@ -189,6 +189,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.scope = this.scope;
                     params.ariaLabel = this.ariaLabel;
                     params.press = this.press == null ? this.defaultFunc : this.press;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5GenericTile.prototype.defaultFunc = function defaultFunc() {};
@@ -197,7 +199,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._generictile = new sap.m.GenericTile(this.ui5Id, params);else this._generictile = new sap.m.GenericTile(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

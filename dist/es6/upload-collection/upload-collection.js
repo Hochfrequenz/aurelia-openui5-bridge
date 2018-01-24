@@ -63,7 +63,7 @@ export class Ui5UploadCollection extends Ui5Control{
             return this._uploadcollection;
           }
         fillProperties(params){
-               params.fileType = this.fileType;
+                                        params.fileType = this.fileType;
 params.maximumFilenameLength = this.maximumFilenameLength?parseInt(this.maximumFilenameLength):0;
 params.maximumFileSize = this.maximumFileSize;
 params.mimeType = this.mimeType;
@@ -90,6 +90,7 @@ params.uploadTerminated = this.uploadTerminated==null ? this.defaultFunc: this.u
 params.beforeUploadStarts = this.beforeUploadStarts==null ? this.defaultFunc: this.beforeUploadStarts;
 params.selectionChange = this.selectionChange==null ? this.defaultFunc: this.selectionChange;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -97,7 +98,6 @@ params.selectionChange = this.selectionChange==null ? this.defaultFunc: this.sel
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._uploadcollection = new sap.m.UploadCollection(this.ui5Id, params);
         else

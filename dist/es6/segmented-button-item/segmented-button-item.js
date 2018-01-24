@@ -40,11 +40,12 @@ export class Ui5SegmentedButtonItem extends Ui5Item{
             return this._segmentedbuttonitem;
           }
         fillProperties(params){
-               params.icon = this.icon;
+                                        params.icon = this.icon;
 params.visible = getBooleanFromAttributeValue(this.visible);
 params.width = this.width;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -52,7 +53,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(this.ui5Id, params);
         else

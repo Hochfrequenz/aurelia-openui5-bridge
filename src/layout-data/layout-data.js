@@ -31,7 +31,8 @@ export class Ui5LayoutData extends Ui5Element{
             return this._layoutdata;
           }
         fillProperties(params){
-                           
+                                                    
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -39,7 +40,6 @@ export class Ui5LayoutData extends Ui5Element{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._layoutdata = new sap.ui.core.LayoutData(this.ui5Id, params);
         else

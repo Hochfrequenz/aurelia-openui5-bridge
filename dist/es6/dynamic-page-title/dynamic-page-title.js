@@ -38,8 +38,9 @@ export class Ui5DynamicPageTitle extends Ui5Control{
             return this._dynamicpagetitle;
           }
         fillProperties(params){
-               params.primaryArea = this.primaryArea;
+                                        params.primaryArea = this.primaryArea;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -47,7 +48,6 @@ export class Ui5DynamicPageTitle extends Ui5Control{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._dynamicpagetitle = new sap.f.DynamicPageTitle(this.ui5Id, params);
         else

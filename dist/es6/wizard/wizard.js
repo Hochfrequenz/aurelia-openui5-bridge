@@ -45,7 +45,7 @@ export class Ui5Wizard extends Ui5Control{
             return this._wizard;
           }
         fillProperties(params){
-               params.width = this.width;
+                                        params.width = this.width;
 params.height = this.height;
 params.showNextButton = getBooleanFromAttributeValue(this.showNextButton);
 params.finishButtonText = this.finishButtonText;
@@ -53,6 +53,7 @@ params.enableBranching = getBooleanFromAttributeValue(this.enableBranching);
 params.stepActivate = this.stepActivate==null ? this.defaultFunc: this.stepActivate;
 params.complete = this.complete==null ? this.defaultFunc: this.complete;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -60,7 +61,6 @@ params.complete = this.complete==null ? this.defaultFunc: this.complete;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._wizard = new sap.m.Wizard(this.ui5Id, params);
         else

@@ -128,6 +128,8 @@ var Ui5ObjectNumber = exports.Ui5ObjectNumber = (_dec = (0, _aureliaTemplating.c
         params.unit = this.unit;
         params.textDirection = this.textDirection;
         params.textAlign = this.textAlign;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5ObjectNumber.prototype.defaultFunc = function defaultFunc() {};
@@ -136,7 +138,6 @@ var Ui5ObjectNumber = exports.Ui5ObjectNumber = (_dec = (0, _aureliaTemplating.c
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._objectnumber = new sap.m.ObjectNumber(this.ui5Id, params);else this._objectnumber = new sap.m.ObjectNumber(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

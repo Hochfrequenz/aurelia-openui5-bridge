@@ -132,7 +132,10 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     return _this;
                 }
 
-                Ui5EventProvider.prototype.fillProperties = function fillProperties(params) {};
+                Ui5EventProvider.prototype.fillProperties = function fillProperties(params) {
+
+                    _Ui5Object.prototype.fillProperties.call(this, params);
+                };
 
                 Ui5EventProvider.prototype.defaultFunc = function defaultFunc() {};
 
@@ -140,7 +143,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Object.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._eventprovider = new sap.ui.base.EventProvider(this.ui5Id, params);else this._eventprovider = new sap.ui.base.EventProvider(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

@@ -162,6 +162,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.src = this.src;
                     params.description = this.description;
                     params.press = this.press == null ? this.defaultFunc : this.press;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5ImageContent.prototype.defaultFunc = function defaultFunc() {};
@@ -170,7 +172,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._imagecontent = new sap.m.ImageContent(this.ui5Id, params);else this._imagecontent = new sap.m.ImageContent(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

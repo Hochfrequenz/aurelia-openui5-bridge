@@ -73,7 +73,7 @@ export class Ui5Input extends Ui5InputBase{
             return this._input;
           }
         fillProperties(params){
-               params.type = this.type;
+                                        params.type = this.type;
 params.maxLength = this.maxLength?parseInt(this.maxLength):0;
 params.showValueHelp = getBooleanFromAttributeValue(this.showValueHelp);
 params.showSuggestion = getBooleanFromAttributeValue(this.showSuggestion);
@@ -96,6 +96,7 @@ params.suggest = this.suggest==null ? this.defaultFunc: this.suggest;
 params.suggestionItemSelected = this.suggestionItemSelected==null ? this.defaultFunc: this.suggestionItemSelected;
 params.submit = this.submit==null ? this.defaultFunc: this.submit;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -103,7 +104,6 @@ params.submit = this.submit==null ? this.defaultFunc: this.submit;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._input = new sap.m.Input(this.ui5Id, params);
         else

@@ -54,7 +54,7 @@ export class Ui5Dialog extends Ui5Control{
             return this._dialog;
           }
         fillProperties(params){
-               params.icon = this.icon;
+                                        params.icon = this.icon;
 params.title = this.title;
 params.showHeader = getBooleanFromAttributeValue(this.showHeader);
 params.type = this.type;
@@ -72,6 +72,7 @@ params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
 params.beforeClose = this.beforeClose==null ? this.defaultFunc: this.beforeClose;
 params.afterClose = this.afterClose==null ? this.defaultFunc: this.afterClose;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -79,7 +80,6 @@ params.afterClose = this.afterClose==null ? this.defaultFunc: this.afterClose;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._dialog = new sap.m.Dialog(this.ui5Id, params);
         else

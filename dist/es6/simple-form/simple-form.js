@@ -60,7 +60,7 @@ export class Ui5SimpleForm extends Ui5Control{
             return this._simpleform;
           }
         fillProperties(params){
-               params.maxContainerCols = this.maxContainerCols?parseInt(this.maxContainerCols):0;
+                                        params.maxContainerCols = this.maxContainerCols?parseInt(this.maxContainerCols):0;
 params.minWidth = this.minWidth?parseInt(this.minWidth):0;
 params.width = this.width;
 params.editable = getBooleanFromAttributeValue(this.editable);
@@ -84,6 +84,7 @@ params.breakpointL = this.breakpointL?parseInt(this.breakpointL):0;
 params.breakpointM = this.breakpointM?parseInt(this.breakpointM):0;
 params.backgroundDesign = this.backgroundDesign;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -91,7 +92,6 @@ params.backgroundDesign = this.backgroundDesign;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._simpleform = new sap.ui.layout.form.SimpleForm(this.ui5Id, params);
         else

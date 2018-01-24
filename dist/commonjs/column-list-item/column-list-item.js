@@ -129,6 +129,8 @@ var Ui5ColumnListItem = exports.Ui5ColumnListItem = (_dec = (0, _aureliaTemplati
 
     Ui5ColumnListItem.prototype.fillProperties = function fillProperties(params) {
         params.vAlign = this.vAlign;
+
+        _Ui5ListItemBase.prototype.fillProperties.call(this, params);
     };
 
     Ui5ColumnListItem.prototype.defaultFunc = function defaultFunc() {};
@@ -137,7 +139,6 @@ var Ui5ColumnListItem = exports.Ui5ColumnListItem = (_dec = (0, _aureliaTemplati
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5ListItemBase.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._columnlistitem = new sap.m.ColumnListItem(this.ui5Id, params);else this._columnlistitem = new sap.m.ColumnListItem(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

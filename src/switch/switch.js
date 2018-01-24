@@ -44,7 +44,7 @@ export class Ui5Switch extends Ui5Control{
             return this._switch;
           }
         fillProperties(params){
-               params.state = getBooleanFromAttributeValue(this.state);
+                                        params.state = getBooleanFromAttributeValue(this.state);
 params.customTextOn = this.customTextOn;
 params.customTextOff = this.customTextOff;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
@@ -52,6 +52,7 @@ params.name = this.name;
 params.type = this.type;
 params.change = this.change==null ? this.defaultFunc: this.change;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -59,7 +60,6 @@ params.change = this.change==null ? this.defaultFunc: this.change;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._switch = new sap.m.Switch(this.ui5Id, params);
         else

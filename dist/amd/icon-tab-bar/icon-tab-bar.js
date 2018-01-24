@@ -178,6 +178,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.enableTabReordering = (0, _attributes.getBooleanFromAttributeValue)(this.enableTabReordering);
             params.select = this.select == null ? this.defaultFunc : this.select;
             params.expand = this.expand == null ? this.defaultFunc : this.expand;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5IconTabBar.prototype.defaultFunc = function defaultFunc() {};
@@ -186,7 +188,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._icontabbar = new sap.m.IconTabBar(this.ui5Id, params);else this._icontabbar = new sap.m.IconTabBar(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

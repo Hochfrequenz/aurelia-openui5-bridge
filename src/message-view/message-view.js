@@ -30,7 +30,7 @@ export class Ui5MessageView {
             return this._messageview;
           }
         fillProperties(params){
-               params.asyncDescriptionHandler = this.asyncDescriptionHandler;
+                                        params.asyncDescriptionHandler = this.asyncDescriptionHandler;
 params.asyncURLHandler = this.asyncURLHandler;
 params.groupItems = getBooleanFromAttributeValue(this.groupItems);
 params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
@@ -39,6 +39,7 @@ params.listSelect = this.listSelect==null ? this.defaultFunc: this.listSelect;
 params.longtextLoaded = this.longtextLoaded==null ? this.defaultFunc: this.longtextLoaded;
 params.urlValidated = this.urlValidated==null ? this.defaultFunc: this.urlValidated;
             
+                                               
         }
         defaultFunc() {
                         }
@@ -46,7 +47,6 @@ params.urlValidated = this.urlValidated==null ? this.defaultFunc: this.urlValida
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                            
          if (this.ui5Id)
           this._messageview = new sap.m.MessageView(this.ui5Id, params);
         else

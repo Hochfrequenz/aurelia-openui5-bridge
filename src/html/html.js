@@ -42,12 +42,13 @@ export class Ui5Html extends Ui5Control{
             return this._html;
           }
         fillProperties(params){
-               params.content = this.content;
+                                        params.content = this.content;
 params.preferDOM = getBooleanFromAttributeValue(this.preferDOM);
 params.sanitizeContent = getBooleanFromAttributeValue(this.sanitizeContent);
 params.visible = getBooleanFromAttributeValue(this.visible);
 params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.afterRendering;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -55,7 +56,6 @@ params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.after
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._html = new sap.ui.core.HTML(this.ui5Id, params);
         else

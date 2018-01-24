@@ -128,6 +128,8 @@ var Ui5Toolbar = exports.Ui5Toolbar = (_dec = (0, _aureliaTemplating.customEleme
         params.height = this.height;
         params.design = this.design;
         params.press = this.press == null ? this.defaultFunc : this.press;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5Toolbar.prototype.defaultFunc = function defaultFunc() {};
@@ -136,7 +138,6 @@ var Ui5Toolbar = exports.Ui5Toolbar = (_dec = (0, _aureliaTemplating.customEleme
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._toolbar = new sap.m.Toolbar(this.ui5Id, params);else this._toolbar = new sap.m.Toolbar(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

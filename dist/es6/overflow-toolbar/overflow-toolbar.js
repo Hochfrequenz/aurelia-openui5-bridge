@@ -44,7 +44,8 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
             return this._overflowtoolbar;
           }
         fillProperties(params){
-                           
+                                                    
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -52,7 +53,6 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._overflowtoolbar = new sap.m.OverflowToolbar(this.ui5Id, params);
         else

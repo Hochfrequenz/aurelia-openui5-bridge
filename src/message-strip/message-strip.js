@@ -44,7 +44,7 @@ export class Ui5MessageStrip extends Ui5Control{
             return this._messagestrip;
           }
         fillProperties(params){
-               params.text = this.text;
+                                        params.text = this.text;
 params.type = this.type;
 params.customIcon = this.customIcon;
 params.showIcon = getBooleanFromAttributeValue(this.showIcon);
@@ -52,6 +52,7 @@ params.showCloseButton = getBooleanFromAttributeValue(this.showCloseButton);
 params.enableFormattedText = getBooleanFromAttributeValue(this.enableFormattedText);
 params.close = this.close==null ? this.defaultFunc: this.close;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -59,7 +60,6 @@ params.close = this.close==null ? this.defaultFunc: this.close;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._messagestrip = new sap.m.MessageStrip(this.ui5Id, params);
         else

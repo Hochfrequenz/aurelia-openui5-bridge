@@ -38,9 +38,10 @@ export class Ui5ListItem extends Ui5Item{
             return this._listitem;
           }
         fillProperties(params){
-               params.icon = this.icon;
+                                        params.icon = this.icon;
 params.additionalText = this.additionalText;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -48,7 +49,6 @@ params.additionalText = this.additionalText;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._listitem = new sap.ui.core.ListItem(this.ui5Id, params);
         else

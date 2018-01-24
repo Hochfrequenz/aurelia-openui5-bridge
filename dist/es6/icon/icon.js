@@ -52,7 +52,7 @@ export class Ui5Icon extends Ui5Control{
             return this._icon;
           }
         fillProperties(params){
-               params.src = this.src;
+                                        params.src = this.src;
 params.size = this.size;
 params.color = this.color;
 params.hoverColor = this.hoverColor;
@@ -68,6 +68,7 @@ params.alt = this.alt;
 params.noTabStop = getBooleanFromAttributeValue(this.noTabStop);
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -75,7 +76,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._icon = new sap.ui.core.Icon(this.ui5Id, params);
         else

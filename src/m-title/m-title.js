@@ -42,12 +42,13 @@ export class Ui5mTitle extends Ui5Control{
             return this._mtitle;
           }
         fillProperties(params){
-               params.text = this.text;
+                                        params.text = this.text;
 params.level = this.level;
 params.titleStyle = this.titleStyle;
 params.width = this.width;
 params.textAlign = this.textAlign;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -55,7 +56,6 @@ params.textAlign = this.textAlign;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._mtitle = new sap.m.Title(this.ui5Id, params);
         else

@@ -86,7 +86,6 @@ var Ui5Object = exports.Ui5Object = (_dec = (0, _aureliaTemplating.customElement
         var that = this;
         var params = {};
         this.fillProperties(params);
-
         if (this.ui5Id) this._object = new sap.ui.base.Object(this.ui5Id, params);else this._object = new sap.ui.base.Object(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

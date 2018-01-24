@@ -35,11 +35,12 @@ export class Ui5Title extends Ui5Element{
             return this._title;
           }
         fillProperties(params){
-               params.text = this.text;
+                                        params.text = this.text;
 params.icon = this.icon;
 params.level = this.level;
 params.emphasized = getBooleanFromAttributeValue(this.emphasized);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -47,7 +48,6 @@ params.emphasized = getBooleanFromAttributeValue(this.emphasized);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._title = new sap.ui.core.Title(this.ui5Id, params);
         else

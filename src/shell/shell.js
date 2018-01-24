@@ -49,7 +49,7 @@ export class Ui5Shell extends Ui5Control{
             return this._shell;
           }
         fillProperties(params){
-               params.title = this.title;
+                                        params.title = this.title;
 params.logo = this.logo;
 params.showLogout = getBooleanFromAttributeValue(this.showLogout);
 params.headerRightText = this.headerRightText;
@@ -62,6 +62,7 @@ params.homeIcon = this.homeIcon;
 params.titleLevel = this.titleLevel;
 params.logout = this.logout==null ? this.defaultFunc: this.logout;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -69,7 +70,6 @@ params.logout = this.logout==null ? this.defaultFunc: this.logout;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._shell = new sap.m.Shell(this.ui5Id, params);
         else

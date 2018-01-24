@@ -134,6 +134,8 @@ var Ui5ViewSettingsDialog = exports.Ui5ViewSettingsDialog = (_dec = (0, _aurelia
         params.cancel = this.cancel == null ? this.defaultFunc : this.cancel;
         params.resetFilters = this.resetFilters == null ? this.defaultFunc : this.resetFilters;
         params.filterDetailPageOpened = this.filterDetailPageOpened == null ? this.defaultFunc : this.filterDetailPageOpened;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5ViewSettingsDialog.prototype.defaultFunc = function defaultFunc() {};
@@ -142,7 +144,6 @@ var Ui5ViewSettingsDialog = exports.Ui5ViewSettingsDialog = (_dec = (0, _aurelia
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._viewsettingsdialog = new sap.m.ViewSettingsDialog(this.ui5Id, params);else this._viewsettingsdialog = new sap.m.ViewSettingsDialog(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

@@ -33,9 +33,10 @@ export class Ui5UploadCollectionParameter extends Ui5Element{
             return this._uploadcollectionparameter;
           }
         fillProperties(params){
-               params.name = this.name;
+                                        params.name = this.name;
 params.value = this.value;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -43,7 +44,6 @@ params.value = this.value;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._uploadcollectionparameter = new sap.m.UploadCollectionParameter(this.ui5Id, params);
         else

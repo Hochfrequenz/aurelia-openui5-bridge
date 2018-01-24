@@ -128,6 +128,8 @@ var Ui5Text = exports.Ui5Text = (_dec = (0, _aureliaTemplating.customElement)('u
         params.textAlign = this.textAlign;
         params.width = this.width;
         params.maxLines = this.maxLines ? parseInt(this.maxLines) : 0;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5Text.prototype.defaultFunc = function defaultFunc() {};
@@ -136,7 +138,6 @@ var Ui5Text = exports.Ui5Text = (_dec = (0, _aureliaTemplating.customElement)('u
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._text = new sap.m.Text(this.ui5Id, params);else this._text = new sap.m.Text(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

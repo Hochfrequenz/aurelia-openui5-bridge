@@ -173,6 +173,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.popinDisplay = this.popinDisplay;
                     params.mergeDuplicates = getBooleanFromAttributeValue(this.mergeDuplicates);
                     params.mergeFunctionName = this.mergeFunctionName;
+
+                    _Ui5Element.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5Column.prototype.defaultFunc = function defaultFunc() {};
@@ -181,7 +183,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Element.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._column = new sap.m.Column(this.ui5Id, params);else this._column = new sap.m.Column(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

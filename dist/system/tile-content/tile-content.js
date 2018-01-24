@@ -168,6 +168,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.unit = this.unit;
                     params.disabled = getBooleanFromAttributeValue(this.disabled);
                     params.frameType = this.frameType;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5TileContent.prototype.defaultFunc = function defaultFunc() {};
@@ -176,7 +178,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._tilecontent = new sap.m.TileContent(this.ui5Id, params);else this._tilecontent = new sap.m.TileContent(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

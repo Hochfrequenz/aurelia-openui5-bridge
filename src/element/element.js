@@ -30,7 +30,8 @@ export class Ui5Element extends Ui5ManagedObject{
             return this._element;
           }
         fillProperties(params){
-                           
+                                                    
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -38,7 +39,6 @@ export class Ui5Element extends Ui5ManagedObject{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._element = new sap.ui.core.Element(this.ui5Id, params);
         else

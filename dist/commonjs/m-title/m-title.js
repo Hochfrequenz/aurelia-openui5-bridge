@@ -125,6 +125,8 @@ var Ui5mTitle = exports.Ui5mTitle = (_dec = (0, _aureliaTemplating.customElement
         params.titleStyle = this.titleStyle;
         params.width = this.width;
         params.textAlign = this.textAlign;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5mTitle.prototype.defaultFunc = function defaultFunc() {};
@@ -133,7 +135,6 @@ var Ui5mTitle = exports.Ui5mTitle = (_dec = (0, _aureliaTemplating.customElement
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._mtitle = new sap.m.Title(this.ui5Id, params);else this._mtitle = new sap.m.Title(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

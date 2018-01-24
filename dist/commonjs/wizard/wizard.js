@@ -133,6 +133,8 @@ var Ui5Wizard = exports.Ui5Wizard = (_dec = (0, _aureliaTemplating.customElement
         params.enableBranching = (0, _attributes.getBooleanFromAttributeValue)(this.enableBranching);
         params.stepActivate = this.stepActivate == null ? this.defaultFunc : this.stepActivate;
         params.complete = this.complete == null ? this.defaultFunc : this.complete;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5Wizard.prototype.defaultFunc = function defaultFunc() {};
@@ -141,7 +143,6 @@ var Ui5Wizard = exports.Ui5Wizard = (_dec = (0, _aureliaTemplating.customElement
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._wizard = new sap.m.Wizard(this.ui5Id, params);else this._wizard = new sap.m.Wizard(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

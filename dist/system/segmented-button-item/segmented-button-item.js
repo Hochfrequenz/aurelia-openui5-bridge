@@ -163,6 +163,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.visible = getBooleanFromAttributeValue(this.visible);
                     params.width = this.width;
                     params.press = this.press == null ? this.defaultFunc : this.press;
+
+                    _Ui5Item.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5SegmentedButtonItem.prototype.defaultFunc = function defaultFunc() {};
@@ -171,7 +173,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Item.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(this.ui5Id, params);else this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

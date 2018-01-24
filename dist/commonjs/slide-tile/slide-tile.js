@@ -122,6 +122,8 @@ var Ui5SlideTile = exports.Ui5SlideTile = (_dec = (0, _aureliaTemplating.customE
         params.transitionTime = this.transitionTime ? parseInt(this.transitionTime) : 0;
         params.scope = this.scope;
         params.press = this.press == null ? this.defaultFunc : this.press;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5SlideTile.prototype.defaultFunc = function defaultFunc() {};
@@ -130,7 +132,6 @@ var Ui5SlideTile = exports.Ui5SlideTile = (_dec = (0, _aureliaTemplating.customE
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._slidetile = new sap.m.SlideTile(this.ui5Id, params);else this._slidetile = new sap.m.SlideTile(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

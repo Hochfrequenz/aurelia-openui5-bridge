@@ -23,7 +23,8 @@ export class Ui5EventProvider extends Ui5Object{
             return this._eventprovider;
           }
         fillProperties(params){
-                           
+                                                    
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -31,7 +32,6 @@ export class Ui5EventProvider extends Ui5Object{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._eventprovider = new sap.ui.base.EventProvider(this.ui5Id, params);
         else

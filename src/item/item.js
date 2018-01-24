@@ -35,11 +35,12 @@ export class Ui5Item extends Ui5Element{
             return this._item;
           }
         fillProperties(params){
-               params.text = this.text;
+                                        params.text = this.text;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
 params.textDirection = this.textDirection;
 params.key = this.key;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -47,7 +48,6 @@ params.key = this.key;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._item = new sap.ui.core.Item(this.ui5Id, params);
         else

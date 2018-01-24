@@ -149,6 +149,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5UploadCollectionParameter.prototype.fillProperties = function fillProperties(params) {
                     params.name = this.name;
                     params.value = this.value;
+
+                    _Ui5Element.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5UploadCollectionParameter.prototype.defaultFunc = function defaultFunc() {};
@@ -157,7 +159,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Element.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._uploadcollectionparameter = new sap.m.UploadCollectionParameter(this.ui5Id, params);else this._uploadcollectionparameter = new sap.m.UploadCollectionParameter(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

@@ -129,6 +129,8 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
         params.iconDensityAware = (0, _attributes.getBooleanFromAttributeValue)(this.iconDensityAware);
         params.visible = (0, _attributes.getBooleanFromAttributeValue)(this.visible);
         params.design = this.design;
+
+        _Ui5Item.prototype.fillProperties.call(this, params);
     };
 
     Ui5IconTabFilter.prototype.defaultFunc = function defaultFunc() {};
@@ -137,7 +139,6 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Item.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._icontabfilter = new sap.m.IconTabFilter(this.ui5Id, params);else this._icontabfilter = new sap.m.IconTabFilter(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

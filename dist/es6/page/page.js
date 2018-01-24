@@ -49,7 +49,7 @@ export class Ui5Page extends Ui5Control{
             return this._page;
           }
         fillProperties(params){
-               params.title = this.title;
+                                        params.title = this.title;
 params.titleLevel = this.titleLevel;
 params.showNavButton = getBooleanFromAttributeValue(this.showNavButton);
 params.showHeader = getBooleanFromAttributeValue(this.showHeader);
@@ -62,6 +62,7 @@ params.contentOnlyBusy = getBooleanFromAttributeValue(this.contentOnlyBusy);
 params.floatingFooter = getBooleanFromAttributeValue(this.floatingFooter);
 params.navButtonPress = this.navButtonPress==null ? this.defaultFunc: this.navButtonPress;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -69,7 +70,6 @@ params.navButtonPress = this.navButtonPress==null ? this.defaultFunc: this.navBu
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._page = new sap.m.Page(this.ui5Id, params);
         else

@@ -168,6 +168,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.selected = (0, _attributes.getBooleanFromAttributeValue)(this.selected);
             params.press = this.press == null ? this.defaultFunc : this.press;
             params.deletePress = this.deletePress == null ? this.defaultFunc : this.deletePress;
+
+            _Ui5Element.prototype.fillProperties.call(this, params);
         };
 
         Ui5UploadCollectionItem.prototype.defaultFunc = function defaultFunc() {};
@@ -176,7 +178,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Element.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._uploadcollectionitem = new sap.m.UploadCollectionItem(this.ui5Id, params);else this._uploadcollectionitem = new sap.m.UploadCollectionItem(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

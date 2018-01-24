@@ -112,6 +112,8 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
         params.key = this.key;
         params.modified = (0, _attributes.getBooleanFromAttributeValue)(this.modified);
         params.itemPropertyChanged = this.itemPropertyChanged == null ? this.defaultFunc : this.itemPropertyChanged;
+
+        _Ui5Element.prototype.fillProperties.call(this, params);
     };
 
     Ui5TabContainerItem.prototype.defaultFunc = function defaultFunc() {};
@@ -120,7 +122,6 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Element.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._tabcontaineritem = new sap.m.TabContainerItem(this.ui5Id, params);else this._tabcontaineritem = new sap.m.TabContainerItem(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

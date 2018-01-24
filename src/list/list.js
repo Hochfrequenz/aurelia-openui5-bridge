@@ -65,8 +65,9 @@ export class Ui5List extends Ui5ListBase{
             return this._list;
           }
         fillProperties(params){
-               params.backgroundDesign = this.backgroundDesign;
+                                        params.backgroundDesign = this.backgroundDesign;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -74,7 +75,6 @@ export class Ui5List extends Ui5ListBase{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._list = new sap.m.List(this.ui5Id, params);
         else

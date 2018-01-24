@@ -43,13 +43,14 @@ export class Ui5ObjectIdentifier extends Ui5Control{
             return this._objectidentifier;
           }
         fillProperties(params){
-               params.title = this.title;
+                                        params.title = this.title;
 params.text = this.text;
 params.visible = getBooleanFromAttributeValue(this.visible);
 params.titleActive = getBooleanFromAttributeValue(this.titleActive);
 params.textDirection = this.textDirection;
 params.titlePress = this.titlePress==null ? this.defaultFunc: this.titlePress;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -57,7 +58,6 @@ params.titlePress = this.titlePress==null ? this.defaultFunc: this.titlePress;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._objectidentifier = new sap.m.ObjectIdentifier(this.ui5Id, params);
         else

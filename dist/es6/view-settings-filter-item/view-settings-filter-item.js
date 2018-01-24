@@ -41,9 +41,10 @@ export class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem{
             return this._viewsettingsfilteritem;
           }
         fillProperties(params){
-               params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
+                                        params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
 params.filterDetailItemsAggregationChange = this.filterDetailItemsAggregationChange==null ? this.defaultFunc: this.filterDetailItemsAggregationChange;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -51,7 +52,6 @@ params.filterDetailItemsAggregationChange = this.filterDetailItemsAggregationCha
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._viewsettingsfilteritem = new sap.m.ViewSettingsFilterItem(this.ui5Id, params);
         else

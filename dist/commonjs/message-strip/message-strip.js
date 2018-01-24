@@ -131,6 +131,8 @@ var Ui5MessageStrip = exports.Ui5MessageStrip = (_dec = (0, _aureliaTemplating.c
         params.showCloseButton = (0, _attributes.getBooleanFromAttributeValue)(this.showCloseButton);
         params.enableFormattedText = (0, _attributes.getBooleanFromAttributeValue)(this.enableFormattedText);
         params.close = this.close == null ? this.defaultFunc : this.close;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5MessageStrip.prototype.defaultFunc = function defaultFunc() {};
@@ -139,7 +141,6 @@ var Ui5MessageStrip = exports.Ui5MessageStrip = (_dec = (0, _aureliaTemplating.c
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._messagestrip = new sap.m.MessageStrip(this.ui5Id, params);else this._messagestrip = new sap.m.MessageStrip(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

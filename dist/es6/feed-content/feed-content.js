@@ -43,13 +43,14 @@ export class Ui5FeedContent extends Ui5Control{
             return this._feedcontent;
           }
         fillProperties(params){
-               params.contentText = this.contentText;
+                                        params.contentText = this.contentText;
 params.subheader = this.subheader;
 params.value = this.value;
 params.valueColor = this.valueColor;
 params.truncateValueTo = this.truncateValueTo?parseInt(this.truncateValueTo):0;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -57,7 +58,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._feedcontent = new sap.m.FeedContent(this.ui5Id, params);
         else

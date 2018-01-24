@@ -231,6 +231,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.uploadTerminated = this.uploadTerminated == null ? this.defaultFunc : this.uploadTerminated;
                     params.beforeUploadStarts = this.beforeUploadStarts == null ? this.defaultFunc : this.beforeUploadStarts;
                     params.selectionChange = this.selectionChange == null ? this.defaultFunc : this.selectionChange;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5UploadCollection.prototype.defaultFunc = function defaultFunc() {};
@@ -239,7 +241,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._uploadcollection = new sap.m.UploadCollection(this.ui5Id, params);else this._uploadcollection = new sap.m.UploadCollection(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

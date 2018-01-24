@@ -42,12 +42,13 @@ export class Ui5TileContent extends Ui5Control{
             return this._tilecontent;
           }
         fillProperties(params){
-               params.footer = this.footer;
+                                        params.footer = this.footer;
 params.footerColor = this.footerColor;
 params.unit = this.unit;
 params.disabled = getBooleanFromAttributeValue(this.disabled);
 params.frameType = this.frameType;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -55,7 +56,6 @@ params.frameType = this.frameType;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._tilecontent = new sap.m.TileContent(this.ui5Id, params);
         else

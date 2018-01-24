@@ -174,6 +174,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.displayFormat = this.displayFormat;
             params.valueFormat = this.valueFormat;
             params.dateValue = this.dateValue;
+
+            _Ui5InputBase.prototype.fillProperties.call(this, params);
         };
 
         Ui5DateTimeField.prototype.defaultFunc = function defaultFunc() {};
@@ -182,7 +184,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5InputBase.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._datetimefield = new sap.m.DateTimeField(this.ui5Id, params);else this._datetimefield = new sap.m.DateTimeField(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

@@ -186,6 +186,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.minDate = this.minDate;
             params.maxDate = this.maxDate;
             params.navigate = this.navigate == null ? this.defaultFunc : this.navigate;
+
+            _Ui5DateTimeField.prototype.fillProperties.call(this, params);
         };
 
         Ui5DatePicker.prototype.defaultFunc = function defaultFunc() {};
@@ -194,7 +196,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5DateTimeField.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._datepicker = new sap.m.DatePicker(this.ui5Id, params);else this._datepicker = new sap.m.DatePicker(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

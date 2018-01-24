@@ -34,10 +34,11 @@ export class Ui5CustomData extends Ui5Element{
             return this._customdata;
           }
         fillProperties(params){
-               params.key = this.key;
+                                        params.key = this.key;
 params.value = this.value;
 params.writeToDom = getBooleanFromAttributeValue(this.writeToDom);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -45,7 +46,6 @@ params.writeToDom = getBooleanFromAttributeValue(this.writeToDom);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._customdata = new sap.ui.core.CustomData(this.ui5Id, params);
         else

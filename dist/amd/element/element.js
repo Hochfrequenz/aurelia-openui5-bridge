@@ -128,7 +128,10 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             return _this;
         }
 
-        Ui5Element.prototype.fillProperties = function fillProperties(params) {};
+        Ui5Element.prototype.fillProperties = function fillProperties(params) {
+
+            _Ui5ManagedObject.prototype.fillProperties.call(this, params);
+        };
 
         Ui5Element.prototype.defaultFunc = function defaultFunc() {};
 
@@ -136,7 +139,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5ManagedObject.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._element = new sap.ui.core.Element(this.ui5Id, params);else this._element = new sap.ui.core.Element(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

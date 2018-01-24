@@ -148,6 +148,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.parseError = this.parseError == null ? this.defaultFunc : this.parseError;
                     params.formatError = this.formatError == null ? this.defaultFunc : this.formatError;
                     params.modelContextChange = this.modelContextChange == null ? this.defaultFunc : this.modelContextChange;
+
+                    _Ui5EventProvider.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5ManagedObject.prototype.defaultFunc = function defaultFunc() {};
@@ -156,7 +158,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5EventProvider.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._managedobject = new sap.ui.base.ManagedObject(this.ui5Id, params);else this._managedobject = new sap.ui.base.ManagedObject(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

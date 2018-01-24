@@ -171,6 +171,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.valueColor = this.valueColor;
                     params.truncateValueTo = this.truncateValueTo ? parseInt(this.truncateValueTo) : 0;
                     params.press = this.press == null ? this.defaultFunc : this.press;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5FeedContent.prototype.defaultFunc = function defaultFunc() {};
@@ -179,7 +181,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._feedcontent = new sap.m.FeedContent(this.ui5Id, params);else this._feedcontent = new sap.m.FeedContent(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

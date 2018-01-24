@@ -39,9 +39,10 @@ export class Ui5Form extends Ui5Control{
             return this._form;
           }
         fillProperties(params){
-               params.width = this.width;
+                                        params.width = this.width;
 params.editable = getBooleanFromAttributeValue(this.editable);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -49,7 +50,6 @@ params.editable = getBooleanFromAttributeValue(this.editable);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._form = new sap.ui.layout.form.Form(this.ui5Id, params);
         else

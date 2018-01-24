@@ -36,12 +36,13 @@ export class Ui5Control extends Ui5Element{
             return this._control;
           }
         fillProperties(params){
-               params.busy = getBooleanFromAttributeValue(this.busy);
+                                        params.busy = getBooleanFromAttributeValue(this.busy);
 params.busyIndicatorDelay = this.busyIndicatorDelay?parseInt(this.busyIndicatorDelay):0;
 params.visible = getBooleanFromAttributeValue(this.visible);
 params.fieldGroupIds = this.fieldGroupIds;
 params.validateFieldGroup = this.validateFieldGroup==null ? this.defaultFunc: this.validateFieldGroup;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -49,7 +50,6 @@ params.validateFieldGroup = this.validateFieldGroup==null ? this.defaultFunc: th
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._control = new sap.ui.core.Control(this.ui5Id, params);
         else

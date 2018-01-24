@@ -206,6 +206,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.linebreakL = getBooleanFromAttributeValue(this.linebreakL);
                     params.linebreakM = getBooleanFromAttributeValue(this.linebreakM);
                     params.linebreakS = getBooleanFromAttributeValue(this.linebreakS);
+
+                    _Ui5LayoutData.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5GridData.prototype.defaultFunc = function defaultFunc() {};
@@ -214,7 +216,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5LayoutData.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._griddata = new sap.ui.layout.GridData(this.ui5Id, params);else this._griddata = new sap.ui.layout.GridData(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

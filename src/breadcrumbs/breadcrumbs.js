@@ -38,8 +38,9 @@ export class Ui5Breadcrumbs extends Ui5Control{
             return this._breadcrumbs;
           }
         fillProperties(params){
-               params.currentLocationText = this.currentLocationText;
+                                        params.currentLocationText = this.currentLocationText;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -47,7 +48,6 @@ export class Ui5Breadcrumbs extends Ui5Control{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._breadcrumbs = new sap.m.Breadcrumbs(this.ui5Id, params);
         else

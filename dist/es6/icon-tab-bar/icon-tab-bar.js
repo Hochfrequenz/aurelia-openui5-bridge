@@ -50,7 +50,7 @@ export class Ui5IconTabBar extends Ui5Control{
             return this._icontabbar;
           }
         fillProperties(params){
-               params.expandable = getBooleanFromAttributeValue(this.expandable);
+                                        params.expandable = getBooleanFromAttributeValue(this.expandable);
 params.expanded = getBooleanFromAttributeValue(this.expanded);
 params.selectedKey = this.selectedKey;
 params.upperCase = getBooleanFromAttributeValue(this.upperCase);
@@ -64,6 +64,7 @@ params.enableTabReordering = getBooleanFromAttributeValue(this.enableTabReorderi
 params.select = this.select==null ? this.defaultFunc: this.select;
 params.expand = this.expand==null ? this.defaultFunc: this.expand;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -71,7 +72,6 @@ params.expand = this.expand==null ? this.defaultFunc: this.expand;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._icontabbar = new sap.m.IconTabBar(this.ui5Id, params);
         else

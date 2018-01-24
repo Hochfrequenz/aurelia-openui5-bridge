@@ -157,6 +157,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5ViewSettingsItem.prototype.fillProperties = function fillProperties(params) {
                     params.selected = getBooleanFromAttributeValue(this.selected);
                     params.itemPropertyChanged = this.itemPropertyChanged == null ? this.defaultFunc : this.itemPropertyChanged;
+
+                    _Ui5Item.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5ViewSettingsItem.prototype.defaultFunc = function defaultFunc() {};
@@ -165,7 +167,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Item.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._viewsettingsitem = new sap.m.ViewSettingsItem(this.ui5Id, params);else this._viewsettingsitem = new sap.m.ViewSettingsItem(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

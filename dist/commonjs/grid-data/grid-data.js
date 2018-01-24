@@ -163,6 +163,8 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
         params.linebreakL = (0, _attributes.getBooleanFromAttributeValue)(this.linebreakL);
         params.linebreakM = (0, _attributes.getBooleanFromAttributeValue)(this.linebreakM);
         params.linebreakS = (0, _attributes.getBooleanFromAttributeValue)(this.linebreakS);
+
+        _Ui5LayoutData.prototype.fillProperties.call(this, params);
     };
 
     Ui5GridData.prototype.defaultFunc = function defaultFunc() {};
@@ -171,7 +173,6 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5LayoutData.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._griddata = new sap.ui.layout.GridData(this.ui5Id, params);else this._griddata = new sap.ui.layout.GridData(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

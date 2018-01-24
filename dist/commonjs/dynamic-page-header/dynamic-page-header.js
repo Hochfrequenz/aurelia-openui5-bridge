@@ -113,6 +113,8 @@ var Ui5DynamicPageHeader = exports.Ui5DynamicPageHeader = (_dec = (0, _aureliaTe
 
     Ui5DynamicPageHeader.prototype.fillProperties = function fillProperties(params) {
         params.pinnable = (0, _attributes.getBooleanFromAttributeValue)(this.pinnable);
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5DynamicPageHeader.prototype.defaultFunc = function defaultFunc() {};
@@ -121,7 +123,6 @@ var Ui5DynamicPageHeader = exports.Ui5DynamicPageHeader = (_dec = (0, _aureliaTe
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._dynamicpageheader = new sap.f.DynamicPageHeader(this.ui5Id, params);else this._dynamicpageheader = new sap.f.DynamicPageHeader(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

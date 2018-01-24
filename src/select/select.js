@@ -53,7 +53,7 @@ export class Ui5Select extends Ui5Control{
             return this._select;
           }
         fillProperties(params){
-               params.name = this.name;
+                                        params.name = this.name;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
 params.width = this.width;
 params.maxWidth = this.maxWidth;
@@ -70,6 +70,7 @@ params.showSecondaryValues = getBooleanFromAttributeValue(this.showSecondaryValu
 params.forceSelection = getBooleanFromAttributeValue(this.forceSelection);
 params.change = this.change==null ? this.defaultFunc: this.change;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -77,7 +78,6 @@ params.change = this.change==null ? this.defaultFunc: this.change;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._select = new sap.m.Select(this.ui5Id, params);
         else

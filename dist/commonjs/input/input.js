@@ -202,6 +202,8 @@ var Ui5Input = exports.Ui5Input = (_dec = (0, _aureliaTemplating.customElement)(
         params.suggest = this.suggest == null ? this.defaultFunc : this.suggest;
         params.suggestionItemSelected = this.suggestionItemSelected == null ? this.defaultFunc : this.suggestionItemSelected;
         params.submit = this.submit == null ? this.defaultFunc : this.submit;
+
+        _Ui5InputBase.prototype.fillProperties.call(this, params);
     };
 
     Ui5Input.prototype.defaultFunc = function defaultFunc() {};
@@ -210,7 +212,6 @@ var Ui5Input = exports.Ui5Input = (_dec = (0, _aureliaTemplating.customElement)(
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5InputBase.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._input = new sap.m.Input(this.ui5Id, params);else this._input = new sap.m.Input(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

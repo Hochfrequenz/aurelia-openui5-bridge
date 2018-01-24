@@ -45,7 +45,7 @@ export class Ui5Label extends Ui5Control{
             return this._label;
           }
         fillProperties(params){
-               params.design = this.design;
+                                        params.design = this.design;
 params.text = this.text;
 params.textAlign = this.textAlign;
 params.textDirection = this.textDirection;
@@ -54,6 +54,7 @@ params.required = getBooleanFromAttributeValue(this.required);
 params.displayOnly = getBooleanFromAttributeValue(this.displayOnly);
 params.wrapping = getBooleanFromAttributeValue(this.wrapping);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -61,7 +62,6 @@ params.wrapping = getBooleanFromAttributeValue(this.wrapping);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._label = new sap.m.Label(this.ui5Id, params);
         else

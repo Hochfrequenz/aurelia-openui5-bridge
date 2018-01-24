@@ -184,6 +184,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.alt = this.alt;
             params.noTabStop = (0, _attributes.getBooleanFromAttributeValue)(this.noTabStop);
             params.press = this.press == null ? this.defaultFunc : this.press;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5Icon.prototype.defaultFunc = function defaultFunc() {};
@@ -192,7 +194,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._icon = new sap.ui.core.Icon(this.ui5Id, params);else this._icon = new sap.ui.core.Icon(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

@@ -42,12 +42,13 @@ export class Ui5DynamicPage extends Ui5Control{
             return this._dynamicpage;
           }
         fillProperties(params){
-               params.preserveHeaderStateOnScroll = getBooleanFromAttributeValue(this.preserveHeaderStateOnScroll);
+                                        params.preserveHeaderStateOnScroll = getBooleanFromAttributeValue(this.preserveHeaderStateOnScroll);
 params.headerExpanded = getBooleanFromAttributeValue(this.headerExpanded);
 params.toggleHeaderOnTitleClick = getBooleanFromAttributeValue(this.toggleHeaderOnTitleClick);
 params.showFooter = getBooleanFromAttributeValue(this.showFooter);
 params.fitContent = getBooleanFromAttributeValue(this.fitContent);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -55,7 +56,6 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._dynamicpage = new sap.f.DynamicPage(this.ui5Id, params);
         else

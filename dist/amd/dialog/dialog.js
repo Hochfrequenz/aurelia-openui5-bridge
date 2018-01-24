@@ -190,6 +190,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.afterOpen = this.afterOpen == null ? this.defaultFunc : this.afterOpen;
             params.beforeClose = this.beforeClose == null ? this.defaultFunc : this.beforeClose;
             params.afterClose = this.afterClose == null ? this.defaultFunc : this.afterClose;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5Dialog.prototype.defaultFunc = function defaultFunc() {};
@@ -198,7 +200,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._dialog = new sap.m.Dialog(this.ui5Id, params);else this._dialog = new sap.m.Dialog(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

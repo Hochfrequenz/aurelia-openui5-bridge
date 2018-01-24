@@ -132,6 +132,8 @@ var Ui5MessageItem = exports.Ui5MessageItem = (_dec = (0, _aureliaTemplating.cus
         params.longtextUrl = this.longtextUrl;
         params.counter = this.counter ? parseInt(this.counter) : 0;
         params.groupName = this.groupName;
+
+        _Ui5Item.prototype.fillProperties.call(this, params);
     };
 
     Ui5MessageItem.prototype.defaultFunc = function defaultFunc() {};
@@ -140,7 +142,6 @@ var Ui5MessageItem = exports.Ui5MessageItem = (_dec = (0, _aureliaTemplating.cus
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Item.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._messageitem = new sap.m.MessageItem(this.ui5Id, params);else this._messageitem = new sap.m.MessageItem(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

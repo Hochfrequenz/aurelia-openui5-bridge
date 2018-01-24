@@ -160,6 +160,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.defaultSpan = this.defaultSpan;
             params.defaultIndent = this.defaultIndent;
             params.containerQuery = (0, _attributes.getBooleanFromAttributeValue)(this.containerQuery);
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5Grid.prototype.defaultFunc = function defaultFunc() {};
@@ -168,7 +170,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._grid = new sap.ui.layout.Grid(this.ui5Id, params);else this._grid = new sap.ui.layout.Grid(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

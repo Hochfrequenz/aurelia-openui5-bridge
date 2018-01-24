@@ -161,6 +161,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5ViewSettingsFilterItem.prototype.fillProperties = function fillProperties(params) {
                     params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
                     params.filterDetailItemsAggregationChange = this.filterDetailItemsAggregationChange == null ? this.defaultFunc : this.filterDetailItemsAggregationChange;
+
+                    _Ui5ViewSettingsItem.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5ViewSettingsFilterItem.prototype.defaultFunc = function defaultFunc() {};
@@ -169,7 +171,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5ViewSettingsItem.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._viewsettingsfilteritem = new sap.m.ViewSettingsFilterItem(this.ui5Id, params);else this._viewsettingsfilteritem = new sap.m.ViewSettingsFilterItem(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

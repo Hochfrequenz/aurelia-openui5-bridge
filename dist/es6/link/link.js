@@ -48,7 +48,7 @@ export class Ui5Link extends Ui5Control{
             return this._link;
           }
         fillProperties(params){
-               params.text = this.text;
+                                        params.text = this.text;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
 params.target = this.target;
 params.width = this.width;
@@ -60,6 +60,7 @@ params.subtle = getBooleanFromAttributeValue(this.subtle);
 params.emphasized = getBooleanFromAttributeValue(this.emphasized);
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -67,7 +68,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._link = new sap.m.Link(this.ui5Id, params);
         else

@@ -38,8 +38,9 @@ export class Ui5ToolbarSpacer extends Ui5Control{
             return this._toolbarspacer;
           }
         fillProperties(params){
-               params.width = this.width;
+                                        params.width = this.width;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -47,7 +48,6 @@ export class Ui5ToolbarSpacer extends Ui5Control{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._toolbarspacer = new sap.m.ToolbarSpacer(this.ui5Id, params);
         else

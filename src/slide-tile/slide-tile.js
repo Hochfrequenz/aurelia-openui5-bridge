@@ -41,11 +41,12 @@ export class Ui5SlideTile extends Ui5Control{
             return this._slidetile;
           }
         fillProperties(params){
-               params.displayTime = this.displayTime?parseInt(this.displayTime):0;
+                                        params.displayTime = this.displayTime?parseInt(this.displayTime):0;
 params.transitionTime = this.transitionTime?parseInt(this.transitionTime):0;
 params.scope = this.scope;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -53,7 +54,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._slidetile = new sap.m.SlideTile(this.ui5Id, params);
         else

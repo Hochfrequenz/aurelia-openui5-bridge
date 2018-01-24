@@ -53,7 +53,7 @@ export class Ui5GridData extends Ui5LayoutData{
             return this._griddata;
           }
         fillProperties(params){
-               params.span = this.span;
+                                        params.span = this.span;
 params.spanXL = this.spanXL?parseInt(this.spanXL):0;
 params.spanL = this.spanL?parseInt(this.spanL):0;
 params.spanM = this.spanM?parseInt(this.spanM):0;
@@ -75,6 +75,7 @@ params.linebreakL = getBooleanFromAttributeValue(this.linebreakL);
 params.linebreakM = getBooleanFromAttributeValue(this.linebreakM);
 params.linebreakS = getBooleanFromAttributeValue(this.linebreakS);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -82,7 +83,6 @@ params.linebreakS = getBooleanFromAttributeValue(this.linebreakS);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._griddata = new sap.ui.layout.GridData(this.ui5Id, params);
         else

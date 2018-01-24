@@ -122,6 +122,8 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
         params.itemClose = this.itemClose == null ? this.defaultFunc : this.itemClose;
         params.itemSelect = this.itemSelect == null ? this.defaultFunc : this.itemSelect;
         params.addNewButtonPress = this.addNewButtonPress == null ? this.defaultFunc : this.addNewButtonPress;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5TabContainer.prototype.defaultFunc = function defaultFunc() {};
@@ -130,7 +132,6 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._tabcontainer = new sap.m.TabContainer(this.ui5Id, params);else this._tabcontainer = new sap.m.TabContainer(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

@@ -114,6 +114,8 @@ var Ui5ListItem = exports.Ui5ListItem = (_dec = (0, _aureliaTemplating.customEle
     Ui5ListItem.prototype.fillProperties = function fillProperties(params) {
         params.icon = this.icon;
         params.additionalText = this.additionalText;
+
+        _Ui5Item.prototype.fillProperties.call(this, params);
     };
 
     Ui5ListItem.prototype.defaultFunc = function defaultFunc() {};
@@ -122,7 +124,6 @@ var Ui5ListItem = exports.Ui5ListItem = (_dec = (0, _aureliaTemplating.customEle
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Item.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._listitem = new sap.ui.core.ListItem(this.ui5Id, params);else this._listitem = new sap.ui.core.ListItem(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

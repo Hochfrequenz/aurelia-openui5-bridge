@@ -50,7 +50,7 @@ export class Ui5SearchField extends Ui5Control{
             return this._searchfield;
           }
         fillProperties(params){
-               params.value = this.value;
+                                        params.value = this.value;
 params.width = this.width;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
 params.visible = getBooleanFromAttributeValue(this.visible);
@@ -64,6 +64,7 @@ params.search = this.search==null ? this.defaultFunc: this.search;
 params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
 params.suggest = this.suggest==null ? this.defaultFunc: this.suggest;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -71,7 +72,6 @@ params.suggest = this.suggest==null ? this.defaultFunc: this.suggest;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._searchfield = new sap.m.SearchField(this.ui5Id, params);
         else

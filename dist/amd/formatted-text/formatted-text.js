@@ -154,6 +154,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.convertLinksToAnchorTags = this.convertLinksToAnchorTags;
             params.convertedLinksDefaultTarget = this.convertedLinksDefaultTarget;
             params.height = this.height;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5FormattedText.prototype.defaultFunc = function defaultFunc() {};
@@ -162,7 +164,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._formattedtext = new sap.m.FormattedText(this.ui5Id, params);else this._formattedtext = new sap.m.FormattedText(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

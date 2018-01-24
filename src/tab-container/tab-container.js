@@ -41,11 +41,12 @@ export class Ui5TabContainer extends Ui5Control{
             return this._tabcontainer;
           }
         fillProperties(params){
-               params.showAddNewButton = getBooleanFromAttributeValue(this.showAddNewButton);
+                                        params.showAddNewButton = getBooleanFromAttributeValue(this.showAddNewButton);
 params.itemClose = this.itemClose==null ? this.defaultFunc: this.itemClose;
 params.itemSelect = this.itemSelect==null ? this.defaultFunc: this.itemSelect;
 params.addNewButtonPress = this.addNewButtonPress==null ? this.defaultFunc: this.addNewButtonPress;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -53,7 +54,6 @@ params.addNewButtonPress = this.addNewButtonPress==null ? this.defaultFunc: this
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._tabcontainer = new sap.m.TabContainer(this.ui5Id, params);
         else

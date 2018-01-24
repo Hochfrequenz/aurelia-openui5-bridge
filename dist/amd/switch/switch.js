@@ -160,6 +160,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.name = this.name;
             params.type = this.type;
             params.change = this.change == null ? this.defaultFunc : this.change;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5Switch.prototype.defaultFunc = function defaultFunc() {};
@@ -168,7 +170,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._switch = new sap.m.Switch(this.ui5Id, params);else this._switch = new sap.m.Switch(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

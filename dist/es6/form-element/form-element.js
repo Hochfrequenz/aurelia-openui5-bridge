@@ -32,8 +32,9 @@ export class Ui5FormElement extends Ui5Element{
             return this._formelement;
           }
         fillProperties(params){
-               params.visible = getBooleanFromAttributeValue(this.visible);
+                                        params.visible = getBooleanFromAttributeValue(this.visible);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -41,7 +42,6 @@ export class Ui5FormElement extends Ui5Element{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._formelement = new sap.ui.layout.form.FormElement(this.ui5Id, params);
         else

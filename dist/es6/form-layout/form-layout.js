@@ -38,8 +38,9 @@ export class Ui5FormLayout extends Ui5Control{
             return this._formlayout;
           }
         fillProperties(params){
-               params.backgroundDesign = this.backgroundDesign;
+                                        params.backgroundDesign = this.backgroundDesign;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -47,7 +48,6 @@ export class Ui5FormLayout extends Ui5Control{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._formlayout = new sap.ui.layout.form.FormLayout(this.ui5Id, params);
         else

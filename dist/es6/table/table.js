@@ -67,10 +67,11 @@ export class Ui5Table extends Ui5ListBase{
             return this._table;
           }
         fillProperties(params){
-               params.backgroundDesign = this.backgroundDesign;
+                                        params.backgroundDesign = this.backgroundDesign;
 params.fixedLayout = getBooleanFromAttributeValue(this.fixedLayout);
 params.showOverlay = getBooleanFromAttributeValue(this.showOverlay);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -78,7 +79,6 @@ params.showOverlay = getBooleanFromAttributeValue(this.showOverlay);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._table = new sap.m.Table(this.ui5Id, params);
         else

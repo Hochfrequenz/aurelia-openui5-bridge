@@ -44,7 +44,7 @@ export class Ui5TileContainer extends Ui5Control{
             return this._tilecontainer;
           }
         fillProperties(params){
-               params.width = this.width;
+                                        params.width = this.width;
 params.height = this.height;
 params.editable = getBooleanFromAttributeValue(this.editable);
 params.allowAdd = getBooleanFromAttributeValue(this.allowAdd);
@@ -52,6 +52,7 @@ params.tileMove = this.tileMove==null ? this.defaultFunc: this.tileMove;
 params.tileDelete = this.tileDelete==null ? this.defaultFunc: this.tileDelete;
 params.tileAdd = this.tileAdd==null ? this.defaultFunc: this.tileAdd;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -59,7 +60,6 @@ params.tileAdd = this.tileAdd==null ? this.defaultFunc: this.tileAdd;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._tilecontainer = new sap.m.TileContainer(this.ui5Id, params);
         else

@@ -29,12 +29,13 @@ export class Ui5ManagedObject extends Ui5EventProvider{
             return this._managedobject;
           }
         fillProperties(params){
-               params.validationSuccess = this.validationSuccess==null ? this.defaultFunc: this.validationSuccess;
+                                        params.validationSuccess = this.validationSuccess==null ? this.defaultFunc: this.validationSuccess;
 params.validationError = this.validationError==null ? this.defaultFunc: this.validationError;
 params.parseError = this.parseError==null ? this.defaultFunc: this.parseError;
 params.formatError = this.formatError==null ? this.defaultFunc: this.formatError;
 params.modelContextChange = this.modelContextChange==null ? this.defaultFunc: this.modelContextChange;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -42,7 +43,6 @@ params.modelContextChange = this.modelContextChange==null ? this.defaultFunc: th
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._managedobject = new sap.ui.base.ManagedObject(this.ui5Id, params);
         else

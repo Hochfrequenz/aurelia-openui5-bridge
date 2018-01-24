@@ -40,10 +40,11 @@ export class Ui5ImageContent extends Ui5Control{
             return this._imagecontent;
           }
         fillProperties(params){
-               params.src = this.src;
+                                        params.src = this.src;
 params.description = this.description;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -51,7 +52,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._imagecontent = new sap.m.ImageContent(this.ui5Id, params);
         else

@@ -45,7 +45,7 @@ export class Ui5ListItemBase extends Ui5Control{
             return this._listitembase;
           }
         fillProperties(params){
-               params.type = this.type;
+                                        params.type = this.type;
 params.visible = getBooleanFromAttributeValue(this.visible);
 params.unread = getBooleanFromAttributeValue(this.unread);
 params.selected = getBooleanFromAttributeValue(this.selected);
@@ -54,6 +54,7 @@ params.highlight = this.highlight;
 params.press = this.press==null ? this.defaultFunc: this.press;
 params.detailPress = this.detailPress==null ? this.defaultFunc: this.detailPress;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -61,7 +62,6 @@ params.detailPress = this.detailPress==null ? this.defaultFunc: this.detailPress
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._listitembase = new sap.m.ListItemBase(this.ui5Id, params);
         else

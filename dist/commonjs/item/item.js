@@ -112,6 +112,8 @@ var Ui5Item = exports.Ui5Item = (_dec = (0, _aureliaTemplating.customElement)('u
         params.enabled = (0, _attributes.getBooleanFromAttributeValue)(this.enabled);
         params.textDirection = this.textDirection;
         params.key = this.key;
+
+        _Ui5Element.prototype.fillProperties.call(this, params);
     };
 
     Ui5Item.prototype.defaultFunc = function defaultFunc() {};
@@ -120,7 +122,6 @@ var Ui5Item = exports.Ui5Item = (_dec = (0, _aureliaTemplating.customElement)('u
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Element.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._item = new sap.ui.core.Item(this.ui5Id, params);else this._item = new sap.ui.core.Item(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

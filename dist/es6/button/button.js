@@ -47,7 +47,7 @@ export class Ui5Button extends Ui5Control{
             return this._button;
           }
         fillProperties(params){
-               params.text = this.text;
+                                        params.text = this.text;
 params.type = this.type;
 params.width = this.width;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
@@ -58,6 +58,7 @@ params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
 params.textDirection = this.textDirection;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -65,7 +66,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._button = new sap.m.Button(this.ui5Id, params);
         else

@@ -35,11 +35,12 @@ export class Ui5TabContainerItem extends Ui5Element{
             return this._tabcontaineritem;
           }
         fillProperties(params){
-               params.name = this.name;
+                                        params.name = this.name;
 params.key = this.key;
 params.modified = getBooleanFromAttributeValue(this.modified);
 params.itemPropertyChanged = this.itemPropertyChanged==null ? this.defaultFunc: this.itemPropertyChanged;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -47,7 +48,6 @@ params.itemPropertyChanged = this.itemPropertyChanged==null ? this.defaultFunc: 
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._tabcontaineritem = new sap.m.TabContainerItem(this.ui5Id, params);
         else

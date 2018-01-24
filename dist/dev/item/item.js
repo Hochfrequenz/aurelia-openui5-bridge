@@ -155,6 +155,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.enabled = getBooleanFromAttributeValue(this.enabled);
                     params.textDirection = this.textDirection;
                     params.key = this.key;
+
+                    _Ui5Element.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5Item.prototype.defaultFunc = function defaultFunc() {};
@@ -163,7 +165,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Element.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._item = new sap.ui.core.Item(this.ui5Id, params);else this._item = new sap.ui.core.Item(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

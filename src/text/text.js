@@ -43,13 +43,14 @@ export class Ui5Text extends Ui5Control{
             return this._text;
           }
         fillProperties(params){
-               params.text = (this.text != null && this.text.length>0) ? this.text : this.element.getElementsByTagName("customData")[0].innerText.trim();
+                                        params.text = (this.text != null && this.text.length>0) ? this.text : this.element.getElementsByTagName("customData")[0].innerText.trim();
 params.textDirection = this.textDirection;
 params.wrapping = getBooleanFromAttributeValue(this.wrapping);
 params.textAlign = this.textAlign;
 params.width = this.width;
 params.maxLines = this.maxLines?parseInt(this.maxLines):0;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -57,7 +58,6 @@ params.maxLines = this.maxLines?parseInt(this.maxLines):0;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._text = new sap.m.Text(this.ui5Id, params);
         else

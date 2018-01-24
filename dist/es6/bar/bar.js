@@ -38,8 +38,9 @@ export class Ui5Bar extends Ui5Control{
             return this._bar;
           }
         fillProperties(params){
-               params.design = this.design;
+                                        params.design = this.design;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -47,7 +48,6 @@ export class Ui5Bar extends Ui5Control{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._bar = new sap.m.Bar(this.ui5Id, params);
         else

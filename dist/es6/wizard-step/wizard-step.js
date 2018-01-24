@@ -42,12 +42,13 @@ export class Ui5WizardStep extends Ui5Control{
             return this._wizardstep;
           }
         fillProperties(params){
-               params.title = this.title;
+                                        params.title = this.title;
 params.icon = this.icon;
 params.validated = getBooleanFromAttributeValue(this.validated);
 params.complete = this.complete==null ? this.defaultFunc: this.complete;
 params.activate = this.activate==null ? this.defaultFunc: this.activate;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -55,7 +56,6 @@ params.activate = this.activate==null ? this.defaultFunc: this.activate;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._wizardstep = new sap.m.WizardStep(this.ui5Id, params);
         else

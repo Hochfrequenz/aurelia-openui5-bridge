@@ -163,6 +163,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.required = (0, _attributes.getBooleanFromAttributeValue)(this.required);
             params.displayOnly = (0, _attributes.getBooleanFromAttributeValue)(this.displayOnly);
             params.wrapping = (0, _attributes.getBooleanFromAttributeValue)(this.wrapping);
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5Label.prototype.defaultFunc = function defaultFunc() {};
@@ -171,7 +173,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._label = new sap.m.Label(this.ui5Id, params);else this._label = new sap.m.Label(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

@@ -171,6 +171,8 @@ var Ui5Table = exports.Ui5Table = (_dec = (0, _aureliaTemplating.customElement)(
         params.backgroundDesign = this.backgroundDesign;
         params.fixedLayout = (0, _attributes.getBooleanFromAttributeValue)(this.fixedLayout);
         params.showOverlay = (0, _attributes.getBooleanFromAttributeValue)(this.showOverlay);
+
+        _Ui5ListBase.prototype.fillProperties.call(this, params);
     };
 
     Ui5Table.prototype.defaultFunc = function defaultFunc() {};
@@ -179,7 +181,6 @@ var Ui5Table = exports.Ui5Table = (_dec = (0, _aureliaTemplating.customElement)(
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5ListBase.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._table = new sap.m.Table(this.ui5Id, params);else this._table = new sap.m.Table(params);
         if (this._table._oGrowingDelegate) {
             this._table._oGrowingDelegate.updateItems = function (sChangeReason) {

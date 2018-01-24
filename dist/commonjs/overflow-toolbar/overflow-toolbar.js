@@ -121,7 +121,10 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
         return _this;
     }
 
-    Ui5OverflowToolbar.prototype.fillProperties = function fillProperties(params) {};
+    Ui5OverflowToolbar.prototype.fillProperties = function fillProperties(params) {
+
+        _Ui5Toolbar.prototype.fillProperties.call(this, params);
+    };
 
     Ui5OverflowToolbar.prototype.defaultFunc = function defaultFunc() {};
 
@@ -129,7 +132,6 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Toolbar.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._overflowtoolbar = new sap.m.OverflowToolbar(this.ui5Id, params);else this._overflowtoolbar = new sap.m.OverflowToolbar(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

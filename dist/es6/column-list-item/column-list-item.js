@@ -47,8 +47,9 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
             return this._columnlistitem;
           }
         fillProperties(params){
-               params.vAlign = this.vAlign;
+                                        params.vAlign = this.vAlign;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -56,7 +57,6 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._columnlistitem = new sap.m.ColumnListItem(this.ui5Id, params);
         else

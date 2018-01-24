@@ -208,6 +208,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.breakpointL = this.breakpointL ? parseInt(this.breakpointL) : 0;
             params.breakpointM = this.breakpointM ? parseInt(this.breakpointM) : 0;
             params.backgroundDesign = this.backgroundDesign;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5SimpleForm.prototype.defaultFunc = function defaultFunc() {};
@@ -216,7 +218,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._simpleform = new sap.ui.layout.form.SimpleForm(this.ui5Id, params);else this._simpleform = new sap.ui.layout.form.SimpleForm(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

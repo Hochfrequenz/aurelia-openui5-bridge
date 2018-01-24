@@ -207,6 +207,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.afterOpen = this.afterOpen == null ? this.defaultFunc : this.afterOpen;
                     params.beforeClose = this.beforeClose == null ? this.defaultFunc : this.beforeClose;
                     params.afterClose = this.afterClose == null ? this.defaultFunc : this.afterClose;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5ResponsivePopover.prototype.defaultFunc = function defaultFunc() {};
@@ -215,7 +217,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._responsivepopover = new sap.m.ResponsivePopover(this.ui5Id, params);else this._responsivepopover = new sap.m.ResponsivePopover(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

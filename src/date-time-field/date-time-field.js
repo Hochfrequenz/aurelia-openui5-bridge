@@ -54,10 +54,11 @@ export class Ui5DateTimeField extends Ui5InputBase{
             return this._datetimefield;
           }
         fillProperties(params){
-               params.displayFormat = this.displayFormat;
+                                        params.displayFormat = this.displayFormat;
 params.valueFormat = this.valueFormat;
 params.dateValue = this.dateValue;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -65,7 +66,6 @@ params.dateValue = this.dateValue;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._datetimefield = new sap.m.DateTimeField(this.ui5Id, params);
         else

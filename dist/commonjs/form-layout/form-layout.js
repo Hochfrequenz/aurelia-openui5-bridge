@@ -113,6 +113,8 @@ var Ui5FormLayout = exports.Ui5FormLayout = (_dec = (0, _aureliaTemplating.custo
 
     Ui5FormLayout.prototype.fillProperties = function fillProperties(params) {
         params.backgroundDesign = this.backgroundDesign;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5FormLayout.prototype.defaultFunc = function defaultFunc() {};
@@ -121,7 +123,6 @@ var Ui5FormLayout = exports.Ui5FormLayout = (_dec = (0, _aureliaTemplating.custo
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._formlayout = new sap.ui.layout.form.FormLayout(this.ui5Id, params);else this._formlayout = new sap.ui.layout.form.FormLayout(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

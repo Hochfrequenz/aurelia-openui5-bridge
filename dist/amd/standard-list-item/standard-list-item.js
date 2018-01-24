@@ -188,6 +188,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.adaptTitleSize = (0, _attributes.getBooleanFromAttributeValue)(this.adaptTitleSize);
             params.titleTextDirection = this.titleTextDirection;
             params.infoTextDirection = this.infoTextDirection;
+
+            _Ui5ListItemBase.prototype.fillProperties.call(this, params);
         };
 
         Ui5StandardListItem.prototype.defaultFunc = function defaultFunc() {};
@@ -196,7 +198,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5ListItemBase.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._standardlistitem = new sap.m.StandardListItem(this.ui5Id, params);else this._standardlistitem = new sap.m.StandardListItem(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

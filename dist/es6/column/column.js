@@ -41,7 +41,7 @@ export class Ui5Column extends Ui5Element{
             return this._column;
           }
         fillProperties(params){
-               params.width = this.width;
+                                        params.width = this.width;
 params.hAlign = this.hAlign;
 params.vAlign = this.vAlign;
 params.styleClass = this.styleClass;
@@ -52,6 +52,7 @@ params.popinDisplay = this.popinDisplay;
 params.mergeDuplicates = getBooleanFromAttributeValue(this.mergeDuplicates);
 params.mergeFunctionName = this.mergeFunctionName;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -59,7 +60,6 @@ params.mergeFunctionName = this.mergeFunctionName;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._column = new sap.m.Column(this.ui5Id, params);
         else

@@ -125,6 +125,8 @@ var Ui5Html = exports.Ui5Html = (_dec = (0, _aureliaTemplating.customElement)('u
         params.sanitizeContent = (0, _attributes.getBooleanFromAttributeValue)(this.sanitizeContent);
         params.visible = (0, _attributes.getBooleanFromAttributeValue)(this.visible);
         params.afterRendering = this.afterRendering == null ? this.defaultFunc : this.afterRendering;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5Html.prototype.defaultFunc = function defaultFunc() {};
@@ -133,7 +135,6 @@ var Ui5Html = exports.Ui5Html = (_dec = (0, _aureliaTemplating.customElement)('u
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._html = new sap.ui.core.HTML(this.ui5Id, params);else this._html = new sap.ui.core.HTML(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

@@ -38,8 +38,9 @@ export class Ui5DynamicPageHeader extends Ui5Control{
             return this._dynamicpageheader;
           }
         fillProperties(params){
-               params.pinnable = getBooleanFromAttributeValue(this.pinnable);
+                                        params.pinnable = getBooleanFromAttributeValue(this.pinnable);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -47,7 +48,6 @@ export class Ui5DynamicPageHeader extends Ui5Control{
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._dynamicpageheader = new sap.f.DynamicPageHeader(this.ui5Id, params);
         else

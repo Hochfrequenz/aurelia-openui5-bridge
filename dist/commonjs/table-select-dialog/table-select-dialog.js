@@ -143,6 +143,8 @@ var Ui5TableSelectDialog = exports.Ui5TableSelectDialog = (_dec = (0, _aureliaTe
         params.search = this.search == null ? this.defaultFunc : this.search;
         params.liveChange = this.liveChange == null ? this.defaultFunc : this.liveChange;
         params.cancel = this.cancel == null ? this.defaultFunc : this.cancel;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5TableSelectDialog.prototype.defaultFunc = function defaultFunc() {};
@@ -151,7 +153,6 @@ var Ui5TableSelectDialog = exports.Ui5TableSelectDialog = (_dec = (0, _aureliaTe
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._tableselectdialog = new sap.m.TableSelectDialog(this.ui5Id, params);else this._tableselectdialog = new sap.m.TableSelectDialog(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

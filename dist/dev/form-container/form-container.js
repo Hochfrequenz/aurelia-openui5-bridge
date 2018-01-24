@@ -152,6 +152,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.expanded = getBooleanFromAttributeValue(this.expanded);
                     params.expandable = getBooleanFromAttributeValue(this.expandable);
                     params.visible = getBooleanFromAttributeValue(this.visible);
+
+                    _Ui5Element.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5FormContainer.prototype.defaultFunc = function defaultFunc() {};
@@ -160,7 +162,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Element.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._formcontainer = new sap.ui.layout.form.FormContainer(this.ui5Id, params);else this._formcontainer = new sap.ui.layout.form.FormContainer(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

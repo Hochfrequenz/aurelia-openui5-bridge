@@ -145,6 +145,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         Ui5Tile.prototype.fillProperties = function fillProperties(params) {
             params.removable = (0, _attributes.getBooleanFromAttributeValue)(this.removable);
             params.press = this.press == null ? this.defaultFunc : this.press;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5Tile.prototype.defaultFunc = function defaultFunc() {};
@@ -153,7 +155,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._tile = new sap.m.Tile(this.ui5Id, params);else this._tile = new sap.m.Tile(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

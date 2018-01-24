@@ -43,13 +43,14 @@ export class Ui5ObjectNumber extends Ui5Control{
             return this._objectnumber;
           }
         fillProperties(params){
-               params.number = this.number;
+                                        params.number = this.number;
 params.emphasized = getBooleanFromAttributeValue(this.emphasized);
 params.state = this.state;
 params.unit = this.unit;
 params.textDirection = this.textDirection;
 params.textAlign = this.textAlign;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -57,7 +58,6 @@ params.textAlign = this.textAlign;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._objectnumber = new sap.m.ObjectNumber(this.ui5Id, params);
         else

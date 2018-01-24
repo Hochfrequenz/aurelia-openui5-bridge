@@ -163,6 +163,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.highlight = this.highlight;
             params.press = this.press == null ? this.defaultFunc : this.press;
             params.detailPress = this.detailPress == null ? this.defaultFunc : this.detailPress;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5ListItemBase.prototype.defaultFunc = function defaultFunc() {};
@@ -171,7 +173,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._listitembase = new sap.m.ListItemBase(this.ui5Id, params);else this._listitembase = new sap.m.ListItemBase(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

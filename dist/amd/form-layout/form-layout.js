@@ -142,6 +142,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
         Ui5FormLayout.prototype.fillProperties = function fillProperties(params) {
             params.backgroundDesign = this.backgroundDesign;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5FormLayout.prototype.defaultFunc = function defaultFunc() {};
@@ -150,7 +152,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._formlayout = new sap.ui.layout.form.FormLayout(this.ui5Id, params);else this._formlayout = new sap.ui.layout.form.FormLayout(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

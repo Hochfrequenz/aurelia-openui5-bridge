@@ -125,6 +125,8 @@ var Ui5TileContent = exports.Ui5TileContent = (_dec = (0, _aureliaTemplating.cus
         params.unit = this.unit;
         params.disabled = (0, _attributes.getBooleanFromAttributeValue)(this.disabled);
         params.frameType = this.frameType;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5TileContent.prototype.defaultFunc = function defaultFunc() {};
@@ -133,7 +135,6 @@ var Ui5TileContent = exports.Ui5TileContent = (_dec = (0, _aureliaTemplating.cus
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._tilecontent = new sap.m.TileContent(this.ui5Id, params);else this._tilecontent = new sap.m.TileContent(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

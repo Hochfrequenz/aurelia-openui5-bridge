@@ -49,7 +49,7 @@ export class Ui5StandardTile extends Ui5Tile{
             return this._standardtile;
           }
         fillProperties(params){
-               params.title = this.title;
+                                        params.title = this.title;
 params.info = this.info;
 params.icon = this.icon;
 params.activeIcon = this.activeIcon;
@@ -59,6 +59,7 @@ params.infoState = this.infoState;
 params.type = this.type;
 params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -66,7 +67,6 @@ params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._standardtile = new sap.m.StandardTile(this.ui5Id, params);
         else

@@ -44,7 +44,7 @@ export class Ui5Grid extends Ui5Control{
             return this._grid;
           }
         fillProperties(params){
-               params.width = this.width;
+                                        params.width = this.width;
 params.vSpacing = this.vSpacing;
 params.hSpacing = this.hSpacing;
 params.position = this.position;
@@ -52,6 +52,7 @@ params.defaultSpan = this.defaultSpan;
 params.defaultIndent = this.defaultIndent;
 params.containerQuery = getBooleanFromAttributeValue(this.containerQuery);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -59,7 +60,6 @@ params.containerQuery = getBooleanFromAttributeValue(this.containerQuery);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._grid = new sap.ui.layout.Grid(this.ui5Id, params);
         else

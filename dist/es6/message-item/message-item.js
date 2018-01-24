@@ -44,7 +44,7 @@ export class Ui5MessageItem extends Ui5Item{
             return this._messageitem;
           }
         fillProperties(params){
-               params.type = this.type;
+                                        params.type = this.type;
 params.title = this.title;
 params.subtitle = this.subtitle;
 params.description = this.description;
@@ -53,6 +53,7 @@ params.longtextUrl = this.longtextUrl;
 params.counter = this.counter?parseInt(this.counter):0;
 params.groupName = this.groupName;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -60,7 +61,6 @@ params.groupName = this.groupName;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._messageitem = new sap.m.MessageItem(this.ui5Id, params);
         else

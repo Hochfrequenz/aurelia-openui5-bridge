@@ -42,12 +42,13 @@ export class Ui5FormattedText extends Ui5Control{
             return this._formattedtext;
           }
         fillProperties(params){
-               params.htmlText = this.htmlText;
+                                        params.htmlText = this.htmlText;
 params.width = this.width;
 params.convertLinksToAnchorTags = this.convertLinksToAnchorTags;
 params.convertedLinksDefaultTarget = this.convertedLinksDefaultTarget;
 params.height = this.height;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -55,7 +56,6 @@ params.height = this.height;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._formattedtext = new sap.m.FormattedText(this.ui5Id, params);
         else

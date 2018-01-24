@@ -208,6 +208,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                 Ui5List.prototype.fillProperties = function fillProperties(params) {
                     params.backgroundDesign = this.backgroundDesign;
+
+                    _Ui5ListBase.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5List.prototype.defaultFunc = function defaultFunc() {};
@@ -216,7 +218,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5ListBase.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._list = new sap.m.List(this.ui5Id, params);else this._list = new sap.m.List(params);
                     if (this._list._oGrowingDelegate) {
                         this._list._oGrowingDelegate.updateItems = function (sChangeReason) {

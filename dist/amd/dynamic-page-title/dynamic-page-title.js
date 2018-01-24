@@ -142,6 +142,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
         Ui5DynamicPageTitle.prototype.fillProperties = function fillProperties(params) {
             params.primaryArea = this.primaryArea;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5DynamicPageTitle.prototype.defaultFunc = function defaultFunc() {};
@@ -150,7 +152,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._dynamicpagetitle = new sap.f.DynamicPageTitle(this.ui5Id, params);else this._dynamicpagetitle = new sap.f.DynamicPageTitle(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

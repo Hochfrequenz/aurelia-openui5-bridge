@@ -41,11 +41,12 @@ export class Ui5SegmentedButton extends Ui5Control{
             return this._segmentedbutton;
           }
         fillProperties(params){
-               params.width = this.width;
+                                        params.width = this.width;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
 params.selectedKey = this.selectedKey;
 params.select = this.select==null ? this.defaultFunc: this.select;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -53,7 +54,6 @@ params.select = this.select==null ? this.defaultFunc: this.select;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._segmentedbutton = new sap.m.SegmentedButton(this.ui5Id, params);
         else

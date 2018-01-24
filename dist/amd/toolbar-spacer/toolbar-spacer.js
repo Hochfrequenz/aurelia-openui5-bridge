@@ -142,6 +142,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
         Ui5ToolbarSpacer.prototype.fillProperties = function fillProperties(params) {
             params.width = this.width;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5ToolbarSpacer.prototype.defaultFunc = function defaultFunc() {};
@@ -150,7 +152,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._toolbarspacer = new sap.m.ToolbarSpacer(this.ui5Id, params);else this._toolbarspacer = new sap.m.ToolbarSpacer(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

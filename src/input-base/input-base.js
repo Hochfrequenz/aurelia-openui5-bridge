@@ -50,7 +50,7 @@ export class Ui5InputBase extends Ui5Control{
             return this._inputbase;
           }
         fillProperties(params){
-               params.value = this.value;
+                                        params.value = this.value;
 params.width = this.width;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
 params.valueState = this.valueState;
@@ -64,6 +64,7 @@ params.textDirection = this.textDirection;
 params.required = getBooleanFromAttributeValue(this.required);
 params.change = this.change==null ? this.defaultFunc: this.change;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -71,7 +72,6 @@ params.change = this.change==null ? this.defaultFunc: this.change;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._inputbase = new sap.m.InputBase(this.ui5Id, params);
         else

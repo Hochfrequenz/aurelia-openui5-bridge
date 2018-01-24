@@ -125,6 +125,8 @@ var Ui5DynamicPage = exports.Ui5DynamicPage = (_dec = (0, _aureliaTemplating.cus
         params.toggleHeaderOnTitleClick = (0, _attributes.getBooleanFromAttributeValue)(this.toggleHeaderOnTitleClick);
         params.showFooter = (0, _attributes.getBooleanFromAttributeValue)(this.showFooter);
         params.fitContent = (0, _attributes.getBooleanFromAttributeValue)(this.fitContent);
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5DynamicPage.prototype.defaultFunc = function defaultFunc() {};
@@ -133,7 +135,6 @@ var Ui5DynamicPage = exports.Ui5DynamicPage = (_dec = (0, _aureliaTemplating.cus
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._dynamicpage = new sap.f.DynamicPage(this.ui5Id, params);else this._dynamicpage = new sap.f.DynamicPage(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

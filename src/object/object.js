@@ -22,7 +22,8 @@ export class Ui5Object {
             return this._object;
           }
         fillProperties(params){
-                           
+                                                    
+                                               
         }
         defaultFunc() {
                         }
@@ -30,7 +31,6 @@ export class Ui5Object {
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                            
          if (this.ui5Id)
           this._object = new sap.ui.base.Object(this.ui5Id, params);
         else

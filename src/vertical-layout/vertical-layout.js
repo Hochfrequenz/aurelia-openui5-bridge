@@ -39,9 +39,10 @@ export class Ui5VerticalLayout extends Ui5Control{
             return this._verticallayout;
           }
         fillProperties(params){
-               params.width = this.width;
+                                        params.width = this.width;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -49,7 +50,6 @@ params.enabled = getBooleanFromAttributeValue(this.enabled);
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._verticallayout = new sap.ui.layout.VerticalLayout(this.ui5Id, params);
         else

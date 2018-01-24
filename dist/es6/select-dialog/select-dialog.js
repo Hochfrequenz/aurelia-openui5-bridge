@@ -48,7 +48,7 @@ export class Ui5SelectDialog extends Ui5Control{
             return this._selectdialog;
           }
         fillProperties(params){
-               params.title = this.title;
+                                        params.title = this.title;
 params.noDataText = this.noDataText;
 params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
 params.growingThreshold = this.growingThreshold?parseInt(this.growingThreshold):0;
@@ -60,6 +60,7 @@ params.search = this.search==null ? this.defaultFunc: this.search;
 params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
 params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -67,7 +68,6 @@ params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._selectdialog = new sap.m.SelectDialog(this.ui5Id, params);
         else

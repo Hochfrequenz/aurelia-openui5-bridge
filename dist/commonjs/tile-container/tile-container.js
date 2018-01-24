@@ -131,6 +131,8 @@ var Ui5TileContainer = exports.Ui5TileContainer = (_dec = (0, _aureliaTemplating
         params.tileMove = this.tileMove == null ? this.defaultFunc : this.tileMove;
         params.tileDelete = this.tileDelete == null ? this.defaultFunc : this.tileDelete;
         params.tileAdd = this.tileAdd == null ? this.defaultFunc : this.tileAdd;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5TileContainer.prototype.defaultFunc = function defaultFunc() {};
@@ -139,7 +141,6 @@ var Ui5TileContainer = exports.Ui5TileContainer = (_dec = (0, _aureliaTemplating
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._tilecontainer = new sap.m.TileContainer(this.ui5Id, params);else this._tilecontainer = new sap.m.TileContainer(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

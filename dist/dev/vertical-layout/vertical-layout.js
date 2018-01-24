@@ -159,6 +159,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5VerticalLayout.prototype.fillProperties = function fillProperties(params) {
                     params.width = this.width;
                     params.enabled = getBooleanFromAttributeValue(this.enabled);
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5VerticalLayout.prototype.defaultFunc = function defaultFunc() {};
@@ -167,7 +169,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._verticallayout = new sap.ui.layout.VerticalLayout(this.ui5Id, params);else this._verticallayout = new sap.ui.layout.VerticalLayout(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

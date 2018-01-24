@@ -175,6 +175,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.contentOnlyBusy = (0, _attributes.getBooleanFromAttributeValue)(this.contentOnlyBusy);
             params.floatingFooter = (0, _attributes.getBooleanFromAttributeValue)(this.floatingFooter);
             params.navButtonPress = this.navButtonPress == null ? this.defaultFunc : this.navButtonPress;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5Page.prototype.defaultFunc = function defaultFunc() {};
@@ -183,7 +185,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._page = new sap.m.Page(this.ui5Id, params);else this._page = new sap.m.Page(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

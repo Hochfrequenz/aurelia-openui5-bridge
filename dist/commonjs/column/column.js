@@ -130,6 +130,8 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
         params.popinDisplay = this.popinDisplay;
         params.mergeDuplicates = (0, _attributes.getBooleanFromAttributeValue)(this.mergeDuplicates);
         params.mergeFunctionName = this.mergeFunctionName;
+
+        _Ui5Element.prototype.fillProperties.call(this, params);
     };
 
     Ui5Column.prototype.defaultFunc = function defaultFunc() {};
@@ -138,7 +140,6 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Element.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._column = new sap.m.Column(this.ui5Id, params);else this._column = new sap.m.Column(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

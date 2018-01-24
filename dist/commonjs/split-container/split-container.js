@@ -164,6 +164,8 @@ var Ui5SplitContainer = exports.Ui5SplitContainer = (_dec = (0, _aureliaTemplati
         params.afterMasterClose = this.afterMasterClose == null ? this.defaultFunc : this.afterMasterClose;
         params.detailNavigate = this.detailNavigate == null ? this.defaultFunc : this.detailNavigate;
         params.afterDetailNavigate = this.afterDetailNavigate == null ? this.defaultFunc : this.afterDetailNavigate;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5SplitContainer.prototype.defaultFunc = function defaultFunc() {};
@@ -172,7 +174,6 @@ var Ui5SplitContainer = exports.Ui5SplitContainer = (_dec = (0, _aureliaTemplati
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._splitcontainer = new sap.m.SplitContainer(this.ui5Id, params);else this._splitcontainer = new sap.m.SplitContainer(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

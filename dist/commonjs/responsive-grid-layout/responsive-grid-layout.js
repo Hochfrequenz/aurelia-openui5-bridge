@@ -160,6 +160,8 @@ var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aur
         params.breakpointXL = this.breakpointXL ? parseInt(this.breakpointXL) : 0;
         params.breakpointL = this.breakpointL ? parseInt(this.breakpointL) : 0;
         params.breakpointM = this.breakpointM ? parseInt(this.breakpointM) : 0;
+
+        _Ui5FormLayout.prototype.fillProperties.call(this, params);
     };
 
     Ui5ResponsiveGridLayout.prototype.defaultFunc = function defaultFunc() {};
@@ -168,7 +170,6 @@ var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aur
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5FormLayout.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._responsivegridlayout = new sap.ui.layout.form.ResponsiveGridLayout(this.ui5Id, params);else this._responsivegridlayout = new sap.ui.layout.form.ResponsiveGridLayout(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

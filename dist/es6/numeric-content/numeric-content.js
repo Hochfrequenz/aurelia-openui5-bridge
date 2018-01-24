@@ -51,7 +51,7 @@ export class Ui5NumericContent extends Ui5Control{
             return this._numericcontent;
           }
         fillProperties(params){
-               params.animateTextChange = getBooleanFromAttributeValue(this.animateTextChange);
+                                        params.animateTextChange = getBooleanFromAttributeValue(this.animateTextChange);
 params.formatterValue = getBooleanFromAttributeValue(this.formatterValue);
 params.icon = this.icon;
 params.iconDescription = this.iconDescription;
@@ -66,6 +66,7 @@ params.withMargin = getBooleanFromAttributeValue(this.withMargin);
 params.state = this.state;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -73,7 +74,6 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._numericcontent = new sap.m.NumericContent(this.ui5Id, params);
         else

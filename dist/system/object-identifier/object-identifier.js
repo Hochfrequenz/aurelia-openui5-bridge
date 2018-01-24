@@ -171,6 +171,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.titleActive = getBooleanFromAttributeValue(this.titleActive);
                     params.textDirection = this.textDirection;
                     params.titlePress = this.titlePress == null ? this.defaultFunc : this.titlePress;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5ObjectIdentifier.prototype.defaultFunc = function defaultFunc() {};
@@ -179,7 +181,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._objectidentifier = new sap.m.ObjectIdentifier(this.ui5Id, params);else this._objectidentifier = new sap.m.ObjectIdentifier(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

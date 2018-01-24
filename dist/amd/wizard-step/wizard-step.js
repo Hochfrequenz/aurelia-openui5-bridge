@@ -154,6 +154,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.validated = (0, _attributes.getBooleanFromAttributeValue)(this.validated);
             params.complete = this.complete == null ? this.defaultFunc : this.complete;
             params.activate = this.activate == null ? this.defaultFunc : this.activate;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5WizardStep.prototype.defaultFunc = function defaultFunc() {};
@@ -162,7 +164,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._wizardstep = new sap.m.WizardStep(this.ui5Id, params);else this._wizardstep = new sap.m.WizardStep(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

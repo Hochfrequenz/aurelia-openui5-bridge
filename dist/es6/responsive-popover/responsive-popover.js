@@ -55,7 +55,7 @@ export class Ui5ResponsivePopover extends Ui5Control{
             return this._responsivepopover;
           }
         fillProperties(params){
-               params.placement = this.placement;
+                                        params.placement = this.placement;
 params.showHeader = getBooleanFromAttributeValue(this.showHeader);
 params.title = this.title;
 params.icon = this.icon;
@@ -74,6 +74,7 @@ params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
 params.beforeClose = this.beforeClose==null ? this.defaultFunc: this.beforeClose;
 params.afterClose = this.afterClose==null ? this.defaultFunc: this.afterClose;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -81,7 +82,6 @@ params.afterClose = this.afterClose==null ? this.defaultFunc: this.afterClose;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._responsivepopover = new sap.m.ResponsivePopover(this.ui5Id, params);
         else

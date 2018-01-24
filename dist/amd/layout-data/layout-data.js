@@ -128,7 +128,10 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             return _this;
         }
 
-        Ui5LayoutData.prototype.fillProperties = function fillProperties(params) {};
+        Ui5LayoutData.prototype.fillProperties = function fillProperties(params) {
+
+            _Ui5Element.prototype.fillProperties.call(this, params);
+        };
 
         Ui5LayoutData.prototype.defaultFunc = function defaultFunc() {};
 
@@ -136,7 +139,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Element.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._layoutdata = new sap.ui.core.LayoutData(this.ui5Id, params);else this._layoutdata = new sap.ui.core.LayoutData(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

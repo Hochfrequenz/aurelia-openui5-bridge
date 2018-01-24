@@ -55,7 +55,7 @@ export class Ui5SplitContainer extends Ui5Control{
             return this._splitcontainer;
           }
         fillProperties(params){
-               params.defaultTransitionNameDetail = this.defaultTransitionNameDetail;
+                                        params.defaultTransitionNameDetail = this.defaultTransitionNameDetail;
 params.defaultTransitionNameMaster = this.defaultTransitionNameMaster;
 params.mode = this.mode;
 params.masterButtonText = this.masterButtonText;
@@ -74,6 +74,7 @@ params.afterMasterClose = this.afterMasterClose==null ? this.defaultFunc: this.a
 params.detailNavigate = this.detailNavigate==null ? this.defaultFunc: this.detailNavigate;
 params.afterDetailNavigate = this.afterDetailNavigate==null ? this.defaultFunc: this.afterDetailNavigate;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -81,7 +82,6 @@ params.afterDetailNavigate = this.afterDetailNavigate==null ? this.defaultFunc: 
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._splitcontainer = new sap.m.SplitContainer(this.ui5Id, params);
         else

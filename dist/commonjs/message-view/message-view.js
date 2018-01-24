@@ -111,7 +111,6 @@ var Ui5MessageView = exports.Ui5MessageView = (_dec = (0, _aureliaTemplating.cus
         var that = this;
         var params = {};
         this.fillProperties(params);
-
         if (this.ui5Id) this._messageview = new sap.m.MessageView(this.ui5Id, params);else this._messageview = new sap.m.MessageView(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

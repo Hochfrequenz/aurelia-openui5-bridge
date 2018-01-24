@@ -178,6 +178,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.textDirection = this.textDirection;
             params.required = (0, _attributes.getBooleanFromAttributeValue)(this.required);
             params.change = this.change == null ? this.defaultFunc : this.change;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5InputBase.prototype.defaultFunc = function defaultFunc() {};
@@ -186,7 +188,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._inputbase = new sap.m.InputBase(this.ui5Id, params);else this._inputbase = new sap.m.InputBase(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

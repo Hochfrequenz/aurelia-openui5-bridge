@@ -142,6 +142,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
         Ui5Breadcrumbs.prototype.fillProperties = function fillProperties(params) {
             params.currentLocationText = this.currentLocationText;
+
+            _Ui5Control.prototype.fillProperties.call(this, params);
         };
 
         Ui5Breadcrumbs.prototype.defaultFunc = function defaultFunc() {};
@@ -150,7 +152,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var that = this;
             var params = {};
             this.fillProperties(params);
-            _Ui5Control.prototype.fillProperties.call(this, params);
             if (this.ui5Id) this._breadcrumbs = new sap.m.Breadcrumbs(this.ui5Id, params);else this._breadcrumbs = new sap.m.Breadcrumbs(params);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {

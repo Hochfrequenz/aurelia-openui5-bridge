@@ -201,6 +201,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.showSecondaryValues = getBooleanFromAttributeValue(this.showSecondaryValues);
                     params.forceSelection = getBooleanFromAttributeValue(this.forceSelection);
                     params.change = this.change == null ? this.defaultFunc : this.change;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5Select.prototype.defaultFunc = function defaultFunc() {};
@@ -209,7 +211,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     var that = this;
                     var params = {};
                     this.fillProperties(params);
-                    _Ui5Control.prototype.fillProperties.call(this, params);
                     if (this.ui5Id) this._select = new sap.m.Select(this.ui5Id, params);else this._select = new sap.m.Select(params);
 
                     if ($(this.element).closest("[ui5-container]").length > 0) {

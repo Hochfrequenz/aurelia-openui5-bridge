@@ -137,6 +137,8 @@ var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.cus
         params.beforeClose = this.beforeClose == null ? this.defaultFunc : this.beforeClose;
         params.afterClose = this.afterClose == null ? this.defaultFunc : this.afterClose;
         params.cancelButtonPress = this.cancelButtonPress == null ? this.defaultFunc : this.cancelButtonPress;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5ActionSheet.prototype.defaultFunc = function defaultFunc() {};
@@ -145,7 +147,6 @@ var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.cus
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._actionsheet = new sap.m.ActionSheet(this.ui5Id, params);else this._actionsheet = new sap.m.ActionSheet(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

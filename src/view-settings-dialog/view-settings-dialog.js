@@ -45,7 +45,7 @@ export class Ui5ViewSettingsDialog extends Ui5Control{
             return this._viewsettingsdialog;
           }
         fillProperties(params){
-               params.title = this.title;
+                                        params.title = this.title;
 params.sortDescending = getBooleanFromAttributeValue(this.sortDescending);
 params.groupDescending = getBooleanFromAttributeValue(this.groupDescending);
 params.filterSearchOperator = this.filterSearchOperator;
@@ -54,6 +54,7 @@ params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
 params.resetFilters = this.resetFilters==null ? this.defaultFunc: this.resetFilters;
 params.filterDetailPageOpened = this.filterDetailPageOpened==null ? this.defaultFunc: this.filterDetailPageOpened;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -61,7 +62,6 @@ params.filterDetailPageOpened = this.filterDetailPageOpened==null ? this.default
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._viewsettingsdialog = new sap.m.ViewSettingsDialog(this.ui5Id, params);
         else

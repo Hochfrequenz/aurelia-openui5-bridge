@@ -43,7 +43,7 @@ export class Ui5IconTabFilter extends Ui5Item{
             return this._icontabfilter;
           }
         fillProperties(params){
-               params.count = this.count;
+                                        params.count = this.count;
 params.showAll = getBooleanFromAttributeValue(this.showAll);
 params.icon = this.icon;
 params.iconColor = this.iconColor;
@@ -51,6 +51,7 @@ params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
 params.visible = getBooleanFromAttributeValue(this.visible);
 params.design = this.design;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -58,7 +59,6 @@ params.design = this.design;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._icontabfilter = new sap.m.IconTabFilter(this.ui5Id, params);
         else

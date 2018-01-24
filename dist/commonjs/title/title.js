@@ -112,6 +112,8 @@ var Ui5Title = exports.Ui5Title = (_dec = (0, _aureliaTemplating.customElement)(
         params.icon = this.icon;
         params.level = this.level;
         params.emphasized = (0, _attributes.getBooleanFromAttributeValue)(this.emphasized);
+
+        _Ui5Element.prototype.fillProperties.call(this, params);
     };
 
     Ui5Title.prototype.defaultFunc = function defaultFunc() {};
@@ -120,7 +122,6 @@ var Ui5Title = exports.Ui5Title = (_dec = (0, _aureliaTemplating.customElement)(
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Element.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._title = new sap.ui.core.Title(this.ui5Id, params);else this._title = new sap.ui.core.Title(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

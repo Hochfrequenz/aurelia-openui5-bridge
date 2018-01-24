@@ -46,7 +46,7 @@ export class Ui5ActionSheet extends Ui5Control{
             return this._actionsheet;
           }
         fillProperties(params){
-               params.placement = this.placement;
+                                        params.placement = this.placement;
 params.showCancelButton = getBooleanFromAttributeValue(this.showCancelButton);
 params.cancelButtonText = this.cancelButtonText;
 params.title = this.title;
@@ -56,6 +56,7 @@ params.beforeClose = this.beforeClose==null ? this.defaultFunc: this.beforeClose
 params.afterClose = this.afterClose==null ? this.defaultFunc: this.afterClose;
 params.cancelButtonPress = this.cancelButtonPress==null ? this.defaultFunc: this.cancelButtonPress;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -63,7 +64,6 @@ params.cancelButtonPress = this.cancelButtonPress==null ? this.defaultFunc: this
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._actionsheet = new sap.m.ActionSheet(this.ui5Id, params);
         else

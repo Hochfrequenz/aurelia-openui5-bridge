@@ -57,7 +57,7 @@ export class Ui5StandardListItem extends Ui5ListItemBase{
             return this._standardlistitem;
           }
         fillProperties(params){
-               params.title = this.title;
+                                        params.title = this.title;
 params.description = this.description;
 params.icon = this.icon;
 params.iconInset = getBooleanFromAttributeValue(this.iconInset);
@@ -69,6 +69,7 @@ params.adaptTitleSize = getBooleanFromAttributeValue(this.adaptTitleSize);
 params.titleTextDirection = this.titleTextDirection;
 params.infoTextDirection = this.infoTextDirection;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -76,7 +77,6 @@ params.infoTextDirection = this.infoTextDirection;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._standardlistitem = new sap.m.StandardListItem(this.ui5Id, params);
         else

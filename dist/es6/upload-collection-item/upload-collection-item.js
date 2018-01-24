@@ -44,7 +44,7 @@ export class Ui5UploadCollectionItem extends Ui5Element{
             return this._uploadcollectionitem;
           }
         fillProperties(params){
-               params.documentId = this.documentId;
+                                        params.documentId = this.documentId;
 params.fileName = this.fileName;
 params.mimeType = this.mimeType;
 params.thumbnailUrl = this.thumbnailUrl;
@@ -58,6 +58,7 @@ params.selected = getBooleanFromAttributeValue(this.selected);
 params.press = this.press==null ? this.defaultFunc: this.press;
 params.deletePress = this.deletePress==null ? this.defaultFunc: this.deletePress;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -65,7 +66,6 @@ params.deletePress = this.deletePress==null ? this.defaultFunc: this.deletePress
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._uploadcollectionitem = new sap.m.UploadCollectionItem(this.ui5Id, params);
         else

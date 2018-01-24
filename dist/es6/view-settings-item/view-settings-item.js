@@ -38,9 +38,10 @@ export class Ui5ViewSettingsItem extends Ui5Item{
             return this._viewsettingsitem;
           }
         fillProperties(params){
-               params.selected = getBooleanFromAttributeValue(this.selected);
+                                        params.selected = getBooleanFromAttributeValue(this.selected);
 params.itemPropertyChanged = this.itemPropertyChanged==null ? this.defaultFunc: this.itemPropertyChanged;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -48,7 +49,6 @@ params.itemPropertyChanged = this.itemPropertyChanged==null ? this.defaultFunc: 
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._viewsettingsitem = new sap.m.ViewSettingsItem(this.ui5Id, params);
         else

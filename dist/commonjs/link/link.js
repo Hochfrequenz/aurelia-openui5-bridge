@@ -143,6 +143,8 @@ var Ui5Link = exports.Ui5Link = (_dec = (0, _aureliaTemplating.customElement)('u
         params.subtle = (0, _attributes.getBooleanFromAttributeValue)(this.subtle);
         params.emphasized = (0, _attributes.getBooleanFromAttributeValue)(this.emphasized);
         params.press = this.press == null ? this.defaultFunc : this.press;
+
+        _Ui5Control.prototype.fillProperties.call(this, params);
     };
 
     Ui5Link.prototype.defaultFunc = function defaultFunc() {};
@@ -151,7 +153,6 @@ var Ui5Link = exports.Ui5Link = (_dec = (0, _aureliaTemplating.customElement)('u
         var that = this;
         var params = {};
         this.fillProperties(params);
-        _Ui5Control.prototype.fillProperties.call(this, params);
         if (this.ui5Id) this._link = new sap.m.Link(this.ui5Id, params);else this._link = new sap.m.Link(params);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {

@@ -60,12 +60,13 @@ export class Ui5DatePicker extends Ui5DateTimeField{
             return this._datepicker;
           }
         fillProperties(params){
-               params.displayFormatType = this.displayFormatType;
+                                        params.displayFormatType = this.displayFormatType;
 params.secondaryCalendarType = this.secondaryCalendarType;
 params.minDate = this.minDate;
 params.maxDate = this.maxDate;
 params.navigate = this.navigate==null ? this.defaultFunc: this.navigate;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -73,7 +74,6 @@ params.navigate = this.navigate==null ? this.defaultFunc: this.navigate;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._datepicker = new sap.m.DatePicker(this.ui5Id, params);
         else

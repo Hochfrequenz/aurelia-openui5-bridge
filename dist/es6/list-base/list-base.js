@@ -63,7 +63,7 @@ export class Ui5ListBase extends Ui5Control{
             return this._listbase;
           }
         fillProperties(params){
-               params.inset = getBooleanFromAttributeValue(this.inset);
+                                        params.inset = getBooleanFromAttributeValue(this.inset);
 params.headerText = this.headerText;
 params.footerText = this.footerText;
 params.mode = this.mode;
@@ -90,6 +90,7 @@ params.updateStarted = this.updateStarted==null ? this.defaultFunc: this.updateS
 params.updateFinished = this.updateFinished==null ? this.defaultFunc: this.updateFinished;
 params.itemPress = this.itemPress==null ? this.defaultFunc: this.itemPress;
             
+                                            super.fillProperties(params);   
         }
         defaultFunc() {
                         }
@@ -97,7 +98,6 @@ params.itemPress = this.itemPress==null ? this.defaultFunc: this.itemPress;
             var that = this;
             var params = {};
             this.fillProperties(params);
-                                         super.fillProperties(params);   
          if (this.ui5Id)
           this._listbase = new sap.m.ListBase(this.ui5Id, params);
         else
