@@ -255,7 +255,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'customdata') {
                             this._formattedtext.removeCustomData(child);
                         }
-                        if (relation == 'layoutData') {
+                        if (relation == 'layoutdata') {
                             this._formattedtext.destroyLayoutData(child);
                         }
                         if (relation == 'dependents') {

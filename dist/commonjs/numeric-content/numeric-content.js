@@ -239,7 +239,7 @@ var Ui5NumericContent = exports.Ui5NumericContent = (_dec = (0, _aureliaTemplati
             if (relation == 'customdata') {
                 this._numericcontent.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._numericcontent.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

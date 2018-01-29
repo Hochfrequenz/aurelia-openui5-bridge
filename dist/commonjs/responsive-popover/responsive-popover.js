@@ -263,16 +263,16 @@ var Ui5ResponsivePopover = exports.Ui5ResponsivePopover = (_dec = (0, _aureliaTe
             if (relation == 'content') {
                 this._responsivepopover.removeContent(child);
             }
-            if (relation == 'customHeader') {
+            if (relation == 'customheader') {
                 this._responsivepopover.destroyCustomHeader(child);
             }
-            if (relation == 'subHeader') {
+            if (relation == 'subheader') {
                 this._responsivepopover.destroySubHeader(child);
             }
-            if (relation == 'beginButton') {
+            if (relation == 'beginbutton') {
                 this._responsivepopover.destroyBeginButton(child);
             }
-            if (relation == 'endButton') {
+            if (relation == 'endbutton') {
                 this._responsivepopover.destroyEndButton(child);
             }
             if (relation == 'tooltip') {
@@ -281,7 +281,7 @@ var Ui5ResponsivePopover = exports.Ui5ResponsivePopover = (_dec = (0, _aureliaTe
             if (relation == 'customdata') {
                 this._responsivepopover.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._responsivepopover.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

@@ -115,7 +115,7 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'title') { this._dynamicpage.setTitle(child); return elem.localName;}
+                 if (elem.localName == 'title-elem') { this._dynamicpage.setTitle(child); return elem.localName;}
 if (elem.localName == 'header') { this._dynamicpage.setHeader(child); return elem.localName;}
 if (elem.localName == 'content') { this._dynamicpage.setContent(child); return elem.localName;}
 if (elem.localName == 'footer') { this._dynamicpage.setFooter(child); return elem.localName;}
@@ -130,13 +130,13 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'title') {  this._dynamicpage.destroyTitle(child); }
+               if (relation == 'title-elem') {  this._dynamicpage.destroyTitle(child); }
 if (relation == 'header') {  this._dynamicpage.destroyHeader(child); }
 if (relation == 'content') {  this._dynamicpage.destroyContent(child); }
 if (relation == 'footer') {  this._dynamicpage.destroyFooter(child); }
 if (relation == 'tooltip') {  this._dynamicpage.destroyTooltip(child); }
 if (relation == 'customdata') {  this._dynamicpage.removeCustomData(child);}
-if (relation == 'layoutData') {  this._dynamicpage.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._dynamicpage.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._dynamicpage.removeDependent(child);}
 
       }

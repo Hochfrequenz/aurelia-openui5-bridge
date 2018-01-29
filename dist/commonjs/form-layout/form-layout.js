@@ -200,7 +200,7 @@ var Ui5FormLayout = exports.Ui5FormLayout = (_dec = (0, _aureliaTemplating.custo
             if (relation == 'customdata') {
                 this._formlayout.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._formlayout.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

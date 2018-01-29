@@ -251,7 +251,7 @@ var Ui5ViewSettingsDialog = exports.Ui5ViewSettingsDialog = (_dec = (0, _aurelia
             if (relation == 'customdata') {
                 this._viewsettingsdialog.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._viewsettingsdialog.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

@@ -236,7 +236,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'customdata') {
                     this._segmentedbuttonitem.removeCustomData(child);
                 }
-                if (relation == 'layoutData') {
+                if (relation == 'layoutdata') {
                     this._segmentedbuttonitem.destroyLayoutData(child);
                 }
                 if (relation == 'dependents') {

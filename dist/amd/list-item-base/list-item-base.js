@@ -250,7 +250,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'customdata') {
                     this._listitembase.removeCustomData(child);
                 }
-                if (relation == 'layoutData') {
+                if (relation == 'layoutdata') {
                     this._listitembase.destroyLayoutData(child);
                 }
                 if (relation == 'dependents') {

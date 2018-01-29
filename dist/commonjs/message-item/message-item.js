@@ -225,7 +225,7 @@ var Ui5MessageItem = exports.Ui5MessageItem = (_dec = (0, _aureliaTemplating.cus
             if (relation == 'customdata') {
                 this._messageitem.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._messageitem.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

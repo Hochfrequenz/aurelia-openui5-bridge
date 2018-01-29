@@ -271,13 +271,13 @@ var Ui5List = exports.Ui5List = (_dec = (0, _aureliaTemplating.customElement)('u
             if (relation == 'items') {
                 this._list.removeItem(child);
             }
-            if (relation == 'swipeContent') {
+            if (relation == 'swipecontent') {
                 this._list.destroySwipeContent(child);
             }
-            if (relation == 'headerToolbar') {
+            if (relation == 'headertoolbar') {
                 this._list.destroyHeaderToolbar(child);
             }
-            if (relation == 'infoToolbar') {
+            if (relation == 'infotoolbar') {
                 this._list.destroyInfoToolbar(child);
             }
             if (relation == 'tooltip') {
@@ -286,7 +286,7 @@ var Ui5List = exports.Ui5List = (_dec = (0, _aureliaTemplating.customElement)('u
             if (relation == 'customdata') {
                 this._list.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._list.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

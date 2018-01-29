@@ -232,7 +232,7 @@ var Ui5DateTimeField = exports.Ui5DateTimeField = (_dec = (0, _aureliaTemplating
             if (relation == 'customdata') {
                 this._datetimefield.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._datetimefield.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

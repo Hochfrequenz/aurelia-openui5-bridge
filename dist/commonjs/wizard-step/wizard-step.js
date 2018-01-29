@@ -218,7 +218,7 @@ var Ui5WizardStep = exports.Ui5WizardStep = (_dec = (0, _aureliaTemplating.custo
             if (relation == 'customdata') {
                 this._wizardstep.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._wizardstep.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

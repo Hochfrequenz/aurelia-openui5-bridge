@@ -215,7 +215,7 @@ var Ui5FeedContent = exports.Ui5FeedContent = (_dec = (0, _aureliaTemplating.cus
             if (relation == 'customdata') {
                 this._feedcontent.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._feedcontent.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

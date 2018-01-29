@@ -229,7 +229,7 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
             if (relation == 'customdata') {
                 this._column.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._column.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

@@ -244,7 +244,7 @@ var Ui5UploadCollectionItem = exports.Ui5UploadCollectionItem = (_dec = (0, _aur
             if (relation == 'customdata') {
                 this._uploadcollectionitem.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._uploadcollectionitem.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

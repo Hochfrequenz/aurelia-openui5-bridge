@@ -230,7 +230,7 @@ var Ui5DynamicPageTitle = exports.Ui5DynamicPageTitle = (_dec = (0, _aureliaTemp
             if (relation == 'customdata') {
                 this._dynamicpagetitle.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._dynamicpagetitle.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

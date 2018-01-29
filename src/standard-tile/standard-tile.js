@@ -139,7 +139,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
       try{
                if (relation == 'tooltip') {  this._standardtile.destroyTooltip(child); }
 if (relation == 'customdata') {  this._standardtile.removeCustomData(child);}
-if (relation == 'layoutData') {  this._standardtile.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._standardtile.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._standardtile.removeDependent(child);}
 
       }

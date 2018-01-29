@@ -250,7 +250,7 @@ var Ui5GridData = exports.Ui5GridData = (_dec = (0, _aureliaTemplating.customEle
             if (relation == 'customdata') {
                 this._griddata.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._griddata.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

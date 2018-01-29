@@ -224,7 +224,7 @@ var Ui5MessageStrip = exports.Ui5MessageStrip = (_dec = (0, _aureliaTemplating.c
             if (relation == 'customdata') {
                 this._messagestrip.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._messagestrip.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

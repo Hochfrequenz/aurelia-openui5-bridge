@@ -245,7 +245,7 @@ var Ui5SearchField = exports.Ui5SearchField = (_dec = (0, _aureliaTemplating.cus
             if (relation == 'customdata') {
                 this._searchfield.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._searchfield.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

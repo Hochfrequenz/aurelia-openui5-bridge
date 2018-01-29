@@ -215,7 +215,7 @@ var Ui5ObjectNumber = exports.Ui5ObjectNumber = (_dec = (0, _aureliaTemplating.c
             if (relation == 'customdata') {
                 this._objectnumber.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._objectnumber.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

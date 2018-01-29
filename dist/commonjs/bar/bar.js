@@ -218,7 +218,7 @@ var Ui5Bar = exports.Ui5Bar = (_dec = (0, _aureliaTemplating.customElement)('ui5
             if (relation == 'customdata') {
                 this._bar.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._bar.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

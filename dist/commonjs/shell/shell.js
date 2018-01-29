@@ -239,7 +239,7 @@ var Ui5Shell = exports.Ui5Shell = (_dec = (0, _aureliaTemplating.customElement)(
             if (relation == 'customdata') {
                 this._shell.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._shell.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

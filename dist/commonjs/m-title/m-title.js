@@ -212,7 +212,7 @@ var Ui5mTitle = exports.Ui5mTitle = (_dec = (0, _aureliaTemplating.customElement
             if (relation == 'customdata') {
                 this._mtitle.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._mtitle.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

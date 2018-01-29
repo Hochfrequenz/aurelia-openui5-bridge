@@ -146,7 +146,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
 if (relation == 'icon') {  this._generictile.destroyIcon(child); }
 if (relation == 'tooltip') {  this._generictile.destroyTooltip(child); }
 if (relation == 'customdata') {  this._generictile.removeCustomData(child);}
-if (relation == 'layoutData') {  this._generictile.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._generictile.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._generictile.removeDependent(child);}
 
       }

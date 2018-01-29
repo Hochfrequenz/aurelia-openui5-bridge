@@ -236,7 +236,7 @@ var Ui5SelectDialog = exports.Ui5SelectDialog = (_dec = (0, _aureliaTemplating.c
             if (relation == 'customdata') {
                 this._selectdialog.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._selectdialog.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

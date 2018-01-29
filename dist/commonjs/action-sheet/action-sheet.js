@@ -230,7 +230,7 @@ var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.cus
             if (relation == 'customdata') {
                 this._actionsheet.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._actionsheet.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

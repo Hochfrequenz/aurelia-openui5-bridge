@@ -222,7 +222,7 @@ var Ui5ColumnListItem = exports.Ui5ColumnListItem = (_dec = (0, _aureliaTemplati
             if (relation == 'customdata') {
                 this._columnlistitem.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._columnlistitem.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

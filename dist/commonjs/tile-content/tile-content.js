@@ -218,7 +218,7 @@ var Ui5TileContent = exports.Ui5TileContent = (_dec = (0, _aureliaTemplating.cus
             if (relation == 'customdata') {
                 this._tilecontent.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._tilecontent.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

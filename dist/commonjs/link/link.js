@@ -230,7 +230,7 @@ var Ui5Link = exports.Ui5Link = (_dec = (0, _aureliaTemplating.customElement)('u
             if (relation == 'customdata') {
                 this._link.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._link.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

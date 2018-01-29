@@ -133,7 +133,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
                if (relation == 'content') {  this._icontabfilter.removeContent(child);}
 if (relation == 'tooltip') {  this._icontabfilter.destroyTooltip(child); }
 if (relation == 'customdata') {  this._icontabfilter.removeCustomData(child);}
-if (relation == 'layoutData') {  this._icontabfilter.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._icontabfilter.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._icontabfilter.removeDependent(child);}
 
       }

@@ -227,7 +227,7 @@ var Ui5Button = exports.Ui5Button = (_dec = (0, _aureliaTemplating.customElement
             if (relation == 'customdata') {
                 this._button.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._button.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

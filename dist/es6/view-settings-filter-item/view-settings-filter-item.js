@@ -126,7 +126,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
                if (relation == 'items') {  this._viewsettingsfilteritem.removeItem(child);}
 if (relation == 'tooltip') {  this._viewsettingsfilteritem.destroyTooltip(child); }
 if (relation == 'customdata') {  this._viewsettingsfilteritem.removeCustomData(child);}
-if (relation == 'layoutData') {  this._viewsettingsfilteritem.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._viewsettingsfilteritem.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._viewsettingsfilteritem.removeDependent(child);}
 
       }

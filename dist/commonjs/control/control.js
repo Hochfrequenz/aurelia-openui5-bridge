@@ -202,7 +202,7 @@ var Ui5Control = exports.Ui5Control = (_dec = (0, _aureliaTemplating.customEleme
             if (relation == 'customdata') {
                 this._control.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._control.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

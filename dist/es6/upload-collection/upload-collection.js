@@ -177,10 +177,10 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
 if (relation == 'headerparameters') {  this._uploadcollection.removeHeaderParameter(child);}
 if (relation == 'parameters') {  this._uploadcollection.removeParameter(child);}
 if (relation == 'toolbar') {  this._uploadcollection.destroyToolbar(child); }
-if (relation == 'infoToolbar') {  this._uploadcollection.destroyInfoToolbar(child); }
+if (relation == 'infotoolbar') {  this._uploadcollection.destroyInfoToolbar(child); }
 if (relation == 'tooltip') {  this._uploadcollection.destroyTooltip(child); }
 if (relation == 'customdata') {  this._uploadcollection.removeCustomData(child);}
-if (relation == 'layoutData') {  this._uploadcollection.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._uploadcollection.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._uploadcollection.removeDependent(child);}
 
       }

@@ -189,7 +189,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'items') {
                     this._messageview.removeItem(child);
                 }
-                if (relation == 'headerButton') {
+                if (relation == 'headerbutton') {
                     this._messageview.destroyHeaderButton(child);
                 }
             } catch (err) {}

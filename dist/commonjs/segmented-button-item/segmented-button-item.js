@@ -207,7 +207,7 @@ var Ui5SegmentedButtonItem = exports.Ui5SegmentedButtonItem = (_dec = (0, _aurel
             if (relation == 'customdata') {
                 this._segmentedbuttonitem.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._segmentedbuttonitem.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

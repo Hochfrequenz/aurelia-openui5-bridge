@@ -144,7 +144,7 @@ if (relation == 'statuses') {  this._uploadcollectionitem.removeStatus(child);}
 if (relation == 'markers') {  this._uploadcollectionitem.removeMarker(child);}
 if (relation == 'tooltip') {  this._uploadcollectionitem.destroyTooltip(child); }
 if (relation == 'customdata') {  this._uploadcollectionitem.removeCustomData(child);}
-if (relation == 'layoutData') {  this._uploadcollectionitem.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._uploadcollectionitem.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._uploadcollectionitem.removeDependent(child);}
 
       }

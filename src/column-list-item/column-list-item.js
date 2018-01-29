@@ -131,7 +131,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
                if (relation == 'cells') {  this._columnlistitem.removeCell(child);}
 if (relation == 'tooltip') {  this._columnlistitem.destroyTooltip(child); }
 if (relation == 'customdata') {  this._columnlistitem.removeCustomData(child);}
-if (relation == 'layoutData') {  this._columnlistitem.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._columnlistitem.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._columnlistitem.removeDependent(child);}
 
       }

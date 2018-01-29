@@ -261,7 +261,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'customdata') {
                             this._tilecontent.removeCustomData(child);
                         }
-                        if (relation == 'layoutData') {
+                        if (relation == 'layoutdata') {
                             this._tilecontent.destroyLayoutData(child);
                         }
                         if (relation == 'dependents') {

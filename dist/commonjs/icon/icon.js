@@ -242,7 +242,7 @@ var Ui5Icon = exports.Ui5Icon = (_dec = (0, _aureliaTemplating.customElement)('u
             if (relation == 'customdata') {
                 this._icon.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._icon.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

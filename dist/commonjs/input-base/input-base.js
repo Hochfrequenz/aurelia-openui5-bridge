@@ -236,7 +236,7 @@ var Ui5InputBase = exports.Ui5InputBase = (_dec = (0, _aureliaTemplating.customE
             if (relation == 'customdata') {
                 this._inputbase.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._inputbase.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

@@ -231,7 +231,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'customdata') {
                     this._formelement.removeCustomData(child);
                 }
-                if (relation == 'layoutData') {
+                if (relation == 'layoutdata') {
                     this._formelement.destroyLayoutData(child);
                 }
                 if (relation == 'dependents') {

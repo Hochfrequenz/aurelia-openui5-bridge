@@ -184,7 +184,7 @@ if (relation == 'suggestioncolumns') {  this._input.removeSuggestionColumn(child
 if (relation == 'suggestionrows') {  this._input.removeSuggestionRow(child);}
 if (relation == 'tooltip') {  this._input.destroyTooltip(child); }
 if (relation == 'customdata') {  this._input.removeCustomData(child);}
-if (relation == 'layoutData') {  this._input.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._input.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._input.removeDependent(child);}
 
       }

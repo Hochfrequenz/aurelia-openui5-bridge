@@ -249,7 +249,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'customdata') {
                             this._dynamicpageheader.removeCustomData(child);
                         }
-                        if (relation == 'layoutData') {
+                        if (relation == 'layoutdata') {
                             this._dynamicpageheader.destroyLayoutData(child);
                         }
                         if (relation == 'dependents') {

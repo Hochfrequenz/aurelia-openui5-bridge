@@ -263,16 +263,16 @@ var Ui5Dialog = exports.Ui5Dialog = (_dec = (0, _aureliaTemplating.customElement
             if (relation == 'content') {
                 this._dialog.removeContent(child);
             }
-            if (relation == 'subHeader') {
+            if (relation == 'subheader') {
                 this._dialog.destroySubHeader(child);
             }
-            if (relation == 'customHeader') {
+            if (relation == 'customheader') {
                 this._dialog.destroyCustomHeader(child);
             }
-            if (relation == 'beginButton') {
+            if (relation == 'beginbutton') {
                 this._dialog.destroyBeginButton(child);
             }
-            if (relation == 'endButton') {
+            if (relation == 'endbutton') {
                 this._dialog.destroyEndButton(child);
             }
             if (relation == 'buttons') {
@@ -284,7 +284,7 @@ var Ui5Dialog = exports.Ui5Dialog = (_dec = (0, _aureliaTemplating.customElement
             if (relation == 'customdata') {
                 this._dialog.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._dialog.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

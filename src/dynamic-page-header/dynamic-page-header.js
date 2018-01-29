@@ -122,7 +122,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
                if (relation == 'content') {  this._dynamicpageheader.removeContent(child);}
 if (relation == 'tooltip') {  this._dynamicpageheader.destroyTooltip(child); }
 if (relation == 'customdata') {  this._dynamicpageheader.removeCustomData(child);}
-if (relation == 'layoutData') {  this._dynamicpageheader.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._dynamicpageheader.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._dynamicpageheader.removeDependent(child);}
 
       }

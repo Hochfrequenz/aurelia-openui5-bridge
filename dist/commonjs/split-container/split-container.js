@@ -263,7 +263,7 @@ var Ui5SplitContainer = exports.Ui5SplitContainer = (_dec = (0, _aureliaTemplati
             if (relation == 'customdata') {
                 this._splitcontainer.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._splitcontainer.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

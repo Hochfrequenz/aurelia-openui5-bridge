@@ -156,12 +156,12 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
       try{
                if (relation == 'columns') {  this._table.removeColumn(child);}
 if (relation == 'items') {  this._table.removeItem(child);}
-if (relation == 'swipeContent') {  this._table.destroySwipeContent(child); }
-if (relation == 'headerToolbar') {  this._table.destroyHeaderToolbar(child); }
-if (relation == 'infoToolbar') {  this._table.destroyInfoToolbar(child); }
+if (relation == 'swipecontent') {  this._table.destroySwipeContent(child); }
+if (relation == 'headertoolbar') {  this._table.destroyHeaderToolbar(child); }
+if (relation == 'infotoolbar') {  this._table.destroyInfoToolbar(child); }
 if (relation == 'tooltip') {  this._table.destroyTooltip(child); }
 if (relation == 'customdata') {  this._table.removeCustomData(child);}
-if (relation == 'layoutData') {  this._table.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._table.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._table.removeDependent(child);}
 
       }

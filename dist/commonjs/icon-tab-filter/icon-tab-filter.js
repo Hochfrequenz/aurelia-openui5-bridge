@@ -222,7 +222,7 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
             if (relation == 'customdata') {
                 this._icontabfilter.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._icontabfilter.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

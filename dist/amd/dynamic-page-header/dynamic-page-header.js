@@ -235,7 +235,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'customdata') {
                     this._dynamicpageheader.removeCustomData(child);
                 }
-                if (relation == 'layoutData') {
+                if (relation == 'layoutdata') {
                     this._dynamicpageheader.destroyLayoutData(child);
                 }
                 if (relation == 'dependents') {

@@ -314,13 +314,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'items') {
                             this._list.removeItem(child);
                         }
-                        if (relation == 'swipeContent') {
+                        if (relation == 'swipecontent') {
                             this._list.destroySwipeContent(child);
                         }
-                        if (relation == 'headerToolbar') {
+                        if (relation == 'headertoolbar') {
                             this._list.destroyHeaderToolbar(child);
                         }
-                        if (relation == 'infoToolbar') {
+                        if (relation == 'infotoolbar') {
                             this._list.destroyInfoToolbar(child);
                         }
                         if (relation == 'tooltip') {
@@ -329,7 +329,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'customdata') {
                             this._list.removeCustomData(child);
                         }
-                        if (relation == 'layoutData') {
+                        if (relation == 'layoutdata') {
                             this._list.destroyLayoutData(child);
                         }
                         if (relation == 'dependents') {
