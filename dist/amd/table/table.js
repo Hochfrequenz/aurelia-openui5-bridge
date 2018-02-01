@@ -125,7 +125,184 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
       _initDefineProp(_this, 'footerText', _descriptor7, _this);
 
+<<<<<<< HEAD
       _initDefineProp(_this, 'mode', _descriptor8, _this);
+=======
+            _this.element = element;
+            _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
+            return _this;
+        }
+
+        Ui5Table.prototype.fillProperties = function fillProperties(params) {
+            params.backgroundDesign = this.backgroundDesign;
+            params.fixedLayout = (0, _attributes.getBooleanFromAttributeValue)(this.fixedLayout);
+            params.showOverlay = (0, _attributes.getBooleanFromAttributeValue)(this.showOverlay);
+
+            _Ui5ListBase.prototype.fillProperties.call(this, params);
+        };
+
+        Ui5Table.prototype.defaultFunc = function defaultFunc() {};
+
+        Ui5Table.prototype.attached = function attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+            if (this.ui5Id) this._table = new sap.m.Table(this.ui5Id, params);else this._table = new sap.m.Table(params);
+            if (this._table._oGrowingDelegate) {
+                this._table._oGrowingDelegate.updateItems = function (sChangeReason) {
+                    this._onBeforePageLoaded(sChangeReason);this._onAfterPageLoaded(sChangeReason);
+                };
+            }
+            if ($(this.element).closest("[ui5-container]").length > 0) {
+                this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                if (!this._parent.UIElement || this._parent.UIElement.sId != this._table.sId) {
+                    var prevSibling = null;
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                    this._relation = this._parent.addChild(this._table, this.element, prevSibling);
+                    this.attributeManager.addAttributes({ "ui5-container": '' });
+                } else {
+                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                    var prevSibling = null;
+                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
+                        prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
+                        this._relation = this._parent.addChild(this._table, this.element, prevSibling);
+                    } else this._relation = this._parent.addChild(this._table, this.element);
+                    this.attributeManager.addAttributes({ "ui5-container": '' });
+                }
+            } else {
+                if (this._table.placeAt) this._table.placeAt(this.element.parentElement);
+                this.attributeManager.addAttributes({ "ui5-container": '' });
+                this.attributeManager.addClasses("ui5-hide");
+            }
+
+            this.attributeManager.addAttributes({ "ui5-id": this._table.sId });
+        };
+
+        Ui5Table.prototype.detached = function detached() {
+            try {
+                if ($(this.element).closest("[ui5-container]").length > 0) {
+                    if (this._parent && this._relation) {
+                        this._parent.removeChildByRelation(this._table, this._relation);
+                    }
+                } else {
+                    this._table.destroy();
+                }
+                _Ui5ListBase.prototype.detached.call(this);
+            } catch (err) {}
+        };
+
+        Ui5Table.prototype.addChild = function addChild(child, elem, afterElement) {
+            var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+            for (var _iterator = path, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+                if (_isArray) {
+                    if (_i >= _iterator.length) break;
+                    elem = _iterator[_i++];
+                } else {
+                    _i = _iterator.next();
+                    if (_i.done) break;
+                    elem = _i.value;
+                }
+
+                try {
+                    if (elem.localName == 'columns') {
+                        var _index = null;if (afterElement) _index = this._table.indexOfColumn(afterElement);if (_index) this._table.insertColumn(child, _index + 1);else this._table.addColumn(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'items') {
+                        var _index = null;if (afterElement) _index = this._table.indexOfItem(afterElement);if (_index) this._table.insertItem(child, _index + 1);else this._table.addItem(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'swipecontent') {
+                        this._table.setSwipeContent(child);return elem.localName;
+                    }
+                    if (elem.localName == 'headertoolbar') {
+                        this._table.setHeaderToolbar(child);return elem.localName;
+                    }
+                    if (elem.localName == 'infotoolbar') {
+                        this._table.setInfoToolbar(child);return elem.localName;
+                    }
+                    if (elem.localName == 'tooltip') {
+                        this._table.setTooltip(child);return elem.localName;
+                    }
+                    if (elem.localName == 'customdata') {
+                        var _index = null;if (afterElement) _index = this._table.indexOfCustomData(afterElement);if (_index) this._table.insertCustomData(child, _index + 1);else this._table.addCustomData(child, 0);return elem.localName;
+                    }
+                    if (elem.localName == 'layoutdata') {
+                        this._table.setLayoutData(child);return elem.localName;
+                    }
+                    if (elem.localName == 'dependents') {
+                        var _index = null;if (afterElement) _index = this._table.indexOfDependent(afterElement);if (_index) this._table.insertDependent(child, _index + 1);else this._table.addDependent(child, 0);return elem.localName;
+                    }
+                } catch (err) {}
+            }
+        };
+
+        Ui5Table.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+            try {
+                if (relation == 'columns') {
+                    this._table.removeColumn(child);
+                }
+                if (relation == 'items') {
+                    this._table.removeItem(child);
+                }
+                if (relation == 'swipecontent') {
+                    this._table.destroySwipeContent(child);
+                }
+                if (relation == 'headertoolbar') {
+                    this._table.destroyHeaderToolbar(child);
+                }
+                if (relation == 'infotoolbar') {
+                    this._table.destroyInfoToolbar(child);
+                }
+                if (relation == 'tooltip') {
+                    this._table.destroyTooltip(child);
+                }
+                if (relation == 'customdata') {
+                    this._table.removeCustomData(child);
+                }
+                if (relation == 'layoutdata') {
+                    this._table.destroyLayoutData(child);
+                }
+                if (relation == 'dependents') {
+                    this._table.removeDependent(child);
+                }
+            } catch (err) {}
+        };
+
+        Ui5Table.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
+            if (this._table !== null) {
+                this._table.setBackgroundDesign(newValue);
+            }
+        };
+
+        Ui5Table.prototype.fixedLayoutChanged = function fixedLayoutChanged(newValue) {
+            if (this._table !== null) {
+                this._table.setFixedLayout((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            }
+        };
+
+        Ui5Table.prototype.showOverlayChanged = function showOverlayChanged(newValue) {
+            if (this._table !== null) {
+                this._table.setShowOverlay((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            }
+        };
+
+        Ui5Table.prototype.insetChanged = function insetChanged(newValue) {
+            if (this._table !== null) {
+                this._table.setInset((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            }
+        };
+
+        Ui5Table.prototype.headerTextChanged = function headerTextChanged(newValue) {
+            if (this._table !== null) {
+                this._table.setHeaderText(newValue);
+            }
+        };
+
+        Ui5Table.prototype.footerTextChanged = function footerTextChanged(newValue) {
+            if (this._table !== null) {
+                this._table.setFooterText(newValue);
+            }
+        };
+>>>>>>> master
 
       _initDefineProp(_this, 'width', _descriptor9, _this);
 

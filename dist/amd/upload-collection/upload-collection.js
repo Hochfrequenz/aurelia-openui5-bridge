@@ -325,7 +325,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'toolbar') {
                     this._uploadcollection.destroyToolbar(child);
                 }
-                if (relation == 'infoToolbar') {
+                if (relation == 'infotoolbar') {
                     this._uploadcollection.destroyInfoToolbar(child);
                 }
                 if (relation == 'tooltip') {
@@ -334,7 +334,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'customdata') {
                     this._uploadcollection.removeCustomData(child);
                 }
-                if (relation == 'layoutData') {
+                if (relation == 'layoutdata') {
                     this._uploadcollection.destroyLayoutData(child);
                 }
                 if (relation == 'dependents') {

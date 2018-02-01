@@ -203,7 +203,7 @@ var Ui5Tile = exports.Ui5Tile = (_dec = (0, _aureliaTemplating.customElement)('u
             if (relation == 'customdata') {
                 this._tile.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._tile.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

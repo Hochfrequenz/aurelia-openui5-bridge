@@ -153,7 +153,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
                if (relation == 'items') {  this._select.removeItem(child);  var oldVal = this.selectedKey; this.selectedKey = null; this.selectedKey = oldVal;}
 if (relation == 'tooltip') {  this._select.destroyTooltip(child); }
 if (relation == 'customdata') {  this._select.removeCustomData(child);}
-if (relation == 'layoutData') {  this._select.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._select.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._select.removeDependent(child);}
 
       }

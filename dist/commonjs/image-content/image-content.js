@@ -206,7 +206,7 @@ var Ui5ImageContent = exports.Ui5ImageContent = (_dec = (0, _aureliaTemplating.c
             if (relation == 'customdata') {
                 this._imagecontent.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._imagecontent.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

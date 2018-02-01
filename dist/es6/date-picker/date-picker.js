@@ -149,7 +149,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
                if (relation == 'specialdates') {  this._datepicker.removeSpecialDate(child);}
 if (relation == 'tooltip') {  this._datepicker.destroyTooltip(child); }
 if (relation == 'customdata') {  this._datepicker.removeCustomData(child);}
-if (relation == 'layoutData') {  this._datepicker.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._datepicker.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._datepicker.removeDependent(child);}
 
       }

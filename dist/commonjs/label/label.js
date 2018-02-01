@@ -221,7 +221,7 @@ var Ui5Label = exports.Ui5Label = (_dec = (0, _aureliaTemplating.customElement)(
             if (relation == 'customdata') {
                 this._label.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._label.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

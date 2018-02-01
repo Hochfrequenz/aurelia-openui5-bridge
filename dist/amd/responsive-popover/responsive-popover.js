@@ -292,16 +292,16 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'content') {
                     this._responsivepopover.removeContent(child);
                 }
-                if (relation == 'customHeader') {
+                if (relation == 'customheader') {
                     this._responsivepopover.destroyCustomHeader(child);
                 }
-                if (relation == 'subHeader') {
+                if (relation == 'subheader') {
                     this._responsivepopover.destroySubHeader(child);
                 }
-                if (relation == 'beginButton') {
+                if (relation == 'beginbutton') {
                     this._responsivepopover.destroyBeginButton(child);
                 }
-                if (relation == 'endButton') {
+                if (relation == 'endbutton') {
                     this._responsivepopover.destroyEndButton(child);
                 }
                 if (relation == 'tooltip') {
@@ -310,7 +310,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'customdata') {
                     this._responsivepopover.removeCustomData(child);
                 }
-                if (relation == 'layoutData') {
+                if (relation == 'layoutdata') {
                     this._responsivepopover.destroyLayoutData(child);
                 }
                 if (relation == 'dependents') {

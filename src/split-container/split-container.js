@@ -158,7 +158,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
 if (relation == 'detailpages') {  this._splitcontainer.removeDetailPage(child);}
 if (relation == 'tooltip') {  this._splitcontainer.destroyTooltip(child); }
 if (relation == 'customdata') {  this._splitcontainer.removeCustomData(child);}
-if (relation == 'layoutData') {  this._splitcontainer.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._splitcontainer.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._splitcontainer.removeDependent(child);}
 
       }

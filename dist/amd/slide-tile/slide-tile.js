@@ -244,7 +244,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'customdata') {
                     this._slidetile.removeCustomData(child);
                 }
-                if (relation == 'layoutData') {
+                if (relation == 'layoutdata') {
                     this._slidetile.destroyLayoutData(child);
                 }
                 if (relation == 'dependents') {

@@ -130,7 +130,7 @@ if (relation == 'snappedcontent') {  this._dynamicpagetitle.removeSnappedContent
 if (relation == 'expandedcontent') {  this._dynamicpagetitle.removeExpandedContent(child);}
 if (relation == 'tooltip') {  this._dynamicpagetitle.destroyTooltip(child); }
 if (relation == 'customdata') {  this._dynamicpagetitle.removeCustomData(child);}
-if (relation == 'layoutData') {  this._dynamicpagetitle.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._dynamicpagetitle.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._dynamicpagetitle.removeDependent(child);}
 
       }

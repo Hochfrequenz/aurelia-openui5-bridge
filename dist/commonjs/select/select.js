@@ -254,7 +254,7 @@ var Ui5Select = exports.Ui5Select = (_dec = (0, _aureliaTemplating.customElement
             if (relation == 'customdata') {
                 this._select.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._select.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

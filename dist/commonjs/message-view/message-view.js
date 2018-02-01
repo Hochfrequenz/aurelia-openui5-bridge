@@ -178,7 +178,7 @@ var Ui5MessageView = exports.Ui5MessageView = (_dec = (0, _aureliaTemplating.cus
             if (relation == 'items') {
                 this._messageview.removeItem(child);
             }
-            if (relation == 'headerButton') {
+            if (relation == 'headerbutton') {
                 this._messageview.destroyHeaderButton(child);
             }
         } catch (err) {}

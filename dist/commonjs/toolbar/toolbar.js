@@ -221,7 +221,7 @@ var Ui5Toolbar = exports.Ui5Toolbar = (_dec = (0, _aureliaTemplating.customEleme
             if (relation == 'customdata') {
                 this._toolbar.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._toolbar.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

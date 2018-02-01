@@ -188,7 +188,7 @@ var Ui5DynamicPage = exports.Ui5DynamicPage = (_dec = (0, _aureliaTemplating.cus
             }
 
             try {
-                if (elem.localName == 'title') {
+                if (elem.localName == 'title-elem') {
                     this._dynamicpage.setTitle(child);return elem.localName;
                 }
                 if (elem.localName == 'header') {
@@ -218,7 +218,7 @@ var Ui5DynamicPage = exports.Ui5DynamicPage = (_dec = (0, _aureliaTemplating.cus
 
     Ui5DynamicPage.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
         try {
-            if (relation == 'title') {
+            if (relation == 'title-elem') {
                 this._dynamicpage.destroyTitle(child);
             }
             if (relation == 'header') {
@@ -236,7 +236,7 @@ var Ui5DynamicPage = exports.Ui5DynamicPage = (_dec = (0, _aureliaTemplating.cus
             if (relation == 'customdata') {
                 this._dynamicpage.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._dynamicpage.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

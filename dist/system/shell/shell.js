@@ -282,7 +282,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'customdata') {
                             this._shell.removeCustomData(child);
                         }
-                        if (relation == 'layoutData') {
+                        if (relation == 'layoutdata') {
                             this._shell.destroyLayoutData(child);
                         }
                         if (relation == 'dependents') {

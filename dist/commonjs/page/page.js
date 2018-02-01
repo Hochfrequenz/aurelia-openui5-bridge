@@ -248,19 +248,19 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
             if (relation == 'content') {
                 this._page.removeContent(child);
             }
-            if (relation == 'customHeader') {
+            if (relation == 'customheader') {
                 this._page.destroyCustomHeader(child);
             }
             if (relation == 'footer') {
                 this._page.destroyFooter(child);
             }
-            if (relation == 'subHeader') {
+            if (relation == 'subheader') {
                 this._page.destroySubHeader(child);
             }
             if (relation == 'headercontent') {
                 this._page.removeHeaderContent(child);
             }
-            if (relation == 'landmarkInfo') {
+            if (relation == 'landmarkinfo') {
                 this._page.destroyLandmarkInfo(child);
             }
             if (relation == 'tooltip') {
@@ -269,7 +269,7 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
             if (relation == 'customdata') {
                 this._page.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._page.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

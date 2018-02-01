@@ -218,7 +218,7 @@ var Ui5Switch = exports.Ui5Switch = (_dec = (0, _aureliaTemplating.customElement
             if (relation == 'customdata') {
                 this._switch.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._switch.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

@@ -231,7 +231,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         }
 
                         try {
-                            if (elem.localName == 'title') {
+                            if (elem.localName == 'title-elem') {
                                 this._dynamicpage.setTitle(child);return elem.localName;
                             }
                             if (elem.localName == 'header') {
@@ -261,7 +261,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                 Ui5DynamicPage.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
                     try {
-                        if (relation == 'title') {
+                        if (relation == 'title-elem') {
                             this._dynamicpage.destroyTitle(child);
                         }
                         if (relation == 'header') {
@@ -279,7 +279,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'customdata') {
                             this._dynamicpage.removeCustomData(child);
                         }
-                        if (relation == 'layoutData') {
+                        if (relation == 'layoutdata') {
                             this._dynamicpage.destroyLayoutData(child);
                         }
                         if (relation == 'dependents') {

@@ -149,7 +149,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
 if (relation == 'content') {  this._icontabbar.removeContent(child);}
 if (relation == 'tooltip') {  this._icontabbar.destroyTooltip(child); }
 if (relation == 'customdata') {  this._icontabbar.removeCustomData(child);}
-if (relation == 'layoutData') {  this._icontabbar.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._icontabbar.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._icontabbar.removeDependent(child);}
 
       }

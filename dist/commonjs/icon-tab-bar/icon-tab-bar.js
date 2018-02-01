@@ -251,7 +251,7 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
             if (relation == 'customdata') {
                 this._icontabbar.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._icontabbar.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

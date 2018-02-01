@@ -209,7 +209,7 @@ var Ui5VerticalLayout = exports.Ui5VerticalLayout = (_dec = (0, _aureliaTemplati
             if (relation == 'customdata') {
                 this._verticallayout.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._verticallayout.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

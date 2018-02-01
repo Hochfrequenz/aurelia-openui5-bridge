@@ -246,7 +246,7 @@ var Ui5StandardListItem = exports.Ui5StandardListItem = (_dec = (0, _aureliaTemp
             if (relation == 'customdata') {
                 this._standardlistitem.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._standardlistitem.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

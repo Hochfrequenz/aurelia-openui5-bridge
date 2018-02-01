@@ -152,7 +152,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
       try{
                if (relation == 'tooltip') {  this._responsivegridlayout.destroyTooltip(child); }
 if (relation == 'customdata') {  this._responsivegridlayout.removeCustomData(child);}
-if (relation == 'layoutData') {  this._responsivegridlayout.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._responsivegridlayout.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._responsivegridlayout.removeDependent(child);}
 
       }

@@ -224,7 +224,7 @@ var Ui5SegmentedButton = exports.Ui5SegmentedButton = (_dec = (0, _aureliaTempla
             if (relation == 'customdata') {
                 this._segmentedbutton.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._segmentedbutton.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

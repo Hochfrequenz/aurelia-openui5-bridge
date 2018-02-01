@@ -228,7 +228,7 @@ var Ui5StandardTile = exports.Ui5StandardTile = (_dec = (0, _aureliaTemplating.c
             if (relation == 'customdata') {
                 this._standardtile.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._standardtile.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

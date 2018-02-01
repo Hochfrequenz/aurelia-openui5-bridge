@@ -200,7 +200,7 @@ var Ui5ToolbarSpacer = exports.Ui5ToolbarSpacer = (_dec = (0, _aureliaTemplating
             if (relation == 'customdata') {
                 this._toolbarspacer.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._toolbarspacer.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

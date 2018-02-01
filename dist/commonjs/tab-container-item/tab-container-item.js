@@ -205,7 +205,7 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
             if (relation == 'customdata') {
                 this._tabcontaineritem.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._tabcontaineritem.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

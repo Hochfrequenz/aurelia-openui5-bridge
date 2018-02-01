@@ -215,7 +215,7 @@ var Ui5ObjectIdentifier = exports.Ui5ObjectIdentifier = (_dec = (0, _aureliaTemp
             if (relation == 'customdata') {
                 this._objectidentifier.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._objectidentifier.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

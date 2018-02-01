@@ -116,7 +116,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
       try{
                if (relation == 'tooltip') {  this._uploadcollectionparameter.destroyTooltip(child); }
 if (relation == 'customdata') {  this._uploadcollectionparameter.removeCustomData(child);}
-if (relation == 'layoutData') {  this._uploadcollectionparameter.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._uploadcollectionparameter.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._uploadcollectionparameter.removeDependent(child);}
 
       }

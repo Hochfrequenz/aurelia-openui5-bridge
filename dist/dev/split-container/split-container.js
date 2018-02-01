@@ -306,7 +306,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'customdata') {
                             this._splitcontainer.removeCustomData(child);
                         }
-                        if (relation == 'layoutData') {
+                        if (relation == 'layoutdata') {
                             this._splitcontainer.destroyLayoutData(child);
                         }
                         if (relation == 'dependents') {

@@ -247,7 +247,7 @@ var Ui5ResponsiveGridLayout = exports.Ui5ResponsiveGridLayout = (_dec = (0, _aur
             if (relation == 'customdata') {
                 this._responsivegridlayout.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._responsivegridlayout.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

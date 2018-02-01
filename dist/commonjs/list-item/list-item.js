@@ -201,7 +201,7 @@ var Ui5ListItem = exports.Ui5ListItem = (_dec = (0, _aureliaTemplating.customEle
             if (relation == 'customdata') {
                 this._listitem.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._listitem.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

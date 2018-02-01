@@ -245,7 +245,7 @@ var Ui5SimpleForm = exports.Ui5SimpleForm = (_dec = (0, _aureliaTemplating.custo
                 if (elem.localName == 'content') {
                     var _index = null;if (afterElement) _index = this._simpleform.indexOfContent(afterElement);if (_index) this._simpleform.insertContent(child, _index + 1);else this._simpleform.addContent(child, 0);return elem.localName;
                 }
-                if (elem.localName == 'title') {
+                if (elem.localName == 'title-elem') {
                     this._simpleform.setTitle(child);return elem.localName;
                 }
                 if (elem.localName == 'toolbar') {
@@ -272,7 +272,7 @@ var Ui5SimpleForm = exports.Ui5SimpleForm = (_dec = (0, _aureliaTemplating.custo
             if (relation == 'content') {
                 this._simpleform.removeContent(child);
             }
-            if (relation == 'title') {
+            if (relation == 'title-elem') {
                 this._simpleform.destroyTitle(child);
             }
             if (relation == 'toolbar') {
@@ -284,7 +284,7 @@ var Ui5SimpleForm = exports.Ui5SimpleForm = (_dec = (0, _aureliaTemplating.custo
             if (relation == 'customdata') {
                 this._simpleform.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._simpleform.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

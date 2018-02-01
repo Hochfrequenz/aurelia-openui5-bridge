@@ -211,7 +211,7 @@ var Ui5ViewSettingsFilterItem = exports.Ui5ViewSettingsFilterItem = (_dec = (0, 
             if (relation == 'customdata') {
                 this._viewsettingsfilteritem.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._viewsettingsfilteritem.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

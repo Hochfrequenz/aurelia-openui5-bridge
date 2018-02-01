@@ -122,7 +122,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
                if (relation == 'links') {  this._breadcrumbs.removeLink(child);}
 if (relation == 'tooltip') {  this._breadcrumbs.destroyTooltip(child); }
 if (relation == 'customdata') {  this._breadcrumbs.removeCustomData(child);}
-if (relation == 'layoutData') {  this._breadcrumbs.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._breadcrumbs.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._breadcrumbs.removeDependent(child);}
 
       }

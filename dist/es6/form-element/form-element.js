@@ -118,7 +118,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
 if (relation == 'fields') {  this._formelement.removeField(child);}
 if (relation == 'tooltip') {  this._formelement.destroyTooltip(child); }
 if (relation == 'customdata') {  this._formelement.removeCustomData(child);}
-if (relation == 'layoutData') {  this._formelement.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._formelement.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._formelement.removeDependent(child);}
 
       }

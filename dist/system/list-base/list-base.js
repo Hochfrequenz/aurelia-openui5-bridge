@@ -327,13 +327,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'items') {
                             this._listbase.removeItem(child);
                         }
-                        if (relation == 'swipeContent') {
+                        if (relation == 'swipecontent') {
                             this._listbase.destroySwipeContent(child);
                         }
-                        if (relation == 'headerToolbar') {
+                        if (relation == 'headertoolbar') {
                             this._listbase.destroyHeaderToolbar(child);
                         }
-                        if (relation == 'infoToolbar') {
+                        if (relation == 'infotoolbar') {
                             this._listbase.destroyInfoToolbar(child);
                         }
                         if (relation == 'tooltip') {
@@ -342,7 +342,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         if (relation == 'customdata') {
                             this._listbase.removeCustomData(child);
                         }
-                        if (relation == 'layoutData') {
+                        if (relation == 'layoutdata') {
                             this._listbase.destroyLayoutData(child);
                         }
                         if (relation == 'dependents') {

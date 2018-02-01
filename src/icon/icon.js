@@ -148,7 +148,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
       try{
                if (relation == 'tooltip') {  this._icon.destroyTooltip(child); }
 if (relation == 'customdata') {  this._icon.removeCustomData(child);}
-if (relation == 'layoutData') {  this._icon.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._icon.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._icon.removeDependent(child);}
 
       }

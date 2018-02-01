@@ -215,7 +215,7 @@ var Ui5Text = exports.Ui5Text = (_dec = (0, _aureliaTemplating.customElement)('u
             if (relation == 'customdata') {
                 this._text.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._text.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

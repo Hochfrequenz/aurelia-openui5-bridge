@@ -206,7 +206,7 @@ var Ui5DynamicPageHeader = exports.Ui5DynamicPageHeader = (_dec = (0, _aureliaTe
             if (relation == 'customdata') {
                 this._dynamicpageheader.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._dynamicpageheader.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

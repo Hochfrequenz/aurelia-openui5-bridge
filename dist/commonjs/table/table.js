@@ -217,12 +217,54 @@ var Ui5Table = exports.Ui5Table = (_dec = (0, _aureliaTemplating.customElement)(
         if (this._parent && this._relation) {
           this._parent.removeChildByRelation(this._table, this._relation);
         }
+<<<<<<< HEAD
       } else {
         this._table.destroy();
       }
       _Ui5ListBase.prototype.detached.call(this);
     } catch (err) {}
   };
+=======
+    };
+
+    Ui5Table.prototype.removeChildByRelation = function removeChildByRelation(child, relation) {
+        try {
+            if (relation == 'columns') {
+                this._table.removeColumn(child);
+            }
+            if (relation == 'items') {
+                this._table.removeItem(child);
+            }
+            if (relation == 'swipecontent') {
+                this._table.destroySwipeContent(child);
+            }
+            if (relation == 'headertoolbar') {
+                this._table.destroyHeaderToolbar(child);
+            }
+            if (relation == 'infotoolbar') {
+                this._table.destroyInfoToolbar(child);
+            }
+            if (relation == 'tooltip') {
+                this._table.destroyTooltip(child);
+            }
+            if (relation == 'customdata') {
+                this._table.removeCustomData(child);
+            }
+            if (relation == 'layoutdata') {
+                this._table.destroyLayoutData(child);
+            }
+            if (relation == 'dependents') {
+                this._table.removeDependent(child);
+            }
+        } catch (err) {}
+    };
+
+    Ui5Table.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
+        if (this._table !== null) {
+            this._table.setBackgroundDesign(newValue);
+        }
+    };
+>>>>>>> master
 
   Ui5Table.prototype.addChild = function addChild(child, elem, afterElement) {
     var path = jQuery.makeArray($(elem).parentsUntil(this.element));

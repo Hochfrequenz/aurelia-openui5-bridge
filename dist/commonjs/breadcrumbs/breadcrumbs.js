@@ -206,7 +206,7 @@ var Ui5Breadcrumbs = exports.Ui5Breadcrumbs = (_dec = (0, _aureliaTemplating.cus
             if (relation == 'customdata') {
                 this._breadcrumbs.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._breadcrumbs.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

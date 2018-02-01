@@ -158,13 +158,13 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
       removeChildByRelation(child, relation) {
       try{
                if (relation == 'content') {  this._responsivepopover.removeContent(child);}
-if (relation == 'customHeader') {  this._responsivepopover.destroyCustomHeader(child); }
-if (relation == 'subHeader') {  this._responsivepopover.destroySubHeader(child); }
-if (relation == 'beginButton') {  this._responsivepopover.destroyBeginButton(child); }
-if (relation == 'endButton') {  this._responsivepopover.destroyEndButton(child); }
+if (relation == 'customheader') {  this._responsivepopover.destroyCustomHeader(child); }
+if (relation == 'subheader') {  this._responsivepopover.destroySubHeader(child); }
+if (relation == 'beginbutton') {  this._responsivepopover.destroyBeginButton(child); }
+if (relation == 'endbutton') {  this._responsivepopover.destroyEndButton(child); }
 if (relation == 'tooltip') {  this._responsivepopover.destroyTooltip(child); }
 if (relation == 'customdata') {  this._responsivepopover.removeCustomData(child);}
-if (relation == 'layoutData') {  this._responsivepopover.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._responsivepopover.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._responsivepopover.removeDependent(child);}
 
       }

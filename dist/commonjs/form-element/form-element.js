@@ -202,7 +202,7 @@ var Ui5FormElement = exports.Ui5FormElement = (_dec = (0, _aureliaTemplating.cus
             if (relation == 'customdata') {
                 this._formelement.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._formelement.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

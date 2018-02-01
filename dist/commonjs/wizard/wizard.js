@@ -229,7 +229,7 @@ var Ui5Wizard = exports.Ui5Wizard = (_dec = (0, _aureliaTemplating.customElement
             if (relation == 'customdata') {
                 this._wizard.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._wizard.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

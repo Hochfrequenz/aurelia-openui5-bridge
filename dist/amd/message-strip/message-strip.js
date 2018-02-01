@@ -253,7 +253,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 if (relation == 'customdata') {
                     this._messagestrip.removeCustomData(child);
                 }
-                if (relation == 'layoutData') {
+                if (relation == 'layoutdata') {
                     this._messagestrip.destroyLayoutData(child);
                 }
                 if (relation == 'dependents') {

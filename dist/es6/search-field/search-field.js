@@ -147,7 +147,7 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
                if (relation == 'suggestionitems') {  this._searchfield.removeSuggestionItem(child);}
 if (relation == 'tooltip') {  this._searchfield.destroyTooltip(child); }
 if (relation == 'customdata') {  this._searchfield.removeCustomData(child);}
-if (relation == 'layoutData') {  this._searchfield.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._searchfield.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._searchfield.removeDependent(child);}
 
       }

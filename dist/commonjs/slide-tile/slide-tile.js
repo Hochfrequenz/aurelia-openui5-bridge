@@ -215,7 +215,7 @@ var Ui5SlideTile = exports.Ui5SlideTile = (_dec = (0, _aureliaTemplating.customE
             if (relation == 'customdata') {
                 this._slidetile.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._slidetile.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

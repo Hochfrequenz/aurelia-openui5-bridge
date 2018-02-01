@@ -212,7 +212,7 @@ var Ui5FormattedText = exports.Ui5FormattedText = (_dec = (0, _aureliaTemplating
             if (relation == 'customdata') {
                 this._formattedtext.removeCustomData(child);
             }
-            if (relation == 'layoutData') {
+            if (relation == 'layoutdata') {
                 this._formattedtext.destroyLayoutData(child);
             }
             if (relation == 'dependents') {

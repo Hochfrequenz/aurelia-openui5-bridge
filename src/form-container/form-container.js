@@ -106,7 +106,7 @@ params.visible = getBooleanFromAttributeValue(this.visible);
         for (elem of path) {
         try{
                  if (elem.localName == 'formelements') { var _index = null; if (afterElement) _index = this._formcontainer.indexOfFormElement(afterElement); if (_index)this._formcontainer.insertFormElement(child, _index + 1); else this._formcontainer.addFormElement(child, 0);  return elem.localName; }
-if (elem.localName == 'title') { this._formcontainer.setTitle(child); return elem.localName;}
+if (elem.localName == 'title-elem') { this._formcontainer.setTitle(child); return elem.localName;}
 if (elem.localName == 'toolbar') { this._formcontainer.setToolbar(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._formcontainer.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._formcontainer.indexOfCustomData(afterElement); if (_index)this._formcontainer.insertCustomData(child, _index + 1); else this._formcontainer.addCustomData(child, 0);  return elem.localName; }
@@ -120,11 +120,11 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
       removeChildByRelation(child, relation) {
       try{
                if (relation == 'formelements') {  this._formcontainer.removeFormElement(child);}
-if (relation == 'title') {  this._formcontainer.destroyTitle(child); }
+if (relation == 'title-elem') {  this._formcontainer.destroyTitle(child); }
 if (relation == 'toolbar') {  this._formcontainer.destroyToolbar(child); }
 if (relation == 'tooltip') {  this._formcontainer.destroyTooltip(child); }
 if (relation == 'customdata') {  this._formcontainer.removeCustomData(child);}
-if (relation == 'layoutData') {  this._formcontainer.destroyLayoutData(child); }
+if (relation == 'layoutdata') {  this._formcontainer.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._formcontainer.removeDependent(child);}
 
       }
