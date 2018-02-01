@@ -21,7 +21,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     }
 
     ConfigBuilder.prototype.useAll = function useAll() {
-      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView();
+      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput();
     };
 
     ConfigBuilder.prototype.useLink = function useLink() {
@@ -229,6 +229,12 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     ConfigBuilder.prototype.useMessageView = function useMessageView() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./message-view/message-view'));
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./message-item/message-item'));
+      return this;
+    };
+
+    ConfigBuilder.prototype.useMaskInput = function useMaskInput() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./mask-input/mask-input'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./mask-input-rule/mask-input-rule'));
       return this;
     };
 

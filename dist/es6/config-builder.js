@@ -43,6 +43,7 @@ export class ConfigBuilder {
       .useViewSettingsDialog()
       .useSplitContainer()
       .useMessageView()
+      .useMaskInput()
   }
 
   useLink(): ConfigBuilder {
@@ -221,6 +222,12 @@ export class ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./message-item/message-item'));
     return this;
   }
+  useMaskInput(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./mask-input/mask-input'));
+    this.globalResources.push(PLATFORM.moduleName('./mask-input-rule/mask-input-rule'));
+    return this;
+  }
+
   /**
   * Don't globalize any resources
   * Allows you to import yourself via <require></require>

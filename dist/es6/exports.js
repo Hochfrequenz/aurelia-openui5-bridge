@@ -80,4 +80,6 @@ export * from './select-dialog/select-dialog';
 export * from './split-container/split-container';
 export * from './message-view/message-view';
 export * from './message-item/message-item';
+export * from './mask-input-rule/mask-input-rule';
+export * from './mask-input/mask-input';
 // build-index-remove end
