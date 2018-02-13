@@ -25,7 +25,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         }
 
         ConfigBuilder.prototype.useAll = function useAll() {
-          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput();
+          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton();
         };
 
         ConfigBuilder.prototype.useLink = function useLink() {
@@ -61,6 +61,11 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
         ConfigBuilder.prototype.useButton = function useButton() {
           this.globalResources.push(PLATFORM.moduleName('./button/button'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useToggleButton = function useToggleButton() {
+          this.globalResources.push(PLATFORM.moduleName('./toggle-button/toggle-button'));
           return this;
         };
 

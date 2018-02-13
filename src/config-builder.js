@@ -44,6 +44,7 @@ export class ConfigBuilder {
       .useSplitContainer()
       .useMessageView()
       .useMaskInput()
+      .useToggleButton()
   }
 
   useLink(): ConfigBuilder {
@@ -74,6 +75,10 @@ export class ConfigBuilder {
   }
   useButton(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./button/button'));
+    return this;
+  }
+  useToggleButton(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./toggle-button/toggle-button'));
     return this;
   }
   useGrid(): ConfigBuilder {

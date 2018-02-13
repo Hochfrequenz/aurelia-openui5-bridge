@@ -82,4 +82,5 @@ export * from './message-view/message-view';
 export * from './message-item/message-item';
 export * from './mask-input-rule/mask-input-rule';
 export * from './mask-input/mask-input';
+export * from './toggle-button/toggle-button';
 // build-index-remove end

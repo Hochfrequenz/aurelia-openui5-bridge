@@ -999,3 +999,15 @@ Object.keys(_maskInput).forEach(function (key) {
     }
   });
 });
+
+var _toggleButton = require('./toggle-button/toggle-button');
+
+Object.keys(_toggleButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _toggleButton[key];
+    }
+  });
+});
