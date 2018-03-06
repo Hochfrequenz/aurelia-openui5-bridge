@@ -26,6 +26,7 @@ export class Ui5Shell extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -164,6 +165,7 @@ titleLevelChanged(newValue){if(this._shell!==null){ this._shell.setTitleLevel(ne
 logoutChanged(newValue){if(this._shell!==null){ this._shell.attachLogout(newValue);}}
 busyChanged(newValue){if(this._shell!==null){ this._shell.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._shell!==null){ this._shell.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._shell!==null){ this._shell.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

@@ -19,6 +19,7 @@ export class Ui5DynamicPage extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -149,6 +150,7 @@ showFooterChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setS
 fitContentChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setFitContent(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

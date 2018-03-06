@@ -19,6 +19,7 @@ export class Ui5Html extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -141,6 +142,7 @@ visibleChanged(newValue){if(this._html!==null){ this._html.setVisible(getBoolean
 afterRenderingChanged(newValue){if(this._html!==null){ this._html.attachAfterRendering(newValue);}}
 busyChanged(newValue){if(this._html!==null){ this._html.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._html!==null){ this._html.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._html!==null){ this._html.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

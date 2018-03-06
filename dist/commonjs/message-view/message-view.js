@@ -7,7 +7,7 @@ exports.Ui5MessageView = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -64,7 +64,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5MessageView = exports.Ui5MessageView = (_dec = (0, _aureliaTemplating.customElement)('ui5-message-view'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaFramework.computedFrom)('_messageview'), _dec(_class = _dec2(_class = (_class2 = function () {
+var Ui5MessageView = exports.Ui5MessageView = (_dec = (0, _aureliaTemplating.customElement)('ui5-message-view'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaFramework.computedFrom)('_messageview'), _dec(_class = _dec2(_class = (_class2 = function () {
     function Ui5MessageView(element) {
         _classCallCheck(this, Ui5MessageView);
 
@@ -80,15 +80,17 @@ var Ui5MessageView = exports.Ui5MessageView = (_dec = (0, _aureliaTemplating.cus
 
         _initDefineProp(this, 'groupItems', _descriptor4, this);
 
-        _initDefineProp(this, 'afterOpen', _descriptor5, this);
+        _initDefineProp(this, 'showDetailsPageHeader', _descriptor5, this);
 
-        _initDefineProp(this, 'itemSelect', _descriptor6, this);
+        _initDefineProp(this, 'afterOpen', _descriptor6, this);
 
-        _initDefineProp(this, 'listSelect', _descriptor7, this);
+        _initDefineProp(this, 'itemSelect', _descriptor7, this);
 
-        _initDefineProp(this, 'longtextLoaded', _descriptor8, this);
+        _initDefineProp(this, 'listSelect', _descriptor8, this);
 
-        _initDefineProp(this, 'urlValidated', _descriptor9, this);
+        _initDefineProp(this, 'longtextLoaded', _descriptor9, this);
+
+        _initDefineProp(this, 'urlValidated', _descriptor10, this);
 
         this.element = element;
         this.attributeManager = new _attributeManager.AttributeManager(this.element);
@@ -98,6 +100,7 @@ var Ui5MessageView = exports.Ui5MessageView = (_dec = (0, _aureliaTemplating.cus
         params.asyncDescriptionHandler = this.asyncDescriptionHandler;
         params.asyncURLHandler = this.asyncURLHandler;
         params.groupItems = (0, _attributes.getBooleanFromAttributeValue)(this.groupItems);
+        params.showDetailsPageHeader = (0, _attributes.getBooleanFromAttributeValue)(this.showDetailsPageHeader);
         params.afterOpen = this.afterOpen == null ? this.defaultFunc : this.afterOpen;
         params.itemSelect = this.itemSelect == null ? this.defaultFunc : this.itemSelect;
         params.listSelect = this.listSelect == null ? this.defaultFunc : this.listSelect;
@@ -202,6 +205,12 @@ var Ui5MessageView = exports.Ui5MessageView = (_dec = (0, _aureliaTemplating.cus
         }
     };
 
+    Ui5MessageView.prototype.showDetailsPageHeaderChanged = function showDetailsPageHeaderChanged(newValue) {
+        if (this._messageview !== null) {
+            this._messageview.setShowDetailsPageHeader((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        }
+    };
+
     Ui5MessageView.prototype.afterOpenChanged = function afterOpenChanged(newValue) {
         if (this._messageview !== null) {
             this._messageview.attachAfterOpen(newValue);
@@ -260,29 +269,34 @@ var Ui5MessageView = exports.Ui5MessageView = (_dec = (0, _aureliaTemplating.cus
     initializer: function initializer() {
         return false;
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'afterOpen', [_dec6], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'showDetailsPageHeader', [_dec6], {
+    enumerable: true,
+    initializer: function initializer() {
+        return true;
+    }
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'afterOpen', [_dec7], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'itemSelect', [_dec7], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'itemSelect', [_dec8], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'listSelect', [_dec8], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'listSelect', [_dec9], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'longtextLoaded', [_dec9], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'longtextLoaded', [_dec10], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'urlValidated', [_dec10], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'urlValidated', [_dec11], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec11], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec12], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

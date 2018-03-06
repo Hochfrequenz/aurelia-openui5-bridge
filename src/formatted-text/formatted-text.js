@@ -19,6 +19,7 @@ export class Ui5FormattedText extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -141,6 +142,7 @@ convertedLinksDefaultTargetChanged(newValue){if(this._formattedtext!==null){ thi
 heightChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setHeight(newValue);}}
 busyChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

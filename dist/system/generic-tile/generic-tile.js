@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, Ui5GenericTile;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, Ui5GenericTile;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5GenericTile', Ui5GenericTile = (_dec = customElement('ui5-generic-tile'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = computedFrom('_generictile'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5GenericTile', Ui5GenericTile = (_dec = customElement('ui5-generic-tile'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = computedFrom('_generictile'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5GenericTile, _Ui5Control);
 
                 function Ui5GenericTile(element) {
@@ -155,21 +155,23 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'busyIndicatorDelay', _descriptor15, _this);
 
-                    _initDefineProp(_this, 'visible', _descriptor16, _this);
+                    _initDefineProp(_this, 'busyIndicatorSize', _descriptor16, _this);
 
-                    _initDefineProp(_this, 'fieldGroupIds', _descriptor17, _this);
+                    _initDefineProp(_this, 'visible', _descriptor17, _this);
 
-                    _initDefineProp(_this, 'validateFieldGroup', _descriptor18, _this);
+                    _initDefineProp(_this, 'fieldGroupIds', _descriptor18, _this);
 
-                    _initDefineProp(_this, 'validationSuccess', _descriptor19, _this);
+                    _initDefineProp(_this, 'validateFieldGroup', _descriptor19, _this);
 
-                    _initDefineProp(_this, 'validationError', _descriptor20, _this);
+                    _initDefineProp(_this, 'validationSuccess', _descriptor20, _this);
 
-                    _initDefineProp(_this, 'parseError', _descriptor21, _this);
+                    _initDefineProp(_this, 'validationError', _descriptor21, _this);
 
-                    _initDefineProp(_this, 'formatError', _descriptor22, _this);
+                    _initDefineProp(_this, 'parseError', _descriptor22, _this);
 
-                    _initDefineProp(_this, 'modelContextChange', _descriptor23, _this);
+                    _initDefineProp(_this, 'formatError', _descriptor23, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor24, _this);
 
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
@@ -381,6 +383,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     }
                 };
 
+                Ui5GenericTile.prototype.busyIndicatorSizeChanged = function busyIndicatorSizeChanged(newValue) {
+                    if (this._generictile !== null) {
+                        this._generictile.setBusyIndicatorSize(newValue);
+                    }
+                };
+
                 Ui5GenericTile.prototype.visibleChanged = function visibleChanged(newValue) {
                     if (this._generictile !== null) {
                         this._generictile.setVisible(getBooleanFromAttributeValue(newValue));
@@ -512,47 +520,52 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return 1000;
                 }
-            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec17], {
+            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec17], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 'Medium';
+                }
+            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec18], {
                 enumerable: true,
                 initializer: function initializer() {
                     return true;
                 }
-            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec18], {
+            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec19], {
                 enumerable: true,
                 initializer: function initializer() {
                     return '[]';
                 }
-            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec19], {
+            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec20], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec20], {
+            }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec21], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec21], {
+            }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec22], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec22], {
+            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec23], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec23], {
+            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec24], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec24], {
+            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec25], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec25], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec26], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5GenericTile', Ui5GenericTile);
         }

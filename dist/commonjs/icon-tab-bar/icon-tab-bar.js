@@ -7,7 +7,7 @@ exports.Ui5IconTabBar = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -70,7 +70,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-bar'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaFramework.computedFrom)('_icontabbar'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.customElement)('ui5-icon-tab-bar'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaTemplating.bindable)(), _dec27 = (0, _aureliaFramework.computedFrom)('_icontabbar'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
     _inherits(Ui5IconTabBar, _Ui5Control);
 
     function Ui5IconTabBar(element) {
@@ -114,21 +114,23 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
 
         _initDefineProp(_this, 'busyIndicatorDelay', _descriptor16, _this);
 
-        _initDefineProp(_this, 'visible', _descriptor17, _this);
+        _initDefineProp(_this, 'busyIndicatorSize', _descriptor17, _this);
 
-        _initDefineProp(_this, 'fieldGroupIds', _descriptor18, _this);
+        _initDefineProp(_this, 'visible', _descriptor18, _this);
 
-        _initDefineProp(_this, 'validateFieldGroup', _descriptor19, _this);
+        _initDefineProp(_this, 'fieldGroupIds', _descriptor19, _this);
 
-        _initDefineProp(_this, 'validationSuccess', _descriptor20, _this);
+        _initDefineProp(_this, 'validateFieldGroup', _descriptor20, _this);
 
-        _initDefineProp(_this, 'validationError', _descriptor21, _this);
+        _initDefineProp(_this, 'validationSuccess', _descriptor21, _this);
 
-        _initDefineProp(_this, 'parseError', _descriptor22, _this);
+        _initDefineProp(_this, 'validationError', _descriptor22, _this);
 
-        _initDefineProp(_this, 'formatError', _descriptor23, _this);
+        _initDefineProp(_this, 'parseError', _descriptor23, _this);
 
-        _initDefineProp(_this, 'modelContextChange', _descriptor24, _this);
+        _initDefineProp(_this, 'formatError', _descriptor24, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor25, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -350,6 +352,12 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
         }
     };
 
+    Ui5IconTabBar.prototype.busyIndicatorSizeChanged = function busyIndicatorSizeChanged(newValue) {
+        if (this._icontabbar !== null) {
+            this._icontabbar.setBusyIndicatorSize(newValue);
+        }
+    };
+
     Ui5IconTabBar.prototype.visibleChanged = function visibleChanged(newValue) {
         if (this._icontabbar !== null) {
             this._icontabbar.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
@@ -486,44 +494,49 @@ var Ui5IconTabBar = exports.Ui5IconTabBar = (_dec = (0, _aureliaTemplating.custo
     initializer: function initializer() {
         return 1000;
     }
-}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec18], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec18], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Medium';
+    }
+}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec19], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec19], {
+}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec20], {
     enumerable: true,
     initializer: function initializer() {
         return '[]';
     }
-}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec20], {
+}), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec21], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec21], {
+}), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec22], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec22], {
+}), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec23], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec23], {
+}), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec24], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec24], {
+}), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec25], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec25], {
+}), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec26], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec26], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec27], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

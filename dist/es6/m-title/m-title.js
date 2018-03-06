@@ -16,9 +16,11 @@ export class Ui5mTitle extends Ui5Control{
 @bindable() titleStyle = 'Auto';
 @bindable() width = null;
 @bindable() textAlign = 'Initial';
+@bindable() wrapping = false;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -47,6 +49,7 @@ params.level = this.level;
 params.titleStyle = this.titleStyle;
 params.width = this.width;
 params.textAlign = this.textAlign;
+params.wrapping = getBooleanFromAttributeValue(this.wrapping);
             
                                             super.fillProperties(params);   
         }
@@ -139,8 +142,10 @@ levelChanged(newValue){if(this._mtitle!==null){ this._mtitle.setLevel(newValue);
 titleStyleChanged(newValue){if(this._mtitle!==null){ this._mtitle.setTitleStyle(newValue);}}
 widthChanged(newValue){if(this._mtitle!==null){ this._mtitle.setWidth(newValue);}}
 textAlignChanged(newValue){if(this._mtitle!==null){ this._mtitle.setTextAlign(newValue);}}
+wrappingChanged(newValue){if(this._mtitle!==null){ this._mtitle.setWrapping(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._mtitle!==null){ this._mtitle.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._mtitle!==null){ this._mtitle.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

@@ -32,6 +32,7 @@ export class Ui5ResponsivePopover extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -190,6 +191,7 @@ beforeCloseChanged(newValue){if(this._responsivepopover!==null){ this._responsiv
 afterCloseChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachAfterClose(newValue);}}
 busyChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

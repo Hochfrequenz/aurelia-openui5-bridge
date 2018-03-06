@@ -19,6 +19,7 @@ export class Ui5TileContent extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -143,6 +144,7 @@ disabledChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setDis
 frameTypeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFrameType(newValue);}}
 busyChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

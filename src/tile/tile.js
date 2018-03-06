@@ -16,6 +16,7 @@ export class Ui5Tile extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -132,6 +133,7 @@ if (relation == 'dependents') {  this._tile.removeDependent(child);}
 pressChanged(newValue){if(this._tile!==null){ this._tile.attachPress(newValue);}}
 busyChanged(newValue){if(this._tile!==null){ this._tile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tile!==null){ this._tile.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._tile!==null){ this._tile.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._tile!==null){ this._tile.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._tile!==null){ this._tile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

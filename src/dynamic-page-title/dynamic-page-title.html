@@ -2,9 +2,18 @@
   <heading ref="heading">
     <slot name="heading"></slot>
   </heading>
+  <snappedHeading ref="snappedHeading">
+    <slot name="snappedHeading"></slot>
+  </snappedHeading>
+  <expandedHeading ref="expandedHeading">
+    <slot name="expandedHeading"></slot>
+  </expandedHeading>
   <actions ref="actions">
     <slot name="actions"></slot>
   </actions>
+  <navigationActions ref="navigationActions">
+    <slot name="navigationActions"></slot>
+  </navigationActions>
   <content ref="content">
     <slot></slot>
   </content>
@@ -14,6 +23,9 @@
   <expandedContent ref="expandedContent">
     <slot name="expandedContent"></slot>
   </expandedContent>
+  <breadcrumbs ref="breadcrumbs">
+    <slot name="breadcrumbs"></slot>
+  </breadcrumbs>
   <tooltip ref="tooltip">
     <slot name="tooltip"></slot>
   </tooltip>

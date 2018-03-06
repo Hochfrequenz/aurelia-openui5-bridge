@@ -20,6 +20,7 @@ export class Ui5FeedContent extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -144,6 +145,7 @@ truncateValueToChanged(newValue){if(this._feedcontent!==null){ this._feedcontent
 pressChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.attachPress(newValue);}}
 busyChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

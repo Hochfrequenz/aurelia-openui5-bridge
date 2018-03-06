@@ -25,6 +25,7 @@ export class Ui5TableSelectDialog extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -163,6 +164,7 @@ liveChangeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselec
 cancelChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachCancel(newValue);}}
 busyChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

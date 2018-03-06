@@ -20,6 +20,7 @@ export class Ui5ObjectIdentifier extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -144,6 +145,7 @@ textDirectionChanged(newValue){if(this._objectidentifier!==null){ this._objectid
 titlePressChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.attachTitlePress(newValue);}}
 busyChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

@@ -17,9 +17,11 @@ export class Ui5Text extends Ui5Control{
 @bindable() textAlign = 'Begin';
 @bindable() width = null;
 @bindable() maxLines = null;
+@bindable() renderWhitespace = false;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -49,6 +51,7 @@ params.wrapping = getBooleanFromAttributeValue(this.wrapping);
 params.textAlign = this.textAlign;
 params.width = this.width;
 params.maxLines = this.maxLines?parseInt(this.maxLines):0;
+params.renderWhitespace = getBooleanFromAttributeValue(this.renderWhitespace);
             
                                             super.fillProperties(params);   
         }
@@ -142,8 +145,10 @@ wrappingChanged(newValue){if(this._text!==null){ this._text.setWrapping(getBoole
 textAlignChanged(newValue){if(this._text!==null){ this._text.setTextAlign(newValue);}}
 widthChanged(newValue){if(this._text!==null){ this._text.setWidth(newValue);}}
 maxLinesChanged(newValue){if(this._text!==null){ this._text.setMaxLines(newValue);}}
+renderWhitespaceChanged(newValue){if(this._text!==null){ this._text.setRenderWhitespace(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._text!==null){ this._text.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._text!==null){ this._text.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._text!==null){ this._text.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

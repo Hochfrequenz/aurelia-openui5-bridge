@@ -15,6 +15,7 @@ export class Ui5ToolbarSpacer extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -129,6 +130,7 @@ if (relation == 'dependents') {  this._toolbarspacer.removeDependent(child);}
     widthChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setWidth(newValue);}}
 busyChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

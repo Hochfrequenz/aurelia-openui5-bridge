@@ -16,6 +16,7 @@ export class Ui5Form extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -140,6 +141,7 @@ if (relation == 'dependents') {  this._form.removeDependent(child);}
 editableChanged(newValue){if(this._form!==null){ this._form.setEditable(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._form!==null){ this._form.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._form!==null){ this._form.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._form!==null){ this._form.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._form!==null){ this._form.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._form!==null){ this._form.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

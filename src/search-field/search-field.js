@@ -27,6 +27,7 @@ export class Ui5SearchField extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -168,6 +169,7 @@ liveChangeChanged(newValue){if(this._searchfield!==null){ this._searchfield.atta
 suggestChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachSuggest(newValue);}}
 busyChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._searchfield!==null){ this._searchfield.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._searchfield!==null){ this._searchfield.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

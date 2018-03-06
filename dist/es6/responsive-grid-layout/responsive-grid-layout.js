@@ -32,6 +32,7 @@ export class Ui5ResponsiveGridLayout extends Ui5FormLayout{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -178,6 +179,7 @@ backgroundDesignChanged(newValue){if(this._responsivegridlayout!==null){ this._r
 /* inherited from sap.ui.layout.form.FormLayout*/
 busyChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

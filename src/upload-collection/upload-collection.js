@@ -40,6 +40,7 @@ export class Ui5UploadCollection extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -214,6 +215,7 @@ beforeUploadStartsChanged(newValue){if(this._uploadcollection!==null){ this._upl
 selectionChangeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachSelectionChange(newValue);}}
 busyChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

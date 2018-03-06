@@ -29,6 +29,7 @@ export class Ui5Icon extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -171,6 +172,7 @@ noTabStopChanged(newValue){if(this._icon!==null){ this._icon.setNoTabStop(getBoo
 pressChanged(newValue){if(this._icon!==null){ this._icon.attachPress(newValue);}}
 busyChanged(newValue){if(this._icon!==null){ this._icon.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._icon!==null){ this._icon.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._icon!==null){ this._icon.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._icon!==null){ this._icon.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._icon!==null){ this._icon.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

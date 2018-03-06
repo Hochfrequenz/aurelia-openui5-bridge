@@ -26,6 +26,7 @@ export class Ui5Page extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -174,6 +175,7 @@ floatingFooterChanged(newValue){if(this._page!==null){ this._page.setFloatingFoo
 navButtonPressChanged(newValue){if(this._page!==null){ this._page.attachNavButtonPress(newValue);}}
 busyChanged(newValue){if(this._page!==null){ this._page.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._page!==null){ this._page.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._page!==null){ this._page.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

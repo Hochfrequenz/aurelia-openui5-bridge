@@ -37,6 +37,7 @@ export class Ui5DatePicker extends Ui5DateTimeField{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -180,6 +181,7 @@ requiredChanged(newValue){if(this._datepicker!==null){ this._datepicker.setRequi
 changeChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachChange(newValue);}}
 busyChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._datepicker!==null){ this._datepicker.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._datepicker!==null){ this._datepicker.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

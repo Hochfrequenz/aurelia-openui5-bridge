@@ -40,6 +40,7 @@ export class Ui5ListBase extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -212,6 +213,7 @@ updateFinishedChanged(newValue){if(this._listbase!==null){ this._listbase.attach
 itemPressChanged(newValue){if(this._listbase!==null){ this._listbase.attachItemPress(newValue);}}
 busyChanged(newValue){if(this._listbase!==null){ this._listbase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._listbase!==null){ this._listbase.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._listbase!==null){ this._listbase.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._listbase!==null){ this._listbase.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._listbase!==null){ this._listbase.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

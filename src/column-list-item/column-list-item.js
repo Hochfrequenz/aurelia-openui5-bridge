@@ -24,6 +24,7 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -149,6 +150,7 @@ pressChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.att
 detailPressChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachDetailPress(newValue);}}
 busyChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

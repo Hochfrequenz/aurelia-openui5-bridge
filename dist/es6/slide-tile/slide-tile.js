@@ -18,6 +18,7 @@ export class Ui5SlideTile extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -140,6 +141,7 @@ scopeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setScope(newV
 pressChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachPress(newValue);}}
 busyChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._slidetile!==null){ this._slidetile.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._slidetile!==null){ this._slidetile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

@@ -20,6 +20,7 @@ export class Ui5ObjectNumber extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -144,6 +145,7 @@ textDirectionChanged(newValue){if(this._objectnumber!==null){ this._objectnumber
 textAlignChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setTextAlign(newValue);}}
 busyChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

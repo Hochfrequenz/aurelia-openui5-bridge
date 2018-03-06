@@ -26,6 +26,7 @@ export class Ui5ToggleButton extends Ui5Button{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -151,6 +152,7 @@ textDirectionChanged(newValue){if(this._togglebutton!==null){ this._togglebutton
 pressChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachPress(newValue);}}
 busyChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

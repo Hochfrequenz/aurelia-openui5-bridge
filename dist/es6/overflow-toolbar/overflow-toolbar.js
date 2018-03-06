@@ -21,6 +21,7 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -142,6 +143,7 @@ designChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.
 pressChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.attachPress(newValue);}}
 busyChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

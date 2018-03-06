@@ -28,6 +28,7 @@ export class Ui5NumericContent extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -168,6 +169,7 @@ stateChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.set
 pressChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.attachPress(newValue);}}
 busyChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

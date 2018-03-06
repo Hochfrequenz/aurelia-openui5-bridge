@@ -37,6 +37,7 @@ export class Ui5SimpleForm extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -201,6 +202,7 @@ breakpointMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBr
 backgroundDesignChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBackgroundDesign(newValue);}}
 busyChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._simpleform!==null){ this._simpleform.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._simpleform!==null){ this._simpleform.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

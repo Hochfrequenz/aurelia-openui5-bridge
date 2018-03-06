@@ -15,6 +15,7 @@ export class Ui5DynamicPageTitle extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -108,10 +109,14 @@ export class Ui5DynamicPageTitle extends Ui5Control{
         for (elem of path) {
         try{
                  if (elem.localName == 'heading') { this._dynamicpagetitle.setHeading(child); return elem.localName;}
+if (elem.localName == 'snappedheading') { this._dynamicpagetitle.setSnappedHeading(child); return elem.localName;}
+if (elem.localName == 'expandedheading') { this._dynamicpagetitle.setExpandedHeading(child); return elem.localName;}
 if (elem.localName == 'actions') { var _index = null; if (afterElement) _index = this._dynamicpagetitle.indexOfAction(afterElement); if (_index)this._dynamicpagetitle.insertAction(child, _index + 1); else this._dynamicpagetitle.addAction(child, 0);  return elem.localName; }
+if (elem.localName == 'navigationactions') { var _index = null; if (afterElement) _index = this._dynamicpagetitle.indexOfNavigationAction(afterElement); if (_index)this._dynamicpagetitle.insertNavigationAction(child, _index + 1); else this._dynamicpagetitle.addNavigationAction(child, 0);  return elem.localName; }
 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._dynamicpagetitle.indexOfContent(afterElement); if (_index)this._dynamicpagetitle.insertContent(child, _index + 1); else this._dynamicpagetitle.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'snappedcontent') { var _index = null; if (afterElement) _index = this._dynamicpagetitle.indexOfSnappedContent(afterElement); if (_index)this._dynamicpagetitle.insertSnappedContent(child, _index + 1); else this._dynamicpagetitle.addSnappedContent(child, 0);  return elem.localName; }
 if (elem.localName == 'expandedcontent') { var _index = null; if (afterElement) _index = this._dynamicpagetitle.indexOfExpandedContent(afterElement); if (_index)this._dynamicpagetitle.insertExpandedContent(child, _index + 1); else this._dynamicpagetitle.addExpandedContent(child, 0);  return elem.localName; }
+if (elem.localName == 'breadcrumbs') { this._dynamicpagetitle.setBreadcrumbs(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._dynamicpagetitle.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._dynamicpagetitle.indexOfCustomData(afterElement); if (_index)this._dynamicpagetitle.insertCustomData(child, _index + 1); else this._dynamicpagetitle.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._dynamicpagetitle.setLayoutData(child); return elem.localName;}
@@ -124,10 +129,14 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
       removeChildByRelation(child, relation) {
       try{
                if (relation == 'heading') {  this._dynamicpagetitle.destroyHeading(child); }
+if (relation == 'snappedheading') {  this._dynamicpagetitle.destroySnappedHeading(child); }
+if (relation == 'expandedheading') {  this._dynamicpagetitle.destroyExpandedHeading(child); }
 if (relation == 'actions') {  this._dynamicpagetitle.removeAction(child);}
+if (relation == 'navigationactions') {  this._dynamicpagetitle.removeNavigationAction(child);}
 if (relation == 'content') {  this._dynamicpagetitle.removeContent(child);}
 if (relation == 'snappedcontent') {  this._dynamicpagetitle.removeSnappedContent(child);}
 if (relation == 'expandedcontent') {  this._dynamicpagetitle.removeExpandedContent(child);}
+if (relation == 'breadcrumbs') {  this._dynamicpagetitle.destroyBreadcrumbs(child); }
 if (relation == 'tooltip') {  this._dynamicpagetitle.destroyTooltip(child); }
 if (relation == 'customdata') {  this._dynamicpagetitle.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._dynamicpagetitle.destroyLayoutData(child); }
@@ -139,6 +148,7 @@ if (relation == 'dependents') {  this._dynamicpagetitle.removeDependent(child);}
     primaryAreaChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setPrimaryArea(newValue);}}
 busyChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

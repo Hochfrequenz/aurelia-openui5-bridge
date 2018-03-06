@@ -50,6 +50,7 @@ export class Ui5Input extends Ui5InputBase{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -228,6 +229,7 @@ requiredChanged(newValue){if(this._input!==null){ this._input.setRequired(getBoo
 changeChanged(newValue){if(this._input!==null){ this._input.attachChange(newValue);}}
 busyChanged(newValue){if(this._input!==null){ this._input.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._input!==null){ this._input.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._input!==null){ this._input.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._input!==null){ this._input.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._input!==null){ this._input.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

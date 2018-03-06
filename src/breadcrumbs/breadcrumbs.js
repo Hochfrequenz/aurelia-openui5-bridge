@@ -15,6 +15,7 @@ export class Ui5Breadcrumbs extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -131,6 +132,7 @@ if (relation == 'dependents') {  this._breadcrumbs.removeDependent(child);}
     currentLocationTextChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setCurrentLocationText(newValue);}}
 busyChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

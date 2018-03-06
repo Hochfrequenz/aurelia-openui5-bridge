@@ -34,6 +34,7 @@ export class Ui5StandardListItem extends Ui5ListItemBase{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -177,6 +178,7 @@ pressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem
 detailPressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachDetailPress(newValue);}}
 busyChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

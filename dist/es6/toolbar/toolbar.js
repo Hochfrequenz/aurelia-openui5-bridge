@@ -20,6 +20,7 @@ export class Ui5Toolbar extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -146,6 +147,7 @@ designChanged(newValue){if(this._toolbar!==null){ this._toolbar.setDesign(newVal
 pressChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachPress(newValue);}}
 busyChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._toolbar!==null){ this._toolbar.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._toolbar!==null){ this._toolbar.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

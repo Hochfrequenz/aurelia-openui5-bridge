@@ -22,6 +22,7 @@ export class Ui5Wizard extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -151,6 +152,7 @@ stepActivateChanged(newValue){if(this._wizard!==null){ this._wizard.attachStepAc
 completeChanged(newValue){if(this._wizard!==null){ this._wizard.attachComplete(newValue);}}
 busyChanged(newValue){if(this._wizard!==null){ this._wizard.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._wizard!==null){ this._wizard.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._wizard!==null){ this._wizard.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._wizard!==null){ this._wizard.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._wizard!==null){ this._wizard.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

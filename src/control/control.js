@@ -13,6 +13,7 @@ export class Ui5Control extends Ui5Element{
          @bindable ui5Id = null;
         @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -38,6 +39,7 @@ export class Ui5Control extends Ui5Element{
         fillProperties(params){
                                         params.busy = getBooleanFromAttributeValue(this.busy);
 params.busyIndicatorDelay = this.busyIndicatorDelay?parseInt(this.busyIndicatorDelay):0;
+params.busyIndicatorSize = this.busyIndicatorSize;
 params.visible = getBooleanFromAttributeValue(this.visible);
 params.fieldGroupIds = this.fieldGroupIds;
 params.validateFieldGroup = this.validateFieldGroup==null ? this.defaultFunc: this.validateFieldGroup;
@@ -130,6 +132,7 @@ if (relation == 'dependents') {  this._control.removeDependent(child);}
                                                                             }
     busyChanged(newValue){if(this._control!==null){ this._control.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._control!==null){ this._control.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._control!==null){ this._control.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._control!==null){ this._control.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._control!==null){ this._control.setFieldGroupIds(newValue);}}
 validateFieldGroupChanged(newValue){if(this._control!==null){ this._control.attachValidateFieldGroup(newValue);}}

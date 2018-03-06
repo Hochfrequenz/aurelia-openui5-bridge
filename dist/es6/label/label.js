@@ -22,6 +22,7 @@ export class Ui5Label extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -150,6 +151,7 @@ displayOnlyChanged(newValue){if(this._label!==null){ this._label.setDisplayOnly(
 wrappingChanged(newValue){if(this._label!==null){ this._label.setWrapping(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._label!==null){ this._label.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._label!==null){ this._label.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._label!==null){ this._label.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

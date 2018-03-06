@@ -18,6 +18,7 @@ export class Ui5TabContainer extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -140,6 +141,7 @@ itemSelectChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.at
 addNewButtonPressChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.attachAddNewButtonPress(newValue);}}
 busyChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

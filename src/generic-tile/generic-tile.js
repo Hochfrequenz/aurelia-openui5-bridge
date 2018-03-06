@@ -26,6 +26,7 @@ export class Ui5GenericTile extends Ui5Control{
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
 @bindable() fieldGroupIds = '[]';
 @bindable() validateFieldGroup = this.defaultFunc;
@@ -166,6 +167,7 @@ ariaLabelChanged(newValue){if(this._generictile!==null){ this._generictile.setAr
 pressChanged(newValue){if(this._generictile!==null){ this._generictile.attachPress(newValue);}}
 busyChanged(newValue){if(this._generictile!==null){ this._generictile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._generictile!==null){ this._generictile.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._generictile!==null){ this._generictile.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._generictile!==null){ this._generictile.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._generictile!==null){ this._generictile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/

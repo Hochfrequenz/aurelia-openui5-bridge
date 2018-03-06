@@ -14,6 +14,7 @@ export class Ui5MessageView {
         @bindable() asyncDescriptionHandler = null;
 @bindable() asyncURLHandler = null;
 @bindable() groupItems = false;
+@bindable() showDetailsPageHeader = true;
 @bindable() afterOpen = this.defaultFunc;
 @bindable() itemSelect = this.defaultFunc;
 @bindable() listSelect = this.defaultFunc;
@@ -33,6 +34,7 @@ export class Ui5MessageView {
                                         params.asyncDescriptionHandler = this.asyncDescriptionHandler;
 params.asyncURLHandler = this.asyncURLHandler;
 params.groupItems = getBooleanFromAttributeValue(this.groupItems);
+params.showDetailsPageHeader = getBooleanFromAttributeValue(this.showDetailsPageHeader);
 params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
 params.itemSelect = this.itemSelect==null ? this.defaultFunc: this.itemSelect;
 params.listSelect = this.listSelect==null ? this.defaultFunc: this.listSelect;
@@ -124,6 +126,7 @@ if (relation == 'headerbutton') {  this._messageview.destroyHeaderButton(child);
     asyncDescriptionHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncDescriptionHandler(newValue);}}
 asyncURLHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncURLHandler(newValue);}}
 groupItemsChanged(newValue){if(this._messageview!==null){ this._messageview.setGroupItems(getBooleanFromAttributeValue(newValue));}}
+showDetailsPageHeaderChanged(newValue){if(this._messageview!==null){ this._messageview.setShowDetailsPageHeader(getBooleanFromAttributeValue(newValue));}}
 afterOpenChanged(newValue){if(this._messageview!==null){ this._messageview.attachAfterOpen(newValue);}}
 itemSelectChanged(newValue){if(this._messageview!==null){ this._messageview.attachItemSelect(newValue);}}
 listSelectChanged(newValue){if(this._messageview!==null){ this._messageview.attachListSelect(newValue);}}
