@@ -25,7 +25,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         }
 
         ConfigBuilder.prototype.useAll = function useAll() {
-          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton();
+          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton().useTree().useMenu();
         };
 
         ConfigBuilder.prototype.useLink = function useLink() {
@@ -244,6 +244,20 @@ System.register(['aurelia-pal'], function (_export, _context) {
         ConfigBuilder.prototype.useMaskInput = function useMaskInput() {
           this.globalResources.push(PLATFORM.moduleName('./mask-input/mask-input'));
           this.globalResources.push(PLATFORM.moduleName('./mask-input-rule/mask-input-rule'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useTree = function useTree() {
+          this.globalResources.push(PLATFORM.moduleName('./tree/tree'));
+          this.globalResources.push(PLATFORM.moduleName('./tree-item-base/tree-item-base'));
+          this.globalResources.push(PLATFORM.moduleName('./standard-tree-item/standard-tree-item'));
+          this.globalResources.push(PLATFORM.moduleName('./custom-tree-item/custom-tree-item'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useMenu = function useMenu() {
+          this.globalResources.push(PLATFORM.moduleName('./menu-item/menu-item'));
+          this.globalResources.push(PLATFORM.moduleName('./menu/menu'));
           return this;
         };
 

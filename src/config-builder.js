@@ -45,6 +45,8 @@ export class ConfigBuilder {
       .useMessageView()
       .useMaskInput()
       .useToggleButton()
+      .useTree()
+      .useMenu()
   }
 
   useLink(): ConfigBuilder {
@@ -232,7 +234,18 @@ export class ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./mask-input-rule/mask-input-rule'));
     return this;
   }
-
+  useTree(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./tree/tree'));
+    this.globalResources.push(PLATFORM.moduleName('./tree-item-base/tree-item-base'));
+    this.globalResources.push(PLATFORM.moduleName('./standard-tree-item/standard-tree-item'));
+    this.globalResources.push(PLATFORM.moduleName('./custom-tree-item/custom-tree-item'));
+    return this;
+  }
+  useMenu(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./menu-item/menu-item'));
+    this.globalResources.push(PLATFORM.moduleName('./menu/menu'));
+    return this;
+  }
   /**
   * Don't globalize any resources
   * Allows you to import yourself via <require></require>
