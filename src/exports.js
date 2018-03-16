@@ -26,6 +26,7 @@ export * from './element/element';
 export * from './input-base/input-base';
 export * from './input/input';
 export * from './date-picker/date-picker';
+export * from './date-time-picker/date-time-picker';
 export * from './title/title';
 export * from './m-title/m-title';
 export * from './grid-data/grid-data';
