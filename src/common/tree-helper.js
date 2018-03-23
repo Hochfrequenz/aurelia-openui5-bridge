@@ -1,8 +1,7 @@
 export function createJSONModel() {
   return new sap.ui.model.json.JSONModel();
 }
-export function assignModel(tree,model){
-  tree._resetItemsBinding();
+export function assignModel(tree,model,templateBinding){
   tree.setModel(model);
-  tree.bindObject({'path':'/'});
+  tree.bindAggregation('items', '/', new sap.m.StandardTreeItem(templateBinding));
 }
