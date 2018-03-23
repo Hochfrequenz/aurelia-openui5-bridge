@@ -129,6 +129,7 @@ export class ConfigBuilder {
   }
   useDatePicker(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./date-picker/date-picker'));
+    this.globalResources.push(PLATFORM.moduleName('./date-time-picker/date-time-picker'));
     return this;
   }
   useTitle(): ConfigBuilder {

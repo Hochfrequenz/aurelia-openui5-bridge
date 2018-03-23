@@ -117,6 +117,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
 
     ConfigBuilder.prototype.useDatePicker = function useDatePicker() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./date-picker/date-picker'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./date-time-picker/date-time-picker'));
       return this;
     };
 
