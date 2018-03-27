@@ -9,13 +9,19 @@ System.register([], function (_export, _context) {
 
   _export('createJSONModel', createJSONModel);
 
-  function assignModel(tree, model) {
-    tree._resetItemsBinding();
+  function assignModel(tree, model, templateBinding) {
     tree.setModel(model);
-    tree.bindObject({ 'path': '/' });
+    tree.bindAggregation('items', '/', new sap.m.StandardTreeItem(templateBinding));
   }
 
   _export('assignModel', assignModel);
+
+  function assignModelFromTemplate(tree, model, treeItem) {
+    tree.setModel(model);
+    tree.bindAggregation('items', '/', treeItem);
+  }
+
+  _export('assignModelFromTemplate', assignModelFromTemplate);
 
   return {
     setters: [],
