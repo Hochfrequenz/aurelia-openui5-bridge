@@ -11,6 +11,7 @@ export class Ui5FormContainer extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() expanded = true;
 @bindable() expandable = false;
 @bindable() visible = true;
@@ -55,20 +56,15 @@ params.visible = getBooleanFromAttributeValue(this.visible);
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._formcontainer.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._formcontainer, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._formcontainer, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._formcontainer, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._formcontainer, this.element);
+                                                       this._relation = this._parent.addChild(this._formcontainer, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -90,6 +86,7 @@ params.visible = getBooleanFromAttributeValue(this.visible);
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._formcontainer)
                                                                 this._parent.removeChildByRelation(this._formcontainer, this._relation);
                                                             }
                                                                                 }
@@ -105,13 +102,13 @@ params.visible = getBooleanFromAttributeValue(this.visible);
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'formelements') { var _index = null; if (afterElement) _index = this._formcontainer.indexOfFormElement(afterElement); if (_index)this._formcontainer.insertFormElement(child, _index + 1); else this._formcontainer.addFormElement(child, 0);  return elem.localName; }
+                 if (elem.localName == 'formelements') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formcontainer.insertFormElement(child, _index); else this._formcontainer.addFormElement(child, 0);  return elem.localName; }
 if (elem.localName == 'title-elem') { this._formcontainer.setTitle(child); return elem.localName;}
 if (elem.localName == 'toolbar') { this._formcontainer.setToolbar(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._formcontainer.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._formcontainer.indexOfCustomData(afterElement); if (_index)this._formcontainer.insertCustomData(child, _index + 1); else this._formcontainer.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formcontainer.insertCustomData(child, _index); else this._formcontainer.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._formcontainer.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._formcontainer.indexOfDependent(afterElement); if (_index)this._formcontainer.insertDependent(child, _index + 1); else this._formcontainer.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formcontainer.insertDependent(child, _index); else this._formcontainer.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

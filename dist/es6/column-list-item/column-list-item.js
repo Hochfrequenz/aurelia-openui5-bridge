@@ -11,6 +11,7 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() vAlign = 'Inherit';
 /* inherited from sap.m.ListItemBase*/
 @bindable() type = 'Inactive';
@@ -67,20 +68,15 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._columnlistitem.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._columnlistitem, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._columnlistitem, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._columnlistitem, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._columnlistitem, this.element);
+                                                       this._relation = this._parent.addChild(this._columnlistitem, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -102,6 +98,7 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._columnlistitem)
                                                                 this._parent.removeChildByRelation(this._columnlistitem, this._relation);
                                                             }
                                                                                 }
@@ -117,11 +114,11 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'cells') { var _index = null; if (afterElement) _index = this._columnlistitem.indexOfCell(afterElement); if (_index)this._columnlistitem.insertCell(child, _index + 1); else this._columnlistitem.addCell(child, 0);  return elem.localName; }
+                 if (elem.localName == 'cells') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertCell(child, _index); else this._columnlistitem.addCell(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._columnlistitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._columnlistitem.indexOfCustomData(afterElement); if (_index)this._columnlistitem.insertCustomData(child, _index + 1); else this._columnlistitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertCustomData(child, _index); else this._columnlistitem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._columnlistitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._columnlistitem.indexOfDependent(afterElement); if (_index)this._columnlistitem.insertDependent(child, _index + 1); else this._columnlistitem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertDependent(child, _index); else this._columnlistitem.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

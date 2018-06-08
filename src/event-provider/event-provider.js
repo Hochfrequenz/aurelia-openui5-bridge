@@ -11,6 +11,7 @@ export class Ui5EventProvider extends Ui5Object{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         /* inherited from sap.ui.base.Object*/
 
                 constructor(element) {
@@ -41,20 +42,15 @@ export class Ui5EventProvider extends Ui5Object{
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._eventprovider.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._eventprovider, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._eventprovider, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._eventprovider, this.element);
+                                                       this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -76,6 +72,7 @@ export class Ui5EventProvider extends Ui5Object{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._eventprovider)
                                                                 this._parent.removeChildByRelation(this._eventprovider, this._relation);
                                                             }
                                                                                 }

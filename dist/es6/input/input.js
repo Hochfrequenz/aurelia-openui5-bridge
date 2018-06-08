@@ -11,6 +11,7 @@ export class Ui5Input extends Ui5InputBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() type = 'Text';
 @bindable() maxLength = 0;
 @bindable() showValueHelp = false;
@@ -114,20 +115,15 @@ params.submit = this.submit==null ? this.defaultFunc: this.submit;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._input.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._input, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._input, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._input, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._input, this.element);
+                                                       this._relation = this._parent.addChild(this._input, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -151,6 +147,7 @@ this._input.attachLiveChange((event) => { if (getBooleanFromAttributeValue(that.
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._input)
                                                                 this._parent.removeChildByRelation(this._input, this._relation);
                                                             }
                                                                                 }
@@ -166,13 +163,13 @@ this._input.attachLiveChange((event) => { if (getBooleanFromAttributeValue(that.
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'suggestionitems') { var _index = null; if (afterElement) _index = this._input.indexOfSuggestionItem(afterElement); if (_index)this._input.insertSuggestionItem(child, _index + 1); else this._input.addSuggestionItem(child, 0);  return elem.localName; }
-if (elem.localName == 'suggestioncolumns') { var _index = null; if (afterElement) _index = this._input.indexOfSuggestionColumn(afterElement); if (_index)this._input.insertSuggestionColumn(child, _index + 1); else this._input.addSuggestionColumn(child, 0);  return elem.localName; }
-if (elem.localName == 'suggestionrows') { var _index = null; if (afterElement) _index = this._input.indexOfSuggestionRow(afterElement); if (_index)this._input.insertSuggestionRow(child, _index + 1); else this._input.addSuggestionRow(child, 0);  return elem.localName; }
+                 if (elem.localName == 'suggestionitems') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._input.insertSuggestionItem(child, _index); else this._input.addSuggestionItem(child, 0);  return elem.localName; }
+if (elem.localName == 'suggestioncolumns') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._input.insertSuggestionColumn(child, _index); else this._input.addSuggestionColumn(child, 0);  return elem.localName; }
+if (elem.localName == 'suggestionrows') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._input.insertSuggestionRow(child, _index); else this._input.addSuggestionRow(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._input.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._input.indexOfCustomData(afterElement); if (_index)this._input.insertCustomData(child, _index + 1); else this._input.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._input.insertCustomData(child, _index); else this._input.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._input.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._input.indexOfDependent(afterElement); if (_index)this._input.insertDependent(child, _index + 1); else this._input.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._input.insertDependent(child, _index); else this._input.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

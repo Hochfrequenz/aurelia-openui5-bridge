@@ -97,7 +97,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
+    var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2;
 
     var Ui5EventProvider = exports.Ui5EventProvider = (_dec = (0, _aureliaTemplating.customElement)('ui5-event-provider'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaFramework.computedFrom)('_eventprovider'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Object) {
         _inherits(Ui5EventProvider, _Ui5Object);
@@ -112,6 +112,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             _this._relation = null;
 
             _initDefineProp(_this, 'ui5Id', _descriptor, _this);
+
+            _initDefineProp(_this, 'prevId', _descriptor2, _this);
 
             _this.element = element;
             _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -135,16 +137,14 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                 if (!this._parent.UIElement || this._parent.UIElement.sId != this._eventprovider.sId) {
                     var prevSibling = null;
-                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                    this._relation = this._parent.addChild(this._eventprovider, this.element, prevSibling);
+
+                    this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
                     this.attributeManager.addAttributes({ "ui5-container": '' });
                 } else {
                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                     var prevSibling = null;
-                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                        prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                        this._relation = this._parent.addChild(this._eventprovider, this.element, prevSibling);
-                    } else this._relation = this._parent.addChild(this._eventprovider, this.element);
+                    this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
+
                     this.attributeManager.addAttributes({ "ui5-container": '' });
                 }
             } else {
@@ -160,7 +160,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             try {
                 if ($(this.element).closest("[ui5-container]").length > 0) {
                     if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._eventprovider, this._relation);
+                        if (this._eventprovider) this._parent.removeChildByRelation(this._eventprovider, this._relation);
                     }
                 } else {
                     this._eventprovider.destroy();
@@ -198,6 +198,11 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
         return Ui5EventProvider;
     }(_object.Ui5Object), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_aureliaTemplating.bindable], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return null;

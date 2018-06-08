@@ -11,6 +11,7 @@ export class Ui5DynamicPage extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() preserveHeaderStateOnScroll = false;
 @bindable() headerExpanded = true;
 @bindable() toggleHeaderOnTitleClick = true;
@@ -66,20 +67,15 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._dynamicpage.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._dynamicpage, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._dynamicpage, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._dynamicpage, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._dynamicpage, this.element);
+                                                       this._relation = this._parent.addChild(this._dynamicpage, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -101,6 +97,7 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._dynamicpage)
                                                                 this._parent.removeChildByRelation(this._dynamicpage, this._relation);
                                                             }
                                                                                 }
@@ -121,9 +118,9 @@ if (elem.localName == 'header') { this._dynamicpage.setHeader(child); return ele
 if (elem.localName == 'content') { this._dynamicpage.setContent(child); return elem.localName;}
 if (elem.localName == 'footer') { this._dynamicpage.setFooter(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._dynamicpage.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._dynamicpage.indexOfCustomData(afterElement); if (_index)this._dynamicpage.insertCustomData(child, _index + 1); else this._dynamicpage.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpage.insertCustomData(child, _index); else this._dynamicpage.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._dynamicpage.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._dynamicpage.indexOfDependent(afterElement); if (_index)this._dynamicpage.insertDependent(child, _index + 1); else this._dynamicpage.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpage.insertDependent(child, _index); else this._dynamicpage.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

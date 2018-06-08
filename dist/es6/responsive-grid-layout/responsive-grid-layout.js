@@ -11,6 +11,7 @@ export class Ui5ResponsiveGridLayout extends Ui5FormLayout{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() labelSpanXL = -1;
 @bindable() labelSpanL = 4;
 @bindable() labelSpanM = 2;
@@ -90,20 +91,15 @@ params.breakpointM = this.breakpointM?parseInt(this.breakpointM):0;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._responsivegridlayout.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._responsivegridlayout, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._responsivegridlayout, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._responsivegridlayout, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._responsivegridlayout, this.element);
+                                                       this._relation = this._parent.addChild(this._responsivegridlayout, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -125,6 +121,7 @@ params.breakpointM = this.breakpointM?parseInt(this.breakpointM):0;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._responsivegridlayout)
                                                                 this._parent.removeChildByRelation(this._responsivegridlayout, this._relation);
                                                             }
                                                                                 }
@@ -141,9 +138,9 @@ params.breakpointM = this.breakpointM?parseInt(this.breakpointM):0;
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._responsivegridlayout.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._responsivegridlayout.indexOfCustomData(afterElement); if (_index)this._responsivegridlayout.insertCustomData(child, _index + 1); else this._responsivegridlayout.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivegridlayout.insertCustomData(child, _index); else this._responsivegridlayout.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._responsivegridlayout.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._responsivegridlayout.indexOfDependent(afterElement); if (_index)this._responsivegridlayout.insertDependent(child, _index + 1); else this._responsivegridlayout.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivegridlayout.insertDependent(child, _index); else this._responsivegridlayout.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

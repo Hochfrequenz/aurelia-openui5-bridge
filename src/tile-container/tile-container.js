@@ -11,6 +11,7 @@ export class Ui5TileContainer extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() width = '100%';
 @bindable() height = '100%';
 @bindable() editable = null;
@@ -70,20 +71,15 @@ params.tileAdd = this.tileAdd==null ? this.defaultFunc: this.tileAdd;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._tilecontainer.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._tilecontainer, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._tilecontainer, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._tilecontainer, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._tilecontainer, this.element);
+                                                       this._relation = this._parent.addChild(this._tilecontainer, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -105,6 +101,7 @@ params.tileAdd = this.tileAdd==null ? this.defaultFunc: this.tileAdd;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._tilecontainer)
                                                                 this._parent.removeChildByRelation(this._tilecontainer, this._relation);
                                                             }
                                                                                 }
@@ -120,11 +117,11 @@ params.tileAdd = this.tileAdd==null ? this.defaultFunc: this.tileAdd;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'tiles') { var _index = null; if (afterElement) _index = this._tilecontainer.indexOfTile(afterElement); if (_index)this._tilecontainer.insertTile(child, _index + 1); else this._tilecontainer.addTile(child, 0);  return elem.localName; }
+                 if (elem.localName == 'tiles') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tilecontainer.insertTile(child, _index); else this._tilecontainer.addTile(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._tilecontainer.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._tilecontainer.indexOfCustomData(afterElement); if (_index)this._tilecontainer.insertCustomData(child, _index + 1); else this._tilecontainer.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tilecontainer.insertCustomData(child, _index); else this._tilecontainer.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._tilecontainer.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._tilecontainer.indexOfDependent(afterElement); if (_index)this._tilecontainer.insertDependent(child, _index + 1); else this._tilecontainer.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tilecontainer.insertDependent(child, _index); else this._tilecontainer.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

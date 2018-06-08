@@ -11,6 +11,7 @@ export class Ui5Column extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() width = null;
 @bindable() hAlign = 'Begin';
 @bindable() vAlign = 'Inherit';
@@ -69,20 +70,15 @@ params.mergeFunctionName = this.mergeFunctionName;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._column.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._column, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._column, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._column, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._column, this.element);
+                                                       this._relation = this._parent.addChild(this._column, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -104,6 +100,7 @@ params.mergeFunctionName = this.mergeFunctionName;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._column)
                                                                 this._parent.removeChildByRelation(this._column, this._relation);
                                                             }
                                                                                 }
@@ -122,9 +119,9 @@ params.mergeFunctionName = this.mergeFunctionName;
                  if (elem.localName == 'header') { this._column.setHeader(child); return elem.localName;}
 if (elem.localName == 'footer') { this._column.setFooter(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._column.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._column.indexOfCustomData(afterElement); if (_index)this._column.insertCustomData(child, _index + 1); else this._column.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._column.insertCustomData(child, _index); else this._column.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._column.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._column.indexOfDependent(afterElement); if (_index)this._column.insertDependent(child, _index + 1); else this._column.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._column.insertDependent(child, _index); else this._column.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

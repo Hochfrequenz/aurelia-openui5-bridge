@@ -11,6 +11,7 @@ export class Ui5ToggleButton extends Ui5Button{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() pressed = false;
 /* inherited from sap.m.Button*/
 @bindable() text = null;
@@ -69,20 +70,15 @@ export class Ui5ToggleButton extends Ui5Button{
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._togglebutton.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._togglebutton, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._togglebutton, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._togglebutton, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._togglebutton, this.element);
+                                                       this._relation = this._parent.addChild(this._togglebutton, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -104,6 +100,7 @@ export class Ui5ToggleButton extends Ui5Button{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._togglebutton)
                                                                 this._parent.removeChildByRelation(this._togglebutton, this._relation);
                                                             }
                                                                                 }
@@ -120,9 +117,9 @@ export class Ui5ToggleButton extends Ui5Button{
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._togglebutton.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._togglebutton.indexOfCustomData(afterElement); if (_index)this._togglebutton.insertCustomData(child, _index + 1); else this._togglebutton.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._togglebutton.insertCustomData(child, _index); else this._togglebutton.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._togglebutton.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._togglebutton.indexOfDependent(afterElement); if (_index)this._togglebutton.insertDependent(child, _index + 1); else this._togglebutton.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._togglebutton.insertDependent(child, _index); else this._togglebutton.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

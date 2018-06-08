@@ -11,6 +11,7 @@ export class Ui5MaskInput extends Ui5InputBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() placeholderSymbol = '_';
 @bindable() mask = null;
 /* inherited from sap.m.InputBase*/
@@ -74,20 +75,15 @@ params.mask = this.mask;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._maskinput.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._maskinput, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._maskinput, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._maskinput, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._maskinput, this.element);
+                                                       this._relation = this._parent.addChild(this._maskinput, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -109,6 +105,7 @@ params.mask = this.mask;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._maskinput)
                                                                 this._parent.removeChildByRelation(this._maskinput, this._relation);
                                                             }
                                                                                 }
@@ -124,11 +121,11 @@ params.mask = this.mask;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'rules') { var _index = null; if (afterElement) _index = this._maskinput.indexOfRule(afterElement); if (_index)this._maskinput.insertRule(child, _index + 1); else this._maskinput.addRule(child, 0);  return elem.localName; }
+                 if (elem.localName == 'rules') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinput.insertRule(child, _index); else this._maskinput.addRule(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._maskinput.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._maskinput.indexOfCustomData(afterElement); if (_index)this._maskinput.insertCustomData(child, _index + 1); else this._maskinput.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinput.insertCustomData(child, _index); else this._maskinput.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._maskinput.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._maskinput.indexOfDependent(afterElement); if (_index)this._maskinput.insertDependent(child, _index + 1); else this._maskinput.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinput.insertDependent(child, _index); else this._maskinput.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

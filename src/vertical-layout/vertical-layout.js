@@ -11,6 +11,7 @@ export class Ui5VerticalLayout extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() width = null;
 @bindable() enabled = true;
 /* inherited from sap.ui.core.Control*/
@@ -60,20 +61,15 @@ params.enabled = getBooleanFromAttributeValue(this.enabled);
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._verticallayout.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._verticallayout, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._verticallayout, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._verticallayout, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._verticallayout, this.element);
+                                                       this._relation = this._parent.addChild(this._verticallayout, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -95,6 +91,7 @@ params.enabled = getBooleanFromAttributeValue(this.enabled);
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._verticallayout)
                                                                 this._parent.removeChildByRelation(this._verticallayout, this._relation);
                                                             }
                                                                                 }
@@ -110,11 +107,11 @@ params.enabled = getBooleanFromAttributeValue(this.enabled);
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._verticallayout.indexOfContent(afterElement); if (_index)this._verticallayout.insertContent(child, _index + 1); else this._verticallayout.addContent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertContent(child, _index); else this._verticallayout.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._verticallayout.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._verticallayout.indexOfCustomData(afterElement); if (_index)this._verticallayout.insertCustomData(child, _index + 1); else this._verticallayout.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertCustomData(child, _index); else this._verticallayout.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._verticallayout.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._verticallayout.indexOfDependent(afterElement); if (_index)this._verticallayout.insertDependent(child, _index + 1); else this._verticallayout.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertDependent(child, _index); else this._verticallayout.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

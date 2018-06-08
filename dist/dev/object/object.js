@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, Ui5Object;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, Ui5Object;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -97,6 +97,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(this, 'ui5Id', _descriptor, this);
 
+                    _initDefineProp(this, 'prevId', _descriptor2, this);
+
                     this.element = element;
                     this.attributeManager = new AttributeManager(this.element);
                 }
@@ -115,16 +117,14 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._object.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                            this._relation = this._parent.addChild(this._object, this.element, prevSibling);
+
+                            this._relation = this._parent.addChild(this._object, this.element, this.prevId);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                this._relation = this._parent.addChild(this._object, this.element, prevSibling);
-                            } else this._relation = this._parent.addChild(this._object, this.element);
+                            this._relation = this._parent.addChild(this._object, this.element, this.prevId);
+
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         }
                     } else {
@@ -140,7 +140,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     try {
                         if ($(this.element).closest("[ui5-container]").length > 0) {
                             if (this._parent && this._relation) {
-                                this._parent.removeChildByRelation(this._object, this._relation);
+                                if (this._object) this._parent.removeChildByRelation(this._object, this._relation);
                             }
                         } else {
                             this._object.destroy();
@@ -177,6 +177,11 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                 return Ui5Object;
             }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [bindable], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return null;

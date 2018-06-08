@@ -11,6 +11,7 @@ export class Ui5TabContainerItem extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() name = '';
 @bindable() key = null;
 @bindable() modified = false;
@@ -57,20 +58,15 @@ params.itemPropertyChanged = this.itemPropertyChanged==null ? this.defaultFunc: 
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._tabcontaineritem.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._tabcontaineritem, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._tabcontaineritem, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._tabcontaineritem, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._tabcontaineritem, this.element);
+                                                       this._relation = this._parent.addChild(this._tabcontaineritem, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -92,6 +88,7 @@ params.itemPropertyChanged = this.itemPropertyChanged==null ? this.defaultFunc: 
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._tabcontaineritem)
                                                                 this._parent.removeChildByRelation(this._tabcontaineritem, this._relation);
                                                             }
                                                                                 }
@@ -107,11 +104,11 @@ params.itemPropertyChanged = this.itemPropertyChanged==null ? this.defaultFunc: 
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._tabcontaineritem.indexOfContent(afterElement); if (_index)this._tabcontaineritem.insertContent(child, _index + 1); else this._tabcontaineritem.addContent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tabcontaineritem.insertContent(child, _index); else this._tabcontaineritem.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._tabcontaineritem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._tabcontaineritem.indexOfCustomData(afterElement); if (_index)this._tabcontaineritem.insertCustomData(child, _index + 1); else this._tabcontaineritem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tabcontaineritem.insertCustomData(child, _index); else this._tabcontaineritem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._tabcontaineritem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._tabcontaineritem.indexOfDependent(afterElement); if (_index)this._tabcontaineritem.insertDependent(child, _index + 1); else this._tabcontaineritem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tabcontaineritem.insertDependent(child, _index); else this._tabcontaineritem.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

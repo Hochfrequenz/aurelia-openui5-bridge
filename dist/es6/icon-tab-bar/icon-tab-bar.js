@@ -11,6 +11,7 @@ export class Ui5IconTabBar extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() expandable = true;
 @bindable() expanded = true;
 @bindable() selectedKey = null;
@@ -82,20 +83,15 @@ params.expand = this.expand==null ? this.defaultFunc: this.expand;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._icontabbar.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._icontabbar, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._icontabbar, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._icontabbar, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._icontabbar, this.element);
+                                                       this._relation = this._parent.addChild(this._icontabbar, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -118,6 +114,7 @@ params.expand = this.expand==null ? this.defaultFunc: this.expand;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._icontabbar)
                                                                 this._parent.removeChildByRelation(this._icontabbar, this._relation);
                                                             }
                                                                                 }
@@ -133,12 +130,12 @@ params.expand = this.expand==null ? this.defaultFunc: this.expand;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._icontabbar.indexOfItem(afterElement); if (_index)this._icontabbar.insertItem(child, _index + 1); else this._icontabbar.addItem(child, 0);  return elem.localName; }
-if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._icontabbar.indexOfContent(afterElement); if (_index)this._icontabbar.insertContent(child, _index + 1); else this._icontabbar.addContent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabbar.insertItem(child, _index); else this._icontabbar.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabbar.insertContent(child, _index); else this._icontabbar.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._icontabbar.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._icontabbar.indexOfCustomData(afterElement); if (_index)this._icontabbar.insertCustomData(child, _index + 1); else this._icontabbar.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabbar.insertCustomData(child, _index); else this._icontabbar.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._icontabbar.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._icontabbar.indexOfDependent(afterElement); if (_index)this._icontabbar.insertDependent(child, _index + 1); else this._icontabbar.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabbar.insertDependent(child, _index); else this._icontabbar.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

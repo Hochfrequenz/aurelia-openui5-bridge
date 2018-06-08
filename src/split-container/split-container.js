@@ -11,6 +11,7 @@ export class Ui5SplitContainer extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() defaultTransitionNameDetail = 'slide';
 @bindable() defaultTransitionNameMaster = 'slide';
 @bindable() mode = 'ShowHideMode';
@@ -92,20 +93,15 @@ params.afterDetailNavigate = this.afterDetailNavigate==null ? this.defaultFunc: 
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._splitcontainer.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._splitcontainer, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._splitcontainer, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._splitcontainer, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._splitcontainer, this.element);
+                                                       this._relation = this._parent.addChild(this._splitcontainer, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -127,6 +123,7 @@ params.afterDetailNavigate = this.afterDetailNavigate==null ? this.defaultFunc: 
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._splitcontainer)
                                                                 this._parent.removeChildByRelation(this._splitcontainer, this._relation);
                                                             }
                                                                                 }
@@ -142,12 +139,12 @@ params.afterDetailNavigate = this.afterDetailNavigate==null ? this.defaultFunc: 
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'masterpages') { var _index = null; if (afterElement) _index = this._splitcontainer.indexOfMasterPage(afterElement); if (_index)this._splitcontainer.insertMasterPage(child, _index + 1); else this._splitcontainer.addMasterPage(child, 0);  return elem.localName; }
-if (elem.localName == 'detailpages') { var _index = null; if (afterElement) _index = this._splitcontainer.indexOfDetailPage(afterElement); if (_index)this._splitcontainer.insertDetailPage(child, _index + 1); else this._splitcontainer.addDetailPage(child, 0);  return elem.localName; }
+                 if (elem.localName == 'masterpages') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitcontainer.insertMasterPage(child, _index); else this._splitcontainer.addMasterPage(child, 0);  return elem.localName; }
+if (elem.localName == 'detailpages') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitcontainer.insertDetailPage(child, _index); else this._splitcontainer.addDetailPage(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._splitcontainer.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._splitcontainer.indexOfCustomData(afterElement); if (_index)this._splitcontainer.insertCustomData(child, _index + 1); else this._splitcontainer.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitcontainer.insertCustomData(child, _index); else this._splitcontainer.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._splitcontainer.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._splitcontainer.indexOfDependent(afterElement); if (_index)this._splitcontainer.insertDependent(child, _index + 1); else this._splitcontainer.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitcontainer.insertDependent(child, _index); else this._splitcontainer.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

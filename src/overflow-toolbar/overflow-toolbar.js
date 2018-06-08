@@ -11,12 +11,14 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         /* inherited from sap.m.Toolbar*/
 @bindable() width = null;
 @bindable() active = false;
 @bindable() enabled = true;
 @bindable() height = '';
 @bindable() design = 'Auto';
+@bindable() style = 'Standard';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
@@ -63,20 +65,15 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._overflowtoolbar.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._overflowtoolbar, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._overflowtoolbar, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._overflowtoolbar, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._overflowtoolbar, this.element);
+                                                       this._relation = this._parent.addChild(this._overflowtoolbar, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -98,6 +95,7 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._overflowtoolbar)
                                                                 this._parent.removeChildByRelation(this._overflowtoolbar, this._relation);
                                                             }
                                                                                 }
@@ -113,11 +111,11 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._overflowtoolbar.indexOfContent(afterElement); if (_index)this._overflowtoolbar.insertContent(child, _index + 1); else this._overflowtoolbar.addContent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._overflowtoolbar.insertContent(child, _index); else this._overflowtoolbar.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._overflowtoolbar.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._overflowtoolbar.indexOfCustomData(afterElement); if (_index)this._overflowtoolbar.insertCustomData(child, _index + 1); else this._overflowtoolbar.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._overflowtoolbar.insertCustomData(child, _index); else this._overflowtoolbar.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._overflowtoolbar.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._overflowtoolbar.indexOfDependent(afterElement); if (_index)this._overflowtoolbar.insertDependent(child, _index + 1); else this._overflowtoolbar.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._overflowtoolbar.insertDependent(child, _index); else this._overflowtoolbar.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -139,6 +137,7 @@ activeChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.
 enabledChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setEnabled(getBooleanFromAttributeValue(newValue));}}
 heightChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setHeight(newValue);}}
 designChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setDesign(newValue);}}
+styleChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setStyle(newValue);}}
 /* inherited from sap.m.Toolbar*/
 pressChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.attachPress(newValue);}}
 busyChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusy(getBooleanFromAttributeValue(newValue));}}

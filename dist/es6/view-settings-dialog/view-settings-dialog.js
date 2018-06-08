@@ -11,6 +11,7 @@ export class Ui5ViewSettingsDialog extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() title = null;
 @bindable() sortDescending = false;
 @bindable() groupDescending = false;
@@ -72,20 +73,15 @@ params.filterDetailPageOpened = this.filterDetailPageOpened==null ? this.default
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._viewsettingsdialog.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._viewsettingsdialog, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._viewsettingsdialog, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._viewsettingsdialog, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._viewsettingsdialog, this.element);
+                                                       this._relation = this._parent.addChild(this._viewsettingsdialog, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -107,6 +103,7 @@ params.filterDetailPageOpened = this.filterDetailPageOpened==null ? this.default
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._viewsettingsdialog)
                                                                 this._parent.removeChildByRelation(this._viewsettingsdialog, this._relation);
                                                             }
                                                                                 }
@@ -122,15 +119,15 @@ params.filterDetailPageOpened = this.filterDetailPageOpened==null ? this.default
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'sortitems') { var _index = null; if (afterElement) _index = this._viewsettingsdialog.indexOfSortItem(afterElement); if (_index)this._viewsettingsdialog.insertSortItem(child, _index + 1); else this._viewsettingsdialog.addSortItem(child, 0);  return elem.localName; }
-if (elem.localName == 'groupitems') { var _index = null; if (afterElement) _index = this._viewsettingsdialog.indexOfGroupItem(afterElement); if (_index)this._viewsettingsdialog.insertGroupItem(child, _index + 1); else this._viewsettingsdialog.addGroupItem(child, 0);  return elem.localName; }
-if (elem.localName == 'filteritems') { var _index = null; if (afterElement) _index = this._viewsettingsdialog.indexOfFilterItem(afterElement); if (_index)this._viewsettingsdialog.insertFilterItem(child, _index + 1); else this._viewsettingsdialog.addFilterItem(child, 0);  return elem.localName; }
-if (elem.localName == 'presetfilteritems') { var _index = null; if (afterElement) _index = this._viewsettingsdialog.indexOfPresetFilterItem(afterElement); if (_index)this._viewsettingsdialog.insertPresetFilterItem(child, _index + 1); else this._viewsettingsdialog.addPresetFilterItem(child, 0);  return elem.localName; }
-if (elem.localName == 'customtabs') { var _index = null; if (afterElement) _index = this._viewsettingsdialog.indexOfCustomTab(afterElement); if (_index)this._viewsettingsdialog.insertCustomTab(child, _index + 1); else this._viewsettingsdialog.addCustomTab(child, 0);  return elem.localName; }
+                 if (elem.localName == 'sortitems') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertSortItem(child, _index); else this._viewsettingsdialog.addSortItem(child, 0);  return elem.localName; }
+if (elem.localName == 'groupitems') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertGroupItem(child, _index); else this._viewsettingsdialog.addGroupItem(child, 0);  return elem.localName; }
+if (elem.localName == 'filteritems') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertFilterItem(child, _index); else this._viewsettingsdialog.addFilterItem(child, 0);  return elem.localName; }
+if (elem.localName == 'presetfilteritems') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertPresetFilterItem(child, _index); else this._viewsettingsdialog.addPresetFilterItem(child, 0);  return elem.localName; }
+if (elem.localName == 'customtabs') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertCustomTab(child, _index); else this._viewsettingsdialog.addCustomTab(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._viewsettingsdialog.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._viewsettingsdialog.indexOfCustomData(afterElement); if (_index)this._viewsettingsdialog.insertCustomData(child, _index + 1); else this._viewsettingsdialog.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertCustomData(child, _index); else this._viewsettingsdialog.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._viewsettingsdialog.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._viewsettingsdialog.indexOfDependent(afterElement); if (_index)this._viewsettingsdialog.insertDependent(child, _index + 1); else this._viewsettingsdialog.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertDependent(child, _index); else this._viewsettingsdialog.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

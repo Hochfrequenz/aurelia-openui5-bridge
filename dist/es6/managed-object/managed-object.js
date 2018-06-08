@@ -11,6 +11,7 @@ export class Ui5ManagedObject extends Ui5EventProvider{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() validationSuccess = this.defaultFunc;
 @bindable() validationError = this.defaultFunc;
 @bindable() parseError = this.defaultFunc;
@@ -52,20 +53,15 @@ params.modelContextChange = this.modelContextChange==null ? this.defaultFunc: th
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._managedobject.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._managedobject, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._managedobject, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._managedobject, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._managedobject, this.element);
+                                                       this._relation = this._parent.addChild(this._managedobject, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -87,6 +83,7 @@ params.modelContextChange = this.modelContextChange==null ? this.defaultFunc: th
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._managedobject)
                                                                 this._parent.removeChildByRelation(this._managedobject, this._relation);
                                                             }
                                                                                 }

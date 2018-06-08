@@ -11,11 +11,13 @@ export class Ui5Toolbar extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() width = null;
 @bindable() active = false;
 @bindable() enabled = true;
 @bindable() height = '';
 @bindable() design = 'Auto';
+@bindable() style = 'Standard';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
@@ -49,6 +51,7 @@ params.active = getBooleanFromAttributeValue(this.active);
 params.enabled = getBooleanFromAttributeValue(this.enabled);
 params.height = this.height;
 params.design = this.design;
+params.style = this.style;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
                                             super.fillProperties(params);   
@@ -68,20 +71,15 @@ params.press = this.press==null ? this.defaultFunc: this.press;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._toolbar.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._toolbar, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._toolbar, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._toolbar, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._toolbar, this.element);
+                                                       this._relation = this._parent.addChild(this._toolbar, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -103,6 +101,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._toolbar)
                                                                 this._parent.removeChildByRelation(this._toolbar, this._relation);
                                                             }
                                                                                 }
@@ -118,11 +117,11 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._toolbar.indexOfContent(afterElement); if (_index)this._toolbar.insertContent(child, _index + 1); else this._toolbar.addContent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbar.insertContent(child, _index); else this._toolbar.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._toolbar.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._toolbar.indexOfCustomData(afterElement); if (_index)this._toolbar.insertCustomData(child, _index + 1); else this._toolbar.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbar.insertCustomData(child, _index); else this._toolbar.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._toolbar.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._toolbar.indexOfDependent(afterElement); if (_index)this._toolbar.insertDependent(child, _index + 1); else this._toolbar.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbar.insertDependent(child, _index); else this._toolbar.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -144,6 +143,7 @@ activeChanged(newValue){if(this._toolbar!==null){ this._toolbar.setActive(getBoo
 enabledChanged(newValue){if(this._toolbar!==null){ this._toolbar.setEnabled(getBooleanFromAttributeValue(newValue));}}
 heightChanged(newValue){if(this._toolbar!==null){ this._toolbar.setHeight(newValue);}}
 designChanged(newValue){if(this._toolbar!==null){ this._toolbar.setDesign(newValue);}}
+styleChanged(newValue){if(this._toolbar!==null){ this._toolbar.setStyle(newValue);}}
 pressChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachPress(newValue);}}
 busyChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusyIndicatorDelay(newValue);}}

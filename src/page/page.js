@@ -11,6 +11,7 @@ export class Ui5Page extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() title = null;
 @bindable() titleLevel = 'Auto';
 @bindable() showNavButton = false;
@@ -80,20 +81,15 @@ params.navButtonPress = this.navButtonPress==null ? this.defaultFunc: this.navBu
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._page.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._page, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._page, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._page, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._page, this.element);
+                                                       this._relation = this._parent.addChild(this._page, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -115,6 +111,7 @@ params.navButtonPress = this.navButtonPress==null ? this.defaultFunc: this.navBu
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._page)
                                                                 this._parent.removeChildByRelation(this._page, this._relation);
                                                             }
                                                                                 }
@@ -130,16 +127,16 @@ params.navButtonPress = this.navButtonPress==null ? this.defaultFunc: this.navBu
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._page.indexOfContent(afterElement); if (_index)this._page.insertContent(child, _index + 1); else this._page.addContent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertContent(child, _index); else this._page.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'customheader') { this._page.setCustomHeader(child); return elem.localName;}
 if (elem.localName == 'footer') { this._page.setFooter(child); return elem.localName;}
 if (elem.localName == 'subheader') { this._page.setSubHeader(child); return elem.localName;}
-if (elem.localName == 'headercontent') { var _index = null; if (afterElement) _index = this._page.indexOfHeaderContent(afterElement); if (_index)this._page.insertHeaderContent(child, _index + 1); else this._page.addHeaderContent(child, 0);  return elem.localName; }
+if (elem.localName == 'headercontent') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertHeaderContent(child, _index); else this._page.addHeaderContent(child, 0);  return elem.localName; }
 if (elem.localName == 'landmarkinfo') { this._page.setLandmarkInfo(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._page.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._page.indexOfCustomData(afterElement); if (_index)this._page.insertCustomData(child, _index + 1); else this._page.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertCustomData(child, _index); else this._page.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._page.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._page.indexOfDependent(afterElement); if (_index)this._page.insertDependent(child, _index + 1); else this._page.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertDependent(child, _index); else this._page.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

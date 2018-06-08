@@ -11,6 +11,7 @@ export class Ui5Bar extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() design = 'Auto';
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
@@ -58,20 +59,15 @@ export class Ui5Bar extends Ui5Control{
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._bar.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._bar, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._bar, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._bar, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._bar, this.element);
+                                                       this._relation = this._parent.addChild(this._bar, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -93,6 +89,7 @@ export class Ui5Bar extends Ui5Control{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._bar)
                                                                 this._parent.removeChildByRelation(this._bar, this._relation);
                                                             }
                                                                                 }
@@ -108,13 +105,13 @@ export class Ui5Bar extends Ui5Control{
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'contentleft') { var _index = null; if (afterElement) _index = this._bar.indexOfContentLeft(afterElement); if (_index)this._bar.insertContentLeft(child, _index + 1); else this._bar.addContentLeft(child, 0);  return elem.localName; }
-if (elem.localName == 'contentmiddle') { var _index = null; if (afterElement) _index = this._bar.indexOfContentMiddle(afterElement); if (_index)this._bar.insertContentMiddle(child, _index + 1); else this._bar.addContentMiddle(child, 0);  return elem.localName; }
-if (elem.localName == 'contentright') { var _index = null; if (afterElement) _index = this._bar.indexOfContentRight(afterElement); if (_index)this._bar.insertContentRight(child, _index + 1); else this._bar.addContentRight(child, 0);  return elem.localName; }
+                 if (elem.localName == 'contentleft') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertContentLeft(child, _index); else this._bar.addContentLeft(child, 0);  return elem.localName; }
+if (elem.localName == 'contentmiddle') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertContentMiddle(child, _index); else this._bar.addContentMiddle(child, 0);  return elem.localName; }
+if (elem.localName == 'contentright') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertContentRight(child, _index); else this._bar.addContentRight(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._bar.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._bar.indexOfCustomData(afterElement); if (_index)this._bar.insertCustomData(child, _index + 1); else this._bar.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertCustomData(child, _index); else this._bar.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._bar.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._bar.indexOfDependent(afterElement); if (_index)this._bar.insertDependent(child, _index + 1); else this._bar.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertDependent(child, _index); else this._bar.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

@@ -11,6 +11,7 @@ export class Ui5ObjectNumber extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() number = null;
 @bindable() emphasized = true;
 @bindable() state = 'None';
@@ -68,20 +69,15 @@ params.textAlign = this.textAlign;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._objectnumber.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._objectnumber, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._objectnumber, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._objectnumber, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._objectnumber, this.element);
+                                                       this._relation = this._parent.addChild(this._objectnumber, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -103,6 +99,7 @@ params.textAlign = this.textAlign;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._objectnumber)
                                                                 this._parent.removeChildByRelation(this._objectnumber, this._relation);
                                                             }
                                                                                 }
@@ -119,9 +116,9 @@ params.textAlign = this.textAlign;
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._objectnumber.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._objectnumber.indexOfCustomData(afterElement); if (_index)this._objectnumber.insertCustomData(child, _index + 1); else this._objectnumber.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectnumber.insertCustomData(child, _index); else this._objectnumber.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._objectnumber.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._objectnumber.indexOfDependent(afterElement); if (_index)this._objectnumber.insertDependent(child, _index + 1); else this._objectnumber.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectnumber.insertDependent(child, _index); else this._objectnumber.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

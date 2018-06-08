@@ -11,6 +11,7 @@ export class Ui5ToolbarSpacer extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() width = '';
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
@@ -58,20 +59,15 @@ export class Ui5ToolbarSpacer extends Ui5Control{
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._toolbarspacer.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._toolbarspacer, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._toolbarspacer, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._toolbarspacer, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._toolbarspacer, this.element);
+                                                       this._relation = this._parent.addChild(this._toolbarspacer, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -93,6 +89,7 @@ export class Ui5ToolbarSpacer extends Ui5Control{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._toolbarspacer)
                                                                 this._parent.removeChildByRelation(this._toolbarspacer, this._relation);
                                                             }
                                                                                 }
@@ -109,9 +106,9 @@ export class Ui5ToolbarSpacer extends Ui5Control{
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._toolbarspacer.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._toolbarspacer.indexOfCustomData(afterElement); if (_index)this._toolbarspacer.insertCustomData(child, _index + 1); else this._toolbarspacer.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbarspacer.insertCustomData(child, _index); else this._toolbarspacer.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._toolbarspacer.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._toolbarspacer.indexOfDependent(afterElement); if (_index)this._toolbarspacer.insertDependent(child, _index + 1); else this._toolbarspacer.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbarspacer.insertDependent(child, _index); else this._toolbarspacer.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

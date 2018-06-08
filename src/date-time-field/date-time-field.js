@@ -11,9 +11,11 @@ export class Ui5DateTimeField extends Ui5InputBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() displayFormat = null;
 @bindable() valueFormat = null;
 @bindable() dateValue = null;
+@bindable() initialFocusedDateValue = null;
 /* inherited from sap.m.InputBase*/
 @bindable() value = null;
 @bindable() width = null;
@@ -58,6 +60,7 @@ export class Ui5DateTimeField extends Ui5InputBase{
                                         params.displayFormat = this.displayFormat;
 params.valueFormat = this.valueFormat;
 params.dateValue = this.dateValue;
+params.initialFocusedDateValue = this.initialFocusedDateValue;
             
                                             super.fillProperties(params);   
         }
@@ -76,20 +79,15 @@ params.dateValue = this.dateValue;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._datetimefield.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._datetimefield, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._datetimefield, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._datetimefield, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._datetimefield, this.element);
+                                                       this._relation = this._parent.addChild(this._datetimefield, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -111,6 +109,7 @@ params.dateValue = this.dateValue;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._datetimefield)
                                                                 this._parent.removeChildByRelation(this._datetimefield, this._relation);
                                                             }
                                                                                 }
@@ -127,9 +126,9 @@ params.dateValue = this.dateValue;
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._datetimefield.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._datetimefield.indexOfCustomData(afterElement); if (_index)this._datetimefield.insertCustomData(child, _index + 1); else this._datetimefield.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimefield.insertCustomData(child, _index); else this._datetimefield.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._datetimefield.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._datetimefield.indexOfDependent(afterElement); if (_index)this._datetimefield.insertDependent(child, _index + 1); else this._datetimefield.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimefield.insertDependent(child, _index); else this._datetimefield.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -148,6 +147,7 @@ if (relation == 'dependents') {  this._datetimefield.removeDependent(child);}
     displayFormatChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setDisplayFormat(newValue);}}
 valueFormatChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValueFormat(newValue);}}
 dateValueChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setDateValue(newValue);}}
+initialFocusedDateValueChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setInitialFocusedDateValue(newValue);}}
 valueChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValue(newValue);}}
 widthChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setWidth(newValue);}}
 enabledChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setEnabled(getBooleanFromAttributeValue(newValue));}}

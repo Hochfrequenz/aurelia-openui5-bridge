@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, Ui5MessageView;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, Ui5MessageView;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -97,23 +97,25 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(this, 'ui5Id', _descriptor, this);
 
-                    _initDefineProp(this, 'asyncDescriptionHandler', _descriptor2, this);
+                    _initDefineProp(this, 'prevId', _descriptor2, this);
 
-                    _initDefineProp(this, 'asyncURLHandler', _descriptor3, this);
+                    _initDefineProp(this, 'asyncDescriptionHandler', _descriptor3, this);
 
-                    _initDefineProp(this, 'groupItems', _descriptor4, this);
+                    _initDefineProp(this, 'asyncURLHandler', _descriptor4, this);
 
-                    _initDefineProp(this, 'showDetailsPageHeader', _descriptor5, this);
+                    _initDefineProp(this, 'groupItems', _descriptor5, this);
 
-                    _initDefineProp(this, 'afterOpen', _descriptor6, this);
+                    _initDefineProp(this, 'showDetailsPageHeader', _descriptor6, this);
 
-                    _initDefineProp(this, 'itemSelect', _descriptor7, this);
+                    _initDefineProp(this, 'afterOpen', _descriptor7, this);
 
-                    _initDefineProp(this, 'listSelect', _descriptor8, this);
+                    _initDefineProp(this, 'itemSelect', _descriptor8, this);
 
-                    _initDefineProp(this, 'longtextLoaded', _descriptor9, this);
+                    _initDefineProp(this, 'listSelect', _descriptor9, this);
 
-                    _initDefineProp(this, 'urlValidated', _descriptor10, this);
+                    _initDefineProp(this, 'longtextLoaded', _descriptor10, this);
+
+                    _initDefineProp(this, 'urlValidated', _descriptor11, this);
 
                     this.element = element;
                     this.attributeManager = new AttributeManager(this.element);
@@ -143,16 +145,14 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                         if (!this._parent.UIElement || this._parent.UIElement.sId != this._messageview.sId) {
                             var prevSibling = null;
-                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                            this._relation = this._parent.addChild(this._messageview, this.element, prevSibling);
+
+                            this._relation = this._parent.addChild(this._messageview, this.element, this.prevId);
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         } else {
                             this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                             var prevSibling = null;
-                            if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                this._relation = this._parent.addChild(this._messageview, this.element, prevSibling);
-                            } else this._relation = this._parent.addChild(this._messageview, this.element);
+                            this._relation = this._parent.addChild(this._messageview, this.element, this.prevId);
+
                             this.attributeManager.addAttributes({ "ui5-container": '' });
                         }
                     } else {
@@ -168,7 +168,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     try {
                         if ($(this.element).closest("[ui5-container]").length > 0) {
                             if (this._parent && this._relation) {
-                                this._parent.removeChildByRelation(this._messageview, this._relation);
+                                if (this._messageview) this._parent.removeChildByRelation(this._messageview, this._relation);
                             }
                         } else {
                             this._messageview.destroy();
@@ -190,7 +190,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                         try {
                             if (elem.localName == 'items') {
-                                var _index = null;if (afterElement) _index = this._messageview.indexOfItem(afterElement);if (_index) this._messageview.insertItem(child, _index + 1);else this._messageview.addItem(child, 0);return elem.localName;
+                                var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._messageview.insertItem(child, _index);else this._messageview.addItem(child, 0);return elem.localName;
                             }
                             if (elem.localName == 'headerbutton') {
                                 this._messageview.setHeaderButton(child);return elem.localName;
@@ -277,47 +277,52 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return null;
                 }
-            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'asyncDescriptionHandler', [_dec3], {
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return null;
                 }
-            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'asyncURLHandler', [_dec4], {
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'asyncDescriptionHandler', [_dec3], {
                 enumerable: true,
                 initializer: function initializer() {
                     return null;
                 }
-            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'groupItems', [_dec5], {
+            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'asyncURLHandler', [_dec4], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'groupItems', [_dec5], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'showDetailsPageHeader', [_dec6], {
+            }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'showDetailsPageHeader', [_dec6], {
                 enumerable: true,
                 initializer: function initializer() {
                     return true;
                 }
-            }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'afterOpen', [_dec7], {
+            }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'afterOpen', [_dec7], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'itemSelect', [_dec8], {
+            }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'itemSelect', [_dec8], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'listSelect', [_dec9], {
+            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'listSelect', [_dec9], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'longtextLoaded', [_dec10], {
+            }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'longtextLoaded', [_dec10], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'urlValidated', [_dec11], {
+            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'urlValidated', [_dec11], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;

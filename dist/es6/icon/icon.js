@@ -11,6 +11,7 @@ export class Ui5Icon extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() src = null;
 @bindable() size = null;
 @bindable() color = null;
@@ -86,20 +87,15 @@ params.press = this.press==null ? this.defaultFunc: this.press;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._icon.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._icon, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._icon, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._icon, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._icon, this.element);
+                                                       this._relation = this._parent.addChild(this._icon, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -121,6 +117,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._icon)
                                                                 this._parent.removeChildByRelation(this._icon, this._relation);
                                                             }
                                                                                 }
@@ -137,9 +134,9 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._icon.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._icon.indexOfCustomData(afterElement); if (_index)this._icon.insertCustomData(child, _index + 1); else this._icon.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icon.insertCustomData(child, _index); else this._icon.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._icon.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._icon.indexOfDependent(afterElement); if (_index)this._icon.insertDependent(child, _index + 1); else this._icon.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icon.insertDependent(child, _index); else this._icon.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

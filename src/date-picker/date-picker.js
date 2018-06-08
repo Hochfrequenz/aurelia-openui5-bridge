@@ -11,6 +11,7 @@ export class Ui5DatePicker extends Ui5DateTimeField{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() displayFormatType = '';
 @bindable() secondaryCalendarType = null;
 @bindable() minDate = null;
@@ -20,6 +21,7 @@ export class Ui5DatePicker extends Ui5DateTimeField{
 @bindable() displayFormat = null;
 @bindable() valueFormat = null;
 @bindable() dateValue = null;
+@bindable() initialFocusedDateValue = null;
 /* inherited from sap.m.InputBase*/
 @bindable() value = null;
 @bindable() width = null;
@@ -84,20 +86,15 @@ params.navigate = this.navigate==null ? this.defaultFunc: this.navigate;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._datepicker.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._datepicker, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._datepicker, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._datepicker, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._datepicker, this.element);
+                                                       this._relation = this._parent.addChild(this._datepicker, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -120,6 +117,7 @@ params.navigate = this.navigate==null ? this.defaultFunc: this.navigate;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._datepicker)
                                                                 this._parent.removeChildByRelation(this._datepicker, this._relation);
                                                             }
                                                                                 }
@@ -135,11 +133,11 @@ params.navigate = this.navigate==null ? this.defaultFunc: this.navigate;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'specialdates') { var _index = null; if (afterElement) _index = this._datepicker.indexOfSpecialDate(afterElement); if (_index)this._datepicker.insertSpecialDate(child, _index + 1); else this._datepicker.addSpecialDate(child, 0);  return elem.localName; }
+                 if (elem.localName == 'specialdates') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datepicker.insertSpecialDate(child, _index); else this._datepicker.addSpecialDate(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._datepicker.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._datepicker.indexOfCustomData(afterElement); if (_index)this._datepicker.insertCustomData(child, _index + 1); else this._datepicker.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datepicker.insertCustomData(child, _index); else this._datepicker.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._datepicker.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._datepicker.indexOfDependent(afterElement); if (_index)this._datepicker.insertDependent(child, _index + 1); else this._datepicker.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datepicker.insertDependent(child, _index); else this._datepicker.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -164,6 +162,7 @@ navigateChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachNa
 displayFormatChanged(newValue){if(this._datepicker!==null){ this._datepicker.setDisplayFormat(newValue);}}
 valueFormatChanged(newValue){if(this._datepicker!==null){ this._datepicker.setValueFormat(newValue);}}
 dateValueChanged(newValue){if(this._datepicker!==null){ this._datepicker.setDateValue(newValue);}}
+initialFocusedDateValueChanged(newValue){if(this._datepicker!==null){ this._datepicker.setInitialFocusedDateValue(newValue);}}
 /* inherited from sap.m.DateTimeField*/
 valueChanged(newValue){if(this._datepicker!==null){ this._datepicker.setValue(newValue);}}
 widthChanged(newValue){if(this._datepicker!==null){ this._datepicker.setWidth(newValue);}}

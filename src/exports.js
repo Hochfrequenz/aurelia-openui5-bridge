@@ -89,6 +89,9 @@ export * from './tree/tree';
 export * from './tree-item-base/tree-item-base';
 export * from './standard-tree-item/standard-tree-item';
 export * from './custom-tree-item/custom-tree-item';
-export * from './menu-item/menu-item'
-export * from './menu/menu'
+export * from './menu-item/menu-item';
+export * from './menu/menu';
+export * from './splitter/splitter';
+export * from './suggestion-item/suggestion-item';
+export * from './panel/panel';
 // build-index-remove end

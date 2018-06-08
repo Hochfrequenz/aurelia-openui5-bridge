@@ -11,6 +11,7 @@ export class Ui5Shell extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() title = null;
 @bindable() logo = null;
 @bindable() showLogout = true;
@@ -80,20 +81,15 @@ params.logout = this.logout==null ? this.defaultFunc: this.logout;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._shell.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._shell, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._shell, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._shell, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._shell, this.element);
+                                                       this._relation = this._parent.addChild(this._shell, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -115,6 +111,7 @@ params.logout = this.logout==null ? this.defaultFunc: this.logout;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._shell)
                                                                 this._parent.removeChildByRelation(this._shell, this._relation);
                                                             }
                                                                                 }
@@ -132,9 +129,9 @@ params.logout = this.logout==null ? this.defaultFunc: this.logout;
         try{
                  if (elem.localName == 'content') { this._shell.setApp(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._shell.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._shell.indexOfCustomData(afterElement); if (_index)this._shell.insertCustomData(child, _index + 1); else this._shell.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._shell.insertCustomData(child, _index); else this._shell.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._shell.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._shell.indexOfDependent(afterElement); if (_index)this._shell.insertDependent(child, _index + 1); else this._shell.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._shell.insertDependent(child, _index); else this._shell.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

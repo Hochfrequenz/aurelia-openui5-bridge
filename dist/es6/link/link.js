@@ -11,11 +11,13 @@ export class Ui5Link extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() text = '';
 @bindable() enabled = true;
 @bindable() target = null;
 @bindable() width = null;
 @bindable() href = null;
+@bindable() validateUrl = false;
 @bindable() wrapping = false;
 @bindable() textAlign = 'Initial';
 @bindable() textDirection = 'Inherit';
@@ -54,6 +56,7 @@ params.enabled = getBooleanFromAttributeValue(this.enabled);
 params.target = this.target;
 params.width = this.width;
 params.href = this.href;
+params.validateUrl = getBooleanFromAttributeValue(this.validateUrl);
 params.wrapping = getBooleanFromAttributeValue(this.wrapping);
 params.textAlign = this.textAlign;
 params.textDirection = this.textDirection;
@@ -78,20 +81,15 @@ params.press = this.press==null ? this.defaultFunc: this.press;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._link.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._link, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._link, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._link, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._link, this.element);
+                                                       this._relation = this._parent.addChild(this._link, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -113,6 +111,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._link)
                                                                 this._parent.removeChildByRelation(this._link, this._relation);
                                                             }
                                                                                 }
@@ -129,9 +128,9 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._link.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._link.indexOfCustomData(afterElement); if (_index)this._link.insertCustomData(child, _index + 1); else this._link.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._link.insertCustomData(child, _index); else this._link.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._link.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._link.indexOfDependent(afterElement); if (_index)this._link.insertDependent(child, _index + 1); else this._link.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._link.insertDependent(child, _index); else this._link.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -152,6 +151,7 @@ enabledChanged(newValue){if(this._link!==null){ this._link.setEnabled(getBoolean
 targetChanged(newValue){if(this._link!==null){ this._link.setTarget(newValue);}}
 widthChanged(newValue){if(this._link!==null){ this._link.setWidth(newValue);}}
 hrefChanged(newValue){if(this._link!==null){ this._link.setHref(newValue);}}
+validateUrlChanged(newValue){if(this._link!==null){ this._link.setValidateUrl(getBooleanFromAttributeValue(newValue));}}
 wrappingChanged(newValue){if(this._link!==null){ this._link.setWrapping(getBooleanFromAttributeValue(newValue));}}
 textAlignChanged(newValue){if(this._link!==null){ this._link.setTextAlign(newValue);}}
 textDirectionChanged(newValue){if(this._link!==null){ this._link.setTextDirection(newValue);}}

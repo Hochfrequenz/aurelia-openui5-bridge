@@ -7,7 +7,7 @@ exports.Ui5EventProvider = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
+var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -84,6 +84,8 @@ var Ui5EventProvider = exports.Ui5EventProvider = (_dec = (0, _aureliaTemplating
 
         _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
+        _initDefineProp(_this, 'prevId', _descriptor2, _this);
+
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
         return _this;
@@ -106,16 +108,14 @@ var Ui5EventProvider = exports.Ui5EventProvider = (_dec = (0, _aureliaTemplating
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
             if (!this._parent.UIElement || this._parent.UIElement.sId != this._eventprovider.sId) {
                 var prevSibling = null;
-                if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                this._relation = this._parent.addChild(this._eventprovider, this.element, prevSibling);
+
+                this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             } else {
                 this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                 var prevSibling = null;
-                if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                    this._relation = this._parent.addChild(this._eventprovider, this.element, prevSibling);
-                } else this._relation = this._parent.addChild(this._eventprovider, this.element);
+                this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
+
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             }
         } else {
@@ -131,7 +131,7 @@ var Ui5EventProvider = exports.Ui5EventProvider = (_dec = (0, _aureliaTemplating
         try {
             if ($(this.element).closest("[ui5-container]").length > 0) {
                 if (this._parent && this._relation) {
-                    this._parent.removeChildByRelation(this._eventprovider, this._relation);
+                    if (this._eventprovider) this._parent.removeChildByRelation(this._eventprovider, this._relation);
                 }
             } else {
                 this._eventprovider.destroy();
@@ -169,6 +169,11 @@ var Ui5EventProvider = exports.Ui5EventProvider = (_dec = (0, _aureliaTemplating
 
     return Ui5EventProvider;
 }(_object.Ui5Object), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_aureliaTemplating.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return null;

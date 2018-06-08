@@ -11,6 +11,7 @@ export class Ui5SimpleForm extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() maxContainerCols = 2;
 @bindable() minWidth = -1;
 @bindable() width = null;
@@ -102,20 +103,15 @@ params.backgroundDesign = this.backgroundDesign;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._simpleform.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._simpleform, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._simpleform, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._simpleform, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._simpleform, this.element);
+                                                       this._relation = this._parent.addChild(this._simpleform, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -137,6 +133,7 @@ params.backgroundDesign = this.backgroundDesign;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._simpleform)
                                                                 this._parent.removeChildByRelation(this._simpleform, this._relation);
                                                             }
                                                                                 }
@@ -152,13 +149,13 @@ params.backgroundDesign = this.backgroundDesign;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._simpleform.indexOfContent(afterElement); if (_index)this._simpleform.insertContent(child, _index + 1); else this._simpleform.addContent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._simpleform.insertContent(child, _index); else this._simpleform.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'title-elem') { this._simpleform.setTitle(child); return elem.localName;}
 if (elem.localName == 'toolbar') { this._simpleform.setToolbar(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._simpleform.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._simpleform.indexOfCustomData(afterElement); if (_index)this._simpleform.insertCustomData(child, _index + 1); else this._simpleform.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._simpleform.insertCustomData(child, _index); else this._simpleform.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._simpleform.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._simpleform.indexOfDependent(afterElement); if (_index)this._simpleform.insertDependent(child, _index + 1); else this._simpleform.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._simpleform.insertDependent(child, _index); else this._simpleform.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

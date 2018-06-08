@@ -25,7 +25,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         }
 
         ConfigBuilder.prototype.useAll = function useAll() {
-          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton().useTree().useMenu();
+          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton().useTree().useMenu().useSplitter().usePanel();
         };
 
         ConfigBuilder.prototype.useLink = function useLink() {
@@ -115,6 +115,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         ConfigBuilder.prototype.useInput = function useInput() {
           this.globalResources.push(PLATFORM.moduleName('./input/input'));
           this.globalResources.push(PLATFORM.moduleName('./search-field/search-field'));
+          this.globalResources.push(PLATFORM.moduleName('./suggestion-item/suggestion-item'));
 
           return this;
         };
@@ -259,6 +260,16 @@ System.register(['aurelia-pal'], function (_export, _context) {
         ConfigBuilder.prototype.useMenu = function useMenu() {
           this.globalResources.push(PLATFORM.moduleName('./menu-item/menu-item'));
           this.globalResources.push(PLATFORM.moduleName('./menu/menu'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useSplitter = function useSplitter() {
+          this.globalResources.push(PLATFORM.moduleName('./splitter/splitter'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.usePanel = function usePanel() {
+          this.globalResources.push(PLATFORM.moduleName('./panel/panel'));
           return this;
         };
 

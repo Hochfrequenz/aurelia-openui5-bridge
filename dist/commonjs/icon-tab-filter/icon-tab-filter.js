@@ -7,7 +7,7 @@ exports.Ui5IconTabFilter = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -84,37 +84,39 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
 
         _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-        _initDefineProp(_this, 'count', _descriptor2, _this);
+        _initDefineProp(_this, 'prevId', _descriptor2, _this);
 
-        _initDefineProp(_this, 'showAll', _descriptor3, _this);
+        _initDefineProp(_this, 'count', _descriptor3, _this);
 
-        _initDefineProp(_this, 'icon', _descriptor4, _this);
+        _initDefineProp(_this, 'showAll', _descriptor4, _this);
 
-        _initDefineProp(_this, 'iconColor', _descriptor5, _this);
+        _initDefineProp(_this, 'icon', _descriptor5, _this);
 
-        _initDefineProp(_this, 'iconDensityAware', _descriptor6, _this);
+        _initDefineProp(_this, 'iconColor', _descriptor6, _this);
 
-        _initDefineProp(_this, 'visible', _descriptor7, _this);
+        _initDefineProp(_this, 'iconDensityAware', _descriptor7, _this);
 
-        _initDefineProp(_this, 'design', _descriptor8, _this);
+        _initDefineProp(_this, 'visible', _descriptor8, _this);
 
-        _initDefineProp(_this, 'text', _descriptor9, _this);
+        _initDefineProp(_this, 'design', _descriptor9, _this);
 
-        _initDefineProp(_this, 'enabled', _descriptor10, _this);
+        _initDefineProp(_this, 'text', _descriptor10, _this);
 
-        _initDefineProp(_this, 'textDirection', _descriptor11, _this);
+        _initDefineProp(_this, 'enabled', _descriptor11, _this);
 
-        _initDefineProp(_this, 'key', _descriptor12, _this);
+        _initDefineProp(_this, 'textDirection', _descriptor12, _this);
 
-        _initDefineProp(_this, 'validationSuccess', _descriptor13, _this);
+        _initDefineProp(_this, 'key', _descriptor13, _this);
 
-        _initDefineProp(_this, 'validationError', _descriptor14, _this);
+        _initDefineProp(_this, 'validationSuccess', _descriptor14, _this);
 
-        _initDefineProp(_this, 'parseError', _descriptor15, _this);
+        _initDefineProp(_this, 'validationError', _descriptor15, _this);
 
-        _initDefineProp(_this, 'formatError', _descriptor16, _this);
+        _initDefineProp(_this, 'parseError', _descriptor16, _this);
 
-        _initDefineProp(_this, 'modelContextChange', _descriptor17, _this);
+        _initDefineProp(_this, 'formatError', _descriptor17, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor18, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -145,16 +147,14 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
             if (!this._parent.UIElement || this._parent.UIElement.sId != this._icontabfilter.sId) {
                 var prevSibling = null;
-                if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                this._relation = this._parent.addChild(this._icontabfilter, this.element, prevSibling);
+
+                this._relation = this._parent.addChild(this._icontabfilter, this.element, this.prevId);
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             } else {
                 this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                 var prevSibling = null;
-                if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                    this._relation = this._parent.addChild(this._icontabfilter, this.element, prevSibling);
-                } else this._relation = this._parent.addChild(this._icontabfilter, this.element);
+                this._relation = this._parent.addChild(this._icontabfilter, this.element, this.prevId);
+
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             }
         } else {
@@ -170,7 +170,7 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
         try {
             if ($(this.element).closest("[ui5-container]").length > 0) {
                 if (this._parent && this._relation) {
-                    this._parent.removeChildByRelation(this._icontabfilter, this._relation);
+                    if (this._icontabfilter) this._parent.removeChildByRelation(this._icontabfilter, this._relation);
                 }
             } else {
                 this._icontabfilter.destroy();
@@ -193,19 +193,19 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
 
             try {
                 if (elem.localName == 'content') {
-                    var _index = null;if (afterElement) _index = this._icontabfilter.indexOfContent(afterElement);if (_index) this._icontabfilter.insertContent(child, _index + 1);else this._icontabfilter.addContent(child, 0);return elem.localName;
+                    var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._icontabfilter.insertContent(child, _index);else this._icontabfilter.addContent(child, 0);return elem.localName;
                 }
                 if (elem.localName == 'tooltip') {
                     this._icontabfilter.setTooltip(child);return elem.localName;
                 }
                 if (elem.localName == 'customdata') {
-                    var _index = null;if (afterElement) _index = this._icontabfilter.indexOfCustomData(afterElement);if (_index) this._icontabfilter.insertCustomData(child, _index + 1);else this._icontabfilter.addCustomData(child, 0);return elem.localName;
+                    var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._icontabfilter.insertCustomData(child, _index);else this._icontabfilter.addCustomData(child, 0);return elem.localName;
                 }
                 if (elem.localName == 'layoutdata') {
                     this._icontabfilter.setLayoutData(child);return elem.localName;
                 }
                 if (elem.localName == 'dependents') {
-                    var _index = null;if (afterElement) _index = this._icontabfilter.indexOfDependent(afterElement);if (_index) this._icontabfilter.insertDependent(child, _index + 1);else this._icontabfilter.addDependent(child, 0);return elem.localName;
+                    var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._icontabfilter.insertDependent(child, _index);else this._icontabfilter.addDependent(child, 0);return elem.localName;
                 }
             } catch (err) {}
         }
@@ -340,82 +340,87 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
     initializer: function initializer() {
         return null;
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'count', [_dec3], {
-    enumerable: true,
-    initializer: function initializer() {
-        return '';
-    }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'showAll', [_dec4], {
-    enumerable: true,
-    initializer: function initializer() {
-        return false;
-    }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec5], {
-    enumerable: true,
-    initializer: function initializer() {
-        return '';
-    }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'iconColor', [_dec6], {
-    enumerable: true,
-    initializer: function initializer() {
-        return 'Default';
-    }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'iconDensityAware', [_dec7], {
-    enumerable: true,
-    initializer: function initializer() {
-        return true;
-    }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec8], {
-    enumerable: true,
-    initializer: function initializer() {
-        return true;
-    }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'design', [_dec9], {
-    enumerable: true,
-    initializer: function initializer() {
-        return 'Vertical';
-    }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec10], {
-    enumerable: true,
-    initializer: function initializer() {
-        return '';
-    }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec11], {
-    enumerable: true,
-    initializer: function initializer() {
-        return true;
-    }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec12], {
-    enumerable: true,
-    initializer: function initializer() {
-        return 'Inherit';
-    }
-}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'key', [_dec13], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec14], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'count', [_dec3], {
+    enumerable: true,
+    initializer: function initializer() {
+        return '';
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'showAll', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec5], {
+    enumerable: true,
+    initializer: function initializer() {
+        return '';
+    }
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'iconColor', [_dec6], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Default';
+    }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'iconDensityAware', [_dec7], {
+    enumerable: true,
+    initializer: function initializer() {
+        return true;
+    }
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec8], {
+    enumerable: true,
+    initializer: function initializer() {
+        return true;
+    }
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'design', [_dec9], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Vertical';
+    }
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec10], {
+    enumerable: true,
+    initializer: function initializer() {
+        return '';
+    }
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec11], {
+    enumerable: true,
+    initializer: function initializer() {
+        return true;
+    }
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec12], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Inherit';
+    }
+}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'key', [_dec13], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec14], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec15], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec15], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec16], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec16], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec17], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec17], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec18], {
+}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec18], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;

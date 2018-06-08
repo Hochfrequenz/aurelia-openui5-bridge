@@ -11,6 +11,7 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         /* inherited from sap.m.DatePicker*/
 @bindable() displayFormatType = '';
 @bindable() secondaryCalendarType = null;
@@ -21,6 +22,7 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
 @bindable() displayFormat = null;
 @bindable() valueFormat = null;
 @bindable() dateValue = null;
+@bindable() initialFocusedDateValue = null;
 /* inherited from sap.m.InputBase*/
 @bindable() value = null;
 @bindable() width = null;
@@ -80,20 +82,15 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._datetimepicker.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._datetimepicker, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._datetimepicker, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._datetimepicker, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._datetimepicker, this.element);
+                                                       this._relation = this._parent.addChild(this._datetimepicker, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -116,6 +113,7 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._datetimepicker)
                                                                 this._parent.removeChildByRelation(this._datetimepicker, this._relation);
                                                             }
                                                                                 }
@@ -131,11 +129,11 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'specialdates') { var _index = null; if (afterElement) _index = this._datetimepicker.indexOfSpecialDate(afterElement); if (_index)this._datetimepicker.insertSpecialDate(child, _index + 1); else this._datetimepicker.addSpecialDate(child, 0);  return elem.localName; }
+                 if (elem.localName == 'specialdates') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimepicker.insertSpecialDate(child, _index); else this._datetimepicker.addSpecialDate(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._datetimepicker.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._datetimepicker.indexOfCustomData(afterElement); if (_index)this._datetimepicker.insertCustomData(child, _index + 1); else this._datetimepicker.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimepicker.insertCustomData(child, _index); else this._datetimepicker.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._datetimepicker.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._datetimepicker.indexOfDependent(afterElement); if (_index)this._datetimepicker.insertDependent(child, _index + 1); else this._datetimepicker.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimepicker.insertDependent(child, _index); else this._datetimepicker.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -161,6 +159,7 @@ navigateChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.
 displayFormatChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setDisplayFormat(newValue);}}
 valueFormatChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setValueFormat(newValue);}}
 dateValueChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setDateValue(newValue);}}
+initialFocusedDateValueChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setInitialFocusedDateValue(newValue);}}
 /* inherited from sap.m.DateTimeField*/
 valueChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setValue(newValue);}}
 widthChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setWidth(newValue);}}

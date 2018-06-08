@@ -7,7 +7,7 @@ exports.Ui5UploadCollectionParameter = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -84,19 +84,21 @@ var Ui5UploadCollectionParameter = exports.Ui5UploadCollectionParameter = (_dec 
 
         _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-        _initDefineProp(_this, 'name', _descriptor2, _this);
+        _initDefineProp(_this, 'prevId', _descriptor2, _this);
 
-        _initDefineProp(_this, 'value', _descriptor3, _this);
+        _initDefineProp(_this, 'name', _descriptor3, _this);
 
-        _initDefineProp(_this, 'validationSuccess', _descriptor4, _this);
+        _initDefineProp(_this, 'value', _descriptor4, _this);
 
-        _initDefineProp(_this, 'validationError', _descriptor5, _this);
+        _initDefineProp(_this, 'validationSuccess', _descriptor5, _this);
 
-        _initDefineProp(_this, 'parseError', _descriptor6, _this);
+        _initDefineProp(_this, 'validationError', _descriptor6, _this);
 
-        _initDefineProp(_this, 'formatError', _descriptor7, _this);
+        _initDefineProp(_this, 'parseError', _descriptor7, _this);
 
-        _initDefineProp(_this, 'modelContextChange', _descriptor8, _this);
+        _initDefineProp(_this, 'formatError', _descriptor8, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor9, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -122,16 +124,14 @@ var Ui5UploadCollectionParameter = exports.Ui5UploadCollectionParameter = (_dec 
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
             if (!this._parent.UIElement || this._parent.UIElement.sId != this._uploadcollectionparameter.sId) {
                 var prevSibling = null;
-                if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                this._relation = this._parent.addChild(this._uploadcollectionparameter, this.element, prevSibling);
+
+                this._relation = this._parent.addChild(this._uploadcollectionparameter, this.element, this.prevId);
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             } else {
                 this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                 var prevSibling = null;
-                if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                    this._relation = this._parent.addChild(this._uploadcollectionparameter, this.element, prevSibling);
-                } else this._relation = this._parent.addChild(this._uploadcollectionparameter, this.element);
+                this._relation = this._parent.addChild(this._uploadcollectionparameter, this.element, this.prevId);
+
                 this.attributeManager.addAttributes({ "ui5-container": '' });
             }
         } else {
@@ -147,7 +147,7 @@ var Ui5UploadCollectionParameter = exports.Ui5UploadCollectionParameter = (_dec 
         try {
             if ($(this.element).closest("[ui5-container]").length > 0) {
                 if (this._parent && this._relation) {
-                    this._parent.removeChildByRelation(this._uploadcollectionparameter, this._relation);
+                    if (this._uploadcollectionparameter) this._parent.removeChildByRelation(this._uploadcollectionparameter, this._relation);
                 }
             } else {
                 this._uploadcollectionparameter.destroy();
@@ -173,13 +173,13 @@ var Ui5UploadCollectionParameter = exports.Ui5UploadCollectionParameter = (_dec 
                     this._uploadcollectionparameter.setTooltip(child);return elem.localName;
                 }
                 if (elem.localName == 'customdata') {
-                    var _index = null;if (afterElement) _index = this._uploadcollectionparameter.indexOfCustomData(afterElement);if (_index) this._uploadcollectionparameter.insertCustomData(child, _index + 1);else this._uploadcollectionparameter.addCustomData(child, 0);return elem.localName;
+                    var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._uploadcollectionparameter.insertCustomData(child, _index);else this._uploadcollectionparameter.addCustomData(child, 0);return elem.localName;
                 }
                 if (elem.localName == 'layoutdata') {
                     this._uploadcollectionparameter.setLayoutData(child);return elem.localName;
                 }
                 if (elem.localName == 'dependents') {
-                    var _index = null;if (afterElement) _index = this._uploadcollectionparameter.indexOfDependent(afterElement);if (_index) this._uploadcollectionparameter.insertDependent(child, _index + 1);else this._uploadcollectionparameter.addDependent(child, 0);return elem.localName;
+                    var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._uploadcollectionparameter.insertDependent(child, _index);else this._uploadcollectionparameter.addDependent(child, 0);return elem.localName;
                 }
             } catch (err) {}
         }
@@ -257,37 +257,42 @@ var Ui5UploadCollectionParameter = exports.Ui5UploadCollectionParameter = (_dec 
     initializer: function initializer() {
         return null;
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'name', [_dec3], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec4], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'name', [_dec3], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec5], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec5], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec6], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec6], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec7], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec7], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec8], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec8], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec9], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec9], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;

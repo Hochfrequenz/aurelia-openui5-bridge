@@ -11,6 +11,7 @@ export class Ui5UploadCollectionItem extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() documentId = null;
 @bindable() fileName = null;
 @bindable() mimeType = null;
@@ -75,20 +76,15 @@ params.deletePress = this.deletePress==null ? this.defaultFunc: this.deletePress
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._uploadcollectionitem.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._uploadcollectionitem, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._uploadcollectionitem, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._uploadcollectionitem, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._uploadcollectionitem, this.element);
+                                                       this._relation = this._parent.addChild(this._uploadcollectionitem, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -110,6 +106,7 @@ params.deletePress = this.deletePress==null ? this.defaultFunc: this.deletePress
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._uploadcollectionitem)
                                                                 this._parent.removeChildByRelation(this._uploadcollectionitem, this._relation);
                                                             }
                                                                                 }
@@ -125,13 +122,13 @@ params.deletePress = this.deletePress==null ? this.defaultFunc: this.deletePress
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'attributes') { var _index = null; if (afterElement) _index = this._uploadcollectionitem.indexOfAttribute(afterElement); if (_index)this._uploadcollectionitem.insertAttribute(child, _index + 1); else this._uploadcollectionitem.addAttribute(child, 0);  return elem.localName; }
-if (elem.localName == 'statuses') { var _index = null; if (afterElement) _index = this._uploadcollectionitem.indexOfStatus(afterElement); if (_index)this._uploadcollectionitem.insertStatus(child, _index + 1); else this._uploadcollectionitem.addStatus(child, 0);  return elem.localName; }
-if (elem.localName == 'markers') { var _index = null; if (afterElement) _index = this._uploadcollectionitem.indexOfMarker(afterElement); if (_index)this._uploadcollectionitem.insertMarker(child, _index + 1); else this._uploadcollectionitem.addMarker(child, 0);  return elem.localName; }
+                 if (elem.localName == 'attributes') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionitem.insertAttribute(child, _index); else this._uploadcollectionitem.addAttribute(child, 0);  return elem.localName; }
+if (elem.localName == 'statuses') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionitem.insertStatus(child, _index); else this._uploadcollectionitem.addStatus(child, 0);  return elem.localName; }
+if (elem.localName == 'markers') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionitem.insertMarker(child, _index); else this._uploadcollectionitem.addMarker(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._uploadcollectionitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._uploadcollectionitem.indexOfCustomData(afterElement); if (_index)this._uploadcollectionitem.insertCustomData(child, _index + 1); else this._uploadcollectionitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionitem.insertCustomData(child, _index); else this._uploadcollectionitem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._uploadcollectionitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._uploadcollectionitem.indexOfDependent(afterElement); if (_index)this._uploadcollectionitem.insertDependent(child, _index + 1); else this._uploadcollectionitem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionitem.insertDependent(child, _index); else this._uploadcollectionitem.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

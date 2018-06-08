@@ -11,6 +11,7 @@ export class Ui5FeedContent extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() contentText = null;
 @bindable() subheader = null;
 @bindable() value = null;
@@ -68,20 +69,15 @@ params.press = this.press==null ? this.defaultFunc: this.press;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._feedcontent.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._feedcontent, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._feedcontent, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._feedcontent, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._feedcontent, this.element);
+                                                       this._relation = this._parent.addChild(this._feedcontent, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -103,6 +99,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._feedcontent)
                                                                 this._parent.removeChildByRelation(this._feedcontent, this._relation);
                                                             }
                                                                                 }
@@ -119,9 +116,9 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._feedcontent.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._feedcontent.indexOfCustomData(afterElement); if (_index)this._feedcontent.insertCustomData(child, _index + 1); else this._feedcontent.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._feedcontent.insertCustomData(child, _index); else this._feedcontent.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._feedcontent.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._feedcontent.indexOfDependent(afterElement); if (_index)this._feedcontent.insertDependent(child, _index + 1); else this._feedcontent.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._feedcontent.insertDependent(child, _index); else this._feedcontent.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

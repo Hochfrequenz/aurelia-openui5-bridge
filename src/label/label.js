@@ -11,6 +11,7 @@ export class Ui5Label extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() design = 'Standard';
 @bindable() text = null;
 @bindable() textAlign = 'Begin';
@@ -19,6 +20,7 @@ export class Ui5Label extends Ui5Control{
 @bindable() required = false;
 @bindable() displayOnly = false;
 @bindable() wrapping = false;
+@bindable() vAlign = 'Inherit';
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -54,6 +56,7 @@ params.width = this.width;
 params.required = getBooleanFromAttributeValue(this.required);
 params.displayOnly = getBooleanFromAttributeValue(this.displayOnly);
 params.wrapping = getBooleanFromAttributeValue(this.wrapping);
+params.vAlign = this.vAlign;
             
                                             super.fillProperties(params);   
         }
@@ -72,20 +75,15 @@ params.wrapping = getBooleanFromAttributeValue(this.wrapping);
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._label.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._label, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._label, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._label, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._label, this.element);
+                                                       this._relation = this._parent.addChild(this._label, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -107,6 +105,7 @@ params.wrapping = getBooleanFromAttributeValue(this.wrapping);
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._label)
                                                                 this._parent.removeChildByRelation(this._label, this._relation);
                                                             }
                                                                                 }
@@ -123,9 +122,9 @@ params.wrapping = getBooleanFromAttributeValue(this.wrapping);
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._label.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._label.indexOfCustomData(afterElement); if (_index)this._label.insertCustomData(child, _index + 1); else this._label.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._label.insertCustomData(child, _index); else this._label.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._label.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._label.indexOfDependent(afterElement); if (_index)this._label.insertDependent(child, _index + 1); else this._label.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._label.insertDependent(child, _index); else this._label.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -149,6 +148,7 @@ widthChanged(newValue){if(this._label!==null){ this._label.setWidth(newValue);}}
 requiredChanged(newValue){if(this._label!==null){ this._label.setRequired(getBooleanFromAttributeValue(newValue));}}
 displayOnlyChanged(newValue){if(this._label!==null){ this._label.setDisplayOnly(getBooleanFromAttributeValue(newValue));}}
 wrappingChanged(newValue){if(this._label!==null){ this._label.setWrapping(getBooleanFromAttributeValue(newValue));}}
+vAlignChanged(newValue){if(this._label!==null){ this._label.setVAlign(newValue);}}
 busyChanged(newValue){if(this._label!==null){ this._label.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorSize(newValue);}}

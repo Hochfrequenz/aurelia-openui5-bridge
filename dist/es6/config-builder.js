@@ -47,6 +47,8 @@ export class ConfigBuilder {
       .useToggleButton()
       .useTree()
       .useMenu()
+      .useSplitter()
+      .usePanel()
   }
 
   useLink(): ConfigBuilder {
@@ -124,6 +126,7 @@ export class ConfigBuilder {
   useInput(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./input/input'));
     this.globalResources.push(PLATFORM.moduleName('./search-field/search-field'));
+    this.globalResources.push(PLATFORM.moduleName('./suggestion-item/suggestion-item'));
 
     return this;
   }
@@ -245,6 +248,14 @@ export class ConfigBuilder {
   useMenu(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./menu-item/menu-item'));
     this.globalResources.push(PLATFORM.moduleName('./menu/menu'));
+    return this;
+  }
+  useSplitter(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./splitter/splitter'));
+    return this;
+  }
+  usePanel(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./panel/panel'));
     return this;
   }
   /**

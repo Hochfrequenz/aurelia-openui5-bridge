@@ -11,6 +11,7 @@ export class Ui5MessageView {
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() asyncDescriptionHandler = null;
 @bindable() asyncURLHandler = null;
 @bindable() groupItems = false;
@@ -58,20 +59,15 @@ params.urlValidated = this.urlValidated==null ? this.defaultFunc: this.urlValida
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._messageview.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._messageview, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._messageview, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._messageview, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._messageview, this.element);
+                                                       this._relation = this._parent.addChild(this._messageview, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -93,6 +89,7 @@ params.urlValidated = this.urlValidated==null ? this.defaultFunc: this.urlValida
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._messageview)
                                                                 this._parent.removeChildByRelation(this._messageview, this._relation);
                                                             }
                                                                                 }
@@ -108,7 +105,7 @@ params.urlValidated = this.urlValidated==null ? this.defaultFunc: this.urlValida
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._messageview.indexOfItem(afterElement); if (_index)this._messageview.insertItem(child, _index + 1); else this._messageview.addItem(child, 0);  return elem.localName; }
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messageview.insertItem(child, _index); else this._messageview.addItem(child, 0);  return elem.localName; }
 if (elem.localName == 'headerbutton') { this._messageview.setHeaderButton(child); return elem.localName;}
 
            }

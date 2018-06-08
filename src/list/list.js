@@ -11,6 +11,7 @@ export class Ui5List extends Ui5ListBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() backgroundDesign = 'Solid';
 /* inherited from sap.m.ListBase*/
 @bindable() inset = false;
@@ -39,6 +40,7 @@ export class Ui5List extends Ui5ListBase{
 @bindable() updateStarted = this.defaultFunc;
 @bindable() updateFinished = this.defaultFunc;
 @bindable() itemPress = this.defaultFunc;
+@bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -85,20 +87,15 @@ export class Ui5List extends Ui5ListBase{
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._list.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._list, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._list, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._list, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._list, this.element);
+                                                       this._relation = this._parent.addChild(this._list, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -120,6 +117,7 @@ export class Ui5List extends Ui5ListBase{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._list)
                                                                 this._parent.removeChildByRelation(this._list, this._relation);
                                                             }
                                                                                 }
@@ -135,15 +133,17 @@ export class Ui5List extends Ui5ListBase{
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'columns') { var _index = null; if (afterElement) _index = this._list.indexOfColumn(afterElement); if (_index)this._list.insertColumn(child, _index + 1); else this._list.addColumn(child, 0);  return elem.localName; }
-if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._list.indexOfItem(afterElement); if (_index)this._list.insertItem(child, _index + 1); else this._list.addItem(child, 0);  return elem.localName; }
+                 if (elem.localName == 'columns') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertColumn(child, _index); else this._list.addColumn(child, 0);  return elem.localName; }
+if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertItem(child, _index); else this._list.addItem(child, 0);  return elem.localName; }
 if (elem.localName == 'swipecontent') { this._list.setSwipeContent(child); return elem.localName;}
 if (elem.localName == 'headertoolbar') { this._list.setHeaderToolbar(child); return elem.localName;}
 if (elem.localName == 'infotoolbar') { this._list.setInfoToolbar(child); return elem.localName;}
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertDragDropConfig(child, _index); else this._list.addDragDropConfig(child, 0);  return elem.localName; }
+if (elem.localName == 'contextmenu') { this._list.setContextMenu(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._list.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._list.indexOfCustomData(afterElement); if (_index)this._list.insertCustomData(child, _index + 1); else this._list.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertCustomData(child, _index); else this._list.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._list.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._list.indexOfDependent(afterElement); if (_index)this._list.insertDependent(child, _index + 1); else this._list.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertDependent(child, _index); else this._list.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -156,6 +156,8 @@ if (relation == 'items') {  this._list.removeItem(child);}
 if (relation == 'swipecontent') {  this._list.destroySwipeContent(child); }
 if (relation == 'headertoolbar') {  this._list.destroyHeaderToolbar(child); }
 if (relation == 'infotoolbar') {  this._list.destroyInfoToolbar(child); }
+if (relation == 'dragdropconfig') {  this._list.removeDragDropConfig(child);}
+if (relation == 'contextmenu') {  this._list.destroyContextMenu(child); }
 if (relation == 'tooltip') {  this._list.destroyTooltip(child); }
 if (relation == 'customdata') {  this._list.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._list.destroyLayoutData(child); }
@@ -192,6 +194,7 @@ swipeChanged(newValue){if(this._list!==null){ this._list.attachSwipe(newValue);}
 updateStartedChanged(newValue){if(this._list!==null){ this._list.attachUpdateStarted(newValue);}}
 updateFinishedChanged(newValue){if(this._list!==null){ this._list.attachUpdateFinished(newValue);}}
 itemPressChanged(newValue){if(this._list!==null){ this._list.attachItemPress(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(this._list!==null){ this._list.attachBeforeOpenContextMenu(newValue);}}
 busyChanged(newValue){if(this._list!==null){ this._list.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._list!==null){ this._list.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._list!==null){ this._list.setBusyIndicatorSize(newValue);}}

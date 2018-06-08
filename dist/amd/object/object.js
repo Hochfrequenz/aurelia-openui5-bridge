@@ -73,7 +73,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
+    var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2;
 
     var Ui5Object = exports.Ui5Object = (_dec = (0, _aureliaTemplating.customElement)('ui5-object'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaFramework.computedFrom)('_object'), _dec(_class = _dec2(_class = (_class2 = function () {
         function Ui5Object(element) {
@@ -84,6 +84,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             this._relation = null;
 
             _initDefineProp(this, 'ui5Id', _descriptor, this);
+
+            _initDefineProp(this, 'prevId', _descriptor2, this);
 
             this.element = element;
             this.attributeManager = new _attributeManager.AttributeManager(this.element);
@@ -103,16 +105,14 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                 if (!this._parent.UIElement || this._parent.UIElement.sId != this._object.sId) {
                     var prevSibling = null;
-                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                    this._relation = this._parent.addChild(this._object, this.element, prevSibling);
+
+                    this._relation = this._parent.addChild(this._object, this.element, this.prevId);
                     this.attributeManager.addAttributes({ "ui5-container": '' });
                 } else {
                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                     var prevSibling = null;
-                    if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                        prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                        this._relation = this._parent.addChild(this._object, this.element, prevSibling);
-                    } else this._relation = this._parent.addChild(this._object, this.element);
+                    this._relation = this._parent.addChild(this._object, this.element, this.prevId);
+
                     this.attributeManager.addAttributes({ "ui5-container": '' });
                 }
             } else {
@@ -128,7 +128,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             try {
                 if ($(this.element).closest("[ui5-container]").length > 0) {
                     if (this._parent && this._relation) {
-                        this._parent.removeChildByRelation(this._object, this._relation);
+                        if (this._object) this._parent.removeChildByRelation(this._object, this._relation);
                     }
                 } else {
                     this._object.destroy();
@@ -165,6 +165,11 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
         return Ui5Object;
     }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [_aureliaTemplating.bindable], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return null;

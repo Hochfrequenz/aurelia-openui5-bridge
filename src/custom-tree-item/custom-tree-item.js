@@ -11,6 +11,7 @@ export class Ui5CustomTreeItem extends Ui5TreeItemBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         /* inherited from sap.m.TreeItemBase*/
 /* inherited from sap.m.ListItemBase*/
 @bindable() type = 'Inactive';
@@ -66,20 +67,15 @@ export class Ui5CustomTreeItem extends Ui5TreeItemBase{
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._customtreeitem.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._customtreeitem, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._customtreeitem, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._customtreeitem, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._customtreeitem, this.element);
+                                                       this._relation = this._parent.addChild(this._customtreeitem, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -101,6 +97,7 @@ export class Ui5CustomTreeItem extends Ui5TreeItemBase{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._customtreeitem)
                                                                 this._parent.removeChildByRelation(this._customtreeitem, this._relation);
                                                             }
                                                                                 }
@@ -116,11 +113,11 @@ export class Ui5CustomTreeItem extends Ui5TreeItemBase{
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'content') { var _index = null; if (afterElement) _index = this._customtreeitem.indexOfContent(afterElement); if (_index)this._customtreeitem.insertContent(child, _index + 1); else this._customtreeitem.addContent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertContent(child, _index); else this._customtreeitem.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._customtreeitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._customtreeitem.indexOfCustomData(afterElement); if (_index)this._customtreeitem.insertCustomData(child, _index + 1); else this._customtreeitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertCustomData(child, _index); else this._customtreeitem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._customtreeitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._customtreeitem.indexOfDependent(afterElement); if (_index)this._customtreeitem.insertDependent(child, _index + 1); else this._customtreeitem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertDependent(child, _index); else this._customtreeitem.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

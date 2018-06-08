@@ -11,6 +11,7 @@ export class Ui5ListBase extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() inset = false;
 @bindable() headerText = null;
 @bindable() footerText = null;
@@ -37,6 +38,7 @@ export class Ui5ListBase extends Ui5Control{
 @bindable() updateStarted = this.defaultFunc;
 @bindable() updateFinished = this.defaultFunc;
 @bindable() itemPress = this.defaultFunc;
+@bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -90,6 +92,7 @@ params.swipe = this.swipe==null ? this.defaultFunc: this.swipe;
 params.updateStarted = this.updateStarted==null ? this.defaultFunc: this.updateStarted;
 params.updateFinished = this.updateFinished==null ? this.defaultFunc: this.updateFinished;
 params.itemPress = this.itemPress==null ? this.defaultFunc: this.itemPress;
+params.beforeOpenContextMenu = this.beforeOpenContextMenu==null ? this.defaultFunc: this.beforeOpenContextMenu;
             
                                             super.fillProperties(params);   
         }
@@ -108,20 +111,15 @@ params.itemPress = this.itemPress==null ? this.defaultFunc: this.itemPress;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._listbase.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._listbase, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._listbase, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._listbase, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._listbase, this.element);
+                                                       this._relation = this._parent.addChild(this._listbase, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -143,6 +141,7 @@ params.itemPress = this.itemPress==null ? this.defaultFunc: this.itemPress;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._listbase)
                                                                 this._parent.removeChildByRelation(this._listbase, this._relation);
                                                             }
                                                                                 }
@@ -158,14 +157,16 @@ params.itemPress = this.itemPress==null ? this.defaultFunc: this.itemPress;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._listbase.indexOfItem(afterElement); if (_index)this._listbase.insertItem(child, _index + 1); else this._listbase.addItem(child, 0);  return elem.localName; }
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listbase.insertItem(child, _index); else this._listbase.addItem(child, 0);  return elem.localName; }
 if (elem.localName == 'swipecontent') { this._listbase.setSwipeContent(child); return elem.localName;}
 if (elem.localName == 'headertoolbar') { this._listbase.setHeaderToolbar(child); return elem.localName;}
 if (elem.localName == 'infotoolbar') { this._listbase.setInfoToolbar(child); return elem.localName;}
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listbase.insertDragDropConfig(child, _index); else this._listbase.addDragDropConfig(child, 0);  return elem.localName; }
+if (elem.localName == 'contextmenu') { this._listbase.setContextMenu(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._listbase.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._listbase.indexOfCustomData(afterElement); if (_index)this._listbase.insertCustomData(child, _index + 1); else this._listbase.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listbase.insertCustomData(child, _index); else this._listbase.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._listbase.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._listbase.indexOfDependent(afterElement); if (_index)this._listbase.insertDependent(child, _index + 1); else this._listbase.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listbase.insertDependent(child, _index); else this._listbase.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -177,6 +178,8 @@ if (elem.localName == 'dependents') { var _index = null; if (afterElement) _inde
 if (relation == 'swipecontent') {  this._listbase.destroySwipeContent(child); }
 if (relation == 'headertoolbar') {  this._listbase.destroyHeaderToolbar(child); }
 if (relation == 'infotoolbar') {  this._listbase.destroyInfoToolbar(child); }
+if (relation == 'dragdropconfig') {  this._listbase.removeDragDropConfig(child);}
+if (relation == 'contextmenu') {  this._listbase.destroyContextMenu(child); }
 if (relation == 'tooltip') {  this._listbase.destroyTooltip(child); }
 if (relation == 'customdata') {  this._listbase.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._listbase.destroyLayoutData(child); }
@@ -211,6 +214,7 @@ swipeChanged(newValue){if(this._listbase!==null){ this._listbase.attachSwipe(new
 updateStartedChanged(newValue){if(this._listbase!==null){ this._listbase.attachUpdateStarted(newValue);}}
 updateFinishedChanged(newValue){if(this._listbase!==null){ this._listbase.attachUpdateFinished(newValue);}}
 itemPressChanged(newValue){if(this._listbase!==null){ this._listbase.attachItemPress(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(this._listbase!==null){ this._listbase.attachBeforeOpenContextMenu(newValue);}}
 busyChanged(newValue){if(this._listbase!==null){ this._listbase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._listbase!==null){ this._listbase.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._listbase!==null){ this._listbase.setBusyIndicatorSize(newValue);}}

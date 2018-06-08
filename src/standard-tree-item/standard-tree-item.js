@@ -11,6 +11,7 @@ export class Ui5StandardTreeItem extends Ui5TreeItemBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() title = '';
 @bindable() icon = null;
 /* inherited from sap.m.TreeItemBase*/
@@ -70,20 +71,15 @@ params.icon = this.icon;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._standardtreeitem.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._standardtreeitem, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._standardtreeitem, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._standardtreeitem, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._standardtreeitem, this.element);
+                                                       this._relation = this._parent.addChild(this._standardtreeitem, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -105,6 +101,7 @@ params.icon = this.icon;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._standardtreeitem)
                                                                 this._parent.removeChildByRelation(this._standardtreeitem, this._relation);
                                                             }
                                                                                 }
@@ -121,9 +118,9 @@ params.icon = this.icon;
         for (elem of path) {
         try{
                  if (elem.localName == 'tooltip') { this._standardtreeitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._standardtreeitem.indexOfCustomData(afterElement); if (_index)this._standardtreeitem.insertCustomData(child, _index + 1); else this._standardtreeitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtreeitem.insertCustomData(child, _index); else this._standardtreeitem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._standardtreeitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._standardtreeitem.indexOfDependent(afterElement); if (_index)this._standardtreeitem.insertDependent(child, _index + 1); else this._standardtreeitem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtreeitem.insertDependent(child, _index); else this._standardtreeitem.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

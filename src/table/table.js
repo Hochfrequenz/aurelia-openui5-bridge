@@ -11,11 +11,14 @@ export class Ui5Table extends Ui5ListBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() backgroundDesign = 'Translucent';
 @bindable() fixedLayout = true;
 @bindable() showOverlay = false;
 @bindable() alternateRowColors = false;
 @bindable() popinLayout = 'Block';
+@bindable() sticky = 'None';
+@bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.m.ListBase*/
 @bindable() inset = false;
 @bindable() headerText = null;
@@ -43,6 +46,7 @@ export class Ui5Table extends Ui5ListBase{
 @bindable() updateStarted = this.defaultFunc;
 @bindable() updateFinished = this.defaultFunc;
 @bindable() itemPress = this.defaultFunc;
+@bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -75,6 +79,8 @@ params.fixedLayout = getBooleanFromAttributeValue(this.fixedLayout);
 params.showOverlay = getBooleanFromAttributeValue(this.showOverlay);
 params.alternateRowColors = getBooleanFromAttributeValue(this.alternateRowColors);
 params.popinLayout = this.popinLayout;
+params.sticky = this.sticky;
+params.beforeOpenContextMenu = this.beforeOpenContextMenu==null ? this.defaultFunc: this.beforeOpenContextMenu;
             
                                             super.fillProperties(params);   
         }
@@ -93,20 +99,15 @@ params.popinLayout = this.popinLayout;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._table.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._table, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._table, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._table, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._table, this.element);
+                                                       this._relation = this._parent.addChild(this._table, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -128,6 +129,7 @@ params.popinLayout = this.popinLayout;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._table)
                                                                 this._parent.removeChildByRelation(this._table, this._relation);
                                                             }
                                                                                 }
@@ -143,15 +145,17 @@ params.popinLayout = this.popinLayout;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'columns') { var _index = null; if (afterElement) _index = this._table.indexOfColumn(afterElement); if (_index)this._table.insertColumn(child, _index + 1); else this._table.addColumn(child, 0);  return elem.localName; }
-if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._table.indexOfItem(afterElement); if (_index)this._table.insertItem(child, _index + 1); else this._table.addItem(child, 0);  return elem.localName; }
+                 if (elem.localName == 'columns') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._table.insertColumn(child, _index); else this._table.addColumn(child, 0);  return elem.localName; }
+if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._table.insertItem(child, _index); else this._table.addItem(child, 0);  return elem.localName; }
 if (elem.localName == 'swipecontent') { this._table.setSwipeContent(child); return elem.localName;}
 if (elem.localName == 'headertoolbar') { this._table.setHeaderToolbar(child); return elem.localName;}
 if (elem.localName == 'infotoolbar') { this._table.setInfoToolbar(child); return elem.localName;}
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._table.insertDragDropConfig(child, _index); else this._table.addDragDropConfig(child, 0);  return elem.localName; }
+if (elem.localName == 'contextmenu') { this._table.setContextMenu(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._table.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._table.indexOfCustomData(afterElement); if (_index)this._table.insertCustomData(child, _index + 1); else this._table.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._table.insertCustomData(child, _index); else this._table.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._table.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._table.indexOfDependent(afterElement); if (_index)this._table.insertDependent(child, _index + 1); else this._table.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._table.insertDependent(child, _index); else this._table.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -164,6 +168,8 @@ if (relation == 'items') {  this._table.removeItem(child);}
 if (relation == 'swipecontent') {  this._table.destroySwipeContent(child); }
 if (relation == 'headertoolbar') {  this._table.destroyHeaderToolbar(child); }
 if (relation == 'infotoolbar') {  this._table.destroyInfoToolbar(child); }
+if (relation == 'dragdropconfig') {  this._table.removeDragDropConfig(child);}
+if (relation == 'contextmenu') {  this._table.destroyContextMenu(child); }
 if (relation == 'tooltip') {  this._table.destroyTooltip(child); }
 if (relation == 'customdata') {  this._table.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._table.destroyLayoutData(child); }
@@ -177,6 +183,8 @@ fixedLayoutChanged(newValue){if(this._table!==null){ this._table.setFixedLayout(
 showOverlayChanged(newValue){if(this._table!==null){ this._table.setShowOverlay(getBooleanFromAttributeValue(newValue));}}
 alternateRowColorsChanged(newValue){if(this._table!==null){ this._table.setAlternateRowColors(getBooleanFromAttributeValue(newValue));}}
 popinLayoutChanged(newValue){if(this._table!==null){ this._table.setPopinLayout(newValue);}}
+stickyChanged(newValue){if(this._table!==null){ this._table.setSticky(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(this._table!==null){ this._table.attachBeforeOpenContextMenu(newValue);}}
 insetChanged(newValue){if(this._table!==null){ this._table.setInset(getBooleanFromAttributeValue(newValue));}}
 headerTextChanged(newValue){if(this._table!==null){ this._table.setHeaderText(newValue);}}
 footerTextChanged(newValue){if(this._table!==null){ this._table.setFooterText(newValue);}}
@@ -204,6 +212,7 @@ swipeChanged(newValue){if(this._table!==null){ this._table.attachSwipe(newValue)
 updateStartedChanged(newValue){if(this._table!==null){ this._table.attachUpdateStarted(newValue);}}
 updateFinishedChanged(newValue){if(this._table!==null){ this._table.attachUpdateFinished(newValue);}}
 itemPressChanged(newValue){if(this._table!==null){ this._table.attachItemPress(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(this._table!==null){ this._table.attachBeforeOpenContextMenu(newValue);}}
 busyChanged(newValue){if(this._table!==null){ this._table.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._table!==null){ this._table.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._table!==null){ this._table.setBusyIndicatorSize(newValue);}}

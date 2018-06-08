@@ -11,6 +11,7 @@ export class Ui5ActionSheet extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() placement = 'Bottom';
 @bindable() showCancelButton = true;
 @bindable() cancelButtonText = null;
@@ -74,20 +75,15 @@ params.cancelButtonPress = this.cancelButtonPress==null ? this.defaultFunc: this
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._actionsheet.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._actionsheet, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._actionsheet, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._actionsheet, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._actionsheet, this.element);
+                                                       this._relation = this._parent.addChild(this._actionsheet, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -109,6 +105,7 @@ params.cancelButtonPress = this.cancelButtonPress==null ? this.defaultFunc: this
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._actionsheet)
                                                                 this._parent.removeChildByRelation(this._actionsheet, this._relation);
                                                             }
                                                                                 }
@@ -124,11 +121,11 @@ params.cancelButtonPress = this.cancelButtonPress==null ? this.defaultFunc: this
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'buttons') { var _index = null; if (afterElement) _index = this._actionsheet.indexOfButton(afterElement); if (_index)this._actionsheet.insertButton(child, _index + 1); else this._actionsheet.addButton(child, 0);  return elem.localName; }
+                 if (elem.localName == 'buttons') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._actionsheet.insertButton(child, _index); else this._actionsheet.addButton(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._actionsheet.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._actionsheet.indexOfCustomData(afterElement); if (_index)this._actionsheet.insertCustomData(child, _index + 1); else this._actionsheet.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._actionsheet.insertCustomData(child, _index); else this._actionsheet.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._actionsheet.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._actionsheet.indexOfDependent(afterElement); if (_index)this._actionsheet.insertDependent(child, _index + 1); else this._actionsheet.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._actionsheet.insertDependent(child, _index); else this._actionsheet.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

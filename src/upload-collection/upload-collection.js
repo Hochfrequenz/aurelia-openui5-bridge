@@ -11,6 +11,7 @@ export class Ui5UploadCollection extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() fileType = null;
 @bindable() maximumFilenameLength = null;
 @bindable() maximumFileSize = null;
@@ -108,20 +109,15 @@ params.selectionChange = this.selectionChange==null ? this.defaultFunc: this.sel
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._uploadcollection.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._uploadcollection, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._uploadcollection, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._uploadcollection, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._uploadcollection, this.element);
+                                                       this._relation = this._parent.addChild(this._uploadcollection, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -143,6 +139,7 @@ params.selectionChange = this.selectionChange==null ? this.defaultFunc: this.sel
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._uploadcollection)
                                                                 this._parent.removeChildByRelation(this._uploadcollection, this._relation);
                                                             }
                                                                                 }
@@ -158,15 +155,15 @@ params.selectionChange = this.selectionChange==null ? this.defaultFunc: this.sel
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfItem(afterElement); if (_index)this._uploadcollection.insertItem(child, _index + 1); else this._uploadcollection.addItem(child, 0);  return elem.localName; }
-if (elem.localName == 'headerparameters') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfHeaderParameter(afterElement); if (_index)this._uploadcollection.insertHeaderParameter(child, _index + 1); else this._uploadcollection.addHeaderParameter(child, 0);  return elem.localName; }
-if (elem.localName == 'parameters') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfParameter(afterElement); if (_index)this._uploadcollection.insertParameter(child, _index + 1); else this._uploadcollection.addParameter(child, 0);  return elem.localName; }
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollection.insertItem(child, _index); else this._uploadcollection.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'headerparameters') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollection.insertHeaderParameter(child, _index); else this._uploadcollection.addHeaderParameter(child, 0);  return elem.localName; }
+if (elem.localName == 'parameters') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollection.insertParameter(child, _index); else this._uploadcollection.addParameter(child, 0);  return elem.localName; }
 if (elem.localName == 'toolbar') { this._uploadcollection.setToolbar(child); return elem.localName;}
 if (elem.localName == 'infotoolbar') { this._uploadcollection.setInfoToolbar(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._uploadcollection.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfCustomData(afterElement); if (_index)this._uploadcollection.insertCustomData(child, _index + 1); else this._uploadcollection.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollection.insertCustomData(child, _index); else this._uploadcollection.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._uploadcollection.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._uploadcollection.indexOfDependent(afterElement); if (_index)this._uploadcollection.insertDependent(child, _index + 1); else this._uploadcollection.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollection.insertDependent(child, _index); else this._uploadcollection.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}

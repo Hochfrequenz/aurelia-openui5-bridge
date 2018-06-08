@@ -11,6 +11,7 @@ export class Ui5Menu extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable prevId = null;
         @bindable() title = null;
 @bindable() itemSelected = this.defaultFunc;
 @bindable() closed = this.defaultFunc;
@@ -62,20 +63,15 @@ params.closed = this.closed==null ? this.defaultFunc: this.closed;
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
                                         if (!this._parent.UIElement || (this._parent.UIElement.sId != this._menu.sId)) {
         var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au)
-          prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-        this._relation = this._parent.addChild(this._menu, this.element, prevSibling);
+       
+        this._relation = this._parent.addChild(this._menu, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-        if (this.element.previousElementSibling && this.element.previousElementSibling.au) {
-                                                    prevSibling = this.element.previousElementSibling.au.controller.viewModel.UIElement;
-                                                this._relation = this._parent.addChild(this._menu, this.element, prevSibling);
-        }
-        else
-          this._relation = this._parent.addChild(this._menu, this.element);
+                                                       this._relation = this._parent.addChild(this._menu, this.element, this.prevId);
+        
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
@@ -97,6 +93,7 @@ params.closed = this.closed==null ? this.defaultFunc: this.closed;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
+                                                                 if(this._menu)
                                                                 this._parent.removeChildByRelation(this._menu, this._relation);
                                                             }
                                                                                 }
@@ -112,11 +109,11 @@ params.closed = this.closed==null ? this.defaultFunc: this.closed;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'items') { var _index = null; if (afterElement) _index = this._menu.indexOfItem(afterElement); if (_index)this._menu.insertItem(child, _index + 1); else this._menu.addItem(child, 0);  return elem.localName; }
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menu.insertItem(child, _index); else this._menu.addItem(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._menu.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = null; if (afterElement) _index = this._menu.indexOfCustomData(afterElement); if (_index)this._menu.insertCustomData(child, _index + 1); else this._menu.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menu.insertCustomData(child, _index); else this._menu.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._menu.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = null; if (afterElement) _index = this._menu.indexOfDependent(afterElement); if (_index)this._menu.insertDependent(child, _index + 1); else this._menu.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menu.insertDependent(child, _index); else this._menu.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
