@@ -144,5 +144,8 @@
   "dependencies": {
     "aurelia-animator-velocity": "^1.1.0",
     "aurelia-polyfills": "^1.2.2"
+  },
+  "resolutions": {
+    "natives": "1.1.3"
   }
 }
