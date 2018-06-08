@@ -1,0 +1,23 @@
+<template>
+  <contentLeft ref="contentLeft">
+    <slot name="contentLeft"></slot>
+  </contentLeft>
+  <contentMiddle ref="contentMiddle">
+    <slot name="contentMiddle"></slot>
+  </contentMiddle>
+  <contentRight ref="contentRight">
+    <slot name="contentRight"></slot>
+  </contentRight>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
+</template>

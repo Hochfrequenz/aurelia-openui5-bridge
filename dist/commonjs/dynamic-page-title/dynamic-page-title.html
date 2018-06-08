@@ -1,0 +1,41 @@
+<template>
+  <heading ref="heading">
+    <slot name="heading"></slot>
+  </heading>
+  <snappedHeading ref="snappedHeading">
+    <slot name="snappedHeading"></slot>
+  </snappedHeading>
+  <expandedHeading ref="expandedHeading">
+    <slot name="expandedHeading"></slot>
+  </expandedHeading>
+  <actions ref="actions">
+    <slot name="actions"></slot>
+  </actions>
+  <navigationActions ref="navigationActions">
+    <slot name="navigationActions"></slot>
+  </navigationActions>
+  <content ref="content">
+    <slot></slot>
+  </content>
+  <snappedContent ref="snappedContent">
+    <slot name="snappedContent"></slot>
+  </snappedContent>
+  <expandedContent ref="expandedContent">
+    <slot name="expandedContent"></slot>
+  </expandedContent>
+  <breadcrumbs ref="breadcrumbs">
+    <slot name="breadcrumbs"></slot>
+  </breadcrumbs>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
+</template>

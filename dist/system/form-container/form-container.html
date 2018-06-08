@@ -1,0 +1,23 @@
+<template>
+  <formElements ref="formElements">
+    <slot></slot>
+  </formElements>
+  <title-elem ref="title">
+    <slot name="title"></slot>
+  </title-elem>
+  <toolbar ref="toolbar">
+    <slot name="toolbar"></slot>
+  </toolbar>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
+</template>
