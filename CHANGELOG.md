@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.8"></a>
+## [0.3.8](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.3.5...v0.3.8) (2018-06-08)
+
+
+### Bug Fixes
+
+* **ui:** add date-time-picker ([fd9dbc4](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/fd9dbc4))
+* **ui:** update tree helper ([96ad6f7](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/96ad6f7))
+* **ui:** update tree helper (corrected) ([20b7044](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/20b7044))
+* **ui:** update tree helper with another helper ([dfc4dda](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/dfc4dda))
+
+
+
 <a name="0.3.7"></a>
 ## [0.3.7](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.3.5...v0.3.7) (2018-03-27)
 
