@@ -261,6 +261,9 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
 
     ConfigBuilder.prototype.useSplitter = function useSplitter() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./splitter/splitter'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./responsive-splitter/responsive-splitter'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./pane-container/pane-container'));
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./split-pane/split-pane'));
       return this;
     };
 

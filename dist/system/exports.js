@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['./custom-data/custom-data', './page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './date-time-picker/date-time-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/tree-helper', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs', './segmented-button/segmented-button', './segmented-button-item/segmented-button-item', './dialog/dialog', './list/list', './list-base/list-base', './list-item-base/list-item-base', './standard-list-item/standard-list-item', './responsive-popover/responsive-popover', './icon/icon', './action-sheet/action-sheet', './table-select-dialog/table-select-dialog', './upload-collection/upload-collection', './upload-collection-item/upload-collection-item', './upload-collection-parameter/upload-collection-parameter', './view-settings-item/view-settings-item', './view-settings-filter-item/view-settings-filter-item', './view-settings-dialog/view-settings-dialog', './select-dialog/select-dialog', './split-container/split-container', './message-view/message-view', './message-item/message-item', './mask-input-rule/mask-input-rule', './mask-input/mask-input', './toggle-button/toggle-button', './tree/tree', './tree-item-base/tree-item-base', './standard-tree-item/standard-tree-item', './custom-tree-item/custom-tree-item', './menu-item/menu-item', './menu/menu', './splitter/splitter', './suggestion-item/suggestion-item', './panel/panel'], function (_export, _context) {
+System.register(['./custom-data/custom-data', './page/page', './shell/shell', './bar/bar', './container/container', './html/html', './button/button', './tile-container/tile-container', './generic-tile/generic-tile', './tile-content/tile-content', './image-content/image-content', './numeric-content/numeric-content', './feed-content/feed-content', './standard-tile/standard-tile', './slide-tile/slide-tile', './toast/toastService', './grid/grid', './text/text', './wizard/wizard', './wizard-step/wizard-step', './simple-form/simple-form', './label/label', './control/control', './element/element', './input-base/input-base', './input/input', './date-picker/date-picker', './date-time-picker/date-time-picker', './title/title', './m-title/m-title', './grid-data/grid-data', './common/init', './common/tree-helper', './common/busy-indicator', './common/message-box', './common/smooth-scroll', './link/link', './form/form', './form-container/form-container', './form-element/form-element', './responsive-grid-layout/responsive-grid-layout', './select/select', './list-item/list-item', './column/column', './column-list-item/column-list-item', './table/table', './object-identifier/object-identifier', './object-number/object-number', './tab-container/tab-container', './tab-container-item/tab-container-item', './vertical-layout/vertical-layout', './icon-tab-filter/icon-tab-filter', './icon-tab-bar/icon-tab-bar', './overflow-toolbar/overflow-toolbar', './toolbar/toolbar', './toolbar-spacer/toolbar-spacer', './search-field/search-field', './formatted-text/formatted-text', './dynamic-page/dynamic-page', './dynamic-page-header/dynamic-page-header', './dynamic-page-title/dynamic-page-title', './breadcrumbs/breadcrumbs', './segmented-button/segmented-button', './segmented-button-item/segmented-button-item', './dialog/dialog', './list/list', './list-base/list-base', './list-item-base/list-item-base', './standard-list-item/standard-list-item', './responsive-popover/responsive-popover', './icon/icon', './action-sheet/action-sheet', './table-select-dialog/table-select-dialog', './upload-collection/upload-collection', './upload-collection-item/upload-collection-item', './upload-collection-parameter/upload-collection-parameter', './view-settings-item/view-settings-item', './view-settings-filter-item/view-settings-filter-item', './view-settings-dialog/view-settings-dialog', './select-dialog/select-dialog', './split-container/split-container', './message-view/message-view', './message-item/message-item', './mask-input-rule/mask-input-rule', './mask-input/mask-input', './toggle-button/toggle-button', './tree/tree', './tree-item-base/tree-item-base', './standard-tree-item/standard-tree-item', './custom-tree-item/custom-tree-item', './menu-item/menu-item', './menu/menu', './splitter/splitter', './suggestion-item/suggestion-item', './panel/panel', './responsive-splitter/responsive-splitter', './pane-container/pane-container', './split-pane/split-pane'], function (_export, _context) {
   "use strict";
 
   return {
@@ -764,6 +764,30 @@ System.register(['./custom-data/custom-data', './page/page', './shell/shell', '.
       }
 
       _export(_exportObj95);
+    }, function (_responsiveSplitterResponsiveSplitter) {
+      var _exportObj96 = {};
+
+      for (var _key96 in _responsiveSplitterResponsiveSplitter) {
+        if (_key96 !== "default" && _key96 !== "__esModule") _exportObj96[_key96] = _responsiveSplitterResponsiveSplitter[_key96];
+      }
+
+      _export(_exportObj96);
+    }, function (_paneContainerPaneContainer) {
+      var _exportObj97 = {};
+
+      for (var _key97 in _paneContainerPaneContainer) {
+        if (_key97 !== "default" && _key97 !== "__esModule") _exportObj97[_key97] = _paneContainerPaneContainer[_key97];
+      }
+
+      _export(_exportObj97);
+    }, function (_splitPaneSplitPane) {
+      var _exportObj98 = {};
+
+      for (var _key98 in _splitPaneSplitPane) {
+        if (_key98 !== "default" && _key98 !== "__esModule") _exportObj98[_key98] = _splitPaneSplitPane[_key98];
+      }
+
+      _export(_exportObj98);
     }],
     execute: function () {}
   };

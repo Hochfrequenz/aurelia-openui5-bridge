@@ -252,6 +252,9 @@ export class ConfigBuilder {
   }
   useSplitter(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./splitter/splitter'));
+    this.globalResources.push(PLATFORM.moduleName('./responsive-splitter/responsive-splitter'));
+    this.globalResources.push(PLATFORM.moduleName('./pane-container/pane-container'));
+    this.globalResources.push(PLATFORM.moduleName('./split-pane/split-pane'));
     return this;
   }
   usePanel(): ConfigBuilder {

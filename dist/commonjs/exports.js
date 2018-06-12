@@ -1143,3 +1143,39 @@ Object.keys(_panel).forEach(function (key) {
     }
   });
 });
+
+var _responsiveSplitter = require('./responsive-splitter/responsive-splitter');
+
+Object.keys(_responsiveSplitter).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _responsiveSplitter[key];
+    }
+  });
+});
+
+var _paneContainer = require('./pane-container/pane-container');
+
+Object.keys(_paneContainer).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _paneContainer[key];
+    }
+  });
+});
+
+var _splitPane = require('./split-pane/split-pane');
+
+Object.keys(_splitPane).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _splitPane[key];
+    }
+  });
+});

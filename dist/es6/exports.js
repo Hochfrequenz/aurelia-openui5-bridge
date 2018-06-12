@@ -94,4 +94,7 @@ export * from './menu/menu';
 export * from './splitter/splitter';
 export * from './suggestion-item/suggestion-item';
 export * from './panel/panel';
+export * from './responsive-splitter/responsive-splitter';
+export * from './pane-container/pane-container';
+export * from './split-pane/split-pane';
 // build-index-remove end
