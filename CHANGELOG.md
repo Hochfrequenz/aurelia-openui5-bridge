@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.14"></a>
+## [0.3.14](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.3.13...v0.3.14) (2018-06-12)
+
+
+### Bug Fixes
+
+* **ui:** add split panel ([8a874b7](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/8a874b7))
+
+
+
 <a name="0.3.13"></a>
 ## [0.3.13](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.3.12...v0.3.13) (2018-06-08)
 
