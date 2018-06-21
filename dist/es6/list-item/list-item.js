@@ -11,6 +11,8 @@ export class Ui5ListItem extends Ui5Item{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() icon = null;
 @bindable() additionalText = null;
@@ -52,8 +54,12 @@ params.additionalText = this.additionalText;
             this.fillProperties(params);
          if (this.ui5Id)
           this._listitem = new sap.ui.core.ListItem(this.ui5Id, params);
-        else
+                                              else
           this._listitem = new sap.ui.core.ListItem(params);
+                                                  if(this.ui5Class)
+           this._listitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._listitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

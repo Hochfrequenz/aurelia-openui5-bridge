@@ -11,6 +11,8 @@ export class Ui5CustomTreeItem extends Ui5TreeItemBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         /* inherited from sap.m.TreeItemBase*/
 /* inherited from sap.m.ListItemBase*/
@@ -60,8 +62,12 @@ export class Ui5CustomTreeItem extends Ui5TreeItemBase{
             this.fillProperties(params);
          if (this.ui5Id)
           this._customtreeitem = new sap.m.CustomTreeItem(this.ui5Id, params);
-        else
+                                              else
           this._customtreeitem = new sap.m.CustomTreeItem(params);
+                                                  if(this.ui5Class)
+           this._customtreeitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._customtreeitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

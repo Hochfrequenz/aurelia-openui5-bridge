@@ -11,6 +11,8 @@ export class Ui5Control extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -55,8 +57,12 @@ params.validateFieldGroup = this.validateFieldGroup==null ? this.defaultFunc: th
             this.fillProperties(params);
          if (this.ui5Id)
           this._control = new sap.ui.core.Control(this.ui5Id, params);
-        else
+                                              else
           this._control = new sap.ui.core.Control(params);
+                                                  if(this.ui5Class)
+           this._control.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._control.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

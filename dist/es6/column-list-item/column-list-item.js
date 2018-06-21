@@ -11,6 +11,8 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() vAlign = 'Inherit';
 /* inherited from sap.m.ListItemBase*/
@@ -61,8 +63,12 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
             this.fillProperties(params);
          if (this.ui5Id)
           this._columnlistitem = new sap.m.ColumnListItem(this.ui5Id, params);
-        else
+                                              else
           this._columnlistitem = new sap.m.ColumnListItem(params);
+                                                  if(this.ui5Class)
+           this._columnlistitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._columnlistitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

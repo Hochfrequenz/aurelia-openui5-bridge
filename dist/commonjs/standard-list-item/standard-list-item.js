@@ -7,7 +7,7 @@ exports.Ui5StandardListItem = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31, _descriptor32;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31, _descriptor32, _descriptor33, _descriptor34;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -84,67 +84,71 @@ var Ui5StandardListItem = exports.Ui5StandardListItem = (_dec = (0, _aureliaTemp
 
         _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-        _initDefineProp(_this, 'prevId', _descriptor2, _this);
+        _initDefineProp(_this, 'ui5Class', _descriptor2, _this);
 
-        _initDefineProp(_this, 'title', _descriptor3, _this);
+        _initDefineProp(_this, 'ui5Tooltip', _descriptor3, _this);
 
-        _initDefineProp(_this, 'description', _descriptor4, _this);
+        _initDefineProp(_this, 'prevId', _descriptor4, _this);
 
-        _initDefineProp(_this, 'icon', _descriptor5, _this);
+        _initDefineProp(_this, 'title', _descriptor5, _this);
 
-        _initDefineProp(_this, 'iconInset', _descriptor6, _this);
+        _initDefineProp(_this, 'description', _descriptor6, _this);
 
-        _initDefineProp(_this, 'iconDensityAware', _descriptor7, _this);
+        _initDefineProp(_this, 'icon', _descriptor7, _this);
 
-        _initDefineProp(_this, 'activeIcon', _descriptor8, _this);
+        _initDefineProp(_this, 'iconInset', _descriptor8, _this);
 
-        _initDefineProp(_this, 'info', _descriptor9, _this);
+        _initDefineProp(_this, 'iconDensityAware', _descriptor9, _this);
 
-        _initDefineProp(_this, 'infoState', _descriptor10, _this);
+        _initDefineProp(_this, 'activeIcon', _descriptor10, _this);
 
-        _initDefineProp(_this, 'adaptTitleSize', _descriptor11, _this);
+        _initDefineProp(_this, 'info', _descriptor11, _this);
 
-        _initDefineProp(_this, 'titleTextDirection', _descriptor12, _this);
+        _initDefineProp(_this, 'infoState', _descriptor12, _this);
 
-        _initDefineProp(_this, 'infoTextDirection', _descriptor13, _this);
+        _initDefineProp(_this, 'adaptTitleSize', _descriptor13, _this);
 
-        _initDefineProp(_this, 'type', _descriptor14, _this);
+        _initDefineProp(_this, 'titleTextDirection', _descriptor14, _this);
 
-        _initDefineProp(_this, 'visible', _descriptor15, _this);
+        _initDefineProp(_this, 'infoTextDirection', _descriptor15, _this);
 
-        _initDefineProp(_this, 'unread', _descriptor16, _this);
+        _initDefineProp(_this, 'type', _descriptor16, _this);
 
-        _initDefineProp(_this, 'selected', _descriptor17, _this);
+        _initDefineProp(_this, 'visible', _descriptor17, _this);
 
-        _initDefineProp(_this, 'counter', _descriptor18, _this);
+        _initDefineProp(_this, 'unread', _descriptor18, _this);
 
-        _initDefineProp(_this, 'highlight', _descriptor19, _this);
+        _initDefineProp(_this, 'selected', _descriptor19, _this);
 
-        _initDefineProp(_this, 'press', _descriptor20, _this);
+        _initDefineProp(_this, 'counter', _descriptor20, _this);
 
-        _initDefineProp(_this, 'detailPress', _descriptor21, _this);
+        _initDefineProp(_this, 'highlight', _descriptor21, _this);
 
-        _initDefineProp(_this, 'busy', _descriptor22, _this);
+        _initDefineProp(_this, 'press', _descriptor22, _this);
 
-        _initDefineProp(_this, 'busyIndicatorDelay', _descriptor23, _this);
+        _initDefineProp(_this, 'detailPress', _descriptor23, _this);
 
-        _initDefineProp(_this, 'busyIndicatorSize', _descriptor24, _this);
+        _initDefineProp(_this, 'busy', _descriptor24, _this);
 
-        _initDefineProp(_this, 'visible', _descriptor25, _this);
+        _initDefineProp(_this, 'busyIndicatorDelay', _descriptor25, _this);
 
-        _initDefineProp(_this, 'fieldGroupIds', _descriptor26, _this);
+        _initDefineProp(_this, 'busyIndicatorSize', _descriptor26, _this);
 
-        _initDefineProp(_this, 'validateFieldGroup', _descriptor27, _this);
+        _initDefineProp(_this, 'visible', _descriptor27, _this);
 
-        _initDefineProp(_this, 'validationSuccess', _descriptor28, _this);
+        _initDefineProp(_this, 'fieldGroupIds', _descriptor28, _this);
 
-        _initDefineProp(_this, 'validationError', _descriptor29, _this);
+        _initDefineProp(_this, 'validateFieldGroup', _descriptor29, _this);
 
-        _initDefineProp(_this, 'parseError', _descriptor30, _this);
+        _initDefineProp(_this, 'validationSuccess', _descriptor30, _this);
 
-        _initDefineProp(_this, 'formatError', _descriptor31, _this);
+        _initDefineProp(_this, 'validationError', _descriptor31, _this);
 
-        _initDefineProp(_this, 'modelContextChange', _descriptor32, _this);
+        _initDefineProp(_this, 'parseError', _descriptor32, _this);
+
+        _initDefineProp(_this, 'formatError', _descriptor33, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor34, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -174,6 +178,8 @@ var Ui5StandardListItem = exports.Ui5StandardListItem = (_dec = (0, _aureliaTemp
         var params = {};
         this.fillProperties(params);
         if (this.ui5Id) this._standardlistitem = new sap.m.StandardListItem(this.ui5Id, params);else this._standardlistitem = new sap.m.StandardListItem(params);
+        if (this.ui5Class) this._standardlistitem.addStyleClass(this.ui5Class);
+        if (this.ui5Tooltip) this._standardlistitem.setTooltip(this.ui5Tooltip);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
@@ -450,157 +456,167 @@ var Ui5StandardListItem = exports.Ui5StandardListItem = (_dec = (0, _aureliaTemp
     initializer: function initializer() {
         return null;
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'ui5Class', [_aureliaTemplating.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'title', [_dec3], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'ui5Tooltip', [_aureliaTemplating.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'description', [_dec4], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec5], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'title', [_dec3], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'iconInset', [_dec6], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'description', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec5], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'iconInset', [_dec6], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'iconDensityAware', [_dec7], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'iconDensityAware', [_dec7], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'activeIcon', [_dec8], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'activeIcon', [_dec8], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'info', [_dec9], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'info', [_dec9], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'infoState', [_dec10], {
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'infoState', [_dec10], {
     enumerable: true,
     initializer: function initializer() {
         return 'None';
     }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'adaptTitleSize', [_dec11], {
+}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'adaptTitleSize', [_dec11], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'titleTextDirection', [_dec12], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'titleTextDirection', [_dec12], {
     enumerable: true,
     initializer: function initializer() {
         return 'Inherit';
     }
-}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'infoTextDirection', [_dec13], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'infoTextDirection', [_dec13], {
     enumerable: true,
     initializer: function initializer() {
         return 'Inherit';
     }
-}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_dec14], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_dec14], {
     enumerable: true,
     initializer: function initializer() {
         return 'Inactive';
     }
-}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec15], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec15], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'unread', [_dec16], {
+}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'unread', [_dec16], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'selected', [_dec17], {
+}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'selected', [_dec17], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'counter', [_dec18], {
+}), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'counter', [_dec18], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'highlight', [_dec19], {
+}), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'highlight', [_dec19], {
     enumerable: true,
     initializer: function initializer() {
         return 'None';
     }
-}), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec20], {
+}), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec20], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'detailPress', [_dec21], {
+}), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'detailPress', [_dec21], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec22], {
+}), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec22], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec23], {
+}), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec23], {
     enumerable: true,
     initializer: function initializer() {
         return 1000;
     }
-}), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec24], {
+}), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec24], {
     enumerable: true,
     initializer: function initializer() {
         return 'Medium';
     }
-}), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec25], {
+}), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec25], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec26], {
+}), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec26], {
     enumerable: true,
     initializer: function initializer() {
         return '[]';
     }
-}), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec27], {
+}), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec27], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec28], {
+}), _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec28], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec29], {
+}), _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec29], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec30], {
+}), _descriptor32 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec30], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec31], {
+}), _descriptor33 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec31], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor32 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec32], {
+}), _descriptor34 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec32], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;

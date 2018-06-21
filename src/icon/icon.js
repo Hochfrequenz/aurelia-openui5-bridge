@@ -11,6 +11,8 @@ export class Ui5Icon extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() src = null;
 @bindable() size = null;
@@ -80,8 +82,12 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             this.fillProperties(params);
          if (this.ui5Id)
           this._icon = new sap.ui.core.Icon(this.ui5Id, params);
-        else
+                                              else
           this._icon = new sap.ui.core.Icon(params);
+                                                  if(this.ui5Class)
+           this._icon.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._icon.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

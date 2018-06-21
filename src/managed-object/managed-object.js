@@ -11,6 +11,8 @@ export class Ui5ManagedObject extends Ui5EventProvider{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() validationSuccess = this.defaultFunc;
 @bindable() validationError = this.defaultFunc;
@@ -46,8 +48,12 @@ params.modelContextChange = this.modelContextChange==null ? this.defaultFunc: th
             this.fillProperties(params);
          if (this.ui5Id)
           this._managedobject = new sap.ui.base.ManagedObject(this.ui5Id, params);
-        else
+                                              else
           this._managedobject = new sap.ui.base.ManagedObject(params);
+                                                  if(this.ui5Class)
+           this._managedobject.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._managedobject.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

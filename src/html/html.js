@@ -11,6 +11,8 @@ export class Ui5Html extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() content = null;
 @bindable() preferDOM = true;
@@ -60,8 +62,12 @@ params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.after
             this.fillProperties(params);
          if (this.ui5Id)
           this._html = new sap.ui.core.HTML(this.ui5Id, params);
-        else
+                                              else
           this._html = new sap.ui.core.HTML(params);
+                                                  if(this.ui5Class)
+           this._html.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._html.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

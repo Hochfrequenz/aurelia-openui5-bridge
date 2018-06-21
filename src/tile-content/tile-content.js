@@ -11,6 +11,8 @@ export class Ui5TileContent extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() footer = null;
 @bindable() footerColor = 'Neutral';
@@ -60,8 +62,12 @@ params.frameType = this.frameType;
             this.fillProperties(params);
          if (this.ui5Id)
           this._tilecontent = new sap.m.TileContent(this.ui5Id, params);
-        else
+                                              else
           this._tilecontent = new sap.m.TileContent(params);
+                                                  if(this.ui5Class)
+           this._tilecontent.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._tilecontent.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

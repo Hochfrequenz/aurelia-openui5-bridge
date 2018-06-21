@@ -11,6 +11,8 @@ export class Ui5Grid extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() width = '100%';
 @bindable() vSpacing = 1;
@@ -64,8 +66,12 @@ params.containerQuery = getBooleanFromAttributeValue(this.containerQuery);
             this.fillProperties(params);
          if (this.ui5Id)
           this._grid = new sap.ui.layout.Grid(this.ui5Id, params);
-        else
+                                              else
           this._grid = new sap.ui.layout.Grid(params);
+                                                  if(this.ui5Class)
+           this._grid.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._grid.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

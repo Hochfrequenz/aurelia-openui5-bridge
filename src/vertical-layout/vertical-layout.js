@@ -11,6 +11,8 @@ export class Ui5VerticalLayout extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() width = null;
 @bindable() enabled = true;
@@ -54,8 +56,12 @@ params.enabled = getBooleanFromAttributeValue(this.enabled);
             this.fillProperties(params);
          if (this.ui5Id)
           this._verticallayout = new sap.ui.layout.VerticalLayout(this.ui5Id, params);
-        else
+                                              else
           this._verticallayout = new sap.ui.layout.VerticalLayout(params);
+                                                  if(this.ui5Class)
+           this._verticallayout.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._verticallayout.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

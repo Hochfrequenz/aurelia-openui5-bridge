@@ -11,6 +11,8 @@ export class Ui5SegmentedButtonItem extends Ui5Item{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() icon = null;
 @bindable() visible = true;
@@ -56,8 +58,12 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             this.fillProperties(params);
          if (this.ui5Id)
           this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(this.ui5Id, params);
-        else
+                                              else
           this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(params);
+                                                  if(this.ui5Class)
+           this._segmentedbuttonitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._segmentedbuttonitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

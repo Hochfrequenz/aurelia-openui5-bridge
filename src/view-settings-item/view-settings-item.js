@@ -11,6 +11,8 @@ export class Ui5ViewSettingsItem extends Ui5Item{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() selected = false;
 @bindable() itemPropertyChanged = this.defaultFunc;
@@ -52,8 +54,12 @@ params.itemPropertyChanged = this.itemPropertyChanged==null ? this.defaultFunc: 
             this.fillProperties(params);
          if (this.ui5Id)
           this._viewsettingsitem = new sap.m.ViewSettingsItem(this.ui5Id, params);
-        else
+                                              else
           this._viewsettingsitem = new sap.m.ViewSettingsItem(params);
+                                                  if(this.ui5Class)
+           this._viewsettingsitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._viewsettingsitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

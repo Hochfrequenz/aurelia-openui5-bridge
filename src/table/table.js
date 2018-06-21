@@ -11,6 +11,8 @@ export class Ui5Table extends Ui5ListBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() backgroundDesign = 'Translucent';
 @bindable() fixedLayout = true;
@@ -92,8 +94,12 @@ params.beforeOpenContextMenu = this.beforeOpenContextMenu==null ? this.defaultFu
             this.fillProperties(params);
          if (this.ui5Id)
           this._table = new sap.m.Table(this.ui5Id, params);
-        else
+                                              else
           this._table = new sap.m.Table(params);
+                                                  if(this.ui5Class)
+           this._table.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._table.setTooltip(this.ui5Tooltip);                                             
         if (this._table._oGrowingDelegate){this._table._oGrowingDelegate.updateItems = function(sChangeReason) { this._onBeforePageLoaded(sChangeReason);this._onAfterPageLoaded(sChangeReason); }; }
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

@@ -11,6 +11,8 @@ export class Ui5ListBase extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() inset = false;
 @bindable() headerText = null;
@@ -104,8 +106,12 @@ params.beforeOpenContextMenu = this.beforeOpenContextMenu==null ? this.defaultFu
             this.fillProperties(params);
          if (this.ui5Id)
           this._listbase = new sap.m.ListBase(this.ui5Id, params);
-        else
+                                              else
           this._listbase = new sap.m.ListBase(params);
+                                                  if(this.ui5Class)
+           this._listbase.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._listbase.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

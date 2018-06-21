@@ -11,6 +11,8 @@ export class Ui5ActionSheet extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() placement = 'Bottom';
 @bindable() showCancelButton = true;
@@ -68,8 +70,12 @@ params.cancelButtonPress = this.cancelButtonPress==null ? this.defaultFunc: this
             this.fillProperties(params);
          if (this.ui5Id)
           this._actionsheet = new sap.m.ActionSheet(this.ui5Id, params);
-        else
+                                              else
           this._actionsheet = new sap.m.ActionSheet(params);
+                                                  if(this.ui5Class)
+           this._actionsheet.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._actionsheet.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

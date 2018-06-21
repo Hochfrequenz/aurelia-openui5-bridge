@@ -11,6 +11,8 @@ export class Ui5LayoutData extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
@@ -43,8 +45,12 @@ export class Ui5LayoutData extends Ui5Element{
             this.fillProperties(params);
          if (this.ui5Id)
           this._layoutdata = new sap.ui.core.LayoutData(this.ui5Id, params);
-        else
+                                              else
           this._layoutdata = new sap.ui.core.LayoutData(params);
+                                                  if(this.ui5Class)
+           this._layoutdata.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._layoutdata.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

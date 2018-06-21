@@ -11,6 +11,8 @@ export class Ui5MenuItem extends Ui5Item{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() icon = null;
 @bindable() visible = true;
@@ -60,8 +62,12 @@ params.aggregationChanged = this.aggregationChanged==null ? this.defaultFunc: th
             this.fillProperties(params);
          if (this.ui5Id)
           this._menuitem = new sap.m.MenuItem(this.ui5Id, params);
-        else
+                                              else
           this._menuitem = new sap.m.MenuItem(params);
+                                                  if(this.ui5Class)
+           this._menuitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._menuitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

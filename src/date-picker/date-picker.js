@@ -11,6 +11,8 @@ export class Ui5DatePicker extends Ui5DateTimeField{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() displayFormatType = '';
 @bindable() secondaryCalendarType = null;
@@ -79,8 +81,12 @@ params.navigate = this.navigate==null ? this.defaultFunc: this.navigate;
             this.fillProperties(params);
          if (this.ui5Id)
           this._datepicker = new sap.m.DatePicker(this.ui5Id, params);
-        else
+                                              else
           this._datepicker = new sap.m.DatePicker(params);
+                                                  if(this.ui5Class)
+           this._datepicker.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._datepicker.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

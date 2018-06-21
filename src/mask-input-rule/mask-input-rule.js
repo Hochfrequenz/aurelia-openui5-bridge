@@ -11,6 +11,8 @@ export class Ui5MaskInputRule extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() maskFormatSymbol = '*';
 @bindable() regex = '[a-zA-Z0-9]';
@@ -47,8 +49,12 @@ params.regex = this.regex;
             this.fillProperties(params);
          if (this.ui5Id)
           this._maskinputrule = new sap.m.MaskInputRule(this.ui5Id, params);
-        else
+                                              else
           this._maskinputrule = new sap.m.MaskInputRule(params);
+                                                  if(this.ui5Class)
+           this._maskinputrule.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._maskinputrule.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

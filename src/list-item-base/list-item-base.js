@@ -11,6 +11,8 @@ export class Ui5ListItemBase extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() type = 'Inactive';
 @bindable() visible = true;
@@ -66,8 +68,12 @@ params.detailPress = this.detailPress==null ? this.defaultFunc: this.detailPress
             this.fillProperties(params);
          if (this.ui5Id)
           this._listitembase = new sap.m.ListItemBase(this.ui5Id, params);
-        else
+                                              else
           this._listitembase = new sap.m.ListItemBase(params);
+                                                  if(this.ui5Class)
+           this._listitembase.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._listitembase.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

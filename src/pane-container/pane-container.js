@@ -11,6 +11,8 @@ export class Ui5PaneContainer extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() orientation = 'Horizontal';
 /* inherited from sap.ui.core.Element*/
@@ -45,8 +47,12 @@ export class Ui5PaneContainer extends Ui5Element{
             this.fillProperties(params);
          if (this.ui5Id)
           this._panecontainer = new sap.ui.layout.PaneContainer(this.ui5Id, params);
-        else
+                                              else
           this._panecontainer = new sap.ui.layout.PaneContainer(params);
+                                                  if(this.ui5Class)
+           this._panecontainer.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._panecontainer.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

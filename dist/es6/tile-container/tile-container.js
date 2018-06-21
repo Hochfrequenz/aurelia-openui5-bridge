@@ -11,6 +11,8 @@ export class Ui5TileContainer extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() width = '100%';
 @bindable() height = '100%';
@@ -64,8 +66,12 @@ params.tileAdd = this.tileAdd==null ? this.defaultFunc: this.tileAdd;
             this.fillProperties(params);
          if (this.ui5Id)
           this._tilecontainer = new sap.m.TileContainer(this.ui5Id, params);
-        else
+                                              else
           this._tilecontainer = new sap.m.TileContainer(params);
+                                                  if(this.ui5Class)
+           this._tilecontainer.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._tilecontainer.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

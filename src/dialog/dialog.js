@@ -11,6 +11,8 @@ export class Ui5Dialog extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() icon = null;
 @bindable() title = null;
@@ -84,8 +86,12 @@ params.afterClose = this.afterClose==null ? this.defaultFunc: this.afterClose;
             this.fillProperties(params);
          if (this.ui5Id)
           this._dialog = new sap.m.Dialog(this.ui5Id, params);
-        else
+                                              else
           this._dialog = new sap.m.Dialog(params);
+                                                  if(this.ui5Class)
+           this._dialog.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._dialog.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

@@ -11,6 +11,8 @@ export class Ui5EventProvider extends Ui5Object{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         /* inherited from sap.ui.base.Object*/
 
@@ -35,8 +37,12 @@ export class Ui5EventProvider extends Ui5Object{
             this.fillProperties(params);
          if (this.ui5Id)
           this._eventprovider = new sap.ui.base.EventProvider(this.ui5Id, params);
-        else
+                                              else
           this._eventprovider = new sap.ui.base.EventProvider(params);
+                                                  if(this.ui5Class)
+           this._eventprovider.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._eventprovider.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

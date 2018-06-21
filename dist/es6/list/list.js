@@ -11,6 +11,8 @@ export class Ui5List extends Ui5ListBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() backgroundDesign = 'Solid';
 /* inherited from sap.m.ListBase*/
@@ -80,8 +82,12 @@ export class Ui5List extends Ui5ListBase{
             this.fillProperties(params);
          if (this.ui5Id)
           this._list = new sap.m.List(this.ui5Id, params);
-        else
+                                              else
           this._list = new sap.m.List(params);
+                                                  if(this.ui5Class)
+           this._list.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._list.setTooltip(this.ui5Tooltip);                                             
         if (this._list._oGrowingDelegate){this._list._oGrowingDelegate.updateItems = function(sChangeReason) { this._onBeforePageLoaded(sChangeReason);this._onAfterPageLoaded(sChangeReason); }; }
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

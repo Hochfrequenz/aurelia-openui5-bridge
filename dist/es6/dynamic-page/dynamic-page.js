@@ -11,6 +11,8 @@ export class Ui5DynamicPage extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() preserveHeaderStateOnScroll = false;
 @bindable() headerExpanded = true;
@@ -60,8 +62,12 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
             this.fillProperties(params);
          if (this.ui5Id)
           this._dynamicpage = new sap.f.DynamicPage(this.ui5Id, params);
-        else
+                                              else
           this._dynamicpage = new sap.f.DynamicPage(params);
+                                                  if(this.ui5Class)
+           this._dynamicpage.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._dynamicpage.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

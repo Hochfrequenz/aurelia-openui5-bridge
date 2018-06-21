@@ -97,7 +97,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12;
 
     var Ui5FormContainer = exports.Ui5FormContainer = (_dec = (0, _aureliaTemplating.customElement)('ui5-form-container'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaFramework.computedFrom)('_formcontainer'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
         _inherits(Ui5FormContainer, _Ui5Element);
@@ -113,23 +113,27 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-            _initDefineProp(_this, 'prevId', _descriptor2, _this);
+            _initDefineProp(_this, 'ui5Class', _descriptor2, _this);
 
-            _initDefineProp(_this, 'expanded', _descriptor3, _this);
+            _initDefineProp(_this, 'ui5Tooltip', _descriptor3, _this);
 
-            _initDefineProp(_this, 'expandable', _descriptor4, _this);
+            _initDefineProp(_this, 'prevId', _descriptor4, _this);
 
-            _initDefineProp(_this, 'visible', _descriptor5, _this);
+            _initDefineProp(_this, 'expanded', _descriptor5, _this);
 
-            _initDefineProp(_this, 'validationSuccess', _descriptor6, _this);
+            _initDefineProp(_this, 'expandable', _descriptor6, _this);
 
-            _initDefineProp(_this, 'validationError', _descriptor7, _this);
+            _initDefineProp(_this, 'visible', _descriptor7, _this);
 
-            _initDefineProp(_this, 'parseError', _descriptor8, _this);
+            _initDefineProp(_this, 'validationSuccess', _descriptor8, _this);
 
-            _initDefineProp(_this, 'formatError', _descriptor9, _this);
+            _initDefineProp(_this, 'validationError', _descriptor9, _this);
 
-            _initDefineProp(_this, 'modelContextChange', _descriptor10, _this);
+            _initDefineProp(_this, 'parseError', _descriptor10, _this);
+
+            _initDefineProp(_this, 'formatError', _descriptor11, _this);
+
+            _initDefineProp(_this, 'modelContextChange', _descriptor12, _this);
 
             _this.element = element;
             _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -151,6 +155,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             var params = {};
             this.fillProperties(params);
             if (this.ui5Id) this._formcontainer = new sap.ui.layout.form.FormContainer(this.ui5Id, params);else this._formcontainer = new sap.ui.layout.form.FormContainer(params);
+            if (this.ui5Class) this._formcontainer.addStyleClass(this.ui5Class);
+            if (this.ui5Tooltip) this._formcontainer.setTooltip(this.ui5Tooltip);
 
             if ($(this.element).closest("[ui5-container]").length > 0) {
                 this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
@@ -313,47 +319,57 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
+    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'ui5Class', [_aureliaTemplating.bindable], {
         enumerable: true,
         initializer: function initializer() {
             return null;
         }
-    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'expanded', [_dec3], {
+    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'ui5Tooltip', [_aureliaTemplating.bindable], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'expanded', [_dec3], {
         enumerable: true,
         initializer: function initializer() {
             return true;
         }
-    }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'expandable', [_dec4], {
+    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'expandable', [_dec4], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec5], {
+    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec5], {
         enumerable: true,
         initializer: function initializer() {
             return true;
         }
-    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec6], {
+    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec6], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec7], {
+    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec7], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec8], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec8], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec9], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec9], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec10], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec10], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;

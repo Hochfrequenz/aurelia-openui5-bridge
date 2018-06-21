@@ -11,6 +11,8 @@ export class Ui5MessageStrip extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() text = '';
 @bindable() type = 'Information';
@@ -64,8 +66,12 @@ params.close = this.close==null ? this.defaultFunc: this.close;
             this.fillProperties(params);
          if (this.ui5Id)
           this._messagestrip = new sap.m.MessageStrip(this.ui5Id, params);
-        else
+                                              else
           this._messagestrip = new sap.m.MessageStrip(params);
+                                                  if(this.ui5Class)
+           this._messagestrip.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._messagestrip.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

@@ -7,7 +7,7 @@ exports.Ui5EventProvider = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -84,7 +84,11 @@ var Ui5EventProvider = exports.Ui5EventProvider = (_dec = (0, _aureliaTemplating
 
         _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-        _initDefineProp(_this, 'prevId', _descriptor2, _this);
+        _initDefineProp(_this, 'ui5Class', _descriptor2, _this);
+
+        _initDefineProp(_this, 'ui5Tooltip', _descriptor3, _this);
+
+        _initDefineProp(_this, 'prevId', _descriptor4, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -103,6 +107,8 @@ var Ui5EventProvider = exports.Ui5EventProvider = (_dec = (0, _aureliaTemplating
         var params = {};
         this.fillProperties(params);
         if (this.ui5Id) this._eventprovider = new sap.ui.base.EventProvider(this.ui5Id, params);else this._eventprovider = new sap.ui.base.EventProvider(params);
+        if (this.ui5Class) this._eventprovider.addStyleClass(this.ui5Class);
+        if (this.ui5Tooltip) this._eventprovider.setTooltip(this.ui5Tooltip);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
@@ -173,7 +179,17 @@ var Ui5EventProvider = exports.Ui5EventProvider = (_dec = (0, _aureliaTemplating
     initializer: function initializer() {
         return null;
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'ui5Class', [_aureliaTemplating.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'ui5Tooltip', [_aureliaTemplating.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return null;

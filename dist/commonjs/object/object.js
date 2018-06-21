@@ -7,7 +7,7 @@ exports.Ui5Object = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -74,7 +74,11 @@ var Ui5Object = exports.Ui5Object = (_dec = (0, _aureliaTemplating.customElement
 
         _initDefineProp(this, 'ui5Id', _descriptor, this);
 
-        _initDefineProp(this, 'prevId', _descriptor2, this);
+        _initDefineProp(this, 'ui5Class', _descriptor2, this);
+
+        _initDefineProp(this, 'ui5Tooltip', _descriptor3, this);
+
+        _initDefineProp(this, 'prevId', _descriptor4, this);
 
         this.element = element;
         this.attributeManager = new _attributeManager.AttributeManager(this.element);
@@ -89,6 +93,8 @@ var Ui5Object = exports.Ui5Object = (_dec = (0, _aureliaTemplating.customElement
         var params = {};
         this.fillProperties(params);
         if (this.ui5Id) this._object = new sap.ui.base.Object(this.ui5Id, params);else this._object = new sap.ui.base.Object(params);
+        if (this.ui5Class) this._object.addStyleClass(this.ui5Class);
+        if (this.ui5Tooltip) this._object.setTooltip(this.ui5Tooltip);
 
         if ($(this.element).closest("[ui5-container]").length > 0) {
             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
@@ -158,7 +164,17 @@ var Ui5Object = exports.Ui5Object = (_dec = (0, _aureliaTemplating.customElement
     initializer: function initializer() {
         return null;
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'ui5Class', [_aureliaTemplating.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'ui5Tooltip', [_aureliaTemplating.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'prevId', [_aureliaTemplating.bindable], {
     enumerable: true,
     initializer: function initializer() {
         return null;

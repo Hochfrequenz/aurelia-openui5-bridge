@@ -11,6 +11,8 @@ export class Ui5StandardListItem extends Ui5ListItemBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() title = null;
 @bindable() description = null;
@@ -81,8 +83,12 @@ params.infoTextDirection = this.infoTextDirection;
             this.fillProperties(params);
          if (this.ui5Id)
           this._standardlistitem = new sap.m.StandardListItem(this.ui5Id, params);
-        else
+                                              else
           this._standardlistitem = new sap.m.StandardListItem(params);
+                                                  if(this.ui5Class)
+           this._standardlistitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._standardlistitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

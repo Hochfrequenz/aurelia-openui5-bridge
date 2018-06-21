@@ -11,6 +11,8 @@ export class Ui5WizardStep extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() title = '';
 @bindable() icon = '';
@@ -62,8 +64,12 @@ params.activate = this.activate==null ? this.defaultFunc: this.activate;
             this.fillProperties(params);
          if (this.ui5Id)
           this._wizardstep = new sap.m.WizardStep(this.ui5Id, params);
-        else
+                                              else
           this._wizardstep = new sap.m.WizardStep(params);
+                                                  if(this.ui5Class)
+           this._wizardstep.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._wizardstep.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

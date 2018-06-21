@@ -11,6 +11,8 @@ export class Ui5Page extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() title = null;
 @bindable() titleLevel = 'Auto';
@@ -74,8 +76,12 @@ params.navButtonPress = this.navButtonPress==null ? this.defaultFunc: this.navBu
             this.fillProperties(params);
          if (this.ui5Id)
           this._page = new sap.m.Page(this.ui5Id, params);
-        else
+                                              else
           this._page = new sap.m.Page(params);
+                                                  if(this.ui5Class)
+           this._page.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._page.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

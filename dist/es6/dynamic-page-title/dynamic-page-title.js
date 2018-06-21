@@ -11,6 +11,8 @@ export class Ui5DynamicPageTitle extends Ui5Control{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() areaShrinkRatio = '1:1.6:1.6';
 @bindable() stateChange = this.defaultFunc;
@@ -54,8 +56,12 @@ params.stateChange = this.stateChange==null ? this.defaultFunc: this.stateChange
             this.fillProperties(params);
          if (this.ui5Id)
           this._dynamicpagetitle = new sap.f.DynamicPageTitle(this.ui5Id, params);
-        else
+                                              else
           this._dynamicpagetitle = new sap.f.DynamicPageTitle(params);
+                                                  if(this.ui5Class)
+           this._dynamicpagetitle.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._dynamicpagetitle.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

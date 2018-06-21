@@ -11,6 +11,8 @@ export class Ui5SuggestionItem extends Ui5Item{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() icon = '';
 @bindable() description = '';
@@ -52,8 +54,12 @@ params.description = this.description;
             this.fillProperties(params);
          if (this.ui5Id)
           this._suggestionitem = new sap.m.SuggestionItem(this.ui5Id, params);
-        else
+                                              else
           this._suggestionitem = new sap.m.SuggestionItem(params);
+                                                  if(this.ui5Class)
+           this._suggestionitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._suggestionitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

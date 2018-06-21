@@ -11,6 +11,8 @@ export class Ui5UploadCollectionItem extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() documentId = null;
 @bindable() fileName = null;
@@ -69,8 +71,12 @@ params.deletePress = this.deletePress==null ? this.defaultFunc: this.deletePress
             this.fillProperties(params);
          if (this.ui5Id)
           this._uploadcollectionitem = new sap.m.UploadCollectionItem(this.ui5Id, params);
-        else
+                                              else
           this._uploadcollectionitem = new sap.m.UploadCollectionItem(params);
+                                                  if(this.ui5Class)
+           this._uploadcollectionitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._uploadcollectionitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

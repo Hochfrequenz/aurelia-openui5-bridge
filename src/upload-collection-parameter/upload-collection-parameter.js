@@ -11,6 +11,8 @@ export class Ui5UploadCollectionParameter extends Ui5Element{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() name = null;
 @bindable() value = null;
@@ -47,8 +49,12 @@ params.value = this.value;
             this.fillProperties(params);
          if (this.ui5Id)
           this._uploadcollectionparameter = new sap.m.UploadCollectionParameter(this.ui5Id, params);
-        else
+                                              else
           this._uploadcollectionparameter = new sap.m.UploadCollectionParameter(params);
+                                                  if(this.ui5Class)
+           this._uploadcollectionparameter.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._uploadcollectionparameter.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;

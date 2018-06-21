@@ -11,6 +11,8 @@ export class Ui5MaskInput extends Ui5InputBase{
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() placeholderSymbol = '_';
 @bindable() mask = null;
@@ -68,8 +70,12 @@ params.mask = this.mask;
             this.fillProperties(params);
          if (this.ui5Id)
           this._maskinput = new sap.m.MaskInput(this.ui5Id, params);
-        else
+                                              else
           this._maskinput = new sap.m.MaskInput(params);
+                                                  if(this.ui5Class)
+           this._maskinput.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._maskinput.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
