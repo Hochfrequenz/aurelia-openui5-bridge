@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.15"></a>
+## [0.3.15](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.3.14...v0.3.15) (2018-06-21)
+
+
+### Bug Fixes
+
+* **ui:** readd tooltip and class functionality ([1b43e42](https://github.com/hochfrequenz/aurelia-openui5-bridge/commit/1b43e42))
+
+
+
 <a name="0.3.14"></a>
 ## [0.3.14](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.3.13...v0.3.14) (2018-06-12)
 
