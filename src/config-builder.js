@@ -49,6 +49,7 @@ export class ConfigBuilder {
       .useMenu()
       .useSplitter()
       .usePanel()
+      .useTextArea()
   }
 
   useLink(): ConfigBuilder {
@@ -259,6 +260,10 @@ export class ConfigBuilder {
   }
   usePanel(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./panel/panel'));
+    return this;
+  }
+  useTextArea(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./text-area/text-area'));
     return this;
   }
   /**

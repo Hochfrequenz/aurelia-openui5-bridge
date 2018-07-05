@@ -97,4 +97,5 @@ export * from './panel/panel';
 export * from './responsive-splitter/responsive-splitter';
 export * from './pane-container/pane-container';
 export * from './split-pane/split-pane';
+export * from './text-area/text-area';
 // build-index-remove end

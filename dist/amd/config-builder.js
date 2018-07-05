@@ -21,7 +21,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     }
 
     ConfigBuilder.prototype.useAll = function useAll() {
-      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton().useTree().useMenu().useSplitter().usePanel();
+      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton().useTree().useMenu().useSplitter().usePanel().useTextArea();
     };
 
     ConfigBuilder.prototype.useLink = function useLink() {
@@ -269,6 +269,11 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
 
     ConfigBuilder.prototype.usePanel = function usePanel() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./panel/panel'));
+      return this;
+    };
+
+    ConfigBuilder.prototype.useTextArea = function useTextArea() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./text-area/text-area'));
       return this;
     };
 

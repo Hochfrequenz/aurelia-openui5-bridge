@@ -1179,3 +1179,15 @@ Object.keys(_splitPane).forEach(function (key) {
     }
   });
 });
+
+var _textArea = require('./text-area/text-area');
+
+Object.keys(_textArea).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _textArea[key];
+    }
+  });
+});
