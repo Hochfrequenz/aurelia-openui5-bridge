@@ -1,0 +1,47 @@
+<template>
+  <title-elem ref="title">
+    <slot name="title"></slot>
+  </title-elem>
+  <footer ref="footer">
+    <slot name="footer"></slot>
+  </footer>
+  <toolbar ref="toolbar">
+    <slot name="toolbar"></slot>
+  </toolbar>
+  <extension ref="extension">
+    <slot name="extension"></slot>
+  </extension>
+  <columns ref="columns">
+    <slot></slot>
+  </columns>
+  <rows ref="rows">
+    <slot name="rows"></slot>
+  </rows>
+  <noData ref="noData">
+    <slot name="noData"></slot>
+  </noData>
+  <rowActionTemplate ref="rowActionTemplate">
+    <slot name="rowActionTemplate"></slot>
+  </rowActionTemplate>
+  <rowSettingsTemplate ref="rowSettingsTemplate">
+    <slot name="rowSettingsTemplate"></slot>
+  </rowSettingsTemplate>
+  <dragDropConfig ref="dragDropConfig">
+    <slot name="dragDropConfig"></slot>
+  </dragDropConfig>
+  <contextMenu ref="contextMenu">
+    <slot name="contextMenu"></slot>
+  </contextMenu>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
+</template>

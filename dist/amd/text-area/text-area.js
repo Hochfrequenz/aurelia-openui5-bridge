@@ -236,6 +236,14 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 this.attributeManager.addAttributes({ "ui5-container": '' });
                 this.attributeManager.addClasses("ui5-hide");
             }
+            this._textarea.attachChange(function (event) {
+                that.value = event.mParameters.value;;
+            });
+            this._textarea.attachLiveChange(function (event) {
+                if ((0, _attributes.getBooleanFromAttributeValue)(that.valueLiveUpdate)) {
+                    that.value = event.mParameters.value;
+                };
+            });
 
             this.attributeManager.addAttributes({ "ui5-id": this._textarea.sId });
         };

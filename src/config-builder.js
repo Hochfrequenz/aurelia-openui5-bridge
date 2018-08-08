@@ -50,6 +50,7 @@ export class ConfigBuilder {
       .useSplitter()
       .usePanel()
       .useTextArea()
+      .useGridTable()
   }
 
   useLink(): ConfigBuilder {
@@ -264,6 +265,17 @@ export class ConfigBuilder {
   }
   useTextArea(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./text-area/text-area'));
+    return this;
+  }
+  useGridTable(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./grid-table/grid-table'));
+    this.globalResources.push(PLATFORM.moduleName('./grid-table-row/grid-table-row'));
+    this.globalResources.push(PLATFORM.moduleName('./grid-table-column/grid-table-column'));
+    this.globalResources.push(PLATFORM.moduleName('./grid-table-row-action/grid-table-row-action'));
+    this.globalResources.push(PLATFORM.moduleName('./grid-table-row-setting/grid-table-row-setting'));
+
+
+
     return this;
   }
   /**

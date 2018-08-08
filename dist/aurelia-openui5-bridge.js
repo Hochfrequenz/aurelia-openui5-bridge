@@ -63,6 +63,7 @@ export class ConfigBuilder {
       .useSplitter()
       .usePanel()
       .useTextArea()
+      .useGridTable()
   }
 
   useLink(): ConfigBuilder {
@@ -279,6 +280,17 @@ export class ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./text-area/text-area'));
     return this;
   }
+  useGridTable(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./grid-table/grid-table'));
+    this.globalResources.push(PLATFORM.moduleName('./grid-table-row/grid-table-row'));
+    this.globalResources.push(PLATFORM.moduleName('./grid-table-column/grid-table-column'));
+    this.globalResources.push(PLATFORM.moduleName('./grid-table-row-action/grid-table-row-action'));
+    this.globalResources.push(PLATFORM.moduleName('./grid-table-row-setting/grid-table-row-setting'));
+
+
+
+    return this;
+  }
   /**
   * Don't globalize any resources
   * Allows you to import yourself via <require></require>
@@ -315,26 +327,17 @@ export function configure(aurelia, configCallback) {
 
 
 
-@customElement('ui5-button')
+@customElement('ui5-breadcrumbs')
 @inject(Element)
-export class Ui5Button extends Ui5Control{
-        _button = null;
+export class Ui5Breadcrumbs extends Ui5Control{
+        _breadcrumbs = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() text = null;
-@bindable() type = 'Default';
-@bindable() width = null;
-@bindable() enabled = true;
-@bindable() icon = null;
-@bindable() iconFirst = true;
-@bindable() activeIcon = null;
-@bindable() iconDensityAware = true;
-@bindable() textDirection = 'Inherit';
-@bindable() press = this.defaultFunc;
+        @bindable() currentLocationText = null;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -357,21 +360,12 @@ export class Ui5Button extends Ui5Control{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_button')
+        @computedFrom('_breadcrumbs')
         get UIElement() {
-            return this._button;
+            return this._breadcrumbs;
           }
         fillProperties(params){
-                                        params.text = this.text;
-params.type = this.type;
-params.width = this.width;
-params.enabled = getBooleanFromAttributeValue(this.enabled);
-params.icon = this.icon;
-params.iconFirst = getBooleanFromAttributeValue(this.iconFirst);
-params.activeIcon = this.activeIcon;
-params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
-params.textDirection = this.textDirection;
-params.press = this.press==null ? this.defaultFunc: this.press;
+                                        params.currentLocationText = this.currentLocationText;
             
                                             super.fillProperties(params);   
         }
@@ -382,33 +376,33 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._button = new sap.m.Button(this.ui5Id, params);
+          this._breadcrumbs = new sap.m.Breadcrumbs(this.ui5Id, params);
                                               else
-          this._button = new sap.m.Button(params);
+          this._breadcrumbs = new sap.m.Breadcrumbs(params);
                                                   if(this.ui5Class)
-           this._button.addStyleClass(this.ui5Class);
+           this._breadcrumbs.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._button.setTooltip(this.ui5Tooltip);                                             
+           this._breadcrumbs.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._button.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._breadcrumbs.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._button, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._breadcrumbs, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._button, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._breadcrumbs, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._button.placeAt)
-                                                                this._button.placeAt(this.element.parentElement);
+                                                            if(this._breadcrumbs.placeAt)
+                                                                this._breadcrumbs.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -416,7 +410,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._button.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._breadcrumbs.sId});
                                                                            
            
         }
@@ -424,12 +418,12 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._button)
-                                                                this._parent.removeChildByRelation(this._button, this._relation);
+                                                                 if(this._breadcrumbs)
+                                                                this._parent.removeChildByRelation(this._breadcrumbs, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._button.destroy();
+                                                                this._breadcrumbs.destroy();
                                                             }
          super.detached();
           }
@@ -440,10 +434,11 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'tooltip') { this._button.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._button.insertCustomData(child, _index); else this._button.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._button.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._button.insertDependent(child, _index); else this._button.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'links') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._breadcrumbs.insertLink(child, _index); else this._breadcrumbs.addLink(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._breadcrumbs.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._breadcrumbs.insertCustomData(child, _index); else this._breadcrumbs.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._breadcrumbs.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._breadcrumbs.insertDependent(child, _index); else this._breadcrumbs.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -451,38 +446,30 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'tooltip') {  this._button.destroyTooltip(child); }
-if (relation == 'customdata') {  this._button.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._button.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._button.removeDependent(child);}
+               if (relation == 'links') {  this._breadcrumbs.removeLink(child);}
+if (relation == 'tooltip') {  this._breadcrumbs.destroyTooltip(child); }
+if (relation == 'customdata') {  this._breadcrumbs.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._breadcrumbs.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._breadcrumbs.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    textChanged(newValue){if(this._button!==null){ this._button.setText(newValue);}}
-typeChanged(newValue){if(this._button!==null){ this._button.setType(newValue);}}
-widthChanged(newValue){if(this._button!==null){ this._button.setWidth(newValue);}}
-enabledChanged(newValue){if(this._button!==null){ this._button.setEnabled(getBooleanFromAttributeValue(newValue));}}
-iconChanged(newValue){if(this._button!==null){ this._button.setIcon(newValue);}}
-iconFirstChanged(newValue){if(this._button!==null){ this._button.setIconFirst(getBooleanFromAttributeValue(newValue));}}
-activeIconChanged(newValue){if(this._button!==null){ this._button.setActiveIcon(newValue);}}
-iconDensityAwareChanged(newValue){if(this._button!==null){ this._button.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
-textDirectionChanged(newValue){if(this._button!==null){ this._button.setTextDirection(newValue);}}
-pressChanged(newValue){if(this._button!==null){ this._button.attachPress(newValue);}}
-busyChanged(newValue){if(this._button!==null){ this._button.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._button!==null){ this._button.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._button!==null){ this._button.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._button!==null){ this._button.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._button!==null){ this._button.setFieldGroupIds(newValue);}}
+    currentLocationTextChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setCurrentLocationText(newValue);}}
+busyChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._button!==null){ this._button.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._button!==null){ this._button.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._button!==null){ this._button.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._button!==null){ this._button.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._button!==null){ this._button.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._button!==null){ this._button.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -660,17 +647,17 @@ modelContextChangeChanged(newValue){if(this._actionsheet!==null){ this._actionsh
 
 
                                                                                 }
-@customElement('ui5-breadcrumbs')
+@customElement('ui5-bar')
 @inject(Element)
-export class Ui5Breadcrumbs extends Ui5Control{
-        _breadcrumbs = null;
+export class Ui5Bar extends Ui5Control{
+        _bar = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() currentLocationText = null;
+        @bindable() design = 'Auto';
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -693,12 +680,12 @@ export class Ui5Breadcrumbs extends Ui5Control{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_breadcrumbs')
+        @computedFrom('_bar')
         get UIElement() {
-            return this._breadcrumbs;
+            return this._bar;
           }
         fillProperties(params){
-                                        params.currentLocationText = this.currentLocationText;
+                                        params.design = this.design;
             
                                             super.fillProperties(params);   
         }
@@ -709,33 +696,33 @@ export class Ui5Breadcrumbs extends Ui5Control{
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._breadcrumbs = new sap.m.Breadcrumbs(this.ui5Id, params);
+          this._bar = new sap.m.Bar(this.ui5Id, params);
                                               else
-          this._breadcrumbs = new sap.m.Breadcrumbs(params);
+          this._bar = new sap.m.Bar(params);
                                                   if(this.ui5Class)
-           this._breadcrumbs.addStyleClass(this.ui5Class);
+           this._bar.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._breadcrumbs.setTooltip(this.ui5Tooltip);                                             
+           this._bar.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._breadcrumbs.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._bar.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._breadcrumbs, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._bar, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._breadcrumbs, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._bar, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._breadcrumbs.placeAt)
-                                                                this._breadcrumbs.placeAt(this.element.parentElement);
+                                                            if(this._bar.placeAt)
+                                                                this._bar.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -743,7 +730,7 @@ export class Ui5Breadcrumbs extends Ui5Control{
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._breadcrumbs.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._bar.sId});
                                                                            
            
         }
@@ -751,12 +738,12 @@ export class Ui5Breadcrumbs extends Ui5Control{
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._breadcrumbs)
-                                                                this._parent.removeChildByRelation(this._breadcrumbs, this._relation);
+                                                                 if(this._bar)
+                                                                this._parent.removeChildByRelation(this._bar, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._breadcrumbs.destroy();
+                                                                this._bar.destroy();
                                                             }
          super.detached();
           }
@@ -767,11 +754,13 @@ export class Ui5Breadcrumbs extends Ui5Control{
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'links') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._breadcrumbs.insertLink(child, _index); else this._breadcrumbs.addLink(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._breadcrumbs.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._breadcrumbs.insertCustomData(child, _index); else this._breadcrumbs.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._breadcrumbs.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._breadcrumbs.insertDependent(child, _index); else this._breadcrumbs.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'contentleft') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertContentLeft(child, _index); else this._bar.addContentLeft(child, 0);  return elem.localName; }
+if (elem.localName == 'contentmiddle') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertContentMiddle(child, _index); else this._bar.addContentMiddle(child, 0);  return elem.localName; }
+if (elem.localName == 'contentright') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertContentRight(child, _index); else this._bar.addContentRight(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._bar.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertCustomData(child, _index); else this._bar.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._bar.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertDependent(child, _index); else this._bar.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -779,30 +768,205 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'links') {  this._breadcrumbs.removeLink(child);}
-if (relation == 'tooltip') {  this._breadcrumbs.destroyTooltip(child); }
-if (relation == 'customdata') {  this._breadcrumbs.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._breadcrumbs.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._breadcrumbs.removeDependent(child);}
+               if (relation == 'contentleft') {  this._bar.removeContentLeft(child);}
+if (relation == 'contentmiddle') {  this._bar.removeContentMiddle(child);}
+if (relation == 'contentright') {  this._bar.removeContentRight(child);}
+if (relation == 'tooltip') {  this._bar.destroyTooltip(child); }
+if (relation == 'customdata') {  this._bar.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._bar.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._bar.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    currentLocationTextChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setCurrentLocationText(newValue);}}
-busyChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setFieldGroupIds(newValue);}}
+    designChanged(newValue){if(this._bar!==null){ this._bar.setDesign(newValue);}}
+busyChanged(newValue){if(this._bar!==null){ this._bar.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._bar!==null){ this._bar.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._bar!==null){ this._bar.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._bar!==null){ this._bar.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._bar!==null){ this._bar.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(this._bar!==null){ this._bar.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._bar!==null){ this._bar.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._bar!==null){ this._bar.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._bar!==null){ this._bar.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._bar!==null){ this._bar.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._bar!==null){ this._bar.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-button')
+@inject(Element)
+export class Ui5Button extends Ui5Control{
+        _button = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() text = null;
+@bindable() type = 'Default';
+@bindable() width = null;
+@bindable() enabled = true;
+@bindable() icon = null;
+@bindable() iconFirst = true;
+@bindable() activeIcon = null;
+@bindable() iconDensityAware = true;
+@bindable() textDirection = 'Inherit';
+@bindable() press = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_button')
+        get UIElement() {
+            return this._button;
+          }
+        fillProperties(params){
+                                        params.text = this.text;
+params.type = this.type;
+params.width = this.width;
+params.enabled = getBooleanFromAttributeValue(this.enabled);
+params.icon = this.icon;
+params.iconFirst = getBooleanFromAttributeValue(this.iconFirst);
+params.activeIcon = this.activeIcon;
+params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
+params.textDirection = this.textDirection;
+params.press = this.press==null ? this.defaultFunc: this.press;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._button = new sap.m.Button(this.ui5Id, params);
+                                              else
+          this._button = new sap.m.Button(params);
+                                                  if(this.ui5Class)
+           this._button.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._button.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._button.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._button, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._button, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._button.placeAt)
+                                                                this._button.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._button.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._button)
+                                                                this._parent.removeChildByRelation(this._button, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._button.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._button.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._button.insertCustomData(child, _index); else this._button.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._button.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._button.insertDependent(child, _index); else this._button.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._button.destroyTooltip(child); }
+if (relation == 'customdata') {  this._button.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._button.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._button.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    textChanged(newValue){if(this._button!==null){ this._button.setText(newValue);}}
+typeChanged(newValue){if(this._button!==null){ this._button.setType(newValue);}}
+widthChanged(newValue){if(this._button!==null){ this._button.setWidth(newValue);}}
+enabledChanged(newValue){if(this._button!==null){ this._button.setEnabled(getBooleanFromAttributeValue(newValue));}}
+iconChanged(newValue){if(this._button!==null){ this._button.setIcon(newValue);}}
+iconFirstChanged(newValue){if(this._button!==null){ this._button.setIconFirst(getBooleanFromAttributeValue(newValue));}}
+activeIconChanged(newValue){if(this._button!==null){ this._button.setActiveIcon(newValue);}}
+iconDensityAwareChanged(newValue){if(this._button!==null){ this._button.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
+textDirectionChanged(newValue){if(this._button!==null){ this._button.setTextDirection(newValue);}}
+pressChanged(newValue){if(this._button!==null){ this._button.attachPress(newValue);}}
+busyChanged(newValue){if(this._button!==null){ this._button.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._button!==null){ this._button.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._button!==null){ this._button.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._button!==null){ this._button.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._button!==null){ this._button.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._button!==null){ this._button.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._button!==null){ this._button.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._button!==null){ this._button.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._button!==null){ this._button.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._button!==null){ this._button.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._button!==null){ this._button.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -1414,6 +1578,310 @@ export function assignModelFromTemplate(tree, model, treeItem) {
   tree.bindAggregation('items', '/', treeItem);
 }
 
+@customElement('ui5-column-list-item')
+@inject(Element)
+export class Ui5ColumnListItem extends Ui5ListItemBase{
+        _columnlistitem = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() vAlign = 'Inherit';
+/* inherited from sap.m.ListItemBase*/
+@bindable() type = 'Inactive';
+@bindable() visible = true;
+@bindable() unread = false;
+@bindable() selected = false;
+@bindable() counter = null;
+@bindable() highlight = 'None';
+@bindable() press = this.defaultFunc;
+@bindable() detailPress = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_columnlistitem')
+        get UIElement() {
+            return this._columnlistitem;
+          }
+        fillProperties(params){
+                                        params.vAlign = this.vAlign;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._columnlistitem = new sap.m.ColumnListItem(this.ui5Id, params);
+                                              else
+          this._columnlistitem = new sap.m.ColumnListItem(params);
+                                                  if(this.ui5Class)
+           this._columnlistitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._columnlistitem.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._columnlistitem.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._columnlistitem, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._columnlistitem, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._columnlistitem.placeAt)
+                                                                this._columnlistitem.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._columnlistitem.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._columnlistitem)
+                                                                this._parent.removeChildByRelation(this._columnlistitem, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._columnlistitem.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'cells') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertCell(child, _index); else this._columnlistitem.addCell(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._columnlistitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertCustomData(child, _index); else this._columnlistitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._columnlistitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertDependent(child, _index); else this._columnlistitem.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'cells') {  this._columnlistitem.removeCell(child);}
+if (relation == 'tooltip') {  this._columnlistitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._columnlistitem.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._columnlistitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._columnlistitem.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    vAlignChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setVAlign(newValue);}}
+typeChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setType(newValue);}}
+visibleChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+unreadChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setUnread(getBooleanFromAttributeValue(newValue));}}
+selectedChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setSelected(getBooleanFromAttributeValue(newValue));}}
+counterChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setCounter(newValue);}}
+highlightChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setHighlight(newValue);}}
+/* inherited from sap.m.ListItemBase*/
+pressChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachPress(newValue);}}
+detailPressChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachDetailPress(newValue);}}
+busyChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-custom-data')
+@inject(Element)
+export class Ui5CustomData extends Ui5Element{
+        _customdata = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() key = null;
+@bindable() value = null;
+@bindable() writeToDom = false;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_customdata')
+        get UIElement() {
+            return this._customdata;
+          }
+        fillProperties(params){
+                                        params.key = this.key;
+params.value = this.value;
+params.writeToDom = getBooleanFromAttributeValue(this.writeToDom);
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._customdata = new sap.ui.core.CustomData(this.ui5Id, params);
+                                              else
+          this._customdata = new sap.ui.core.CustomData(params);
+                                                  if(this.ui5Class)
+           this._customdata.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._customdata.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._customdata.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._customdata, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._customdata, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._customdata.placeAt)
+                                                                this._customdata.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._customdata.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._customdata)
+                                                                this._parent.removeChildByRelation(this._customdata, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._customdata.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._customdata.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customdata.insertCustomData(child, _index); else this._customdata.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._customdata.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customdata.insertDependent(child, _index); else this._customdata.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._customdata.destroyTooltip(child); }
+if (relation == 'customdata') {  this._customdata.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._customdata.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._customdata.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    keyChanged(newValue){if(this._customdata!==null){ this._customdata.setKey(newValue);}}
+valueChanged(newValue){if(this._customdata!==null){ this._customdata.setValue(newValue);}}
+writeToDomChanged(newValue){if(this._customdata!==null){ this._customdata.setWriteToDom(getBooleanFromAttributeValue(newValue));}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._customdata!==null){ this._customdata.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._customdata!==null){ this._customdata.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._customdata!==null){ this._customdata.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._customdata!==null){ this._customdata.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._customdata!==null){ this._customdata.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
 @customAttribute('ui5-container')
 @inject(Element)
 export class Ui5Container {
@@ -1575,309 +2043,6 @@ validationErrorChanged(newValue){if(this._control!==null){ this._control.attachV
 parseErrorChanged(newValue){if(this._control!==null){ this._control.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._control!==null){ this._control.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._control!==null){ this._control.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-custom-data')
-@inject(Element)
-export class Ui5CustomData extends Ui5Element{
-        _customdata = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() key = null;
-@bindable() value = null;
-@bindable() writeToDom = false;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_customdata')
-        get UIElement() {
-            return this._customdata;
-          }
-        fillProperties(params){
-                                        params.key = this.key;
-params.value = this.value;
-params.writeToDom = getBooleanFromAttributeValue(this.writeToDom);
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._customdata = new sap.ui.core.CustomData(this.ui5Id, params);
-                                              else
-          this._customdata = new sap.ui.core.CustomData(params);
-                                                  if(this.ui5Class)
-           this._customdata.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._customdata.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._customdata.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._customdata, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._customdata, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._customdata.placeAt)
-                                                                this._customdata.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._customdata.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._customdata)
-                                                                this._parent.removeChildByRelation(this._customdata, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._customdata.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._customdata.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customdata.insertCustomData(child, _index); else this._customdata.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._customdata.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customdata.insertDependent(child, _index); else this._customdata.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._customdata.destroyTooltip(child); }
-if (relation == 'customdata') {  this._customdata.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._customdata.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._customdata.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    keyChanged(newValue){if(this._customdata!==null){ this._customdata.setKey(newValue);}}
-valueChanged(newValue){if(this._customdata!==null){ this._customdata.setValue(newValue);}}
-writeToDomChanged(newValue){if(this._customdata!==null){ this._customdata.setWriteToDom(getBooleanFromAttributeValue(newValue));}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._customdata!==null){ this._customdata.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._customdata!==null){ this._customdata.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._customdata!==null){ this._customdata.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._customdata!==null){ this._customdata.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._customdata!==null){ this._customdata.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-custom-tree-item')
-@inject(Element)
-export class Ui5CustomTreeItem extends Ui5TreeItemBase{
-        _customtreeitem = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        /* inherited from sap.m.TreeItemBase*/
-/* inherited from sap.m.ListItemBase*/
-@bindable() type = 'Inactive';
-@bindable() visible = true;
-@bindable() unread = false;
-@bindable() selected = false;
-@bindable() counter = null;
-@bindable() highlight = 'None';
-@bindable() press = this.defaultFunc;
-@bindable() detailPress = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_customtreeitem')
-        get UIElement() {
-            return this._customtreeitem;
-          }
-        fillProperties(params){
-                                                    
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._customtreeitem = new sap.m.CustomTreeItem(this.ui5Id, params);
-                                              else
-          this._customtreeitem = new sap.m.CustomTreeItem(params);
-                                                  if(this.ui5Class)
-           this._customtreeitem.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._customtreeitem.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._customtreeitem.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._customtreeitem, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._customtreeitem, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._customtreeitem.placeAt)
-                                                                this._customtreeitem.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._customtreeitem.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._customtreeitem)
-                                                                this._parent.removeChildByRelation(this._customtreeitem, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._customtreeitem.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertContent(child, _index); else this._customtreeitem.addContent(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._customtreeitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertCustomData(child, _index); else this._customtreeitem.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._customtreeitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertDependent(child, _index); else this._customtreeitem.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'content') {  this._customtreeitem.removeContent(child);}
-if (relation == 'tooltip') {  this._customtreeitem.destroyTooltip(child); }
-if (relation == 'customdata') {  this._customtreeitem.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._customtreeitem.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._customtreeitem.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    /* inherited from sap.m.TreeItemBase*/
-typeChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setType(newValue);}}
-visibleChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-unreadChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setUnread(getBooleanFromAttributeValue(newValue));}}
-selectedChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setSelected(getBooleanFromAttributeValue(newValue));}}
-counterChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setCounter(newValue);}}
-highlightChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setHighlight(newValue);}}
-/* inherited from sap.m.ListItemBase*/
-pressChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachPress(newValue);}}
-detailPressChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachDetailPress(newValue);}}
-busyChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -2082,355 +2247,6 @@ modelContextChangeChanged(newValue){if(this._datepicker!==null){ this._datepicke
 
 
                                                                                 }
-@customElement('ui5-date-time-field')
-@inject(Element)
-export class Ui5DateTimeField extends Ui5InputBase{
-        _datetimefield = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() displayFormat = null;
-@bindable() valueFormat = null;
-@bindable() dateValue = null;
-@bindable() initialFocusedDateValue = null;
-/* inherited from sap.m.InputBase*/
-@bindable() value = null;
-@bindable() width = null;
-@bindable() enabled = true;
-@bindable() valueState = 'None';
-@bindable() name = null;
-@bindable() placeholder = null;
-@bindable() editable = true;
-@bindable() valueStateText = null;
-@bindable() showValueStateMessage = true;
-@bindable() textAlign = 'Initial';
-@bindable() textDirection = 'Inherit';
-@bindable() required = false;
-@bindable() change = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_datetimefield')
-        get UIElement() {
-            return this._datetimefield;
-          }
-        fillProperties(params){
-                                        params.displayFormat = this.displayFormat;
-params.valueFormat = this.valueFormat;
-params.dateValue = this.dateValue;
-params.initialFocusedDateValue = this.initialFocusedDateValue;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._datetimefield = new sap.m.DateTimeField(this.ui5Id, params);
-                                              else
-          this._datetimefield = new sap.m.DateTimeField(params);
-                                                  if(this.ui5Class)
-           this._datetimefield.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._datetimefield.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._datetimefield.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._datetimefield, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._datetimefield, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._datetimefield.placeAt)
-                                                                this._datetimefield.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._datetimefield.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._datetimefield)
-                                                                this._parent.removeChildByRelation(this._datetimefield, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._datetimefield.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._datetimefield.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimefield.insertCustomData(child, _index); else this._datetimefield.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._datetimefield.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimefield.insertDependent(child, _index); else this._datetimefield.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._datetimefield.destroyTooltip(child); }
-if (relation == 'customdata') {  this._datetimefield.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._datetimefield.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._datetimefield.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    displayFormatChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setDisplayFormat(newValue);}}
-valueFormatChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValueFormat(newValue);}}
-dateValueChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setDateValue(newValue);}}
-initialFocusedDateValueChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setInitialFocusedDateValue(newValue);}}
-valueChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValue(newValue);}}
-widthChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setWidth(newValue);}}
-enabledChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setEnabled(getBooleanFromAttributeValue(newValue));}}
-valueStateChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValueState(newValue);}}
-nameChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setName(newValue);}}
-placeholderChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setPlaceholder(newValue);}}
-editableChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setEditable(getBooleanFromAttributeValue(newValue));}}
-valueStateTextChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValueStateText(newValue);}}
-showValueStateMessageChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));}}
-textAlignChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setTextAlign(newValue);}}
-textDirectionChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setTextDirection(newValue);}}
-requiredChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setRequired(getBooleanFromAttributeValue(newValue));}}
-/* inherited from sap.m.InputBase*/
-changeChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachChange(newValue);}}
-busyChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-column-list-item')
-@inject(Element)
-export class Ui5ColumnListItem extends Ui5ListItemBase{
-        _columnlistitem = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() vAlign = 'Inherit';
-/* inherited from sap.m.ListItemBase*/
-@bindable() type = 'Inactive';
-@bindable() visible = true;
-@bindable() unread = false;
-@bindable() selected = false;
-@bindable() counter = null;
-@bindable() highlight = 'None';
-@bindable() press = this.defaultFunc;
-@bindable() detailPress = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_columnlistitem')
-        get UIElement() {
-            return this._columnlistitem;
-          }
-        fillProperties(params){
-                                        params.vAlign = this.vAlign;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._columnlistitem = new sap.m.ColumnListItem(this.ui5Id, params);
-                                              else
-          this._columnlistitem = new sap.m.ColumnListItem(params);
-                                                  if(this.ui5Class)
-           this._columnlistitem.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._columnlistitem.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._columnlistitem.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._columnlistitem, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._columnlistitem, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._columnlistitem.placeAt)
-                                                                this._columnlistitem.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._columnlistitem.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._columnlistitem)
-                                                                this._parent.removeChildByRelation(this._columnlistitem, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._columnlistitem.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'cells') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertCell(child, _index); else this._columnlistitem.addCell(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._columnlistitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertCustomData(child, _index); else this._columnlistitem.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._columnlistitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertDependent(child, _index); else this._columnlistitem.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'cells') {  this._columnlistitem.removeCell(child);}
-if (relation == 'tooltip') {  this._columnlistitem.destroyTooltip(child); }
-if (relation == 'customdata') {  this._columnlistitem.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._columnlistitem.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._columnlistitem.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    vAlignChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setVAlign(newValue);}}
-typeChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setType(newValue);}}
-visibleChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-unreadChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setUnread(getBooleanFromAttributeValue(newValue));}}
-selectedChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setSelected(getBooleanFromAttributeValue(newValue));}}
-counterChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setCounter(newValue);}}
-highlightChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setHighlight(newValue);}}
-/* inherited from sap.m.ListItemBase*/
-pressChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachPress(newValue);}}
-detailPressChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachDetailPress(newValue);}}
-busyChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
 @customElement('ui5-date-time-picker')
 @inject(Element)
 export class Ui5DateTimePicker extends Ui5DatePicker{
@@ -2622,6 +2438,354 @@ validationErrorChanged(newValue){if(this._datetimepicker!==null){ this._datetime
 parseErrorChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-date-time-field')
+@inject(Element)
+export class Ui5DateTimeField extends Ui5InputBase{
+        _datetimefield = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() displayFormat = null;
+@bindable() valueFormat = null;
+@bindable() dateValue = null;
+@bindable() initialFocusedDateValue = null;
+/* inherited from sap.m.InputBase*/
+@bindable() value = null;
+@bindable() width = null;
+@bindable() enabled = true;
+@bindable() valueState = 'None';
+@bindable() name = null;
+@bindable() placeholder = null;
+@bindable() editable = true;
+@bindable() valueStateText = null;
+@bindable() showValueStateMessage = true;
+@bindable() textAlign = 'Initial';
+@bindable() textDirection = 'Inherit';
+@bindable() required = false;
+@bindable() change = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_datetimefield')
+        get UIElement() {
+            return this._datetimefield;
+          }
+        fillProperties(params){
+                                        params.displayFormat = this.displayFormat;
+params.valueFormat = this.valueFormat;
+params.dateValue = this.dateValue;
+params.initialFocusedDateValue = this.initialFocusedDateValue;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._datetimefield = new sap.m.DateTimeField(this.ui5Id, params);
+                                              else
+          this._datetimefield = new sap.m.DateTimeField(params);
+                                                  if(this.ui5Class)
+           this._datetimefield.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._datetimefield.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._datetimefield.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._datetimefield, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._datetimefield, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._datetimefield.placeAt)
+                                                                this._datetimefield.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._datetimefield.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._datetimefield)
+                                                                this._parent.removeChildByRelation(this._datetimefield, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._datetimefield.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._datetimefield.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimefield.insertCustomData(child, _index); else this._datetimefield.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._datetimefield.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimefield.insertDependent(child, _index); else this._datetimefield.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._datetimefield.destroyTooltip(child); }
+if (relation == 'customdata') {  this._datetimefield.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._datetimefield.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._datetimefield.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    displayFormatChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setDisplayFormat(newValue);}}
+valueFormatChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValueFormat(newValue);}}
+dateValueChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setDateValue(newValue);}}
+initialFocusedDateValueChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setInitialFocusedDateValue(newValue);}}
+valueChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValue(newValue);}}
+widthChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setWidth(newValue);}}
+enabledChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setEnabled(getBooleanFromAttributeValue(newValue));}}
+valueStateChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValueState(newValue);}}
+nameChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setName(newValue);}}
+placeholderChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setPlaceholder(newValue);}}
+editableChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setEditable(getBooleanFromAttributeValue(newValue));}}
+valueStateTextChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setValueStateText(newValue);}}
+showValueStateMessageChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));}}
+textAlignChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setTextAlign(newValue);}}
+textDirectionChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setTextDirection(newValue);}}
+requiredChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setRequired(getBooleanFromAttributeValue(newValue));}}
+/* inherited from sap.m.InputBase*/
+changeChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachChange(newValue);}}
+busyChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-custom-tree-item')
+@inject(Element)
+export class Ui5CustomTreeItem extends Ui5TreeItemBase{
+        _customtreeitem = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        /* inherited from sap.m.TreeItemBase*/
+/* inherited from sap.m.ListItemBase*/
+@bindable() type = 'Inactive';
+@bindable() visible = true;
+@bindable() unread = false;
+@bindable() selected = false;
+@bindable() counter = null;
+@bindable() highlight = 'None';
+@bindable() press = this.defaultFunc;
+@bindable() detailPress = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_customtreeitem')
+        get UIElement() {
+            return this._customtreeitem;
+          }
+        fillProperties(params){
+                                                    
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._customtreeitem = new sap.m.CustomTreeItem(this.ui5Id, params);
+                                              else
+          this._customtreeitem = new sap.m.CustomTreeItem(params);
+                                                  if(this.ui5Class)
+           this._customtreeitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._customtreeitem.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._customtreeitem.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._customtreeitem, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._customtreeitem, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._customtreeitem.placeAt)
+                                                                this._customtreeitem.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._customtreeitem.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._customtreeitem)
+                                                                this._parent.removeChildByRelation(this._customtreeitem, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._customtreeitem.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertContent(child, _index); else this._customtreeitem.addContent(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._customtreeitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertCustomData(child, _index); else this._customtreeitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._customtreeitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertDependent(child, _index); else this._customtreeitem.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'content') {  this._customtreeitem.removeContent(child);}
+if (relation == 'tooltip') {  this._customtreeitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._customtreeitem.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._customtreeitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._customtreeitem.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    /* inherited from sap.m.TreeItemBase*/
+typeChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setType(newValue);}}
+visibleChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+unreadChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setUnread(getBooleanFromAttributeValue(newValue));}}
+selectedChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setSelected(getBooleanFromAttributeValue(newValue));}}
+counterChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setCounter(newValue);}}
+highlightChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setHighlight(newValue);}}
+/* inherited from sap.m.ListItemBase*/
+pressChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachPress(newValue);}}
+detailPressChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachDetailPress(newValue);}}
+busyChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -2833,158 +2997,6 @@ modelContextChangeChanged(newValue){if(this._dialog!==null){ this._dialog.attach
 
 
                                                                                 }
-@customElement('ui5-bar')
-@inject(Element)
-export class Ui5Bar extends Ui5Control{
-        _bar = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() design = 'Auto';
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_bar')
-        get UIElement() {
-            return this._bar;
-          }
-        fillProperties(params){
-                                        params.design = this.design;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._bar = new sap.m.Bar(this.ui5Id, params);
-                                              else
-          this._bar = new sap.m.Bar(params);
-                                                  if(this.ui5Class)
-           this._bar.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._bar.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._bar.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._bar, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._bar, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._bar.placeAt)
-                                                                this._bar.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._bar.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._bar)
-                                                                this._parent.removeChildByRelation(this._bar, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._bar.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'contentleft') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertContentLeft(child, _index); else this._bar.addContentLeft(child, 0);  return elem.localName; }
-if (elem.localName == 'contentmiddle') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertContentMiddle(child, _index); else this._bar.addContentMiddle(child, 0);  return elem.localName; }
-if (elem.localName == 'contentright') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertContentRight(child, _index); else this._bar.addContentRight(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._bar.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertCustomData(child, _index); else this._bar.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._bar.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertDependent(child, _index); else this._bar.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'contentleft') {  this._bar.removeContentLeft(child);}
-if (relation == 'contentmiddle') {  this._bar.removeContentMiddle(child);}
-if (relation == 'contentright') {  this._bar.removeContentRight(child);}
-if (relation == 'tooltip') {  this._bar.destroyTooltip(child); }
-if (relation == 'customdata') {  this._bar.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._bar.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._bar.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    designChanged(newValue){if(this._bar!==null){ this._bar.setDesign(newValue);}}
-busyChanged(newValue){if(this._bar!==null){ this._bar.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._bar!==null){ this._bar.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._bar!==null){ this._bar.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._bar!==null){ this._bar.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._bar!==null){ this._bar.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._bar!==null){ this._bar.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._bar!==null){ this._bar.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._bar!==null){ this._bar.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._bar!==null){ this._bar.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._bar!==null){ this._bar.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._bar!==null){ this._bar.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
 @customElement('ui5-dynamic-page-header')
 @inject(Element)
 export class Ui5DynamicPageHeader extends Ui5Control{
@@ -3128,6 +3140,299 @@ validationErrorChanged(newValue){if(this._dynamicpageheader!==null){ this._dynam
 parseErrorChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-element')
+@inject(Element)
+export class Ui5Element extends Ui5ManagedObject{
+        _element = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        /* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_element')
+        get UIElement() {
+            return this._element;
+          }
+        fillProperties(params){
+                                                    
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._element = new sap.ui.core.Element(this.ui5Id, params);
+                                              else
+          this._element = new sap.ui.core.Element(params);
+                                                  if(this.ui5Class)
+           this._element.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._element.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._element.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._element, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._element, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._element.placeAt)
+                                                                this._element.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._element.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._element)
+                                                                this._parent.removeChildByRelation(this._element, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._element.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._element.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._element.insertCustomData(child, _index); else this._element.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._element.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._element.insertDependent(child, _index); else this._element.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._element.destroyTooltip(child); }
+if (relation == 'customdata') {  this._element.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._element.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._element.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    /* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._element!==null){ this._element.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._element!==null){ this._element.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._element!==null){ this._element.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._element!==null){ this._element.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._element!==null){ this._element.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-dynamic-page')
+@inject(Element)
+export class Ui5DynamicPage extends Ui5Control{
+        _dynamicpage = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() preserveHeaderStateOnScroll = false;
+@bindable() headerExpanded = true;
+@bindable() toggleHeaderOnTitleClick = true;
+@bindable() showFooter = false;
+@bindable() fitContent = false;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_dynamicpage')
+        get UIElement() {
+            return this._dynamicpage;
+          }
+        fillProperties(params){
+                                        params.preserveHeaderStateOnScroll = getBooleanFromAttributeValue(this.preserveHeaderStateOnScroll);
+params.headerExpanded = getBooleanFromAttributeValue(this.headerExpanded);
+params.toggleHeaderOnTitleClick = getBooleanFromAttributeValue(this.toggleHeaderOnTitleClick);
+params.showFooter = getBooleanFromAttributeValue(this.showFooter);
+params.fitContent = getBooleanFromAttributeValue(this.fitContent);
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._dynamicpage = new sap.f.DynamicPage(this.ui5Id, params);
+                                              else
+          this._dynamicpage = new sap.f.DynamicPage(params);
+                                                  if(this.ui5Class)
+           this._dynamicpage.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._dynamicpage.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._dynamicpage.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._dynamicpage, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._dynamicpage, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._dynamicpage.placeAt)
+                                                                this._dynamicpage.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._dynamicpage.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._dynamicpage)
+                                                                this._parent.removeChildByRelation(this._dynamicpage, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._dynamicpage.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'title-elem') { this._dynamicpage.setTitle(child); return elem.localName;}
+if (elem.localName == 'header') { this._dynamicpage.setHeader(child); return elem.localName;}
+if (elem.localName == 'content') { this._dynamicpage.setContent(child); return elem.localName;}
+if (elem.localName == 'footer') { this._dynamicpage.setFooter(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._dynamicpage.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpage.insertCustomData(child, _index); else this._dynamicpage.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._dynamicpage.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpage.insertDependent(child, _index); else this._dynamicpage.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'title-elem') {  this._dynamicpage.destroyTitle(child); }
+if (relation == 'header') {  this._dynamicpage.destroyHeader(child); }
+if (relation == 'content') {  this._dynamicpage.destroyContent(child); }
+if (relation == 'footer') {  this._dynamicpage.destroyFooter(child); }
+if (relation == 'tooltip') {  this._dynamicpage.destroyTooltip(child); }
+if (relation == 'customdata') {  this._dynamicpage.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._dynamicpage.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._dynamicpage.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    preserveHeaderStateOnScrollChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setPreserveHeaderStateOnScroll(getBooleanFromAttributeValue(newValue));}}
+headerExpandedChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setHeaderExpanded(getBooleanFromAttributeValue(newValue));}}
+toggleHeaderOnTitleClickChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setToggleHeaderOnTitleClick(getBooleanFromAttributeValue(newValue));}}
+showFooterChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setShowFooter(getBooleanFromAttributeValue(newValue));}}
+fitContentChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setFitContent(getBooleanFromAttributeValue(newValue));}}
+busyChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -3297,111 +3602,6 @@ formatErrorChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpag
 modelContextChangeChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-event-provider')
-@inject(Element)
-export class Ui5EventProvider extends Ui5Object{
-        _eventprovider = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        /* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_eventprovider')
-        get UIElement() {
-            return this._eventprovider;
-          }
-        fillProperties(params){
-                                                    
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._eventprovider = new sap.ui.base.EventProvider(this.ui5Id, params);
-                                              else
-          this._eventprovider = new sap.ui.base.EventProvider(params);
-                                                  if(this.ui5Class)
-           this._eventprovider.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._eventprovider.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._eventprovider.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._eventprovider.placeAt)
-                                                                this._eventprovider.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._eventprovider.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._eventprovider)
-                                                                this._parent.removeChildByRelation(this._eventprovider, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._eventprovider.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               
-      }
-      catch(err){}
-                                                                            }
-    /* inherited from sap.ui.base.Object*/
 
 
                                                                                 }
@@ -3723,423 +3923,6 @@ modelContextChangeChanged(newValue){if(this._form!==null){ this._form.attachMode
 
 
                                                                                 }
-@customElement('ui5-element')
-@inject(Element)
-export class Ui5Element extends Ui5ManagedObject{
-        _element = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        /* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_element')
-        get UIElement() {
-            return this._element;
-          }
-        fillProperties(params){
-                                                    
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._element = new sap.ui.core.Element(this.ui5Id, params);
-                                              else
-          this._element = new sap.ui.core.Element(params);
-                                                  if(this.ui5Class)
-           this._element.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._element.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._element.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._element, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._element, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._element.placeAt)
-                                                                this._element.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._element.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._element)
-                                                                this._parent.removeChildByRelation(this._element, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._element.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._element.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._element.insertCustomData(child, _index); else this._element.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._element.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._element.insertDependent(child, _index); else this._element.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._element.destroyTooltip(child); }
-if (relation == 'customdata') {  this._element.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._element.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._element.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._element!==null){ this._element.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._element!==null){ this._element.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._element!==null){ this._element.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._element!==null){ this._element.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._element!==null){ this._element.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-form-container')
-@inject(Element)
-export class Ui5FormContainer extends Ui5Element{
-        _formcontainer = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() expanded = true;
-@bindable() expandable = false;
-@bindable() visible = true;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_formcontainer')
-        get UIElement() {
-            return this._formcontainer;
-          }
-        fillProperties(params){
-                                        params.expanded = getBooleanFromAttributeValue(this.expanded);
-params.expandable = getBooleanFromAttributeValue(this.expandable);
-params.visible = getBooleanFromAttributeValue(this.visible);
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._formcontainer = new sap.ui.layout.form.FormContainer(this.ui5Id, params);
-                                              else
-          this._formcontainer = new sap.ui.layout.form.FormContainer(params);
-                                                  if(this.ui5Class)
-           this._formcontainer.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._formcontainer.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._formcontainer.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._formcontainer, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._formcontainer, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._formcontainer.placeAt)
-                                                                this._formcontainer.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._formcontainer.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._formcontainer)
-                                                                this._parent.removeChildByRelation(this._formcontainer, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._formcontainer.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'formelements') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formcontainer.insertFormElement(child, _index); else this._formcontainer.addFormElement(child, 0);  return elem.localName; }
-if (elem.localName == 'title-elem') { this._formcontainer.setTitle(child); return elem.localName;}
-if (elem.localName == 'toolbar') { this._formcontainer.setToolbar(child); return elem.localName;}
-if (elem.localName == 'tooltip') { this._formcontainer.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formcontainer.insertCustomData(child, _index); else this._formcontainer.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._formcontainer.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formcontainer.insertDependent(child, _index); else this._formcontainer.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'formelements') {  this._formcontainer.removeFormElement(child);}
-if (relation == 'title-elem') {  this._formcontainer.destroyTitle(child); }
-if (relation == 'toolbar') {  this._formcontainer.destroyToolbar(child); }
-if (relation == 'tooltip') {  this._formcontainer.destroyTooltip(child); }
-if (relation == 'customdata') {  this._formcontainer.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._formcontainer.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._formcontainer.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    expandedChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.setExpanded(getBooleanFromAttributeValue(newValue));}}
-expandableChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.setExpandable(getBooleanFromAttributeValue(newValue));}}
-visibleChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.setVisible(getBooleanFromAttributeValue(newValue));}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-form-layout')
-@inject(Element)
-export class Ui5FormLayout extends Ui5Control{
-        _formlayout = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() backgroundDesign = 'Translucent';
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_formlayout')
-        get UIElement() {
-            return this._formlayout;
-          }
-        fillProperties(params){
-                                        params.backgroundDesign = this.backgroundDesign;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._formlayout = new sap.ui.layout.form.FormLayout(this.ui5Id, params);
-                                              else
-          this._formlayout = new sap.ui.layout.form.FormLayout(params);
-                                                  if(this.ui5Class)
-           this._formlayout.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._formlayout.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._formlayout.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._formlayout, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._formlayout, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._formlayout.placeAt)
-                                                                this._formlayout.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._formlayout.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._formlayout)
-                                                                this._parent.removeChildByRelation(this._formlayout, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._formlayout.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._formlayout.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formlayout.insertCustomData(child, _index); else this._formlayout.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._formlayout.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formlayout.insertDependent(child, _index); else this._formlayout.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._formlayout.destroyTooltip(child); }
-if (relation == 'customdata') {  this._formlayout.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._formlayout.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._formlayout.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    backgroundDesignChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBackgroundDesign(newValue);}}
-busyChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._formlayout!==null){ this._formlayout.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._formlayout!==null){ this._formlayout.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
 @customElement('ui5-formatted-text')
 @inject(Element)
 export class Ui5FormattedText extends Ui5Control{
@@ -4293,6 +4076,150 @@ validationErrorChanged(newValue){if(this._formattedtext!==null){ this._formatted
 parseErrorChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-form-container')
+@inject(Element)
+export class Ui5FormContainer extends Ui5Element{
+        _formcontainer = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() expanded = true;
+@bindable() expandable = false;
+@bindable() visible = true;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_formcontainer')
+        get UIElement() {
+            return this._formcontainer;
+          }
+        fillProperties(params){
+                                        params.expanded = getBooleanFromAttributeValue(this.expanded);
+params.expandable = getBooleanFromAttributeValue(this.expandable);
+params.visible = getBooleanFromAttributeValue(this.visible);
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._formcontainer = new sap.ui.layout.form.FormContainer(this.ui5Id, params);
+                                              else
+          this._formcontainer = new sap.ui.layout.form.FormContainer(params);
+                                                  if(this.ui5Class)
+           this._formcontainer.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._formcontainer.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._formcontainer.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._formcontainer, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._formcontainer, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._formcontainer.placeAt)
+                                                                this._formcontainer.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._formcontainer.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._formcontainer)
+                                                                this._parent.removeChildByRelation(this._formcontainer, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._formcontainer.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'formelements') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formcontainer.insertFormElement(child, _index); else this._formcontainer.addFormElement(child, 0);  return elem.localName; }
+if (elem.localName == 'title-elem') { this._formcontainer.setTitle(child); return elem.localName;}
+if (elem.localName == 'toolbar') { this._formcontainer.setToolbar(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._formcontainer.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formcontainer.insertCustomData(child, _index); else this._formcontainer.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._formcontainer.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formcontainer.insertDependent(child, _index); else this._formcontainer.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'formelements') {  this._formcontainer.removeFormElement(child);}
+if (relation == 'title-elem') {  this._formcontainer.destroyTitle(child); }
+if (relation == 'toolbar') {  this._formcontainer.destroyToolbar(child); }
+if (relation == 'tooltip') {  this._formcontainer.destroyTooltip(child); }
+if (relation == 'customdata') {  this._formcontainer.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._formcontainer.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._formcontainer.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    expandedChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.setExpanded(getBooleanFromAttributeValue(newValue));}}
+expandableChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.setExpandable(getBooleanFromAttributeValue(newValue));}}
+visibleChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.setVisible(getBooleanFromAttributeValue(newValue));}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._formcontainer!==null){ this._formcontainer.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -4476,6 +4403,413 @@ validationErrorChanged(newValue){if(this._generictile!==null){ this._generictile
 parseErrorChanged(newValue){if(this._generictile!==null){ this._generictile.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._generictile!==null){ this._generictile.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._generictile!==null){ this._generictile.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-event-provider')
+@inject(Element)
+export class Ui5EventProvider extends Ui5Object{
+        _eventprovider = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        /* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_eventprovider')
+        get UIElement() {
+            return this._eventprovider;
+          }
+        fillProperties(params){
+                                                    
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._eventprovider = new sap.ui.base.EventProvider(this.ui5Id, params);
+                                              else
+          this._eventprovider = new sap.ui.base.EventProvider(params);
+                                                  if(this.ui5Class)
+           this._eventprovider.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._eventprovider.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._eventprovider.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._eventprovider, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._eventprovider.placeAt)
+                                                                this._eventprovider.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._eventprovider.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._eventprovider)
+                                                                this._parent.removeChildByRelation(this._eventprovider, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._eventprovider.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               
+      }
+      catch(err){}
+                                                                            }
+    /* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-form-element')
+@inject(Element)
+export class Ui5FormElement extends Ui5Element{
+        _formelement = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() visible = true;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_formelement')
+        get UIElement() {
+            return this._formelement;
+          }
+        fillProperties(params){
+                                        params.visible = getBooleanFromAttributeValue(this.visible);
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._formelement = new sap.ui.layout.form.FormElement(this.ui5Id, params);
+                                              else
+          this._formelement = new sap.ui.layout.form.FormElement(params);
+                                                  if(this.ui5Class)
+           this._formelement.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._formelement.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._formelement.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._formelement, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._formelement, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._formelement.placeAt)
+                                                                this._formelement.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._formelement.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._formelement)
+                                                                this._parent.removeChildByRelation(this._formelement, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._formelement.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'label') { this._formelement.setLabel(child); return elem.localName;}
+if (elem.localName == 'fields') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formelement.insertField(child, _index); else this._formelement.addField(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._formelement.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formelement.insertCustomData(child, _index); else this._formelement.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._formelement.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formelement.insertDependent(child, _index); else this._formelement.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'label') {  this._formelement.destroyLabel(child); }
+if (relation == 'fields') {  this._formelement.removeField(child);}
+if (relation == 'tooltip') {  this._formelement.destroyTooltip(child); }
+if (relation == 'customdata') {  this._formelement.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._formelement.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._formelement.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    visibleChanged(newValue){if(this._formelement!==null){ this._formelement.setVisible(getBooleanFromAttributeValue(newValue));}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._formelement!==null){ this._formelement.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._formelement!==null){ this._formelement.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._formelement!==null){ this._formelement.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._formelement!==null){ this._formelement.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._formelement!==null){ this._formelement.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-grid')
+@inject(Element)
+export class Ui5Grid extends Ui5Control{
+        _grid = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() width = '100%';
+@bindable() vSpacing = 1;
+@bindable() hSpacing = 1;
+@bindable() position = 'Left';
+@bindable() defaultSpan = 'XL3 L3 M6 S12';
+@bindable() defaultIndent = 'XL0 L0 M0 S0';
+@bindable() containerQuery = false;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_grid')
+        get UIElement() {
+            return this._grid;
+          }
+        fillProperties(params){
+                                        params.width = this.width;
+params.vSpacing = this.vSpacing;
+params.hSpacing = this.hSpacing;
+params.position = this.position;
+params.defaultSpan = this.defaultSpan;
+params.defaultIndent = this.defaultIndent;
+params.containerQuery = getBooleanFromAttributeValue(this.containerQuery);
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._grid = new sap.ui.layout.Grid(this.ui5Id, params);
+                                              else
+          this._grid = new sap.ui.layout.Grid(params);
+                                                  if(this.ui5Class)
+           this._grid.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._grid.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._grid.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._grid, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._grid, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._grid.placeAt)
+                                                                this._grid.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._grid.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._grid)
+                                                                this._parent.removeChildByRelation(this._grid, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._grid.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._grid.insertContent(child, _index); else this._grid.addContent(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._grid.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._grid.insertCustomData(child, _index); else this._grid.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._grid.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._grid.insertDependent(child, _index); else this._grid.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'content') {  this._grid.removeContent(child);}
+if (relation == 'tooltip') {  this._grid.destroyTooltip(child); }
+if (relation == 'customdata') {  this._grid.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._grid.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._grid.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    widthChanged(newValue){if(this._grid!==null){ this._grid.setWidth(newValue);}}
+vSpacingChanged(newValue){if(this._grid!==null){ this._grid.setVSpacing(newValue);}}
+hSpacingChanged(newValue){if(this._grid!==null){ this._grid.setHSpacing(newValue);}}
+positionChanged(newValue){if(this._grid!==null){ this._grid.setPosition(newValue);}}
+defaultSpanChanged(newValue){if(this._grid!==null){ this._grid.setDefaultSpan(newValue);}}
+defaultIndentChanged(newValue){if(this._grid!==null){ this._grid.setDefaultIndent(newValue);}}
+containerQueryChanged(newValue){if(this._grid!==null){ this._grid.setContainerQuery(getBooleanFromAttributeValue(newValue));}}
+busyChanged(newValue){if(this._grid!==null){ this._grid.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._grid!==null){ this._grid.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._grid!==null){ this._grid.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._grid!==null){ this._grid.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._grid!==null){ this._grid.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._grid!==null){ this._grid.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._grid!==null){ this._grid.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._grid!==null){ this._grid.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._grid!==null){ this._grid.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._grid!==null){ this._grid.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._grid!==null){ this._grid.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -4675,23 +5009,58 @@ modelContextChangeChanged(newValue){if(this._griddata!==null){ this._griddata.at
 
 
                                                                                 }
-@customElement('ui5-grid')
+@customElement('ui5-grid-table')
 @inject(Element)
-export class Ui5Grid extends Ui5Control{
-        _grid = null;
+export class Ui5gridTable extends Ui5Control{
+        _gridtable = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() width = '100%';
-@bindable() vSpacing = 1;
-@bindable() hSpacing = 1;
-@bindable() position = 'Left';
-@bindable() defaultSpan = 'XL3 L3 M6 S12';
-@bindable() defaultIndent = 'XL0 L0 M0 S0';
-@bindable() containerQuery = false;
+        @bindable() width = 'auto';
+@bindable() rowHeight = null;
+@bindable() columnHeaderHeight = null;
+@bindable() columnHeaderVisible = true;
+@bindable() visibleRowCount = 10;
+@bindable() firstVisibleRow = 0;
+@bindable() selectionMode = 'MultiToggle';
+@bindable() selectionBehavior = 'RowSelector';
+@bindable() selectedIndex = -1;
+@bindable() editable = true;
+@bindable() threshold = 100;
+@bindable() enableColumnReordering = true;
+@bindable() enableGrouping = false;
+@bindable() showColumnVisibilityMenu = false;
+@bindable() showNoData = true;
+@bindable() visibleRowCountMode = 'Fixed';
+@bindable() minAutoRowCount = 5;
+@bindable() fixedColumnCount = 0;
+@bindable() fixedRowCount = 0;
+@bindable() fixedBottomRowCount = 0;
+@bindable() enableColumnFreeze = false;
+@bindable() enableCellFilter = false;
+@bindable() showOverlay = false;
+@bindable() enableSelectAll = true;
+@bindable() enableCustomFilter = false;
+@bindable() enableBusyIndicator = false;
+@bindable() rowActionCount = 0;
+@bindable() alternateRowColors = false;
+@bindable() rowSelectionChange = this.defaultFunc;
+@bindable() columnSelect = this.defaultFunc;
+@bindable() columnResize = this.defaultFunc;
+@bindable() columnMove = this.defaultFunc;
+@bindable() sort = this.defaultFunc;
+@bindable() filter = this.defaultFunc;
+@bindable() group = this.defaultFunc;
+@bindable() columnVisibility = this.defaultFunc;
+@bindable() cellClick = this.defaultFunc;
+@bindable() beforeOpenContextMenu = this.defaultFunc;
+@bindable() columnFreeze = this.defaultFunc;
+@bindable() customFilter = this.defaultFunc;
+@bindable() firstVisibleRowChanged = this.defaultFunc;
+@bindable() busyStateChanged = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -4714,18 +5083,53 @@ export class Ui5Grid extends Ui5Control{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_grid')
+        @computedFrom('_gridtable')
         get UIElement() {
-            return this._grid;
+            return this._gridtable;
           }
         fillProperties(params){
                                         params.width = this.width;
-params.vSpacing = this.vSpacing;
-params.hSpacing = this.hSpacing;
-params.position = this.position;
-params.defaultSpan = this.defaultSpan;
-params.defaultIndent = this.defaultIndent;
-params.containerQuery = getBooleanFromAttributeValue(this.containerQuery);
+params.rowHeight = this.rowHeight?parseInt(this.rowHeight):0;
+params.columnHeaderHeight = this.columnHeaderHeight?parseInt(this.columnHeaderHeight):0;
+params.columnHeaderVisible = getBooleanFromAttributeValue(this.columnHeaderVisible);
+params.visibleRowCount = this.visibleRowCount?parseInt(this.visibleRowCount):0;
+params.firstVisibleRow = this.firstVisibleRow?parseInt(this.firstVisibleRow):0;
+params.selectionMode = this.selectionMode;
+params.selectionBehavior = this.selectionBehavior;
+params.selectedIndex = this.selectedIndex?parseInt(this.selectedIndex):0;
+params.editable = getBooleanFromAttributeValue(this.editable);
+params.threshold = this.threshold?parseInt(this.threshold):0;
+params.enableColumnReordering = getBooleanFromAttributeValue(this.enableColumnReordering);
+params.enableGrouping = getBooleanFromAttributeValue(this.enableGrouping);
+params.showColumnVisibilityMenu = getBooleanFromAttributeValue(this.showColumnVisibilityMenu);
+params.showNoData = getBooleanFromAttributeValue(this.showNoData);
+params.visibleRowCountMode = this.visibleRowCountMode;
+params.minAutoRowCount = this.minAutoRowCount?parseInt(this.minAutoRowCount):0;
+params.fixedColumnCount = this.fixedColumnCount?parseInt(this.fixedColumnCount):0;
+params.fixedRowCount = this.fixedRowCount?parseInt(this.fixedRowCount):0;
+params.fixedBottomRowCount = this.fixedBottomRowCount?parseInt(this.fixedBottomRowCount):0;
+params.enableColumnFreeze = getBooleanFromAttributeValue(this.enableColumnFreeze);
+params.enableCellFilter = getBooleanFromAttributeValue(this.enableCellFilter);
+params.showOverlay = getBooleanFromAttributeValue(this.showOverlay);
+params.enableSelectAll = getBooleanFromAttributeValue(this.enableSelectAll);
+params.enableCustomFilter = getBooleanFromAttributeValue(this.enableCustomFilter);
+params.enableBusyIndicator = getBooleanFromAttributeValue(this.enableBusyIndicator);
+params.rowActionCount = this.rowActionCount?parseInt(this.rowActionCount):0;
+params.alternateRowColors = getBooleanFromAttributeValue(this.alternateRowColors);
+params.rowSelectionChange = this.rowSelectionChange==null ? this.defaultFunc: this.rowSelectionChange;
+params.columnSelect = this.columnSelect==null ? this.defaultFunc: this.columnSelect;
+params.columnResize = this.columnResize==null ? this.defaultFunc: this.columnResize;
+params.columnMove = this.columnMove==null ? this.defaultFunc: this.columnMove;
+params.sort = this.sort==null ? this.defaultFunc: this.sort;
+params.filter = this.filter==null ? this.defaultFunc: this.filter;
+params.group = this.group==null ? this.defaultFunc: this.group;
+params.columnVisibility = this.columnVisibility==null ? this.defaultFunc: this.columnVisibility;
+params.cellClick = this.cellClick==null ? this.defaultFunc: this.cellClick;
+params.beforeOpenContextMenu = this.beforeOpenContextMenu==null ? this.defaultFunc: this.beforeOpenContextMenu;
+params.columnFreeze = this.columnFreeze==null ? this.defaultFunc: this.columnFreeze;
+params.customFilter = this.customFilter==null ? this.defaultFunc: this.customFilter;
+params.firstVisibleRowChanged = this.firstVisibleRowChanged==null ? this.defaultFunc: this.firstVisibleRowChanged;
+params.busyStateChanged = this.busyStateChanged==null ? this.defaultFunc: this.busyStateChanged;
             
                                             super.fillProperties(params);   
         }
@@ -4736,33 +5140,33 @@ params.containerQuery = getBooleanFromAttributeValue(this.containerQuery);
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._grid = new sap.ui.layout.Grid(this.ui5Id, params);
+          this._gridtable = new sap.ui.table.Table(this.ui5Id, params);
                                               else
-          this._grid = new sap.ui.layout.Grid(params);
+          this._gridtable = new sap.ui.table.Table(params);
                                                   if(this.ui5Class)
-           this._grid.addStyleClass(this.ui5Class);
+           this._gridtable.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._grid.setTooltip(this.ui5Tooltip);                                             
+           this._gridtable.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._grid.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._gridtable.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._grid, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._gridtable, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._grid, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._gridtable, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._grid.placeAt)
-                                                                this._grid.placeAt(this.element.parentElement);
+                                                            if(this._gridtable.placeAt)
+                                                                this._gridtable.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -4770,7 +5174,7 @@ params.containerQuery = getBooleanFromAttributeValue(this.containerQuery);
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._grid.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._gridtable.sId});
                                                                            
            
         }
@@ -4778,12 +5182,12 @@ params.containerQuery = getBooleanFromAttributeValue(this.containerQuery);
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._grid)
-                                                                this._parent.removeChildByRelation(this._grid, this._relation);
+                                                                 if(this._gridtable)
+                                                                this._parent.removeChildByRelation(this._gridtable, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._grid.destroy();
+                                                                this._gridtable.destroy();
                                                             }
          super.detached();
           }
@@ -4794,11 +5198,21 @@ params.containerQuery = getBooleanFromAttributeValue(this.containerQuery);
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._grid.insertContent(child, _index); else this._grid.addContent(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._grid.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._grid.insertCustomData(child, _index); else this._grid.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._grid.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._grid.insertDependent(child, _index); else this._grid.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'title-elem') { this._gridtable.setTitle(child); return elem.localName;}
+if (elem.localName == 'footer') { this._gridtable.setFooter(child); return elem.localName;}
+if (elem.localName == 'toolbar') { this._gridtable.setToolbar(child); return elem.localName;}
+if (elem.localName == 'extension') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertExtension(child, _index); else this._gridtable.addExtension(child, 0);  return elem.localName; }
+if (elem.localName == 'columns') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertColumn(child, _index); else this._gridtable.addColumn(child, 0);  return elem.localName; }
+if (elem.localName == 'rows') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertRow(child, _index); else this._gridtable.addRow(child, 0);  return elem.localName; }
+if (elem.localName == 'nodata') { this._gridtable.setNoData(child); return elem.localName;}
+if (elem.localName == 'rowactiontemplate') { this._gridtable.setRowActionTemplate(child); return elem.localName;}
+if (elem.localName == 'rowsettingstemplate') { this._gridtable.setRowSettingsTemplate(child); return elem.localName;}
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertDragDropConfig(child, _index); else this._gridtable.addDragDropConfig(child, 0);  return elem.localName; }
+if (elem.localName == 'contextmenu') { this._gridtable.setContextMenu(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._gridtable.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertCustomData(child, _index); else this._gridtable.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._gridtable.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertDependent(child, _index); else this._gridtable.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -4806,36 +5220,1002 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'content') {  this._grid.removeContent(child);}
-if (relation == 'tooltip') {  this._grid.destroyTooltip(child); }
-if (relation == 'customdata') {  this._grid.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._grid.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._grid.removeDependent(child);}
+               if (relation == 'title-elem') {  this._gridtable.destroyTitle(child); }
+if (relation == 'footer') {  this._gridtable.destroyFooter(child); }
+if (relation == 'toolbar') {  this._gridtable.destroyToolbar(child); }
+if (relation == 'extension') {  this._gridtable.removeExtension(child);}
+if (relation == 'columns') {  this._gridtable.removeColumn(child);}
+if (relation == 'rows') {  this._gridtable.removeRow(child);}
+if (relation == 'nodata') {  this._gridtable.destroyNoData(child); }
+if (relation == 'rowactiontemplate') {  this._gridtable.destroyRowActionTemplate(child); }
+if (relation == 'rowsettingstemplate') {  this._gridtable.destroyRowSettingsTemplate(child); }
+if (relation == 'dragdropconfig') {  this._gridtable.removeDragDropConfig(child);}
+if (relation == 'contextmenu') {  this._gridtable.destroyContextMenu(child); }
+if (relation == 'tooltip') {  this._gridtable.destroyTooltip(child); }
+if (relation == 'customdata') {  this._gridtable.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._gridtable.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._gridtable.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    widthChanged(newValue){if(this._grid!==null){ this._grid.setWidth(newValue);}}
-vSpacingChanged(newValue){if(this._grid!==null){ this._grid.setVSpacing(newValue);}}
-hSpacingChanged(newValue){if(this._grid!==null){ this._grid.setHSpacing(newValue);}}
-positionChanged(newValue){if(this._grid!==null){ this._grid.setPosition(newValue);}}
-defaultSpanChanged(newValue){if(this._grid!==null){ this._grid.setDefaultSpan(newValue);}}
-defaultIndentChanged(newValue){if(this._grid!==null){ this._grid.setDefaultIndent(newValue);}}
-containerQueryChanged(newValue){if(this._grid!==null){ this._grid.setContainerQuery(getBooleanFromAttributeValue(newValue));}}
-busyChanged(newValue){if(this._grid!==null){ this._grid.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._grid!==null){ this._grid.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._grid!==null){ this._grid.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._grid!==null){ this._grid.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._grid!==null){ this._grid.setFieldGroupIds(newValue);}}
+    widthChanged(newValue){if(this._gridtable!==null){ this._gridtable.setWidth(newValue);}}
+rowHeightChanged(newValue){if(this._gridtable!==null){ this._gridtable.setRowHeight(newValue);}}
+columnHeaderHeightChanged(newValue){if(this._gridtable!==null){ this._gridtable.setColumnHeaderHeight(newValue);}}
+columnHeaderVisibleChanged(newValue){if(this._gridtable!==null){ this._gridtable.setColumnHeaderVisible(getBooleanFromAttributeValue(newValue));}}
+visibleRowCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setVisibleRowCount(newValue);}}
+firstVisibleRowChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFirstVisibleRow(newValue);}}
+selectionModeChanged(newValue){if(this._gridtable!==null){ this._gridtable.setSelectionMode(newValue);}}
+selectionBehaviorChanged(newValue){if(this._gridtable!==null){ this._gridtable.setSelectionBehavior(newValue);}}
+selectedIndexChanged(newValue){if(this._gridtable!==null){ this._gridtable.setSelectedIndex(newValue);}}
+editableChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEditable(getBooleanFromAttributeValue(newValue));}}
+thresholdChanged(newValue){if(this._gridtable!==null){ this._gridtable.setThreshold(newValue);}}
+enableColumnReorderingChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableColumnReordering(getBooleanFromAttributeValue(newValue));}}
+enableGroupingChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableGrouping(getBooleanFromAttributeValue(newValue));}}
+showColumnVisibilityMenuChanged(newValue){if(this._gridtable!==null){ this._gridtable.setShowColumnVisibilityMenu(getBooleanFromAttributeValue(newValue));}}
+showNoDataChanged(newValue){if(this._gridtable!==null){ this._gridtable.setShowNoData(getBooleanFromAttributeValue(newValue));}}
+visibleRowCountModeChanged(newValue){if(this._gridtable!==null){ this._gridtable.setVisibleRowCountMode(newValue);}}
+minAutoRowCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setMinAutoRowCount(newValue);}}
+fixedColumnCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFixedColumnCount(newValue);}}
+fixedRowCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFixedRowCount(newValue);}}
+fixedBottomRowCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFixedBottomRowCount(newValue);}}
+enableColumnFreezeChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableColumnFreeze(getBooleanFromAttributeValue(newValue));}}
+enableCellFilterChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableCellFilter(getBooleanFromAttributeValue(newValue));}}
+showOverlayChanged(newValue){if(this._gridtable!==null){ this._gridtable.setShowOverlay(getBooleanFromAttributeValue(newValue));}}
+enableSelectAllChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableSelectAll(getBooleanFromAttributeValue(newValue));}}
+enableCustomFilterChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableCustomFilter(getBooleanFromAttributeValue(newValue));}}
+enableBusyIndicatorChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableBusyIndicator(getBooleanFromAttributeValue(newValue));}}
+rowActionCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setRowActionCount(newValue);}}
+alternateRowColorsChanged(newValue){if(this._gridtable!==null){ this._gridtable.setAlternateRowColors(getBooleanFromAttributeValue(newValue));}}
+rowSelectionChangeChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachRowSelectionChange(newValue);}}
+columnSelectChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnSelect(newValue);}}
+columnResizeChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnResize(newValue);}}
+columnMoveChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnMove(newValue);}}
+sortChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachSort(newValue);}}
+filterChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachFilter(newValue);}}
+groupChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachGroup(newValue);}}
+columnVisibilityChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnVisibility(newValue);}}
+cellClickChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachCellClick(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachBeforeOpenContextMenu(newValue);}}
+columnFreezeChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnFreeze(newValue);}}
+customFilterChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachCustomFilter(newValue);}}
+firstVisibleRowChangedChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachFirstVisibleRowChanged(newValue);}}
+busyStateChangedChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachBusyStateChanged(newValue);}}
+busyChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._gridtable!==null){ this._gridtable.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._grid!==null){ this._grid.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._grid!==null){ this._grid.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._grid!==null){ this._grid.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._grid!==null){ this._grid.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._grid!==null){ this._grid.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._grid!==null){ this._grid.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-grid-table-row-action')
+@inject(Element)
+export class Ui5gridTableRowAction extends Ui5Control{
+        _gridtablerowaction = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() visible = true;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_gridtablerowaction')
+        get UIElement() {
+            return this._gridtablerowaction;
+          }
+        fillProperties(params){
+                                        params.visible = getBooleanFromAttributeValue(this.visible);
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._gridtablerowaction = new sap.ui.table.RowAction(this.ui5Id, params);
+                                              else
+          this._gridtablerowaction = new sap.ui.table.RowAction(params);
+                                                  if(this.ui5Class)
+           this._gridtablerowaction.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._gridtablerowaction.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._gridtablerowaction.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._gridtablerowaction, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._gridtablerowaction, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._gridtablerowaction.placeAt)
+                                                                this._gridtablerowaction.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._gridtablerowaction.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._gridtablerowaction)
+                                                                this._parent.removeChildByRelation(this._gridtablerowaction, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._gridtablerowaction.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowaction.insertItem(child, _index); else this._gridtablerowaction.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._gridtablerowaction.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowaction.insertCustomData(child, _index); else this._gridtablerowaction.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._gridtablerowaction.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowaction.insertDependent(child, _index); else this._gridtablerowaction.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'items') {  this._gridtablerowaction.removeItem(child);}
+if (relation == 'tooltip') {  this._gridtablerowaction.destroyTooltip(child); }
+if (relation == 'customdata') {  this._gridtablerowaction.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._gridtablerowaction.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._gridtablerowaction.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    visibleChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setVisible(getBooleanFromAttributeValue(newValue));}}
+busyChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-grid-table-row-setting')
+@inject(Element)
+export class Ui5gridTableRowSetting extends Ui5Element{
+        _gridtablerowsetting = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() highlight = 'None';
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_gridtablerowsetting')
+        get UIElement() {
+            return this._gridtablerowsetting;
+          }
+        fillProperties(params){
+                                        params.highlight = this.highlight;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._gridtablerowsetting = new sap.ui.table.RowSettings(this.ui5Id, params);
+                                              else
+          this._gridtablerowsetting = new sap.ui.table.RowSettings(params);
+                                                  if(this.ui5Class)
+           this._gridtablerowsetting.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._gridtablerowsetting.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._gridtablerowsetting.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._gridtablerowsetting, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._gridtablerowsetting, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._gridtablerowsetting.placeAt)
+                                                                this._gridtablerowsetting.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._gridtablerowsetting.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._gridtablerowsetting)
+                                                                this._parent.removeChildByRelation(this._gridtablerowsetting, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._gridtablerowsetting.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._gridtablerowsetting.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowsetting.insertCustomData(child, _index); else this._gridtablerowsetting.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._gridtablerowsetting.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowsetting.insertDependent(child, _index); else this._gridtablerowsetting.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._gridtablerowsetting.destroyTooltip(child); }
+if (relation == 'customdata') {  this._gridtablerowsetting.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._gridtablerowsetting.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._gridtablerowsetting.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    highlightChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.setHighlight(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-grid-table-row')
+@inject(Element)
+export class Ui5gridTableRow extends Ui5Element{
+        _gridtablerow = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        /* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_gridtablerow')
+        get UIElement() {
+            return this._gridtablerow;
+          }
+        fillProperties(params){
+                                                    
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._gridtablerow = new sap.ui.table.Row(this.ui5Id, params);
+                                              else
+          this._gridtablerow = new sap.ui.table.Row(params);
+                                                  if(this.ui5Class)
+           this._gridtablerow.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._gridtablerow.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._gridtablerow.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._gridtablerow, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._gridtablerow, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._gridtablerow.placeAt)
+                                                                this._gridtablerow.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._gridtablerow.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._gridtablerow)
+                                                                this._parent.removeChildByRelation(this._gridtablerow, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._gridtablerow.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'cells') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerow.insertCell(child, _index); else this._gridtablerow.addCell(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._gridtablerow.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerow.insertCustomData(child, _index); else this._gridtablerow.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._gridtablerow.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerow.insertDependent(child, _index); else this._gridtablerow.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'cells') {  this._gridtablerow.removeCell(child);}
+if (relation == 'tooltip') {  this._gridtablerow.destroyTooltip(child); }
+if (relation == 'customdata') {  this._gridtablerow.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._gridtablerow.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._gridtablerow.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    /* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-grid-table-column')
+@inject(Element)
+export class Ui5gridTableColumn extends Ui5Element{
+        _gridtablecolumn = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() width = null;
+@bindable() minWidth = 0;
+@bindable() resizable = true;
+@bindable() hAlign = 'Begin';
+@bindable() sorted = false;
+@bindable() sortOrder = 'Ascending';
+@bindable() sortProperty = null;
+@bindable() filtered = false;
+@bindable() filterProperty = null;
+@bindable() filterValue = null;
+@bindable() filterOperator = null;
+@bindable() defaultFilterOperator = null;
+@bindable() filterType = null;
+@bindable() grouped = false;
+@bindable() visible = true;
+@bindable() name = null;
+@bindable() showFilterMenuEntry = true;
+@bindable() showSortMenuEntry = true;
+@bindable() headerSpan = '1';
+@bindable() autoResizable = false;
+@bindable() columnMenuOpen = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_gridtablecolumn')
+        get UIElement() {
+            return this._gridtablecolumn;
+          }
+        fillProperties(params){
+                                        params.width = this.width;
+params.minWidth = this.minWidth?parseInt(this.minWidth):0;
+params.resizable = getBooleanFromAttributeValue(this.resizable);
+params.hAlign = this.hAlign;
+params.sorted = getBooleanFromAttributeValue(this.sorted);
+params.sortOrder = this.sortOrder;
+params.sortProperty = this.sortProperty;
+params.filtered = getBooleanFromAttributeValue(this.filtered);
+params.filterProperty = this.filterProperty;
+params.filterValue = this.filterValue;
+params.filterOperator = this.filterOperator;
+params.defaultFilterOperator = this.defaultFilterOperator;
+params.filterType = this.filterType;
+params.grouped = getBooleanFromAttributeValue(this.grouped);
+params.visible = getBooleanFromAttributeValue(this.visible);
+params.name = this.name;
+params.showFilterMenuEntry = getBooleanFromAttributeValue(this.showFilterMenuEntry);
+params.showSortMenuEntry = getBooleanFromAttributeValue(this.showSortMenuEntry);
+params.headerSpan = this.headerSpan;
+params.autoResizable = getBooleanFromAttributeValue(this.autoResizable);
+params.columnMenuOpen = this.columnMenuOpen==null ? this.defaultFunc: this.columnMenuOpen;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._gridtablecolumn = new sap.ui.table.Column(this.ui5Id, params);
+                                              else
+          this._gridtablecolumn = new sap.ui.table.Column(params);
+                                                  if(this.ui5Class)
+           this._gridtablecolumn.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._gridtablecolumn.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._gridtablecolumn.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._gridtablecolumn, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._gridtablecolumn, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._gridtablecolumn.placeAt)
+                                                                this._gridtablecolumn.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._gridtablecolumn.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._gridtablecolumn)
+                                                                this._parent.removeChildByRelation(this._gridtablecolumn, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._gridtablecolumn.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'label') { this._gridtablecolumn.setLabel(child); return elem.localName;}
+if (elem.localName == 'multilabels') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablecolumn.insertMultiLabel(child, _index); else this._gridtablecolumn.addMultiLabel(child, 0);  return elem.localName; }
+if (elem.localName == 'template') { this._gridtablecolumn.setTemplate(child); return elem.localName;}
+if (elem.localName == 'menu') { this._gridtablecolumn.setMenu(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._gridtablecolumn.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablecolumn.insertCustomData(child, _index); else this._gridtablecolumn.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._gridtablecolumn.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablecolumn.insertDependent(child, _index); else this._gridtablecolumn.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'label') {  this._gridtablecolumn.destroyLabel(child); }
+if (relation == 'multilabels') {  this._gridtablecolumn.removeMultiLabel(child);}
+if (relation == 'template') {  this._gridtablecolumn.destroyTemplate(child); }
+if (relation == 'menu') {  this._gridtablecolumn.destroyMenu(child); }
+if (relation == 'tooltip') {  this._gridtablecolumn.destroyTooltip(child); }
+if (relation == 'customdata') {  this._gridtablecolumn.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._gridtablecolumn.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._gridtablecolumn.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    widthChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setWidth(newValue);}}
+minWidthChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setMinWidth(newValue);}}
+resizableChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setResizable(getBooleanFromAttributeValue(newValue));}}
+hAlignChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setHAlign(newValue);}}
+sortedChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setSorted(getBooleanFromAttributeValue(newValue));}}
+sortOrderChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setSortOrder(newValue);}}
+sortPropertyChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setSortProperty(newValue);}}
+filteredChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setFiltered(getBooleanFromAttributeValue(newValue));}}
+filterPropertyChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setFilterProperty(newValue);}}
+filterValueChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setFilterValue(newValue);}}
+filterOperatorChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setFilterOperator(newValue);}}
+defaultFilterOperatorChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setDefaultFilterOperator(newValue);}}
+filterTypeChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setFilterType(newValue);}}
+groupedChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setGrouped(getBooleanFromAttributeValue(newValue));}}
+visibleChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setVisible(getBooleanFromAttributeValue(newValue));}}
+nameChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setName(newValue);}}
+showFilterMenuEntryChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setShowFilterMenuEntry(getBooleanFromAttributeValue(newValue));}}
+showSortMenuEntryChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setShowSortMenuEntry(getBooleanFromAttributeValue(newValue));}}
+headerSpanChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setHeaderSpan(newValue);}}
+autoResizableChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.setAutoResizable(getBooleanFromAttributeValue(newValue));}}
+columnMenuOpenChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.attachColumnMenuOpen(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._gridtablecolumn!==null){ this._gridtablecolumn.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-html')
+@inject(Element)
+export class Ui5Html extends Ui5Control{
+        _html = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() content = null;
+@bindable() preferDOM = true;
+@bindable() sanitizeContent = false;
+@bindable() visible = true;
+@bindable() afterRendering = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_html')
+        get UIElement() {
+            return this._html;
+          }
+        fillProperties(params){
+                                        params.content = this.content;
+params.preferDOM = getBooleanFromAttributeValue(this.preferDOM);
+params.sanitizeContent = getBooleanFromAttributeValue(this.sanitizeContent);
+params.visible = getBooleanFromAttributeValue(this.visible);
+params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.afterRendering;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._html = new sap.ui.core.HTML(this.ui5Id, params);
+                                              else
+          this._html = new sap.ui.core.HTML(params);
+                                                  if(this.ui5Class)
+           this._html.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._html.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._html.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._html, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._html, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._html.placeAt)
+                                                                this._html.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._html.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._html)
+                                                                this._parent.removeChildByRelation(this._html, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._html.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._html.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._html.insertCustomData(child, _index); else this._html.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._html.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._html.insertDependent(child, _index); else this._html.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._html.destroyTooltip(child); }
+if (relation == 'customdata') {  this._html.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._html.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._html.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    contentChanged(newValue){if(this._html!==null){ this._html.setContent(newValue);}}
+preferDOMChanged(newValue){if(this._html!==null){ this._html.setPreferDOM(getBooleanFromAttributeValue(newValue));}}
+sanitizeContentChanged(newValue){if(this._html!==null){ this._html.setSanitizeContent(getBooleanFromAttributeValue(newValue));}}
+visibleChanged(newValue){if(this._html!==null){ this._html.setVisible(getBooleanFromAttributeValue(newValue));}}
+afterRenderingChanged(newValue){if(this._html!==null){ this._html.attachAfterRendering(newValue);}}
+busyChanged(newValue){if(this._html!==null){ this._html.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._html!==null){ this._html.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._html!==null){ this._html.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._html!==null){ this._html.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._html!==null){ this._html.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._html!==null){ this._html.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._html!==null){ this._html.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._html!==null){ this._html.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._html!==null){ this._html.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-image-content')
+@inject(Element)
+export class Ui5ImageContent extends Ui5Control{
+        _imagecontent = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() src = null;
+@bindable() description = null;
+@bindable() press = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_imagecontent')
+        get UIElement() {
+            return this._imagecontent;
+          }
+        fillProperties(params){
+                                        params.src = this.src;
+params.description = this.description;
+params.press = this.press==null ? this.defaultFunc: this.press;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._imagecontent = new sap.m.ImageContent(this.ui5Id, params);
+                                              else
+          this._imagecontent = new sap.m.ImageContent(params);
+                                                  if(this.ui5Class)
+           this._imagecontent.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._imagecontent.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._imagecontent.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._imagecontent, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._imagecontent, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._imagecontent.placeAt)
+                                                                this._imagecontent.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._imagecontent.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._imagecontent)
+                                                                this._parent.removeChildByRelation(this._imagecontent, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._imagecontent.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._imagecontent.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._imagecontent.insertCustomData(child, _index); else this._imagecontent.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._imagecontent.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._imagecontent.insertDependent(child, _index); else this._imagecontent.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._imagecontent.destroyTooltip(child); }
+if (relation == 'customdata') {  this._imagecontent.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._imagecontent.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._imagecontent.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    srcChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setSrc(newValue);}}
+descriptionChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setDescription(newValue);}}
+pressChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachPress(newValue);}}
+busyChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -5378,19 +6758,29 @@ modelContextChangeChanged(newValue){if(this._icontabfilter!==null){ this._iconta
 
 
                                                                                 }
-@customElement('ui5-image-content')
+@customElement('ui5-input-base')
 @inject(Element)
-export class Ui5ImageContent extends Ui5Control{
-        _imagecontent = null;
+export class Ui5InputBase extends Ui5Control{
+        _inputbase = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() src = null;
-@bindable() description = null;
-@bindable() press = this.defaultFunc;
+        @bindable() value = null;
+@bindable() width = null;
+@bindable() enabled = true;
+@bindable() valueState = 'None';
+@bindable() name = null;
+@bindable() placeholder = null;
+@bindable() editable = true;
+@bindable() valueStateText = null;
+@bindable() showValueStateMessage = true;
+@bindable() textAlign = 'Initial';
+@bindable() textDirection = 'Inherit';
+@bindable() required = false;
+@bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -5413,14 +6803,24 @@ export class Ui5ImageContent extends Ui5Control{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_imagecontent')
+        @computedFrom('_inputbase')
         get UIElement() {
-            return this._imagecontent;
+            return this._inputbase;
           }
         fillProperties(params){
-                                        params.src = this.src;
-params.description = this.description;
-params.press = this.press==null ? this.defaultFunc: this.press;
+                                        params.value = this.value;
+params.width = this.width;
+params.enabled = getBooleanFromAttributeValue(this.enabled);
+params.valueState = this.valueState;
+params.name = this.name;
+params.placeholder = this.placeholder;
+params.editable = getBooleanFromAttributeValue(this.editable);
+params.valueStateText = this.valueStateText;
+params.showValueStateMessage = getBooleanFromAttributeValue(this.showValueStateMessage);
+params.textAlign = this.textAlign;
+params.textDirection = this.textDirection;
+params.required = getBooleanFromAttributeValue(this.required);
+params.change = this.change==null ? this.defaultFunc: this.change;
             
                                             super.fillProperties(params);   
         }
@@ -5431,33 +6831,33 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._imagecontent = new sap.m.ImageContent(this.ui5Id, params);
+          this._inputbase = new sap.m.InputBase(this.ui5Id, params);
                                               else
-          this._imagecontent = new sap.m.ImageContent(params);
+          this._inputbase = new sap.m.InputBase(params);
                                                   if(this.ui5Class)
-           this._imagecontent.addStyleClass(this.ui5Class);
+           this._inputbase.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._imagecontent.setTooltip(this.ui5Tooltip);                                             
+           this._inputbase.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._imagecontent.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._inputbase.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._imagecontent, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._inputbase, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._imagecontent, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._inputbase, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._imagecontent.placeAt)
-                                                                this._imagecontent.placeAt(this.element.parentElement);
+                                                            if(this._inputbase.placeAt)
+                                                                this._inputbase.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -5465,7 +6865,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._imagecontent.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._inputbase.sId});
                                                                            
            
         }
@@ -5473,12 +6873,12 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._imagecontent)
-                                                                this._parent.removeChildByRelation(this._imagecontent, this._relation);
+                                                                 if(this._inputbase)
+                                                                this._parent.removeChildByRelation(this._inputbase, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._imagecontent.destroy();
+                                                                this._inputbase.destroy();
                                                             }
          super.detached();
           }
@@ -5489,10 +6889,10 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'tooltip') { this._imagecontent.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._imagecontent.insertCustomData(child, _index); else this._imagecontent.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._imagecontent.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._imagecontent.insertDependent(child, _index); else this._imagecontent.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'tooltip') { this._inputbase.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._inputbase.insertCustomData(child, _index); else this._inputbase.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._inputbase.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._inputbase.insertDependent(child, _index); else this._inputbase.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -5500,31 +6900,41 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'tooltip') {  this._imagecontent.destroyTooltip(child); }
-if (relation == 'customdata') {  this._imagecontent.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._imagecontent.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._imagecontent.removeDependent(child);}
+               if (relation == 'tooltip') {  this._inputbase.destroyTooltip(child); }
+if (relation == 'customdata') {  this._inputbase.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._inputbase.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._inputbase.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    srcChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setSrc(newValue);}}
-descriptionChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setDescription(newValue);}}
-pressChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachPress(newValue);}}
-busyChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setFieldGroupIds(newValue);}}
+    valueChanged(newValue){if(this._inputbase!==null){ this._inputbase.setValue(newValue);}}
+widthChanged(newValue){if(this._inputbase!==null){ this._inputbase.setWidth(newValue);}}
+enabledChanged(newValue){if(this._inputbase!==null){ this._inputbase.setEnabled(getBooleanFromAttributeValue(newValue));}}
+valueStateChanged(newValue){if(this._inputbase!==null){ this._inputbase.setValueState(newValue);}}
+nameChanged(newValue){if(this._inputbase!==null){ this._inputbase.setName(newValue);}}
+placeholderChanged(newValue){if(this._inputbase!==null){ this._inputbase.setPlaceholder(newValue);}}
+editableChanged(newValue){if(this._inputbase!==null){ this._inputbase.setEditable(getBooleanFromAttributeValue(newValue));}}
+valueStateTextChanged(newValue){if(this._inputbase!==null){ this._inputbase.setValueStateText(newValue);}}
+showValueStateMessageChanged(newValue){if(this._inputbase!==null){ this._inputbase.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));}}
+textAlignChanged(newValue){if(this._inputbase!==null){ this._inputbase.setTextAlign(newValue);}}
+textDirectionChanged(newValue){if(this._inputbase!==null){ this._inputbase.setTextDirection(newValue);}}
+requiredChanged(newValue){if(this._inputbase!==null){ this._inputbase.setRequired(getBooleanFromAttributeValue(newValue));}}
+changeChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachChange(newValue);}}
+busyChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._inputbase!==null){ this._inputbase.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._inputbase!==null){ this._inputbase.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -5775,188 +7185,6 @@ modelContextChangeChanged(newValue){if(this._input!==null){ this._input.attachMo
 
 
                                                                                 }
-@customElement('ui5-input-base')
-@inject(Element)
-export class Ui5InputBase extends Ui5Control{
-        _inputbase = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() value = null;
-@bindable() width = null;
-@bindable() enabled = true;
-@bindable() valueState = 'None';
-@bindable() name = null;
-@bindable() placeholder = null;
-@bindable() editable = true;
-@bindable() valueStateText = null;
-@bindable() showValueStateMessage = true;
-@bindable() textAlign = 'Initial';
-@bindable() textDirection = 'Inherit';
-@bindable() required = false;
-@bindable() change = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_inputbase')
-        get UIElement() {
-            return this._inputbase;
-          }
-        fillProperties(params){
-                                        params.value = this.value;
-params.width = this.width;
-params.enabled = getBooleanFromAttributeValue(this.enabled);
-params.valueState = this.valueState;
-params.name = this.name;
-params.placeholder = this.placeholder;
-params.editable = getBooleanFromAttributeValue(this.editable);
-params.valueStateText = this.valueStateText;
-params.showValueStateMessage = getBooleanFromAttributeValue(this.showValueStateMessage);
-params.textAlign = this.textAlign;
-params.textDirection = this.textDirection;
-params.required = getBooleanFromAttributeValue(this.required);
-params.change = this.change==null ? this.defaultFunc: this.change;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._inputbase = new sap.m.InputBase(this.ui5Id, params);
-                                              else
-          this._inputbase = new sap.m.InputBase(params);
-                                                  if(this.ui5Class)
-           this._inputbase.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._inputbase.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._inputbase.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._inputbase, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._inputbase, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._inputbase.placeAt)
-                                                                this._inputbase.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._inputbase.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._inputbase)
-                                                                this._parent.removeChildByRelation(this._inputbase, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._inputbase.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._inputbase.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._inputbase.insertCustomData(child, _index); else this._inputbase.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._inputbase.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._inputbase.insertDependent(child, _index); else this._inputbase.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._inputbase.destroyTooltip(child); }
-if (relation == 'customdata') {  this._inputbase.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._inputbase.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._inputbase.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    valueChanged(newValue){if(this._inputbase!==null){ this._inputbase.setValue(newValue);}}
-widthChanged(newValue){if(this._inputbase!==null){ this._inputbase.setWidth(newValue);}}
-enabledChanged(newValue){if(this._inputbase!==null){ this._inputbase.setEnabled(getBooleanFromAttributeValue(newValue));}}
-valueStateChanged(newValue){if(this._inputbase!==null){ this._inputbase.setValueState(newValue);}}
-nameChanged(newValue){if(this._inputbase!==null){ this._inputbase.setName(newValue);}}
-placeholderChanged(newValue){if(this._inputbase!==null){ this._inputbase.setPlaceholder(newValue);}}
-editableChanged(newValue){if(this._inputbase!==null){ this._inputbase.setEditable(getBooleanFromAttributeValue(newValue));}}
-valueStateTextChanged(newValue){if(this._inputbase!==null){ this._inputbase.setValueStateText(newValue);}}
-showValueStateMessageChanged(newValue){if(this._inputbase!==null){ this._inputbase.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));}}
-textAlignChanged(newValue){if(this._inputbase!==null){ this._inputbase.setTextAlign(newValue);}}
-textDirectionChanged(newValue){if(this._inputbase!==null){ this._inputbase.setTextDirection(newValue);}}
-requiredChanged(newValue){if(this._inputbase!==null){ this._inputbase.setRequired(getBooleanFromAttributeValue(newValue));}}
-changeChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachChange(newValue);}}
-busyChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._inputbase!==null){ this._inputbase.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._inputbase!==null){ this._inputbase.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
 @customElement('ui5-item')
 @inject(Element)
 export class Ui5Item extends Ui5Element{
@@ -6093,305 +7321,6 @@ validationErrorChanged(newValue){if(this._item!==null){ this._item.attachValidat
 parseErrorChanged(newValue){if(this._item!==null){ this._item.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._item!==null){ this._item.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._item!==null){ this._item.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-label')
-@inject(Element)
-export class Ui5Label extends Ui5Control{
-        _label = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() design = 'Standard';
-@bindable() text = null;
-@bindable() textAlign = 'Begin';
-@bindable() textDirection = 'Inherit';
-@bindable() width = '';
-@bindable() required = false;
-@bindable() displayOnly = false;
-@bindable() wrapping = false;
-@bindable() vAlign = 'Inherit';
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_label')
-        get UIElement() {
-            return this._label;
-          }
-        fillProperties(params){
-                                        params.design = this.design;
-params.text = this.text;
-params.textAlign = this.textAlign;
-params.textDirection = this.textDirection;
-params.width = this.width;
-params.required = getBooleanFromAttributeValue(this.required);
-params.displayOnly = getBooleanFromAttributeValue(this.displayOnly);
-params.wrapping = getBooleanFromAttributeValue(this.wrapping);
-params.vAlign = this.vAlign;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._label = new sap.m.Label(this.ui5Id, params);
-                                              else
-          this._label = new sap.m.Label(params);
-                                                  if(this.ui5Class)
-           this._label.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._label.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._label.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._label, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._label, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._label.placeAt)
-                                                                this._label.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._label.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._label)
-                                                                this._parent.removeChildByRelation(this._label, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._label.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._label.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._label.insertCustomData(child, _index); else this._label.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._label.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._label.insertDependent(child, _index); else this._label.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._label.destroyTooltip(child); }
-if (relation == 'customdata') {  this._label.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._label.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._label.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    designChanged(newValue){if(this._label!==null){ this._label.setDesign(newValue);}}
-textChanged(newValue){if(this._label!==null){ this._label.setText(newValue);}}
-textAlignChanged(newValue){if(this._label!==null){ this._label.setTextAlign(newValue);}}
-textDirectionChanged(newValue){if(this._label!==null){ this._label.setTextDirection(newValue);}}
-widthChanged(newValue){if(this._label!==null){ this._label.setWidth(newValue);}}
-requiredChanged(newValue){if(this._label!==null){ this._label.setRequired(getBooleanFromAttributeValue(newValue));}}
-displayOnlyChanged(newValue){if(this._label!==null){ this._label.setDisplayOnly(getBooleanFromAttributeValue(newValue));}}
-wrappingChanged(newValue){if(this._label!==null){ this._label.setWrapping(getBooleanFromAttributeValue(newValue));}}
-vAlignChanged(newValue){if(this._label!==null){ this._label.setVAlign(newValue);}}
-busyChanged(newValue){if(this._label!==null){ this._label.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._label!==null){ this._label.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._label!==null){ this._label.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._label!==null){ this._label.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._label!==null){ this._label.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._label!==null){ this._label.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._label!==null){ this._label.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._label!==null){ this._label.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._label!==null){ this._label.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-layout-data')
-@inject(Element)
-export class Ui5LayoutData extends Ui5Element{
-        _layoutdata = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        /* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_layoutdata')
-        get UIElement() {
-            return this._layoutdata;
-          }
-        fillProperties(params){
-                                                    
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._layoutdata = new sap.ui.core.LayoutData(this.ui5Id, params);
-                                              else
-          this._layoutdata = new sap.ui.core.LayoutData(params);
-                                                  if(this.ui5Class)
-           this._layoutdata.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._layoutdata.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._layoutdata.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._layoutdata, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._layoutdata, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._layoutdata.placeAt)
-                                                                this._layoutdata.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._layoutdata.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._layoutdata)
-                                                                this._parent.removeChildByRelation(this._layoutdata, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._layoutdata.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._layoutdata.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._layoutdata.insertCustomData(child, _index); else this._layoutdata.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._layoutdata.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._layoutdata.insertDependent(child, _index); else this._layoutdata.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._layoutdata.destroyTooltip(child); }
-if (relation == 'customdata') {  this._layoutdata.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._layoutdata.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._layoutdata.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    /* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -6576,29 +7505,17 @@ modelContextChangeChanged(newValue){if(this._link!==null){ this._link.attachMode
 
 
                                                                                 }
-@customElement('ui5-html')
+@customElement('ui5-layout-data')
 @inject(Element)
-export class Ui5Html extends Ui5Control{
-        _html = null;
+export class Ui5LayoutData extends Ui5Element{
+        _layoutdata = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() content = null;
-@bindable() preferDOM = true;
-@bindable() sanitizeContent = false;
-@bindable() visible = true;
-@bindable() afterRendering = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
+        /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
 @bindable() validationSuccess = this.defaultFunc;
 @bindable() validationError = this.defaultFunc;
@@ -6613,17 +7530,12 @@ export class Ui5Html extends Ui5Control{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_html')
+        @computedFrom('_layoutdata')
         get UIElement() {
-            return this._html;
+            return this._layoutdata;
           }
         fillProperties(params){
-                                        params.content = this.content;
-params.preferDOM = getBooleanFromAttributeValue(this.preferDOM);
-params.sanitizeContent = getBooleanFromAttributeValue(this.sanitizeContent);
-params.visible = getBooleanFromAttributeValue(this.visible);
-params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.afterRendering;
-            
+                                                    
                                             super.fillProperties(params);   
         }
         defaultFunc() {
@@ -6633,33 +7545,33 @@ params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.after
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._html = new sap.ui.core.HTML(this.ui5Id, params);
+          this._layoutdata = new sap.ui.core.LayoutData(this.ui5Id, params);
                                               else
-          this._html = new sap.ui.core.HTML(params);
+          this._layoutdata = new sap.ui.core.LayoutData(params);
                                                   if(this.ui5Class)
-           this._html.addStyleClass(this.ui5Class);
+           this._layoutdata.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._html.setTooltip(this.ui5Tooltip);                                             
+           this._layoutdata.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._html.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._layoutdata.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._html, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._layoutdata, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._html, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._layoutdata, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._html.placeAt)
-                                                                this._html.placeAt(this.element.parentElement);
+                                                            if(this._layoutdata.placeAt)
+                                                                this._layoutdata.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -6667,7 +7579,7 @@ params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.after
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._html.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._layoutdata.sId});
                                                                            
            
         }
@@ -6675,12 +7587,12 @@ params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.after
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._html)
-                                                                this._parent.removeChildByRelation(this._html, this._relation);
+                                                                 if(this._layoutdata)
+                                                                this._parent.removeChildByRelation(this._layoutdata, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._html.destroy();
+                                                                this._layoutdata.destroy();
                                                             }
          super.detached();
           }
@@ -6691,10 +7603,10 @@ params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.after
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'tooltip') { this._html.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._html.insertCustomData(child, _index); else this._html.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._html.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._html.insertDependent(child, _index); else this._html.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'tooltip') { this._layoutdata.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._layoutdata.insertCustomData(child, _index); else this._layoutdata.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._layoutdata.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._layoutdata.insertDependent(child, _index); else this._layoutdata.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -6702,33 +7614,21 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'tooltip') {  this._html.destroyTooltip(child); }
-if (relation == 'customdata') {  this._html.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._html.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._html.removeDependent(child);}
+               if (relation == 'tooltip') {  this._layoutdata.destroyTooltip(child); }
+if (relation == 'customdata') {  this._layoutdata.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._layoutdata.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._layoutdata.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    contentChanged(newValue){if(this._html!==null){ this._html.setContent(newValue);}}
-preferDOMChanged(newValue){if(this._html!==null){ this._html.setPreferDOM(getBooleanFromAttributeValue(newValue));}}
-sanitizeContentChanged(newValue){if(this._html!==null){ this._html.setSanitizeContent(getBooleanFromAttributeValue(newValue));}}
-visibleChanged(newValue){if(this._html!==null){ this._html.setVisible(getBooleanFromAttributeValue(newValue));}}
-afterRenderingChanged(newValue){if(this._html!==null){ this._html.attachAfterRendering(newValue);}}
-busyChanged(newValue){if(this._html!==null){ this._html.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._html!==null){ this._html.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._html!==null){ this._html.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._html!==null){ this._html.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
+    /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._html!==null){ this._html.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._html!==null){ this._html.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._html!==null){ this._html.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._html!==null){ this._html.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._html!==null){ this._html.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._layoutdata!==null){ this._layoutdata.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -7186,151 +8086,6 @@ modelContextChangeChanged(newValue){if(this._listbase!==null){ this._listbase.at
 
 
                                                                                 }
-@customElement('ui5-list-item')
-@inject(Element)
-export class Ui5ListItem extends Ui5Item{
-        _listitem = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() icon = null;
-@bindable() additionalText = null;
-/* inherited from sap.ui.core.Item*/
-@bindable() text = '';
-@bindable() enabled = true;
-@bindable() textDirection = 'Inherit';
-@bindable() key = null;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_listitem')
-        get UIElement() {
-            return this._listitem;
-          }
-        fillProperties(params){
-                                        params.icon = this.icon;
-params.additionalText = this.additionalText;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._listitem = new sap.ui.core.ListItem(this.ui5Id, params);
-                                              else
-          this._listitem = new sap.ui.core.ListItem(params);
-                                                  if(this.ui5Class)
-           this._listitem.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._listitem.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._listitem.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._listitem, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._listitem, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._listitem.placeAt)
-                                                                this._listitem.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._listitem.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._listitem)
-                                                                this._parent.removeChildByRelation(this._listitem, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._listitem.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._listitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listitem.insertCustomData(child, _index); else this._listitem.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._listitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listitem.insertDependent(child, _index); else this._listitem.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._listitem.destroyTooltip(child); }
-if (relation == 'customdata') {  this._listitem.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._listitem.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._listitem.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    iconChanged(newValue){if(this._listitem!==null){ this._listitem.setIcon(newValue);}}
-additionalTextChanged(newValue){if(this._listitem!==null){ this._listitem.setAdditionalText(newValue);}}
-textChanged(newValue){if(this._listitem!==null){ this._listitem.setText(newValue);}}
-enabledChanged(newValue){if(this._listitem!==null){ this._listitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
-textDirectionChanged(newValue){if(this._listitem!==null){ this._listitem.setTextDirection(newValue);}}
-keyChanged(newValue){if(this._listitem!==null){ this._listitem.setKey(newValue);}}
-/* inherited from sap.ui.core.Item*/
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._listitem!==null){ this._listitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._listitem!==null){ this._listitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._listitem!==null){ this._listitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._listitem!==null){ this._listitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._listitem!==null){ this._listitem.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
 @customElement('ui5-m-title')
 @inject(Element)
 export class Ui5mTitle extends Ui5Control{
@@ -7492,173 +8247,6 @@ modelContextChangeChanged(newValue){if(this._mtitle!==null){ this._mtitle.attach
 
 
                                                                                 }
-@customElement('ui5-list-item-base')
-@inject(Element)
-export class Ui5ListItemBase extends Ui5Control{
-        _listitembase = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() type = 'Inactive';
-@bindable() visible = true;
-@bindable() unread = false;
-@bindable() selected = false;
-@bindable() counter = null;
-@bindable() highlight = 'None';
-@bindable() press = this.defaultFunc;
-@bindable() detailPress = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_listitembase')
-        get UIElement() {
-            return this._listitembase;
-          }
-        fillProperties(params){
-                                        params.type = this.type;
-params.visible = getBooleanFromAttributeValue(this.visible);
-params.unread = getBooleanFromAttributeValue(this.unread);
-params.selected = getBooleanFromAttributeValue(this.selected);
-params.counter = this.counter?parseInt(this.counter):0;
-params.highlight = this.highlight;
-params.press = this.press==null ? this.defaultFunc: this.press;
-params.detailPress = this.detailPress==null ? this.defaultFunc: this.detailPress;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._listitembase = new sap.m.ListItemBase(this.ui5Id, params);
-                                              else
-          this._listitembase = new sap.m.ListItemBase(params);
-                                                  if(this.ui5Class)
-           this._listitembase.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._listitembase.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._listitembase.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._listitembase, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._listitembase, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._listitembase.placeAt)
-                                                                this._listitembase.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._listitembase.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._listitembase)
-                                                                this._parent.removeChildByRelation(this._listitembase, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._listitembase.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._listitembase.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listitembase.insertCustomData(child, _index); else this._listitembase.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._listitembase.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listitembase.insertDependent(child, _index); else this._listitembase.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._listitembase.destroyTooltip(child); }
-if (relation == 'customdata') {  this._listitembase.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._listitembase.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._listitembase.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    typeChanged(newValue){if(this._listitembase!==null){ this._listitembase.setType(newValue);}}
-visibleChanged(newValue){if(this._listitembase!==null){ this._listitembase.setVisible(getBooleanFromAttributeValue(newValue));}}
-unreadChanged(newValue){if(this._listitembase!==null){ this._listitembase.setUnread(getBooleanFromAttributeValue(newValue));}}
-selectedChanged(newValue){if(this._listitembase!==null){ this._listitembase.setSelected(getBooleanFromAttributeValue(newValue));}}
-counterChanged(newValue){if(this._listitembase!==null){ this._listitembase.setCounter(newValue);}}
-highlightChanged(newValue){if(this._listitembase!==null){ this._listitembase.setHighlight(newValue);}}
-pressChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachPress(newValue);}}
-detailPressChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachDetailPress(newValue);}}
-busyChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._listitembase!==null){ this._listitembase.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._listitembase!==null){ this._listitembase.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
 @customElement('ui5-managed-object')
 @inject(Element)
 export class Ui5ManagedObject extends Ui5EventProvider{
@@ -7776,6 +8364,141 @@ validationErrorChanged(newValue){if(this._managedobject!==null){ this._managedob
 parseErrorChanged(newValue){if(this._managedobject!==null){ this._managedobject.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._managedobject!==null){ this._managedobject.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._managedobject!==null){ this._managedobject.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-mask-input-rule')
+@inject(Element)
+export class Ui5MaskInputRule extends Ui5Element{
+        _maskinputrule = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() maskFormatSymbol = '*';
+@bindable() regex = '[a-zA-Z0-9]';
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_maskinputrule')
+        get UIElement() {
+            return this._maskinputrule;
+          }
+        fillProperties(params){
+                                        params.maskFormatSymbol = this.maskFormatSymbol;
+params.regex = this.regex;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._maskinputrule = new sap.m.MaskInputRule(this.ui5Id, params);
+                                              else
+          this._maskinputrule = new sap.m.MaskInputRule(params);
+                                                  if(this.ui5Class)
+           this._maskinputrule.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._maskinputrule.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._maskinputrule.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._maskinputrule, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._maskinputrule, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._maskinputrule.placeAt)
+                                                                this._maskinputrule.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._maskinputrule.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._maskinputrule)
+                                                                this._parent.removeChildByRelation(this._maskinputrule, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._maskinputrule.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._maskinputrule.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinputrule.insertCustomData(child, _index); else this._maskinputrule.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._maskinputrule.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinputrule.insertDependent(child, _index); else this._maskinputrule.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._maskinputrule.destroyTooltip(child); }
+if (relation == 'customdata') {  this._maskinputrule.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._maskinputrule.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._maskinputrule.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    maskFormatSymbolChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.setMaskFormatSymbol(newValue);}}
+regexChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.setRegex(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -7960,18 +8683,23 @@ modelContextChangeChanged(newValue){if(this._maskinput!==null){ this._maskinput.
 
 
                                                                                 }
-@customElement('ui5-mask-input-rule')
+@customElement('ui5-list-item')
 @inject(Element)
-export class Ui5MaskInputRule extends Ui5Element{
-        _maskinputrule = null;
+export class Ui5ListItem extends Ui5Item{
+        _listitem = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() maskFormatSymbol = '*';
-@bindable() regex = '[a-zA-Z0-9]';
+        @bindable() icon = null;
+@bindable() additionalText = null;
+/* inherited from sap.ui.core.Item*/
+@bindable() text = '';
+@bindable() enabled = true;
+@bindable() textDirection = 'Inherit';
+@bindable() key = null;
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
 @bindable() validationSuccess = this.defaultFunc;
@@ -7987,13 +8715,13 @@ export class Ui5MaskInputRule extends Ui5Element{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_maskinputrule')
+        @computedFrom('_listitem')
         get UIElement() {
-            return this._maskinputrule;
+            return this._listitem;
           }
         fillProperties(params){
-                                        params.maskFormatSymbol = this.maskFormatSymbol;
-params.regex = this.regex;
+                                        params.icon = this.icon;
+params.additionalText = this.additionalText;
             
                                             super.fillProperties(params);   
         }
@@ -8004,33 +8732,33 @@ params.regex = this.regex;
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._maskinputrule = new sap.m.MaskInputRule(this.ui5Id, params);
+          this._listitem = new sap.ui.core.ListItem(this.ui5Id, params);
                                               else
-          this._maskinputrule = new sap.m.MaskInputRule(params);
+          this._listitem = new sap.ui.core.ListItem(params);
                                                   if(this.ui5Class)
-           this._maskinputrule.addStyleClass(this.ui5Class);
+           this._listitem.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._maskinputrule.setTooltip(this.ui5Tooltip);                                             
+           this._listitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._maskinputrule.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._listitem.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._maskinputrule, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._listitem, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._maskinputrule, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._listitem, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._maskinputrule.placeAt)
-                                                                this._maskinputrule.placeAt(this.element.parentElement);
+                                                            if(this._listitem.placeAt)
+                                                                this._listitem.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -8038,7 +8766,7 @@ params.regex = this.regex;
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._maskinputrule.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._listitem.sId});
                                                                            
            
         }
@@ -8046,12 +8774,12 @@ params.regex = this.regex;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._maskinputrule)
-                                                                this._parent.removeChildByRelation(this._maskinputrule, this._relation);
+                                                                 if(this._listitem)
+                                                                this._parent.removeChildByRelation(this._listitem, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._maskinputrule.destroy();
+                                                                this._listitem.destroy();
                                                             }
          super.detached();
           }
@@ -8062,10 +8790,10 @@ params.regex = this.regex;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'tooltip') { this._maskinputrule.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinputrule.insertCustomData(child, _index); else this._maskinputrule.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._maskinputrule.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinputrule.insertDependent(child, _index); else this._maskinputrule.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'tooltip') { this._listitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listitem.insertCustomData(child, _index); else this._listitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._listitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listitem.insertDependent(child, _index); else this._listitem.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -8073,23 +8801,193 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'tooltip') {  this._maskinputrule.destroyTooltip(child); }
-if (relation == 'customdata') {  this._maskinputrule.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._maskinputrule.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._maskinputrule.removeDependent(child);}
+               if (relation == 'tooltip') {  this._listitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._listitem.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._listitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._listitem.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    maskFormatSymbolChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.setMaskFormatSymbol(newValue);}}
-regexChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.setRegex(newValue);}}
+    iconChanged(newValue){if(this._listitem!==null){ this._listitem.setIcon(newValue);}}
+additionalTextChanged(newValue){if(this._listitem!==null){ this._listitem.setAdditionalText(newValue);}}
+textChanged(newValue){if(this._listitem!==null){ this._listitem.setText(newValue);}}
+enabledChanged(newValue){if(this._listitem!==null){ this._listitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
+textDirectionChanged(newValue){if(this._listitem!==null){ this._listitem.setTextDirection(newValue);}}
+keyChanged(newValue){if(this._listitem!==null){ this._listitem.setKey(newValue);}}
+/* inherited from sap.ui.core.Item*/
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._maskinputrule!==null){ this._maskinputrule.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._listitem!==null){ this._listitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._listitem!==null){ this._listitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._listitem!==null){ this._listitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._listitem!==null){ this._listitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._listitem!==null){ this._listitem.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-message-item')
+@inject(Element)
+export class Ui5MessageItem extends Ui5Item{
+        _messageitem = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() type = 'Error';
+@bindable() title = '';
+@bindable() subtitle = null;
+@bindable() description = '';
+@bindable() markupDescription = false;
+@bindable() longtextUrl = null;
+@bindable() counter = null;
+@bindable() groupName = '';
+/* inherited from sap.ui.core.Item*/
+@bindable() text = '';
+@bindable() enabled = true;
+@bindable() textDirection = 'Inherit';
+@bindable() key = null;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_messageitem')
+        get UIElement() {
+            return this._messageitem;
+          }
+        fillProperties(params){
+                                        params.type = this.type;
+params.title = this.title;
+params.subtitle = this.subtitle;
+params.description = this.description;
+params.markupDescription = getBooleanFromAttributeValue(this.markupDescription);
+params.longtextUrl = this.longtextUrl;
+params.counter = this.counter?parseInt(this.counter):0;
+params.groupName = this.groupName;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._messageitem = new sap.m.MessageItem(this.ui5Id, params);
+                                              else
+          this._messageitem = new sap.m.MessageItem(params);
+                                                  if(this.ui5Class)
+           this._messageitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._messageitem.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._messageitem.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._messageitem, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._messageitem, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._messageitem.placeAt)
+                                                                this._messageitem.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._messageitem.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._messageitem)
+                                                                this._parent.removeChildByRelation(this._messageitem, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._messageitem.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'link') { this._messageitem.setLink(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._messageitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messageitem.insertCustomData(child, _index); else this._messageitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._messageitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messageitem.insertDependent(child, _index); else this._messageitem.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'link') {  this._messageitem.destroyLink(child); }
+if (relation == 'tooltip') {  this._messageitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._messageitem.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._messageitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._messageitem.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    typeChanged(newValue){if(this._messageitem!==null){ this._messageitem.setType(newValue);}}
+titleChanged(newValue){if(this._messageitem!==null){ this._messageitem.setTitle(newValue);}}
+subtitleChanged(newValue){if(this._messageitem!==null){ this._messageitem.setSubtitle(newValue);}}
+descriptionChanged(newValue){if(this._messageitem!==null){ this._messageitem.setDescription(newValue);}}
+markupDescriptionChanged(newValue){if(this._messageitem!==null){ this._messageitem.setMarkupDescription(getBooleanFromAttributeValue(newValue));}}
+longtextUrlChanged(newValue){if(this._messageitem!==null){ this._messageitem.setLongtextUrl(newValue);}}
+counterChanged(newValue){if(this._messageitem!==null){ this._messageitem.setCounter(newValue);}}
+groupNameChanged(newValue){if(this._messageitem!==null){ this._messageitem.setGroupName(newValue);}}
+textChanged(newValue){if(this._messageitem!==null){ this._messageitem.setText(newValue);}}
+enabledChanged(newValue){if(this._messageitem!==null){ this._messageitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
+textDirectionChanged(newValue){if(this._messageitem!==null){ this._messageitem.setTextDirection(newValue);}}
+keyChanged(newValue){if(this._messageitem!==null){ this._messageitem.setKey(newValue);}}
+/* inherited from sap.ui.core.Item*/
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -8415,408 +9313,6 @@ modelContextChangeChanged(newValue){if(this._messagestrip!==null){ this._message
 
 
                                                                                 }
-@customElement('ui5-message-item')
-@inject(Element)
-export class Ui5MessageItem extends Ui5Item{
-        _messageitem = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() type = 'Error';
-@bindable() title = '';
-@bindable() subtitle = null;
-@bindable() description = '';
-@bindable() markupDescription = false;
-@bindable() longtextUrl = null;
-@bindable() counter = null;
-@bindable() groupName = '';
-/* inherited from sap.ui.core.Item*/
-@bindable() text = '';
-@bindable() enabled = true;
-@bindable() textDirection = 'Inherit';
-@bindable() key = null;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_messageitem')
-        get UIElement() {
-            return this._messageitem;
-          }
-        fillProperties(params){
-                                        params.type = this.type;
-params.title = this.title;
-params.subtitle = this.subtitle;
-params.description = this.description;
-params.markupDescription = getBooleanFromAttributeValue(this.markupDescription);
-params.longtextUrl = this.longtextUrl;
-params.counter = this.counter?parseInt(this.counter):0;
-params.groupName = this.groupName;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._messageitem = new sap.m.MessageItem(this.ui5Id, params);
-                                              else
-          this._messageitem = new sap.m.MessageItem(params);
-                                                  if(this.ui5Class)
-           this._messageitem.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._messageitem.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._messageitem.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._messageitem, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._messageitem, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._messageitem.placeAt)
-                                                                this._messageitem.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._messageitem.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._messageitem)
-                                                                this._parent.removeChildByRelation(this._messageitem, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._messageitem.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'link') { this._messageitem.setLink(child); return elem.localName;}
-if (elem.localName == 'tooltip') { this._messageitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messageitem.insertCustomData(child, _index); else this._messageitem.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._messageitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messageitem.insertDependent(child, _index); else this._messageitem.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'link') {  this._messageitem.destroyLink(child); }
-if (relation == 'tooltip') {  this._messageitem.destroyTooltip(child); }
-if (relation == 'customdata') {  this._messageitem.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._messageitem.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._messageitem.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    typeChanged(newValue){if(this._messageitem!==null){ this._messageitem.setType(newValue);}}
-titleChanged(newValue){if(this._messageitem!==null){ this._messageitem.setTitle(newValue);}}
-subtitleChanged(newValue){if(this._messageitem!==null){ this._messageitem.setSubtitle(newValue);}}
-descriptionChanged(newValue){if(this._messageitem!==null){ this._messageitem.setDescription(newValue);}}
-markupDescriptionChanged(newValue){if(this._messageitem!==null){ this._messageitem.setMarkupDescription(getBooleanFromAttributeValue(newValue));}}
-longtextUrlChanged(newValue){if(this._messageitem!==null){ this._messageitem.setLongtextUrl(newValue);}}
-counterChanged(newValue){if(this._messageitem!==null){ this._messageitem.setCounter(newValue);}}
-groupNameChanged(newValue){if(this._messageitem!==null){ this._messageitem.setGroupName(newValue);}}
-textChanged(newValue){if(this._messageitem!==null){ this._messageitem.setText(newValue);}}
-enabledChanged(newValue){if(this._messageitem!==null){ this._messageitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
-textDirectionChanged(newValue){if(this._messageitem!==null){ this._messageitem.setTextDirection(newValue);}}
-keyChanged(newValue){if(this._messageitem!==null){ this._messageitem.setKey(newValue);}}
-/* inherited from sap.ui.core.Item*/
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-message-view')
-@inject(Element)
-export class Ui5MessageView {
-        _messageview = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() asyncDescriptionHandler = null;
-@bindable() asyncURLHandler = null;
-@bindable() groupItems = false;
-@bindable() showDetailsPageHeader = true;
-@bindable() afterOpen = this.defaultFunc;
-@bindable() itemSelect = this.defaultFunc;
-@bindable() listSelect = this.defaultFunc;
-@bindable() longtextLoaded = this.defaultFunc;
-@bindable() urlValidated = this.defaultFunc;
-
-                constructor(element) {
-                                        
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_messageview')
-        get UIElement() {
-            return this._messageview;
-          }
-        fillProperties(params){
-                                        params.asyncDescriptionHandler = this.asyncDescriptionHandler;
-params.asyncURLHandler = this.asyncURLHandler;
-params.groupItems = getBooleanFromAttributeValue(this.groupItems);
-params.showDetailsPageHeader = getBooleanFromAttributeValue(this.showDetailsPageHeader);
-params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
-params.itemSelect = this.itemSelect==null ? this.defaultFunc: this.itemSelect;
-params.listSelect = this.listSelect==null ? this.defaultFunc: this.listSelect;
-params.longtextLoaded = this.longtextLoaded==null ? this.defaultFunc: this.longtextLoaded;
-params.urlValidated = this.urlValidated==null ? this.defaultFunc: this.urlValidated;
-            
-                                               
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._messageview = new sap.m.MessageView(this.ui5Id, params);
-                                              else
-          this._messageview = new sap.m.MessageView(params);
-                                                  if(this.ui5Class)
-           this._messageview.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._messageview.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._messageview.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._messageview, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._messageview, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._messageview.placeAt)
-                                                                this._messageview.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._messageview.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._messageview)
-                                                                this._parent.removeChildByRelation(this._messageview, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._messageview.destroy();
-                                                            }
-         
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messageview.insertItem(child, _index); else this._messageview.addItem(child, 0);  return elem.localName; }
-if (elem.localName == 'headerbutton') { this._messageview.setHeaderButton(child); return elem.localName;}
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'items') {  this._messageview.removeItem(child);}
-if (relation == 'headerbutton') {  this._messageview.destroyHeaderButton(child); }
-
-      }
-      catch(err){}
-                                                                            }
-    asyncDescriptionHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncDescriptionHandler(newValue);}}
-asyncURLHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncURLHandler(newValue);}}
-groupItemsChanged(newValue){if(this._messageview!==null){ this._messageview.setGroupItems(getBooleanFromAttributeValue(newValue));}}
-showDetailsPageHeaderChanged(newValue){if(this._messageview!==null){ this._messageview.setShowDetailsPageHeader(getBooleanFromAttributeValue(newValue));}}
-afterOpenChanged(newValue){if(this._messageview!==null){ this._messageview.attachAfterOpen(newValue);}}
-itemSelectChanged(newValue){if(this._messageview!==null){ this._messageview.attachItemSelect(newValue);}}
-listSelectChanged(newValue){if(this._messageview!==null){ this._messageview.attachListSelect(newValue);}}
-longtextLoadedChanged(newValue){if(this._messageview!==null){ this._messageview.attachLongtextLoaded(newValue);}}
-urlValidatedChanged(newValue){if(this._messageview!==null){ this._messageview.attachUrlValidated(newValue);}}
-
-
-                                                                                }
-@customElement('ui5-object')
-@inject(Element)
-export class Ui5Object {
-        _object = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        
-                constructor(element) {
-                                        
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_object')
-        get UIElement() {
-            return this._object;
-          }
-        fillProperties(params){
-                                                    
-                                               
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._object = new sap.ui.base.Object(this.ui5Id, params);
-                                              else
-          this._object = new sap.ui.base.Object(params);
-                                                  if(this.ui5Class)
-           this._object.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._object.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._object.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._object, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._object, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._object.placeAt)
-                                                                this._object.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._object.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._object)
-                                                                this._parent.removeChildByRelation(this._object, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._object.destroy();
-                                                            }
-         
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               
-      }
-      catch(err){}
-                                                                            }
-    
-
-                                                                                }
 @customElement('ui5-numeric-content')
 @inject(Element)
 export class Ui5NumericContent extends Ui5Control{
@@ -9002,22 +9498,158 @@ modelContextChangeChanged(newValue){if(this._numericcontent!==null){ this._numer
 
 
                                                                                 }
-@customElement('ui5-object-number')
+@customElement('ui5-message-view')
 @inject(Element)
-export class Ui5ObjectNumber extends Ui5Control{
-        _objectnumber = null;
+export class Ui5MessageView {
+        _messageview = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() number = null;
-@bindable() emphasized = true;
-@bindable() state = 'None';
-@bindable() unit = null;
-@bindable() textDirection = 'Inherit';
-@bindable() textAlign = 'Begin';
+        @bindable() asyncDescriptionHandler = null;
+@bindable() asyncURLHandler = null;
+@bindable() groupItems = false;
+@bindable() showDetailsPageHeader = true;
+@bindable() afterOpen = this.defaultFunc;
+@bindable() itemSelect = this.defaultFunc;
+@bindable() listSelect = this.defaultFunc;
+@bindable() longtextLoaded = this.defaultFunc;
+@bindable() urlValidated = this.defaultFunc;
+
+                constructor(element) {
+                                        
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_messageview')
+        get UIElement() {
+            return this._messageview;
+          }
+        fillProperties(params){
+                                        params.asyncDescriptionHandler = this.asyncDescriptionHandler;
+params.asyncURLHandler = this.asyncURLHandler;
+params.groupItems = getBooleanFromAttributeValue(this.groupItems);
+params.showDetailsPageHeader = getBooleanFromAttributeValue(this.showDetailsPageHeader);
+params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
+params.itemSelect = this.itemSelect==null ? this.defaultFunc: this.itemSelect;
+params.listSelect = this.listSelect==null ? this.defaultFunc: this.listSelect;
+params.longtextLoaded = this.longtextLoaded==null ? this.defaultFunc: this.longtextLoaded;
+params.urlValidated = this.urlValidated==null ? this.defaultFunc: this.urlValidated;
+            
+                                               
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._messageview = new sap.m.MessageView(this.ui5Id, params);
+                                              else
+          this._messageview = new sap.m.MessageView(params);
+                                                  if(this.ui5Class)
+           this._messageview.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._messageview.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._messageview.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._messageview, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._messageview, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._messageview.placeAt)
+                                                                this._messageview.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._messageview.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._messageview)
+                                                                this._parent.removeChildByRelation(this._messageview, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._messageview.destroy();
+                                                            }
+         
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messageview.insertItem(child, _index); else this._messageview.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'headerbutton') { this._messageview.setHeaderButton(child); return elem.localName;}
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'items') {  this._messageview.removeItem(child);}
+if (relation == 'headerbutton') {  this._messageview.destroyHeaderButton(child); }
+
+      }
+      catch(err){}
+                                                                            }
+    asyncDescriptionHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncDescriptionHandler(newValue);}}
+asyncURLHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncURLHandler(newValue);}}
+groupItemsChanged(newValue){if(this._messageview!==null){ this._messageview.setGroupItems(getBooleanFromAttributeValue(newValue));}}
+showDetailsPageHeaderChanged(newValue){if(this._messageview!==null){ this._messageview.setShowDetailsPageHeader(getBooleanFromAttributeValue(newValue));}}
+afterOpenChanged(newValue){if(this._messageview!==null){ this._messageview.attachAfterOpen(newValue);}}
+itemSelectChanged(newValue){if(this._messageview!==null){ this._messageview.attachItemSelect(newValue);}}
+listSelectChanged(newValue){if(this._messageview!==null){ this._messageview.attachListSelect(newValue);}}
+longtextLoadedChanged(newValue){if(this._messageview!==null){ this._messageview.attachLongtextLoaded(newValue);}}
+urlValidatedChanged(newValue){if(this._messageview!==null){ this._messageview.attachUrlValidated(newValue);}}
+
+
+                                                                                }
+@customElement('ui5-list-item-base')
+@inject(Element)
+export class Ui5ListItemBase extends Ui5Control{
+        _listitembase = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() type = 'Inactive';
+@bindable() visible = true;
+@bindable() unread = false;
+@bindable() selected = false;
+@bindable() counter = null;
+@bindable() highlight = 'None';
+@bindable() press = this.defaultFunc;
+@bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -9040,17 +9672,19 @@ export class Ui5ObjectNumber extends Ui5Control{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_objectnumber')
+        @computedFrom('_listitembase')
         get UIElement() {
-            return this._objectnumber;
+            return this._listitembase;
           }
         fillProperties(params){
-                                        params.number = this.number;
-params.emphasized = getBooleanFromAttributeValue(this.emphasized);
-params.state = this.state;
-params.unit = this.unit;
-params.textDirection = this.textDirection;
-params.textAlign = this.textAlign;
+                                        params.type = this.type;
+params.visible = getBooleanFromAttributeValue(this.visible);
+params.unread = getBooleanFromAttributeValue(this.unread);
+params.selected = getBooleanFromAttributeValue(this.selected);
+params.counter = this.counter?parseInt(this.counter):0;
+params.highlight = this.highlight;
+params.press = this.press==null ? this.defaultFunc: this.press;
+params.detailPress = this.detailPress==null ? this.defaultFunc: this.detailPress;
             
                                             super.fillProperties(params);   
         }
@@ -9061,33 +9695,33 @@ params.textAlign = this.textAlign;
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._objectnumber = new sap.m.ObjectNumber(this.ui5Id, params);
+          this._listitembase = new sap.m.ListItemBase(this.ui5Id, params);
                                               else
-          this._objectnumber = new sap.m.ObjectNumber(params);
+          this._listitembase = new sap.m.ListItemBase(params);
                                                   if(this.ui5Class)
-           this._objectnumber.addStyleClass(this.ui5Class);
+           this._listitembase.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._objectnumber.setTooltip(this.ui5Tooltip);                                             
+           this._listitembase.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._objectnumber.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._listitembase.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._objectnumber, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._listitembase, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._objectnumber, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._listitembase, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._objectnumber.placeAt)
-                                                                this._objectnumber.placeAt(this.element.parentElement);
+                                                            if(this._listitembase.placeAt)
+                                                                this._listitembase.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -9095,7 +9729,7 @@ params.textAlign = this.textAlign;
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._objectnumber.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._listitembase.sId});
                                                                            
            
         }
@@ -9103,12 +9737,12 @@ params.textAlign = this.textAlign;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._objectnumber)
-                                                                this._parent.removeChildByRelation(this._objectnumber, this._relation);
+                                                                 if(this._listitembase)
+                                                                this._parent.removeChildByRelation(this._listitembase, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._objectnumber.destroy();
+                                                                this._listitembase.destroy();
                                                             }
          super.detached();
           }
@@ -9119,10 +9753,10 @@ params.textAlign = this.textAlign;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'tooltip') { this._objectnumber.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectnumber.insertCustomData(child, _index); else this._objectnumber.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._objectnumber.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectnumber.insertDependent(child, _index); else this._objectnumber.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'tooltip') { this._listitembase.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listitembase.insertCustomData(child, _index); else this._listitembase.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._listitembase.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listitembase.insertDependent(child, _index); else this._listitembase.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -9130,37 +9764,142 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'tooltip') {  this._objectnumber.destroyTooltip(child); }
-if (relation == 'customdata') {  this._objectnumber.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._objectnumber.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._objectnumber.removeDependent(child);}
+               if (relation == 'tooltip') {  this._listitembase.destroyTooltip(child); }
+if (relation == 'customdata') {  this._listitembase.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._listitembase.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._listitembase.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    numberChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setNumber(newValue);}}
-emphasizedChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setEmphasized(getBooleanFromAttributeValue(newValue));}}
-stateChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setState(newValue);}}
-unitChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setUnit(newValue);}}
-textDirectionChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setTextDirection(newValue);}}
-textAlignChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setTextAlign(newValue);}}
-busyChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setFieldGroupIds(newValue);}}
+    typeChanged(newValue){if(this._listitembase!==null){ this._listitembase.setType(newValue);}}
+visibleChanged(newValue){if(this._listitembase!==null){ this._listitembase.setVisible(getBooleanFromAttributeValue(newValue));}}
+unreadChanged(newValue){if(this._listitembase!==null){ this._listitembase.setUnread(getBooleanFromAttributeValue(newValue));}}
+selectedChanged(newValue){if(this._listitembase!==null){ this._listitembase.setSelected(getBooleanFromAttributeValue(newValue));}}
+counterChanged(newValue){if(this._listitembase!==null){ this._listitembase.setCounter(newValue);}}
+highlightChanged(newValue){if(this._listitembase!==null){ this._listitembase.setHighlight(newValue);}}
+pressChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachPress(newValue);}}
+detailPressChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachDetailPress(newValue);}}
+busyChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._listitembase!==null){ this._listitembase.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._listitembase!==null){ this._listitembase.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
+
+                                                                                }
+@customElement('ui5-object')
+@inject(Element)
+export class Ui5Object {
+        _object = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        
+                constructor(element) {
+                                        
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_object')
+        get UIElement() {
+            return this._object;
+          }
+        fillProperties(params){
+                                                    
+                                               
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._object = new sap.ui.base.Object(this.ui5Id, params);
+                                              else
+          this._object = new sap.ui.base.Object(params);
+                                                  if(this.ui5Class)
+           this._object.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._object.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._object.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._object, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._object, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._object.placeAt)
+                                                                this._object.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._object.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._object)
+                                                                this._parent.removeChildByRelation(this._object, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._object.destroy();
+                                                            }
+         
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               
+      }
+      catch(err){}
+                                                                            }
+    
 
                                                                                 }
 @customElement('ui5-object-identifier')
@@ -9485,27 +10224,35 @@ modelContextChangeChanged(newValue){if(this._overflowtoolbar!==null){ this._over
 
 
                                                                                 }
-@customElement('ui5-menu-item')
+@customElement('ui5-page')
 @inject(Element)
-export class Ui5MenuItem extends Ui5Item{
-        _menuitem = null;
+export class Ui5Page extends Ui5Control{
+        _page = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() icon = null;
+        @bindable() title = null;
+@bindable() titleLevel = 'Auto';
+@bindable() showNavButton = false;
+@bindable() showHeader = true;
+@bindable() showSubHeader = true;
+@bindable() navButtonTooltip = null;
+@bindable() enableScrolling = true;
+@bindable() backgroundDesign = 'Standard';
+@bindable() showFooter = true;
+@bindable() contentOnlyBusy = false;
+@bindable() floatingFooter = false;
+@bindable() navButtonPress = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
-@bindable() startsSection = false;
-@bindable() press = this.defaultFunc;
-@bindable() propertyChanged = this.defaultFunc;
-@bindable() aggregationChanged = this.defaultFunc;
-/* inherited from sap.ui.core.Item*/
-@bindable() text = '';
-@bindable() enabled = true;
-@bindable() textDirection = 'Inherit';
-@bindable() key = null;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
 @bindable() validationSuccess = this.defaultFunc;
@@ -9521,17 +10268,23 @@ export class Ui5MenuItem extends Ui5Item{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_menuitem')
+        @computedFrom('_page')
         get UIElement() {
-            return this._menuitem;
+            return this._page;
           }
         fillProperties(params){
-                                        params.icon = this.icon;
-params.visible = getBooleanFromAttributeValue(this.visible);
-params.startsSection = getBooleanFromAttributeValue(this.startsSection);
-params.press = this.press==null ? this.defaultFunc: this.press;
-params.propertyChanged = this.propertyChanged==null ? this.defaultFunc: this.propertyChanged;
-params.aggregationChanged = this.aggregationChanged==null ? this.defaultFunc: this.aggregationChanged;
+                                        params.title = this.title;
+params.titleLevel = this.titleLevel;
+params.showNavButton = getBooleanFromAttributeValue(this.showNavButton);
+params.showHeader = getBooleanFromAttributeValue(this.showHeader);
+params.showSubHeader = getBooleanFromAttributeValue(this.showSubHeader);
+params.navButtonTooltip = this.navButtonTooltip;
+params.enableScrolling = getBooleanFromAttributeValue(this.enableScrolling);
+params.backgroundDesign = this.backgroundDesign;
+params.showFooter = getBooleanFromAttributeValue(this.showFooter);
+params.contentOnlyBusy = getBooleanFromAttributeValue(this.contentOnlyBusy);
+params.floatingFooter = getBooleanFromAttributeValue(this.floatingFooter);
+params.navButtonPress = this.navButtonPress==null ? this.defaultFunc: this.navButtonPress;
             
                                             super.fillProperties(params);   
         }
@@ -9542,33 +10295,33 @@ params.aggregationChanged = this.aggregationChanged==null ? this.defaultFunc: th
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._menuitem = new sap.m.MenuItem(this.ui5Id, params);
+          this._page = new sap.m.Page(this.ui5Id, params);
                                               else
-          this._menuitem = new sap.m.MenuItem(params);
+          this._page = new sap.m.Page(params);
                                                   if(this.ui5Class)
-           this._menuitem.addStyleClass(this.ui5Class);
+           this._page.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._menuitem.setTooltip(this.ui5Tooltip);                                             
+           this._page.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._menuitem.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._page.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._menuitem, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._page, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._menuitem, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._page, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._menuitem.placeAt)
-                                                                this._menuitem.placeAt(this.element.parentElement);
+                                                            if(this._page.placeAt)
+                                                                this._page.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -9576,7 +10329,7 @@ params.aggregationChanged = this.aggregationChanged==null ? this.defaultFunc: th
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._menuitem.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._page.sId});
                                                                            
            
         }
@@ -9584,12 +10337,12 @@ params.aggregationChanged = this.aggregationChanged==null ? this.defaultFunc: th
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._menuitem)
-                                                                this._parent.removeChildByRelation(this._menuitem, this._relation);
+                                                                 if(this._page)
+                                                                this._parent.removeChildByRelation(this._page, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._menuitem.destroy();
+                                                                this._page.destroy();
                                                             }
          super.detached();
           }
@@ -9600,11 +10353,16 @@ params.aggregationChanged = this.aggregationChanged==null ? this.defaultFunc: th
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menuitem.insertItem(child, _index); else this._menuitem.addItem(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._menuitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menuitem.insertCustomData(child, _index); else this._menuitem.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._menuitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menuitem.insertDependent(child, _index); else this._menuitem.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertContent(child, _index); else this._page.addContent(child, 0);  return elem.localName; }
+if (elem.localName == 'customheader') { this._page.setCustomHeader(child); return elem.localName;}
+if (elem.localName == 'footer') { this._page.setFooter(child); return elem.localName;}
+if (elem.localName == 'subheader') { this._page.setSubHeader(child); return elem.localName;}
+if (elem.localName == 'headercontent') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertHeaderContent(child, _index); else this._page.addHeaderContent(child, 0);  return elem.localName; }
+if (elem.localName == 'landmarkinfo') { this._page.setLandmarkInfo(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._page.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertCustomData(child, _index); else this._page.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._page.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertDependent(child, _index); else this._page.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -9612,33 +10370,192 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'items') {  this._menuitem.removeItem(child);}
-if (relation == 'tooltip') {  this._menuitem.destroyTooltip(child); }
-if (relation == 'customdata') {  this._menuitem.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._menuitem.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._menuitem.removeDependent(child);}
+               if (relation == 'content') {  this._page.removeContent(child);}
+if (relation == 'customheader') {  this._page.destroyCustomHeader(child); }
+if (relation == 'footer') {  this._page.destroyFooter(child); }
+if (relation == 'subheader') {  this._page.destroySubHeader(child); }
+if (relation == 'headercontent') {  this._page.removeHeaderContent(child);}
+if (relation == 'landmarkinfo') {  this._page.destroyLandmarkInfo(child); }
+if (relation == 'tooltip') {  this._page.destroyTooltip(child); }
+if (relation == 'customdata') {  this._page.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._page.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._page.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    iconChanged(newValue){if(this._menuitem!==null){ this._menuitem.setIcon(newValue);}}
-visibleChanged(newValue){if(this._menuitem!==null){ this._menuitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-startsSectionChanged(newValue){if(this._menuitem!==null){ this._menuitem.setStartsSection(getBooleanFromAttributeValue(newValue));}}
-pressChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachPress(newValue);}}
-propertyChangedChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachPropertyChanged(newValue);}}
-aggregationChangedChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachAggregationChanged(newValue);}}
-textChanged(newValue){if(this._menuitem!==null){ this._menuitem.setText(newValue);}}
-enabledChanged(newValue){if(this._menuitem!==null){ this._menuitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
-textDirectionChanged(newValue){if(this._menuitem!==null){ this._menuitem.setTextDirection(newValue);}}
-keyChanged(newValue){if(this._menuitem!==null){ this._menuitem.setKey(newValue);}}
-/* inherited from sap.ui.core.Item*/
+    titleChanged(newValue){if(this._page!==null){ this._page.setTitle(newValue);}}
+titleLevelChanged(newValue){if(this._page!==null){ this._page.setTitleLevel(newValue);}}
+showNavButtonChanged(newValue){if(this._page!==null){ this._page.setShowNavButton(getBooleanFromAttributeValue(newValue));}}
+showHeaderChanged(newValue){if(this._page!==null){ this._page.setShowHeader(getBooleanFromAttributeValue(newValue));}}
+showSubHeaderChanged(newValue){if(this._page!==null){ this._page.setShowSubHeader(getBooleanFromAttributeValue(newValue));}}
+navButtonTooltipChanged(newValue){if(this._page!==null){ this._page.setNavButtonTooltip(newValue);}}
+enableScrollingChanged(newValue){if(this._page!==null){ this._page.setEnableScrolling(getBooleanFromAttributeValue(newValue));}}
+backgroundDesignChanged(newValue){if(this._page!==null){ this._page.setBackgroundDesign(newValue);}}
+showFooterChanged(newValue){if(this._page!==null){ this._page.setShowFooter(getBooleanFromAttributeValue(newValue));}}
+contentOnlyBusyChanged(newValue){if(this._page!==null){ this._page.setContentOnlyBusy(getBooleanFromAttributeValue(newValue));}}
+floatingFooterChanged(newValue){if(this._page!==null){ this._page.setFloatingFooter(getBooleanFromAttributeValue(newValue));}}
+navButtonPressChanged(newValue){if(this._page!==null){ this._page.attachNavButtonPress(newValue);}}
+busyChanged(newValue){if(this._page!==null){ this._page.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._page!==null){ this._page.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._page!==null){ this._page.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._page!==null){ this._page.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._page!==null){ this._page.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._page!==null){ this._page.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._page!==null){ this._page.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._page!==null){ this._page.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._page!==null){ this._page.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-form-layout')
+@inject(Element)
+export class Ui5FormLayout extends Ui5Control{
+        _formlayout = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() backgroundDesign = 'Translucent';
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_formlayout')
+        get UIElement() {
+            return this._formlayout;
+          }
+        fillProperties(params){
+                                        params.backgroundDesign = this.backgroundDesign;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._formlayout = new sap.ui.layout.form.FormLayout(this.ui5Id, params);
+                                              else
+          this._formlayout = new sap.ui.layout.form.FormLayout(params);
+                                                  if(this.ui5Class)
+           this._formlayout.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._formlayout.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._formlayout.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._formlayout, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._formlayout, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._formlayout.placeAt)
+                                                                this._formlayout.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._formlayout.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._formlayout)
+                                                                this._parent.removeChildByRelation(this._formlayout, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._formlayout.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._formlayout.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formlayout.insertCustomData(child, _index); else this._formlayout.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._formlayout.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formlayout.insertDependent(child, _index); else this._formlayout.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._formlayout.destroyTooltip(child); }
+if (relation == 'customdata') {  this._formlayout.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._formlayout.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._formlayout.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    backgroundDesignChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBackgroundDesign(newValue);}}
+busyChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._formlayout!==null){ this._formlayout.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._formlayout!==null){ this._formlayout.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._formlayout!==null){ this._formlayout.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -9954,6 +10871,201 @@ modelContextChangeChanged(newValue){if(this._panel!==null){ this._panel.attachMo
 
 
                                                                                 }
+@customElement('ui5-responsive-grid-layout')
+@inject(Element)
+export class Ui5ResponsiveGridLayout extends Ui5FormLayout{
+        _responsivegridlayout = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() labelSpanXL = -1;
+@bindable() labelSpanL = 4;
+@bindable() labelSpanM = 2;
+@bindable() labelSpanS = 12;
+@bindable() adjustLabelSpan = true;
+@bindable() emptySpanXL = -1;
+@bindable() emptySpanL = 0;
+@bindable() emptySpanM = 0;
+@bindable() emptySpanS = 0;
+@bindable() columnsXL = -1;
+@bindable() columnsL = 2;
+@bindable() columnsM = 1;
+@bindable() singleContainerFullSize = true;
+@bindable() breakpointXL = 1440;
+@bindable() breakpointL = 1024;
+@bindable() breakpointM = 600;
+/* inherited from sap.ui.layout.form.FormLayout*/
+@bindable() backgroundDesign = 'Translucent';
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_responsivegridlayout')
+        get UIElement() {
+            return this._responsivegridlayout;
+          }
+        fillProperties(params){
+                                        params.labelSpanXL = this.labelSpanXL?parseInt(this.labelSpanXL):0;
+params.labelSpanL = this.labelSpanL?parseInt(this.labelSpanL):0;
+params.labelSpanM = this.labelSpanM?parseInt(this.labelSpanM):0;
+params.labelSpanS = this.labelSpanS?parseInt(this.labelSpanS):0;
+params.adjustLabelSpan = getBooleanFromAttributeValue(this.adjustLabelSpan);
+params.emptySpanXL = this.emptySpanXL?parseInt(this.emptySpanXL):0;
+params.emptySpanL = this.emptySpanL?parseInt(this.emptySpanL):0;
+params.emptySpanM = this.emptySpanM?parseInt(this.emptySpanM):0;
+params.emptySpanS = this.emptySpanS?parseInt(this.emptySpanS):0;
+params.columnsXL = this.columnsXL?parseInt(this.columnsXL):0;
+params.columnsL = this.columnsL?parseInt(this.columnsL):0;
+params.columnsM = this.columnsM?parseInt(this.columnsM):0;
+params.singleContainerFullSize = getBooleanFromAttributeValue(this.singleContainerFullSize);
+params.breakpointXL = this.breakpointXL?parseInt(this.breakpointXL):0;
+params.breakpointL = this.breakpointL?parseInt(this.breakpointL):0;
+params.breakpointM = this.breakpointM?parseInt(this.breakpointM):0;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._responsivegridlayout = new sap.ui.layout.form.ResponsiveGridLayout(this.ui5Id, params);
+                                              else
+          this._responsivegridlayout = new sap.ui.layout.form.ResponsiveGridLayout(params);
+                                                  if(this.ui5Class)
+           this._responsivegridlayout.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._responsivegridlayout.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._responsivegridlayout.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._responsivegridlayout, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._responsivegridlayout, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._responsivegridlayout.placeAt)
+                                                                this._responsivegridlayout.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._responsivegridlayout.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._responsivegridlayout)
+                                                                this._parent.removeChildByRelation(this._responsivegridlayout, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._responsivegridlayout.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._responsivegridlayout.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivegridlayout.insertCustomData(child, _index); else this._responsivegridlayout.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._responsivegridlayout.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivegridlayout.insertDependent(child, _index); else this._responsivegridlayout.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._responsivegridlayout.destroyTooltip(child); }
+if (relation == 'customdata') {  this._responsivegridlayout.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._responsivegridlayout.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._responsivegridlayout.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    labelSpanXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanXL(newValue);}}
+labelSpanLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanL(newValue);}}
+labelSpanMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanM(newValue);}}
+labelSpanSChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanS(newValue);}}
+adjustLabelSpanChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setAdjustLabelSpan(getBooleanFromAttributeValue(newValue));}}
+emptySpanXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanXL(newValue);}}
+emptySpanLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanL(newValue);}}
+emptySpanMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanM(newValue);}}
+emptySpanSChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanS(newValue);}}
+columnsXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsXL(newValue);}}
+columnsLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsL(newValue);}}
+columnsMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsM(newValue);}}
+singleContainerFullSizeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setSingleContainerFullSize(getBooleanFromAttributeValue(newValue));}}
+breakpointXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointXL(newValue);}}
+breakpointLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointL(newValue);}}
+breakpointMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointM(newValue);}}
+backgroundDesignChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBackgroundDesign(newValue);}}
+/* inherited from sap.ui.layout.form.FormLayout*/
+busyChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
 @customElement('ui5-responsive-popover')
 @inject(Element)
 export class Ui5ResponsivePopover extends Ui5Control{
@@ -10161,201 +11273,6 @@ modelContextChangeChanged(newValue){if(this._responsivepopover!==null){ this._re
 
 
                                                                                 }
-@customElement('ui5-responsive-grid-layout')
-@inject(Element)
-export class Ui5ResponsiveGridLayout extends Ui5FormLayout{
-        _responsivegridlayout = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() labelSpanXL = -1;
-@bindable() labelSpanL = 4;
-@bindable() labelSpanM = 2;
-@bindable() labelSpanS = 12;
-@bindable() adjustLabelSpan = true;
-@bindable() emptySpanXL = -1;
-@bindable() emptySpanL = 0;
-@bindable() emptySpanM = 0;
-@bindable() emptySpanS = 0;
-@bindable() columnsXL = -1;
-@bindable() columnsL = 2;
-@bindable() columnsM = 1;
-@bindable() singleContainerFullSize = true;
-@bindable() breakpointXL = 1440;
-@bindable() breakpointL = 1024;
-@bindable() breakpointM = 600;
-/* inherited from sap.ui.layout.form.FormLayout*/
-@bindable() backgroundDesign = 'Translucent';
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_responsivegridlayout')
-        get UIElement() {
-            return this._responsivegridlayout;
-          }
-        fillProperties(params){
-                                        params.labelSpanXL = this.labelSpanXL?parseInt(this.labelSpanXL):0;
-params.labelSpanL = this.labelSpanL?parseInt(this.labelSpanL):0;
-params.labelSpanM = this.labelSpanM?parseInt(this.labelSpanM):0;
-params.labelSpanS = this.labelSpanS?parseInt(this.labelSpanS):0;
-params.adjustLabelSpan = getBooleanFromAttributeValue(this.adjustLabelSpan);
-params.emptySpanXL = this.emptySpanXL?parseInt(this.emptySpanXL):0;
-params.emptySpanL = this.emptySpanL?parseInt(this.emptySpanL):0;
-params.emptySpanM = this.emptySpanM?parseInt(this.emptySpanM):0;
-params.emptySpanS = this.emptySpanS?parseInt(this.emptySpanS):0;
-params.columnsXL = this.columnsXL?parseInt(this.columnsXL):0;
-params.columnsL = this.columnsL?parseInt(this.columnsL):0;
-params.columnsM = this.columnsM?parseInt(this.columnsM):0;
-params.singleContainerFullSize = getBooleanFromAttributeValue(this.singleContainerFullSize);
-params.breakpointXL = this.breakpointXL?parseInt(this.breakpointXL):0;
-params.breakpointL = this.breakpointL?parseInt(this.breakpointL):0;
-params.breakpointM = this.breakpointM?parseInt(this.breakpointM):0;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._responsivegridlayout = new sap.ui.layout.form.ResponsiveGridLayout(this.ui5Id, params);
-                                              else
-          this._responsivegridlayout = new sap.ui.layout.form.ResponsiveGridLayout(params);
-                                                  if(this.ui5Class)
-           this._responsivegridlayout.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._responsivegridlayout.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._responsivegridlayout.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._responsivegridlayout, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._responsivegridlayout, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._responsivegridlayout.placeAt)
-                                                                this._responsivegridlayout.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._responsivegridlayout.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._responsivegridlayout)
-                                                                this._parent.removeChildByRelation(this._responsivegridlayout, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._responsivegridlayout.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._responsivegridlayout.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivegridlayout.insertCustomData(child, _index); else this._responsivegridlayout.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._responsivegridlayout.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivegridlayout.insertDependent(child, _index); else this._responsivegridlayout.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._responsivegridlayout.destroyTooltip(child); }
-if (relation == 'customdata') {  this._responsivegridlayout.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._responsivegridlayout.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._responsivegridlayout.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    labelSpanXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanXL(newValue);}}
-labelSpanLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanL(newValue);}}
-labelSpanMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanM(newValue);}}
-labelSpanSChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanS(newValue);}}
-adjustLabelSpanChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setAdjustLabelSpan(getBooleanFromAttributeValue(newValue));}}
-emptySpanXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanXL(newValue);}}
-emptySpanLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanL(newValue);}}
-emptySpanMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanM(newValue);}}
-emptySpanSChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanS(newValue);}}
-columnsXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsXL(newValue);}}
-columnsLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsL(newValue);}}
-columnsMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsM(newValue);}}
-singleContainerFullSizeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setSingleContainerFullSize(getBooleanFromAttributeValue(newValue));}}
-breakpointXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointXL(newValue);}}
-breakpointLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointL(newValue);}}
-breakpointMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointM(newValue);}}
-backgroundDesignChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBackgroundDesign(newValue);}}
-/* inherited from sap.ui.layout.form.FormLayout*/
-busyChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
 @customElement('ui5-responsive-splitter')
 @inject(Element)
 export class Ui5ResponsiveSplitter extends Ui5Control{
@@ -10502,6 +11419,166 @@ validationErrorChanged(newValue){if(this._responsivesplitter!==null){ this._resp
 parseErrorChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-segmented-button')
+@inject(Element)
+export class Ui5SegmentedButton extends Ui5Control{
+        _segmentedbutton = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() width = null;
+@bindable() enabled = true;
+@bindable() selectedKey = '';
+@bindable() selectionChange = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_segmentedbutton')
+        get UIElement() {
+            return this._segmentedbutton;
+          }
+        fillProperties(params){
+                                        params.width = this.width;
+params.enabled = getBooleanFromAttributeValue(this.enabled);
+params.selectedKey = this.selectedKey;
+params.selectionChange = this.selectionChange==null ? this.defaultFunc: this.selectionChange;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._segmentedbutton = new sap.m.SegmentedButton(this.ui5Id, params);
+                                              else
+          this._segmentedbutton = new sap.m.SegmentedButton(params);
+                                                  if(this.ui5Class)
+           this._segmentedbutton.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._segmentedbutton.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._segmentedbutton.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._segmentedbutton, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._segmentedbutton, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._segmentedbutton.placeAt)
+                                                                this._segmentedbutton.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        this._segmentedbutton.attachSelect((event) => { that.selectedKey = event.mParameters.key;; });
+
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._segmentedbutton.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._segmentedbutton)
+                                                                this._parent.removeChildByRelation(this._segmentedbutton, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._segmentedbutton.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'buttons') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertButton(child, _index); else this._segmentedbutton.addButton(child, 0);  return elem.localName; }
+if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertItem(child, _index); else this._segmentedbutton.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._segmentedbutton.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertCustomData(child, _index); else this._segmentedbutton.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._segmentedbutton.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertDependent(child, _index); else this._segmentedbutton.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'buttons') {  this._segmentedbutton.removeButton(child);}
+if (relation == 'items') {  this._segmentedbutton.removeItem(child);}
+if (relation == 'tooltip') {  this._segmentedbutton.destroyTooltip(child); }
+if (relation == 'customdata') {  this._segmentedbutton.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._segmentedbutton.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._segmentedbutton.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    widthChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setWidth(newValue);}}
+enabledChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setEnabled(getBooleanFromAttributeValue(newValue));}}
+selectedKeyChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setSelectedKey(newValue);}}
+selectionChangeChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachSelectionChange(newValue);}}
+busyChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -10687,495 +11764,6 @@ validationErrorChanged(newValue){if(this._searchfield!==null){ this._searchfield
 parseErrorChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-segmented-button')
-@inject(Element)
-export class Ui5SegmentedButton extends Ui5Control{
-        _segmentedbutton = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() width = null;
-@bindable() enabled = true;
-@bindable() selectedKey = '';
-@bindable() selectionChange = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_segmentedbutton')
-        get UIElement() {
-            return this._segmentedbutton;
-          }
-        fillProperties(params){
-                                        params.width = this.width;
-params.enabled = getBooleanFromAttributeValue(this.enabled);
-params.selectedKey = this.selectedKey;
-params.selectionChange = this.selectionChange==null ? this.defaultFunc: this.selectionChange;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._segmentedbutton = new sap.m.SegmentedButton(this.ui5Id, params);
-                                              else
-          this._segmentedbutton = new sap.m.SegmentedButton(params);
-                                                  if(this.ui5Class)
-           this._segmentedbutton.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._segmentedbutton.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._segmentedbutton.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._segmentedbutton, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._segmentedbutton, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._segmentedbutton.placeAt)
-                                                                this._segmentedbutton.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        this._segmentedbutton.attachSelect((event) => { that.selectedKey = event.mParameters.key;; });
-
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._segmentedbutton.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._segmentedbutton)
-                                                                this._parent.removeChildByRelation(this._segmentedbutton, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._segmentedbutton.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'buttons') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertButton(child, _index); else this._segmentedbutton.addButton(child, 0);  return elem.localName; }
-if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertItem(child, _index); else this._segmentedbutton.addItem(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._segmentedbutton.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertCustomData(child, _index); else this._segmentedbutton.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._segmentedbutton.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertDependent(child, _index); else this._segmentedbutton.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'buttons') {  this._segmentedbutton.removeButton(child);}
-if (relation == 'items') {  this._segmentedbutton.removeItem(child);}
-if (relation == 'tooltip') {  this._segmentedbutton.destroyTooltip(child); }
-if (relation == 'customdata') {  this._segmentedbutton.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._segmentedbutton.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._segmentedbutton.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    widthChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setWidth(newValue);}}
-enabledChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setEnabled(getBooleanFromAttributeValue(newValue));}}
-selectedKeyChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setSelectedKey(newValue);}}
-selectionChangeChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachSelectionChange(newValue);}}
-busyChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-segmented-button-item')
-@inject(Element)
-export class Ui5SegmentedButtonItem extends Ui5Item{
-        _segmentedbuttonitem = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() icon = null;
-@bindable() visible = true;
-@bindable() width = null;
-@bindable() press = this.defaultFunc;
-/* inherited from sap.ui.core.Item*/
-@bindable() text = '';
-@bindable() enabled = true;
-@bindable() textDirection = 'Inherit';
-@bindable() key = null;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_segmentedbuttonitem')
-        get UIElement() {
-            return this._segmentedbuttonitem;
-          }
-        fillProperties(params){
-                                        params.icon = this.icon;
-params.visible = getBooleanFromAttributeValue(this.visible);
-params.width = this.width;
-params.press = this.press==null ? this.defaultFunc: this.press;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(this.ui5Id, params);
-                                              else
-          this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(params);
-                                                  if(this.ui5Class)
-           this._segmentedbuttonitem.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._segmentedbuttonitem.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._segmentedbuttonitem.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._segmentedbuttonitem, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._segmentedbuttonitem, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._segmentedbuttonitem.placeAt)
-                                                                this._segmentedbuttonitem.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._segmentedbuttonitem.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._segmentedbuttonitem)
-                                                                this._parent.removeChildByRelation(this._segmentedbuttonitem, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._segmentedbuttonitem.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._segmentedbuttonitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbuttonitem.insertCustomData(child, _index); else this._segmentedbuttonitem.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._segmentedbuttonitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbuttonitem.insertDependent(child, _index); else this._segmentedbuttonitem.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._segmentedbuttonitem.destroyTooltip(child); }
-if (relation == 'customdata') {  this._segmentedbuttonitem.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._segmentedbuttonitem.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._segmentedbuttonitem.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    iconChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setIcon(newValue);}}
-visibleChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-widthChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setWidth(newValue);}}
-pressChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachPress(newValue);}}
-textChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setText(newValue);}}
-enabledChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
-textDirectionChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setTextDirection(newValue);}}
-keyChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setKey(newValue);}}
-/* inherited from sap.ui.core.Item*/
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-select-dialog')
-@inject(Element)
-export class Ui5SelectDialog extends Ui5Control{
-        _selectdialog = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() title = null;
-@bindable() noDataText = null;
-@bindable() multiSelect = false;
-@bindable() growingThreshold = null;
-@bindable() contentWidth = null;
-@bindable() rememberSelections = false;
-@bindable() contentHeight = null;
-@bindable() confirm = this.defaultFunc;
-@bindable() search = this.defaultFunc;
-@bindable() liveChange = this.defaultFunc;
-@bindable() cancel = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_selectdialog')
-        get UIElement() {
-            return this._selectdialog;
-          }
-        fillProperties(params){
-                                        params.title = this.title;
-params.noDataText = this.noDataText;
-params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
-params.growingThreshold = this.growingThreshold?parseInt(this.growingThreshold):0;
-params.contentWidth = this.contentWidth;
-params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
-params.contentHeight = this.contentHeight;
-params.confirm = this.confirm==null ? this.defaultFunc: this.confirm;
-params.search = this.search==null ? this.defaultFunc: this.search;
-params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
-params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._selectdialog = new sap.m.SelectDialog(this.ui5Id, params);
-                                              else
-          this._selectdialog = new sap.m.SelectDialog(params);
-                                                  if(this.ui5Class)
-           this._selectdialog.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._selectdialog.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._selectdialog.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._selectdialog, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._selectdialog, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._selectdialog.placeAt)
-                                                                this._selectdialog.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._selectdialog.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._selectdialog)
-                                                                this._parent.removeChildByRelation(this._selectdialog, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._selectdialog.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._selectdialog.insertItem(child, _index); else this._selectdialog.addItem(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._selectdialog.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._selectdialog.insertCustomData(child, _index); else this._selectdialog.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._selectdialog.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._selectdialog.insertDependent(child, _index); else this._selectdialog.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'items') {  this._selectdialog.removeItem(child);}
-if (relation == 'tooltip') {  this._selectdialog.destroyTooltip(child); }
-if (relation == 'customdata') {  this._selectdialog.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._selectdialog.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._selectdialog.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    titleChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setTitle(newValue);}}
-noDataTextChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setNoDataText(newValue);}}
-multiSelectChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
-growingThresholdChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setGrowingThreshold(newValue);}}
-contentWidthChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setContentWidth(newValue);}}
-rememberSelectionsChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
-contentHeightChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setContentHeight(newValue);}}
-confirmChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachConfirm(newValue);}}
-searchChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachSearch(newValue);}}
-liveChangeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachLiveChange(newValue);}}
-cancelChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachCancel(newValue);}}
-busyChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -11375,208 +11963,25 @@ modelContextChangeChanged(newValue){if(this._select!==null){ this._select.attach
 
 
                                                                                 }
-@customElement('ui5-shell')
+@customElement('ui5-segmented-button-item')
 @inject(Element)
-export class Ui5Shell extends Ui5Control{
-        _shell = null;
+export class Ui5SegmentedButtonItem extends Ui5Item{
+        _segmentedbuttonitem = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() title = null;
-@bindable() logo = null;
-@bindable() showLogout = true;
-@bindable() headerRightText = null;
-@bindable() appWidthLimited = true;
-@bindable() backgroundColor = null;
-@bindable() backgroundImage = null;
-@bindable() backgroundRepeat = false;
-@bindable() backgroundOpacity = 1;
-@bindable() homeIcon = null;
-@bindable() titleLevel = 'H1';
-@bindable() logout = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
+        @bindable() icon = null;
 @bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_shell')
-        get UIElement() {
-            return this._shell;
-          }
-        fillProperties(params){
-                                        params.title = this.title;
-params.logo = this.logo;
-params.showLogout = getBooleanFromAttributeValue(this.showLogout);
-params.headerRightText = this.headerRightText;
-params.appWidthLimited = getBooleanFromAttributeValue(this.appWidthLimited);
-params.backgroundColor = this.backgroundColor;
-params.backgroundImage = this.backgroundImage;
-params.backgroundRepeat = getBooleanFromAttributeValue(this.backgroundRepeat);
-params.backgroundOpacity = this.backgroundOpacity;
-params.homeIcon = this.homeIcon;
-params.titleLevel = this.titleLevel;
-params.logout = this.logout==null ? this.defaultFunc: this.logout;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._shell = new sap.m.Shell(this.ui5Id, params);
-                                              else
-          this._shell = new sap.m.Shell(params);
-                                                  if(this.ui5Class)
-           this._shell.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._shell.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._shell.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._shell, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._shell, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._shell.placeAt)
-                                                                this._shell.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._shell.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._shell)
-                                                                this._parent.removeChildByRelation(this._shell, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._shell.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'content') { this._shell.setApp(child); return elem.localName;}
-if (elem.localName == 'tooltip') { this._shell.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._shell.insertCustomData(child, _index); else this._shell.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._shell.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._shell.insertDependent(child, _index); else this._shell.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'content') {  this._shell.destroyApp(child); }
-if (relation == 'tooltip') {  this._shell.destroyTooltip(child); }
-if (relation == 'customdata') {  this._shell.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._shell.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._shell.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    titleChanged(newValue){if(this._shell!==null){ this._shell.setTitle(newValue);}}
-logoChanged(newValue){if(this._shell!==null){ this._shell.setLogo(newValue);}}
-showLogoutChanged(newValue){if(this._shell!==null){ this._shell.setShowLogout(getBooleanFromAttributeValue(newValue));}}
-headerRightTextChanged(newValue){if(this._shell!==null){ this._shell.setHeaderRightText(newValue);}}
-appWidthLimitedChanged(newValue){if(this._shell!==null){ this._shell.setAppWidthLimited(getBooleanFromAttributeValue(newValue));}}
-backgroundColorChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundColor(newValue);}}
-backgroundImageChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundImage(newValue);}}
-backgroundRepeatChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundRepeat(getBooleanFromAttributeValue(newValue));}}
-backgroundOpacityChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundOpacity(newValue);}}
-homeIconChanged(newValue){if(this._shell!==null){ this._shell.setHomeIcon(newValue);}}
-titleLevelChanged(newValue){if(this._shell!==null){ this._shell.setTitleLevel(newValue);}}
-logoutChanged(newValue){if(this._shell!==null){ this._shell.attachLogout(newValue);}}
-busyChanged(newValue){if(this._shell!==null){ this._shell.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._shell!==null){ this._shell.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._shell!==null){ this._shell.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._shell!==null){ this._shell.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._shell!==null){ this._shell.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._shell!==null){ this._shell.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._shell!==null){ this._shell.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._shell!==null){ this._shell.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._shell!==null){ this._shell.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-slide-tile')
-@inject(Element)
-export class Ui5SlideTile extends Ui5Control{
-        _slidetile = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() displayTime = 5000;
-@bindable() transitionTime = 500;
-@bindable() scope = 'Display';
+@bindable() width = null;
 @bindable() press = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Item*/
+@bindable() text = '';
+@bindable() enabled = true;
+@bindable() textDirection = 'Inherit';
+@bindable() key = null;
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
 @bindable() validationSuccess = this.defaultFunc;
@@ -11592,14 +11997,14 @@ export class Ui5SlideTile extends Ui5Control{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_slidetile')
+        @computedFrom('_segmentedbuttonitem')
         get UIElement() {
-            return this._slidetile;
+            return this._segmentedbuttonitem;
           }
         fillProperties(params){
-                                        params.displayTime = this.displayTime?parseInt(this.displayTime):0;
-params.transitionTime = this.transitionTime?parseInt(this.transitionTime):0;
-params.scope = this.scope;
+                                        params.icon = this.icon;
+params.visible = getBooleanFromAttributeValue(this.visible);
+params.width = this.width;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
                                             super.fillProperties(params);   
@@ -11611,33 +12016,33 @@ params.press = this.press==null ? this.defaultFunc: this.press;
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._slidetile = new sap.m.SlideTile(this.ui5Id, params);
+          this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(this.ui5Id, params);
                                               else
-          this._slidetile = new sap.m.SlideTile(params);
+          this._segmentedbuttonitem = new sap.m.SegmentedButtonItem(params);
                                                   if(this.ui5Class)
-           this._slidetile.addStyleClass(this.ui5Class);
+           this._segmentedbuttonitem.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._slidetile.setTooltip(this.ui5Tooltip);                                             
+           this._segmentedbuttonitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._slidetile.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._segmentedbuttonitem.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._slidetile, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._segmentedbuttonitem, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._slidetile, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._segmentedbuttonitem, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._slidetile.placeAt)
-                                                                this._slidetile.placeAt(this.element.parentElement);
+                                                            if(this._segmentedbuttonitem.placeAt)
+                                                                this._segmentedbuttonitem.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -11645,7 +12050,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._slidetile.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._segmentedbuttonitem.sId});
                                                                            
            
         }
@@ -11653,12 +12058,12 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._slidetile)
-                                                                this._parent.removeChildByRelation(this._slidetile, this._relation);
+                                                                 if(this._segmentedbuttonitem)
+                                                                this._parent.removeChildByRelation(this._segmentedbuttonitem, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._slidetile.destroy();
+                                                                this._segmentedbuttonitem.destroy();
                                                             }
          super.detached();
           }
@@ -11669,11 +12074,10 @@ params.press = this.press==null ? this.defaultFunc: this.press;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'tiles') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._slidetile.insertTile(child, _index); else this._slidetile.addTile(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._slidetile.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._slidetile.insertCustomData(child, _index); else this._slidetile.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._slidetile.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._slidetile.insertDependent(child, _index); else this._slidetile.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'tooltip') { this._segmentedbuttonitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbuttonitem.insertCustomData(child, _index); else this._segmentedbuttonitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._segmentedbuttonitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbuttonitem.insertDependent(child, _index); else this._segmentedbuttonitem.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -11681,33 +12085,367 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'tiles') {  this._slidetile.removeTile(child);}
-if (relation == 'tooltip') {  this._slidetile.destroyTooltip(child); }
-if (relation == 'customdata') {  this._slidetile.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._slidetile.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._slidetile.removeDependent(child);}
+               if (relation == 'tooltip') {  this._segmentedbuttonitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._segmentedbuttonitem.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._segmentedbuttonitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._segmentedbuttonitem.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    displayTimeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setDisplayTime(newValue);}}
-transitionTimeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setTransitionTime(newValue);}}
-scopeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setScope(newValue);}}
-pressChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachPress(newValue);}}
-busyChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._slidetile!==null){ this._slidetile.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._slidetile!==null){ this._slidetile.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachValidateFieldGroup(newValue);}}
+    iconChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setIcon(newValue);}}
+visibleChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+widthChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setWidth(newValue);}}
+pressChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachPress(newValue);}}
+textChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setText(newValue);}}
+enabledChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
+textDirectionChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setTextDirection(newValue);}}
+keyChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.setKey(newValue);}}
+/* inherited from sap.ui.core.Item*/
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._segmentedbuttonitem!==null){ this._segmentedbuttonitem.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-menu-item')
+@inject(Element)
+export class Ui5MenuItem extends Ui5Item{
+        _menuitem = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() icon = null;
+@bindable() visible = true;
+@bindable() startsSection = false;
+@bindable() press = this.defaultFunc;
+@bindable() propertyChanged = this.defaultFunc;
+@bindable() aggregationChanged = this.defaultFunc;
+/* inherited from sap.ui.core.Item*/
+@bindable() text = '';
+@bindable() enabled = true;
+@bindable() textDirection = 'Inherit';
+@bindable() key = null;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_menuitem')
+        get UIElement() {
+            return this._menuitem;
+          }
+        fillProperties(params){
+                                        params.icon = this.icon;
+params.visible = getBooleanFromAttributeValue(this.visible);
+params.startsSection = getBooleanFromAttributeValue(this.startsSection);
+params.press = this.press==null ? this.defaultFunc: this.press;
+params.propertyChanged = this.propertyChanged==null ? this.defaultFunc: this.propertyChanged;
+params.aggregationChanged = this.aggregationChanged==null ? this.defaultFunc: this.aggregationChanged;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._menuitem = new sap.m.MenuItem(this.ui5Id, params);
+                                              else
+          this._menuitem = new sap.m.MenuItem(params);
+                                                  if(this.ui5Class)
+           this._menuitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._menuitem.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._menuitem.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._menuitem, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._menuitem, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._menuitem.placeAt)
+                                                                this._menuitem.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._menuitem.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._menuitem)
+                                                                this._parent.removeChildByRelation(this._menuitem, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._menuitem.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menuitem.insertItem(child, _index); else this._menuitem.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._menuitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menuitem.insertCustomData(child, _index); else this._menuitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._menuitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menuitem.insertDependent(child, _index); else this._menuitem.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'items') {  this._menuitem.removeItem(child);}
+if (relation == 'tooltip') {  this._menuitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._menuitem.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._menuitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._menuitem.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    iconChanged(newValue){if(this._menuitem!==null){ this._menuitem.setIcon(newValue);}}
+visibleChanged(newValue){if(this._menuitem!==null){ this._menuitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+startsSectionChanged(newValue){if(this._menuitem!==null){ this._menuitem.setStartsSection(getBooleanFromAttributeValue(newValue));}}
+pressChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachPress(newValue);}}
+propertyChangedChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachPropertyChanged(newValue);}}
+aggregationChangedChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachAggregationChanged(newValue);}}
+textChanged(newValue){if(this._menuitem!==null){ this._menuitem.setText(newValue);}}
+enabledChanged(newValue){if(this._menuitem!==null){ this._menuitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
+textDirectionChanged(newValue){if(this._menuitem!==null){ this._menuitem.setTextDirection(newValue);}}
+keyChanged(newValue){if(this._menuitem!==null){ this._menuitem.setKey(newValue);}}
+/* inherited from sap.ui.core.Item*/
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._menuitem!==null){ this._menuitem.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-select-dialog')
+@inject(Element)
+export class Ui5SelectDialog extends Ui5Control{
+        _selectdialog = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() title = null;
+@bindable() noDataText = null;
+@bindable() multiSelect = false;
+@bindable() growingThreshold = null;
+@bindable() contentWidth = null;
+@bindable() rememberSelections = false;
+@bindable() contentHeight = null;
+@bindable() confirm = this.defaultFunc;
+@bindable() search = this.defaultFunc;
+@bindable() liveChange = this.defaultFunc;
+@bindable() cancel = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_selectdialog')
+        get UIElement() {
+            return this._selectdialog;
+          }
+        fillProperties(params){
+                                        params.title = this.title;
+params.noDataText = this.noDataText;
+params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
+params.growingThreshold = this.growingThreshold?parseInt(this.growingThreshold):0;
+params.contentWidth = this.contentWidth;
+params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
+params.contentHeight = this.contentHeight;
+params.confirm = this.confirm==null ? this.defaultFunc: this.confirm;
+params.search = this.search==null ? this.defaultFunc: this.search;
+params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
+params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._selectdialog = new sap.m.SelectDialog(this.ui5Id, params);
+                                              else
+          this._selectdialog = new sap.m.SelectDialog(params);
+                                                  if(this.ui5Class)
+           this._selectdialog.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._selectdialog.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._selectdialog.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._selectdialog, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._selectdialog, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._selectdialog.placeAt)
+                                                                this._selectdialog.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._selectdialog.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._selectdialog)
+                                                                this._parent.removeChildByRelation(this._selectdialog, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._selectdialog.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._selectdialog.insertItem(child, _index); else this._selectdialog.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._selectdialog.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._selectdialog.insertCustomData(child, _index); else this._selectdialog.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._selectdialog.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._selectdialog.insertDependent(child, _index); else this._selectdialog.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'items') {  this._selectdialog.removeItem(child);}
+if (relation == 'tooltip') {  this._selectdialog.destroyTooltip(child); }
+if (relation == 'customdata') {  this._selectdialog.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._selectdialog.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._selectdialog.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    titleChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setTitle(newValue);}}
+noDataTextChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setNoDataText(newValue);}}
+multiSelectChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
+growingThresholdChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setGrowingThreshold(newValue);}}
+contentWidthChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setContentWidth(newValue);}}
+rememberSelectionsChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
+contentHeightChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setContentHeight(newValue);}}
+confirmChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachConfirm(newValue);}}
+searchChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachSearch(newValue);}}
+liveChangeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachLiveChange(newValue);}}
+cancelChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachCancel(newValue);}}
+busyChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -11931,6 +12669,344 @@ modelContextChangeChanged(newValue){if(this._simpleform!==null){ this._simplefor
 
 
                                                                                 }
+@customElement('ui5-slide-tile')
+@inject(Element)
+export class Ui5SlideTile extends Ui5Control{
+        _slidetile = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() displayTime = 5000;
+@bindable() transitionTime = 500;
+@bindable() scope = 'Display';
+@bindable() press = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_slidetile')
+        get UIElement() {
+            return this._slidetile;
+          }
+        fillProperties(params){
+                                        params.displayTime = this.displayTime?parseInt(this.displayTime):0;
+params.transitionTime = this.transitionTime?parseInt(this.transitionTime):0;
+params.scope = this.scope;
+params.press = this.press==null ? this.defaultFunc: this.press;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._slidetile = new sap.m.SlideTile(this.ui5Id, params);
+                                              else
+          this._slidetile = new sap.m.SlideTile(params);
+                                                  if(this.ui5Class)
+           this._slidetile.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._slidetile.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._slidetile.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._slidetile, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._slidetile, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._slidetile.placeAt)
+                                                                this._slidetile.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._slidetile.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._slidetile)
+                                                                this._parent.removeChildByRelation(this._slidetile, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._slidetile.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tiles') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._slidetile.insertTile(child, _index); else this._slidetile.addTile(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._slidetile.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._slidetile.insertCustomData(child, _index); else this._slidetile.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._slidetile.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._slidetile.insertDependent(child, _index); else this._slidetile.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tiles') {  this._slidetile.removeTile(child);}
+if (relation == 'tooltip') {  this._slidetile.destroyTooltip(child); }
+if (relation == 'customdata') {  this._slidetile.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._slidetile.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._slidetile.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    displayTimeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setDisplayTime(newValue);}}
+transitionTimeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setTransitionTime(newValue);}}
+scopeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setScope(newValue);}}
+pressChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachPress(newValue);}}
+busyChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._slidetile!==null){ this._slidetile.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._slidetile!==null){ this._slidetile.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-shell')
+@inject(Element)
+export class Ui5Shell extends Ui5Control{
+        _shell = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() title = null;
+@bindable() logo = null;
+@bindable() showLogout = true;
+@bindable() headerRightText = null;
+@bindable() appWidthLimited = true;
+@bindable() backgroundColor = null;
+@bindable() backgroundImage = null;
+@bindable() backgroundRepeat = false;
+@bindable() backgroundOpacity = 1;
+@bindable() homeIcon = null;
+@bindable() titleLevel = 'H1';
+@bindable() logout = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_shell')
+        get UIElement() {
+            return this._shell;
+          }
+        fillProperties(params){
+                                        params.title = this.title;
+params.logo = this.logo;
+params.showLogout = getBooleanFromAttributeValue(this.showLogout);
+params.headerRightText = this.headerRightText;
+params.appWidthLimited = getBooleanFromAttributeValue(this.appWidthLimited);
+params.backgroundColor = this.backgroundColor;
+params.backgroundImage = this.backgroundImage;
+params.backgroundRepeat = getBooleanFromAttributeValue(this.backgroundRepeat);
+params.backgroundOpacity = this.backgroundOpacity;
+params.homeIcon = this.homeIcon;
+params.titleLevel = this.titleLevel;
+params.logout = this.logout==null ? this.defaultFunc: this.logout;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._shell = new sap.m.Shell(this.ui5Id, params);
+                                              else
+          this._shell = new sap.m.Shell(params);
+                                                  if(this.ui5Class)
+           this._shell.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._shell.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._shell.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._shell, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._shell, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._shell.placeAt)
+                                                                this._shell.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._shell.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._shell)
+                                                                this._parent.removeChildByRelation(this._shell, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._shell.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'content') { this._shell.setApp(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._shell.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._shell.insertCustomData(child, _index); else this._shell.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._shell.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._shell.insertDependent(child, _index); else this._shell.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'content') {  this._shell.destroyApp(child); }
+if (relation == 'tooltip') {  this._shell.destroyTooltip(child); }
+if (relation == 'customdata') {  this._shell.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._shell.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._shell.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    titleChanged(newValue){if(this._shell!==null){ this._shell.setTitle(newValue);}}
+logoChanged(newValue){if(this._shell!==null){ this._shell.setLogo(newValue);}}
+showLogoutChanged(newValue){if(this._shell!==null){ this._shell.setShowLogout(getBooleanFromAttributeValue(newValue));}}
+headerRightTextChanged(newValue){if(this._shell!==null){ this._shell.setHeaderRightText(newValue);}}
+appWidthLimitedChanged(newValue){if(this._shell!==null){ this._shell.setAppWidthLimited(getBooleanFromAttributeValue(newValue));}}
+backgroundColorChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundColor(newValue);}}
+backgroundImageChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundImage(newValue);}}
+backgroundRepeatChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundRepeat(getBooleanFromAttributeValue(newValue));}}
+backgroundOpacityChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundOpacity(newValue);}}
+homeIconChanged(newValue){if(this._shell!==null){ this._shell.setHomeIcon(newValue);}}
+titleLevelChanged(newValue){if(this._shell!==null){ this._shell.setTitleLevel(newValue);}}
+logoutChanged(newValue){if(this._shell!==null){ this._shell.attachLogout(newValue);}}
+busyChanged(newValue){if(this._shell!==null){ this._shell.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._shell!==null){ this._shell.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._shell!==null){ this._shell.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._shell!==null){ this._shell.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._shell!==null){ this._shell.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._shell!==null){ this._shell.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._shell!==null){ this._shell.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._shell!==null){ this._shell.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._shell!==null){ this._shell.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
 @customElement('ui5-split-container')
 @inject(Element)
 export class Ui5SplitContainer extends Ui5Control{
@@ -12132,279 +13208,6 @@ modelContextChangeChanged(newValue){if(this._splitcontainer!==null){ this._split
 
 
                                                                                 }
-@customElement('ui5-form-element')
-@inject(Element)
-export class Ui5FormElement extends Ui5Element{
-        _formelement = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() visible = true;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_formelement')
-        get UIElement() {
-            return this._formelement;
-          }
-        fillProperties(params){
-                                        params.visible = getBooleanFromAttributeValue(this.visible);
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._formelement = new sap.ui.layout.form.FormElement(this.ui5Id, params);
-                                              else
-          this._formelement = new sap.ui.layout.form.FormElement(params);
-                                                  if(this.ui5Class)
-           this._formelement.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._formelement.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._formelement.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._formelement, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._formelement, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._formelement.placeAt)
-                                                                this._formelement.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._formelement.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._formelement)
-                                                                this._parent.removeChildByRelation(this._formelement, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._formelement.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'label') { this._formelement.setLabel(child); return elem.localName;}
-if (elem.localName == 'fields') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formelement.insertField(child, _index); else this._formelement.addField(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._formelement.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formelement.insertCustomData(child, _index); else this._formelement.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._formelement.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formelement.insertDependent(child, _index); else this._formelement.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'label') {  this._formelement.destroyLabel(child); }
-if (relation == 'fields') {  this._formelement.removeField(child);}
-if (relation == 'tooltip') {  this._formelement.destroyTooltip(child); }
-if (relation == 'customdata') {  this._formelement.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._formelement.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._formelement.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    visibleChanged(newValue){if(this._formelement!==null){ this._formelement.setVisible(getBooleanFromAttributeValue(newValue));}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._formelement!==null){ this._formelement.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._formelement!==null){ this._formelement.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._formelement!==null){ this._formelement.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._formelement!==null){ this._formelement.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._formelement!==null){ this._formelement.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-split-pane')
-@inject(Element)
-export class Ui5SplitPane extends Ui5Element{
-        _splitpane = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() demandPane = true;
-@bindable() requiredParentWidth = 800;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_splitpane')
-        get UIElement() {
-            return this._splitpane;
-          }
-        fillProperties(params){
-                                        params.demandPane = getBooleanFromAttributeValue(this.demandPane);
-params.requiredParentWidth = this.requiredParentWidth?parseInt(this.requiredParentWidth):0;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._splitpane = new sap.ui.layout.SplitPane(this.ui5Id, params);
-                                              else
-          this._splitpane = new sap.ui.layout.SplitPane(params);
-                                                  if(this.ui5Class)
-           this._splitpane.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._splitpane.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._splitpane.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._splitpane, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._splitpane, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._splitpane.placeAt)
-                                                                this._splitpane.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._splitpane.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._splitpane)
-                                                                this._parent.removeChildByRelation(this._splitpane, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._splitpane.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'content') { this._splitpane.setContent(child); return elem.localName;}
-if (elem.localName == 'tooltip') { this._splitpane.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitpane.insertCustomData(child, _index); else this._splitpane.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._splitpane.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitpane.insertDependent(child, _index); else this._splitpane.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'content') {  this._splitpane.destroyContent(child); }
-if (relation == 'tooltip') {  this._splitpane.destroyTooltip(child); }
-if (relation == 'customdata') {  this._splitpane.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._splitpane.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._splitpane.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    demandPaneChanged(newValue){if(this._splitpane!==null){ this._splitpane.setDemandPane(getBooleanFromAttributeValue(newValue));}}
-requiredParentWidthChanged(newValue){if(this._splitpane!==null){ this._splitpane.setRequiredParentWidth(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
 @customElement('ui5-splitter')
 @inject(Element)
 export class Ui5Splitter extends Ui5Control{
@@ -12562,10 +13365,147 @@ modelContextChangeChanged(newValue){if(this._splitter!==null){ this._splitter.at
 
 
                                                                                 }
-@customElement('ui5-standard-tile')
+@customElement('ui5-split-pane')
 @inject(Element)
-export class Ui5StandardTile extends Ui5Tile{
-        _standardtile = null;
+export class Ui5SplitPane extends Ui5Element{
+        _splitpane = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() demandPane = true;
+@bindable() requiredParentWidth = 800;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_splitpane')
+        get UIElement() {
+            return this._splitpane;
+          }
+        fillProperties(params){
+                                        params.demandPane = getBooleanFromAttributeValue(this.demandPane);
+params.requiredParentWidth = this.requiredParentWidth?parseInt(this.requiredParentWidth):0;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._splitpane = new sap.ui.layout.SplitPane(this.ui5Id, params);
+                                              else
+          this._splitpane = new sap.ui.layout.SplitPane(params);
+                                                  if(this.ui5Class)
+           this._splitpane.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._splitpane.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._splitpane.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._splitpane, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._splitpane, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._splitpane.placeAt)
+                                                                this._splitpane.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._splitpane.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._splitpane)
+                                                                this._parent.removeChildByRelation(this._splitpane, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._splitpane.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'content') { this._splitpane.setContent(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._splitpane.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitpane.insertCustomData(child, _index); else this._splitpane.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._splitpane.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitpane.insertDependent(child, _index); else this._splitpane.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'content') {  this._splitpane.destroyContent(child); }
+if (relation == 'tooltip') {  this._splitpane.destroyTooltip(child); }
+if (relation == 'customdata') {  this._splitpane.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._splitpane.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._splitpane.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    demandPaneChanged(newValue){if(this._splitpane!==null){ this._splitpane.setDemandPane(getBooleanFromAttributeValue(newValue));}}
+requiredParentWidthChanged(newValue){if(this._splitpane!==null){ this._splitpane.setRequiredParentWidth(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-standard-list-item')
+@inject(Element)
+export class Ui5StandardListItem extends Ui5ListItemBase{
+        _standardlistitem = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
@@ -12573,17 +13513,25 @@ export class Ui5StandardTile extends Ui5Tile{
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() title = null;
-@bindable() info = null;
+@bindable() description = null;
 @bindable() icon = null;
-@bindable() activeIcon = null;
-@bindable() number = null;
-@bindable() numberUnit = null;
-@bindable() infoState = 'None';
-@bindable() type = 'None';
+@bindable() iconInset = true;
 @bindable() iconDensityAware = true;
-/* inherited from sap.m.Tile*/
-@bindable() removable = true;
+@bindable() activeIcon = null;
+@bindable() info = null;
+@bindable() infoState = 'None';
+@bindable() adaptTitleSize = true;
+@bindable() titleTextDirection = 'Inherit';
+@bindable() infoTextDirection = 'Inherit';
+/* inherited from sap.m.ListItemBase*/
+@bindable() type = 'Inactive';
+@bindable() visible = true;
+@bindable() unread = false;
+@bindable() selected = false;
+@bindable() counter = null;
+@bindable() highlight = 'None';
 @bindable() press = this.defaultFunc;
+@bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -12606,20 +13554,22 @@ export class Ui5StandardTile extends Ui5Tile{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_standardtile')
+        @computedFrom('_standardlistitem')
         get UIElement() {
-            return this._standardtile;
+            return this._standardlistitem;
           }
         fillProperties(params){
                                         params.title = this.title;
-params.info = this.info;
+params.description = this.description;
 params.icon = this.icon;
-params.activeIcon = this.activeIcon;
-params.number = this.number;
-params.numberUnit = this.numberUnit;
-params.infoState = this.infoState;
-params.type = this.type;
+params.iconInset = getBooleanFromAttributeValue(this.iconInset);
 params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
+params.activeIcon = this.activeIcon;
+params.info = this.info;
+params.infoState = this.infoState;
+params.adaptTitleSize = getBooleanFromAttributeValue(this.adaptTitleSize);
+params.titleTextDirection = this.titleTextDirection;
+params.infoTextDirection = this.infoTextDirection;
             
                                             super.fillProperties(params);   
         }
@@ -12630,33 +13580,33 @@ params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._standardtile = new sap.m.StandardTile(this.ui5Id, params);
+          this._standardlistitem = new sap.m.StandardListItem(this.ui5Id, params);
                                               else
-          this._standardtile = new sap.m.StandardTile(params);
+          this._standardlistitem = new sap.m.StandardListItem(params);
                                                   if(this.ui5Class)
-           this._standardtile.addStyleClass(this.ui5Class);
+           this._standardlistitem.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._standardtile.setTooltip(this.ui5Tooltip);                                             
+           this._standardlistitem.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._standardtile.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._standardlistitem.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._standardtile, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._standardlistitem, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._standardtile, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._standardlistitem, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._standardtile.placeAt)
-                                                                this._standardtile.placeAt(this.element.parentElement);
+                                                            if(this._standardlistitem.placeAt)
+                                                                this._standardlistitem.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -12664,7 +13614,7 @@ params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._standardtile.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._standardlistitem.sId});
                                                                            
            
         }
@@ -12672,12 +13622,12 @@ params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._standardtile)
-                                                                this._parent.removeChildByRelation(this._standardtile, this._relation);
+                                                                 if(this._standardlistitem)
+                                                                this._parent.removeChildByRelation(this._standardlistitem, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._standardtile.destroy();
+                                                                this._standardlistitem.destroy();
                                                             }
          super.detached();
           }
@@ -12688,10 +13638,10 @@ params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'tooltip') { this._standardtile.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtile.insertCustomData(child, _index); else this._standardtile.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._standardtile.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtile.insertDependent(child, _index); else this._standardtile.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'tooltip') { this._standardlistitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardlistitem.insertCustomData(child, _index); else this._standardlistitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._standardlistitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardlistitem.insertDependent(child, _index); else this._standardlistitem.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -12699,40 +13649,217 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'tooltip') {  this._standardtile.destroyTooltip(child); }
-if (relation == 'customdata') {  this._standardtile.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._standardtile.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._standardtile.removeDependent(child);}
+               if (relation == 'tooltip') {  this._standardlistitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._standardlistitem.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._standardlistitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._standardlistitem.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._standardtile!==null){ this._standardtile.setTitle(newValue);}}
-infoChanged(newValue){if(this._standardtile!==null){ this._standardtile.setInfo(newValue);}}
-iconChanged(newValue){if(this._standardtile!==null){ this._standardtile.setIcon(newValue);}}
-activeIconChanged(newValue){if(this._standardtile!==null){ this._standardtile.setActiveIcon(newValue);}}
-numberChanged(newValue){if(this._standardtile!==null){ this._standardtile.setNumber(newValue);}}
-numberUnitChanged(newValue){if(this._standardtile!==null){ this._standardtile.setNumberUnit(newValue);}}
-infoStateChanged(newValue){if(this._standardtile!==null){ this._standardtile.setInfoState(newValue);}}
-typeChanged(newValue){if(this._standardtile!==null){ this._standardtile.setType(newValue);}}
-iconDensityAwareChanged(newValue){if(this._standardtile!==null){ this._standardtile.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
-removableChanged(newValue){if(this._standardtile!==null){ this._standardtile.setRemovable(getBooleanFromAttributeValue(newValue));}}
-/* inherited from sap.m.Tile*/
-pressChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachPress(newValue);}}
-busyChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._standardtile!==null){ this._standardtile.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._standardtile!==null){ this._standardtile.setFieldGroupIds(newValue);}}
+    titleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setTitle(newValue);}}
+descriptionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setDescription(newValue);}}
+iconChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setIcon(newValue);}}
+iconInsetChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setIconInset(getBooleanFromAttributeValue(newValue));}}
+iconDensityAwareChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
+activeIconChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setActiveIcon(newValue);}}
+infoChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setInfo(newValue);}}
+infoStateChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setInfoState(newValue);}}
+adaptTitleSizeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setAdaptTitleSize(getBooleanFromAttributeValue(newValue));}}
+titleTextDirectionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setTitleTextDirection(newValue);}}
+infoTextDirectionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setInfoTextDirection(newValue);}}
+typeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setType(newValue);}}
+visibleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+unreadChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setUnread(getBooleanFromAttributeValue(newValue));}}
+selectedChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setSelected(getBooleanFromAttributeValue(newValue));}}
+counterChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setCounter(newValue);}}
+highlightChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setHighlight(newValue);}}
+/* inherited from sap.m.ListItemBase*/
+pressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachPress(newValue);}}
+detailPressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachDetailPress(newValue);}}
+busyChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-standard-tree-item')
+@inject(Element)
+export class Ui5StandardTreeItem extends Ui5TreeItemBase{
+        _standardtreeitem = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() title = '';
+@bindable() icon = null;
+/* inherited from sap.m.TreeItemBase*/
+/* inherited from sap.m.ListItemBase*/
+@bindable() type = 'Inactive';
+@bindable() visible = true;
+@bindable() unread = false;
+@bindable() selected = false;
+@bindable() counter = null;
+@bindable() highlight = 'None';
+@bindable() press = this.defaultFunc;
+@bindable() detailPress = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_standardtreeitem')
+        get UIElement() {
+            return this._standardtreeitem;
+          }
+        fillProperties(params){
+                                        params.title = this.title;
+params.icon = this.icon;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._standardtreeitem = new sap.m.StandardTreeItem(this.ui5Id, params);
+                                              else
+          this._standardtreeitem = new sap.m.StandardTreeItem(params);
+                                                  if(this.ui5Class)
+           this._standardtreeitem.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._standardtreeitem.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._standardtreeitem.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._standardtreeitem, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._standardtreeitem, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._standardtreeitem.placeAt)
+                                                                this._standardtreeitem.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._standardtreeitem.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._standardtreeitem)
+                                                                this._parent.removeChildByRelation(this._standardtreeitem, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._standardtreeitem.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._standardtreeitem.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtreeitem.insertCustomData(child, _index); else this._standardtreeitem.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._standardtreeitem.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtreeitem.insertDependent(child, _index); else this._standardtreeitem.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._standardtreeitem.destroyTooltip(child); }
+if (relation == 'customdata') {  this._standardtreeitem.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._standardtreeitem.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._standardtreeitem.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    titleChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setTitle(newValue);}}
+iconChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setIcon(newValue);}}
+/* inherited from sap.m.TreeItemBase*/
+typeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setType(newValue);}}
+visibleChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+unreadChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setUnread(getBooleanFromAttributeValue(newValue));}}
+selectedChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setSelected(getBooleanFromAttributeValue(newValue));}}
+counterChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setCounter(newValue);}}
+highlightChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setHighlight(newValue);}}
+/* inherited from sap.m.ListItemBase*/
+pressChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachPress(newValue);}}
+detailPressChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachDetailPress(newValue);}}
+busyChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -13047,200 +14174,6 @@ modelContextChangeChanged(newValue){if(this._switch!==null){ this._switch.attach
 
 
                                                                                 }
-@customElement('ui5-standard-list-item')
-@inject(Element)
-export class Ui5StandardListItem extends Ui5ListItemBase{
-        _standardlistitem = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() title = null;
-@bindable() description = null;
-@bindable() icon = null;
-@bindable() iconInset = true;
-@bindable() iconDensityAware = true;
-@bindable() activeIcon = null;
-@bindable() info = null;
-@bindable() infoState = 'None';
-@bindable() adaptTitleSize = true;
-@bindable() titleTextDirection = 'Inherit';
-@bindable() infoTextDirection = 'Inherit';
-/* inherited from sap.m.ListItemBase*/
-@bindable() type = 'Inactive';
-@bindable() visible = true;
-@bindable() unread = false;
-@bindable() selected = false;
-@bindable() counter = null;
-@bindable() highlight = 'None';
-@bindable() press = this.defaultFunc;
-@bindable() detailPress = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_standardlistitem')
-        get UIElement() {
-            return this._standardlistitem;
-          }
-        fillProperties(params){
-                                        params.title = this.title;
-params.description = this.description;
-params.icon = this.icon;
-params.iconInset = getBooleanFromAttributeValue(this.iconInset);
-params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
-params.activeIcon = this.activeIcon;
-params.info = this.info;
-params.infoState = this.infoState;
-params.adaptTitleSize = getBooleanFromAttributeValue(this.adaptTitleSize);
-params.titleTextDirection = this.titleTextDirection;
-params.infoTextDirection = this.infoTextDirection;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._standardlistitem = new sap.m.StandardListItem(this.ui5Id, params);
-                                              else
-          this._standardlistitem = new sap.m.StandardListItem(params);
-                                                  if(this.ui5Class)
-           this._standardlistitem.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._standardlistitem.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._standardlistitem.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._standardlistitem, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._standardlistitem, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._standardlistitem.placeAt)
-                                                                this._standardlistitem.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._standardlistitem.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._standardlistitem)
-                                                                this._parent.removeChildByRelation(this._standardlistitem, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._standardlistitem.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._standardlistitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardlistitem.insertCustomData(child, _index); else this._standardlistitem.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._standardlistitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardlistitem.insertDependent(child, _index); else this._standardlistitem.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._standardlistitem.destroyTooltip(child); }
-if (relation == 'customdata') {  this._standardlistitem.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._standardlistitem.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._standardlistitem.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    titleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setTitle(newValue);}}
-descriptionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setDescription(newValue);}}
-iconChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setIcon(newValue);}}
-iconInsetChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setIconInset(getBooleanFromAttributeValue(newValue));}}
-iconDensityAwareChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
-activeIconChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setActiveIcon(newValue);}}
-infoChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setInfo(newValue);}}
-infoStateChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setInfoState(newValue);}}
-adaptTitleSizeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setAdaptTitleSize(getBooleanFromAttributeValue(newValue));}}
-titleTextDirectionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setTitleTextDirection(newValue);}}
-infoTextDirectionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setInfoTextDirection(newValue);}}
-typeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setType(newValue);}}
-visibleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-unreadChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setUnread(getBooleanFromAttributeValue(newValue));}}
-selectedChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setSelected(getBooleanFromAttributeValue(newValue));}}
-counterChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setCounter(newValue);}}
-highlightChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setHighlight(newValue);}}
-/* inherited from sap.m.ListItemBase*/
-pressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachPress(newValue);}}
-detailPressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachDetailPress(newValue);}}
-busyChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
 @customElement('ui5-tab-container')
 @inject(Element)
 export class Ui5TabContainer extends Ui5Control{
@@ -13541,28 +14474,27 @@ modelContextChangeChanged(newValue){if(this._tabcontaineritem!==null){ this._tab
 
 
                                                                                 }
-@customElement('ui5-standard-tree-item')
+@customElement('ui5-table-select-dialog')
 @inject(Element)
-export class Ui5StandardTreeItem extends Ui5TreeItemBase{
-        _standardtreeitem = null;
+export class Ui5TableSelectDialog extends Ui5Control{
+        _tableselectdialog = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() title = '';
-@bindable() icon = null;
-/* inherited from sap.m.TreeItemBase*/
-/* inherited from sap.m.ListItemBase*/
-@bindable() type = 'Inactive';
-@bindable() visible = true;
-@bindable() unread = false;
-@bindable() selected = false;
-@bindable() counter = null;
-@bindable() highlight = 'None';
-@bindable() press = this.defaultFunc;
-@bindable() detailPress = this.defaultFunc;
+        @bindable() title = null;
+@bindable() noDataText = null;
+@bindable() multiSelect = false;
+@bindable() growingThreshold = null;
+@bindable() contentWidth = null;
+@bindable() rememberSelections = false;
+@bindable() contentHeight = null;
+@bindable() confirm = this.defaultFunc;
+@bindable() search = this.defaultFunc;
+@bindable() liveChange = this.defaultFunc;
+@bindable() cancel = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -13585,13 +14517,22 @@ export class Ui5StandardTreeItem extends Ui5TreeItemBase{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_standardtreeitem')
+        @computedFrom('_tableselectdialog')
         get UIElement() {
-            return this._standardtreeitem;
+            return this._tableselectdialog;
           }
         fillProperties(params){
                                         params.title = this.title;
-params.icon = this.icon;
+params.noDataText = this.noDataText;
+params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
+params.growingThreshold = this.growingThreshold?parseInt(this.growingThreshold):0;
+params.contentWidth = this.contentWidth;
+params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
+params.contentHeight = this.contentHeight;
+params.confirm = this.confirm==null ? this.defaultFunc: this.confirm;
+params.search = this.search==null ? this.defaultFunc: this.search;
+params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
+params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
             
                                             super.fillProperties(params);   
         }
@@ -13602,33 +14543,33 @@ params.icon = this.icon;
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._standardtreeitem = new sap.m.StandardTreeItem(this.ui5Id, params);
+          this._tableselectdialog = new sap.m.TableSelectDialog(this.ui5Id, params);
                                               else
-          this._standardtreeitem = new sap.m.StandardTreeItem(params);
+          this._tableselectdialog = new sap.m.TableSelectDialog(params);
                                                   if(this.ui5Class)
-           this._standardtreeitem.addStyleClass(this.ui5Class);
+           this._tableselectdialog.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._standardtreeitem.setTooltip(this.ui5Tooltip);                                             
+           this._tableselectdialog.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._standardtreeitem.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._tableselectdialog.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._standardtreeitem, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._tableselectdialog, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._standardtreeitem, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._tableselectdialog, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._standardtreeitem.placeAt)
-                                                                this._standardtreeitem.placeAt(this.element.parentElement);
+                                                            if(this._tableselectdialog.placeAt)
+                                                                this._tableselectdialog.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -13636,7 +14577,7 @@ params.icon = this.icon;
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._standardtreeitem.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._tableselectdialog.sId});
                                                                            
            
         }
@@ -13644,12 +14585,12 @@ params.icon = this.icon;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._standardtreeitem)
-                                                                this._parent.removeChildByRelation(this._standardtreeitem, this._relation);
+                                                                 if(this._tableselectdialog)
+                                                                this._parent.removeChildByRelation(this._tableselectdialog, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._standardtreeitem.destroy();
+                                                                this._tableselectdialog.destroy();
                                                             }
          super.detached();
           }
@@ -13660,10 +14601,12 @@ params.icon = this.icon;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'tooltip') { this._standardtreeitem.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtreeitem.insertCustomData(child, _index); else this._standardtreeitem.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._standardtreeitem.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtreeitem.insertDependent(child, _index); else this._standardtreeitem.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertItem(child, _index); else this._tableselectdialog.addItem(child, 0);  return elem.localName; }
+if (elem.localName == 'columns') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertColumn(child, _index); else this._tableselectdialog.addColumn(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._tableselectdialog.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertCustomData(child, _index); else this._tableselectdialog.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._tableselectdialog.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertDependent(child, _index); else this._tableselectdialog.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -13671,40 +14614,41 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'tooltip') {  this._standardtreeitem.destroyTooltip(child); }
-if (relation == 'customdata') {  this._standardtreeitem.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._standardtreeitem.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._standardtreeitem.removeDependent(child);}
+               if (relation == 'items') {  this._tableselectdialog.removeItem(child);}
+if (relation == 'columns') {  this._tableselectdialog.removeColumn(child);}
+if (relation == 'tooltip') {  this._tableselectdialog.destroyTooltip(child); }
+if (relation == 'customdata') {  this._tableselectdialog.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._tableselectdialog.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._tableselectdialog.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setTitle(newValue);}}
-iconChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setIcon(newValue);}}
-/* inherited from sap.m.TreeItemBase*/
-typeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setType(newValue);}}
-visibleChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-unreadChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setUnread(getBooleanFromAttributeValue(newValue));}}
-selectedChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setSelected(getBooleanFromAttributeValue(newValue));}}
-counterChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setCounter(newValue);}}
-highlightChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setHighlight(newValue);}}
-/* inherited from sap.m.ListItemBase*/
-pressChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachPress(newValue);}}
-detailPressChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachDetailPress(newValue);}}
-busyChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setFieldGroupIds(newValue);}}
+    titleChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setTitle(newValue);}}
+noDataTextChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setNoDataText(newValue);}}
+multiSelectChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
+growingThresholdChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setGrowingThreshold(newValue);}}
+contentWidthChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setContentWidth(newValue);}}
+rememberSelectionsChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
+contentHeightChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setContentHeight(newValue);}}
+confirmChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachConfirm(newValue);}}
+searchChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachSearch(newValue);}}
+liveChangeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachLiveChange(newValue);}}
+cancelChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachCancel(newValue);}}
+busyChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -13944,375 +14888,10 @@ modelContextChangeChanged(newValue){if(this._table!==null){ this._table.attachMo
 
 
                                                                                 }
-@customElement('ui5-text')
+@customElement('ui5-standard-tile')
 @inject(Element)
-export class Ui5Text extends Ui5Control{
-        _text = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() text = '';
-@bindable() textDirection = 'Inherit';
-@bindable() wrapping = true;
-@bindable() textAlign = 'Begin';
-@bindable() width = null;
-@bindable() maxLines = null;
-@bindable() renderWhitespace = false;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_text')
-        get UIElement() {
-            return this._text;
-          }
-        fillProperties(params){
-                                        params.text = (this.text != null && this.text.length>0) ? this.text : this.element.getElementsByTagName("customData")[0].innerText.trim();
-params.textDirection = this.textDirection;
-params.wrapping = getBooleanFromAttributeValue(this.wrapping);
-params.textAlign = this.textAlign;
-params.width = this.width;
-params.maxLines = this.maxLines?parseInt(this.maxLines):0;
-params.renderWhitespace = getBooleanFromAttributeValue(this.renderWhitespace);
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._text = new sap.m.Text(this.ui5Id, params);
-                                              else
-          this._text = new sap.m.Text(params);
-                                                  if(this.ui5Class)
-           this._text.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._text.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._text.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._text, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._text, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._text.placeAt)
-                                                                this._text.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._text.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._text)
-                                                                this._parent.removeChildByRelation(this._text, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._text.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._text.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._text.insertCustomData(child, _index); else this._text.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._text.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._text.insertDependent(child, _index); else this._text.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._text.destroyTooltip(child); }
-if (relation == 'customdata') {  this._text.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._text.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._text.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    textChanged(newValue){if(this._text!==null){ this._text.setText(newValue);}}
-textDirectionChanged(newValue){if(this._text!==null){ this._text.setTextDirection(newValue);}}
-wrappingChanged(newValue){if(this._text!==null){ this._text.setWrapping(getBooleanFromAttributeValue(newValue));}}
-textAlignChanged(newValue){if(this._text!==null){ this._text.setTextAlign(newValue);}}
-widthChanged(newValue){if(this._text!==null){ this._text.setWidth(newValue);}}
-maxLinesChanged(newValue){if(this._text!==null){ this._text.setMaxLines(newValue);}}
-renderWhitespaceChanged(newValue){if(this._text!==null){ this._text.setRenderWhitespace(getBooleanFromAttributeValue(newValue));}}
-busyChanged(newValue){if(this._text!==null){ this._text.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._text!==null){ this._text.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._text!==null){ this._text.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._text!==null){ this._text.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._text!==null){ this._text.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._text!==null){ this._text.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._text!==null){ this._text.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._text!==null){ this._text.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._text!==null){ this._text.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-text-area')
-@inject(Element)
-export class Ui5TextArea extends Ui5InputBase{
-        _textarea = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() rows = 2;
-@bindable() cols = 20;
-@bindable() height = null;
-@bindable() maxLength = 0;
-@bindable() showExceededText = false;
-@bindable() wrapping = 'None';
-@bindable() valueLiveUpdate = false;
-@bindable() growing = false;
-@bindable() growingMaxLines = 0;
-@bindable() liveChange = this.defaultFunc;
-/* inherited from sap.m.InputBase*/
-@bindable() value = null;
-@bindable() width = null;
-@bindable() enabled = true;
-@bindable() valueState = 'None';
-@bindable() name = null;
-@bindable() placeholder = null;
-@bindable() editable = true;
-@bindable() valueStateText = null;
-@bindable() showValueStateMessage = true;
-@bindable() textAlign = 'Initial';
-@bindable() textDirection = 'Inherit';
-@bindable() required = false;
-@bindable() change = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_textarea')
-        get UIElement() {
-            return this._textarea;
-          }
-        fillProperties(params){
-                                        params.rows = this.rows?parseInt(this.rows):0;
-params.cols = this.cols?parseInt(this.cols):0;
-params.height = this.height;
-params.maxLength = this.maxLength?parseInt(this.maxLength):0;
-params.showExceededText = getBooleanFromAttributeValue(this.showExceededText);
-params.wrapping = this.wrapping;
-params.valueLiveUpdate = getBooleanFromAttributeValue(this.valueLiveUpdate);
-params.growing = getBooleanFromAttributeValue(this.growing);
-params.growingMaxLines = this.growingMaxLines?parseInt(this.growingMaxLines):0;
-params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._textarea = new sap.m.TextArea(this.ui5Id, params);
-                                              else
-          this._textarea = new sap.m.TextArea(params);
-                                                  if(this.ui5Class)
-           this._textarea.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._textarea.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._textarea.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._textarea, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._textarea, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._textarea.placeAt)
-                                                                this._textarea.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._textarea.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._textarea)
-                                                                this._parent.removeChildByRelation(this._textarea, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._textarea.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._textarea.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._textarea.insertCustomData(child, _index); else this._textarea.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._textarea.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._textarea.insertDependent(child, _index); else this._textarea.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._textarea.destroyTooltip(child); }
-if (relation == 'customdata') {  this._textarea.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._textarea.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._textarea.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    rowsChanged(newValue){if(this._textarea!==null){ this._textarea.setRows(newValue);}}
-colsChanged(newValue){if(this._textarea!==null){ this._textarea.setCols(newValue);}}
-heightChanged(newValue){if(this._textarea!==null){ this._textarea.setHeight(newValue);}}
-maxLengthChanged(newValue){if(this._textarea!==null){ this._textarea.setMaxLength(newValue);}}
-showExceededTextChanged(newValue){if(this._textarea!==null){ this._textarea.setShowExceededText(getBooleanFromAttributeValue(newValue));}}
-wrappingChanged(newValue){if(this._textarea!==null){ this._textarea.setWrapping(newValue);}}
-valueLiveUpdateChanged(newValue){if(this._textarea!==null){ this._textarea.setValueLiveUpdate(getBooleanFromAttributeValue(newValue));}}
-growingChanged(newValue){if(this._textarea!==null){ this._textarea.setGrowing(getBooleanFromAttributeValue(newValue));}}
-growingMaxLinesChanged(newValue){if(this._textarea!==null){ this._textarea.setGrowingMaxLines(newValue);}}
-liveChangeChanged(newValue){if(this._textarea!==null){ this._textarea.attachLiveChange(newValue);}}
-valueChanged(newValue){if(this._textarea!==null){ this._textarea.setValue(newValue);}}
-widthChanged(newValue){if(this._textarea!==null){ this._textarea.setWidth(newValue);}}
-enabledChanged(newValue){if(this._textarea!==null){ this._textarea.setEnabled(getBooleanFromAttributeValue(newValue));}}
-valueStateChanged(newValue){if(this._textarea!==null){ this._textarea.setValueState(newValue);}}
-nameChanged(newValue){if(this._textarea!==null){ this._textarea.setName(newValue);}}
-placeholderChanged(newValue){if(this._textarea!==null){ this._textarea.setPlaceholder(newValue);}}
-editableChanged(newValue){if(this._textarea!==null){ this._textarea.setEditable(getBooleanFromAttributeValue(newValue));}}
-valueStateTextChanged(newValue){if(this._textarea!==null){ this._textarea.setValueStateText(newValue);}}
-showValueStateMessageChanged(newValue){if(this._textarea!==null){ this._textarea.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));}}
-textAlignChanged(newValue){if(this._textarea!==null){ this._textarea.setTextAlign(newValue);}}
-textDirectionChanged(newValue){if(this._textarea!==null){ this._textarea.setTextDirection(newValue);}}
-requiredChanged(newValue){if(this._textarea!==null){ this._textarea.setRequired(getBooleanFromAttributeValue(newValue));}}
-/* inherited from sap.m.InputBase*/
-changeChanged(newValue){if(this._textarea!==null){ this._textarea.attachChange(newValue);}}
-busyChanged(newValue){if(this._textarea!==null){ this._textarea.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._textarea!==null){ this._textarea.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._textarea!==null){ this._textarea.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._textarea!==null){ this._textarea.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._textarea!==null){ this._textarea.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._textarea!==null){ this._textarea.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._textarea!==null){ this._textarea.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._textarea!==null){ this._textarea.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._textarea!==null){ this._textarea.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._textarea!==null){ this._textarea.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._textarea!==null){ this._textarea.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-table-select-dialog')
-@inject(Element)
-export class Ui5TableSelectDialog extends Ui5Control{
-        _tableselectdialog = null;
+export class Ui5StandardTile extends Ui5Tile{
+        _standardtile = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
@@ -14320,16 +14899,17 @@ export class Ui5TableSelectDialog extends Ui5Control{
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() title = null;
-@bindable() noDataText = null;
-@bindable() multiSelect = false;
-@bindable() growingThreshold = null;
-@bindable() contentWidth = null;
-@bindable() rememberSelections = false;
-@bindable() contentHeight = null;
-@bindable() confirm = this.defaultFunc;
-@bindable() search = this.defaultFunc;
-@bindable() liveChange = this.defaultFunc;
-@bindable() cancel = this.defaultFunc;
+@bindable() info = null;
+@bindable() icon = null;
+@bindable() activeIcon = null;
+@bindable() number = null;
+@bindable() numberUnit = null;
+@bindable() infoState = 'None';
+@bindable() type = 'None';
+@bindable() iconDensityAware = true;
+/* inherited from sap.m.Tile*/
+@bindable() removable = true;
+@bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -14352,22 +14932,20 @@ export class Ui5TableSelectDialog extends Ui5Control{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_tableselectdialog')
+        @computedFrom('_standardtile')
         get UIElement() {
-            return this._tableselectdialog;
+            return this._standardtile;
           }
         fillProperties(params){
                                         params.title = this.title;
-params.noDataText = this.noDataText;
-params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
-params.growingThreshold = this.growingThreshold?parseInt(this.growingThreshold):0;
-params.contentWidth = this.contentWidth;
-params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
-params.contentHeight = this.contentHeight;
-params.confirm = this.confirm==null ? this.defaultFunc: this.confirm;
-params.search = this.search==null ? this.defaultFunc: this.search;
-params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
-params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
+params.info = this.info;
+params.icon = this.icon;
+params.activeIcon = this.activeIcon;
+params.number = this.number;
+params.numberUnit = this.numberUnit;
+params.infoState = this.infoState;
+params.type = this.type;
+params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
             
                                             super.fillProperties(params);   
         }
@@ -14378,33 +14956,33 @@ params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._tableselectdialog = new sap.m.TableSelectDialog(this.ui5Id, params);
+          this._standardtile = new sap.m.StandardTile(this.ui5Id, params);
                                               else
-          this._tableselectdialog = new sap.m.TableSelectDialog(params);
+          this._standardtile = new sap.m.StandardTile(params);
                                                   if(this.ui5Class)
-           this._tableselectdialog.addStyleClass(this.ui5Class);
+           this._standardtile.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._tableselectdialog.setTooltip(this.ui5Tooltip);                                             
+           this._standardtile.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._tableselectdialog.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._standardtile.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._tableselectdialog, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._standardtile, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._tableselectdialog, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._standardtile, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._tableselectdialog.placeAt)
-                                                                this._tableselectdialog.placeAt(this.element.parentElement);
+                                                            if(this._standardtile.placeAt)
+                                                                this._standardtile.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -14412,7 +14990,7 @@ params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._tableselectdialog.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._standardtile.sId});
                                                                            
            
         }
@@ -14420,12 +14998,12 @@ params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._tableselectdialog)
-                                                                this._parent.removeChildByRelation(this._tableselectdialog, this._relation);
+                                                                 if(this._standardtile)
+                                                                this._parent.removeChildByRelation(this._standardtile, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._tableselectdialog.destroy();
+                                                                this._standardtile.destroy();
                                                             }
          super.detached();
           }
@@ -14436,12 +15014,10 @@ params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertItem(child, _index); else this._tableselectdialog.addItem(child, 0);  return elem.localName; }
-if (elem.localName == 'columns') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertColumn(child, _index); else this._tableselectdialog.addColumn(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._tableselectdialog.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertCustomData(child, _index); else this._tableselectdialog.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._tableselectdialog.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertDependent(child, _index); else this._tableselectdialog.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'tooltip') { this._standardtile.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtile.insertCustomData(child, _index); else this._standardtile.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._standardtile.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtile.insertDependent(child, _index); else this._standardtile.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -14449,41 +15025,40 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'items') {  this._tableselectdialog.removeItem(child);}
-if (relation == 'columns') {  this._tableselectdialog.removeColumn(child);}
-if (relation == 'tooltip') {  this._tableselectdialog.destroyTooltip(child); }
-if (relation == 'customdata') {  this._tableselectdialog.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._tableselectdialog.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._tableselectdialog.removeDependent(child);}
+               if (relation == 'tooltip') {  this._standardtile.destroyTooltip(child); }
+if (relation == 'customdata') {  this._standardtile.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._standardtile.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._standardtile.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setTitle(newValue);}}
-noDataTextChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setNoDataText(newValue);}}
-multiSelectChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
-growingThresholdChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setGrowingThreshold(newValue);}}
-contentWidthChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setContentWidth(newValue);}}
-rememberSelectionsChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
-contentHeightChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setContentHeight(newValue);}}
-confirmChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachConfirm(newValue);}}
-searchChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachSearch(newValue);}}
-liveChangeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachLiveChange(newValue);}}
-cancelChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachCancel(newValue);}}
-busyChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setFieldGroupIds(newValue);}}
+    titleChanged(newValue){if(this._standardtile!==null){ this._standardtile.setTitle(newValue);}}
+infoChanged(newValue){if(this._standardtile!==null){ this._standardtile.setInfo(newValue);}}
+iconChanged(newValue){if(this._standardtile!==null){ this._standardtile.setIcon(newValue);}}
+activeIconChanged(newValue){if(this._standardtile!==null){ this._standardtile.setActiveIcon(newValue);}}
+numberChanged(newValue){if(this._standardtile!==null){ this._standardtile.setNumber(newValue);}}
+numberUnitChanged(newValue){if(this._standardtile!==null){ this._standardtile.setNumberUnit(newValue);}}
+infoStateChanged(newValue){if(this._standardtile!==null){ this._standardtile.setInfoState(newValue);}}
+typeChanged(newValue){if(this._standardtile!==null){ this._standardtile.setType(newValue);}}
+iconDensityAwareChanged(newValue){if(this._standardtile!==null){ this._standardtile.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
+removableChanged(newValue){if(this._standardtile!==null){ this._standardtile.setRemovable(getBooleanFromAttributeValue(newValue));}}
+/* inherited from sap.m.Tile*/
+pressChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachPress(newValue);}}
+busyChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._standardtile!==null){ this._standardtile.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._standardtile!==null){ this._standardtile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -14633,6 +15208,370 @@ validationErrorChanged(newValue){if(this._tile!==null){ this._tile.attachValidat
 parseErrorChanged(newValue){if(this._tile!==null){ this._tile.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._tile!==null){ this._tile.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._tile!==null){ this._tile.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-text-area')
+@inject(Element)
+export class Ui5TextArea extends Ui5InputBase{
+        _textarea = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() rows = 2;
+@bindable() cols = 20;
+@bindable() height = null;
+@bindable() maxLength = 0;
+@bindable() showExceededText = false;
+@bindable() wrapping = 'None';
+@bindable() valueLiveUpdate = false;
+@bindable() growing = false;
+@bindable() growingMaxLines = 0;
+@bindable() liveChange = this.defaultFunc;
+/* inherited from sap.m.InputBase*/
+@bindable() value = null;
+@bindable() width = null;
+@bindable() enabled = true;
+@bindable() valueState = 'None';
+@bindable() name = null;
+@bindable() placeholder = null;
+@bindable() editable = true;
+@bindable() valueStateText = null;
+@bindable() showValueStateMessage = true;
+@bindable() textAlign = 'Initial';
+@bindable() textDirection = 'Inherit';
+@bindable() required = false;
+@bindable() change = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_textarea')
+        get UIElement() {
+            return this._textarea;
+          }
+        fillProperties(params){
+                                        params.rows = this.rows?parseInt(this.rows):0;
+params.cols = this.cols?parseInt(this.cols):0;
+params.height = this.height;
+params.maxLength = this.maxLength?parseInt(this.maxLength):0;
+params.showExceededText = getBooleanFromAttributeValue(this.showExceededText);
+params.wrapping = this.wrapping;
+params.valueLiveUpdate = getBooleanFromAttributeValue(this.valueLiveUpdate);
+params.growing = getBooleanFromAttributeValue(this.growing);
+params.growingMaxLines = this.growingMaxLines?parseInt(this.growingMaxLines):0;
+params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._textarea = new sap.m.TextArea(this.ui5Id, params);
+                                              else
+          this._textarea = new sap.m.TextArea(params);
+                                                  if(this.ui5Class)
+           this._textarea.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._textarea.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._textarea.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._textarea, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._textarea, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._textarea.placeAt)
+                                                                this._textarea.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        this._textarea.attachChange((event) => { that.value = event.mParameters.value;; });
+this._textarea.attachLiveChange((event) => { if (getBooleanFromAttributeValue(that.valueLiveUpdate)) {that.value = event.mParameters.value;}; });
+
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._textarea.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._textarea)
+                                                                this._parent.removeChildByRelation(this._textarea, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._textarea.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._textarea.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._textarea.insertCustomData(child, _index); else this._textarea.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._textarea.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._textarea.insertDependent(child, _index); else this._textarea.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._textarea.destroyTooltip(child); }
+if (relation == 'customdata') {  this._textarea.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._textarea.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._textarea.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    rowsChanged(newValue){if(this._textarea!==null){ this._textarea.setRows(newValue);}}
+colsChanged(newValue){if(this._textarea!==null){ this._textarea.setCols(newValue);}}
+heightChanged(newValue){if(this._textarea!==null){ this._textarea.setHeight(newValue);}}
+maxLengthChanged(newValue){if(this._textarea!==null){ this._textarea.setMaxLength(newValue);}}
+showExceededTextChanged(newValue){if(this._textarea!==null){ this._textarea.setShowExceededText(getBooleanFromAttributeValue(newValue));}}
+wrappingChanged(newValue){if(this._textarea!==null){ this._textarea.setWrapping(newValue);}}
+valueLiveUpdateChanged(newValue){if(this._textarea!==null){ this._textarea.setValueLiveUpdate(getBooleanFromAttributeValue(newValue));}}
+growingChanged(newValue){if(this._textarea!==null){ this._textarea.setGrowing(getBooleanFromAttributeValue(newValue));}}
+growingMaxLinesChanged(newValue){if(this._textarea!==null){ this._textarea.setGrowingMaxLines(newValue);}}
+liveChangeChanged(newValue){if(this._textarea!==null){ this._textarea.attachLiveChange(newValue);}}
+valueChanged(newValue){if(this._textarea!==null){ this._textarea.setValue(newValue);}}
+widthChanged(newValue){if(this._textarea!==null){ this._textarea.setWidth(newValue);}}
+enabledChanged(newValue){if(this._textarea!==null){ this._textarea.setEnabled(getBooleanFromAttributeValue(newValue));}}
+valueStateChanged(newValue){if(this._textarea!==null){ this._textarea.setValueState(newValue);}}
+nameChanged(newValue){if(this._textarea!==null){ this._textarea.setName(newValue);}}
+placeholderChanged(newValue){if(this._textarea!==null){ this._textarea.setPlaceholder(newValue);}}
+editableChanged(newValue){if(this._textarea!==null){ this._textarea.setEditable(getBooleanFromAttributeValue(newValue));}}
+valueStateTextChanged(newValue){if(this._textarea!==null){ this._textarea.setValueStateText(newValue);}}
+showValueStateMessageChanged(newValue){if(this._textarea!==null){ this._textarea.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));}}
+textAlignChanged(newValue){if(this._textarea!==null){ this._textarea.setTextAlign(newValue);}}
+textDirectionChanged(newValue){if(this._textarea!==null){ this._textarea.setTextDirection(newValue);}}
+requiredChanged(newValue){if(this._textarea!==null){ this._textarea.setRequired(getBooleanFromAttributeValue(newValue));}}
+/* inherited from sap.m.InputBase*/
+changeChanged(newValue){if(this._textarea!==null){ this._textarea.attachChange(newValue);}}
+busyChanged(newValue){if(this._textarea!==null){ this._textarea.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._textarea!==null){ this._textarea.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._textarea!==null){ this._textarea.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._textarea!==null){ this._textarea.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._textarea!==null){ this._textarea.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._textarea!==null){ this._textarea.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._textarea!==null){ this._textarea.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._textarea!==null){ this._textarea.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._textarea!==null){ this._textarea.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._textarea!==null){ this._textarea.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._textarea!==null){ this._textarea.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-object-number')
+@inject(Element)
+export class Ui5ObjectNumber extends Ui5Control{
+        _objectnumber = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() number = null;
+@bindable() emphasized = true;
+@bindable() state = 'None';
+@bindable() unit = null;
+@bindable() textDirection = 'Inherit';
+@bindable() textAlign = 'Begin';
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_objectnumber')
+        get UIElement() {
+            return this._objectnumber;
+          }
+        fillProperties(params){
+                                        params.number = this.number;
+params.emphasized = getBooleanFromAttributeValue(this.emphasized);
+params.state = this.state;
+params.unit = this.unit;
+params.textDirection = this.textDirection;
+params.textAlign = this.textAlign;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._objectnumber = new sap.m.ObjectNumber(this.ui5Id, params);
+                                              else
+          this._objectnumber = new sap.m.ObjectNumber(params);
+                                                  if(this.ui5Class)
+           this._objectnumber.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._objectnumber.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._objectnumber.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._objectnumber, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._objectnumber, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._objectnumber.placeAt)
+                                                                this._objectnumber.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._objectnumber.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._objectnumber)
+                                                                this._parent.removeChildByRelation(this._objectnumber, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._objectnumber.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._objectnumber.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectnumber.insertCustomData(child, _index); else this._objectnumber.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._objectnumber.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectnumber.insertDependent(child, _index); else this._objectnumber.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._objectnumber.destroyTooltip(child); }
+if (relation == 'customdata') {  this._objectnumber.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._objectnumber.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._objectnumber.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    numberChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setNumber(newValue);}}
+emphasizedChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setEmphasized(getBooleanFromAttributeValue(newValue));}}
+stateChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setState(newValue);}}
+unitChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setUnit(newValue);}}
+textDirectionChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setTextDirection(newValue);}}
+textAlignChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setTextAlign(newValue);}}
+busyChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -14799,475 +15738,6 @@ validationErrorChanged(newValue){if(this._tilecontainer!==null){ this._tileconta
 parseErrorChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-tile-content')
-@inject(Element)
-export class Ui5TileContent extends Ui5Control{
-        _tilecontent = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() footer = null;
-@bindable() footerColor = 'Neutral';
-@bindable() unit = null;
-@bindable() disabled = false;
-@bindable() frameType = 'Auto';
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_tilecontent')
-        get UIElement() {
-            return this._tilecontent;
-          }
-        fillProperties(params){
-                                        params.footer = this.footer;
-params.footerColor = this.footerColor;
-params.unit = this.unit;
-params.disabled = getBooleanFromAttributeValue(this.disabled);
-params.frameType = this.frameType;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._tilecontent = new sap.m.TileContent(this.ui5Id, params);
-                                              else
-          this._tilecontent = new sap.m.TileContent(params);
-                                                  if(this.ui5Class)
-           this._tilecontent.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._tilecontent.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._tilecontent.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._tilecontent, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._tilecontent, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._tilecontent.placeAt)
-                                                                this._tilecontent.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._tilecontent.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._tilecontent)
-                                                                this._parent.removeChildByRelation(this._tilecontent, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._tilecontent.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'content') { this._tilecontent.setContent(child); return elem.localName;}
-if (elem.localName == 'tooltip') { this._tilecontent.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tilecontent.insertCustomData(child, _index); else this._tilecontent.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._tilecontent.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tilecontent.insertDependent(child, _index); else this._tilecontent.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'content') {  this._tilecontent.destroyContent(child); }
-if (relation == 'tooltip') {  this._tilecontent.destroyTooltip(child); }
-if (relation == 'customdata') {  this._tilecontent.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._tilecontent.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._tilecontent.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    footerChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFooter(newValue);}}
-footerColorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFooterColor(newValue);}}
-unitChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setUnit(newValue);}}
-disabledChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setDisabled(getBooleanFromAttributeValue(newValue));}}
-frameTypeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFrameType(newValue);}}
-busyChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-title')
-@inject(Element)
-export class Ui5Title extends Ui5Element{
-        _title = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() text = null;
-@bindable() icon = null;
-@bindable() level = 'Auto';
-@bindable() emphasized = false;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_title')
-        get UIElement() {
-            return this._title;
-          }
-        fillProperties(params){
-                                        params.text = this.text;
-params.icon = this.icon;
-params.level = this.level;
-params.emphasized = getBooleanFromAttributeValue(this.emphasized);
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._title = new sap.ui.core.Title(this.ui5Id, params);
-                                              else
-          this._title = new sap.ui.core.Title(params);
-                                                  if(this.ui5Class)
-           this._title.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._title.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._title.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._title, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._title, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._title.placeAt)
-                                                                this._title.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._title.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._title)
-                                                                this._parent.removeChildByRelation(this._title, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._title.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._title.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._title.insertCustomData(child, _index); else this._title.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._title.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._title.insertDependent(child, _index); else this._title.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._title.destroyTooltip(child); }
-if (relation == 'customdata') {  this._title.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._title.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._title.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    textChanged(newValue){if(this._title!==null){ this._title.setText(newValue);}}
-iconChanged(newValue){if(this._title!==null){ this._title.setIcon(newValue);}}
-levelChanged(newValue){if(this._title!==null){ this._title.setLevel(newValue);}}
-emphasizedChanged(newValue){if(this._title!==null){ this._title.setEmphasized(getBooleanFromAttributeValue(newValue));}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._title!==null){ this._title.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._title!==null){ this._title.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._title!==null){ this._title.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._title!==null){ this._title.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._title!==null){ this._title.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-toggle-button')
-@inject(Element)
-export class Ui5ToggleButton extends Ui5Button{
-        _togglebutton = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() pressed = false;
-/* inherited from sap.m.Button*/
-@bindable() text = null;
-@bindable() type = 'Default';
-@bindable() width = null;
-@bindable() enabled = true;
-@bindable() icon = null;
-@bindable() iconFirst = true;
-@bindable() activeIcon = null;
-@bindable() iconDensityAware = true;
-@bindable() textDirection = 'Inherit';
-@bindable() press = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_togglebutton')
-        get UIElement() {
-            return this._togglebutton;
-          }
-        fillProperties(params){
-                                        params.pressed = getBooleanFromAttributeValue(this.pressed);
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._togglebutton = new sap.m.ToggleButton(this.ui5Id, params);
-                                              else
-          this._togglebutton = new sap.m.ToggleButton(params);
-                                                  if(this.ui5Class)
-           this._togglebutton.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._togglebutton.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._togglebutton.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._togglebutton, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._togglebutton, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._togglebutton.placeAt)
-                                                                this._togglebutton.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._togglebutton.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._togglebutton)
-                                                                this._parent.removeChildByRelation(this._togglebutton, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._togglebutton.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._togglebutton.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._togglebutton.insertCustomData(child, _index); else this._togglebutton.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._togglebutton.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._togglebutton.insertDependent(child, _index); else this._togglebutton.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._togglebutton.destroyTooltip(child); }
-if (relation == 'customdata') {  this._togglebutton.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._togglebutton.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._togglebutton.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    pressedChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setPressed(getBooleanFromAttributeValue(newValue));}}
-textChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setText(newValue);}}
-typeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setType(newValue);}}
-widthChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setWidth(newValue);}}
-enabledChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setEnabled(getBooleanFromAttributeValue(newValue));}}
-iconChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setIcon(newValue);}}
-iconFirstChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setIconFirst(getBooleanFromAttributeValue(newValue));}}
-activeIconChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setActiveIcon(newValue);}}
-iconDensityAwareChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
-textDirectionChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setTextDirection(newValue);}}
-/* inherited from sap.m.Button*/
-pressChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachPress(newValue);}}
-busyChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -15447,6 +15917,334 @@ validationErrorChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachV
 parseErrorChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-tile-content')
+@inject(Element)
+export class Ui5TileContent extends Ui5Control{
+        _tilecontent = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() footer = null;
+@bindable() footerColor = 'Neutral';
+@bindable() unit = null;
+@bindable() disabled = false;
+@bindable() frameType = 'Auto';
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_tilecontent')
+        get UIElement() {
+            return this._tilecontent;
+          }
+        fillProperties(params){
+                                        params.footer = this.footer;
+params.footerColor = this.footerColor;
+params.unit = this.unit;
+params.disabled = getBooleanFromAttributeValue(this.disabled);
+params.frameType = this.frameType;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._tilecontent = new sap.m.TileContent(this.ui5Id, params);
+                                              else
+          this._tilecontent = new sap.m.TileContent(params);
+                                                  if(this.ui5Class)
+           this._tilecontent.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._tilecontent.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._tilecontent.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._tilecontent, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._tilecontent, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._tilecontent.placeAt)
+                                                                this._tilecontent.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._tilecontent.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._tilecontent)
+                                                                this._parent.removeChildByRelation(this._tilecontent, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._tilecontent.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'content') { this._tilecontent.setContent(child); return elem.localName;}
+if (elem.localName == 'tooltip') { this._tilecontent.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tilecontent.insertCustomData(child, _index); else this._tilecontent.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._tilecontent.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tilecontent.insertDependent(child, _index); else this._tilecontent.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'content') {  this._tilecontent.destroyContent(child); }
+if (relation == 'tooltip') {  this._tilecontent.destroyTooltip(child); }
+if (relation == 'customdata') {  this._tilecontent.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._tilecontent.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._tilecontent.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    footerChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFooter(newValue);}}
+footerColorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFooterColor(newValue);}}
+unitChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setUnit(newValue);}}
+disabledChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setDisabled(getBooleanFromAttributeValue(newValue));}}
+frameTypeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFrameType(newValue);}}
+busyChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-toggle-button')
+@inject(Element)
+export class Ui5ToggleButton extends Ui5Button{
+        _togglebutton = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() pressed = false;
+/* inherited from sap.m.Button*/
+@bindable() text = null;
+@bindable() type = 'Default';
+@bindable() width = null;
+@bindable() enabled = true;
+@bindable() icon = null;
+@bindable() iconFirst = true;
+@bindable() activeIcon = null;
+@bindable() iconDensityAware = true;
+@bindable() textDirection = 'Inherit';
+@bindable() press = this.defaultFunc;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_togglebutton')
+        get UIElement() {
+            return this._togglebutton;
+          }
+        fillProperties(params){
+                                        params.pressed = getBooleanFromAttributeValue(this.pressed);
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._togglebutton = new sap.m.ToggleButton(this.ui5Id, params);
+                                              else
+          this._togglebutton = new sap.m.ToggleButton(params);
+                                                  if(this.ui5Class)
+           this._togglebutton.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._togglebutton.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._togglebutton.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._togglebutton, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._togglebutton, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._togglebutton.placeAt)
+                                                                this._togglebutton.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._togglebutton.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._togglebutton)
+                                                                this._parent.removeChildByRelation(this._togglebutton, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._togglebutton.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._togglebutton.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._togglebutton.insertCustomData(child, _index); else this._togglebutton.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._togglebutton.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._togglebutton.insertDependent(child, _index); else this._togglebutton.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._togglebutton.destroyTooltip(child); }
+if (relation == 'customdata') {  this._togglebutton.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._togglebutton.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._togglebutton.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    pressedChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setPressed(getBooleanFromAttributeValue(newValue));}}
+textChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setText(newValue);}}
+typeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setType(newValue);}}
+widthChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setWidth(newValue);}}
+enabledChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setEnabled(getBooleanFromAttributeValue(newValue));}}
+iconChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setIcon(newValue);}}
+iconFirstChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setIconFirst(getBooleanFromAttributeValue(newValue));}}
+activeIconChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setActiveIcon(newValue);}}
+iconDensityAwareChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
+textDirectionChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setTextDirection(newValue);}}
+/* inherited from sap.m.Button*/
+pressChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachPress(newValue);}}
+busyChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -15973,6 +16771,170 @@ modelContextChangeChanged(newValue){if(this._treeitembase!==null){ this._treeite
 
 
                                                                                 }
+@customElement('ui5-text')
+@inject(Element)
+export class Ui5Text extends Ui5Control{
+        _text = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() text = '';
+@bindable() textDirection = 'Inherit';
+@bindable() wrapping = true;
+@bindable() textAlign = 'Begin';
+@bindable() width = null;
+@bindable() maxLines = null;
+@bindable() renderWhitespace = false;
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_text')
+        get UIElement() {
+            return this._text;
+          }
+        fillProperties(params){
+                                        params.text = (this.text != null && this.text.length>0) ? this.text : this.element.getElementsByTagName("customData")[0].innerText.trim();
+params.textDirection = this.textDirection;
+params.wrapping = getBooleanFromAttributeValue(this.wrapping);
+params.textAlign = this.textAlign;
+params.width = this.width;
+params.maxLines = this.maxLines?parseInt(this.maxLines):0;
+params.renderWhitespace = getBooleanFromAttributeValue(this.renderWhitespace);
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._text = new sap.m.Text(this.ui5Id, params);
+                                              else
+          this._text = new sap.m.Text(params);
+                                                  if(this.ui5Class)
+           this._text.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._text.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._text.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._text, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._text, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._text.placeAt)
+                                                                this._text.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._text.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._text)
+                                                                this._parent.removeChildByRelation(this._text, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._text.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._text.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._text.insertCustomData(child, _index); else this._text.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._text.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._text.insertDependent(child, _index); else this._text.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._text.destroyTooltip(child); }
+if (relation == 'customdata') {  this._text.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._text.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._text.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    textChanged(newValue){if(this._text!==null){ this._text.setText(newValue);}}
+textDirectionChanged(newValue){if(this._text!==null){ this._text.setTextDirection(newValue);}}
+wrappingChanged(newValue){if(this._text!==null){ this._text.setWrapping(getBooleanFromAttributeValue(newValue));}}
+textAlignChanged(newValue){if(this._text!==null){ this._text.setTextAlign(newValue);}}
+widthChanged(newValue){if(this._text!==null){ this._text.setWidth(newValue);}}
+maxLinesChanged(newValue){if(this._text!==null){ this._text.setMaxLines(newValue);}}
+renderWhitespaceChanged(newValue){if(this._text!==null){ this._text.setRenderWhitespace(getBooleanFromAttributeValue(newValue));}}
+busyChanged(newValue){if(this._text!==null){ this._text.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._text!==null){ this._text.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._text!==null){ this._text.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._text!==null){ this._text.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._text!==null){ this._text.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._text!==null){ this._text.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._text!==null){ this._text.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._text!==null){ this._text.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._text!==null){ this._text.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
 @customElement('ui5-upload-collection')
 @inject(Element)
 export class Ui5UploadCollection extends Ui5Control{
@@ -16378,21 +17340,18 @@ modelContextChangeChanged(newValue){if(this._uploadcollectionitem!==null){ this.
 
 
                                                                                 }
-@customElement('ui5-dynamic-page')
+@customElement('ui5-vertical-layout')
 @inject(Element)
-export class Ui5DynamicPage extends Ui5Control{
-        _dynamicpage = null;
+export class Ui5VerticalLayout extends Ui5Control{
+        _verticallayout = null;
         _parent = null;
         _relation = null;
          @bindable ui5Id = null;
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() preserveHeaderStateOnScroll = false;
-@bindable() headerExpanded = true;
-@bindable() toggleHeaderOnTitleClick = true;
-@bindable() showFooter = false;
-@bindable() fitContent = false;
+        @bindable() width = null;
+@bindable() enabled = true;
 /* inherited from sap.ui.core.Control*/
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
@@ -16415,16 +17374,13 @@ export class Ui5DynamicPage extends Ui5Control{
                 this.element = element;
             this.attributeManager = new AttributeManager(this.element);
         }
-        @computedFrom('_dynamicpage')
+        @computedFrom('_verticallayout')
         get UIElement() {
-            return this._dynamicpage;
+            return this._verticallayout;
           }
         fillProperties(params){
-                                        params.preserveHeaderStateOnScroll = getBooleanFromAttributeValue(this.preserveHeaderStateOnScroll);
-params.headerExpanded = getBooleanFromAttributeValue(this.headerExpanded);
-params.toggleHeaderOnTitleClick = getBooleanFromAttributeValue(this.toggleHeaderOnTitleClick);
-params.showFooter = getBooleanFromAttributeValue(this.showFooter);
-params.fitContent = getBooleanFromAttributeValue(this.fitContent);
+                                        params.width = this.width;
+params.enabled = getBooleanFromAttributeValue(this.enabled);
             
                                             super.fillProperties(params);   
         }
@@ -16435,33 +17391,33 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
             var params = {};
             this.fillProperties(params);
          if (this.ui5Id)
-          this._dynamicpage = new sap.f.DynamicPage(this.ui5Id, params);
+          this._verticallayout = new sap.ui.layout.VerticalLayout(this.ui5Id, params);
                                               else
-          this._dynamicpage = new sap.f.DynamicPage(params);
+          this._verticallayout = new sap.ui.layout.VerticalLayout(params);
                                                   if(this.ui5Class)
-           this._dynamicpage.addStyleClass(this.ui5Class);
+           this._verticallayout.addStyleClass(this.ui5Class);
                                              if(this.ui5Tooltip)
-           this._dynamicpage.setTooltip(this.ui5Tooltip);                                             
+           this._verticallayout.setTooltip(this.ui5Tooltip);                                             
         
         if ($(this.element).closest("[ui5-container]").length > 0) {
                                             this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._dynamicpage.sId)) {
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._verticallayout.sId)) {
         var prevSibling = null;
        
-        this._relation = this._parent.addChild(this._dynamicpage, this.element, this.prevId);
+        this._relation = this._parent.addChild(this._verticallayout, this.element, this.prevId);
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
       else {
                                                     this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
                                                 var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._dynamicpage, this.element, this.prevId);
+                                                       this._relation = this._parent.addChild(this._verticallayout, this.element, this.prevId);
         
         this.attributeManager.addAttributes({"ui5-container": '' });
       }
     }
     else {
-                                                            if(this._dynamicpage.placeAt)
-                                                                this._dynamicpage.placeAt(this.element.parentElement);
+                                                            if(this._verticallayout.placeAt)
+                                                                this._verticallayout.placeAt(this.element.parentElement);
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
@@ -16469,7 +17425,7 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
                                                         //<!container>
            
                                                         //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._dynamicpage.sId});
+                                                        this.attributeManager.addAttributes({"ui5-id": this._verticallayout.sId});
                                                                            
            
         }
@@ -16477,12 +17433,12 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
         try{
           if ($(this.element).closest("[ui5-container]").length > 0) {
         if (this._parent && this._relation) {
-                                                                 if(this._dynamicpage)
-                                                                this._parent.removeChildByRelation(this._dynamicpage, this._relation);
+                                                                 if(this._verticallayout)
+                                                                this._parent.removeChildByRelation(this._verticallayout, this._relation);
                                                             }
                                                                                 }
          else{
-                                                                this._dynamicpage.destroy();
+                                                                this._verticallayout.destroy();
                                                             }
          super.detached();
           }
@@ -16493,14 +17449,11 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'title-elem') { this._dynamicpage.setTitle(child); return elem.localName;}
-if (elem.localName == 'header') { this._dynamicpage.setHeader(child); return elem.localName;}
-if (elem.localName == 'content') { this._dynamicpage.setContent(child); return elem.localName;}
-if (elem.localName == 'footer') { this._dynamicpage.setFooter(child); return elem.localName;}
-if (elem.localName == 'tooltip') { this._dynamicpage.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpage.insertCustomData(child, _index); else this._dynamicpage.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._dynamicpage.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpage.insertDependent(child, _index); else this._dynamicpage.addDependent(child, 0);  return elem.localName; }
+                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertContent(child, _index); else this._verticallayout.addContent(child, 0);  return elem.localName; }
+if (elem.localName == 'tooltip') { this._verticallayout.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertCustomData(child, _index); else this._verticallayout.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._verticallayout.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertDependent(child, _index); else this._verticallayout.addDependent(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -16508,172 +17461,31 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'title-elem') {  this._dynamicpage.destroyTitle(child); }
-if (relation == 'header') {  this._dynamicpage.destroyHeader(child); }
-if (relation == 'content') {  this._dynamicpage.destroyContent(child); }
-if (relation == 'footer') {  this._dynamicpage.destroyFooter(child); }
-if (relation == 'tooltip') {  this._dynamicpage.destroyTooltip(child); }
-if (relation == 'customdata') {  this._dynamicpage.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._dynamicpage.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._dynamicpage.removeDependent(child);}
+               if (relation == 'content') {  this._verticallayout.removeContent(child);}
+if (relation == 'tooltip') {  this._verticallayout.destroyTooltip(child); }
+if (relation == 'customdata') {  this._verticallayout.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._verticallayout.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._verticallayout.removeDependent(child);}
 
       }
       catch(err){}
                                                                             }
-    preserveHeaderStateOnScrollChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setPreserveHeaderStateOnScroll(getBooleanFromAttributeValue(newValue));}}
-headerExpandedChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setHeaderExpanded(getBooleanFromAttributeValue(newValue));}}
-toggleHeaderOnTitleClickChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setToggleHeaderOnTitleClick(getBooleanFromAttributeValue(newValue));}}
-showFooterChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setShowFooter(getBooleanFromAttributeValue(newValue));}}
-fitContentChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setFitContent(getBooleanFromAttributeValue(newValue));}}
-busyChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setFieldGroupIds(newValue);}}
+    widthChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setWidth(newValue);}}
+enabledChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setEnabled(getBooleanFromAttributeValue(newValue));}}
+busyChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-upload-collection-parameter')
-@inject(Element)
-export class Ui5UploadCollectionParameter extends Ui5Element{
-        _uploadcollectionparameter = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() name = null;
-@bindable() value = null;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_uploadcollectionparameter')
-        get UIElement() {
-            return this._uploadcollectionparameter;
-          }
-        fillProperties(params){
-                                        params.name = this.name;
-params.value = this.value;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._uploadcollectionparameter = new sap.m.UploadCollectionParameter(this.ui5Id, params);
-                                              else
-          this._uploadcollectionparameter = new sap.m.UploadCollectionParameter(params);
-                                                  if(this.ui5Class)
-           this._uploadcollectionparameter.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._uploadcollectionparameter.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._uploadcollectionparameter.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._uploadcollectionparameter, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._uploadcollectionparameter, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._uploadcollectionparameter.placeAt)
-                                                                this._uploadcollectionparameter.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._uploadcollectionparameter.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._uploadcollectionparameter)
-                                                                this._parent.removeChildByRelation(this._uploadcollectionparameter, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._uploadcollectionparameter.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'tooltip') { this._uploadcollectionparameter.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionparameter.insertCustomData(child, _index); else this._uploadcollectionparameter.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._uploadcollectionparameter.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionparameter.insertDependent(child, _index); else this._uploadcollectionparameter.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'tooltip') {  this._uploadcollectionparameter.destroyTooltip(child); }
-if (relation == 'customdata') {  this._uploadcollectionparameter.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._uploadcollectionparameter.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._uploadcollectionparameter.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    nameChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.setName(newValue);}}
-valueChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.setValue(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -16827,6 +17639,147 @@ validationErrorChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._
 parseErrorChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._viewsettingsfilteritem!==null){ this._viewsettingsfilteritem.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-title')
+@inject(Element)
+export class Ui5Title extends Ui5Element{
+        _title = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() text = null;
+@bindable() icon = null;
+@bindable() level = 'Auto';
+@bindable() emphasized = false;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_title')
+        get UIElement() {
+            return this._title;
+          }
+        fillProperties(params){
+                                        params.text = this.text;
+params.icon = this.icon;
+params.level = this.level;
+params.emphasized = getBooleanFromAttributeValue(this.emphasized);
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._title = new sap.ui.core.Title(this.ui5Id, params);
+                                              else
+          this._title = new sap.ui.core.Title(params);
+                                                  if(this.ui5Class)
+           this._title.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._title.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._title.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._title, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._title, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._title.placeAt)
+                                                                this._title.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._title.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._title)
+                                                                this._parent.removeChildByRelation(this._title, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._title.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._title.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._title.insertCustomData(child, _index); else this._title.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._title.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._title.insertDependent(child, _index); else this._title.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._title.destroyTooltip(child); }
+if (relation == 'customdata') {  this._title.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._title.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._title.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    textChanged(newValue){if(this._title!==null){ this._title.setText(newValue);}}
+iconChanged(newValue){if(this._title!==null){ this._title.setIcon(newValue);}}
+levelChanged(newValue){if(this._title!==null){ this._title.setLevel(newValue);}}
+emphasizedChanged(newValue){if(this._title!==null){ this._title.setEmphasized(getBooleanFromAttributeValue(newValue));}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._title!==null){ this._title.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._title!==null){ this._title.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._title!==null){ this._title.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._title!==null){ this._title.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._title!==null){ this._title.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -17140,6 +18093,311 @@ validationErrorChanged(newValue){if(this._wizard!==null){ this._wizard.attachVal
 parseErrorChanged(newValue){if(this._wizard!==null){ this._wizard.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._wizard!==null){ this._wizard.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._wizard!==null){ this._wizard.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-label')
+@inject(Element)
+export class Ui5Label extends Ui5Control{
+        _label = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() design = 'Standard';
+@bindable() text = null;
+@bindable() textAlign = 'Begin';
+@bindable() textDirection = 'Inherit';
+@bindable() width = '';
+@bindable() required = false;
+@bindable() displayOnly = false;
+@bindable() wrapping = false;
+@bindable() vAlign = 'Inherit';
+/* inherited from sap.ui.core.Control*/
+@bindable() busy = false;
+@bindable() busyIndicatorDelay = 1000;
+@bindable() busyIndicatorSize = 'Medium';
+@bindable() visible = true;
+@bindable() fieldGroupIds = '[]';
+@bindable() validateFieldGroup = this.defaultFunc;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_label')
+        get UIElement() {
+            return this._label;
+          }
+        fillProperties(params){
+                                        params.design = this.design;
+params.text = this.text;
+params.textAlign = this.textAlign;
+params.textDirection = this.textDirection;
+params.width = this.width;
+params.required = getBooleanFromAttributeValue(this.required);
+params.displayOnly = getBooleanFromAttributeValue(this.displayOnly);
+params.wrapping = getBooleanFromAttributeValue(this.wrapping);
+params.vAlign = this.vAlign;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._label = new sap.m.Label(this.ui5Id, params);
+                                              else
+          this._label = new sap.m.Label(params);
+                                                  if(this.ui5Class)
+           this._label.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._label.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._label.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._label, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._label, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._label.placeAt)
+                                                                this._label.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._label.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._label)
+                                                                this._parent.removeChildByRelation(this._label, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._label.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._label.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._label.insertCustomData(child, _index); else this._label.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._label.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._label.insertDependent(child, _index); else this._label.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._label.destroyTooltip(child); }
+if (relation == 'customdata') {  this._label.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._label.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._label.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    designChanged(newValue){if(this._label!==null){ this._label.setDesign(newValue);}}
+textChanged(newValue){if(this._label!==null){ this._label.setText(newValue);}}
+textAlignChanged(newValue){if(this._label!==null){ this._label.setTextAlign(newValue);}}
+textDirectionChanged(newValue){if(this._label!==null){ this._label.setTextDirection(newValue);}}
+widthChanged(newValue){if(this._label!==null){ this._label.setWidth(newValue);}}
+requiredChanged(newValue){if(this._label!==null){ this._label.setRequired(getBooleanFromAttributeValue(newValue));}}
+displayOnlyChanged(newValue){if(this._label!==null){ this._label.setDisplayOnly(getBooleanFromAttributeValue(newValue));}}
+wrappingChanged(newValue){if(this._label!==null){ this._label.setWrapping(getBooleanFromAttributeValue(newValue));}}
+vAlignChanged(newValue){if(this._label!==null){ this._label.setVAlign(newValue);}}
+busyChanged(newValue){if(this._label!==null){ this._label.setBusy(getBooleanFromAttributeValue(newValue));}}
+busyIndicatorDelayChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorDelay(newValue);}}
+busyIndicatorSizeChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorSize(newValue);}}
+visibleChanged(newValue){if(this._label!==null){ this._label.setVisible(getBooleanFromAttributeValue(newValue));}}
+fieldGroupIdsChanged(newValue){if(this._label!==null){ this._label.setFieldGroupIds(newValue);}}
+/* inherited from sap.ui.core.Control*/
+validateFieldGroupChanged(newValue){if(this._label!==null){ this._label.attachValidateFieldGroup(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._label!==null){ this._label.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._label!==null){ this._label.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._label!==null){ this._label.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._label!==null){ this._label.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._label!==null){ this._label.attachModelContextChange(newValue);}}
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+
+                                                                                }
+@customElement('ui5-upload-collection-parameter')
+@inject(Element)
+export class Ui5UploadCollectionParameter extends Ui5Element{
+        _uploadcollectionparameter = null;
+        _parent = null;
+        _relation = null;
+         @bindable ui5Id = null;
+         @bindable ui5Class = null;
+         @bindable ui5Tooltip = null;
+         @bindable prevId = null;
+        @bindable() name = null;
+@bindable() value = null;
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+@bindable() validationSuccess = this.defaultFunc;
+@bindable() validationError = this.defaultFunc;
+@bindable() parseError = this.defaultFunc;
+@bindable() formatError = this.defaultFunc;
+@bindable() modelContextChange = this.defaultFunc;
+/* inherited from sap.ui.base.EventProvider*/
+/* inherited from sap.ui.base.Object*/
+
+                constructor(element) {
+                    super(element);                    
+                this.element = element;
+            this.attributeManager = new AttributeManager(this.element);
+        }
+        @computedFrom('_uploadcollectionparameter')
+        get UIElement() {
+            return this._uploadcollectionparameter;
+          }
+        fillProperties(params){
+                                        params.name = this.name;
+params.value = this.value;
+            
+                                            super.fillProperties(params);   
+        }
+        defaultFunc() {
+                        }
+                        attached() {
+            var that = this;
+            var params = {};
+            this.fillProperties(params);
+         if (this.ui5Id)
+          this._uploadcollectionparameter = new sap.m.UploadCollectionParameter(this.ui5Id, params);
+                                              else
+          this._uploadcollectionparameter = new sap.m.UploadCollectionParameter(params);
+                                                  if(this.ui5Class)
+           this._uploadcollectionparameter.addStyleClass(this.ui5Class);
+                                             if(this.ui5Tooltip)
+           this._uploadcollectionparameter.setTooltip(this.ui5Tooltip);                                             
+        
+        if ($(this.element).closest("[ui5-container]").length > 0) {
+                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
+                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._uploadcollectionparameter.sId)) {
+        var prevSibling = null;
+       
+        this._relation = this._parent.addChild(this._uploadcollectionparameter, this.element, this.prevId);
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+      else {
+                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
+                                                var prevSibling = null;
+                                                       this._relation = this._parent.addChild(this._uploadcollectionparameter, this.element, this.prevId);
+        
+        this.attributeManager.addAttributes({"ui5-container": '' });
+      }
+    }
+    else {
+                                                            if(this._uploadcollectionparameter.placeAt)
+                                                                this._uploadcollectionparameter.placeAt(this.element.parentElement);
+                                                        this.attributeManager.addAttributes({"ui5-container": '' });
+                                                        this.attributeManager.addClasses("ui5-hide");
+    }
+        
+                                                        //<!container>
+           
+                                                        //</!container>
+                                                        this.attributeManager.addAttributes({"ui5-id": this._uploadcollectionparameter.sId});
+                                                                           
+           
+        }
+    detached() {
+        try{
+          if ($(this.element).closest("[ui5-container]").length > 0) {
+        if (this._parent && this._relation) {
+                                                                 if(this._uploadcollectionparameter)
+                                                                this._parent.removeChildByRelation(this._uploadcollectionparameter, this._relation);
+                                                            }
+                                                                                }
+         else{
+                                                                this._uploadcollectionparameter.destroy();
+                                                            }
+         super.detached();
+          }
+         catch(err){}
+        }
+
+    addChild(child, elem, afterElement) {
+        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
+        for (elem of path) {
+        try{
+                 if (elem.localName == 'tooltip') { this._uploadcollectionparameter.setTooltip(child); return elem.localName;}
+if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionparameter.insertCustomData(child, _index); else this._uploadcollectionparameter.addCustomData(child, 0);  return elem.localName; }
+if (elem.localName == 'layoutdata') { this._uploadcollectionparameter.setLayoutData(child); return elem.localName;}
+if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionparameter.insertDependent(child, _index); else this._uploadcollectionparameter.addDependent(child, 0);  return elem.localName; }
+
+           }
+           catch(err){}
+                                                                    }
+      }
+      removeChildByRelation(child, relation) {
+      try{
+               if (relation == 'tooltip') {  this._uploadcollectionparameter.destroyTooltip(child); }
+if (relation == 'customdata') {  this._uploadcollectionparameter.removeCustomData(child);}
+if (relation == 'layoutdata') {  this._uploadcollectionparameter.destroyLayoutData(child); }
+if (relation == 'dependents') {  this._uploadcollectionparameter.removeDependent(child);}
+
+      }
+      catch(err){}
+                                                                            }
+    nameChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.setName(newValue);}}
+valueChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.setValue(newValue);}}
+/* inherited from sap.ui.core.Element*/
+/* inherited from sap.ui.base.ManagedObject*/
+validationSuccessChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(this._uploadcollectionparameter!==null){ this._uploadcollectionparameter.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
@@ -17480,348 +18738,6 @@ validationErrorChanged(newValue){if(this._viewsettingsdialog!==null){ this._view
 parseErrorChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachParseError(newValue);}}
 formatErrorChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachFormatError(newValue);}}
 modelContextChangeChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-page')
-@inject(Element)
-export class Ui5Page extends Ui5Control{
-        _page = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() title = null;
-@bindable() titleLevel = 'Auto';
-@bindable() showNavButton = false;
-@bindable() showHeader = true;
-@bindable() showSubHeader = true;
-@bindable() navButtonTooltip = null;
-@bindable() enableScrolling = true;
-@bindable() backgroundDesign = 'Standard';
-@bindable() showFooter = true;
-@bindable() contentOnlyBusy = false;
-@bindable() floatingFooter = false;
-@bindable() navButtonPress = this.defaultFunc;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_page')
-        get UIElement() {
-            return this._page;
-          }
-        fillProperties(params){
-                                        params.title = this.title;
-params.titleLevel = this.titleLevel;
-params.showNavButton = getBooleanFromAttributeValue(this.showNavButton);
-params.showHeader = getBooleanFromAttributeValue(this.showHeader);
-params.showSubHeader = getBooleanFromAttributeValue(this.showSubHeader);
-params.navButtonTooltip = this.navButtonTooltip;
-params.enableScrolling = getBooleanFromAttributeValue(this.enableScrolling);
-params.backgroundDesign = this.backgroundDesign;
-params.showFooter = getBooleanFromAttributeValue(this.showFooter);
-params.contentOnlyBusy = getBooleanFromAttributeValue(this.contentOnlyBusy);
-params.floatingFooter = getBooleanFromAttributeValue(this.floatingFooter);
-params.navButtonPress = this.navButtonPress==null ? this.defaultFunc: this.navButtonPress;
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._page = new sap.m.Page(this.ui5Id, params);
-                                              else
-          this._page = new sap.m.Page(params);
-                                                  if(this.ui5Class)
-           this._page.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._page.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._page.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._page, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._page, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._page.placeAt)
-                                                                this._page.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._page.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._page)
-                                                                this._parent.removeChildByRelation(this._page, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._page.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertContent(child, _index); else this._page.addContent(child, 0);  return elem.localName; }
-if (elem.localName == 'customheader') { this._page.setCustomHeader(child); return elem.localName;}
-if (elem.localName == 'footer') { this._page.setFooter(child); return elem.localName;}
-if (elem.localName == 'subheader') { this._page.setSubHeader(child); return elem.localName;}
-if (elem.localName == 'headercontent') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertHeaderContent(child, _index); else this._page.addHeaderContent(child, 0);  return elem.localName; }
-if (elem.localName == 'landmarkinfo') { this._page.setLandmarkInfo(child); return elem.localName;}
-if (elem.localName == 'tooltip') { this._page.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertCustomData(child, _index); else this._page.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._page.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertDependent(child, _index); else this._page.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'content') {  this._page.removeContent(child);}
-if (relation == 'customheader') {  this._page.destroyCustomHeader(child); }
-if (relation == 'footer') {  this._page.destroyFooter(child); }
-if (relation == 'subheader') {  this._page.destroySubHeader(child); }
-if (relation == 'headercontent') {  this._page.removeHeaderContent(child);}
-if (relation == 'landmarkinfo') {  this._page.destroyLandmarkInfo(child); }
-if (relation == 'tooltip') {  this._page.destroyTooltip(child); }
-if (relation == 'customdata') {  this._page.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._page.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._page.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    titleChanged(newValue){if(this._page!==null){ this._page.setTitle(newValue);}}
-titleLevelChanged(newValue){if(this._page!==null){ this._page.setTitleLevel(newValue);}}
-showNavButtonChanged(newValue){if(this._page!==null){ this._page.setShowNavButton(getBooleanFromAttributeValue(newValue));}}
-showHeaderChanged(newValue){if(this._page!==null){ this._page.setShowHeader(getBooleanFromAttributeValue(newValue));}}
-showSubHeaderChanged(newValue){if(this._page!==null){ this._page.setShowSubHeader(getBooleanFromAttributeValue(newValue));}}
-navButtonTooltipChanged(newValue){if(this._page!==null){ this._page.setNavButtonTooltip(newValue);}}
-enableScrollingChanged(newValue){if(this._page!==null){ this._page.setEnableScrolling(getBooleanFromAttributeValue(newValue));}}
-backgroundDesignChanged(newValue){if(this._page!==null){ this._page.setBackgroundDesign(newValue);}}
-showFooterChanged(newValue){if(this._page!==null){ this._page.setShowFooter(getBooleanFromAttributeValue(newValue));}}
-contentOnlyBusyChanged(newValue){if(this._page!==null){ this._page.setContentOnlyBusy(getBooleanFromAttributeValue(newValue));}}
-floatingFooterChanged(newValue){if(this._page!==null){ this._page.setFloatingFooter(getBooleanFromAttributeValue(newValue));}}
-navButtonPressChanged(newValue){if(this._page!==null){ this._page.attachNavButtonPress(newValue);}}
-busyChanged(newValue){if(this._page!==null){ this._page.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._page!==null){ this._page.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._page!==null){ this._page.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._page!==null){ this._page.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._page!==null){ this._page.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._page!==null){ this._page.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._page!==null){ this._page.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._page!==null){ this._page.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._page!==null){ this._page.attachModelContextChange(newValue);}}
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-
-                                                                                }
-@customElement('ui5-vertical-layout')
-@inject(Element)
-export class Ui5VerticalLayout extends Ui5Control{
-        _verticallayout = null;
-        _parent = null;
-        _relation = null;
-         @bindable ui5Id = null;
-         @bindable ui5Class = null;
-         @bindable ui5Tooltip = null;
-         @bindable prevId = null;
-        @bindable() width = null;
-@bindable() enabled = true;
-/* inherited from sap.ui.core.Control*/
-@bindable() busy = false;
-@bindable() busyIndicatorDelay = 1000;
-@bindable() busyIndicatorSize = 'Medium';
-@bindable() visible = true;
-@bindable() fieldGroupIds = '[]';
-@bindable() validateFieldGroup = this.defaultFunc;
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-@bindable() validationSuccess = this.defaultFunc;
-@bindable() validationError = this.defaultFunc;
-@bindable() parseError = this.defaultFunc;
-@bindable() formatError = this.defaultFunc;
-@bindable() modelContextChange = this.defaultFunc;
-/* inherited from sap.ui.base.EventProvider*/
-/* inherited from sap.ui.base.Object*/
-
-                constructor(element) {
-                    super(element);                    
-                this.element = element;
-            this.attributeManager = new AttributeManager(this.element);
-        }
-        @computedFrom('_verticallayout')
-        get UIElement() {
-            return this._verticallayout;
-          }
-        fillProperties(params){
-                                        params.width = this.width;
-params.enabled = getBooleanFromAttributeValue(this.enabled);
-            
-                                            super.fillProperties(params);   
-        }
-        defaultFunc() {
-                        }
-                        attached() {
-            var that = this;
-            var params = {};
-            this.fillProperties(params);
-         if (this.ui5Id)
-          this._verticallayout = new sap.ui.layout.VerticalLayout(this.ui5Id, params);
-                                              else
-          this._verticallayout = new sap.ui.layout.VerticalLayout(params);
-                                                  if(this.ui5Class)
-           this._verticallayout.addStyleClass(this.ui5Class);
-                                             if(this.ui5Tooltip)
-           this._verticallayout.setTooltip(this.ui5Tooltip);                                             
-        
-        if ($(this.element).closest("[ui5-container]").length > 0) {
-                                            this._parent = $(this.element).closest("[ui5-container]")[0].au.controller.viewModel;
-                                        if (!this._parent.UIElement || (this._parent.UIElement.sId != this._verticallayout.sId)) {
-        var prevSibling = null;
-       
-        this._relation = this._parent.addChild(this._verticallayout, this.element, this.prevId);
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-      else {
-                                                    this._parent = $(this.element.parentElement).closest("[ui5-container]")[0].au.controller.viewModel;
-                                                var prevSibling = null;
-                                                       this._relation = this._parent.addChild(this._verticallayout, this.element, this.prevId);
-        
-        this.attributeManager.addAttributes({"ui5-container": '' });
-      }
-    }
-    else {
-                                                            if(this._verticallayout.placeAt)
-                                                                this._verticallayout.placeAt(this.element.parentElement);
-                                                        this.attributeManager.addAttributes({"ui5-container": '' });
-                                                        this.attributeManager.addClasses("ui5-hide");
-    }
-        
-                                                        //<!container>
-           
-                                                        //</!container>
-                                                        this.attributeManager.addAttributes({"ui5-id": this._verticallayout.sId});
-                                                                           
-           
-        }
-    detached() {
-        try{
-          if ($(this.element).closest("[ui5-container]").length > 0) {
-        if (this._parent && this._relation) {
-                                                                 if(this._verticallayout)
-                                                                this._parent.removeChildByRelation(this._verticallayout, this._relation);
-                                                            }
-                                                                                }
-         else{
-                                                                this._verticallayout.destroy();
-                                                            }
-         super.detached();
-          }
-         catch(err){}
-        }
-
-    addChild(child, elem, afterElement) {
-        var path = jQuery.makeArray($(elem).parentsUntil(this.element));
-        for (elem of path) {
-        try{
-                 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertContent(child, _index); else this._verticallayout.addContent(child, 0);  return elem.localName; }
-if (elem.localName == 'tooltip') { this._verticallayout.setTooltip(child); return elem.localName;}
-if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertCustomData(child, _index); else this._verticallayout.addCustomData(child, 0);  return elem.localName; }
-if (elem.localName == 'layoutdata') { this._verticallayout.setLayoutData(child); return elem.localName;}
-if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertDependent(child, _index); else this._verticallayout.addDependent(child, 0);  return elem.localName; }
-
-           }
-           catch(err){}
-                                                                    }
-      }
-      removeChildByRelation(child, relation) {
-      try{
-               if (relation == 'content') {  this._verticallayout.removeContent(child);}
-if (relation == 'tooltip') {  this._verticallayout.destroyTooltip(child); }
-if (relation == 'customdata') {  this._verticallayout.removeCustomData(child);}
-if (relation == 'layoutdata') {  this._verticallayout.destroyLayoutData(child); }
-if (relation == 'dependents') {  this._verticallayout.removeDependent(child);}
-
-      }
-      catch(err){}
-                                                                            }
-    widthChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setWidth(newValue);}}
-enabledChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setEnabled(getBooleanFromAttributeValue(newValue));}}
-busyChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusy(getBooleanFromAttributeValue(newValue));}}
-busyIndicatorDelayChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusyIndicatorDelay(newValue);}}
-busyIndicatorSizeChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusyIndicatorSize(newValue);}}
-visibleChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setVisible(getBooleanFromAttributeValue(newValue));}}
-fieldGroupIdsChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setFieldGroupIds(newValue);}}
-/* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachValidateFieldGroup(newValue);}}
-/* inherited from sap.ui.core.Element*/
-/* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

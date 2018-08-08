@@ -25,7 +25,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
         }
 
         ConfigBuilder.prototype.useAll = function useAll() {
-          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton().useTree().useMenu().useSplitter().usePanel().useTextArea();
+          return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton().useTree().useMenu().useSplitter().usePanel().useTextArea().useGridTable();
         };
 
         ConfigBuilder.prototype.useLink = function useLink() {
@@ -278,6 +278,16 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
         ConfigBuilder.prototype.useTextArea = function useTextArea() {
           this.globalResources.push(PLATFORM.moduleName('./text-area/text-area'));
+          return this;
+        };
+
+        ConfigBuilder.prototype.useGridTable = function useGridTable() {
+          this.globalResources.push(PLATFORM.moduleName('./grid-table/grid-table'));
+          this.globalResources.push(PLATFORM.moduleName('./grid-table-row/grid-table-row'));
+          this.globalResources.push(PLATFORM.moduleName('./grid-table-column/grid-table-column'));
+          this.globalResources.push(PLATFORM.moduleName('./grid-table-row-action/grid-table-row-action'));
+          this.globalResources.push(PLATFORM.moduleName('./grid-table-row-setting/grid-table-row-setting'));
+
           return this;
         };
 

@@ -115,7 +115,9 @@ params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
                                                         this.attributeManager.addAttributes({"ui5-container": '' });
                                                         this.attributeManager.addClasses("ui5-hide");
     }
-        
+        this._textarea.attachChange((event) => { that.value = event.mParameters.value;; });
+this._textarea.attachLiveChange((event) => { if (getBooleanFromAttributeValue(that.valueLiveUpdate)) {that.value = event.mParameters.value;}; });
+
                                                         //<!container>
            
                                                         //</!container>

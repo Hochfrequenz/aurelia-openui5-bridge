@@ -1,0 +1,26 @@
+<template>
+  <label ref="label">
+    <slot></slot>
+  </label>
+  <multiLabels ref="multiLabels">
+    <slot name="multiLabels"></slot>
+  </multiLabels>
+  <template ref="template">
+    <slot name="template"></slot>
+  </template>
+  <menu ref="menu">
+    <slot name="menu"></slot>
+  </menu>
+  <tooltip ref="tooltip">
+    <slot name="tooltip"></slot>
+  </tooltip>
+  <customData ref="customData">
+    <slot name="customData"></slot>
+  </customData>
+  <layoutData ref="layoutData">
+    <slot name="layoutData"></slot>
+  </layoutData>
+  <dependents ref="dependents">
+    <slot name="dependents"></slot>
+  </dependents>
+</template>

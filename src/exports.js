@@ -98,4 +98,9 @@ export * from './responsive-splitter/responsive-splitter';
 export * from './pane-container/pane-container';
 export * from './split-pane/split-pane';
 export * from './text-area/text-area';
+export * from './grid-table/grid-table';
+export * from './grid-table-row/grid-table-row';
+export * from './grid-table-column/grid-table-column';
+export * from './grid-table-row-action/grid-table-row-action';
+export * from './grid-table-row-setting/grid-table-row-setting';
 // build-index-remove end
