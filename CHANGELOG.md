@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.18"></a>
+## [0.3.18](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.3.17...v0.3.18) (2018-08-23)
+
+
+
 <a name="0.3.17"></a>
 ## [0.3.17](https://github.com/hochfrequenz/aurelia-openui5-bridge/compare/v0.3.16...v0.3.17) (2018-08-09)
 
