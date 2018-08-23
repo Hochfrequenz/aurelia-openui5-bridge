@@ -19,6 +19,7 @@ export class Ui5SegmentedButton extends Ui5Control{
 @bindable() selectedKey = '';
 @bindable() selectionChange = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -124,6 +125,7 @@ if (elem.localName == 'tooltip') { this._segmentedbutton.setTooltip(child); retu
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertCustomData(child, _index); else this._segmentedbutton.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._segmentedbutton.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertDependent(child, _index); else this._segmentedbutton.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._segmentedbutton.insertDragDropConfig(child, _index); else this._segmentedbutton.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -137,6 +139,7 @@ if (relation == 'tooltip') {  this._segmentedbutton.destroyTooltip(child); }
 if (relation == 'customdata') {  this._segmentedbutton.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._segmentedbutton.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._segmentedbutton.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._segmentedbutton.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -145,6 +148,7 @@ if (relation == 'dependents') {  this._segmentedbutton.removeDependent(child);}
 enabledChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setEnabled(getBooleanFromAttributeValue(newValue));}}
 selectedKeyChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setSelectedKey(newValue);}}
 selectionChangeChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.attachSelectionChange(newValue);}}
+blockedChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusyIndicatorSize(newValue);}}

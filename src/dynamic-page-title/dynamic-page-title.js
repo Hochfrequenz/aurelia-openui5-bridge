@@ -17,6 +17,7 @@ export class Ui5DynamicPageTitle extends Ui5Control{
         @bindable() areaShrinkRatio = '1:1.6:1.6';
 @bindable() stateChange = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -126,6 +127,7 @@ if (elem.localName == 'tooltip') { this._dynamicpagetitle.setTooltip(child); ret
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpagetitle.insertCustomData(child, _index); else this._dynamicpagetitle.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._dynamicpagetitle.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpagetitle.insertDependent(child, _index); else this._dynamicpagetitle.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpagetitle.insertDragDropConfig(child, _index); else this._dynamicpagetitle.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -146,12 +148,14 @@ if (relation == 'tooltip') {  this._dynamicpagetitle.destroyTooltip(child); }
 if (relation == 'customdata') {  this._dynamicpagetitle.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._dynamicpagetitle.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._dynamicpagetitle.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._dynamicpagetitle.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     areaShrinkRatioChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setAreaShrinkRatio(newValue);}}
 stateChangeChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachStateChange(newValue);}}
+blockedChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusyIndicatorSize(newValue);}}

@@ -24,6 +24,7 @@ export class Ui5TreeItemBase extends Ui5ListItemBase{
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -122,6 +123,7 @@ export class Ui5TreeItemBase extends Ui5ListItemBase{
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._treeitembase.insertCustomData(child, _index); else this._treeitembase.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._treeitembase.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._treeitembase.insertDependent(child, _index); else this._treeitembase.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._treeitembase.insertDragDropConfig(child, _index); else this._treeitembase.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -133,6 +135,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._treeitembase.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._treeitembase.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._treeitembase.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._treeitembase.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -146,6 +149,7 @@ highlightChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.set
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachPress(newValue);}}
 detailPressChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachDetailPress(newValue);}}
+blockedChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBusyIndicatorSize(newValue);}}

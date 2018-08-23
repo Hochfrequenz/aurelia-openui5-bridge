@@ -22,6 +22,7 @@ export class Ui5Text extends Ui5Control{
 @bindable() maxLines = null;
 @bindable() renderWhitespace = false;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -127,6 +128,7 @@ params.renderWhitespace = getBooleanFromAttributeValue(this.renderWhitespace);
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._text.insertCustomData(child, _index); else this._text.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._text.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._text.insertDependent(child, _index); else this._text.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._text.insertDragDropConfig(child, _index); else this._text.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -138,6 +140,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._text.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._text.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._text.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._text.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -149,6 +152,7 @@ textAlignChanged(newValue){if(this._text!==null){ this._text.setTextAlign(newVal
 widthChanged(newValue){if(this._text!==null){ this._text.setWidth(newValue);}}
 maxLinesChanged(newValue){if(this._text!==null){ this._text.setMaxLines(newValue);}}
 renderWhitespaceChanged(newValue){if(this._text!==null){ this._text.setRenderWhitespace(getBooleanFromAttributeValue(newValue));}}
+blockedChanged(newValue){if(this._text!==null){ this._text.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._text!==null){ this._text.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorSize(newValue);}}

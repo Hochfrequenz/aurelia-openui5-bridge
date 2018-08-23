@@ -29,6 +29,7 @@ export class Ui5NumericContent extends Ui5Control{
 @bindable() state = 'Loaded';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -141,6 +142,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._numericcontent.insertCustomData(child, _index); else this._numericcontent.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._numericcontent.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._numericcontent.insertDependent(child, _index); else this._numericcontent.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._numericcontent.insertDragDropConfig(child, _index); else this._numericcontent.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -152,6 +154,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._numericcontent.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._numericcontent.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._numericcontent.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._numericcontent.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -170,6 +173,7 @@ widthChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.set
 withMarginChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setWithMargin(getBooleanFromAttributeValue(newValue));}}
 stateChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setState(newValue);}}
 pressChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.attachPress(newValue);}}
+blockedChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusyIndicatorSize(newValue);}}

@@ -27,6 +27,7 @@ export class Ui5Link extends Ui5Control{
 @bindable() emphasized = false;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -137,6 +138,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._link.insertCustomData(child, _index); else this._link.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._link.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._link.insertDependent(child, _index); else this._link.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._link.insertDragDropConfig(child, _index); else this._link.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -148,6 +150,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._link.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._link.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._link.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._link.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -164,6 +167,7 @@ textDirectionChanged(newValue){if(this._link!==null){ this._link.setTextDirectio
 subtleChanged(newValue){if(this._link!==null){ this._link.setSubtle(getBooleanFromAttributeValue(newValue));}}
 emphasizedChanged(newValue){if(this._link!==null){ this._link.setEmphasized(getBooleanFromAttributeValue(newValue));}}
 pressChanged(newValue){if(this._link!==null){ this._link.attachPress(newValue);}}
+blockedChanged(newValue){if(this._link!==null){ this._link.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._link!==null){ this._link.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._link!==null){ this._link.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._link!==null){ this._link.setBusyIndicatorSize(newValue);}}

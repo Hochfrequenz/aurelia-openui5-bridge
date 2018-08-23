@@ -14,7 +14,9 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        /* inherited from sap.m.DatePicker*/
+        @bindable() minutesStep = 1;
+@bindable() secondsStep = 1;
+/* inherited from sap.m.DatePicker*/
 @bindable() displayFormatType = '';
 @bindable() secondaryCalendarType = null;
 @bindable() minDate = null;
@@ -40,6 +42,7 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -66,7 +69,9 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
             return this._datetimepicker;
           }
         fillProperties(params){
-                                                    
+                                        params.minutesStep = this.minutesStep?parseInt(this.minutesStep):0;
+params.secondsStep = this.secondsStep?parseInt(this.secondsStep):0;
+            
                                             super.fillProperties(params);   
         }
         defaultFunc() {
@@ -140,6 +145,7 @@ if (elem.localName == 'tooltip') { this._datetimepicker.setTooltip(child); retur
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimepicker.insertCustomData(child, _index); else this._datetimepicker.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._datetimepicker.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimepicker.insertDependent(child, _index); else this._datetimepicker.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimepicker.insertDragDropConfig(child, _index); else this._datetimepicker.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -152,11 +158,14 @@ if (relation == 'tooltip') {  this._datetimepicker.destroyTooltip(child); }
 if (relation == 'customdata') {  this._datetimepicker.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._datetimepicker.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._datetimepicker.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._datetimepicker.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
-    displayFormatTypeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setDisplayFormatType(newValue);}}
+    minutesStepChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setMinutesStep(newValue);}}
+secondsStepChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setSecondsStep(newValue);}}
+displayFormatTypeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setDisplayFormatType(newValue);}}
 secondaryCalendarTypeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setSecondaryCalendarType(newValue);}}
 minDateChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setMinDate(newValue);}}
 maxDateChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setMaxDate(newValue);}}
@@ -181,6 +190,7 @@ textDirectionChanged(newValue){if(this._datetimepicker!==null){ this._datetimepi
 requiredChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachChange(newValue);}}
+blockedChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBusyIndicatorSize(newValue);}}

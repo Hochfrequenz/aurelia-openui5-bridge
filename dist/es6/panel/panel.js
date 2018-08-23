@@ -24,6 +24,7 @@ export class Ui5Panel extends Ui5Control{
 @bindable() accessibleRole = 'Form';
 @bindable() expand = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -134,6 +135,7 @@ if (elem.localName == 'tooltip') { this._panel.setTooltip(child); return elem.lo
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._panel.insertCustomData(child, _index); else this._panel.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._panel.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._panel.insertDependent(child, _index); else this._panel.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._panel.insertDragDropConfig(child, _index); else this._panel.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -148,6 +150,7 @@ if (relation == 'tooltip') {  this._panel.destroyTooltip(child); }
 if (relation == 'customdata') {  this._panel.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._panel.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._panel.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._panel.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -161,6 +164,7 @@ expandAnimationChanged(newValue){if(this._panel!==null){ this._panel.setExpandAn
 backgroundDesignChanged(newValue){if(this._panel!==null){ this._panel.setBackgroundDesign(newValue);}}
 accessibleRoleChanged(newValue){if(this._panel!==null){ this._panel.setAccessibleRole(newValue);}}
 expandChanged(newValue){if(this._panel!==null){ this._panel.attachExpand(newValue);}}
+blockedChanged(newValue){if(this._panel!==null){ this._panel.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._panel!==null){ this._panel.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._panel!==null){ this._panel.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._panel!==null){ this._panel.setBusyIndicatorSize(newValue);}}

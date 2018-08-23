@@ -119,6 +119,7 @@ if (elem.localName == 'tooltip') { this._viewsettingsfilteritem.setTooltip(child
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsfilteritem.insertCustomData(child, _index); else this._viewsettingsfilteritem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._viewsettingsfilteritem.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsfilteritem.insertDependent(child, _index); else this._viewsettingsfilteritem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsfilteritem.insertDragDropConfig(child, _index); else this._viewsettingsfilteritem.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -131,6 +132,7 @@ if (relation == 'tooltip') {  this._viewsettingsfilteritem.destroyTooltip(child)
 if (relation == 'customdata') {  this._viewsettingsfilteritem.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._viewsettingsfilteritem.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._viewsettingsfilteritem.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._viewsettingsfilteritem.removeDragDropConfig(child);}
 
       }
       catch(err){}

@@ -216,6 +216,9 @@ var Ui5MessageItem = exports.Ui5MessageItem = (_dec = (0, _aureliaTemplating.cus
                 if (elem.localName == 'dependents') {
                     var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._messageitem.insertDependent(child, _index);else this._messageitem.addDependent(child, 0);return elem.localName;
                 }
+                if (elem.localName == 'dragdropconfig') {
+                    var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._messageitem.insertDragDropConfig(child, _index);else this._messageitem.addDragDropConfig(child, 0);return elem.localName;
+                }
             } catch (err) {}
         }
     };
@@ -236,6 +239,9 @@ var Ui5MessageItem = exports.Ui5MessageItem = (_dec = (0, _aureliaTemplating.cus
             }
             if (relation == 'dependents') {
                 this._messageitem.removeDependent(child);
+            }
+            if (relation == 'dragdropconfig') {
+                this._messageitem.removeDragDropConfig(child);
             }
         } catch (err) {}
     };

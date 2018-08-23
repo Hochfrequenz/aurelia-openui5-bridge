@@ -57,6 +57,7 @@ export class Ui5gridTable extends Ui5Control{
 @bindable() firstVisibleRowChanged = this.defaultFunc;
 @bindable() busyStateChanged = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -202,12 +203,12 @@ if (elem.localName == 'rows') { var _index = afterElement?Math.floor(afterElemen
 if (elem.localName == 'nodata') { this._gridtable.setNoData(child); return elem.localName;}
 if (elem.localName == 'rowactiontemplate') { this._gridtable.setRowActionTemplate(child); return elem.localName;}
 if (elem.localName == 'rowsettingstemplate') { this._gridtable.setRowSettingsTemplate(child); return elem.localName;}
-if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertDragDropConfig(child, _index); else this._gridtable.addDragDropConfig(child, 0);  return elem.localName; }
 if (elem.localName == 'contextmenu') { this._gridtable.setContextMenu(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._gridtable.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertCustomData(child, _index); else this._gridtable.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._gridtable.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertDependent(child, _index); else this._gridtable.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertDragDropConfig(child, _index); else this._gridtable.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -224,12 +225,12 @@ if (relation == 'rows') {  this._gridtable.removeRow(child);}
 if (relation == 'nodata') {  this._gridtable.destroyNoData(child); }
 if (relation == 'rowactiontemplate') {  this._gridtable.destroyRowActionTemplate(child); }
 if (relation == 'rowsettingstemplate') {  this._gridtable.destroyRowSettingsTemplate(child); }
-if (relation == 'dragdropconfig') {  this._gridtable.removeDragDropConfig(child);}
 if (relation == 'contextmenu') {  this._gridtable.destroyContextMenu(child); }
 if (relation == 'tooltip') {  this._gridtable.destroyTooltip(child); }
 if (relation == 'customdata') {  this._gridtable.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._gridtable.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._gridtable.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._gridtable.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -276,6 +277,7 @@ columnFreezeChanged(newValue){if(this._gridtable!==null){ this._gridtable.attach
 customFilterChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachCustomFilter(newValue);}}
 firstVisibleRowChangedChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachFirstVisibleRowChanged(newValue);}}
 busyStateChangedChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachBusyStateChanged(newValue);}}
+blockedChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusyIndicatorSize(newValue);}}

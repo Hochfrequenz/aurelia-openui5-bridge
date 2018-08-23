@@ -126,6 +126,7 @@ if (elem.localName == 'tooltip') { this._icontabfilter.setTooltip(child); return
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabfilter.insertCustomData(child, _index); else this._icontabfilter.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._icontabfilter.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabfilter.insertDependent(child, _index); else this._icontabfilter.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabfilter.insertDragDropConfig(child, _index); else this._icontabfilter.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -138,6 +139,7 @@ if (relation == 'tooltip') {  this._icontabfilter.destroyTooltip(child); }
 if (relation == 'customdata') {  this._icontabfilter.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._icontabfilter.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._icontabfilter.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._icontabfilter.removeDragDropConfig(child);}
 
       }
       catch(err){}

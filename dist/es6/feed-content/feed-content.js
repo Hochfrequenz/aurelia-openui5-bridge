@@ -21,6 +21,7 @@ export class Ui5FeedContent extends Ui5Control{
 @bindable() truncateValueTo = 4;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -125,6 +126,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._feedcontent.insertCustomData(child, _index); else this._feedcontent.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._feedcontent.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._feedcontent.insertDependent(child, _index); else this._feedcontent.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._feedcontent.insertDragDropConfig(child, _index); else this._feedcontent.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -136,6 +138,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._feedcontent.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._feedcontent.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._feedcontent.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._feedcontent.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -146,6 +149,7 @@ valueChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setValue(
 valueColorChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setValueColor(newValue);}}
 truncateValueToChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setTruncateValueTo(newValue);}}
 pressChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.attachPress(newValue);}}
+blockedChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusyIndicatorSize(newValue);}}

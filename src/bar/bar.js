@@ -16,6 +16,7 @@ export class Ui5Bar extends Ui5Control{
          @bindable prevId = null;
         @bindable() design = 'Auto';
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -118,6 +119,7 @@ if (elem.localName == 'tooltip') { this._bar.setTooltip(child); return elem.loca
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertCustomData(child, _index); else this._bar.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._bar.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertDependent(child, _index); else this._bar.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._bar.insertDragDropConfig(child, _index); else this._bar.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -132,11 +134,13 @@ if (relation == 'tooltip') {  this._bar.destroyTooltip(child); }
 if (relation == 'customdata') {  this._bar.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._bar.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._bar.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._bar.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     designChanged(newValue){if(this._bar!==null){ this._bar.setDesign(newValue);}}
+blockedChanged(newValue){if(this._bar!==null){ this._bar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._bar!==null){ this._bar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._bar!==null){ this._bar.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._bar!==null){ this._bar.setBusyIndicatorSize(newValue);}}

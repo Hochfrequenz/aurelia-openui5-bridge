@@ -22,6 +22,7 @@ export class Ui5Toolbar extends Ui5Control{
 @bindable() style = 'Standard';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -128,6 +129,7 @@ if (elem.localName == 'tooltip') { this._toolbar.setTooltip(child); return elem.
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbar.insertCustomData(child, _index); else this._toolbar.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._toolbar.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbar.insertDependent(child, _index); else this._toolbar.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbar.insertDragDropConfig(child, _index); else this._toolbar.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -140,6 +142,7 @@ if (relation == 'tooltip') {  this._toolbar.destroyTooltip(child); }
 if (relation == 'customdata') {  this._toolbar.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._toolbar.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._toolbar.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._toolbar.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -151,6 +154,7 @@ heightChanged(newValue){if(this._toolbar!==null){ this._toolbar.setHeight(newVal
 designChanged(newValue){if(this._toolbar!==null){ this._toolbar.setDesign(newValue);}}
 styleChanged(newValue){if(this._toolbar!==null){ this._toolbar.setStyle(newValue);}}
 pressChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachPress(newValue);}}
+blockedChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusyIndicatorSize(newValue);}}

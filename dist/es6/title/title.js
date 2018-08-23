@@ -114,6 +114,7 @@ params.emphasized = getBooleanFromAttributeValue(this.emphasized);
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._title.insertCustomData(child, _index); else this._title.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._title.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._title.insertDependent(child, _index); else this._title.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._title.insertDragDropConfig(child, _index); else this._title.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -125,6 +126,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._title.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._title.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._title.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._title.removeDragDropConfig(child);}
 
       }
       catch(err){}

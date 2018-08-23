@@ -24,6 +24,7 @@ export class Ui5Label extends Ui5Control{
 @bindable() wrapping = false;
 @bindable() vAlign = 'Inherit';
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -131,6 +132,7 @@ params.vAlign = this.vAlign;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._label.insertCustomData(child, _index); else this._label.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._label.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._label.insertDependent(child, _index); else this._label.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._label.insertDragDropConfig(child, _index); else this._label.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -142,6 +144,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._label.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._label.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._label.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._label.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -155,6 +158,7 @@ requiredChanged(newValue){if(this._label!==null){ this._label.setRequired(getBoo
 displayOnlyChanged(newValue){if(this._label!==null){ this._label.setDisplayOnly(getBooleanFromAttributeValue(newValue));}}
 wrappingChanged(newValue){if(this._label!==null){ this._label.setWrapping(getBooleanFromAttributeValue(newValue));}}
 vAlignChanged(newValue){if(this._label!==null){ this._label.setVAlign(newValue);}}
+blockedChanged(newValue){if(this._label!==null){ this._label.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._label!==null){ this._label.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorSize(newValue);}}

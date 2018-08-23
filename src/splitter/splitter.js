@@ -19,6 +19,7 @@ export class Ui5Splitter extends Ui5Control{
 @bindable() height = '100%';
 @bindable() resize = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -122,6 +123,7 @@ if (elem.localName == 'tooltip') { this._splitter.setTooltip(child); return elem
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitter.insertCustomData(child, _index); else this._splitter.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._splitter.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitter.insertDependent(child, _index); else this._splitter.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitter.insertDragDropConfig(child, _index); else this._splitter.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -134,6 +136,7 @@ if (relation == 'tooltip') {  this._splitter.destroyTooltip(child); }
 if (relation == 'customdata') {  this._splitter.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._splitter.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._splitter.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._splitter.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -142,6 +145,7 @@ if (relation == 'dependents') {  this._splitter.removeDependent(child);}
 widthChanged(newValue){if(this._splitter!==null){ this._splitter.setWidth(newValue);}}
 heightChanged(newValue){if(this._splitter!==null){ this._splitter.setHeight(newValue);}}
 resizeChanged(newValue){if(this._splitter!==null){ this._splitter.attachResize(newValue);}}
+blockedChanged(newValue){if(this._splitter!==null){ this._splitter.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._splitter!==null){ this._splitter.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._splitter!==null){ this._splitter.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._splitter!==null){ this._splitter.setBusyIndicatorSize(newValue);}}

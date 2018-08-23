@@ -16,6 +16,7 @@ export class Ui5DynamicPageHeader extends Ui5Control{
          @bindable prevId = null;
         @bindable() pinnable = true;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -116,6 +117,7 @@ if (elem.localName == 'tooltip') { this._dynamicpageheader.setTooltip(child); re
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpageheader.insertCustomData(child, _index); else this._dynamicpageheader.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._dynamicpageheader.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpageheader.insertDependent(child, _index); else this._dynamicpageheader.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpageheader.insertDragDropConfig(child, _index); else this._dynamicpageheader.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -128,11 +130,13 @@ if (relation == 'tooltip') {  this._dynamicpageheader.destroyTooltip(child); }
 if (relation == 'customdata') {  this._dynamicpageheader.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._dynamicpageheader.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._dynamicpageheader.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._dynamicpageheader.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     pinnableChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.setPinnable(getBooleanFromAttributeValue(newValue));}}
+blockedChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.setBusyIndicatorSize(newValue);}}

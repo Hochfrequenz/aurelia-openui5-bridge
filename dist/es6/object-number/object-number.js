@@ -21,6 +21,7 @@ export class Ui5ObjectNumber extends Ui5Control{
 @bindable() textDirection = 'Inherit';
 @bindable() textAlign = 'Begin';
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -125,6 +126,7 @@ params.textAlign = this.textAlign;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectnumber.insertCustomData(child, _index); else this._objectnumber.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._objectnumber.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectnumber.insertDependent(child, _index); else this._objectnumber.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectnumber.insertDragDropConfig(child, _index); else this._objectnumber.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -136,6 +138,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._objectnumber.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._objectnumber.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._objectnumber.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._objectnumber.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -146,6 +149,7 @@ stateChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setStat
 unitChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setUnit(newValue);}}
 textDirectionChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setTextDirection(newValue);}}
 textAlignChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setTextAlign(newValue);}}
+blockedChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorSize(newValue);}}

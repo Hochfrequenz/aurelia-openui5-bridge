@@ -25,6 +25,7 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -125,6 +126,7 @@ if (elem.localName == 'tooltip') { this._columnlistitem.setTooltip(child); retur
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertCustomData(child, _index); else this._columnlistitem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._columnlistitem.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertDependent(child, _index); else this._columnlistitem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._columnlistitem.insertDragDropConfig(child, _index); else this._columnlistitem.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -137,6 +139,7 @@ if (relation == 'tooltip') {  this._columnlistitem.destroyTooltip(child); }
 if (relation == 'customdata') {  this._columnlistitem.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._columnlistitem.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._columnlistitem.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._columnlistitem.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -151,6 +154,7 @@ highlightChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachPress(newValue);}}
 detailPressChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.attachDetailPress(newValue);}}
+blockedChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorSize(newValue);}}

@@ -273,6 +273,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                     if (elem.localName == 'dependents') {
                         var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._griddata.insertDependent(child, _index);else this._griddata.addDependent(child, 0);return elem.localName;
                     }
+                    if (elem.localName == 'dragdropconfig') {
+                        var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._griddata.insertDragDropConfig(child, _index);else this._griddata.addDragDropConfig(child, 0);return elem.localName;
+                    }
                 } catch (err) {}
             }
         };
@@ -290,6 +293,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 }
                 if (relation == 'dependents') {
                     this._griddata.removeDependent(child);
+                }
+                if (relation == 'dragdropconfig') {
+                    this._griddata.removeDragDropConfig(child);
                 }
             } catch (err) {}
         };

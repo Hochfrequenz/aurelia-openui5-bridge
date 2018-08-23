@@ -20,6 +20,7 @@ export class Ui5FormattedText extends Ui5Control{
 @bindable() convertedLinksDefaultTarget = '_blank';
 @bindable() height = null;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -123,6 +124,7 @@ params.height = this.height;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formattedtext.insertCustomData(child, _index); else this._formattedtext.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._formattedtext.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formattedtext.insertDependent(child, _index); else this._formattedtext.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._formattedtext.insertDragDropConfig(child, _index); else this._formattedtext.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -134,6 +136,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._formattedtext.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._formattedtext.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._formattedtext.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._formattedtext.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -143,6 +146,7 @@ widthChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setWi
 convertLinksToAnchorTagsChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setConvertLinksToAnchorTags(newValue);}}
 convertedLinksDefaultTargetChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setConvertedLinksDefaultTarget(newValue);}}
 heightChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setHeight(newValue);}}
+blockedChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusyIndicatorSize(newValue);}}

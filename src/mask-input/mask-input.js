@@ -31,6 +31,7 @@ export class Ui5MaskInput extends Ui5InputBase{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -132,6 +133,7 @@ if (elem.localName == 'tooltip') { this._maskinput.setTooltip(child); return ele
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinput.insertCustomData(child, _index); else this._maskinput.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._maskinput.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinput.insertDependent(child, _index); else this._maskinput.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._maskinput.insertDragDropConfig(child, _index); else this._maskinput.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -144,6 +146,7 @@ if (relation == 'tooltip') {  this._maskinput.destroyTooltip(child); }
 if (relation == 'customdata') {  this._maskinput.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._maskinput.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._maskinput.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._maskinput.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -164,6 +167,7 @@ textDirectionChanged(newValue){if(this._maskinput!==null){ this._maskinput.setTe
 requiredChanged(newValue){if(this._maskinput!==null){ this._maskinput.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(this._maskinput!==null){ this._maskinput.attachChange(newValue);}}
+blockedChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBusyIndicatorSize(newValue);}}

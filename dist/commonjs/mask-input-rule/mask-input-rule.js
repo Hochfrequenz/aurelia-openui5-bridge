@@ -187,6 +187,9 @@ var Ui5MaskInputRule = exports.Ui5MaskInputRule = (_dec = (0, _aureliaTemplating
                 if (elem.localName == 'dependents') {
                     var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._maskinputrule.insertDependent(child, _index);else this._maskinputrule.addDependent(child, 0);return elem.localName;
                 }
+                if (elem.localName == 'dragdropconfig') {
+                    var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._maskinputrule.insertDragDropConfig(child, _index);else this._maskinputrule.addDragDropConfig(child, 0);return elem.localName;
+                }
             } catch (err) {}
         }
     };
@@ -204,6 +207,9 @@ var Ui5MaskInputRule = exports.Ui5MaskInputRule = (_dec = (0, _aureliaTemplating
             }
             if (relation == 'dependents') {
                 this._maskinputrule.removeDependent(child);
+            }
+            if (relation == 'dragdropconfig') {
+                this._maskinputrule.removeDragDropConfig(child);
             }
         } catch (err) {}
     };

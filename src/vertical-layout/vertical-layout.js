@@ -17,6 +17,7 @@ export class Ui5VerticalLayout extends Ui5Control{
         @bindable() width = null;
 @bindable() enabled = true;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -118,6 +119,7 @@ if (elem.localName == 'tooltip') { this._verticallayout.setTooltip(child); retur
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertCustomData(child, _index); else this._verticallayout.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._verticallayout.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertDependent(child, _index); else this._verticallayout.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._verticallayout.insertDragDropConfig(child, _index); else this._verticallayout.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -130,12 +132,14 @@ if (relation == 'tooltip') {  this._verticallayout.destroyTooltip(child); }
 if (relation == 'customdata') {  this._verticallayout.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._verticallayout.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._verticallayout.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._verticallayout.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     widthChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setWidth(newValue);}}
 enabledChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setEnabled(getBooleanFromAttributeValue(newValue));}}
+blockedChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusyIndicatorSize(newValue);}}

@@ -27,6 +27,7 @@ export class Ui5ToggleButton extends Ui5Button{
 @bindable() textDirection = 'Inherit';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -126,6 +127,7 @@ export class Ui5ToggleButton extends Ui5Button{
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._togglebutton.insertCustomData(child, _index); else this._togglebutton.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._togglebutton.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._togglebutton.insertDependent(child, _index); else this._togglebutton.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._togglebutton.insertDragDropConfig(child, _index); else this._togglebutton.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -137,6 +139,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._togglebutton.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._togglebutton.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._togglebutton.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._togglebutton.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -153,6 +156,7 @@ iconDensityAwareChanged(newValue){if(this._togglebutton!==null){ this._togglebut
 textDirectionChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setTextDirection(newValue);}}
 /* inherited from sap.m.Button*/
 pressChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachPress(newValue);}}
+blockedChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorSize(newValue);}}

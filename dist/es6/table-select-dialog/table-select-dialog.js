@@ -17,6 +17,7 @@ export class Ui5TableSelectDialog extends Ui5Control{
         @bindable() title = null;
 @bindable() noDataText = null;
 @bindable() multiSelect = false;
+@bindable() growing = true;
 @bindable() growingThreshold = null;
 @bindable() contentWidth = null;
 @bindable() rememberSelections = false;
@@ -26,6 +27,7 @@ export class Ui5TableSelectDialog extends Ui5Control{
 @bindable() liveChange = this.defaultFunc;
 @bindable() cancel = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -55,6 +57,7 @@ export class Ui5TableSelectDialog extends Ui5Control{
                                         params.title = this.title;
 params.noDataText = this.noDataText;
 params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
+params.growing = getBooleanFromAttributeValue(this.growing);
 params.growingThreshold = this.growingThreshold?parseInt(this.growingThreshold):0;
 params.contentWidth = this.contentWidth;
 params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
@@ -137,6 +140,7 @@ if (elem.localName == 'tooltip') { this._tableselectdialog.setTooltip(child); re
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertCustomData(child, _index); else this._tableselectdialog.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._tableselectdialog.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertDependent(child, _index); else this._tableselectdialog.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tableselectdialog.insertDragDropConfig(child, _index); else this._tableselectdialog.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -150,6 +154,7 @@ if (relation == 'tooltip') {  this._tableselectdialog.destroyTooltip(child); }
 if (relation == 'customdata') {  this._tableselectdialog.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._tableselectdialog.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._tableselectdialog.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._tableselectdialog.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -157,6 +162,7 @@ if (relation == 'dependents') {  this._tableselectdialog.removeDependent(child);
     titleChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setTitle(newValue);}}
 noDataTextChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setNoDataText(newValue);}}
 multiSelectChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
+growingChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setGrowing(getBooleanFromAttributeValue(newValue));}}
 growingThresholdChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setGrowingThreshold(newValue);}}
 contentWidthChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setContentWidth(newValue);}}
 rememberSelectionsChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
@@ -165,6 +171,7 @@ confirmChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdi
 searchChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachSearch(newValue);}}
 liveChangeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachLiveChange(newValue);}}
 cancelChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachCancel(newValue);}}
+blockedChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorSize(newValue);}}

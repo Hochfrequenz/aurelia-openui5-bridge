@@ -18,6 +18,7 @@ export class Ui5SelectDialog extends Ui5Control{
 @bindable() noDataText = null;
 @bindable() multiSelect = false;
 @bindable() growingThreshold = null;
+@bindable() growing = true;
 @bindable() contentWidth = null;
 @bindable() rememberSelections = false;
 @bindable() contentHeight = null;
@@ -26,6 +27,7 @@ export class Ui5SelectDialog extends Ui5Control{
 @bindable() liveChange = this.defaultFunc;
 @bindable() cancel = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -56,6 +58,7 @@ export class Ui5SelectDialog extends Ui5Control{
 params.noDataText = this.noDataText;
 params.multiSelect = getBooleanFromAttributeValue(this.multiSelect);
 params.growingThreshold = this.growingThreshold?parseInt(this.growingThreshold):0;
+params.growing = getBooleanFromAttributeValue(this.growing);
 params.contentWidth = this.contentWidth;
 params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
 params.contentHeight = this.contentHeight;
@@ -136,6 +139,7 @@ if (elem.localName == 'tooltip') { this._selectdialog.setTooltip(child); return 
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._selectdialog.insertCustomData(child, _index); else this._selectdialog.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._selectdialog.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._selectdialog.insertDependent(child, _index); else this._selectdialog.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._selectdialog.insertDragDropConfig(child, _index); else this._selectdialog.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -148,6 +152,7 @@ if (relation == 'tooltip') {  this._selectdialog.destroyTooltip(child); }
 if (relation == 'customdata') {  this._selectdialog.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._selectdialog.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._selectdialog.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._selectdialog.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -156,6 +161,7 @@ if (relation == 'dependents') {  this._selectdialog.removeDependent(child);}
 noDataTextChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setNoDataText(newValue);}}
 multiSelectChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
 growingThresholdChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setGrowingThreshold(newValue);}}
+growingChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setGrowing(getBooleanFromAttributeValue(newValue));}}
 contentWidthChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setContentWidth(newValue);}}
 rememberSelectionsChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
 contentHeightChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setContentHeight(newValue);}}
@@ -163,6 +169,7 @@ confirmChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attac
 searchChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachSearch(newValue);}}
 liveChangeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachLiveChange(newValue);}}
 cancelChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachCancel(newValue);}}
+blockedChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusyIndicatorSize(newValue);}}

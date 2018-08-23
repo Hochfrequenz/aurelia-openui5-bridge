@@ -33,6 +33,7 @@ export class Ui5ResponsivePopover extends Ui5Control{
 @bindable() beforeClose = this.defaultFunc;
 @bindable() afterClose = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -154,6 +155,7 @@ if (elem.localName == 'tooltip') { this._responsivepopover.setTooltip(child); re
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivepopover.insertCustomData(child, _index); else this._responsivepopover.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._responsivepopover.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivepopover.insertDependent(child, _index); else this._responsivepopover.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivepopover.insertDragDropConfig(child, _index); else this._responsivepopover.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -170,6 +172,7 @@ if (relation == 'tooltip') {  this._responsivepopover.destroyTooltip(child); }
 if (relation == 'customdata') {  this._responsivepopover.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._responsivepopover.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._responsivepopover.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._responsivepopover.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -192,6 +195,7 @@ beforeOpenChanged(newValue){if(this._responsivepopover!==null){ this._responsive
 afterOpenChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachAfterOpen(newValue);}}
 beforeCloseChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachBeforeClose(newValue);}}
 afterCloseChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachAfterClose(newValue);}}
+blockedChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusyIndicatorSize(newValue);}}

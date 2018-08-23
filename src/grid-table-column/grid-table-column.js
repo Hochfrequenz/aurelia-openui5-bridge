@@ -152,6 +152,7 @@ if (elem.localName == 'tooltip') { this._gridtablecolumn.setTooltip(child); retu
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablecolumn.insertCustomData(child, _index); else this._gridtablecolumn.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._gridtablecolumn.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablecolumn.insertDependent(child, _index); else this._gridtablecolumn.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablecolumn.insertDragDropConfig(child, _index); else this._gridtablecolumn.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -167,6 +168,7 @@ if (relation == 'tooltip') {  this._gridtablecolumn.destroyTooltip(child); }
 if (relation == 'customdata') {  this._gridtablecolumn.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._gridtablecolumn.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._gridtablecolumn.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._gridtablecolumn.removeDragDropConfig(child);}
 
       }
       catch(err){}

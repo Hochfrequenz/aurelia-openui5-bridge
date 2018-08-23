@@ -18,6 +18,7 @@ export class Ui5Menu extends Ui5Control{
 @bindable() itemSelected = this.defaultFunc;
 @bindable() closed = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -120,6 +121,7 @@ if (elem.localName == 'tooltip') { this._menu.setTooltip(child); return elem.loc
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menu.insertCustomData(child, _index); else this._menu.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._menu.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menu.insertDependent(child, _index); else this._menu.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._menu.insertDragDropConfig(child, _index); else this._menu.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -132,6 +134,7 @@ if (relation == 'tooltip') {  this._menu.destroyTooltip(child); }
 if (relation == 'customdata') {  this._menu.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._menu.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._menu.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._menu.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -139,6 +142,7 @@ if (relation == 'dependents') {  this._menu.removeDependent(child);}
     titleChanged(newValue){if(this._menu!==null){ this._menu.setTitle(newValue);}}
 itemSelectedChanged(newValue){if(this._menu!==null){ this._menu.attachItemSelected(newValue);}}
 closedChanged(newValue){if(this._menu!==null){ this._menu.attachClosed(newValue);}}
+blockedChanged(newValue){if(this._menu!==null){ this._menu.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._menu!==null){ this._menu.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._menu!==null){ this._menu.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._menu!==null){ this._menu.setBusyIndicatorSize(newValue);}}

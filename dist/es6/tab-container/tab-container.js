@@ -19,6 +19,7 @@ export class Ui5TabContainer extends Ui5Control{
 @bindable() itemSelect = this.defaultFunc;
 @bindable() addNewButtonPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -122,6 +123,7 @@ if (elem.localName == 'tooltip') { this._tabcontainer.setTooltip(child); return 
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tabcontainer.insertCustomData(child, _index); else this._tabcontainer.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._tabcontainer.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tabcontainer.insertDependent(child, _index); else this._tabcontainer.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tabcontainer.insertDragDropConfig(child, _index); else this._tabcontainer.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -134,6 +136,7 @@ if (relation == 'tooltip') {  this._tabcontainer.destroyTooltip(child); }
 if (relation == 'customdata') {  this._tabcontainer.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._tabcontainer.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._tabcontainer.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._tabcontainer.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -142,6 +145,7 @@ if (relation == 'dependents') {  this._tabcontainer.removeDependent(child);}
 itemCloseChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.attachItemClose(newValue);}}
 itemSelectChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.attachItemSelect(newValue);}}
 addNewButtonPressChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.attachAddNewButtonPress(newValue);}}
+blockedChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBusyIndicatorSize(newValue);}}

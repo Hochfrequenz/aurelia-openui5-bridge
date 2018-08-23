@@ -24,9 +24,11 @@ export class Ui5GenericTile extends Ui5Control{
 @bindable() state = 'Loaded';
 @bindable() imageDescription = null;
 @bindable() scope = 'Display';
+@bindable() sizeBehavior = 'Responsive';
 @bindable() ariaLabel = null;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -63,6 +65,7 @@ params.headerImage = this.headerImage;
 params.state = this.state;
 params.imageDescription = this.imageDescription;
 params.scope = this.scope;
+params.sizeBehavior = this.sizeBehavior;
 params.ariaLabel = this.ariaLabel;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
@@ -139,6 +142,7 @@ if (elem.localName == 'tooltip') { this._generictile.setTooltip(child); return e
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._generictile.insertCustomData(child, _index); else this._generictile.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._generictile.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._generictile.insertDependent(child, _index); else this._generictile.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._generictile.insertDragDropConfig(child, _index); else this._generictile.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -152,6 +156,7 @@ if (relation == 'tooltip') {  this._generictile.destroyTooltip(child); }
 if (relation == 'customdata') {  this._generictile.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._generictile.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._generictile.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._generictile.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -166,8 +171,10 @@ headerImageChanged(newValue){if(this._generictile!==null){ this._generictile.set
 stateChanged(newValue){if(this._generictile!==null){ this._generictile.setState(newValue);}}
 imageDescriptionChanged(newValue){if(this._generictile!==null){ this._generictile.setImageDescription(newValue);}}
 scopeChanged(newValue){if(this._generictile!==null){ this._generictile.setScope(newValue);}}
+sizeBehaviorChanged(newValue){if(this._generictile!==null){ this._generictile.setSizeBehavior(newValue);}}
 ariaLabelChanged(newValue){if(this._generictile!==null){ this._generictile.setAriaLabel(newValue);}}
 pressChanged(newValue){if(this._generictile!==null){ this._generictile.attachPress(newValue);}}
+blockedChanged(newValue){if(this._generictile!==null){ this._generictile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._generictile!==null){ this._generictile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._generictile!==null){ this._generictile.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._generictile!==null){ this._generictile.setBusyIndicatorSize(newValue);}}

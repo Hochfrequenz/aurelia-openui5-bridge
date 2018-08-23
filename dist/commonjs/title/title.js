@@ -193,6 +193,9 @@ var Ui5Title = exports.Ui5Title = (_dec = (0, _aureliaTemplating.customElement)(
                 if (elem.localName == 'dependents') {
                     var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._title.insertDependent(child, _index);else this._title.addDependent(child, 0);return elem.localName;
                 }
+                if (elem.localName == 'dragdropconfig') {
+                    var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._title.insertDragDropConfig(child, _index);else this._title.addDragDropConfig(child, 0);return elem.localName;
+                }
             } catch (err) {}
         }
     };
@@ -210,6 +213,9 @@ var Ui5Title = exports.Ui5Title = (_dec = (0, _aureliaTemplating.customElement)(
             }
             if (relation == 'dependents') {
                 this._title.removeDependent(child);
+            }
+            if (relation == 'dragdropconfig') {
+                this._title.removeDragDropConfig(child);
             }
         } catch (err) {}
     };

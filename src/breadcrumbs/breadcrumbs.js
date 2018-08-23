@@ -16,6 +16,7 @@ export class Ui5Breadcrumbs extends Ui5Control{
          @bindable prevId = null;
         @bindable() currentLocationText = null;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -116,6 +117,7 @@ if (elem.localName == 'tooltip') { this._breadcrumbs.setTooltip(child); return e
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._breadcrumbs.insertCustomData(child, _index); else this._breadcrumbs.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._breadcrumbs.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._breadcrumbs.insertDependent(child, _index); else this._breadcrumbs.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._breadcrumbs.insertDragDropConfig(child, _index); else this._breadcrumbs.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -128,11 +130,13 @@ if (relation == 'tooltip') {  this._breadcrumbs.destroyTooltip(child); }
 if (relation == 'customdata') {  this._breadcrumbs.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._breadcrumbs.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._breadcrumbs.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._breadcrumbs.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     currentLocationTextChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setCurrentLocationText(newValue);}}
+blockedChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorSize(newValue);}}

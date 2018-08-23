@@ -21,6 +21,7 @@ export class Ui5WizardStep extends Ui5Control{
 @bindable() complete = this.defaultFunc;
 @bindable() activate = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -126,6 +127,7 @@ if (elem.localName == 'tooltip') { this._wizardstep.setTooltip(child); return el
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._wizardstep.insertCustomData(child, _index); else this._wizardstep.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._wizardstep.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._wizardstep.insertDependent(child, _index); else this._wizardstep.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._wizardstep.insertDragDropConfig(child, _index); else this._wizardstep.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -138,6 +140,7 @@ if (relation == 'tooltip') {  this._wizardstep.destroyTooltip(child); }
 if (relation == 'customdata') {  this._wizardstep.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._wizardstep.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._wizardstep.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._wizardstep.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -148,6 +151,7 @@ validatedChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setVali
 optionalChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setOptional(getBooleanFromAttributeValue(newValue));}}
 completeChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.attachComplete(newValue);}}
 activateChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.attachActivate(newValue);}}
+blockedChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setBusyIndicatorSize(newValue);}}

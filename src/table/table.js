@@ -19,7 +19,7 @@ export class Ui5Table extends Ui5ListBase{
 @bindable() showOverlay = false;
 @bindable() alternateRowColors = false;
 @bindable() popinLayout = 'Block';
-@bindable() sticky = 'None';
+@bindable() sticky = null;
 @bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.m.ListBase*/
 @bindable() inset = false;
@@ -50,6 +50,7 @@ export class Ui5Table extends Ui5ListBase{
 @bindable() itemPress = this.defaultFunc;
 @bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -156,12 +157,12 @@ if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterEleme
 if (elem.localName == 'swipecontent') { this._table.setSwipeContent(child); return elem.localName;}
 if (elem.localName == 'headertoolbar') { this._table.setHeaderToolbar(child); return elem.localName;}
 if (elem.localName == 'infotoolbar') { this._table.setInfoToolbar(child); return elem.localName;}
-if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._table.insertDragDropConfig(child, _index); else this._table.addDragDropConfig(child, 0);  return elem.localName; }
 if (elem.localName == 'contextmenu') { this._table.setContextMenu(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._table.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._table.insertCustomData(child, _index); else this._table.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._table.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._table.insertDependent(child, _index); else this._table.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._table.insertDragDropConfig(child, _index); else this._table.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -174,12 +175,12 @@ if (relation == 'items') {  this._table.removeItem(child);}
 if (relation == 'swipecontent') {  this._table.destroySwipeContent(child); }
 if (relation == 'headertoolbar') {  this._table.destroyHeaderToolbar(child); }
 if (relation == 'infotoolbar') {  this._table.destroyInfoToolbar(child); }
-if (relation == 'dragdropconfig') {  this._table.removeDragDropConfig(child);}
 if (relation == 'contextmenu') {  this._table.destroyContextMenu(child); }
 if (relation == 'tooltip') {  this._table.destroyTooltip(child); }
 if (relation == 'customdata') {  this._table.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._table.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._table.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._table.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -219,6 +220,7 @@ updateStartedChanged(newValue){if(this._table!==null){ this._table.attachUpdateS
 updateFinishedChanged(newValue){if(this._table!==null){ this._table.attachUpdateFinished(newValue);}}
 itemPressChanged(newValue){if(this._table!==null){ this._table.attachItemPress(newValue);}}
 beforeOpenContextMenuChanged(newValue){if(this._table!==null){ this._table.attachBeforeOpenContextMenu(newValue);}}
+blockedChanged(newValue){if(this._table!==null){ this._table.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._table!==null){ this._table.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._table!==null){ this._table.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._table!==null){ this._table.setBusyIndicatorSize(newValue);}}

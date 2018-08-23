@@ -28,6 +28,7 @@ export class Ui5SearchField extends Ui5Control{
 @bindable() liveChange = this.defaultFunc;
 @bindable() suggest = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -141,6 +142,7 @@ if (elem.localName == 'tooltip') { this._searchfield.setTooltip(child); return e
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._searchfield.insertCustomData(child, _index); else this._searchfield.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._searchfield.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._searchfield.insertDependent(child, _index); else this._searchfield.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._searchfield.insertDragDropConfig(child, _index); else this._searchfield.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -153,6 +155,7 @@ if (relation == 'tooltip') {  this._searchfield.destroyTooltip(child); }
 if (relation == 'customdata') {  this._searchfield.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._searchfield.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._searchfield.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._searchfield.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -170,6 +173,7 @@ enableSuggestionsChanged(newValue){if(this._searchfield!==null){ this._searchfie
 searchChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachSearch(newValue);}}
 liveChangeChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachLiveChange(newValue);}}
 suggestChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachSuggest(newValue);}}
+blockedChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusyIndicatorSize(newValue);}}

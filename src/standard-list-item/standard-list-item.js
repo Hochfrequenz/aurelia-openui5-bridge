@@ -35,6 +35,7 @@ export class Ui5StandardListItem extends Ui5ListItemBase{
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -144,6 +145,7 @@ params.infoTextDirection = this.infoTextDirection;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardlistitem.insertCustomData(child, _index); else this._standardlistitem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._standardlistitem.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardlistitem.insertDependent(child, _index); else this._standardlistitem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardlistitem.insertDragDropConfig(child, _index); else this._standardlistitem.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -155,6 +157,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._standardlistitem.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._standardlistitem.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._standardlistitem.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._standardlistitem.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -179,6 +182,7 @@ highlightChanged(newValue){if(this._standardlistitem!==null){ this._standardlist
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachPress(newValue);}}
 detailPressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachDetailPress(newValue);}}
+blockedChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorSize(newValue);}}

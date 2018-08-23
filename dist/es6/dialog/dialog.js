@@ -32,6 +32,7 @@ export class Ui5Dialog extends Ui5Control{
 @bindable() beforeClose = this.defaultFunc;
 @bindable() afterClose = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -153,6 +154,7 @@ if (elem.localName == 'tooltip') { this._dialog.setTooltip(child); return elem.l
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dialog.insertCustomData(child, _index); else this._dialog.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._dialog.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dialog.insertDependent(child, _index); else this._dialog.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dialog.insertDragDropConfig(child, _index); else this._dialog.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -170,6 +172,7 @@ if (relation == 'tooltip') {  this._dialog.destroyTooltip(child); }
 if (relation == 'customdata') {  this._dialog.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._dialog.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._dialog.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._dialog.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -191,6 +194,7 @@ beforeOpenChanged(newValue){if(this._dialog!==null){ this._dialog.attachBeforeOp
 afterOpenChanged(newValue){if(this._dialog!==null){ this._dialog.attachAfterOpen(newValue);}}
 beforeCloseChanged(newValue){if(this._dialog!==null){ this._dialog.attachBeforeClose(newValue);}}
 afterCloseChanged(newValue){if(this._dialog!==null){ this._dialog.attachAfterClose(newValue);}}
+blockedChanged(newValue){if(this._dialog!==null){ this._dialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dialog!==null){ this._dialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dialog!==null){ this._dialog.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._dialog!==null){ this._dialog.setBusyIndicatorSize(newValue);}}

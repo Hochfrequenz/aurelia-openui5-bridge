@@ -17,8 +17,10 @@ export class Ui5SlideTile extends Ui5Control{
         @bindable() displayTime = 5000;
 @bindable() transitionTime = 500;
 @bindable() scope = 'Display';
+@bindable() sizeBehavior = 'Responsive';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -48,6 +50,7 @@ export class Ui5SlideTile extends Ui5Control{
                                         params.displayTime = this.displayTime?parseInt(this.displayTime):0;
 params.transitionTime = this.transitionTime?parseInt(this.transitionTime):0;
 params.scope = this.scope;
+params.sizeBehavior = this.sizeBehavior;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
                                             super.fillProperties(params);   
@@ -122,6 +125,7 @@ if (elem.localName == 'tooltip') { this._slidetile.setTooltip(child); return ele
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._slidetile.insertCustomData(child, _index); else this._slidetile.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._slidetile.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._slidetile.insertDependent(child, _index); else this._slidetile.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._slidetile.insertDragDropConfig(child, _index); else this._slidetile.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -134,6 +138,7 @@ if (relation == 'tooltip') {  this._slidetile.destroyTooltip(child); }
 if (relation == 'customdata') {  this._slidetile.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._slidetile.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._slidetile.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._slidetile.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -141,7 +146,9 @@ if (relation == 'dependents') {  this._slidetile.removeDependent(child);}
     displayTimeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setDisplayTime(newValue);}}
 transitionTimeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setTransitionTime(newValue);}}
 scopeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setScope(newValue);}}
+sizeBehaviorChanged(newValue){if(this._slidetile!==null){ this._slidetile.setSizeBehavior(newValue);}}
 pressChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachPress(newValue);}}
+blockedChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorSize(newValue);}}

@@ -21,6 +21,7 @@ export class Ui5mTitle extends Ui5Control{
 @bindable() textAlign = 'Initial';
 @bindable() wrapping = false;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -125,6 +126,7 @@ params.wrapping = getBooleanFromAttributeValue(this.wrapping);
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._mtitle.insertCustomData(child, _index); else this._mtitle.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._mtitle.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._mtitle.insertDependent(child, _index); else this._mtitle.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._mtitle.insertDragDropConfig(child, _index); else this._mtitle.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -136,6 +138,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._mtitle.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._mtitle.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._mtitle.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._mtitle.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -146,6 +149,7 @@ titleStyleChanged(newValue){if(this._mtitle!==null){ this._mtitle.setTitleStyle(
 widthChanged(newValue){if(this._mtitle!==null){ this._mtitle.setWidth(newValue);}}
 textAlignChanged(newValue){if(this._mtitle!==null){ this._mtitle.setTextAlign(newValue);}}
 wrappingChanged(newValue){if(this._mtitle!==null){ this._mtitle.setWrapping(getBooleanFromAttributeValue(newValue));}}
+blockedChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusyIndicatorSize(newValue);}}

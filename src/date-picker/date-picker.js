@@ -39,6 +39,7 @@ export class Ui5DatePicker extends Ui5DateTimeField{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -144,6 +145,7 @@ if (elem.localName == 'tooltip') { this._datepicker.setTooltip(child); return el
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datepicker.insertCustomData(child, _index); else this._datepicker.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._datepicker.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datepicker.insertDependent(child, _index); else this._datepicker.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datepicker.insertDragDropConfig(child, _index); else this._datepicker.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -156,6 +158,7 @@ if (relation == 'tooltip') {  this._datepicker.destroyTooltip(child); }
 if (relation == 'customdata') {  this._datepicker.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._datepicker.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._datepicker.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._datepicker.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -184,6 +187,7 @@ textDirectionChanged(newValue){if(this._datepicker!==null){ this._datepicker.set
 requiredChanged(newValue){if(this._datepicker!==null){ this._datepicker.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachChange(newValue);}}
+blockedChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusyIndicatorSize(newValue);}}

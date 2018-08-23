@@ -16,6 +16,7 @@ export class Ui5ToolbarSpacer extends Ui5Control{
          @bindable prevId = null;
         @bindable() width = '';
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -115,6 +116,7 @@ export class Ui5ToolbarSpacer extends Ui5Control{
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbarspacer.insertCustomData(child, _index); else this._toolbarspacer.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._toolbarspacer.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbarspacer.insertDependent(child, _index); else this._toolbarspacer.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._toolbarspacer.insertDragDropConfig(child, _index); else this._toolbarspacer.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -126,11 +128,13 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._toolbarspacer.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._toolbarspacer.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._toolbarspacer.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._toolbarspacer.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     widthChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setWidth(newValue);}}
+blockedChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBusyIndicatorSize(newValue);}}

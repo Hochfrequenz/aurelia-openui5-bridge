@@ -39,6 +39,7 @@ export class Ui5TextArea extends Ui5InputBase{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -149,6 +150,7 @@ this._textarea.attachLiveChange((event) => { if (getBooleanFromAttributeValue(th
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._textarea.insertCustomData(child, _index); else this._textarea.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._textarea.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._textarea.insertDependent(child, _index); else this._textarea.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._textarea.insertDragDropConfig(child, _index); else this._textarea.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -160,6 +162,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._textarea.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._textarea.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._textarea.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._textarea.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -188,6 +191,7 @@ textDirectionChanged(newValue){if(this._textarea!==null){ this._textarea.setText
 requiredChanged(newValue){if(this._textarea!==null){ this._textarea.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(this._textarea!==null){ this._textarea.attachChange(newValue);}}
+blockedChanged(newValue){if(this._textarea!==null){ this._textarea.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._textarea!==null){ this._textarea.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._textarea!==null){ this._textarea.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._textarea!==null){ this._textarea.setBusyIndicatorSize(newValue);}}

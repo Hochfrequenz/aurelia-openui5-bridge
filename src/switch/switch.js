@@ -22,6 +22,7 @@ export class Ui5Switch extends Ui5Control{
 @bindable() type = 'Default';
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -127,6 +128,7 @@ params.change = this.change==null ? this.defaultFunc: this.change;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._switch.insertCustomData(child, _index); else this._switch.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._switch.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._switch.insertDependent(child, _index); else this._switch.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._switch.insertDragDropConfig(child, _index); else this._switch.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -138,6 +140,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._switch.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._switch.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._switch.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._switch.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -149,6 +152,7 @@ enabledChanged(newValue){if(this._switch!==null){ this._switch.setEnabled(getBoo
 nameChanged(newValue){if(this._switch!==null){ this._switch.setName(newValue);}}
 typeChanged(newValue){if(this._switch!==null){ this._switch.setType(newValue);}}
 changeChanged(newValue){if(this._switch!==null){ this._switch.attachChange(newValue);}}
+blockedChanged(newValue){if(this._switch!==null){ this._switch.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._switch!==null){ this._switch.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._switch!==null){ this._switch.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._switch!==null){ this._switch.setBusyIndicatorSize(newValue);}}

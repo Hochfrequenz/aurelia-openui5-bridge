@@ -27,6 +27,7 @@ export class Ui5Page extends Ui5Control{
 @bindable() floatingFooter = false;
 @bindable() navButtonPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -143,6 +144,7 @@ if (elem.localName == 'tooltip') { this._page.setTooltip(child); return elem.loc
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertCustomData(child, _index); else this._page.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._page.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertDependent(child, _index); else this._page.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._page.insertDragDropConfig(child, _index); else this._page.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -160,6 +162,7 @@ if (relation == 'tooltip') {  this._page.destroyTooltip(child); }
 if (relation == 'customdata') {  this._page.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._page.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._page.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._page.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -176,6 +179,7 @@ showFooterChanged(newValue){if(this._page!==null){ this._page.setShowFooter(getB
 contentOnlyBusyChanged(newValue){if(this._page!==null){ this._page.setContentOnlyBusy(getBooleanFromAttributeValue(newValue));}}
 floatingFooterChanged(newValue){if(this._page!==null){ this._page.setFloatingFooter(getBooleanFromAttributeValue(newValue));}}
 navButtonPressChanged(newValue){if(this._page!==null){ this._page.attachNavButtonPress(newValue);}}
+blockedChanged(newValue){if(this._page!==null){ this._page.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._page!==null){ this._page.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorSize(newValue);}}

@@ -33,6 +33,7 @@ export class Ui5DateTimeField extends Ui5InputBase{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -135,6 +136,7 @@ params.initialFocusedDateValue = this.initialFocusedDateValue;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimefield.insertCustomData(child, _index); else this._datetimefield.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._datetimefield.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimefield.insertDependent(child, _index); else this._datetimefield.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._datetimefield.insertDragDropConfig(child, _index); else this._datetimefield.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -146,6 +148,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._datetimefield.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._datetimefield.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._datetimefield.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._datetimefield.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -168,6 +171,7 @@ textDirectionChanged(newValue){if(this._datetimefield!==null){ this._datetimefie
 requiredChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.attachChange(newValue);}}
+blockedChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusyIndicatorSize(newValue);}}

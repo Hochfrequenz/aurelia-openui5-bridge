@@ -245,6 +245,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             if (elem.localName == 'dependents') {
                                 var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._viewsettingsfilteritem.insertDependent(child, _index);else this._viewsettingsfilteritem.addDependent(child, 0);return elem.localName;
                             }
+                            if (elem.localName == 'dragdropconfig') {
+                                var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._viewsettingsfilteritem.insertDragDropConfig(child, _index);else this._viewsettingsfilteritem.addDragDropConfig(child, 0);return elem.localName;
+                            }
                         } catch (err) {}
                     }
                 };
@@ -265,6 +268,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         }
                         if (relation == 'dependents') {
                             this._viewsettingsfilteritem.removeDependent(child);
+                        }
+                        if (relation == 'dragdropconfig') {
+                            this._viewsettingsfilteritem.removeDragDropConfig(child);
                         }
                     } catch (err) {}
                 };

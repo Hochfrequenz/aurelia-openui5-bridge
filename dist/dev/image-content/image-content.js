@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, Ui5ImageContent;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, Ui5ImageContent;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5ImageContent', Ui5ImageContent = (_dec = customElement('ui5-image-content'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = computedFrom('_imagecontent'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5ImageContent', Ui5ImageContent = (_dec = customElement('ui5-image-content'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = computedFrom('_imagecontent'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5ImageContent, _Ui5Control);
 
                 function Ui5ImageContent(element) {
@@ -139,27 +139,29 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'press', _descriptor7, _this);
 
-                    _initDefineProp(_this, 'busy', _descriptor8, _this);
+                    _initDefineProp(_this, 'blocked', _descriptor8, _this);
 
-                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor9, _this);
+                    _initDefineProp(_this, 'busy', _descriptor9, _this);
 
-                    _initDefineProp(_this, 'busyIndicatorSize', _descriptor10, _this);
+                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor10, _this);
 
-                    _initDefineProp(_this, 'visible', _descriptor11, _this);
+                    _initDefineProp(_this, 'busyIndicatorSize', _descriptor11, _this);
 
-                    _initDefineProp(_this, 'fieldGroupIds', _descriptor12, _this);
+                    _initDefineProp(_this, 'visible', _descriptor12, _this);
 
-                    _initDefineProp(_this, 'validateFieldGroup', _descriptor13, _this);
+                    _initDefineProp(_this, 'fieldGroupIds', _descriptor13, _this);
 
-                    _initDefineProp(_this, 'validationSuccess', _descriptor14, _this);
+                    _initDefineProp(_this, 'validateFieldGroup', _descriptor14, _this);
 
-                    _initDefineProp(_this, 'validationError', _descriptor15, _this);
+                    _initDefineProp(_this, 'validationSuccess', _descriptor15, _this);
 
-                    _initDefineProp(_this, 'parseError', _descriptor16, _this);
+                    _initDefineProp(_this, 'validationError', _descriptor16, _this);
 
-                    _initDefineProp(_this, 'formatError', _descriptor17, _this);
+                    _initDefineProp(_this, 'parseError', _descriptor17, _this);
 
-                    _initDefineProp(_this, 'modelContextChange', _descriptor18, _this);
+                    _initDefineProp(_this, 'formatError', _descriptor18, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor19, _this);
 
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
@@ -245,6 +247,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             if (elem.localName == 'dependents') {
                                 var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._imagecontent.insertDependent(child, _index);else this._imagecontent.addDependent(child, 0);return elem.localName;
                             }
+                            if (elem.localName == 'dragdropconfig') {
+                                var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._imagecontent.insertDragDropConfig(child, _index);else this._imagecontent.addDragDropConfig(child, 0);return elem.localName;
+                            }
                         } catch (err) {}
                     }
                 };
@@ -262,6 +267,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         }
                         if (relation == 'dependents') {
                             this._imagecontent.removeDependent(child);
+                        }
+                        if (relation == 'dragdropconfig') {
+                            this._imagecontent.removeDragDropConfig(child);
                         }
                     } catch (err) {}
                 };
@@ -281,6 +289,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5ImageContent.prototype.pressChanged = function pressChanged(newValue) {
                     if (this._imagecontent !== null) {
                         this._imagecontent.attachPress(newValue);
+                    }
+                };
+
+                Ui5ImageContent.prototype.blockedChanged = function blockedChanged(newValue) {
+                    if (this._imagecontent !== null) {
+                        this._imagecontent.setBlocked(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
@@ -393,62 +407,67 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec6], {
+            }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec6], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec7], {
+            }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec7], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec8], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 1000;
                 }
-            }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec8], {
+            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec9], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'Medium';
                 }
-            }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec9], {
+            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec10], {
                 enumerable: true,
                 initializer: function initializer() {
                     return true;
                 }
-            }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec10], {
+            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec11], {
                 enumerable: true,
                 initializer: function initializer() {
                     return '[]';
                 }
-            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec11], {
+            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec12], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec12], {
+            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec13], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec13], {
+            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec14], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec14], {
+            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec15], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec15], {
+            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec16], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec16], {
+            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec17], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec17], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec18], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5ImageContent', Ui5ImageContent);
         }

@@ -41,6 +41,7 @@ export class Ui5UploadCollection extends Ui5Control{
 @bindable() beforeUploadStarts = this.defaultFunc;
 @bindable() selectionChange = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -170,6 +171,7 @@ if (elem.localName == 'tooltip') { this._uploadcollection.setTooltip(child); ret
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollection.insertCustomData(child, _index); else this._uploadcollection.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._uploadcollection.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollection.insertDependent(child, _index); else this._uploadcollection.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollection.insertDragDropConfig(child, _index); else this._uploadcollection.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -186,6 +188,7 @@ if (relation == 'tooltip') {  this._uploadcollection.destroyTooltip(child); }
 if (relation == 'customdata') {  this._uploadcollection.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._uploadcollection.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._uploadcollection.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._uploadcollection.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -216,6 +219,7 @@ uploadCompleteChanged(newValue){if(this._uploadcollection!==null){ this._uploadc
 uploadTerminatedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachUploadTerminated(newValue);}}
 beforeUploadStartsChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachBeforeUploadStarts(newValue);}}
 selectionChangeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachSelectionChange(newValue);}}
+blockedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusyIndicatorSize(newValue);}}

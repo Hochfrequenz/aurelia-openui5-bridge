@@ -111,6 +111,7 @@ if (elem.localName == 'tooltip') { this._splitpane.setTooltip(child); return ele
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitpane.insertCustomData(child, _index); else this._splitpane.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._splitpane.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitpane.insertDependent(child, _index); else this._splitpane.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitpane.insertDragDropConfig(child, _index); else this._splitpane.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -123,6 +124,7 @@ if (relation == 'tooltip') {  this._splitpane.destroyTooltip(child); }
 if (relation == 'customdata') {  this._splitpane.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._splitpane.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._splitpane.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._splitpane.removeDragDropConfig(child);}
 
       }
       catch(err){}

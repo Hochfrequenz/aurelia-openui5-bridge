@@ -27,6 +27,7 @@ export class Ui5StandardTreeItem extends Ui5TreeItemBase{
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -127,6 +128,7 @@ params.icon = this.icon;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtreeitem.insertCustomData(child, _index); else this._standardtreeitem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._standardtreeitem.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtreeitem.insertDependent(child, _index); else this._standardtreeitem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtreeitem.insertDragDropConfig(child, _index); else this._standardtreeitem.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -138,6 +140,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._standardtreeitem.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._standardtreeitem.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._standardtreeitem.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._standardtreeitem.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -154,6 +157,7 @@ highlightChanged(newValue){if(this._standardtreeitem!==null){ this._standardtree
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachPress(newValue);}}
 detailPressChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachDetailPress(newValue);}}
+blockedChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusyIndicatorSize(newValue);}}

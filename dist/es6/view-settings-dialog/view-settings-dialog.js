@@ -23,6 +23,7 @@ export class Ui5ViewSettingsDialog extends Ui5Control{
 @bindable() resetFilters = this.defaultFunc;
 @bindable() filterDetailPageOpened = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -134,6 +135,7 @@ if (elem.localName == 'tooltip') { this._viewsettingsdialog.setTooltip(child); r
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertCustomData(child, _index); else this._viewsettingsdialog.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._viewsettingsdialog.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertDependent(child, _index); else this._viewsettingsdialog.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._viewsettingsdialog.insertDragDropConfig(child, _index); else this._viewsettingsdialog.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -150,6 +152,7 @@ if (relation == 'tooltip') {  this._viewsettingsdialog.destroyTooltip(child); }
 if (relation == 'customdata') {  this._viewsettingsdialog.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._viewsettingsdialog.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._viewsettingsdialog.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._viewsettingsdialog.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -162,6 +165,7 @@ confirmChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettings
 cancelChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachCancel(newValue);}}
 resetFiltersChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachResetFilters(newValue);}}
 filterDetailPageOpenedChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachFilterDetailPageOpened(newValue);}}
+blockedChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBusyIndicatorSize(newValue);}}

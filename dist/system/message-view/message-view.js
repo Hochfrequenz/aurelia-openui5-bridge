@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes'], function (_export, _context) {
+System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, Ui5MessageView;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, Ui5MessageView;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -19,6 +19,30 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
         if (!(instance instanceof Constructor)) {
             throw new TypeError("Cannot call a class as a function");
         }
+    }
+
+    function _possibleConstructorReturn(self, call) {
+        if (!self) {
+            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+        }
+
+        return call && (typeof call === "object" || typeof call === "function") ? call : self;
+    }
+
+    function _inherits(subClass, superClass) {
+        if (typeof superClass !== "function" && superClass !== null) {
+            throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+        }
+
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+            constructor: {
+                value: subClass,
+                enumerable: false,
+                writable: true,
+                configurable: true
+            }
+        });
+        if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
     function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -67,6 +91,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
             AttributeManager = _commonAttributeManager.AttributeManager;
         }, function (_commonAttributes) {
             getBooleanFromAttributeValue = _commonAttributes.getBooleanFromAttributeValue;
+        }, function (_controlControl) {
+            Ui5Control = _controlControl.Ui5Control;
         }],
         execute: function () {
             _createClass = function () {
@@ -87,42 +113,71 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5MessageView', Ui5MessageView = (_dec = customElement('ui5-message-view'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = computedFrom('_messageview'), _dec(_class = _dec2(_class = (_class2 = function () {
+            _export('Ui5MessageView', Ui5MessageView = (_dec = customElement('ui5-message-view'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = computedFrom('_messageview'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+                _inherits(Ui5MessageView, _Ui5Control);
+
                 function Ui5MessageView(element) {
                     _classCallCheck(this, Ui5MessageView);
 
-                    this._messageview = null;
-                    this._parent = null;
-                    this._relation = null;
+                    var _this = _possibleConstructorReturn(this, _Ui5Control.call(this, element));
 
-                    _initDefineProp(this, 'ui5Id', _descriptor, this);
+                    _this._messageview = null;
+                    _this._parent = null;
+                    _this._relation = null;
 
-                    _initDefineProp(this, 'ui5Class', _descriptor2, this);
+                    _initDefineProp(_this, 'ui5Id', _descriptor, _this);
 
-                    _initDefineProp(this, 'ui5Tooltip', _descriptor3, this);
+                    _initDefineProp(_this, 'ui5Class', _descriptor2, _this);
 
-                    _initDefineProp(this, 'prevId', _descriptor4, this);
+                    _initDefineProp(_this, 'ui5Tooltip', _descriptor3, _this);
 
-                    _initDefineProp(this, 'asyncDescriptionHandler', _descriptor5, this);
+                    _initDefineProp(_this, 'prevId', _descriptor4, _this);
 
-                    _initDefineProp(this, 'asyncURLHandler', _descriptor6, this);
+                    _initDefineProp(_this, 'asyncDescriptionHandler', _descriptor5, _this);
 
-                    _initDefineProp(this, 'groupItems', _descriptor7, this);
+                    _initDefineProp(_this, 'asyncURLHandler', _descriptor6, _this);
 
-                    _initDefineProp(this, 'showDetailsPageHeader', _descriptor8, this);
+                    _initDefineProp(_this, 'groupItems', _descriptor7, _this);
 
-                    _initDefineProp(this, 'afterOpen', _descriptor9, this);
+                    _initDefineProp(_this, 'showDetailsPageHeader', _descriptor8, _this);
 
-                    _initDefineProp(this, 'itemSelect', _descriptor10, this);
+                    _initDefineProp(_this, 'afterOpen', _descriptor9, _this);
 
-                    _initDefineProp(this, 'listSelect', _descriptor11, this);
+                    _initDefineProp(_this, 'itemSelect', _descriptor10, _this);
 
-                    _initDefineProp(this, 'longtextLoaded', _descriptor12, this);
+                    _initDefineProp(_this, 'listSelect', _descriptor11, _this);
 
-                    _initDefineProp(this, 'urlValidated', _descriptor13, this);
+                    _initDefineProp(_this, 'longtextLoaded', _descriptor12, _this);
 
-                    this.element = element;
-                    this.attributeManager = new AttributeManager(this.element);
+                    _initDefineProp(_this, 'urlValidated', _descriptor13, _this);
+
+                    _initDefineProp(_this, 'blocked', _descriptor14, _this);
+
+                    _initDefineProp(_this, 'busy', _descriptor15, _this);
+
+                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor16, _this);
+
+                    _initDefineProp(_this, 'busyIndicatorSize', _descriptor17, _this);
+
+                    _initDefineProp(_this, 'visible', _descriptor18, _this);
+
+                    _initDefineProp(_this, 'fieldGroupIds', _descriptor19, _this);
+
+                    _initDefineProp(_this, 'validateFieldGroup', _descriptor20, _this);
+
+                    _initDefineProp(_this, 'validationSuccess', _descriptor21, _this);
+
+                    _initDefineProp(_this, 'validationError', _descriptor22, _this);
+
+                    _initDefineProp(_this, 'parseError', _descriptor23, _this);
+
+                    _initDefineProp(_this, 'formatError', _descriptor24, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor25, _this);
+
+                    _this.element = element;
+                    _this.attributeManager = new AttributeManager(_this.element);
+                    return _this;
                 }
 
                 Ui5MessageView.prototype.fillProperties = function fillProperties(params) {
@@ -135,6 +190,8 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.listSelect = this.listSelect == null ? this.defaultFunc : this.listSelect;
                     params.longtextLoaded = this.longtextLoaded == null ? this.defaultFunc : this.longtextLoaded;
                     params.urlValidated = this.urlValidated == null ? this.defaultFunc : this.urlValidated;
+
+                    _Ui5Control.prototype.fillProperties.call(this, params);
                 };
 
                 Ui5MessageView.prototype.defaultFunc = function defaultFunc() {};
@@ -179,6 +236,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         } else {
                             this._messageview.destroy();
                         }
+                        _Ui5Control.prototype.detached.call(this);
                     } catch (err) {}
                 };
 
@@ -201,6 +259,21 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             if (elem.localName == 'headerbutton') {
                                 this._messageview.setHeaderButton(child);return elem.localName;
                             }
+                            if (elem.localName == 'tooltip') {
+                                this._messageview.setTooltip(child);return elem.localName;
+                            }
+                            if (elem.localName == 'customdata') {
+                                var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._messageview.insertCustomData(child, _index);else this._messageview.addCustomData(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'layoutdata') {
+                                this._messageview.setLayoutData(child);return elem.localName;
+                            }
+                            if (elem.localName == 'dependents') {
+                                var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._messageview.insertDependent(child, _index);else this._messageview.addDependent(child, 0);return elem.localName;
+                            }
+                            if (elem.localName == 'dragdropconfig') {
+                                var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._messageview.insertDragDropConfig(child, _index);else this._messageview.addDragDropConfig(child, 0);return elem.localName;
+                            }
                         } catch (err) {}
                     }
                 };
@@ -212,6 +285,21 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         }
                         if (relation == 'headerbutton') {
                             this._messageview.destroyHeaderButton(child);
+                        }
+                        if (relation == 'tooltip') {
+                            this._messageview.destroyTooltip(child);
+                        }
+                        if (relation == 'customdata') {
+                            this._messageview.removeCustomData(child);
+                        }
+                        if (relation == 'layoutdata') {
+                            this._messageview.destroyLayoutData(child);
+                        }
+                        if (relation == 'dependents') {
+                            this._messageview.removeDependent(child);
+                        }
+                        if (relation == 'dragdropconfig') {
+                            this._messageview.removeDragDropConfig(child);
                         }
                     } catch (err) {}
                 };
@@ -270,6 +358,78 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     }
                 };
 
+                Ui5MessageView.prototype.blockedChanged = function blockedChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.setBlocked(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5MessageView.prototype.busyChanged = function busyChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.setBusy(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5MessageView.prototype.busyIndicatorDelayChanged = function busyIndicatorDelayChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.setBusyIndicatorDelay(newValue);
+                    }
+                };
+
+                Ui5MessageView.prototype.busyIndicatorSizeChanged = function busyIndicatorSizeChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.setBusyIndicatorSize(newValue);
+                    }
+                };
+
+                Ui5MessageView.prototype.visibleChanged = function visibleChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.setVisible(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
+                Ui5MessageView.prototype.fieldGroupIdsChanged = function fieldGroupIdsChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.setFieldGroupIds(newValue);
+                    }
+                };
+
+                Ui5MessageView.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.attachValidateFieldGroup(newValue);
+                    }
+                };
+
+                Ui5MessageView.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.attachValidationSuccess(newValue);
+                    }
+                };
+
+                Ui5MessageView.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.attachValidationError(newValue);
+                    }
+                };
+
+                Ui5MessageView.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.attachParseError(newValue);
+                    }
+                };
+
+                Ui5MessageView.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.attachFormatError(newValue);
+                    }
+                };
+
+                Ui5MessageView.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
+                    if (this._messageview !== null) {
+                        this._messageview.attachModelContextChange(newValue);
+                    }
+                };
+
                 _createClass(Ui5MessageView, [{
                     key: 'UIElement',
                     get: function get() {
@@ -278,7 +438,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 }]);
 
                 return Ui5MessageView;
-            }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [bindable], {
+            }(Ui5Control), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'ui5Id', [bindable], {
                 enumerable: true,
                 initializer: function initializer() {
                     return null;
@@ -343,7 +503,67 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec12], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec12], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec14], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 1000;
+                }
+            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec15], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 'Medium';
+                }
+            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec16], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec17], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return '[]';
+                }
+            }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec18], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec19], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec20], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec21], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec22], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec23], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec24], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5MessageView', Ui5MessageView);
         }

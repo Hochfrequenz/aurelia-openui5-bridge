@@ -31,6 +31,7 @@ export class Ui5Select extends Ui5Control{
 @bindable() forceSelection = true;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -147,6 +148,7 @@ if (elem.localName == 'tooltip') { this._select.setTooltip(child); return elem.l
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._select.insertCustomData(child, _index); else this._select.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._select.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._select.insertDependent(child, _index); else this._select.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._select.insertDragDropConfig(child, _index); else this._select.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -159,6 +161,7 @@ if (relation == 'tooltip') {  this._select.destroyTooltip(child); }
 if (relation == 'customdata') {  this._select.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._select.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._select.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._select.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -179,6 +182,7 @@ valueStateTextChanged(newValue){if(this._select!==null){ this._select.setValueSt
 showSecondaryValuesChanged(newValue){if(this._select!==null){ this._select.setShowSecondaryValues(getBooleanFromAttributeValue(newValue));}}
 forceSelectionChanged(newValue){if(this._select!==null){ this._select.setForceSelection(getBooleanFromAttributeValue(newValue));}}
 changeChanged(newValue){if(this._select!==null){ this._select.attachChange(newValue);}}
+blockedChanged(newValue){if(this._select!==null){ this._select.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._select!==null){ this._select.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._select!==null){ this._select.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._select!==null){ this._select.setBusyIndicatorSize(newValue);}}

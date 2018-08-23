@@ -18,6 +18,7 @@ export class Ui5ImageContent extends Ui5Control{
 @bindable() description = null;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -119,6 +120,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._imagecontent.insertCustomData(child, _index); else this._imagecontent.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._imagecontent.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._imagecontent.insertDependent(child, _index); else this._imagecontent.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._imagecontent.insertDragDropConfig(child, _index); else this._imagecontent.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -130,6 +132,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._imagecontent.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._imagecontent.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._imagecontent.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._imagecontent.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -137,6 +140,7 @@ if (relation == 'dependents') {  this._imagecontent.removeDependent(child);}
     srcChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setSrc(newValue);}}
 descriptionChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setDescription(newValue);}}
 pressChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachPress(newValue);}}
+blockedChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusyIndicatorSize(newValue);}}

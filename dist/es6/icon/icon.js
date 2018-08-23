@@ -30,6 +30,7 @@ export class Ui5Icon extends Ui5Control{
 @bindable() noTabStop = false;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -143,6 +144,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icon.insertCustomData(child, _index); else this._icon.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._icon.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icon.insertDependent(child, _index); else this._icon.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icon.insertDragDropConfig(child, _index); else this._icon.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -154,6 +156,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._icon.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._icon.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._icon.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._icon.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -173,6 +176,7 @@ useIconTooltipChanged(newValue){if(this._icon!==null){ this._icon.setUseIconTool
 altChanged(newValue){if(this._icon!==null){ this._icon.setAlt(newValue);}}
 noTabStopChanged(newValue){if(this._icon!==null){ this._icon.setNoTabStop(getBooleanFromAttributeValue(newValue));}}
 pressChanged(newValue){if(this._icon!==null){ this._icon.attachPress(newValue);}}
+blockedChanged(newValue){if(this._icon!==null){ this._icon.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._icon!==null){ this._icon.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._icon!==null){ this._icon.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._icon!==null){ this._icon.setBusyIndicatorSize(newValue);}}

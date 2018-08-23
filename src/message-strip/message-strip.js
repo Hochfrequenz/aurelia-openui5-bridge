@@ -22,6 +22,7 @@ export class Ui5MessageStrip extends Ui5Control{
 @bindable() enableFormattedText = false;
 @bindable() close = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -128,6 +129,7 @@ if (elem.localName == 'tooltip') { this._messagestrip.setTooltip(child); return 
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messagestrip.insertCustomData(child, _index); else this._messagestrip.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._messagestrip.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messagestrip.insertDependent(child, _index); else this._messagestrip.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._messagestrip.insertDragDropConfig(child, _index); else this._messagestrip.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -140,6 +142,7 @@ if (relation == 'tooltip') {  this._messagestrip.destroyTooltip(child); }
 if (relation == 'customdata') {  this._messagestrip.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._messagestrip.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._messagestrip.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._messagestrip.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -151,6 +154,7 @@ showIconChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setS
 showCloseButtonChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setShowCloseButton(getBooleanFromAttributeValue(newValue));}}
 enableFormattedTextChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setEnableFormattedText(getBooleanFromAttributeValue(newValue));}}
 closeChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.attachClose(newValue);}}
+blockedChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBusyIndicatorSize(newValue);}}

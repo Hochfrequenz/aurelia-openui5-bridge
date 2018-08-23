@@ -7,7 +7,7 @@ exports.Ui5Control = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -70,7 +70,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5Control = exports.Ui5Control = (_dec = (0, _aureliaTemplating.customElement)('ui5-control'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaFramework.computedFrom)('_control'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
+var Ui5Control = exports.Ui5Control = (_dec = (0, _aureliaTemplating.customElement)('ui5-control'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaFramework.computedFrom)('_control'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
     _inherits(Ui5Control, _Ui5Element);
 
     function Ui5Control(element) {
@@ -90,27 +90,29 @@ var Ui5Control = exports.Ui5Control = (_dec = (0, _aureliaTemplating.customEleme
 
         _initDefineProp(_this, 'prevId', _descriptor4, _this);
 
-        _initDefineProp(_this, 'busy', _descriptor5, _this);
+        _initDefineProp(_this, 'blocked', _descriptor5, _this);
 
-        _initDefineProp(_this, 'busyIndicatorDelay', _descriptor6, _this);
+        _initDefineProp(_this, 'busy', _descriptor6, _this);
 
-        _initDefineProp(_this, 'busyIndicatorSize', _descriptor7, _this);
+        _initDefineProp(_this, 'busyIndicatorDelay', _descriptor7, _this);
 
-        _initDefineProp(_this, 'visible', _descriptor8, _this);
+        _initDefineProp(_this, 'busyIndicatorSize', _descriptor8, _this);
 
-        _initDefineProp(_this, 'fieldGroupIds', _descriptor9, _this);
+        _initDefineProp(_this, 'visible', _descriptor9, _this);
 
-        _initDefineProp(_this, 'validateFieldGroup', _descriptor10, _this);
+        _initDefineProp(_this, 'fieldGroupIds', _descriptor10, _this);
 
-        _initDefineProp(_this, 'validationSuccess', _descriptor11, _this);
+        _initDefineProp(_this, 'validateFieldGroup', _descriptor11, _this);
 
-        _initDefineProp(_this, 'validationError', _descriptor12, _this);
+        _initDefineProp(_this, 'validationSuccess', _descriptor12, _this);
 
-        _initDefineProp(_this, 'parseError', _descriptor13, _this);
+        _initDefineProp(_this, 'validationError', _descriptor13, _this);
 
-        _initDefineProp(_this, 'formatError', _descriptor14, _this);
+        _initDefineProp(_this, 'parseError', _descriptor14, _this);
 
-        _initDefineProp(_this, 'modelContextChange', _descriptor15, _this);
+        _initDefineProp(_this, 'formatError', _descriptor15, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor16, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -118,6 +120,7 @@ var Ui5Control = exports.Ui5Control = (_dec = (0, _aureliaTemplating.customEleme
     }
 
     Ui5Control.prototype.fillProperties = function fillProperties(params) {
+        params.blocked = (0, _attributes.getBooleanFromAttributeValue)(this.blocked);
         params.busy = (0, _attributes.getBooleanFromAttributeValue)(this.busy);
         params.busyIndicatorDelay = this.busyIndicatorDelay ? parseInt(this.busyIndicatorDelay) : 0;
         params.busyIndicatorSize = this.busyIndicatorSize;
@@ -199,6 +202,9 @@ var Ui5Control = exports.Ui5Control = (_dec = (0, _aureliaTemplating.customEleme
                 if (elem.localName == 'dependents') {
                     var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._control.insertDependent(child, _index);else this._control.addDependent(child, 0);return elem.localName;
                 }
+                if (elem.localName == 'dragdropconfig') {
+                    var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._control.insertDragDropConfig(child, _index);else this._control.addDragDropConfig(child, 0);return elem.localName;
+                }
             } catch (err) {}
         }
     };
@@ -217,7 +223,16 @@ var Ui5Control = exports.Ui5Control = (_dec = (0, _aureliaTemplating.customEleme
             if (relation == 'dependents') {
                 this._control.removeDependent(child);
             }
+            if (relation == 'dragdropconfig') {
+                this._control.removeDragDropConfig(child);
+            }
         } catch (err) {}
+    };
+
+    Ui5Control.prototype.blockedChanged = function blockedChanged(newValue) {
+        if (this._control !== null) {
+            this._control.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        }
     };
 
     Ui5Control.prototype.busyChanged = function busyChanged(newValue) {
@@ -314,59 +329,64 @@ var Ui5Control = exports.Ui5Control = (_dec = (0, _aureliaTemplating.customEleme
     initializer: function initializer() {
         return null;
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec3], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec3], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec4], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec5], {
     enumerable: true,
     initializer: function initializer() {
         return 1000;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec5], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec6], {
     enumerable: true,
     initializer: function initializer() {
         return 'Medium';
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec6], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec7], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec7], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec8], {
     enumerable: true,
     initializer: function initializer() {
         return '[]';
     }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec8], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec9], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec9], {
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec10], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec10], {
+}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec11], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec11], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec12], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec12], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec13], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec13], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec14], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec14], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec15], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

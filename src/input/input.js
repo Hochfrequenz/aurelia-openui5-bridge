@@ -51,6 +51,7 @@ export class Ui5Input extends Ui5InputBase{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -176,6 +177,7 @@ if (elem.localName == 'tooltip') { this._input.setTooltip(child); return elem.lo
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._input.insertCustomData(child, _index); else this._input.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._input.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._input.insertDependent(child, _index); else this._input.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._input.insertDragDropConfig(child, _index); else this._input.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -190,6 +192,7 @@ if (relation == 'tooltip') {  this._input.destroyTooltip(child); }
 if (relation == 'customdata') {  this._input.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._input.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._input.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._input.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -230,6 +233,7 @@ textDirectionChanged(newValue){if(this._input!==null){ this._input.setTextDirect
 requiredChanged(newValue){if(this._input!==null){ this._input.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(this._input!==null){ this._input.attachChange(newValue);}}
+blockedChanged(newValue){if(this._input!==null){ this._input.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._input!==null){ this._input.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._input!==null){ this._input.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._input!==null){ this._input.setBusyIndicatorSize(newValue);}}

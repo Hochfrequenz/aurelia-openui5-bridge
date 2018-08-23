@@ -17,6 +17,7 @@ export class Ui5Tile extends Ui5Control{
         @bindable() removable = true;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -117,6 +118,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tile.insertCustomData(child, _index); else this._tile.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._tile.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tile.insertDependent(child, _index); else this._tile.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tile.insertDragDropConfig(child, _index); else this._tile.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -128,12 +130,14 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._tile.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._tile.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._tile.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._tile.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     removableChanged(newValue){if(this._tile!==null){ this._tile.setRemovable(getBooleanFromAttributeValue(newValue));}}
 pressChanged(newValue){if(this._tile!==null){ this._tile.attachPress(newValue);}}
+blockedChanged(newValue){if(this._tile!==null){ this._tile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tile!==null){ this._tile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tile!==null){ this._tile.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._tile!==null){ this._tile.setBusyIndicatorSize(newValue);}}

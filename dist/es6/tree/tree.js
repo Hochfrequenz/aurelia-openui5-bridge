@@ -44,6 +44,7 @@ export class Ui5Tree extends Ui5ListBase{
 @bindable() itemPress = this.defaultFunc;
 @bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -143,12 +144,12 @@ export class Ui5Tree extends Ui5ListBase{
 if (elem.localName == 'swipecontent') { this._tree.setSwipeContent(child); return elem.localName;}
 if (elem.localName == 'headertoolbar') { this._tree.setHeaderToolbar(child); return elem.localName;}
 if (elem.localName == 'infotoolbar') { this._tree.setInfoToolbar(child); return elem.localName;}
-if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tree.insertDragDropConfig(child, _index); else this._tree.addDragDropConfig(child, 0);  return elem.localName; }
 if (elem.localName == 'contextmenu') { this._tree.setContextMenu(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._tree.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tree.insertCustomData(child, _index); else this._tree.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._tree.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tree.insertDependent(child, _index); else this._tree.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._tree.insertDragDropConfig(child, _index); else this._tree.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -160,12 +161,12 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'swipecontent') {  this._tree.destroySwipeContent(child); }
 if (relation == 'headertoolbar') {  this._tree.destroyHeaderToolbar(child); }
 if (relation == 'infotoolbar') {  this._tree.destroyInfoToolbar(child); }
-if (relation == 'dragdropconfig') {  this._tree.removeDragDropConfig(child);}
 if (relation == 'contextmenu') {  this._tree.destroyContextMenu(child); }
 if (relation == 'tooltip') {  this._tree.destroyTooltip(child); }
 if (relation == 'customdata') {  this._tree.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._tree.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._tree.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._tree.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -199,6 +200,7 @@ updateStartedChanged(newValue){if(this._tree!==null){ this._tree.attachUpdateSta
 updateFinishedChanged(newValue){if(this._tree!==null){ this._tree.attachUpdateFinished(newValue);}}
 itemPressChanged(newValue){if(this._tree!==null){ this._tree.attachItemPress(newValue);}}
 beforeOpenContextMenuChanged(newValue){if(this._tree!==null){ this._tree.attachBeforeOpenContextMenu(newValue);}}
+blockedChanged(newValue){if(this._tree!==null){ this._tree.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tree!==null){ this._tree.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tree!==null){ this._tree.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._tree!==null){ this._tree.setBusyIndicatorSize(newValue);}}

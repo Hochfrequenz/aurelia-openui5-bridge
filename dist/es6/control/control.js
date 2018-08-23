@@ -14,7 +14,8 @@ export class Ui5Control extends Ui5Element{
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() busy = false;
+        @bindable() blocked = false;
+@bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
@@ -40,7 +41,8 @@ export class Ui5Control extends Ui5Element{
             return this._control;
           }
         fillProperties(params){
-                                        params.busy = getBooleanFromAttributeValue(this.busy);
+                                        params.blocked = getBooleanFromAttributeValue(this.blocked);
+params.busy = getBooleanFromAttributeValue(this.busy);
 params.busyIndicatorDelay = this.busyIndicatorDelay?parseInt(this.busyIndicatorDelay):0;
 params.busyIndicatorSize = this.busyIndicatorSize;
 params.visible = getBooleanFromAttributeValue(this.visible);
@@ -118,6 +120,7 @@ params.validateFieldGroup = this.validateFieldGroup==null ? this.defaultFunc: th
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._control.insertCustomData(child, _index); else this._control.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._control.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._control.insertDependent(child, _index); else this._control.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._control.insertDragDropConfig(child, _index); else this._control.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -129,11 +132,13 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._control.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._control.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._control.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._control.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
-    busyChanged(newValue){if(this._control!==null){ this._control.setBusy(getBooleanFromAttributeValue(newValue));}}
+    blockedChanged(newValue){if(this._control!==null){ this._control.setBlocked(getBooleanFromAttributeValue(newValue));}}
+busyChanged(newValue){if(this._control!==null){ this._control.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._control!==null){ this._control.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._control!==null){ this._control.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(this._control!==null){ this._control.setVisible(getBooleanFromAttributeValue(newValue));}}

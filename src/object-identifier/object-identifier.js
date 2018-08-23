@@ -21,6 +21,7 @@ export class Ui5ObjectIdentifier extends Ui5Control{
 @bindable() textDirection = 'Inherit';
 @bindable() titlePress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -125,6 +126,7 @@ params.titlePress = this.titlePress==null ? this.defaultFunc: this.titlePress;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectidentifier.insertCustomData(child, _index); else this._objectidentifier.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._objectidentifier.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectidentifier.insertDependent(child, _index); else this._objectidentifier.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._objectidentifier.insertDragDropConfig(child, _index); else this._objectidentifier.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -136,6 +138,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._objectidentifier.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._objectidentifier.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._objectidentifier.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._objectidentifier.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -146,6 +149,7 @@ visibleChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifi
 titleActiveChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setTitleActive(getBooleanFromAttributeValue(newValue));}}
 textDirectionChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setTextDirection(newValue);}}
 titlePressChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.attachTitlePress(newValue);}}
+blockedChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusyIndicatorSize(newValue);}}

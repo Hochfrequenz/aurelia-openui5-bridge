@@ -108,6 +108,7 @@ export class Ui5gridTableRowSetting extends Ui5Element{
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowsetting.insertCustomData(child, _index); else this._gridtablerowsetting.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._gridtablerowsetting.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowsetting.insertDependent(child, _index); else this._gridtablerowsetting.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowsetting.insertDragDropConfig(child, _index); else this._gridtablerowsetting.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -119,6 +120,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._gridtablerowsetting.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._gridtablerowsetting.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._gridtablerowsetting.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._gridtablerowsetting.removeDragDropConfig(child);}
 
       }
       catch(err){}

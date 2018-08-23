@@ -33,6 +33,7 @@ export class Ui5SplitContainer extends Ui5Control{
 @bindable() detailNavigate = this.defaultFunc;
 @bindable() afterDetailNavigate = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -151,6 +152,7 @@ if (elem.localName == 'tooltip') { this._splitcontainer.setTooltip(child); retur
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitcontainer.insertCustomData(child, _index); else this._splitcontainer.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._splitcontainer.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitcontainer.insertDependent(child, _index); else this._splitcontainer.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._splitcontainer.insertDragDropConfig(child, _index); else this._splitcontainer.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -164,6 +166,7 @@ if (relation == 'tooltip') {  this._splitcontainer.destroyTooltip(child); }
 if (relation == 'customdata') {  this._splitcontainer.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._splitcontainer.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._splitcontainer.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._splitcontainer.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -186,6 +189,7 @@ beforeMasterCloseChanged(newValue){if(this._splitcontainer!==null){ this._splitc
 afterMasterCloseChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.attachAfterMasterClose(newValue);}}
 detailNavigateChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.attachDetailNavigate(newValue);}}
 afterDetailNavigateChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.attachAfterDetailNavigate(newValue);}}
+blockedChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.setBusyIndicatorSize(newValue);}}

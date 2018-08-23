@@ -27,6 +27,7 @@ export class Ui5Shell extends Ui5Control{
 @bindable() titleLevel = 'H1';
 @bindable() logout = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -138,6 +139,7 @@ if (elem.localName == 'tooltip') { this._shell.setTooltip(child); return elem.lo
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._shell.insertCustomData(child, _index); else this._shell.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._shell.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._shell.insertDependent(child, _index); else this._shell.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._shell.insertDragDropConfig(child, _index); else this._shell.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -150,6 +152,7 @@ if (relation == 'tooltip') {  this._shell.destroyTooltip(child); }
 if (relation == 'customdata') {  this._shell.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._shell.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._shell.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._shell.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -166,6 +169,7 @@ backgroundOpacityChanged(newValue){if(this._shell!==null){ this._shell.setBackgr
 homeIconChanged(newValue){if(this._shell!==null){ this._shell.setHomeIcon(newValue);}}
 titleLevelChanged(newValue){if(this._shell!==null){ this._shell.setTitleLevel(newValue);}}
 logoutChanged(newValue){if(this._shell!==null){ this._shell.attachLogout(newValue);}}
+blockedChanged(newValue){if(this._shell!==null){ this._shell.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._shell!==null){ this._shell.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorSize(newValue);}}

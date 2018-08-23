@@ -25,6 +25,7 @@ export class Ui5Button extends Ui5Control{
 @bindable() textDirection = 'Inherit';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -133,6 +134,7 @@ params.press = this.press==null ? this.defaultFunc: this.press;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._button.insertCustomData(child, _index); else this._button.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._button.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._button.insertDependent(child, _index); else this._button.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._button.insertDragDropConfig(child, _index); else this._button.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -144,6 +146,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._button.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._button.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._button.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._button.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -158,6 +161,7 @@ activeIconChanged(newValue){if(this._button!==null){ this._button.setActiveIcon(
 iconDensityAwareChanged(newValue){if(this._button!==null){ this._button.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
 textDirectionChanged(newValue){if(this._button!==null){ this._button.setTextDirection(newValue);}}
 pressChanged(newValue){if(this._button!==null){ this._button.attachPress(newValue);}}
+blockedChanged(newValue){if(this._button!==null){ this._button.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._button!==null){ this._button.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._button!==null){ this._button.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._button!==null){ this._button.setBusyIndicatorSize(newValue);}}

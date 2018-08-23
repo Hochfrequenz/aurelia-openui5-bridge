@@ -42,6 +42,7 @@ export class Ui5ListBase extends Ui5Control{
 @bindable() itemPress = this.defaultFunc;
 @bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -167,12 +168,12 @@ params.beforeOpenContextMenu = this.beforeOpenContextMenu==null ? this.defaultFu
 if (elem.localName == 'swipecontent') { this._listbase.setSwipeContent(child); return elem.localName;}
 if (elem.localName == 'headertoolbar') { this._listbase.setHeaderToolbar(child); return elem.localName;}
 if (elem.localName == 'infotoolbar') { this._listbase.setInfoToolbar(child); return elem.localName;}
-if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listbase.insertDragDropConfig(child, _index); else this._listbase.addDragDropConfig(child, 0);  return elem.localName; }
 if (elem.localName == 'contextmenu') { this._listbase.setContextMenu(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._listbase.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listbase.insertCustomData(child, _index); else this._listbase.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._listbase.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listbase.insertDependent(child, _index); else this._listbase.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._listbase.insertDragDropConfig(child, _index); else this._listbase.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -184,12 +185,12 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'swipecontent') {  this._listbase.destroySwipeContent(child); }
 if (relation == 'headertoolbar') {  this._listbase.destroyHeaderToolbar(child); }
 if (relation == 'infotoolbar') {  this._listbase.destroyInfoToolbar(child); }
-if (relation == 'dragdropconfig') {  this._listbase.removeDragDropConfig(child);}
 if (relation == 'contextmenu') {  this._listbase.destroyContextMenu(child); }
 if (relation == 'tooltip') {  this._listbase.destroyTooltip(child); }
 if (relation == 'customdata') {  this._listbase.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._listbase.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._listbase.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._listbase.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -221,6 +222,7 @@ updateStartedChanged(newValue){if(this._listbase!==null){ this._listbase.attachU
 updateFinishedChanged(newValue){if(this._listbase!==null){ this._listbase.attachUpdateFinished(newValue);}}
 itemPressChanged(newValue){if(this._listbase!==null){ this._listbase.attachItemPress(newValue);}}
 beforeOpenContextMenuChanged(newValue){if(this._listbase!==null){ this._listbase.attachBeforeOpenContextMenu(newValue);}}
+blockedChanged(newValue){if(this._listbase!==null){ this._listbase.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._listbase!==null){ this._listbase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._listbase!==null){ this._listbase.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._listbase!==null){ this._listbase.setBusyIndicatorSize(newValue);}}

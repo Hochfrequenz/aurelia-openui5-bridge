@@ -25,6 +25,7 @@ export class Ui5CustomTreeItem extends Ui5TreeItemBase{
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -124,6 +125,7 @@ if (elem.localName == 'tooltip') { this._customtreeitem.setTooltip(child); retur
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertCustomData(child, _index); else this._customtreeitem.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._customtreeitem.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertDependent(child, _index); else this._customtreeitem.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._customtreeitem.insertDragDropConfig(child, _index); else this._customtreeitem.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -136,6 +138,7 @@ if (relation == 'tooltip') {  this._customtreeitem.destroyTooltip(child); }
 if (relation == 'customdata') {  this._customtreeitem.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._customtreeitem.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._customtreeitem.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._customtreeitem.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -150,6 +153,7 @@ highlightChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachPress(newValue);}}
 detailPressChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.attachDetailPress(newValue);}}
+blockedChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusyIndicatorSize(newValue);}}

@@ -23,6 +23,7 @@ export class Ui5Wizard extends Ui5Control{
 @bindable() stepActivate = this.defaultFunc;
 @bindable() complete = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -130,6 +131,7 @@ if (elem.localName == 'tooltip') { this._wizard.setTooltip(child); return elem.l
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._wizard.addCustomData(child, _index); else this._wizard.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._wizard.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._wizard.addDependent(child, _index); else this._wizard.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._wizard.addDragDropConfig(child, _index); else this._wizard.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -142,6 +144,7 @@ if (relation == 'tooltip') {  this._wizard.destroyTooltip(child); }
 if (relation == 'customdata') {  this._wizard.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._wizard.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._wizard.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._wizard.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -153,6 +156,7 @@ finishButtonTextChanged(newValue){if(this._wizard!==null){ this._wizard.setFinis
 enableBranchingChanged(newValue){if(this._wizard!==null){ this._wizard.setEnableBranching(getBooleanFromAttributeValue(newValue));}}
 stepActivateChanged(newValue){if(this._wizard!==null){ this._wizard.attachStepActivate(newValue);}}
 completeChanged(newValue){if(this._wizard!==null){ this._wizard.attachComplete(newValue);}}
+blockedChanged(newValue){if(this._wizard!==null){ this._wizard.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._wizard!==null){ this._wizard.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._wizard!==null){ this._wizard.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._wizard!==null){ this._wizard.setBusyIndicatorSize(newValue);}}

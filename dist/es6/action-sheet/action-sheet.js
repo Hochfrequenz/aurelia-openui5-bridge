@@ -24,6 +24,7 @@ export class Ui5ActionSheet extends Ui5Control{
 @bindable() afterClose = this.defaultFunc;
 @bindable() cancelButtonPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -132,6 +133,7 @@ if (elem.localName == 'tooltip') { this._actionsheet.setTooltip(child); return e
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._actionsheet.insertCustomData(child, _index); else this._actionsheet.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._actionsheet.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._actionsheet.insertDependent(child, _index); else this._actionsheet.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._actionsheet.insertDragDropConfig(child, _index); else this._actionsheet.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -144,6 +146,7 @@ if (relation == 'tooltip') {  this._actionsheet.destroyTooltip(child); }
 if (relation == 'customdata') {  this._actionsheet.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._actionsheet.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._actionsheet.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._actionsheet.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -157,6 +160,7 @@ afterOpenChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attac
 beforeCloseChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachBeforeClose(newValue);}}
 afterCloseChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachAfterClose(newValue);}}
 cancelButtonPressChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachCancelButtonPress(newValue);}}
+blockedChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBusyIndicatorSize(newValue);}}

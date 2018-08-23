@@ -16,6 +16,7 @@ export class Ui5gridTableRowAction extends Ui5Control{
          @bindable prevId = null;
         @bindable() visible = true;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -116,6 +117,7 @@ if (elem.localName == 'tooltip') { this._gridtablerowaction.setTooltip(child); r
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowaction.insertCustomData(child, _index); else this._gridtablerowaction.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._gridtablerowaction.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowaction.insertDependent(child, _index); else this._gridtablerowaction.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtablerowaction.insertDragDropConfig(child, _index); else this._gridtablerowaction.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -128,11 +130,13 @@ if (relation == 'tooltip') {  this._gridtablerowaction.destroyTooltip(child); }
 if (relation == 'customdata') {  this._gridtablerowaction.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._gridtablerowaction.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._gridtablerowaction.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._gridtablerowaction.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     visibleChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setVisible(getBooleanFromAttributeValue(newValue));}}
+blockedChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusyIndicatorSize(newValue);}}

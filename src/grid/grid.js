@@ -22,6 +22,7 @@ export class Ui5Grid extends Ui5Control{
 @bindable() defaultIndent = 'XL0 L0 M0 S0';
 @bindable() containerQuery = false;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -128,6 +129,7 @@ if (elem.localName == 'tooltip') { this._grid.setTooltip(child); return elem.loc
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._grid.insertCustomData(child, _index); else this._grid.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._grid.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._grid.insertDependent(child, _index); else this._grid.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._grid.insertDragDropConfig(child, _index); else this._grid.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -140,6 +142,7 @@ if (relation == 'tooltip') {  this._grid.destroyTooltip(child); }
 if (relation == 'customdata') {  this._grid.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._grid.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._grid.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._grid.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -151,6 +154,7 @@ positionChanged(newValue){if(this._grid!==null){ this._grid.setPosition(newValue
 defaultSpanChanged(newValue){if(this._grid!==null){ this._grid.setDefaultSpan(newValue);}}
 defaultIndentChanged(newValue){if(this._grid!==null){ this._grid.setDefaultIndent(newValue);}}
 containerQueryChanged(newValue){if(this._grid!==null){ this._grid.setContainerQuery(getBooleanFromAttributeValue(newValue));}}
+blockedChanged(newValue){if(this._grid!==null){ this._grid.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._grid!==null){ this._grid.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._grid!==null){ this._grid.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._grid!==null){ this._grid.setBusyIndicatorSize(newValue);}}

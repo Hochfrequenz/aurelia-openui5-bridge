@@ -44,6 +44,7 @@ export class Ui5List extends Ui5ListBase{
 @bindable() itemPress = this.defaultFunc;
 @bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -139,17 +140,16 @@ export class Ui5List extends Ui5ListBase{
         var path = jQuery.makeArray($(elem).parentsUntil(this.element));
         for (elem of path) {
         try{
-                 if (elem.localName == 'columns') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertColumn(child, _index); else this._list.addColumn(child, 0);  return elem.localName; }
-if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertItem(child, _index); else this._list.addItem(child, 0);  return elem.localName; }
+                 if (elem.localName == 'items') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertItem(child, _index); else this._list.addItem(child, 0);  return elem.localName; }
 if (elem.localName == 'swipecontent') { this._list.setSwipeContent(child); return elem.localName;}
 if (elem.localName == 'headertoolbar') { this._list.setHeaderToolbar(child); return elem.localName;}
 if (elem.localName == 'infotoolbar') { this._list.setInfoToolbar(child); return elem.localName;}
-if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertDragDropConfig(child, _index); else this._list.addDragDropConfig(child, 0);  return elem.localName; }
 if (elem.localName == 'contextmenu') { this._list.setContextMenu(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._list.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertCustomData(child, _index); else this._list.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._list.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertDependent(child, _index); else this._list.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._list.insertDragDropConfig(child, _index); else this._list.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -157,17 +157,16 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
       }
       removeChildByRelation(child, relation) {
       try{
-               if (relation == 'columns') {  this._list.removeColumn(child);}
-if (relation == 'items') {  this._list.removeItem(child);}
+               if (relation == 'items') {  this._list.removeItem(child);}
 if (relation == 'swipecontent') {  this._list.destroySwipeContent(child); }
 if (relation == 'headertoolbar') {  this._list.destroyHeaderToolbar(child); }
 if (relation == 'infotoolbar') {  this._list.destroyInfoToolbar(child); }
-if (relation == 'dragdropconfig') {  this._list.removeDragDropConfig(child);}
 if (relation == 'contextmenu') {  this._list.destroyContextMenu(child); }
 if (relation == 'tooltip') {  this._list.destroyTooltip(child); }
 if (relation == 'customdata') {  this._list.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._list.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._list.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._list.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -201,6 +200,7 @@ updateStartedChanged(newValue){if(this._list!==null){ this._list.attachUpdateSta
 updateFinishedChanged(newValue){if(this._list!==null){ this._list.attachUpdateFinished(newValue);}}
 itemPressChanged(newValue){if(this._list!==null){ this._list.attachItemPress(newValue);}}
 beforeOpenContextMenuChanged(newValue){if(this._list!==null){ this._list.attachBeforeOpenContextMenu(newValue);}}
+blockedChanged(newValue){if(this._list!==null){ this._list.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._list!==null){ this._list.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._list!==null){ this._list.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._list!==null){ this._list.setBusyIndicatorSize(newValue);}}

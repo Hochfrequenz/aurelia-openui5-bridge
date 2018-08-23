@@ -17,6 +17,7 @@ export class Ui5ResponsiveSplitter extends Ui5Control{
         @bindable() width = '100%';
 @bindable() height = '100%';
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -118,6 +119,7 @@ if (elem.localName == 'tooltip') { this._responsivesplitter.setTooltip(child); r
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivesplitter.insertCustomData(child, _index); else this._responsivesplitter.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._responsivesplitter.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivesplitter.insertDependent(child, _index); else this._responsivesplitter.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._responsivesplitter.insertDragDropConfig(child, _index); else this._responsivesplitter.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -130,12 +132,14 @@ if (relation == 'tooltip') {  this._responsivesplitter.destroyTooltip(child); }
 if (relation == 'customdata') {  this._responsivesplitter.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._responsivesplitter.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._responsivesplitter.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._responsivesplitter.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     widthChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setWidth(newValue);}}
 heightChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setHeight(newValue);}}
+blockedChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBusyIndicatorSize(newValue);}}

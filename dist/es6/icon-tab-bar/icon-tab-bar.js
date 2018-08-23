@@ -25,9 +25,11 @@ export class Ui5IconTabBar extends Ui5Control{
 @bindable() showOverflowSelectList = false;
 @bindable() headerBackgroundDesign = 'Solid';
 @bindable() enableTabReordering = false;
+@bindable() tabDensityMode = 'Cozy';
 @bindable() select = this.defaultFunc;
 @bindable() expand = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -65,6 +67,7 @@ params.headerMode = this.headerMode;
 params.showOverflowSelectList = getBooleanFromAttributeValue(this.showOverflowSelectList);
 params.headerBackgroundDesign = this.headerBackgroundDesign;
 params.enableTabReordering = getBooleanFromAttributeValue(this.enableTabReordering);
+params.tabDensityMode = this.tabDensityMode;
 params.select = this.select==null ? this.defaultFunc: this.select;
 params.expand = this.expand==null ? this.defaultFunc: this.expand;
             
@@ -142,6 +145,7 @@ if (elem.localName == 'tooltip') { this._icontabbar.setTooltip(child); return el
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabbar.insertCustomData(child, _index); else this._icontabbar.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._icontabbar.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabbar.insertDependent(child, _index); else this._icontabbar.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._icontabbar.insertDragDropConfig(child, _index); else this._icontabbar.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -155,6 +159,7 @@ if (relation == 'tooltip') {  this._icontabbar.destroyTooltip(child); }
 if (relation == 'customdata') {  this._icontabbar.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._icontabbar.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._icontabbar.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._icontabbar.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -170,8 +175,10 @@ headerModeChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setHea
 showOverflowSelectListChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setShowOverflowSelectList(getBooleanFromAttributeValue(newValue));}}
 headerBackgroundDesignChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setHeaderBackgroundDesign(newValue);}}
 enableTabReorderingChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setEnableTabReordering(getBooleanFromAttributeValue(newValue));}}
+tabDensityModeChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setTabDensityMode(newValue);}}
 selectChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachSelect(newValue);}}
 expandChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachExpand(newValue);}}
+blockedChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBusyIndicatorSize(newValue);}}

@@ -20,6 +20,7 @@ export class Ui5Html extends Ui5Control{
 @bindable() visible = true;
 @bindable() afterRendering = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -123,6 +124,7 @@ params.afterRendering = this.afterRendering==null ? this.defaultFunc: this.after
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._html.insertCustomData(child, _index); else this._html.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._html.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._html.insertDependent(child, _index); else this._html.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._html.insertDragDropConfig(child, _index); else this._html.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -134,6 +136,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._html.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._html.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._html.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._html.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -143,6 +146,7 @@ preferDOMChanged(newValue){if(this._html!==null){ this._html.setPreferDOM(getBoo
 sanitizeContentChanged(newValue){if(this._html!==null){ this._html.setSanitizeContent(getBooleanFromAttributeValue(newValue));}}
 visibleChanged(newValue){if(this._html!==null){ this._html.setVisible(getBooleanFromAttributeValue(newValue));}}
 afterRenderingChanged(newValue){if(this._html!==null){ this._html.attachAfterRendering(newValue);}}
+blockedChanged(newValue){if(this._html!==null){ this._html.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._html!==null){ this._html.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorSize(newValue);}}

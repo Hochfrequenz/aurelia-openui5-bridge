@@ -105,6 +105,7 @@ export class Ui5Element extends Ui5ManagedObject{
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._element.insertCustomData(child, _index); else this._element.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._element.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._element.insertDependent(child, _index); else this._element.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._element.insertDragDropConfig(child, _index); else this._element.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -116,6 +117,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._element.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._element.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._element.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._element.removeDragDropConfig(child);}
 
       }
       catch(err){}

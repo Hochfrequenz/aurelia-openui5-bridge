@@ -23,6 +23,7 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
 @bindable() style = 'Standard';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -122,6 +123,7 @@ if (elem.localName == 'tooltip') { this._overflowtoolbar.setTooltip(child); retu
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._overflowtoolbar.insertCustomData(child, _index); else this._overflowtoolbar.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._overflowtoolbar.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._overflowtoolbar.insertDependent(child, _index); else this._overflowtoolbar.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._overflowtoolbar.insertDragDropConfig(child, _index); else this._overflowtoolbar.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -134,6 +136,7 @@ if (relation == 'tooltip') {  this._overflowtoolbar.destroyTooltip(child); }
 if (relation == 'customdata') {  this._overflowtoolbar.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._overflowtoolbar.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._overflowtoolbar.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._overflowtoolbar.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -146,6 +149,7 @@ designChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.
 styleChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setStyle(newValue);}}
 /* inherited from sap.m.Toolbar*/
 pressChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.attachPress(newValue);}}
+blockedChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusyIndicatorSize(newValue);}}

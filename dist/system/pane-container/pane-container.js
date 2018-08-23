@@ -230,6 +230,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                             if (elem.localName == 'dependents') {
                                 var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._panecontainer.insertDependent(child, _index);else this._panecontainer.addDependent(child, 0);return elem.localName;
                             }
+                            if (elem.localName == 'dragdropconfig') {
+                                var _index = afterElement ? Math.floor(afterElement + 1) : null;if (_index) this._panecontainer.insertDragDropConfig(child, _index);else this._panecontainer.addDragDropConfig(child, 0);return elem.localName;
+                            }
                         } catch (err) {}
                     }
                 };
@@ -250,6 +253,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                         }
                         if (relation == 'dependents') {
                             this._panecontainer.removeDependent(child);
+                        }
+                        if (relation == 'dragdropconfig') {
+                            this._panecontainer.removeDragDropConfig(child);
                         }
                     } catch (err) {}
                 };

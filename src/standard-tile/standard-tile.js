@@ -27,6 +27,7 @@ export class Ui5StandardTile extends Ui5Tile{
 @bindable() removable = true;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -134,6 +135,7 @@ params.iconDensityAware = getBooleanFromAttributeValue(this.iconDensityAware);
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtile.insertCustomData(child, _index); else this._standardtile.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._standardtile.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtile.insertDependent(child, _index); else this._standardtile.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._standardtile.insertDragDropConfig(child, _index); else this._standardtile.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -145,6 +147,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._standardtile.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._standardtile.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._standardtile.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._standardtile.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -161,6 +164,7 @@ iconDensityAwareChanged(newValue){if(this._standardtile!==null){ this._standardt
 removableChanged(newValue){if(this._standardtile!==null){ this._standardtile.setRemovable(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.Tile*/
 pressChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachPress(newValue);}}
+blockedChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusyIndicatorSize(newValue);}}

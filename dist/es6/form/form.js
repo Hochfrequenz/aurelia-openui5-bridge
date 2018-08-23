@@ -17,6 +17,7 @@ export class Ui5Form extends Ui5Control{
         @bindable() width = null;
 @bindable() editable = false;
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -121,6 +122,7 @@ if (elem.localName == 'tooltip') { this._form.setTooltip(child); return elem.loc
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._form.insertCustomData(child, _index); else this._form.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._form.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._form.insertDependent(child, _index); else this._form.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._form.insertDragDropConfig(child, _index); else this._form.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -136,12 +138,14 @@ if (relation == 'tooltip') {  this._form.destroyTooltip(child); }
 if (relation == 'customdata') {  this._form.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._form.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._form.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._form.removeDragDropConfig(child);}
 
       }
       catch(err){}
                                                                             }
     widthChanged(newValue){if(this._form!==null){ this._form.setWidth(newValue);}}
 editableChanged(newValue){if(this._form!==null){ this._form.setEditable(getBooleanFromAttributeValue(newValue));}}
+blockedChanged(newValue){if(this._form!==null){ this._form.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._form!==null){ this._form.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._form!==null){ this._form.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._form!==null){ this._form.setBusyIndicatorSize(newValue);}}

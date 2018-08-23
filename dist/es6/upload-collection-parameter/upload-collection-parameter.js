@@ -110,6 +110,7 @@ params.value = this.value;
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionparameter.insertCustomData(child, _index); else this._uploadcollectionparameter.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._uploadcollectionparameter.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionparameter.insertDependent(child, _index); else this._uploadcollectionparameter.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._uploadcollectionparameter.insertDragDropConfig(child, _index); else this._uploadcollectionparameter.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -121,6 +122,7 @@ if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(after
 if (relation == 'customdata') {  this._uploadcollectionparameter.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._uploadcollectionparameter.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._uploadcollectionparameter.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._uploadcollectionparameter.removeDragDropConfig(child);}
 
       }
       catch(err){}

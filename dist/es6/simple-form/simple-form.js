@@ -38,6 +38,7 @@ export class Ui5SimpleForm extends Ui5Control{
 @bindable() breakpointM = 600;
 @bindable() backgroundDesign = 'Translucent';
 /* inherited from sap.ui.core.Control*/
+@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -162,6 +163,7 @@ if (elem.localName == 'tooltip') { this._simpleform.setTooltip(child); return el
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._simpleform.insertCustomData(child, _index); else this._simpleform.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._simpleform.setLayoutData(child); return elem.localName;}
 if (elem.localName == 'dependents') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._simpleform.insertDependent(child, _index); else this._simpleform.addDependent(child, 0);  return elem.localName; }
+if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._simpleform.insertDragDropConfig(child, _index); else this._simpleform.addDragDropConfig(child, 0);  return elem.localName; }
 
            }
            catch(err){}
@@ -176,6 +178,7 @@ if (relation == 'tooltip') {  this._simpleform.destroyTooltip(child); }
 if (relation == 'customdata') {  this._simpleform.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._simpleform.destroyLayoutData(child); }
 if (relation == 'dependents') {  this._simpleform.removeDependent(child);}
+if (relation == 'dragdropconfig') {  this._simpleform.removeDragDropConfig(child);}
 
       }
       catch(err){}
@@ -203,6 +206,7 @@ breakpointXLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setB
 breakpointLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBreakpointL(newValue);}}
 breakpointMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBreakpointM(newValue);}}
 backgroundDesignChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBackgroundDesign(newValue);}}
+blockedChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusyIndicatorSize(newValue);}}
