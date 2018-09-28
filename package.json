@@ -103,7 +103,7 @@
     "karma-sourcemap-loader": "^0.3.6",
     "object.assign": "^4.0.4",
     "phantomjs-polyfill": "0.0.2",
-    "require-dir": "^0.3.2",
+    "require-dir": "^1.1.0",
     "run-sequence": "^2.2.0",
     "through2": "^2.0.0",
     "typedoc": "^0.9.0",
