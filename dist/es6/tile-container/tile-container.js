@@ -147,13 +147,13 @@ if (relation == 'dragdropconfig') {  this._tilecontainer.removeDragDropConfig(ch
       }
       catch(err){}
                                                                             }
-    widthChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setWidth(newValue);}}
-heightChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setHeight(newValue);}}
-editableChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setEditable(getBooleanFromAttributeValue(newValue));}}
-allowAddChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setAllowAdd(getBooleanFromAttributeValue(newValue));}}
-tileMoveChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachTileMove(newValue);}}
-tileDeleteChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachTileDelete(newValue);}}
-tileAddChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachTileAdd(newValue);}}
+    widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.setWidth(newValue);}}
+heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.setHeight(newValue);}}
+editableChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.setEditable(getBooleanFromAttributeValue(newValue));}}
+allowAddChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.setAllowAdd(getBooleanFromAttributeValue(newValue));}}
+tileMoveChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachTileMove(newValue);}}
+tileDeleteChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachTileDelete(newValue);}}
+tileAddChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachTileAdd(newValue);}}
 blockedChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setBusyIndicatorDelay(newValue);}}
@@ -161,14 +161,14 @@ busyIndicatorSizeChanged(newValue){if(this._tilecontainer!==null){ this._tilecon
 visibleChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

@@ -167,16 +167,16 @@ if (relation == 'dragdropconfig') {  this._textarea.removeDragDropConfig(child);
       }
       catch(err){}
                                                                             }
-    rowsChanged(newValue){if(this._textarea!==null){ this._textarea.setRows(newValue);}}
-colsChanged(newValue){if(this._textarea!==null){ this._textarea.setCols(newValue);}}
-heightChanged(newValue){if(this._textarea!==null){ this._textarea.setHeight(newValue);}}
-maxLengthChanged(newValue){if(this._textarea!==null){ this._textarea.setMaxLength(newValue);}}
-showExceededTextChanged(newValue){if(this._textarea!==null){ this._textarea.setShowExceededText(getBooleanFromAttributeValue(newValue));}}
-wrappingChanged(newValue){if(this._textarea!==null){ this._textarea.setWrapping(newValue);}}
-valueLiveUpdateChanged(newValue){if(this._textarea!==null){ this._textarea.setValueLiveUpdate(getBooleanFromAttributeValue(newValue));}}
-growingChanged(newValue){if(this._textarea!==null){ this._textarea.setGrowing(getBooleanFromAttributeValue(newValue));}}
-growingMaxLinesChanged(newValue){if(this._textarea!==null){ this._textarea.setGrowingMaxLines(newValue);}}
-liveChangeChanged(newValue){if(this._textarea!==null){ this._textarea.attachLiveChange(newValue);}}
+    rowsChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.setRows(newValue);}}
+colsChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.setCols(newValue);}}
+heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.setHeight(newValue);}}
+maxLengthChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.setMaxLength(newValue);}}
+showExceededTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.setShowExceededText(getBooleanFromAttributeValue(newValue));}}
+wrappingChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.setWrapping(newValue);}}
+valueLiveUpdateChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.setValueLiveUpdate(getBooleanFromAttributeValue(newValue));}}
+growingChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.setGrowing(getBooleanFromAttributeValue(newValue));}}
+growingMaxLinesChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.setGrowingMaxLines(newValue);}}
+liveChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.attachLiveChange(newValue);}}
 valueChanged(newValue){if(this._textarea!==null){ this._textarea.setValue(newValue);}}
 widthChanged(newValue){if(this._textarea!==null){ this._textarea.setWidth(newValue);}}
 enabledChanged(newValue){if(this._textarea!==null){ this._textarea.setEnabled(getBooleanFromAttributeValue(newValue));}}
@@ -190,7 +190,7 @@ textAlignChanged(newValue){if(this._textarea!==null){ this._textarea.setTextAlig
 textDirectionChanged(newValue){if(this._textarea!==null){ this._textarea.setTextDirection(newValue);}}
 requiredChanged(newValue){if(this._textarea!==null){ this._textarea.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
-changeChanged(newValue){if(this._textarea!==null){ this._textarea.attachChange(newValue);}}
+changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.attachChange(newValue);}}
 blockedChanged(newValue){if(this._textarea!==null){ this._textarea.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._textarea!==null){ this._textarea.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._textarea!==null){ this._textarea.setBusyIndicatorDelay(newValue);}}
@@ -198,14 +198,14 @@ busyIndicatorSizeChanged(newValue){if(this._textarea!==null){ this._textarea.set
 visibleChanged(newValue){if(this._textarea!==null){ this._textarea.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._textarea!==null){ this._textarea.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._textarea!==null){ this._textarea.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._textarea!==null){ this._textarea.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._textarea!==null){ this._textarea.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._textarea!==null){ this._textarea.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._textarea!==null){ this._textarea.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._textarea!==null){ this._textarea.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

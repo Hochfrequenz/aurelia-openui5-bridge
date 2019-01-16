@@ -164,20 +164,20 @@ if (relation == 'dragdropconfig') {  this._icontabbar.removeDragDropConfig(child
       }
       catch(err){}
                                                                             }
-    expandableChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setExpandable(getBooleanFromAttributeValue(newValue));}}
-expandedChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setExpanded(getBooleanFromAttributeValue(newValue));}}
-selectedKeyChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setSelectedKey(newValue);}}
-upperCaseChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setUpperCase(getBooleanFromAttributeValue(newValue));}}
-stretchContentHeightChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setStretchContentHeight(getBooleanFromAttributeValue(newValue));}}
-applyContentPaddingChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setApplyContentPadding(getBooleanFromAttributeValue(newValue));}}
-backgroundDesignChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBackgroundDesign(newValue);}}
-headerModeChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setHeaderMode(newValue);}}
-showOverflowSelectListChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setShowOverflowSelectList(getBooleanFromAttributeValue(newValue));}}
-headerBackgroundDesignChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setHeaderBackgroundDesign(newValue);}}
-enableTabReorderingChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setEnableTabReordering(getBooleanFromAttributeValue(newValue));}}
-tabDensityModeChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setTabDensityMode(newValue);}}
-selectChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachSelect(newValue);}}
-expandChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachExpand(newValue);}}
+    expandableChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setExpandable(getBooleanFromAttributeValue(newValue));}}
+expandedChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setExpanded(getBooleanFromAttributeValue(newValue));}}
+selectedKeyChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setSelectedKey(newValue);}}
+upperCaseChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setUpperCase(getBooleanFromAttributeValue(newValue));}}
+stretchContentHeightChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setStretchContentHeight(getBooleanFromAttributeValue(newValue));}}
+applyContentPaddingChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setApplyContentPadding(getBooleanFromAttributeValue(newValue));}}
+backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setBackgroundDesign(newValue);}}
+headerModeChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setHeaderMode(newValue);}}
+showOverflowSelectListChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setShowOverflowSelectList(getBooleanFromAttributeValue(newValue));}}
+headerBackgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setHeaderBackgroundDesign(newValue);}}
+enableTabReorderingChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setEnableTabReordering(getBooleanFromAttributeValue(newValue));}}
+tabDensityModeChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setTabDensityMode(newValue);}}
+selectChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachSelect(newValue);}}
+expandChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachExpand(newValue);}}
 blockedChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBusyIndicatorDelay(newValue);}}
@@ -185,14 +185,14 @@ busyIndicatorSizeChanged(newValue){if(this._icontabbar!==null){ this._icontabbar
 visibleChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

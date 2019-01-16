@@ -256,55 +256,55 @@ var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.cus
     };
 
     Ui5ActionSheet.prototype.placementChanged = function placementChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.setPlacement(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.showCancelButtonChanged = function showCancelButtonChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.setShowCancelButton((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5ActionSheet.prototype.cancelButtonTextChanged = function cancelButtonTextChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.setCancelButtonText(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.titleChanged = function titleChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.setTitle(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.beforeOpenChanged = function beforeOpenChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachBeforeOpen(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.afterOpenChanged = function afterOpenChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachAfterOpen(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.beforeCloseChanged = function beforeCloseChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachBeforeClose(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.afterCloseChanged = function afterCloseChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachAfterClose(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.cancelButtonPressChanged = function cancelButtonPressChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachCancelButtonPress(newValue);
         }
     };
@@ -346,37 +346,37 @@ var Ui5ActionSheet = exports.Ui5ActionSheet = (_dec = (0, _aureliaTemplating.cus
     };
 
     Ui5ActionSheet.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachValidationSuccess(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachValidationError(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachParseError(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachFormatError(newValue);
         }
     };
 
     Ui5ActionSheet.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._actionsheet !== null) {
+        if (newValue != null && newValue != undefined && this._actionsheet !== null) {
             this._actionsheet.attachModelContextChange(newValue);
         }
     };

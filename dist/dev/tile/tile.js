@@ -272,13 +272,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Tile.prototype.removableChanged = function removableChanged(newValue) {
-                    if (this._tile !== null) {
+                    if (newValue != null && newValue != undefined && this._tile !== null) {
                         this._tile.setRemovable(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Tile.prototype.pressChanged = function pressChanged(newValue) {
-                    if (this._tile !== null) {
+                    if (newValue != null && newValue != undefined && this._tile !== null) {
                         this._tile.attachPress(newValue);
                     }
                 };
@@ -320,37 +320,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Tile.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._tile !== null) {
+                    if (newValue != null && newValue != undefined && this._tile !== null) {
                         this._tile.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5Tile.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._tile !== null) {
+                    if (newValue != null && newValue != undefined && this._tile !== null) {
                         this._tile.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5Tile.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._tile !== null) {
+                    if (newValue != null && newValue != undefined && this._tile !== null) {
                         this._tile.attachValidationError(newValue);
                     }
                 };
 
                 Ui5Tile.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._tile !== null) {
+                    if (newValue != null && newValue != undefined && this._tile !== null) {
                         this._tile.attachParseError(newValue);
                     }
                 };
 
                 Ui5Tile.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._tile !== null) {
+                    if (newValue != null && newValue != undefined && this._tile !== null) {
                         this._tile.attachFormatError(newValue);
                     }
                 };
 
                 Ui5Tile.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._tile !== null) {
+                    if (newValue != null && newValue != undefined && this._tile !== null) {
                         this._tile.attachModelContextChange(newValue);
                     }
                 };

@@ -281,31 +281,31 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Html.prototype.contentChanged = function contentChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.setContent(newValue);
                     }
                 };
 
                 Ui5Html.prototype.preferDOMChanged = function preferDOMChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.setPreferDOM(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Html.prototype.sanitizeContentChanged = function sanitizeContentChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.setSanitizeContent(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Html.prototype.visibleChanged = function visibleChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.setVisible(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Html.prototype.afterRenderingChanged = function afterRenderingChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.attachAfterRendering(newValue);
                     }
                 };
@@ -347,37 +347,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Html.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5Html.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5Html.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.attachValidationError(newValue);
                     }
                 };
 
                 Ui5Html.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.attachParseError(newValue);
                     }
                 };
 
                 Ui5Html.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.attachFormatError(newValue);
                     }
                 };
 
                 Ui5Html.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._html !== null) {
+                    if (newValue != null && newValue != undefined && this._html !== null) {
                         this._html.attachModelContextChange(newValue);
                     }
                 };

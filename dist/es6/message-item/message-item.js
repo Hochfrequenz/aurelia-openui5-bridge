@@ -22,6 +22,7 @@ export class Ui5MessageItem extends Ui5Item{
 @bindable() longtextUrl = null;
 @bindable() counter = null;
 @bindable() groupName = '';
+@bindable() activeTitle = false;
 /* inherited from sap.ui.core.Item*/
 @bindable() text = '';
 @bindable() enabled = true;
@@ -55,6 +56,7 @@ params.markupDescription = getBooleanFromAttributeValue(this.markupDescription);
 params.longtextUrl = this.longtextUrl;
 params.counter = this.counter?parseInt(this.counter):0;
 params.groupName = this.groupName;
+params.activeTitle = getBooleanFromAttributeValue(this.activeTitle);
             
                                             super.fillProperties(params);   
         }
@@ -146,14 +148,15 @@ if (relation == 'dragdropconfig') {  this._messageitem.removeDragDropConfig(chil
       }
       catch(err){}
                                                                             }
-    typeChanged(newValue){if(this._messageitem!==null){ this._messageitem.setType(newValue);}}
-titleChanged(newValue){if(this._messageitem!==null){ this._messageitem.setTitle(newValue);}}
-subtitleChanged(newValue){if(this._messageitem!==null){ this._messageitem.setSubtitle(newValue);}}
-descriptionChanged(newValue){if(this._messageitem!==null){ this._messageitem.setDescription(newValue);}}
-markupDescriptionChanged(newValue){if(this._messageitem!==null){ this._messageitem.setMarkupDescription(getBooleanFromAttributeValue(newValue));}}
-longtextUrlChanged(newValue){if(this._messageitem!==null){ this._messageitem.setLongtextUrl(newValue);}}
-counterChanged(newValue){if(this._messageitem!==null){ this._messageitem.setCounter(newValue);}}
-groupNameChanged(newValue){if(this._messageitem!==null){ this._messageitem.setGroupName(newValue);}}
+    typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.setType(newValue);}}
+titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.setTitle(newValue);}}
+subtitleChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.setSubtitle(newValue);}}
+descriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.setDescription(newValue);}}
+markupDescriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.setMarkupDescription(getBooleanFromAttributeValue(newValue));}}
+longtextUrlChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.setLongtextUrl(newValue);}}
+counterChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.setCounter(newValue);}}
+groupNameChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.setGroupName(newValue);}}
+activeTitleChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.setActiveTitle(getBooleanFromAttributeValue(newValue));}}
 textChanged(newValue){if(this._messageitem!==null){ this._messageitem.setText(newValue);}}
 enabledChanged(newValue){if(this._messageitem!==null){ this._messageitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
 textDirectionChanged(newValue){if(this._messageitem!==null){ this._messageitem.setTextDirection(newValue);}}
@@ -161,11 +164,11 @@ keyChanged(newValue){if(this._messageitem!==null){ this._messageitem.setKey(newV
 /* inherited from sap.ui.core.Item*/
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._messageitem!==null){ this._messageitem.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageitem!==null){ this._messageitem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

@@ -261,49 +261,49 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5CustomData.prototype.keyChanged = function keyChanged(newValue) {
-                    if (this._customdata !== null) {
+                    if (newValue != null && newValue != undefined && this._customdata !== null) {
                         this._customdata.setKey(newValue);
                     }
                 };
 
                 Ui5CustomData.prototype.valueChanged = function valueChanged(newValue) {
-                    if (this._customdata !== null) {
+                    if (newValue != null && newValue != undefined && this._customdata !== null) {
                         this._customdata.setValue(newValue);
                     }
                 };
 
                 Ui5CustomData.prototype.writeToDomChanged = function writeToDomChanged(newValue) {
-                    if (this._customdata !== null) {
+                    if (newValue != null && newValue != undefined && this._customdata !== null) {
                         this._customdata.setWriteToDom(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5CustomData.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._customdata !== null) {
+                    if (newValue != null && newValue != undefined && this._customdata !== null) {
                         this._customdata.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5CustomData.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._customdata !== null) {
+                    if (newValue != null && newValue != undefined && this._customdata !== null) {
                         this._customdata.attachValidationError(newValue);
                     }
                 };
 
                 Ui5CustomData.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._customdata !== null) {
+                    if (newValue != null && newValue != undefined && this._customdata !== null) {
                         this._customdata.attachParseError(newValue);
                     }
                 };
 
                 Ui5CustomData.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._customdata !== null) {
+                    if (newValue != null && newValue != undefined && this._customdata !== null) {
                         this._customdata.attachFormatError(newValue);
                     }
                 };
 
                 Ui5CustomData.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._customdata !== null) {
+                    if (newValue != null && newValue != undefined && this._customdata !== null) {
                         this._customdata.attachModelContextChange(newValue);
                     }
                 };

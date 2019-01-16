@@ -143,8 +143,8 @@ if (relation == 'dragdropconfig') {  this._form.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    widthChanged(newValue){if(this._form!==null){ this._form.setWidth(newValue);}}
-editableChanged(newValue){if(this._form!==null){ this._form.setEditable(getBooleanFromAttributeValue(newValue));}}
+    widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.setWidth(newValue);}}
+editableChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.setEditable(getBooleanFromAttributeValue(newValue));}}
 blockedChanged(newValue){if(this._form!==null){ this._form.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._form!==null){ this._form.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._form!==null){ this._form.setBusyIndicatorDelay(newValue);}}
@@ -152,14 +152,14 @@ busyIndicatorSizeChanged(newValue){if(this._form!==null){ this._form.setBusyIndi
 visibleChanged(newValue){if(this._form!==null){ this._form.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._form!==null){ this._form.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._form!==null){ this._form.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._form!==null){ this._form.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._form!==null){ this._form.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._form!==null){ this._form.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._form!==null){ this._form.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._form!==null){ this._form.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

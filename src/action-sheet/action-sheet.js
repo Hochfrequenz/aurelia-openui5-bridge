@@ -151,15 +151,15 @@ if (relation == 'dragdropconfig') {  this._actionsheet.removeDragDropConfig(chil
       }
       catch(err){}
                                                                             }
-    placementChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setPlacement(newValue);}}
-showCancelButtonChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setShowCancelButton(getBooleanFromAttributeValue(newValue));}}
-cancelButtonTextChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setCancelButtonText(newValue);}}
-titleChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setTitle(newValue);}}
-beforeOpenChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachBeforeOpen(newValue);}}
-afterOpenChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachAfterOpen(newValue);}}
-beforeCloseChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachBeforeClose(newValue);}}
-afterCloseChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachAfterClose(newValue);}}
-cancelButtonPressChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachCancelButtonPress(newValue);}}
+    placementChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.setPlacement(newValue);}}
+showCancelButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.setShowCancelButton(getBooleanFromAttributeValue(newValue));}}
+cancelButtonTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.setCancelButtonText(newValue);}}
+titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.setTitle(newValue);}}
+beforeOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachBeforeOpen(newValue);}}
+afterOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachAfterOpen(newValue);}}
+beforeCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachBeforeClose(newValue);}}
+afterCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachAfterClose(newValue);}}
+cancelButtonPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachCancelButtonPress(newValue);}}
 blockedChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBusyIndicatorDelay(newValue);}}
@@ -167,14 +167,14 @@ busyIndicatorSizeChanged(newValue){if(this._actionsheet!==null){ this._actionshe
 visibleChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

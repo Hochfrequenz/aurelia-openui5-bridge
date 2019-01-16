@@ -177,24 +177,24 @@ if (relation == 'dragdropconfig') {  this._responsivepopover.removeDragDropConfi
       }
       catch(err){}
                                                                             }
-    placementChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setPlacement(newValue);}}
-showHeaderChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setShowHeader(getBooleanFromAttributeValue(newValue));}}
-titleChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setTitle(newValue);}}
-iconChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setIcon(newValue);}}
-modalChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setModal(getBooleanFromAttributeValue(newValue));}}
-offsetXChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setOffsetX(newValue);}}
-offsetYChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setOffsetY(newValue);}}
-showArrowChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setShowArrow(getBooleanFromAttributeValue(newValue));}}
-contentWidthChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setContentWidth(newValue);}}
-contentHeightChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setContentHeight(newValue);}}
-horizontalScrollingChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setHorizontalScrolling(getBooleanFromAttributeValue(newValue));}}
-verticalScrollingChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setVerticalScrolling(getBooleanFromAttributeValue(newValue));}}
-showCloseButtonChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setShowCloseButton(getBooleanFromAttributeValue(newValue));}}
-resizableChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setResizable(getBooleanFromAttributeValue(newValue));}}
-beforeOpenChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachBeforeOpen(newValue);}}
-afterOpenChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachAfterOpen(newValue);}}
-beforeCloseChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachBeforeClose(newValue);}}
-afterCloseChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachAfterClose(newValue);}}
+    placementChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setPlacement(newValue);}}
+showHeaderChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setShowHeader(getBooleanFromAttributeValue(newValue));}}
+titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setTitle(newValue);}}
+iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setIcon(newValue);}}
+modalChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setModal(getBooleanFromAttributeValue(newValue));}}
+offsetXChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setOffsetX(newValue);}}
+offsetYChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setOffsetY(newValue);}}
+showArrowChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setShowArrow(getBooleanFromAttributeValue(newValue));}}
+contentWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setContentWidth(newValue);}}
+contentHeightChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setContentHeight(newValue);}}
+horizontalScrollingChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setHorizontalScrolling(getBooleanFromAttributeValue(newValue));}}
+verticalScrollingChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setVerticalScrolling(getBooleanFromAttributeValue(newValue));}}
+showCloseButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setShowCloseButton(getBooleanFromAttributeValue(newValue));}}
+resizableChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setResizable(getBooleanFromAttributeValue(newValue));}}
+beforeOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachBeforeOpen(newValue);}}
+afterOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachAfterOpen(newValue);}}
+beforeCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachBeforeClose(newValue);}}
+afterCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachAfterClose(newValue);}}
 blockedChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusyIndicatorDelay(newValue);}}
@@ -202,14 +202,14 @@ busyIndicatorSizeChanged(newValue){if(this._responsivepopover!==null){ this._res
 visibleChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

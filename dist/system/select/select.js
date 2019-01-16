@@ -323,97 +323,97 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Select.prototype.nameChanged = function nameChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setName(newValue);
                     }
                 };
 
                 Ui5Select.prototype.enabledChanged = function enabledChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setEnabled(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Select.prototype.widthChanged = function widthChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setWidth(newValue);
                     }
                 };
 
                 Ui5Select.prototype.maxWidthChanged = function maxWidthChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setMaxWidth(newValue);
                     }
                 };
 
                 Ui5Select.prototype.selectedKeyChanged = function selectedKeyChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setSelectedKey(newValue);
                     }
                 };
 
                 Ui5Select.prototype.selectedItemIdChanged = function selectedItemIdChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setSelectedItemId(newValue);
                     }
                 };
 
                 Ui5Select.prototype.iconChanged = function iconChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setIcon(newValue);
                     }
                 };
 
                 Ui5Select.prototype.typeChanged = function typeChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setType(newValue);
                     }
                 };
 
                 Ui5Select.prototype.autoAdjustWidthChanged = function autoAdjustWidthChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setAutoAdjustWidth(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Select.prototype.textAlignChanged = function textAlignChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setTextAlign(newValue);
                     }
                 };
 
                 Ui5Select.prototype.textDirectionChanged = function textDirectionChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setTextDirection(newValue);
                     }
                 };
 
                 Ui5Select.prototype.valueStateChanged = function valueStateChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setValueState(newValue);
                     }
                 };
 
                 Ui5Select.prototype.valueStateTextChanged = function valueStateTextChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setValueStateText(newValue);
                     }
                 };
 
                 Ui5Select.prototype.showSecondaryValuesChanged = function showSecondaryValuesChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setShowSecondaryValues(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Select.prototype.forceSelectionChanged = function forceSelectionChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.setForceSelection(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Select.prototype.changeChanged = function changeChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.attachChange(newValue);
                     }
                 };
@@ -455,37 +455,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Select.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5Select.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5Select.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.attachValidationError(newValue);
                     }
                 };
 
                 Ui5Select.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.attachParseError(newValue);
                     }
                 };
 
                 Ui5Select.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.attachFormatError(newValue);
                     }
                 };
 
                 Ui5Select.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._select !== null) {
+                    if (newValue != null && newValue != undefined && this._select !== null) {
                         this._select.attachModelContextChange(newValue);
                     }
                 };

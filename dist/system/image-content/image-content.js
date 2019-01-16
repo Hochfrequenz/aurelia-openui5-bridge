@@ -275,19 +275,19 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ImageContent.prototype.srcChanged = function srcChanged(newValue) {
-                    if (this._imagecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._imagecontent !== null) {
                         this._imagecontent.setSrc(newValue);
                     }
                 };
 
                 Ui5ImageContent.prototype.descriptionChanged = function descriptionChanged(newValue) {
-                    if (this._imagecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._imagecontent !== null) {
                         this._imagecontent.setDescription(newValue);
                     }
                 };
 
                 Ui5ImageContent.prototype.pressChanged = function pressChanged(newValue) {
-                    if (this._imagecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._imagecontent !== null) {
                         this._imagecontent.attachPress(newValue);
                     }
                 };
@@ -329,37 +329,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ImageContent.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._imagecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._imagecontent !== null) {
                         this._imagecontent.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5ImageContent.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._imagecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._imagecontent !== null) {
                         this._imagecontent.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5ImageContent.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._imagecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._imagecontent !== null) {
                         this._imagecontent.attachValidationError(newValue);
                     }
                 };
 
                 Ui5ImageContent.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._imagecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._imagecontent !== null) {
                         this._imagecontent.attachParseError(newValue);
                     }
                 };
 
                 Ui5ImageContent.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._imagecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._imagecontent !== null) {
                         this._imagecontent.attachFormatError(newValue);
                     }
                 };
 
                 Ui5ImageContent.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._imagecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._imagecontent !== null) {
                         this._imagecontent.attachModelContextChange(newValue);
                     }
                 };

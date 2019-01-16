@@ -290,13 +290,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5MaskInput.prototype.placeholderSymbolChanged = function placeholderSymbolChanged(newValue) {
-            if (this._maskinput !== null) {
+            if (newValue != null && newValue != undefined && this._maskinput !== null) {
                 this._maskinput.setPlaceholderSymbol(newValue);
             }
         };
 
         Ui5MaskInput.prototype.maskChanged = function maskChanged(newValue) {
-            if (this._maskinput !== null) {
+            if (newValue != null && newValue != undefined && this._maskinput !== null) {
                 this._maskinput.setMask(newValue);
             }
         };
@@ -374,7 +374,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5MaskInput.prototype.changeChanged = function changeChanged(newValue) {
-            if (this._maskinput !== null) {
+            if (newValue != null && newValue != undefined && this._maskinput !== null) {
                 this._maskinput.attachChange(newValue);
             }
         };
@@ -416,37 +416,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5MaskInput.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._maskinput !== null) {
+            if (newValue != null && newValue != undefined && this._maskinput !== null) {
                 this._maskinput.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5MaskInput.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._maskinput !== null) {
+            if (newValue != null && newValue != undefined && this._maskinput !== null) {
                 this._maskinput.attachValidationSuccess(newValue);
             }
         };
 
         Ui5MaskInput.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._maskinput !== null) {
+            if (newValue != null && newValue != undefined && this._maskinput !== null) {
                 this._maskinput.attachValidationError(newValue);
             }
         };
 
         Ui5MaskInput.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._maskinput !== null) {
+            if (newValue != null && newValue != undefined && this._maskinput !== null) {
                 this._maskinput.attachParseError(newValue);
             }
         };
 
         Ui5MaskInput.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._maskinput !== null) {
+            if (newValue != null && newValue != undefined && this._maskinput !== null) {
                 this._maskinput.attachFormatError(newValue);
             }
         };
 
         Ui5MaskInput.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._maskinput !== null) {
+            if (newValue != null && newValue != undefined && this._maskinput !== null) {
                 this._maskinput.attachModelContextChange(newValue);
             }
         };

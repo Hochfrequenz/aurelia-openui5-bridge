@@ -280,91 +280,91 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Column.prototype.widthChanged = function widthChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setWidth(newValue);
             }
         };
 
         Ui5Column.prototype.hAlignChanged = function hAlignChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setHAlign(newValue);
             }
         };
 
         Ui5Column.prototype.vAlignChanged = function vAlignChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setVAlign(newValue);
             }
         };
 
         Ui5Column.prototype.styleClassChanged = function styleClassChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setStyleClass(newValue);
             }
         };
 
         Ui5Column.prototype.visibleChanged = function visibleChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Column.prototype.minScreenWidthChanged = function minScreenWidthChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setMinScreenWidth(newValue);
             }
         };
 
         Ui5Column.prototype.demandPopinChanged = function demandPopinChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setDemandPopin((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Column.prototype.popinDisplayChanged = function popinDisplayChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setPopinDisplay(newValue);
             }
         };
 
         Ui5Column.prototype.mergeDuplicatesChanged = function mergeDuplicatesChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setMergeDuplicates((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Column.prototype.mergeFunctionNameChanged = function mergeFunctionNameChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.setMergeFunctionName(newValue);
             }
         };
 
         Ui5Column.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Column.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.attachValidationError(newValue);
             }
         };
 
         Ui5Column.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.attachParseError(newValue);
             }
         };
 
         Ui5Column.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.attachFormatError(newValue);
             }
         };
 
         Ui5Column.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._column !== null) {
+            if (newValue != null && newValue != undefined && this._column !== null) {
                 this._column.attachModelContextChange(newValue);
             }
         };

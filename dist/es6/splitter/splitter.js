@@ -141,10 +141,10 @@ if (relation == 'dragdropconfig') {  this._splitter.removeDragDropConfig(child);
       }
       catch(err){}
                                                                             }
-    orientationChanged(newValue){if(this._splitter!==null){ this._splitter.setOrientation(newValue);}}
-widthChanged(newValue){if(this._splitter!==null){ this._splitter.setWidth(newValue);}}
-heightChanged(newValue){if(this._splitter!==null){ this._splitter.setHeight(newValue);}}
-resizeChanged(newValue){if(this._splitter!==null){ this._splitter.attachResize(newValue);}}
+    orientationChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.setOrientation(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.setWidth(newValue);}}
+heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.setHeight(newValue);}}
+resizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.attachResize(newValue);}}
 blockedChanged(newValue){if(this._splitter!==null){ this._splitter.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._splitter!==null){ this._splitter.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._splitter!==null){ this._splitter.setBusyIndicatorDelay(newValue);}}
@@ -152,14 +152,14 @@ busyIndicatorSizeChanged(newValue){if(this._splitter!==null){ this._splitter.set
 visibleChanged(newValue){if(this._splitter!==null){ this._splitter.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._splitter!==null){ this._splitter.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._splitter!==null){ this._splitter.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._splitter!==null){ this._splitter.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._splitter!==null){ this._splitter.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._splitter!==null){ this._splitter.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._splitter!==null){ this._splitter.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._splitter!==null){ this._splitter.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

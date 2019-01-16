@@ -370,133 +370,133 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Input.prototype.typeChanged = function typeChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setType(newValue);
             }
         };
 
         Ui5Input.prototype.maxLengthChanged = function maxLengthChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setMaxLength(newValue);
             }
         };
 
         Ui5Input.prototype.showValueHelpChanged = function showValueHelpChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setShowValueHelp((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Input.prototype.showSuggestionChanged = function showSuggestionChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setShowSuggestion((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Input.prototype.valueHelpOnlyChanged = function valueHelpOnlyChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setValueHelpOnly((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Input.prototype.filterSuggestsChanged = function filterSuggestsChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setFilterSuggests((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Input.prototype.maxSuggestionWidthChanged = function maxSuggestionWidthChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setMaxSuggestionWidth(newValue);
             }
         };
 
         Ui5Input.prototype.startSuggestionChanged = function startSuggestionChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setStartSuggestion(newValue);
             }
         };
 
         Ui5Input.prototype.showTableSuggestionValueHelpChanged = function showTableSuggestionValueHelpChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setShowTableSuggestionValueHelp((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Input.prototype.descriptionChanged = function descriptionChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setDescription(newValue);
             }
         };
 
         Ui5Input.prototype.fieldWidthChanged = function fieldWidthChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setFieldWidth(newValue);
             }
         };
 
         Ui5Input.prototype.valueLiveUpdateChanged = function valueLiveUpdateChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setValueLiveUpdate((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Input.prototype.selectedKeyChanged = function selectedKeyChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setSelectedKey(newValue);
             }
         };
 
         Ui5Input.prototype.textFormatModeChanged = function textFormatModeChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setTextFormatMode(newValue);
             }
         };
 
         Ui5Input.prototype.textFormatterChanged = function textFormatterChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setTextFormatter(newValue);
             }
         };
 
         Ui5Input.prototype.suggestionRowValidatorChanged = function suggestionRowValidatorChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setSuggestionRowValidator(newValue);
             }
         };
 
         Ui5Input.prototype.enableSuggestionsHighlightingChanged = function enableSuggestionsHighlightingChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.setEnableSuggestionsHighlighting((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Input.prototype.liveChangeChanged = function liveChangeChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachLiveChange(newValue);
             }
         };
 
         Ui5Input.prototype.valueHelpRequestChanged = function valueHelpRequestChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachValueHelpRequest(newValue);
             }
         };
 
         Ui5Input.prototype.suggestChanged = function suggestChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachSuggest(newValue);
             }
         };
 
         Ui5Input.prototype.suggestionItemSelectedChanged = function suggestionItemSelectedChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachSuggestionItemSelected(newValue);
             }
         };
 
         Ui5Input.prototype.submitChanged = function submitChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachSubmit(newValue);
             }
         };
@@ -574,7 +574,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Input.prototype.changeChanged = function changeChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachChange(newValue);
             }
         };
@@ -616,37 +616,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Input.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Input.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Input.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachValidationError(newValue);
             }
         };
 
         Ui5Input.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachParseError(newValue);
             }
         };
 
         Ui5Input.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachFormatError(newValue);
             }
         };
 
         Ui5Input.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._input !== null) {
+            if (newValue != null && newValue != undefined && this._input !== null) {
                 this._input.attachModelContextChange(newValue);
             }
         };

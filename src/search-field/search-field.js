@@ -160,19 +160,19 @@ if (relation == 'dragdropconfig') {  this._searchfield.removeDragDropConfig(chil
       }
       catch(err){}
                                                                             }
-    valueChanged(newValue){if(this._searchfield!==null){ this._searchfield.setValue(newValue);}}
-widthChanged(newValue){if(this._searchfield!==null){ this._searchfield.setWidth(newValue);}}
-enabledChanged(newValue){if(this._searchfield!==null){ this._searchfield.setEnabled(getBooleanFromAttributeValue(newValue));}}
-visibleChanged(newValue){if(this._searchfield!==null){ this._searchfield.setVisible(getBooleanFromAttributeValue(newValue));}}
-maxLengthChanged(newValue){if(this._searchfield!==null){ this._searchfield.setMaxLength(newValue);}}
-placeholderChanged(newValue){if(this._searchfield!==null){ this._searchfield.setPlaceholder(newValue);}}
-showRefreshButtonChanged(newValue){if(this._searchfield!==null){ this._searchfield.setShowRefreshButton(getBooleanFromAttributeValue(newValue));}}
-refreshButtonTooltipChanged(newValue){if(this._searchfield!==null){ this._searchfield.setRefreshButtonTooltip(newValue);}}
-showSearchButtonChanged(newValue){if(this._searchfield!==null){ this._searchfield.setShowSearchButton(getBooleanFromAttributeValue(newValue));}}
-enableSuggestionsChanged(newValue){if(this._searchfield!==null){ this._searchfield.setEnableSuggestions(getBooleanFromAttributeValue(newValue));}}
-searchChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachSearch(newValue);}}
-liveChangeChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachLiveChange(newValue);}}
-suggestChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachSuggest(newValue);}}
+    valueChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setValue(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setWidth(newValue);}}
+enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setEnabled(getBooleanFromAttributeValue(newValue));}}
+visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setVisible(getBooleanFromAttributeValue(newValue));}}
+maxLengthChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setMaxLength(newValue);}}
+placeholderChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setPlaceholder(newValue);}}
+showRefreshButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setShowRefreshButton(getBooleanFromAttributeValue(newValue));}}
+refreshButtonTooltipChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setRefreshButtonTooltip(newValue);}}
+showSearchButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setShowSearchButton(getBooleanFromAttributeValue(newValue));}}
+enableSuggestionsChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.setEnableSuggestions(getBooleanFromAttributeValue(newValue));}}
+searchChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachSearch(newValue);}}
+liveChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachLiveChange(newValue);}}
+suggestChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachSuggest(newValue);}}
 blockedChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusyIndicatorDelay(newValue);}}
@@ -180,14 +180,14 @@ busyIndicatorSizeChanged(newValue){if(this._searchfield!==null){ this._searchfie
 visibleChanged(newValue){if(this._searchfield!==null){ this._searchfield.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._searchfield!==null){ this._searchfield.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._searchfield!==null){ this._searchfield.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

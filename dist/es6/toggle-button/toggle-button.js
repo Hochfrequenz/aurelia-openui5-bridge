@@ -144,7 +144,7 @@ if (relation == 'dragdropconfig') {  this._togglebutton.removeDragDropConfig(chi
       }
       catch(err){}
                                                                             }
-    pressedChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setPressed(getBooleanFromAttributeValue(newValue));}}
+    pressedChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.setPressed(getBooleanFromAttributeValue(newValue));}}
 textChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setText(newValue);}}
 typeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setType(newValue);}}
 widthChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setWidth(newValue);}}
@@ -155,7 +155,7 @@ activeIconChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.se
 iconDensityAwareChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
 textDirectionChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setTextDirection(newValue);}}
 /* inherited from sap.m.Button*/
-pressChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachPress(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.attachPress(newValue);}}
 blockedChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorDelay(newValue);}}
@@ -163,14 +163,14 @@ busyIndicatorSizeChanged(newValue){if(this._togglebutton!==null){ this._togglebu
 visibleChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

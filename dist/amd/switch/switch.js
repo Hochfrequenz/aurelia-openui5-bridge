@@ -273,43 +273,43 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Switch.prototype.stateChanged = function stateChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.setState((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Switch.prototype.customTextOnChanged = function customTextOnChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.setCustomTextOn(newValue);
             }
         };
 
         Ui5Switch.prototype.customTextOffChanged = function customTextOffChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.setCustomTextOff(newValue);
             }
         };
 
         Ui5Switch.prototype.enabledChanged = function enabledChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Switch.prototype.nameChanged = function nameChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.setName(newValue);
             }
         };
 
         Ui5Switch.prototype.typeChanged = function typeChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.setType(newValue);
             }
         };
 
         Ui5Switch.prototype.changeChanged = function changeChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.attachChange(newValue);
             }
         };
@@ -351,37 +351,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Switch.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Switch.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Switch.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.attachValidationError(newValue);
             }
         };
 
         Ui5Switch.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.attachParseError(newValue);
             }
         };
 
         Ui5Switch.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.attachFormatError(newValue);
             }
         };
 
         Ui5Switch.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._switch !== null) {
+            if (newValue != null && newValue != undefined && this._switch !== null) {
                 this._switch.attachModelContextChange(newValue);
             }
         };

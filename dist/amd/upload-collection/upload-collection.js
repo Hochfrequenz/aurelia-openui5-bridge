@@ -360,157 +360,157 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5UploadCollection.prototype.fileTypeChanged = function fileTypeChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setFileType(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.maximumFilenameLengthChanged = function maximumFilenameLengthChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setMaximumFilenameLength(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.maximumFileSizeChanged = function maximumFileSizeChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setMaximumFileSize(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.mimeTypeChanged = function mimeTypeChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setMimeType(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.multipleChanged = function multipleChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setMultiple((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5UploadCollection.prototype.noDataTextChanged = function noDataTextChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setNoDataText(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.noDataDescriptionChanged = function noDataDescriptionChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setNoDataDescription(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.sameFilenameAllowedChanged = function sameFilenameAllowedChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setSameFilenameAllowed((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5UploadCollection.prototype.showSeparatorsChanged = function showSeparatorsChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setShowSeparators(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.uploadEnabledChanged = function uploadEnabledChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setUploadEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5UploadCollection.prototype.uploadUrlChanged = function uploadUrlChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setUploadUrl(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.instantUploadChanged = function instantUploadChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setInstantUpload((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5UploadCollection.prototype.numberOfAttachmentsTextChanged = function numberOfAttachmentsTextChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setNumberOfAttachmentsText(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.modeChanged = function modeChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setMode(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.uploadButtonInvisibleChanged = function uploadButtonInvisibleChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setUploadButtonInvisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5UploadCollection.prototype.terminationEnabledChanged = function terminationEnabledChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.setTerminationEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5UploadCollection.prototype.changeChanged = function changeChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachChange(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.fileDeletedChanged = function fileDeletedChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachFileDeleted(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.filenameLengthExceedChanged = function filenameLengthExceedChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachFilenameLengthExceed(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.fileRenamedChanged = function fileRenamedChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachFileRenamed(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.fileSizeExceedChanged = function fileSizeExceedChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachFileSizeExceed(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.typeMissmatchChanged = function typeMissmatchChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachTypeMissmatch(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.uploadCompleteChanged = function uploadCompleteChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachUploadComplete(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.uploadTerminatedChanged = function uploadTerminatedChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachUploadTerminated(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.beforeUploadStartsChanged = function beforeUploadStartsChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachBeforeUploadStarts(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.selectionChangeChanged = function selectionChangeChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachSelectionChange(newValue);
             }
         };
@@ -552,37 +552,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5UploadCollection.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachValidationSuccess(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachValidationError(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachParseError(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachFormatError(newValue);
             }
         };
 
         Ui5UploadCollection.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._uploadcollection !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollection !== null) {
                 this._uploadcollection.attachModelContextChange(newValue);
             }
         };

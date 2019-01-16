@@ -241,25 +241,25 @@ var Ui5Splitter = exports.Ui5Splitter = (_dec = (0, _aureliaTemplating.customEle
     };
 
     Ui5Splitter.prototype.orientationChanged = function orientationChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.setOrientation(newValue);
         }
     };
 
     Ui5Splitter.prototype.widthChanged = function widthChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.setWidth(newValue);
         }
     };
 
     Ui5Splitter.prototype.heightChanged = function heightChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.setHeight(newValue);
         }
     };
 
     Ui5Splitter.prototype.resizeChanged = function resizeChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.attachResize(newValue);
         }
     };
@@ -301,37 +301,37 @@ var Ui5Splitter = exports.Ui5Splitter = (_dec = (0, _aureliaTemplating.customEle
     };
 
     Ui5Splitter.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5Splitter.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.attachValidationSuccess(newValue);
         }
     };
 
     Ui5Splitter.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.attachValidationError(newValue);
         }
     };
 
     Ui5Splitter.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.attachParseError(newValue);
         }
     };
 
     Ui5Splitter.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.attachFormatError(newValue);
         }
     };
 
     Ui5Splitter.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._splitter !== null) {
+        if (newValue != null && newValue != undefined && this._splitter !== null) {
             this._splitter.attachModelContextChange(newValue);
         }
     };

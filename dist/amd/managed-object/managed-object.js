@@ -211,31 +211,31 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5ManagedObject.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._managedobject !== null) {
+            if (newValue != null && newValue != undefined && this._managedobject !== null) {
                 this._managedobject.attachValidationSuccess(newValue);
             }
         };
 
         Ui5ManagedObject.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._managedobject !== null) {
+            if (newValue != null && newValue != undefined && this._managedobject !== null) {
                 this._managedobject.attachValidationError(newValue);
             }
         };
 
         Ui5ManagedObject.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._managedobject !== null) {
+            if (newValue != null && newValue != undefined && this._managedobject !== null) {
                 this._managedobject.attachParseError(newValue);
             }
         };
 
         Ui5ManagedObject.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._managedobject !== null) {
+            if (newValue != null && newValue != undefined && this._managedobject !== null) {
                 this._managedobject.attachFormatError(newValue);
             }
         };
 
         Ui5ManagedObject.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._managedobject !== null) {
+            if (newValue != null && newValue != undefined && this._managedobject !== null) {
                 this._managedobject.attachModelContextChange(newValue);
             }
         };

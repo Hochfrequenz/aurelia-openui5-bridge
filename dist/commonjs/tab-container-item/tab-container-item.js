@@ -227,55 +227,55 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
     };
 
     Ui5TabContainerItem.prototype.nameChanged = function nameChanged(newValue) {
-        if (this._tabcontaineritem !== null) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.setName(newValue);
         }
     };
 
     Ui5TabContainerItem.prototype.keyChanged = function keyChanged(newValue) {
-        if (this._tabcontaineritem !== null) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.setKey(newValue);
         }
     };
 
     Ui5TabContainerItem.prototype.modifiedChanged = function modifiedChanged(newValue) {
-        if (this._tabcontaineritem !== null) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.setModified((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5TabContainerItem.prototype.itemPropertyChangedChanged = function itemPropertyChangedChanged(newValue) {
-        if (this._tabcontaineritem !== null) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.attachItemPropertyChanged(newValue);
         }
     };
 
     Ui5TabContainerItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._tabcontaineritem !== null) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.attachValidationSuccess(newValue);
         }
     };
 
     Ui5TabContainerItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._tabcontaineritem !== null) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.attachValidationError(newValue);
         }
     };
 
     Ui5TabContainerItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._tabcontaineritem !== null) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.attachParseError(newValue);
         }
     };
 
     Ui5TabContainerItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._tabcontaineritem !== null) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.attachFormatError(newValue);
         }
     };
 
     Ui5TabContainerItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._tabcontaineritem !== null) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.attachModelContextChange(newValue);
         }
     };

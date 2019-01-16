@@ -265,73 +265,73 @@ var Ui5Shell = exports.Ui5Shell = (_dec = (0, _aureliaTemplating.customElement)(
     };
 
     Ui5Shell.prototype.titleChanged = function titleChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setTitle(newValue);
         }
     };
 
     Ui5Shell.prototype.logoChanged = function logoChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setLogo(newValue);
         }
     };
 
     Ui5Shell.prototype.showLogoutChanged = function showLogoutChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setShowLogout((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5Shell.prototype.headerRightTextChanged = function headerRightTextChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setHeaderRightText(newValue);
         }
     };
 
     Ui5Shell.prototype.appWidthLimitedChanged = function appWidthLimitedChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setAppWidthLimited((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5Shell.prototype.backgroundColorChanged = function backgroundColorChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setBackgroundColor(newValue);
         }
     };
 
     Ui5Shell.prototype.backgroundImageChanged = function backgroundImageChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setBackgroundImage(newValue);
         }
     };
 
     Ui5Shell.prototype.backgroundRepeatChanged = function backgroundRepeatChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setBackgroundRepeat((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5Shell.prototype.backgroundOpacityChanged = function backgroundOpacityChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setBackgroundOpacity(newValue);
         }
     };
 
     Ui5Shell.prototype.homeIconChanged = function homeIconChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setHomeIcon(newValue);
         }
     };
 
     Ui5Shell.prototype.titleLevelChanged = function titleLevelChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.setTitleLevel(newValue);
         }
     };
 
     Ui5Shell.prototype.logoutChanged = function logoutChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.attachLogout(newValue);
         }
     };
@@ -373,37 +373,37 @@ var Ui5Shell = exports.Ui5Shell = (_dec = (0, _aureliaTemplating.customElement)(
     };
 
     Ui5Shell.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5Shell.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.attachValidationSuccess(newValue);
         }
     };
 
     Ui5Shell.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.attachValidationError(newValue);
         }
     };
 
     Ui5Shell.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.attachParseError(newValue);
         }
     };
 
     Ui5Shell.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.attachFormatError(newValue);
         }
     };
 
     Ui5Shell.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._shell !== null) {
+        if (newValue != null && newValue != undefined && this._shell !== null) {
             this._shell.attachModelContextChange(newValue);
         }
     };

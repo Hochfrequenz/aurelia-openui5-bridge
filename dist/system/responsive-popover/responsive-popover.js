@@ -350,109 +350,109 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ResponsivePopover.prototype.placementChanged = function placementChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setPlacement(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.showHeaderChanged = function showHeaderChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setShowHeader(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.titleChanged = function titleChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setTitle(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.iconChanged = function iconChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setIcon(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.modalChanged = function modalChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setModal(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.offsetXChanged = function offsetXChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setOffsetX(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.offsetYChanged = function offsetYChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setOffsetY(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.showArrowChanged = function showArrowChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setShowArrow(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.contentWidthChanged = function contentWidthChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setContentWidth(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.contentHeightChanged = function contentHeightChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setContentHeight(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.horizontalScrollingChanged = function horizontalScrollingChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setHorizontalScrolling(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.verticalScrollingChanged = function verticalScrollingChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setVerticalScrolling(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.showCloseButtonChanged = function showCloseButtonChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setShowCloseButton(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.resizableChanged = function resizableChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.setResizable(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.beforeOpenChanged = function beforeOpenChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachBeforeOpen(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.afterOpenChanged = function afterOpenChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachAfterOpen(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.beforeCloseChanged = function beforeCloseChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachBeforeClose(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.afterCloseChanged = function afterCloseChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachAfterClose(newValue);
                     }
                 };
@@ -494,37 +494,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ResponsivePopover.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachValidationError(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachParseError(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachFormatError(newValue);
                     }
                 };
 
                 Ui5ResponsivePopover.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._responsivepopover !== null) {
+                    if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                         this._responsivepopover.attachModelContextChange(newValue);
                     }
                 };

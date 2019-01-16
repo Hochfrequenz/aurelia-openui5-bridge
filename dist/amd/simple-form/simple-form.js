@@ -339,139 +339,139 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5SimpleForm.prototype.maxContainerColsChanged = function maxContainerColsChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setMaxContainerCols(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.minWidthChanged = function minWidthChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setMinWidth(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.widthChanged = function widthChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setWidth(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.editableChanged = function editableChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setEditable((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SimpleForm.prototype.labelMinWidthChanged = function labelMinWidthChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setLabelMinWidth(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.layoutChanged = function layoutChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setLayout(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.labelSpanXLChanged = function labelSpanXLChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setLabelSpanXL(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.labelSpanLChanged = function labelSpanLChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setLabelSpanL(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.labelSpanMChanged = function labelSpanMChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setLabelSpanM(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.labelSpanSChanged = function labelSpanSChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setLabelSpanS(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.adjustLabelSpanChanged = function adjustLabelSpanChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setAdjustLabelSpan((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SimpleForm.prototype.emptySpanXLChanged = function emptySpanXLChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setEmptySpanXL(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.emptySpanLChanged = function emptySpanLChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setEmptySpanL(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.emptySpanMChanged = function emptySpanMChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setEmptySpanM(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.emptySpanSChanged = function emptySpanSChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setEmptySpanS(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.columnsXLChanged = function columnsXLChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setColumnsXL(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.columnsLChanged = function columnsLChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setColumnsL(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.columnsMChanged = function columnsMChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setColumnsM(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.singleContainerFullSizeChanged = function singleContainerFullSizeChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setSingleContainerFullSize((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SimpleForm.prototype.breakpointXLChanged = function breakpointXLChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setBreakpointXL(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.breakpointLChanged = function breakpointLChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setBreakpointL(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.breakpointMChanged = function breakpointMChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setBreakpointM(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.setBackgroundDesign(newValue);
             }
         };
@@ -513,37 +513,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5SimpleForm.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.attachValidationSuccess(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.attachValidationError(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.attachParseError(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.attachFormatError(newValue);
             }
         };
 
         Ui5SimpleForm.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._simpleform !== null) {
+            if (newValue != null && newValue != undefined && this._simpleform !== null) {
                 this._simpleform.attachModelContextChange(newValue);
             }
         };

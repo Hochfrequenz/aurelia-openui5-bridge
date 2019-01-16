@@ -137,8 +137,8 @@ if (relation == 'dragdropconfig') {  this._responsivesplitter.removeDragDropConf
       }
       catch(err){}
                                                                             }
-    widthChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setWidth(newValue);}}
-heightChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setHeight(newValue);}}
+    widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.setWidth(newValue);}}
+heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.setHeight(newValue);}}
 blockedChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBusyIndicatorDelay(newValue);}}
@@ -146,14 +146,14 @@ busyIndicatorSizeChanged(newValue){if(this._responsivesplitter!==null){ this._re
 visibleChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

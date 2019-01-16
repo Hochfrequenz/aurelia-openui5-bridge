@@ -330,61 +330,61 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5TextArea.prototype.rowsChanged = function rowsChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.setRows(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.colsChanged = function colsChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.setCols(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.heightChanged = function heightChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.setHeight(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.maxLengthChanged = function maxLengthChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.setMaxLength(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.showExceededTextChanged = function showExceededTextChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.setShowExceededText(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5TextArea.prototype.wrappingChanged = function wrappingChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.setWrapping(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.valueLiveUpdateChanged = function valueLiveUpdateChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.setValueLiveUpdate(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5TextArea.prototype.growingChanged = function growingChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.setGrowing(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5TextArea.prototype.growingMaxLinesChanged = function growingMaxLinesChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.setGrowingMaxLines(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.liveChangeChanged = function liveChangeChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.attachLiveChange(newValue);
                     }
                 };
@@ -462,7 +462,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5TextArea.prototype.changeChanged = function changeChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.attachChange(newValue);
                     }
                 };
@@ -504,37 +504,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5TextArea.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.attachValidationError(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.attachParseError(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.attachFormatError(newValue);
                     }
                 };
 
                 Ui5TextArea.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._textarea !== null) {
+                    if (newValue != null && newValue != undefined && this._textarea !== null) {
                         this._textarea.attachModelContextChange(newValue);
                     }
                 };

@@ -273,7 +273,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Bar.prototype.designChanged = function designChanged(newValue) {
-            if (this._bar !== null) {
+            if (newValue != null && newValue != undefined && this._bar !== null) {
                 this._bar.setDesign(newValue);
             }
         };
@@ -315,37 +315,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Bar.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._bar !== null) {
+            if (newValue != null && newValue != undefined && this._bar !== null) {
                 this._bar.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Bar.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._bar !== null) {
+            if (newValue != null && newValue != undefined && this._bar !== null) {
                 this._bar.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Bar.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._bar !== null) {
+            if (newValue != null && newValue != undefined && this._bar !== null) {
                 this._bar.attachValidationError(newValue);
             }
         };
 
         Ui5Bar.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._bar !== null) {
+            if (newValue != null && newValue != undefined && this._bar !== null) {
                 this._bar.attachParseError(newValue);
             }
         };
 
         Ui5Bar.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._bar !== null) {
+            if (newValue != null && newValue != undefined && this._bar !== null) {
                 this._bar.attachFormatError(newValue);
             }
         };
 
         Ui5Bar.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._bar !== null) {
+            if (newValue != null && newValue != undefined && this._bar !== null) {
                 this._bar.attachModelContextChange(newValue);
             }
         };

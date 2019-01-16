@@ -36,6 +36,7 @@ export class Ui5Tree extends Ui5ListBase{
 @bindable() growingDirection = 'Downwards';
 @bindable() rememberSelections = true;
 @bindable() keyboardMode = 'Navigation';
+@bindable() sticky = null;
 @bindable() selectionChange = this.defaultFunc;
 @bindable() delete = this.defaultFunc;
 @bindable() swipe = this.defaultFunc;
@@ -171,7 +172,7 @@ if (relation == 'dragdropconfig') {  this._tree.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    toggleOpenStateChanged(newValue){if(this._tree!==null){ this._tree.attachToggleOpenState(newValue);}}
+    toggleOpenStateChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachToggleOpenState(newValue);}}
 insetChanged(newValue){if(this._tree!==null){ this._tree.setInset(getBooleanFromAttributeValue(newValue));}}
 headerTextChanged(newValue){if(this._tree!==null){ this._tree.setHeaderText(newValue);}}
 footerTextChanged(newValue){if(this._tree!==null){ this._tree.setFooterText(newValue);}}
@@ -192,14 +193,15 @@ growingScrollToLoadChanged(newValue){if(this._tree!==null){ this._tree.setGrowin
 growingDirectionChanged(newValue){if(this._tree!==null){ this._tree.setGrowingDirection(newValue);}}
 rememberSelectionsChanged(newValue){if(this._tree!==null){ this._tree.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
 keyboardModeChanged(newValue){if(this._tree!==null){ this._tree.setKeyboardMode(newValue);}}
+stickyChanged(newValue){if(this._tree!==null){ this._tree.setSticky(newValue);}}
 /* inherited from sap.m.ListBase*/
-selectionChangeChanged(newValue){if(this._tree!==null){ this._tree.attachSelectionChange(newValue);}}
-deleteChanged(newValue){if(this._tree!==null){ this._tree.attachDelete(newValue);}}
-swipeChanged(newValue){if(this._tree!==null){ this._tree.attachSwipe(newValue);}}
-updateStartedChanged(newValue){if(this._tree!==null){ this._tree.attachUpdateStarted(newValue);}}
-updateFinishedChanged(newValue){if(this._tree!==null){ this._tree.attachUpdateFinished(newValue);}}
-itemPressChanged(newValue){if(this._tree!==null){ this._tree.attachItemPress(newValue);}}
-beforeOpenContextMenuChanged(newValue){if(this._tree!==null){ this._tree.attachBeforeOpenContextMenu(newValue);}}
+selectionChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachSelectionChange(newValue);}}
+deleteChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachDelete(newValue);}}
+swipeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachSwipe(newValue);}}
+updateStartedChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachUpdateStarted(newValue);}}
+updateFinishedChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachUpdateFinished(newValue);}}
+itemPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachItemPress(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachBeforeOpenContextMenu(newValue);}}
 blockedChanged(newValue){if(this._tree!==null){ this._tree.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tree!==null){ this._tree.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tree!==null){ this._tree.setBusyIndicatorDelay(newValue);}}
@@ -207,14 +209,14 @@ busyIndicatorSizeChanged(newValue){if(this._tree!==null){ this._tree.setBusyIndi
 visibleChanged(newValue){if(this._tree!==null){ this._tree.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._tree!==null){ this._tree.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._tree!==null){ this._tree.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._tree!==null){ this._tree.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._tree!==null){ this._tree.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._tree!==null){ this._tree.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._tree!==null){ this._tree.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._tree!==null){ this._tree.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tree!==null){ this._tree.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

@@ -293,43 +293,43 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Toolbar.prototype.widthChanged = function widthChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.setWidth(newValue);
                     }
                 };
 
                 Ui5Toolbar.prototype.activeChanged = function activeChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.setActive(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Toolbar.prototype.enabledChanged = function enabledChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.setEnabled(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5Toolbar.prototype.heightChanged = function heightChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.setHeight(newValue);
                     }
                 };
 
                 Ui5Toolbar.prototype.designChanged = function designChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.setDesign(newValue);
                     }
                 };
 
                 Ui5Toolbar.prototype.styleChanged = function styleChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.setStyle(newValue);
                     }
                 };
 
                 Ui5Toolbar.prototype.pressChanged = function pressChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.attachPress(newValue);
                     }
                 };
@@ -371,37 +371,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Toolbar.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5Toolbar.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5Toolbar.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.attachValidationError(newValue);
                     }
                 };
 
                 Ui5Toolbar.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.attachParseError(newValue);
                     }
                 };
 
                 Ui5Toolbar.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.attachFormatError(newValue);
                     }
                 };
 
                 Ui5Toolbar.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._toolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._toolbar !== null) {
                         this._toolbar.attachModelContextChange(newValue);
                     }
                 };

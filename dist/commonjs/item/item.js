@@ -221,55 +221,55 @@ var Ui5Item = exports.Ui5Item = (_dec = (0, _aureliaTemplating.customElement)('u
     };
 
     Ui5Item.prototype.textChanged = function textChanged(newValue) {
-        if (this._item !== null) {
+        if (newValue != null && newValue != undefined && this._item !== null) {
             this._item.setText(newValue);
         }
     };
 
     Ui5Item.prototype.enabledChanged = function enabledChanged(newValue) {
-        if (this._item !== null) {
+        if (newValue != null && newValue != undefined && this._item !== null) {
             this._item.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5Item.prototype.textDirectionChanged = function textDirectionChanged(newValue) {
-        if (this._item !== null) {
+        if (newValue != null && newValue != undefined && this._item !== null) {
             this._item.setTextDirection(newValue);
         }
     };
 
     Ui5Item.prototype.keyChanged = function keyChanged(newValue) {
-        if (this._item !== null) {
+        if (newValue != null && newValue != undefined && this._item !== null) {
             this._item.setKey(newValue);
         }
     };
 
     Ui5Item.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._item !== null) {
+        if (newValue != null && newValue != undefined && this._item !== null) {
             this._item.attachValidationSuccess(newValue);
         }
     };
 
     Ui5Item.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._item !== null) {
+        if (newValue != null && newValue != undefined && this._item !== null) {
             this._item.attachValidationError(newValue);
         }
     };
 
     Ui5Item.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._item !== null) {
+        if (newValue != null && newValue != undefined && this._item !== null) {
             this._item.attachParseError(newValue);
         }
     };
 
     Ui5Item.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._item !== null) {
+        if (newValue != null && newValue != undefined && this._item !== null) {
             this._item.attachFormatError(newValue);
         }
     };
 
     Ui5Item.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._item !== null) {
+        if (newValue != null && newValue != undefined && this._item !== null) {
             this._item.attachModelContextChange(newValue);
         }
     };

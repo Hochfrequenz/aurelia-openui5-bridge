@@ -224,37 +224,37 @@ var Ui5FormElement = exports.Ui5FormElement = (_dec = (0, _aureliaTemplating.cus
     };
 
     Ui5FormElement.prototype.visibleChanged = function visibleChanged(newValue) {
-        if (this._formelement !== null) {
+        if (newValue != null && newValue != undefined && this._formelement !== null) {
             this._formelement.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5FormElement.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._formelement !== null) {
+        if (newValue != null && newValue != undefined && this._formelement !== null) {
             this._formelement.attachValidationSuccess(newValue);
         }
     };
 
     Ui5FormElement.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._formelement !== null) {
+        if (newValue != null && newValue != undefined && this._formelement !== null) {
             this._formelement.attachValidationError(newValue);
         }
     };
 
     Ui5FormElement.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._formelement !== null) {
+        if (newValue != null && newValue != undefined && this._formelement !== null) {
             this._formelement.attachParseError(newValue);
         }
     };
 
     Ui5FormElement.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._formelement !== null) {
+        if (newValue != null && newValue != undefined && this._formelement !== null) {
             this._formelement.attachFormatError(newValue);
         }
     };
 
     Ui5FormElement.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._formelement !== null) {
+        if (newValue != null && newValue != undefined && this._formelement !== null) {
             this._formelement.attachModelContextChange(newValue);
         }
     };

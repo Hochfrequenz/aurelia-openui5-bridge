@@ -143,12 +143,12 @@ if (relation == 'dragdropconfig') {  this._objectnumber.removeDragDropConfig(chi
       }
       catch(err){}
                                                                             }
-    numberChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setNumber(newValue);}}
-emphasizedChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setEmphasized(getBooleanFromAttributeValue(newValue));}}
-stateChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setState(newValue);}}
-unitChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setUnit(newValue);}}
-textDirectionChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setTextDirection(newValue);}}
-textAlignChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setTextAlign(newValue);}}
+    numberChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.setNumber(newValue);}}
+emphasizedChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.setEmphasized(getBooleanFromAttributeValue(newValue));}}
+stateChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.setState(newValue);}}
+unitChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.setUnit(newValue);}}
+textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.setTextDirection(newValue);}}
+textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.setTextAlign(newValue);}}
 blockedChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorDelay(newValue);}}
@@ -156,14 +156,14 @@ busyIndicatorSizeChanged(newValue){if(this._objectnumber!==null){ this._objectnu
 visibleChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

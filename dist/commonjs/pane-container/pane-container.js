@@ -218,37 +218,37 @@ var Ui5PaneContainer = exports.Ui5PaneContainer = (_dec = (0, _aureliaTemplating
     };
 
     Ui5PaneContainer.prototype.orientationChanged = function orientationChanged(newValue) {
-        if (this._panecontainer !== null) {
+        if (newValue != null && newValue != undefined && this._panecontainer !== null) {
             this._panecontainer.setOrientation(newValue);
         }
     };
 
     Ui5PaneContainer.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._panecontainer !== null) {
+        if (newValue != null && newValue != undefined && this._panecontainer !== null) {
             this._panecontainer.attachValidationSuccess(newValue);
         }
     };
 
     Ui5PaneContainer.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._panecontainer !== null) {
+        if (newValue != null && newValue != undefined && this._panecontainer !== null) {
             this._panecontainer.attachValidationError(newValue);
         }
     };
 
     Ui5PaneContainer.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._panecontainer !== null) {
+        if (newValue != null && newValue != undefined && this._panecontainer !== null) {
             this._panecontainer.attachParseError(newValue);
         }
     };
 
     Ui5PaneContainer.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._panecontainer !== null) {
+        if (newValue != null && newValue != undefined && this._panecontainer !== null) {
             this._panecontainer.attachFormatError(newValue);
         }
     };
 
     Ui5PaneContainer.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._panecontainer !== null) {
+        if (newValue != null && newValue != undefined && this._panecontainer !== null) {
             this._panecontainer.attachModelContextChange(newValue);
         }
     };

@@ -159,20 +159,20 @@ if (relation == 'dragdropconfig') {  this._numericcontent.removeDragDropConfig(c
       }
       catch(err){}
                                                                             }
-    animateTextChangeChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setAnimateTextChange(getBooleanFromAttributeValue(newValue));}}
-formatterValueChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setFormatterValue(getBooleanFromAttributeValue(newValue));}}
-iconChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setIcon(newValue);}}
-iconDescriptionChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setIconDescription(newValue);}}
-indicatorChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setIndicator(newValue);}}
-nullifyValueChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setNullifyValue(getBooleanFromAttributeValue(newValue));}}
-scaleChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setScale(newValue);}}
-truncateValueToChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setTruncateValueTo(newValue);}}
-valueChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setValue(newValue);}}
-valueColorChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setValueColor(newValue);}}
-widthChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setWidth(newValue);}}
-withMarginChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setWithMargin(getBooleanFromAttributeValue(newValue));}}
-stateChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setState(newValue);}}
-pressChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.attachPress(newValue);}}
+    animateTextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setAnimateTextChange(getBooleanFromAttributeValue(newValue));}}
+formatterValueChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setFormatterValue(getBooleanFromAttributeValue(newValue));}}
+iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setIcon(newValue);}}
+iconDescriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setIconDescription(newValue);}}
+indicatorChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setIndicator(newValue);}}
+nullifyValueChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setNullifyValue(getBooleanFromAttributeValue(newValue));}}
+scaleChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setScale(newValue);}}
+truncateValueToChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setTruncateValueTo(newValue);}}
+valueChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setValue(newValue);}}
+valueColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setValueColor(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setWidth(newValue);}}
+withMarginChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setWithMargin(getBooleanFromAttributeValue(newValue));}}
+stateChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setState(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.attachPress(newValue);}}
 blockedChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusyIndicatorDelay(newValue);}}
@@ -180,14 +180,14 @@ busyIndicatorSizeChanged(newValue){if(this._numericcontent!==null){ this._numeri
 visibleChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

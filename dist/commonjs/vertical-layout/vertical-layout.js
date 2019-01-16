@@ -235,13 +235,13 @@ var Ui5VerticalLayout = exports.Ui5VerticalLayout = (_dec = (0, _aureliaTemplati
     };
 
     Ui5VerticalLayout.prototype.widthChanged = function widthChanged(newValue) {
-        if (this._verticallayout !== null) {
+        if (newValue != null && newValue != undefined && this._verticallayout !== null) {
             this._verticallayout.setWidth(newValue);
         }
     };
 
     Ui5VerticalLayout.prototype.enabledChanged = function enabledChanged(newValue) {
-        if (this._verticallayout !== null) {
+        if (newValue != null && newValue != undefined && this._verticallayout !== null) {
             this._verticallayout.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
@@ -283,37 +283,37 @@ var Ui5VerticalLayout = exports.Ui5VerticalLayout = (_dec = (0, _aureliaTemplati
     };
 
     Ui5VerticalLayout.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._verticallayout !== null) {
+        if (newValue != null && newValue != undefined && this._verticallayout !== null) {
             this._verticallayout.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5VerticalLayout.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._verticallayout !== null) {
+        if (newValue != null && newValue != undefined && this._verticallayout !== null) {
             this._verticallayout.attachValidationSuccess(newValue);
         }
     };
 
     Ui5VerticalLayout.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._verticallayout !== null) {
+        if (newValue != null && newValue != undefined && this._verticallayout !== null) {
             this._verticallayout.attachValidationError(newValue);
         }
     };
 
     Ui5VerticalLayout.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._verticallayout !== null) {
+        if (newValue != null && newValue != undefined && this._verticallayout !== null) {
             this._verticallayout.attachParseError(newValue);
         }
     };
 
     Ui5VerticalLayout.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._verticallayout !== null) {
+        if (newValue != null && newValue != undefined && this._verticallayout !== null) {
             this._verticallayout.attachFormatError(newValue);
         }
     };
 
     Ui5VerticalLayout.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._verticallayout !== null) {
+        if (newValue != null && newValue != undefined && this._verticallayout !== null) {
             this._verticallayout.attachModelContextChange(newValue);
         }
     };

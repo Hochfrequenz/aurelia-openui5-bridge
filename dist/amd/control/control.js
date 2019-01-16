@@ -259,73 +259,73 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Control.prototype.blockedChanged = function blockedChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Control.prototype.busyChanged = function busyChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.setBusy((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Control.prototype.busyIndicatorDelayChanged = function busyIndicatorDelayChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.setBusyIndicatorDelay(newValue);
             }
         };
 
         Ui5Control.prototype.busyIndicatorSizeChanged = function busyIndicatorSizeChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.setBusyIndicatorSize(newValue);
             }
         };
 
         Ui5Control.prototype.visibleChanged = function visibleChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Control.prototype.fieldGroupIdsChanged = function fieldGroupIdsChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.setFieldGroupIds(newValue);
             }
         };
 
         Ui5Control.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Control.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Control.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.attachValidationError(newValue);
             }
         };
 
         Ui5Control.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.attachParseError(newValue);
             }
         };
 
         Ui5Control.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.attachFormatError(newValue);
             }
         };
 
         Ui5Control.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._control !== null) {
+            if (newValue != null && newValue != undefined && this._control !== null) {
                 this._control.attachModelContextChange(newValue);
             }
         };

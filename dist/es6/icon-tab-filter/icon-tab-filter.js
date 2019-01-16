@@ -144,13 +144,13 @@ if (relation == 'dragdropconfig') {  this._icontabfilter.removeDragDropConfig(ch
       }
       catch(err){}
                                                                             }
-    countChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setCount(newValue);}}
-showAllChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setShowAll(getBooleanFromAttributeValue(newValue));}}
-iconChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setIcon(newValue);}}
-iconColorChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setIconColor(newValue);}}
-iconDensityAwareChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
-visibleChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setVisible(getBooleanFromAttributeValue(newValue));}}
-designChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setDesign(newValue);}}
+    countChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.setCount(newValue);}}
+showAllChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.setShowAll(getBooleanFromAttributeValue(newValue));}}
+iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.setIcon(newValue);}}
+iconColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.setIconColor(newValue);}}
+iconDensityAwareChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
+visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.setVisible(getBooleanFromAttributeValue(newValue));}}
+designChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.setDesign(newValue);}}
 textChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setText(newValue);}}
 enabledChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setEnabled(getBooleanFromAttributeValue(newValue));}}
 textDirectionChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setTextDirection(newValue);}}
@@ -158,11 +158,11 @@ keyChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.setKey(
 /* inherited from sap.ui.core.Item*/
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._icontabfilter!==null){ this._icontabfilter.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabfilter!==null){ this._icontabfilter.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

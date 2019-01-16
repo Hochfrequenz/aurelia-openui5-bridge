@@ -275,7 +275,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5gridTableRowAction.prototype.visibleChanged = function visibleChanged(newValue) {
-                    if (this._gridtablerowaction !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablerowaction !== null) {
                         this._gridtablerowaction.setVisible(getBooleanFromAttributeValue(newValue));
                     }
                 };
@@ -317,37 +317,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5gridTableRowAction.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._gridtablerowaction !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablerowaction !== null) {
                         this._gridtablerowaction.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5gridTableRowAction.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._gridtablerowaction !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablerowaction !== null) {
                         this._gridtablerowaction.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5gridTableRowAction.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._gridtablerowaction !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablerowaction !== null) {
                         this._gridtablerowaction.attachValidationError(newValue);
                     }
                 };
 
                 Ui5gridTableRowAction.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._gridtablerowaction !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablerowaction !== null) {
                         this._gridtablerowaction.attachParseError(newValue);
                     }
                 };
 
                 Ui5gridTableRowAction.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._gridtablerowaction !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablerowaction !== null) {
                         this._gridtablerowaction.attachFormatError(newValue);
                     }
                 };
 
                 Ui5gridTableRowAction.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._gridtablerowaction !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablerowaction !== null) {
                         this._gridtablerowaction.attachModelContextChange(newValue);
                     }
                 };

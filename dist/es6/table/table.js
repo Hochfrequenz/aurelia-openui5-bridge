@@ -19,8 +19,9 @@ export class Ui5Table extends Ui5ListBase{
 @bindable() showOverlay = false;
 @bindable() alternateRowColors = false;
 @bindable() popinLayout = 'Block';
-@bindable() sticky = null;
+@bindable() contextualWidth = 'Inherit';
 @bindable() beforeOpenContextMenu = this.defaultFunc;
+@bindable() paste = this.defaultFunc;
 /* inherited from sap.m.ListBase*/
 @bindable() inset = false;
 @bindable() headerText = null;
@@ -42,6 +43,7 @@ export class Ui5Table extends Ui5ListBase{
 @bindable() growingDirection = 'Downwards';
 @bindable() rememberSelections = true;
 @bindable() keyboardMode = 'Navigation';
+@bindable() sticky = null;
 @bindable() selectionChange = this.defaultFunc;
 @bindable() delete = this.defaultFunc;
 @bindable() swipe = this.defaultFunc;
@@ -82,8 +84,9 @@ params.fixedLayout = getBooleanFromAttributeValue(this.fixedLayout);
 params.showOverlay = getBooleanFromAttributeValue(this.showOverlay);
 params.alternateRowColors = getBooleanFromAttributeValue(this.alternateRowColors);
 params.popinLayout = this.popinLayout;
-params.sticky = this.sticky;
+params.contextualWidth = this.contextualWidth;
 params.beforeOpenContextMenu = this.beforeOpenContextMenu==null ? this.defaultFunc: this.beforeOpenContextMenu;
+params.paste = this.paste==null ? this.defaultFunc: this.paste;
             
                                             super.fillProperties(params);   
         }
@@ -185,13 +188,14 @@ if (relation == 'dragdropconfig') {  this._table.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    backgroundDesignChanged(newValue){if(this._table!==null){ this._table.setBackgroundDesign(newValue);}}
-fixedLayoutChanged(newValue){if(this._table!==null){ this._table.setFixedLayout(getBooleanFromAttributeValue(newValue));}}
-showOverlayChanged(newValue){if(this._table!==null){ this._table.setShowOverlay(getBooleanFromAttributeValue(newValue));}}
-alternateRowColorsChanged(newValue){if(this._table!==null){ this._table.setAlternateRowColors(getBooleanFromAttributeValue(newValue));}}
-popinLayoutChanged(newValue){if(this._table!==null){ this._table.setPopinLayout(newValue);}}
-stickyChanged(newValue){if(this._table!==null){ this._table.setSticky(newValue);}}
-beforeOpenContextMenuChanged(newValue){if(this._table!==null){ this._table.attachBeforeOpenContextMenu(newValue);}}
+    backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.setBackgroundDesign(newValue);}}
+fixedLayoutChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.setFixedLayout(getBooleanFromAttributeValue(newValue));}}
+showOverlayChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.setShowOverlay(getBooleanFromAttributeValue(newValue));}}
+alternateRowColorsChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.setAlternateRowColors(getBooleanFromAttributeValue(newValue));}}
+popinLayoutChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.setPopinLayout(newValue);}}
+contextualWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.setContextualWidth(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachBeforeOpenContextMenu(newValue);}}
+pasteChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachPaste(newValue);}}
 insetChanged(newValue){if(this._table!==null){ this._table.setInset(getBooleanFromAttributeValue(newValue));}}
 headerTextChanged(newValue){if(this._table!==null){ this._table.setHeaderText(newValue);}}
 footerTextChanged(newValue){if(this._table!==null){ this._table.setFooterText(newValue);}}
@@ -212,14 +216,15 @@ growingScrollToLoadChanged(newValue){if(this._table!==null){ this._table.setGrow
 growingDirectionChanged(newValue){if(this._table!==null){ this._table.setGrowingDirection(newValue);}}
 rememberSelectionsChanged(newValue){if(this._table!==null){ this._table.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
 keyboardModeChanged(newValue){if(this._table!==null){ this._table.setKeyboardMode(newValue);}}
+stickyChanged(newValue){if(this._table!==null){ this._table.setSticky(newValue);}}
 /* inherited from sap.m.ListBase*/
-selectionChangeChanged(newValue){if(this._table!==null){ this._table.attachSelectionChange(newValue);}}
-deleteChanged(newValue){if(this._table!==null){ this._table.attachDelete(newValue);}}
-swipeChanged(newValue){if(this._table!==null){ this._table.attachSwipe(newValue);}}
-updateStartedChanged(newValue){if(this._table!==null){ this._table.attachUpdateStarted(newValue);}}
-updateFinishedChanged(newValue){if(this._table!==null){ this._table.attachUpdateFinished(newValue);}}
-itemPressChanged(newValue){if(this._table!==null){ this._table.attachItemPress(newValue);}}
-beforeOpenContextMenuChanged(newValue){if(this._table!==null){ this._table.attachBeforeOpenContextMenu(newValue);}}
+selectionChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachSelectionChange(newValue);}}
+deleteChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachDelete(newValue);}}
+swipeChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachSwipe(newValue);}}
+updateStartedChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachUpdateStarted(newValue);}}
+updateFinishedChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachUpdateFinished(newValue);}}
+itemPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachItemPress(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachBeforeOpenContextMenu(newValue);}}
 blockedChanged(newValue){if(this._table!==null){ this._table.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._table!==null){ this._table.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._table!==null){ this._table.setBusyIndicatorDelay(newValue);}}
@@ -227,14 +232,14 @@ busyIndicatorSizeChanged(newValue){if(this._table!==null){ this._table.setBusyIn
 visibleChanged(newValue){if(this._table!==null){ this._table.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._table!==null){ this._table.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._table!==null){ this._table.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._table!==null){ this._table.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._table!==null){ this._table.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._table!==null){ this._table.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._table!==null){ this._table.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._table!==null){ this._table.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

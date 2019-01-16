@@ -197,28 +197,28 @@ if (relation == 'dragdropconfig') {  this._input.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    typeChanged(newValue){if(this._input!==null){ this._input.setType(newValue);}}
-maxLengthChanged(newValue){if(this._input!==null){ this._input.setMaxLength(newValue);}}
-showValueHelpChanged(newValue){if(this._input!==null){ this._input.setShowValueHelp(getBooleanFromAttributeValue(newValue));}}
-showSuggestionChanged(newValue){if(this._input!==null){ this._input.setShowSuggestion(getBooleanFromAttributeValue(newValue));}}
-valueHelpOnlyChanged(newValue){if(this._input!==null){ this._input.setValueHelpOnly(getBooleanFromAttributeValue(newValue));}}
-filterSuggestsChanged(newValue){if(this._input!==null){ this._input.setFilterSuggests(getBooleanFromAttributeValue(newValue));}}
-maxSuggestionWidthChanged(newValue){if(this._input!==null){ this._input.setMaxSuggestionWidth(newValue);}}
-startSuggestionChanged(newValue){if(this._input!==null){ this._input.setStartSuggestion(newValue);}}
-showTableSuggestionValueHelpChanged(newValue){if(this._input!==null){ this._input.setShowTableSuggestionValueHelp(getBooleanFromAttributeValue(newValue));}}
-descriptionChanged(newValue){if(this._input!==null){ this._input.setDescription(newValue);}}
-fieldWidthChanged(newValue){if(this._input!==null){ this._input.setFieldWidth(newValue);}}
-valueLiveUpdateChanged(newValue){if(this._input!==null){ this._input.setValueLiveUpdate(getBooleanFromAttributeValue(newValue));}}
-selectedKeyChanged(newValue){if(this._input!==null){ this._input.setSelectedKey(newValue);}}
-textFormatModeChanged(newValue){if(this._input!==null){ this._input.setTextFormatMode(newValue);}}
-textFormatterChanged(newValue){if(this._input!==null){ this._input.setTextFormatter(newValue);}}
-suggestionRowValidatorChanged(newValue){if(this._input!==null){ this._input.setSuggestionRowValidator(newValue);}}
-enableSuggestionsHighlightingChanged(newValue){if(this._input!==null){ this._input.setEnableSuggestionsHighlighting(getBooleanFromAttributeValue(newValue));}}
-liveChangeChanged(newValue){if(this._input!==null){ this._input.attachLiveChange(newValue);}}
-valueHelpRequestChanged(newValue){if(this._input!==null){ this._input.attachValueHelpRequest(newValue);}}
-suggestChanged(newValue){if(this._input!==null){ this._input.attachSuggest(newValue);}}
-suggestionItemSelectedChanged(newValue){if(this._input!==null){ this._input.attachSuggestionItemSelected(newValue);}}
-submitChanged(newValue){if(this._input!==null){ this._input.attachSubmit(newValue);}}
+    typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setType(newValue);}}
+maxLengthChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setMaxLength(newValue);}}
+showValueHelpChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setShowValueHelp(getBooleanFromAttributeValue(newValue));}}
+showSuggestionChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setShowSuggestion(getBooleanFromAttributeValue(newValue));}}
+valueHelpOnlyChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setValueHelpOnly(getBooleanFromAttributeValue(newValue));}}
+filterSuggestsChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setFilterSuggests(getBooleanFromAttributeValue(newValue));}}
+maxSuggestionWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setMaxSuggestionWidth(newValue);}}
+startSuggestionChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setStartSuggestion(newValue);}}
+showTableSuggestionValueHelpChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setShowTableSuggestionValueHelp(getBooleanFromAttributeValue(newValue));}}
+descriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setDescription(newValue);}}
+fieldWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setFieldWidth(newValue);}}
+valueLiveUpdateChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setValueLiveUpdate(getBooleanFromAttributeValue(newValue));}}
+selectedKeyChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setSelectedKey(newValue);}}
+textFormatModeChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setTextFormatMode(newValue);}}
+textFormatterChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setTextFormatter(newValue);}}
+suggestionRowValidatorChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setSuggestionRowValidator(newValue);}}
+enableSuggestionsHighlightingChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setEnableSuggestionsHighlighting(getBooleanFromAttributeValue(newValue));}}
+liveChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachLiveChange(newValue);}}
+valueHelpRequestChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachValueHelpRequest(newValue);}}
+suggestChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachSuggest(newValue);}}
+suggestionItemSelectedChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachSuggestionItemSelected(newValue);}}
+submitChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachSubmit(newValue);}}
 valueChanged(newValue){if(this._input!==null){ this._input.setValue(newValue);}}
 widthChanged(newValue){if(this._input!==null){ this._input.setWidth(newValue);}}
 enabledChanged(newValue){if(this._input!==null){ this._input.setEnabled(getBooleanFromAttributeValue(newValue));}}
@@ -232,7 +232,7 @@ textAlignChanged(newValue){if(this._input!==null){ this._input.setTextAlign(newV
 textDirectionChanged(newValue){if(this._input!==null){ this._input.setTextDirection(newValue);}}
 requiredChanged(newValue){if(this._input!==null){ this._input.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
-changeChanged(newValue){if(this._input!==null){ this._input.attachChange(newValue);}}
+changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachChange(newValue);}}
 blockedChanged(newValue){if(this._input!==null){ this._input.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._input!==null){ this._input.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._input!==null){ this._input.setBusyIndicatorDelay(newValue);}}
@@ -240,14 +240,14 @@ busyIndicatorSizeChanged(newValue){if(this._input!==null){ this._input.setBusyIn
 visibleChanged(newValue){if(this._input!==null){ this._input.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._input!==null){ this._input.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._input!==null){ this._input.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._input!==null){ this._input.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._input!==null){ this._input.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._input!==null){ this._input.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._input!==null){ this._input.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._input!==null){ this._input.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

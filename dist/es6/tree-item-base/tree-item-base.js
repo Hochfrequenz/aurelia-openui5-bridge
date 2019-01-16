@@ -147,8 +147,8 @@ selectedChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setS
 counterChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setCounter(newValue);}}
 highlightChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setHighlight(newValue);}}
 /* inherited from sap.m.ListItemBase*/
-pressChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachPress(newValue);}}
-detailPressChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachDetailPress(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachPress(newValue);}}
+detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachDetailPress(newValue);}}
 blockedChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBusyIndicatorDelay(newValue);}}
@@ -156,14 +156,14 @@ busyIndicatorSizeChanged(newValue){if(this._treeitembase!==null){ this._treeitem
 visibleChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

@@ -297,55 +297,55 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5StandardTile.prototype.titleChanged = function titleChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.setTitle(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.infoChanged = function infoChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.setInfo(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.iconChanged = function iconChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.setIcon(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.activeIconChanged = function activeIconChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.setActiveIcon(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.numberChanged = function numberChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.setNumber(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.numberUnitChanged = function numberUnitChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.setNumberUnit(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.infoStateChanged = function infoStateChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.setInfoState(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.typeChanged = function typeChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.setType(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.iconDensityAwareChanged = function iconDensityAwareChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.setIconDensityAware(getBooleanFromAttributeValue(newValue));
                     }
                 };
@@ -357,7 +357,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5StandardTile.prototype.pressChanged = function pressChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.attachPress(newValue);
                     }
                 };
@@ -399,37 +399,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5StandardTile.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.attachValidationError(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.attachParseError(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.attachFormatError(newValue);
                     }
                 };
 
                 Ui5StandardTile.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._standardtile !== null) {
+                    if (newValue != null && newValue != undefined && this._standardtile !== null) {
                         this._standardtile.attachModelContextChange(newValue);
                     }
                 };

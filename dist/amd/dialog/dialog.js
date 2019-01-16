@@ -339,103 +339,103 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Dialog.prototype.iconChanged = function iconChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setIcon(newValue);
             }
         };
 
         Ui5Dialog.prototype.titleChanged = function titleChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setTitle(newValue);
             }
         };
 
         Ui5Dialog.prototype.showHeaderChanged = function showHeaderChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setShowHeader((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Dialog.prototype.typeChanged = function typeChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setType(newValue);
             }
         };
 
         Ui5Dialog.prototype.stateChanged = function stateChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setState(newValue);
             }
         };
 
         Ui5Dialog.prototype.stretchChanged = function stretchChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setStretch((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Dialog.prototype.contentWidthChanged = function contentWidthChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setContentWidth(newValue);
             }
         };
 
         Ui5Dialog.prototype.contentHeightChanged = function contentHeightChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setContentHeight(newValue);
             }
         };
 
         Ui5Dialog.prototype.horizontalScrollingChanged = function horizontalScrollingChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setHorizontalScrolling((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Dialog.prototype.verticalScrollingChanged = function verticalScrollingChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setVerticalScrolling((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Dialog.prototype.resizableChanged = function resizableChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setResizable((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Dialog.prototype.draggableChanged = function draggableChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setDraggable((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Dialog.prototype.escapeHandlerChanged = function escapeHandlerChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.setEscapeHandler(newValue);
             }
         };
 
         Ui5Dialog.prototype.beforeOpenChanged = function beforeOpenChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachBeforeOpen(newValue);
             }
         };
 
         Ui5Dialog.prototype.afterOpenChanged = function afterOpenChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachAfterOpen(newValue);
             }
         };
 
         Ui5Dialog.prototype.beforeCloseChanged = function beforeCloseChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachBeforeClose(newValue);
             }
         };
 
         Ui5Dialog.prototype.afterCloseChanged = function afterCloseChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachAfterClose(newValue);
             }
         };
@@ -477,37 +477,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Dialog.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Dialog.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Dialog.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachValidationError(newValue);
             }
         };
 
         Ui5Dialog.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachParseError(newValue);
             }
         };
 
         Ui5Dialog.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachFormatError(newValue);
             }
         };
 
         Ui5Dialog.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._dialog !== null) {
+            if (newValue != null && newValue != undefined && this._dialog !== null) {
                 this._dialog.attachModelContextChange(newValue);
             }
         };

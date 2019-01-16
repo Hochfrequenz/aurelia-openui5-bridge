@@ -135,8 +135,8 @@ if (relation == 'dragdropconfig') {  this._tile.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    removableChanged(newValue){if(this._tile!==null){ this._tile.setRemovable(getBooleanFromAttributeValue(newValue));}}
-pressChanged(newValue){if(this._tile!==null){ this._tile.attachPress(newValue);}}
+    removableChanged(newValue){if(newValue!=null && newValue!=undefined && this._tile!==null){ this._tile.setRemovable(getBooleanFromAttributeValue(newValue));}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._tile!==null){ this._tile.attachPress(newValue);}}
 blockedChanged(newValue){if(this._tile!==null){ this._tile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tile!==null){ this._tile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tile!==null){ this._tile.setBusyIndicatorDelay(newValue);}}
@@ -144,14 +144,14 @@ busyIndicatorSizeChanged(newValue){if(this._tile!==null){ this._tile.setBusyIndi
 visibleChanged(newValue){if(this._tile!==null){ this._tile.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._tile!==null){ this._tile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._tile!==null){ this._tile.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._tile!==null){ this._tile.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._tile!==null){ this._tile.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._tile!==null){ this._tile.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._tile!==null){ this._tile.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._tile!==null){ this._tile.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._tile!==null){ this._tile.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._tile!==null){ this._tile.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tile!==null){ this._tile.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tile!==null){ this._tile.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tile!==null){ this._tile.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tile!==null){ this._tile.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

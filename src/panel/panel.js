@@ -155,15 +155,15 @@ if (relation == 'dragdropconfig') {  this._panel.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    headerTextChanged(newValue){if(this._panel!==null){ this._panel.setHeaderText(newValue);}}
-widthChanged(newValue){if(this._panel!==null){ this._panel.setWidth(newValue);}}
-heightChanged(newValue){if(this._panel!==null){ this._panel.setHeight(newValue);}}
-expandableChanged(newValue){if(this._panel!==null){ this._panel.setExpandable(getBooleanFromAttributeValue(newValue));}}
-expandedChanged(newValue){if(this._panel!==null){ this._panel.setExpanded(getBooleanFromAttributeValue(newValue));}}
-expandAnimationChanged(newValue){if(this._panel!==null){ this._panel.setExpandAnimation(getBooleanFromAttributeValue(newValue));}}
-backgroundDesignChanged(newValue){if(this._panel!==null){ this._panel.setBackgroundDesign(newValue);}}
-accessibleRoleChanged(newValue){if(this._panel!==null){ this._panel.setAccessibleRole(newValue);}}
-expandChanged(newValue){if(this._panel!==null){ this._panel.attachExpand(newValue);}}
+    headerTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setHeaderText(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setWidth(newValue);}}
+heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setHeight(newValue);}}
+expandableChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setExpandable(getBooleanFromAttributeValue(newValue));}}
+expandedChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setExpanded(getBooleanFromAttributeValue(newValue));}}
+expandAnimationChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setExpandAnimation(getBooleanFromAttributeValue(newValue));}}
+backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setBackgroundDesign(newValue);}}
+accessibleRoleChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setAccessibleRole(newValue);}}
+expandChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.attachExpand(newValue);}}
 blockedChanged(newValue){if(this._panel!==null){ this._panel.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._panel!==null){ this._panel.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._panel!==null){ this._panel.setBusyIndicatorDelay(newValue);}}
@@ -171,14 +171,14 @@ busyIndicatorSizeChanged(newValue){if(this._panel!==null){ this._panel.setBusyIn
 visibleChanged(newValue){if(this._panel!==null){ this._panel.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._panel!==null){ this._panel.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._panel!==null){ this._panel.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._panel!==null){ this._panel.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._panel!==null){ this._panel.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._panel!==null){ this._panel.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._panel!==null){ this._panel.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._panel!==null){ this._panel.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

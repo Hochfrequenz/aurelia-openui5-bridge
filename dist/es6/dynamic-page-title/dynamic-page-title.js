@@ -15,6 +15,7 @@ export class Ui5DynamicPageTitle extends Ui5Control{
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() areaShrinkRatio = '1:1.6:1.6';
+@bindable() backgroundDesign = null;
 @bindable() stateChange = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() blocked = false;
@@ -45,6 +46,7 @@ export class Ui5DynamicPageTitle extends Ui5Control{
           }
         fillProperties(params){
                                         params.areaShrinkRatio = this.areaShrinkRatio;
+params.backgroundDesign = this.backgroundDesign;
 params.stateChange = this.stateChange==null ? this.defaultFunc: this.stateChange;
             
                                             super.fillProperties(params);   
@@ -153,8 +155,9 @@ if (relation == 'dragdropconfig') {  this._dynamicpagetitle.removeDragDropConfig
       }
       catch(err){}
                                                                             }
-    areaShrinkRatioChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setAreaShrinkRatio(newValue);}}
-stateChangeChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachStateChange(newValue);}}
+    areaShrinkRatioChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.setAreaShrinkRatio(newValue);}}
+backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBackgroundDesign(newValue);}}
+stateChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachStateChange(newValue);}}
 blockedChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusyIndicatorDelay(newValue);}}
@@ -162,14 +165,14 @@ busyIndicatorSizeChanged(newValue){if(this._dynamicpagetitle!==null){ this._dyna
 visibleChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

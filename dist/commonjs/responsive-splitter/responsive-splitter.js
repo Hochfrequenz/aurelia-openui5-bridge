@@ -235,13 +235,13 @@ var Ui5ResponsiveSplitter = exports.Ui5ResponsiveSplitter = (_dec = (0, _aurelia
     };
 
     Ui5ResponsiveSplitter.prototype.widthChanged = function widthChanged(newValue) {
-        if (this._responsivesplitter !== null) {
+        if (newValue != null && newValue != undefined && this._responsivesplitter !== null) {
             this._responsivesplitter.setWidth(newValue);
         }
     };
 
     Ui5ResponsiveSplitter.prototype.heightChanged = function heightChanged(newValue) {
-        if (this._responsivesplitter !== null) {
+        if (newValue != null && newValue != undefined && this._responsivesplitter !== null) {
             this._responsivesplitter.setHeight(newValue);
         }
     };
@@ -283,37 +283,37 @@ var Ui5ResponsiveSplitter = exports.Ui5ResponsiveSplitter = (_dec = (0, _aurelia
     };
 
     Ui5ResponsiveSplitter.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._responsivesplitter !== null) {
+        if (newValue != null && newValue != undefined && this._responsivesplitter !== null) {
             this._responsivesplitter.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5ResponsiveSplitter.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._responsivesplitter !== null) {
+        if (newValue != null && newValue != undefined && this._responsivesplitter !== null) {
             this._responsivesplitter.attachValidationSuccess(newValue);
         }
     };
 
     Ui5ResponsiveSplitter.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._responsivesplitter !== null) {
+        if (newValue != null && newValue != undefined && this._responsivesplitter !== null) {
             this._responsivesplitter.attachValidationError(newValue);
         }
     };
 
     Ui5ResponsiveSplitter.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._responsivesplitter !== null) {
+        if (newValue != null && newValue != undefined && this._responsivesplitter !== null) {
             this._responsivesplitter.attachParseError(newValue);
         }
     };
 
     Ui5ResponsiveSplitter.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._responsivesplitter !== null) {
+        if (newValue != null && newValue != undefined && this._responsivesplitter !== null) {
             this._responsivesplitter.attachFormatError(newValue);
         }
     };
 
     Ui5ResponsiveSplitter.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._responsivesplitter !== null) {
+        if (newValue != null && newValue != undefined && this._responsivesplitter !== null) {
             this._responsivesplitter.attachModelContextChange(newValue);
         }
     };

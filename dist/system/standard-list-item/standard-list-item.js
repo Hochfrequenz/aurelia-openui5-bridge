@@ -315,67 +315,67 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5StandardListItem.prototype.titleChanged = function titleChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setTitle(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.descriptionChanged = function descriptionChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setDescription(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.iconChanged = function iconChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setIcon(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.iconInsetChanged = function iconInsetChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setIconInset(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5StandardListItem.prototype.iconDensityAwareChanged = function iconDensityAwareChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setIconDensityAware(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5StandardListItem.prototype.activeIconChanged = function activeIconChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setActiveIcon(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.infoChanged = function infoChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setInfo(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.infoStateChanged = function infoStateChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setInfoState(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.adaptTitleSizeChanged = function adaptTitleSizeChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setAdaptTitleSize(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5StandardListItem.prototype.titleTextDirectionChanged = function titleTextDirectionChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setTitleTextDirection(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.infoTextDirectionChanged = function infoTextDirectionChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.setInfoTextDirection(newValue);
                     }
                 };
@@ -417,13 +417,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5StandardListItem.prototype.pressChanged = function pressChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.attachPress(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.detailPressChanged = function detailPressChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.attachDetailPress(newValue);
                     }
                 };
@@ -465,37 +465,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5StandardListItem.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.attachValidationError(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.attachParseError(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.attachFormatError(newValue);
                     }
                 };
 
                 Ui5StandardListItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._standardlistitem !== null) {
+                    if (newValue != null && newValue != undefined && this._standardlistitem !== null) {
                         this._standardlistitem.attachModelContextChange(newValue);
                     }
                 };

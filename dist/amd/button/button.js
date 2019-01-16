@@ -282,61 +282,61 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Button.prototype.textChanged = function textChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.setText(newValue);
             }
         };
 
         Ui5Button.prototype.typeChanged = function typeChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.setType(newValue);
             }
         };
 
         Ui5Button.prototype.widthChanged = function widthChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.setWidth(newValue);
             }
         };
 
         Ui5Button.prototype.enabledChanged = function enabledChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Button.prototype.iconChanged = function iconChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.setIcon(newValue);
             }
         };
 
         Ui5Button.prototype.iconFirstChanged = function iconFirstChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.setIconFirst((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Button.prototype.activeIconChanged = function activeIconChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.setActiveIcon(newValue);
             }
         };
 
         Ui5Button.prototype.iconDensityAwareChanged = function iconDensityAwareChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.setIconDensityAware((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Button.prototype.textDirectionChanged = function textDirectionChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.setTextDirection(newValue);
             }
         };
 
         Ui5Button.prototype.pressChanged = function pressChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.attachPress(newValue);
             }
         };
@@ -378,37 +378,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Button.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Button.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Button.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.attachValidationError(newValue);
             }
         };
 
         Ui5Button.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.attachParseError(newValue);
             }
         };
 
         Ui5Button.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.attachFormatError(newValue);
             }
         };
 
         Ui5Button.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._button !== null) {
+            if (newValue != null && newValue != undefined && this._button !== null) {
                 this._button.attachModelContextChange(newValue);
             }
         };

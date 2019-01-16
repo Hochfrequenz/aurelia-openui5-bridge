@@ -267,19 +267,19 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Menu.prototype.titleChanged = function titleChanged(newValue) {
-            if (this._menu !== null) {
+            if (newValue != null && newValue != undefined && this._menu !== null) {
                 this._menu.setTitle(newValue);
             }
         };
 
         Ui5Menu.prototype.itemSelectedChanged = function itemSelectedChanged(newValue) {
-            if (this._menu !== null) {
+            if (newValue != null && newValue != undefined && this._menu !== null) {
                 this._menu.attachItemSelected(newValue);
             }
         };
 
         Ui5Menu.prototype.closedChanged = function closedChanged(newValue) {
-            if (this._menu !== null) {
+            if (newValue != null && newValue != undefined && this._menu !== null) {
                 this._menu.attachClosed(newValue);
             }
         };
@@ -321,37 +321,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Menu.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._menu !== null) {
+            if (newValue != null && newValue != undefined && this._menu !== null) {
                 this._menu.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Menu.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._menu !== null) {
+            if (newValue != null && newValue != undefined && this._menu !== null) {
                 this._menu.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Menu.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._menu !== null) {
+            if (newValue != null && newValue != undefined && this._menu !== null) {
                 this._menu.attachValidationError(newValue);
             }
         };
 
         Ui5Menu.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._menu !== null) {
+            if (newValue != null && newValue != undefined && this._menu !== null) {
                 this._menu.attachParseError(newValue);
             }
         };
 
         Ui5Menu.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._menu !== null) {
+            if (newValue != null && newValue != undefined && this._menu !== null) {
                 this._menu.attachFormatError(newValue);
             }
         };
 
         Ui5Menu.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._menu !== null) {
+            if (newValue != null && newValue != undefined && this._menu !== null) {
                 this._menu.attachModelContextChange(newValue);
             }
         };

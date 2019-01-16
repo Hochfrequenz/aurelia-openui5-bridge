@@ -145,13 +145,13 @@ if (relation == 'dragdropconfig') {  this._switch.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    stateChanged(newValue){if(this._switch!==null){ this._switch.setState(getBooleanFromAttributeValue(newValue));}}
-customTextOnChanged(newValue){if(this._switch!==null){ this._switch.setCustomTextOn(newValue);}}
-customTextOffChanged(newValue){if(this._switch!==null){ this._switch.setCustomTextOff(newValue);}}
-enabledChanged(newValue){if(this._switch!==null){ this._switch.setEnabled(getBooleanFromAttributeValue(newValue));}}
-nameChanged(newValue){if(this._switch!==null){ this._switch.setName(newValue);}}
-typeChanged(newValue){if(this._switch!==null){ this._switch.setType(newValue);}}
-changeChanged(newValue){if(this._switch!==null){ this._switch.attachChange(newValue);}}
+    stateChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.setState(getBooleanFromAttributeValue(newValue));}}
+customTextOnChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.setCustomTextOn(newValue);}}
+customTextOffChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.setCustomTextOff(newValue);}}
+enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.setEnabled(getBooleanFromAttributeValue(newValue));}}
+nameChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.setName(newValue);}}
+typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.setType(newValue);}}
+changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.attachChange(newValue);}}
 blockedChanged(newValue){if(this._switch!==null){ this._switch.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._switch!==null){ this._switch.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._switch!==null){ this._switch.setBusyIndicatorDelay(newValue);}}
@@ -159,14 +159,14 @@ busyIndicatorSizeChanged(newValue){if(this._switch!==null){ this._switch.setBusy
 visibleChanged(newValue){if(this._switch!==null){ this._switch.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._switch!==null){ this._switch.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._switch!==null){ this._switch.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._switch!==null){ this._switch.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._switch!==null){ this._switch.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._switch!==null){ this._switch.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._switch!==null){ this._switch.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._switch!==null){ this._switch.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

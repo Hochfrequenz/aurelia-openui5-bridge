@@ -252,31 +252,31 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Element.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._element !== null) {
+                    if (newValue != null && newValue != undefined && this._element !== null) {
                         this._element.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5Element.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._element !== null) {
+                    if (newValue != null && newValue != undefined && this._element !== null) {
                         this._element.attachValidationError(newValue);
                     }
                 };
 
                 Ui5Element.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._element !== null) {
+                    if (newValue != null && newValue != undefined && this._element !== null) {
                         this._element.attachParseError(newValue);
                     }
                 };
 
                 Ui5Element.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._element !== null) {
+                    if (newValue != null && newValue != undefined && this._element !== null) {
                         this._element.attachFormatError(newValue);
                     }
                 };
 
                 Ui5Element.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._element !== null) {
+                    if (newValue != null && newValue != undefined && this._element !== null) {
                         this._element.attachModelContextChange(newValue);
                     }
                 };

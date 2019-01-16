@@ -302,97 +302,97 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5ResponsiveGridLayout.prototype.labelSpanXLChanged = function labelSpanXLChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setLabelSpanXL(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.labelSpanLChanged = function labelSpanLChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setLabelSpanL(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.labelSpanMChanged = function labelSpanMChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setLabelSpanM(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.labelSpanSChanged = function labelSpanSChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setLabelSpanS(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.adjustLabelSpanChanged = function adjustLabelSpanChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setAdjustLabelSpan((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.emptySpanXLChanged = function emptySpanXLChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setEmptySpanXL(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.emptySpanLChanged = function emptySpanLChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setEmptySpanL(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.emptySpanMChanged = function emptySpanMChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setEmptySpanM(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.emptySpanSChanged = function emptySpanSChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setEmptySpanS(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.columnsXLChanged = function columnsXLChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setColumnsXL(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.columnsLChanged = function columnsLChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setColumnsL(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.columnsMChanged = function columnsMChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setColumnsM(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.singleContainerFullSizeChanged = function singleContainerFullSizeChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setSingleContainerFullSize((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.breakpointXLChanged = function breakpointXLChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setBreakpointXL(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.breakpointLChanged = function breakpointLChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setBreakpointL(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.breakpointMChanged = function breakpointMChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.setBreakpointM(newValue);
             }
         };
@@ -440,37 +440,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5ResponsiveGridLayout.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.attachValidationSuccess(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.attachValidationError(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.attachParseError(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.attachFormatError(newValue);
             }
         };
 
         Ui5ResponsiveGridLayout.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._responsivegridlayout !== null) {
+            if (newValue != null && newValue != undefined && this._responsivegridlayout !== null) {
                 this._responsivegridlayout.attachModelContextChange(newValue);
             }
         };

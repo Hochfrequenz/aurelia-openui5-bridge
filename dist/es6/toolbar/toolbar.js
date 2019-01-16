@@ -147,13 +147,13 @@ if (relation == 'dragdropconfig') {  this._toolbar.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    widthChanged(newValue){if(this._toolbar!==null){ this._toolbar.setWidth(newValue);}}
-activeChanged(newValue){if(this._toolbar!==null){ this._toolbar.setActive(getBooleanFromAttributeValue(newValue));}}
-enabledChanged(newValue){if(this._toolbar!==null){ this._toolbar.setEnabled(getBooleanFromAttributeValue(newValue));}}
-heightChanged(newValue){if(this._toolbar!==null){ this._toolbar.setHeight(newValue);}}
-designChanged(newValue){if(this._toolbar!==null){ this._toolbar.setDesign(newValue);}}
-styleChanged(newValue){if(this._toolbar!==null){ this._toolbar.setStyle(newValue);}}
-pressChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachPress(newValue);}}
+    widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.setWidth(newValue);}}
+activeChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.setActive(getBooleanFromAttributeValue(newValue));}}
+enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.setEnabled(getBooleanFromAttributeValue(newValue));}}
+heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.setHeight(newValue);}}
+designChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.setDesign(newValue);}}
+styleChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.setStyle(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.attachPress(newValue);}}
 blockedChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusyIndicatorDelay(newValue);}}
@@ -161,14 +161,14 @@ busyIndicatorSizeChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBu
 visibleChanged(newValue){if(this._toolbar!==null){ this._toolbar.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._toolbar!==null){ this._toolbar.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._toolbar!==null){ this._toolbar.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

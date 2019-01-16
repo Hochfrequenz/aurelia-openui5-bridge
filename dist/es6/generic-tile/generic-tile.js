@@ -26,6 +26,7 @@ export class Ui5GenericTile extends Ui5Control{
 @bindable() scope = 'Display';
 @bindable() sizeBehavior = 'Responsive';
 @bindable() ariaLabel = null;
+@bindable() wrappingType = 'Normal';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() blocked = false;
@@ -67,6 +68,7 @@ params.imageDescription = this.imageDescription;
 params.scope = this.scope;
 params.sizeBehavior = this.sizeBehavior;
 params.ariaLabel = this.ariaLabel;
+params.wrappingType = this.wrappingType;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
                                             super.fillProperties(params);   
@@ -161,19 +163,20 @@ if (relation == 'dragdropconfig') {  this._generictile.removeDragDropConfig(chil
       }
       catch(err){}
                                                                             }
-    modeChanged(newValue){if(this._generictile!==null){ this._generictile.setMode(newValue);}}
-headerChanged(newValue){if(this._generictile!==null){ this._generictile.setHeader(newValue);}}
-subheaderChanged(newValue){if(this._generictile!==null){ this._generictile.setSubheader(newValue);}}
-failedTextChanged(newValue){if(this._generictile!==null){ this._generictile.setFailedText(newValue);}}
-frameTypeChanged(newValue){if(this._generictile!==null){ this._generictile.setFrameType(newValue);}}
-backgroundImageChanged(newValue){if(this._generictile!==null){ this._generictile.setBackgroundImage(newValue);}}
-headerImageChanged(newValue){if(this._generictile!==null){ this._generictile.setHeaderImage(newValue);}}
-stateChanged(newValue){if(this._generictile!==null){ this._generictile.setState(newValue);}}
-imageDescriptionChanged(newValue){if(this._generictile!==null){ this._generictile.setImageDescription(newValue);}}
-scopeChanged(newValue){if(this._generictile!==null){ this._generictile.setScope(newValue);}}
-sizeBehaviorChanged(newValue){if(this._generictile!==null){ this._generictile.setSizeBehavior(newValue);}}
-ariaLabelChanged(newValue){if(this._generictile!==null){ this._generictile.setAriaLabel(newValue);}}
-pressChanged(newValue){if(this._generictile!==null){ this._generictile.attachPress(newValue);}}
+    modeChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setMode(newValue);}}
+headerChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setHeader(newValue);}}
+subheaderChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setSubheader(newValue);}}
+failedTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setFailedText(newValue);}}
+frameTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setFrameType(newValue);}}
+backgroundImageChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setBackgroundImage(newValue);}}
+headerImageChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setHeaderImage(newValue);}}
+stateChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setState(newValue);}}
+imageDescriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setImageDescription(newValue);}}
+scopeChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setScope(newValue);}}
+sizeBehaviorChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setSizeBehavior(newValue);}}
+ariaLabelChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setAriaLabel(newValue);}}
+wrappingTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setWrappingType(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.attachPress(newValue);}}
 blockedChanged(newValue){if(this._generictile!==null){ this._generictile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._generictile!==null){ this._generictile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._generictile!==null){ this._generictile.setBusyIndicatorDelay(newValue);}}
@@ -181,14 +184,14 @@ busyIndicatorSizeChanged(newValue){if(this._generictile!==null){ this._genericti
 visibleChanged(newValue){if(this._generictile!==null){ this._generictile.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._generictile!==null){ this._generictile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._generictile!==null){ this._generictile.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._generictile!==null){ this._generictile.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._generictile!==null){ this._generictile.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._generictile!==null){ this._generictile.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._generictile!==null){ this._generictile.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._generictile!==null){ this._generictile.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

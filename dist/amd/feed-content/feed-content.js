@@ -270,37 +270,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5FeedContent.prototype.contentTextChanged = function contentTextChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.setContentText(newValue);
             }
         };
 
         Ui5FeedContent.prototype.subheaderChanged = function subheaderChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.setSubheader(newValue);
             }
         };
 
         Ui5FeedContent.prototype.valueChanged = function valueChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.setValue(newValue);
             }
         };
 
         Ui5FeedContent.prototype.valueColorChanged = function valueColorChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.setValueColor(newValue);
             }
         };
 
         Ui5FeedContent.prototype.truncateValueToChanged = function truncateValueToChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.setTruncateValueTo(newValue);
             }
         };
 
         Ui5FeedContent.prototype.pressChanged = function pressChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.attachPress(newValue);
             }
         };
@@ -342,37 +342,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5FeedContent.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5FeedContent.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.attachValidationSuccess(newValue);
             }
         };
 
         Ui5FeedContent.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.attachValidationError(newValue);
             }
         };
 
         Ui5FeedContent.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.attachParseError(newValue);
             }
         };
 
         Ui5FeedContent.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.attachFormatError(newValue);
             }
         };
 
         Ui5FeedContent.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._feedcontent !== null) {
+            if (newValue != null && newValue != undefined && this._feedcontent !== null) {
                 this._feedcontent.attachModelContextChange(newValue);
             }
         };

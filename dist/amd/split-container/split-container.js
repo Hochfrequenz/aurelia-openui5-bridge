@@ -318,109 +318,109 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5SplitContainer.prototype.defaultTransitionNameDetailChanged = function defaultTransitionNameDetailChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.setDefaultTransitionNameDetail(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.defaultTransitionNameMasterChanged = function defaultTransitionNameMasterChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.setDefaultTransitionNameMaster(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.modeChanged = function modeChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.setMode(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.masterButtonTextChanged = function masterButtonTextChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.setMasterButtonText(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.masterButtonTooltipChanged = function masterButtonTooltipChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.setMasterButtonTooltip(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.backgroundColorChanged = function backgroundColorChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.setBackgroundColor(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.backgroundImageChanged = function backgroundImageChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.setBackgroundImage(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.backgroundRepeatChanged = function backgroundRepeatChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.setBackgroundRepeat((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SplitContainer.prototype.backgroundOpacityChanged = function backgroundOpacityChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.setBackgroundOpacity(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.masterNavigateChanged = function masterNavigateChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachMasterNavigate(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.afterMasterNavigateChanged = function afterMasterNavigateChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachAfterMasterNavigate(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.masterButtonChanged = function masterButtonChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachMasterButton(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.beforeMasterOpenChanged = function beforeMasterOpenChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachBeforeMasterOpen(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.afterMasterOpenChanged = function afterMasterOpenChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachAfterMasterOpen(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.beforeMasterCloseChanged = function beforeMasterCloseChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachBeforeMasterClose(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.afterMasterCloseChanged = function afterMasterCloseChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachAfterMasterClose(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.detailNavigateChanged = function detailNavigateChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachDetailNavigate(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.afterDetailNavigateChanged = function afterDetailNavigateChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachAfterDetailNavigate(newValue);
             }
         };
@@ -462,37 +462,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5SplitContainer.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachValidationSuccess(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachValidationError(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachParseError(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachFormatError(newValue);
             }
         };
 
         Ui5SplitContainer.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._splitcontainer !== null) {
+            if (newValue != null && newValue != undefined && this._splitcontainer !== null) {
                 this._splitcontainer.attachModelContextChange(newValue);
             }
         };

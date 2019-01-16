@@ -279,43 +279,43 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5TileContainer.prototype.widthChanged = function widthChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.setWidth(newValue);
             }
         };
 
         Ui5TileContainer.prototype.heightChanged = function heightChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.setHeight(newValue);
             }
         };
 
         Ui5TileContainer.prototype.editableChanged = function editableChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.setEditable((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5TileContainer.prototype.allowAddChanged = function allowAddChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.setAllowAdd((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5TileContainer.prototype.tileMoveChanged = function tileMoveChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.attachTileMove(newValue);
             }
         };
 
         Ui5TileContainer.prototype.tileDeleteChanged = function tileDeleteChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.attachTileDelete(newValue);
             }
         };
 
         Ui5TileContainer.prototype.tileAddChanged = function tileAddChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.attachTileAdd(newValue);
             }
         };
@@ -357,37 +357,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5TileContainer.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5TileContainer.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.attachValidationSuccess(newValue);
             }
         };
 
         Ui5TileContainer.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.attachValidationError(newValue);
             }
         };
 
         Ui5TileContainer.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.attachParseError(newValue);
             }
         };
 
         Ui5TileContainer.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.attachFormatError(newValue);
             }
         };
 
         Ui5TileContainer.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._tilecontainer !== null) {
+            if (newValue != null && newValue != undefined && this._tilecontainer !== null) {
                 this._tilecontainer.attachModelContextChange(newValue);
             }
         };

@@ -143,11 +143,11 @@ if (relation == 'dragdropconfig') {  this._slidetile.removeDragDropConfig(child)
       }
       catch(err){}
                                                                             }
-    displayTimeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setDisplayTime(newValue);}}
-transitionTimeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setTransitionTime(newValue);}}
-scopeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setScope(newValue);}}
-sizeBehaviorChanged(newValue){if(this._slidetile!==null){ this._slidetile.setSizeBehavior(newValue);}}
-pressChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachPress(newValue);}}
+    displayTimeChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.setDisplayTime(newValue);}}
+transitionTimeChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.setTransitionTime(newValue);}}
+scopeChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.setScope(newValue);}}
+sizeBehaviorChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.setSizeBehavior(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.attachPress(newValue);}}
 blockedChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorDelay(newValue);}}
@@ -155,14 +155,14 @@ busyIndicatorSizeChanged(newValue){if(this._slidetile!==null){ this._slidetile.s
 visibleChanged(newValue){if(this._slidetile!==null){ this._slidetile.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._slidetile!==null){ this._slidetile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._slidetile!==null){ this._slidetile.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

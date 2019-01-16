@@ -143,12 +143,12 @@ if (relation == 'dragdropconfig') {  this._feedcontent.removeDragDropConfig(chil
       }
       catch(err){}
                                                                             }
-    contentTextChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setContentText(newValue);}}
-subheaderChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setSubheader(newValue);}}
-valueChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setValue(newValue);}}
-valueColorChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setValueColor(newValue);}}
-truncateValueToChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setTruncateValueTo(newValue);}}
-pressChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.attachPress(newValue);}}
+    contentTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.setContentText(newValue);}}
+subheaderChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.setSubheader(newValue);}}
+valueChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.setValue(newValue);}}
+valueColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.setValueColor(newValue);}}
+truncateValueToChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.setTruncateValueTo(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.attachPress(newValue);}}
 blockedChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusyIndicatorDelay(newValue);}}
@@ -156,14 +156,14 @@ busyIndicatorSizeChanged(newValue){if(this._feedcontent!==null){ this._feedconte
 visibleChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

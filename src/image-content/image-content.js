@@ -137,9 +137,9 @@ if (relation == 'dragdropconfig') {  this._imagecontent.removeDragDropConfig(chi
       }
       catch(err){}
                                                                             }
-    srcChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setSrc(newValue);}}
-descriptionChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setDescription(newValue);}}
-pressChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachPress(newValue);}}
+    srcChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.setSrc(newValue);}}
+descriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.setDescription(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.attachPress(newValue);}}
 blockedChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusyIndicatorDelay(newValue);}}
@@ -147,14 +147,14 @@ busyIndicatorSizeChanged(newValue){if(this._imagecontent!==null){ this._imagecon
 visibleChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

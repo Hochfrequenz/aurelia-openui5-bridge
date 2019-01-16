@@ -266,13 +266,13 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ViewSettingsItem.prototype.selectedChanged = function selectedChanged(newValue) {
-                    if (this._viewsettingsitem !== null) {
+                    if (newValue != null && newValue != undefined && this._viewsettingsitem !== null) {
                         this._viewsettingsitem.setSelected(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ViewSettingsItem.prototype.itemPropertyChangedChanged = function itemPropertyChangedChanged(newValue) {
-                    if (this._viewsettingsitem !== null) {
+                    if (newValue != null && newValue != undefined && this._viewsettingsitem !== null) {
                         this._viewsettingsitem.attachItemPropertyChanged(newValue);
                     }
                 };
@@ -302,31 +302,31 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ViewSettingsItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._viewsettingsitem !== null) {
+                    if (newValue != null && newValue != undefined && this._viewsettingsitem !== null) {
                         this._viewsettingsitem.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5ViewSettingsItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._viewsettingsitem !== null) {
+                    if (newValue != null && newValue != undefined && this._viewsettingsitem !== null) {
                         this._viewsettingsitem.attachValidationError(newValue);
                     }
                 };
 
                 Ui5ViewSettingsItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._viewsettingsitem !== null) {
+                    if (newValue != null && newValue != undefined && this._viewsettingsitem !== null) {
                         this._viewsettingsitem.attachParseError(newValue);
                     }
                 };
 
                 Ui5ViewSettingsItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._viewsettingsitem !== null) {
+                    if (newValue != null && newValue != undefined && this._viewsettingsitem !== null) {
                         this._viewsettingsitem.attachFormatError(newValue);
                     }
                 };
 
                 Ui5ViewSettingsItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._viewsettingsitem !== null) {
+                    if (newValue != null && newValue != undefined && this._viewsettingsitem !== null) {
                         this._viewsettingsitem.attachModelContextChange(newValue);
                     }
                 };

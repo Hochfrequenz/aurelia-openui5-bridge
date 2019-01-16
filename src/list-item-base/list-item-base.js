@@ -147,14 +147,14 @@ if (relation == 'dragdropconfig') {  this._listitembase.removeDragDropConfig(chi
       }
       catch(err){}
                                                                             }
-    typeChanged(newValue){if(this._listitembase!==null){ this._listitembase.setType(newValue);}}
-visibleChanged(newValue){if(this._listitembase!==null){ this._listitembase.setVisible(getBooleanFromAttributeValue(newValue));}}
-unreadChanged(newValue){if(this._listitembase!==null){ this._listitembase.setUnread(getBooleanFromAttributeValue(newValue));}}
-selectedChanged(newValue){if(this._listitembase!==null){ this._listitembase.setSelected(getBooleanFromAttributeValue(newValue));}}
-counterChanged(newValue){if(this._listitembase!==null){ this._listitembase.setCounter(newValue);}}
-highlightChanged(newValue){if(this._listitembase!==null){ this._listitembase.setHighlight(newValue);}}
-pressChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachPress(newValue);}}
-detailPressChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachDetailPress(newValue);}}
+    typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setType(newValue);}}
+visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setVisible(getBooleanFromAttributeValue(newValue));}}
+unreadChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setUnread(getBooleanFromAttributeValue(newValue));}}
+selectedChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setSelected(getBooleanFromAttributeValue(newValue));}}
+counterChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setCounter(newValue);}}
+highlightChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setHighlight(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachPress(newValue);}}
+detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachDetailPress(newValue);}}
 blockedChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusyIndicatorDelay(newValue);}}
@@ -162,14 +162,14 @@ busyIndicatorSizeChanged(newValue){if(this._listitembase!==null){ this._listitem
 visibleChanged(newValue){if(this._listitembase!==null){ this._listitembase.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._listitembase!==null){ this._listitembase.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._listitembase!==null){ this._listitembase.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

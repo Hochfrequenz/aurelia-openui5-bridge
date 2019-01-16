@@ -147,23 +147,23 @@ if (relation == 'dragdropconfig') {  this._column.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    widthChanged(newValue){if(this._column!==null){ this._column.setWidth(newValue);}}
-hAlignChanged(newValue){if(this._column!==null){ this._column.setHAlign(newValue);}}
-vAlignChanged(newValue){if(this._column!==null){ this._column.setVAlign(newValue);}}
-styleClassChanged(newValue){if(this._column!==null){ this._column.setStyleClass(newValue);}}
-visibleChanged(newValue){if(this._column!==null){ this._column.setVisible(getBooleanFromAttributeValue(newValue));}}
-minScreenWidthChanged(newValue){if(this._column!==null){ this._column.setMinScreenWidth(newValue);}}
-demandPopinChanged(newValue){if(this._column!==null){ this._column.setDemandPopin(getBooleanFromAttributeValue(newValue));}}
-popinDisplayChanged(newValue){if(this._column!==null){ this._column.setPopinDisplay(newValue);}}
-mergeDuplicatesChanged(newValue){if(this._column!==null){ this._column.setMergeDuplicates(getBooleanFromAttributeValue(newValue));}}
-mergeFunctionNameChanged(newValue){if(this._column!==null){ this._column.setMergeFunctionName(newValue);}}
+    widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setWidth(newValue);}}
+hAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setHAlign(newValue);}}
+vAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setVAlign(newValue);}}
+styleClassChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setStyleClass(newValue);}}
+visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setVisible(getBooleanFromAttributeValue(newValue));}}
+minScreenWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setMinScreenWidth(newValue);}}
+demandPopinChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setDemandPopin(getBooleanFromAttributeValue(newValue));}}
+popinDisplayChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setPopinDisplay(newValue);}}
+mergeDuplicatesChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setMergeDuplicates(getBooleanFromAttributeValue(newValue));}}
+mergeFunctionNameChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setMergeFunctionName(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._column!==null){ this._column.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._column!==null){ this._column.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._column!==null){ this._column.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._column!==null){ this._column.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._column!==null){ this._column.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

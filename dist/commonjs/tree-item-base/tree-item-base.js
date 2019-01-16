@@ -275,13 +275,13 @@ var Ui5TreeItemBase = exports.Ui5TreeItemBase = (_dec = (0, _aureliaTemplating.c
     };
 
     Ui5TreeItemBase.prototype.pressChanged = function pressChanged(newValue) {
-        if (this._treeitembase !== null) {
+        if (newValue != null && newValue != undefined && this._treeitembase !== null) {
             this._treeitembase.attachPress(newValue);
         }
     };
 
     Ui5TreeItemBase.prototype.detailPressChanged = function detailPressChanged(newValue) {
-        if (this._treeitembase !== null) {
+        if (newValue != null && newValue != undefined && this._treeitembase !== null) {
             this._treeitembase.attachDetailPress(newValue);
         }
     };
@@ -323,37 +323,37 @@ var Ui5TreeItemBase = exports.Ui5TreeItemBase = (_dec = (0, _aureliaTemplating.c
     };
 
     Ui5TreeItemBase.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._treeitembase !== null) {
+        if (newValue != null && newValue != undefined && this._treeitembase !== null) {
             this._treeitembase.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5TreeItemBase.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._treeitembase !== null) {
+        if (newValue != null && newValue != undefined && this._treeitembase !== null) {
             this._treeitembase.attachValidationSuccess(newValue);
         }
     };
 
     Ui5TreeItemBase.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._treeitembase !== null) {
+        if (newValue != null && newValue != undefined && this._treeitembase !== null) {
             this._treeitembase.attachValidationError(newValue);
         }
     };
 
     Ui5TreeItemBase.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._treeitembase !== null) {
+        if (newValue != null && newValue != undefined && this._treeitembase !== null) {
             this._treeitembase.attachParseError(newValue);
         }
     };
 
     Ui5TreeItemBase.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._treeitembase !== null) {
+        if (newValue != null && newValue != undefined && this._treeitembase !== null) {
             this._treeitembase.attachFormatError(newValue);
         }
     };
 
     Ui5TreeItemBase.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._treeitembase !== null) {
+        if (newValue != null && newValue != undefined && this._treeitembase !== null) {
             this._treeitembase.attachModelContextChange(newValue);
         }
     };

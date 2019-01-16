@@ -34,6 +34,7 @@ export class Ui5ListBase extends Ui5Control{
 @bindable() growingDirection = 'Downwards';
 @bindable() rememberSelections = true;
 @bindable() keyboardMode = 'Navigation';
+@bindable() sticky = null;
 @bindable() selectionChange = this.defaultFunc;
 @bindable() delete = this.defaultFunc;
 @bindable() swipe = this.defaultFunc;
@@ -89,6 +90,7 @@ params.growingScrollToLoad = getBooleanFromAttributeValue(this.growingScrollToLo
 params.growingDirection = this.growingDirection;
 params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
 params.keyboardMode = this.keyboardMode;
+params.sticky = this.sticky;
 params.selectionChange = this.selectionChange==null ? this.defaultFunc: this.selectionChange;
 params.delete = this.delete==null ? this.defaultFunc: this.delete;
 params.swipe = this.swipe==null ? this.defaultFunc: this.swipe;
@@ -195,33 +197,34 @@ if (relation == 'dragdropconfig') {  this._listbase.removeDragDropConfig(child);
       }
       catch(err){}
                                                                             }
-    insetChanged(newValue){if(this._listbase!==null){ this._listbase.setInset(getBooleanFromAttributeValue(newValue));}}
-headerTextChanged(newValue){if(this._listbase!==null){ this._listbase.setHeaderText(newValue);}}
-footerTextChanged(newValue){if(this._listbase!==null){ this._listbase.setFooterText(newValue);}}
-modeChanged(newValue){if(this._listbase!==null){ this._listbase.setMode(newValue);}}
-widthChanged(newValue){if(this._listbase!==null){ this._listbase.setWidth(newValue);}}
-includeItemInSelectionChanged(newValue){if(this._listbase!==null){ this._listbase.setIncludeItemInSelection(getBooleanFromAttributeValue(newValue));}}
-showUnreadChanged(newValue){if(this._listbase!==null){ this._listbase.setShowUnread(getBooleanFromAttributeValue(newValue));}}
-noDataTextChanged(newValue){if(this._listbase!==null){ this._listbase.setNoDataText(newValue);}}
-showNoDataChanged(newValue){if(this._listbase!==null){ this._listbase.setShowNoData(getBooleanFromAttributeValue(newValue));}}
-enableBusyIndicatorChanged(newValue){if(this._listbase!==null){ this._listbase.setEnableBusyIndicator(getBooleanFromAttributeValue(newValue));}}
-modeAnimationOnChanged(newValue){if(this._listbase!==null){ this._listbase.setModeAnimationOn(getBooleanFromAttributeValue(newValue));}}
-showSeparatorsChanged(newValue){if(this._listbase!==null){ this._listbase.setShowSeparators(newValue);}}
-swipeDirectionChanged(newValue){if(this._listbase!==null){ this._listbase.setSwipeDirection(newValue);}}
-growingChanged(newValue){if(this._listbase!==null){ this._listbase.setGrowing(getBooleanFromAttributeValue(newValue));}}
-growingThresholdChanged(newValue){if(this._listbase!==null){ this._listbase.setGrowingThreshold(newValue);}}
-growingTriggerTextChanged(newValue){if(this._listbase!==null){ this._listbase.setGrowingTriggerText(newValue);}}
-growingScrollToLoadChanged(newValue){if(this._listbase!==null){ this._listbase.setGrowingScrollToLoad(getBooleanFromAttributeValue(newValue));}}
-growingDirectionChanged(newValue){if(this._listbase!==null){ this._listbase.setGrowingDirection(newValue);}}
-rememberSelectionsChanged(newValue){if(this._listbase!==null){ this._listbase.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
-keyboardModeChanged(newValue){if(this._listbase!==null){ this._listbase.setKeyboardMode(newValue);}}
-selectionChangeChanged(newValue){if(this._listbase!==null){ this._listbase.attachSelectionChange(newValue);}}
-deleteChanged(newValue){if(this._listbase!==null){ this._listbase.attachDelete(newValue);}}
-swipeChanged(newValue){if(this._listbase!==null){ this._listbase.attachSwipe(newValue);}}
-updateStartedChanged(newValue){if(this._listbase!==null){ this._listbase.attachUpdateStarted(newValue);}}
-updateFinishedChanged(newValue){if(this._listbase!==null){ this._listbase.attachUpdateFinished(newValue);}}
-itemPressChanged(newValue){if(this._listbase!==null){ this._listbase.attachItemPress(newValue);}}
-beforeOpenContextMenuChanged(newValue){if(this._listbase!==null){ this._listbase.attachBeforeOpenContextMenu(newValue);}}
+    insetChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setInset(getBooleanFromAttributeValue(newValue));}}
+headerTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setHeaderText(newValue);}}
+footerTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setFooterText(newValue);}}
+modeChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setMode(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setWidth(newValue);}}
+includeItemInSelectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setIncludeItemInSelection(getBooleanFromAttributeValue(newValue));}}
+showUnreadChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setShowUnread(getBooleanFromAttributeValue(newValue));}}
+noDataTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setNoDataText(newValue);}}
+showNoDataChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setShowNoData(getBooleanFromAttributeValue(newValue));}}
+enableBusyIndicatorChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setEnableBusyIndicator(getBooleanFromAttributeValue(newValue));}}
+modeAnimationOnChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setModeAnimationOn(getBooleanFromAttributeValue(newValue));}}
+showSeparatorsChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setShowSeparators(newValue);}}
+swipeDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setSwipeDirection(newValue);}}
+growingChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setGrowing(getBooleanFromAttributeValue(newValue));}}
+growingThresholdChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setGrowingThreshold(newValue);}}
+growingTriggerTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setGrowingTriggerText(newValue);}}
+growingScrollToLoadChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setGrowingScrollToLoad(getBooleanFromAttributeValue(newValue));}}
+growingDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setGrowingDirection(newValue);}}
+rememberSelectionsChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
+keyboardModeChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setKeyboardMode(newValue);}}
+stickyChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.setSticky(newValue);}}
+selectionChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachSelectionChange(newValue);}}
+deleteChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachDelete(newValue);}}
+swipeChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachSwipe(newValue);}}
+updateStartedChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachUpdateStarted(newValue);}}
+updateFinishedChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachUpdateFinished(newValue);}}
+itemPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachItemPress(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachBeforeOpenContextMenu(newValue);}}
 blockedChanged(newValue){if(this._listbase!==null){ this._listbase.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._listbase!==null){ this._listbase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._listbase!==null){ this._listbase.setBusyIndicatorDelay(newValue);}}
@@ -229,14 +232,14 @@ busyIndicatorSizeChanged(newValue){if(this._listbase!==null){ this._listbase.set
 visibleChanged(newValue){if(this._listbase!==null){ this._listbase.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._listbase!==null){ this._listbase.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._listbase!==null){ this._listbase.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._listbase!==null){ this._listbase.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._listbase!==null){ this._listbase.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._listbase!==null){ this._listbase.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._listbase!==null){ this._listbase.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._listbase!==null){ this._listbase.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._listbase!==null){ this._listbase.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

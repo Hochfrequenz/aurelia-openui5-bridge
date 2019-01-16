@@ -276,37 +276,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5WizardStep.prototype.titleChanged = function titleChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.setTitle(newValue);
             }
         };
 
         Ui5WizardStep.prototype.iconChanged = function iconChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.setIcon(newValue);
             }
         };
 
         Ui5WizardStep.prototype.validatedChanged = function validatedChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.setValidated((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5WizardStep.prototype.optionalChanged = function optionalChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.setOptional((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5WizardStep.prototype.completeChanged = function completeChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.attachComplete(newValue);
             }
         };
 
         Ui5WizardStep.prototype.activateChanged = function activateChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.attachActivate(newValue);
             }
         };
@@ -348,37 +348,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5WizardStep.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5WizardStep.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.attachValidationSuccess(newValue);
             }
         };
 
         Ui5WizardStep.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.attachValidationError(newValue);
             }
         };
 
         Ui5WizardStep.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.attachParseError(newValue);
             }
         };
 
         Ui5WizardStep.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.attachFormatError(newValue);
             }
         };
 
         Ui5WizardStep.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._wizardstep !== null) {
+            if (newValue != null && newValue != undefined && this._wizardstep !== null) {
                 this._wizardstep.attachModelContextChange(newValue);
             }
         };

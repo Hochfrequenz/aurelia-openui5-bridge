@@ -252,13 +252,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5SuggestionItem.prototype.iconChanged = function iconChanged(newValue) {
-            if (this._suggestionitem !== null) {
+            if (newValue != null && newValue != undefined && this._suggestionitem !== null) {
                 this._suggestionitem.setIcon(newValue);
             }
         };
 
         Ui5SuggestionItem.prototype.descriptionChanged = function descriptionChanged(newValue) {
-            if (this._suggestionitem !== null) {
+            if (newValue != null && newValue != undefined && this._suggestionitem !== null) {
                 this._suggestionitem.setDescription(newValue);
             }
         };
@@ -288,31 +288,31 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5SuggestionItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._suggestionitem !== null) {
+            if (newValue != null && newValue != undefined && this._suggestionitem !== null) {
                 this._suggestionitem.attachValidationSuccess(newValue);
             }
         };
 
         Ui5SuggestionItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._suggestionitem !== null) {
+            if (newValue != null && newValue != undefined && this._suggestionitem !== null) {
                 this._suggestionitem.attachValidationError(newValue);
             }
         };
 
         Ui5SuggestionItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._suggestionitem !== null) {
+            if (newValue != null && newValue != undefined && this._suggestionitem !== null) {
                 this._suggestionitem.attachParseError(newValue);
             }
         };
 
         Ui5SuggestionItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._suggestionitem !== null) {
+            if (newValue != null && newValue != undefined && this._suggestionitem !== null) {
                 this._suggestionitem.attachFormatError(newValue);
             }
         };
 
         Ui5SuggestionItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._suggestionitem !== null) {
+            if (newValue != null && newValue != undefined && this._suggestionitem !== null) {
                 this._suggestionitem.attachModelContextChange(newValue);
             }
         };

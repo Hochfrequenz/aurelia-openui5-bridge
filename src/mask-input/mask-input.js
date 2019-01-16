@@ -151,8 +151,8 @@ if (relation == 'dragdropconfig') {  this._maskinput.removeDragDropConfig(child)
       }
       catch(err){}
                                                                             }
-    placeholderSymbolChanged(newValue){if(this._maskinput!==null){ this._maskinput.setPlaceholderSymbol(newValue);}}
-maskChanged(newValue){if(this._maskinput!==null){ this._maskinput.setMask(newValue);}}
+    placeholderSymbolChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.setPlaceholderSymbol(newValue);}}
+maskChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.setMask(newValue);}}
 valueChanged(newValue){if(this._maskinput!==null){ this._maskinput.setValue(newValue);}}
 widthChanged(newValue){if(this._maskinput!==null){ this._maskinput.setWidth(newValue);}}
 enabledChanged(newValue){if(this._maskinput!==null){ this._maskinput.setEnabled(getBooleanFromAttributeValue(newValue));}}
@@ -166,7 +166,7 @@ textAlignChanged(newValue){if(this._maskinput!==null){ this._maskinput.setTextAl
 textDirectionChanged(newValue){if(this._maskinput!==null){ this._maskinput.setTextDirection(newValue);}}
 requiredChanged(newValue){if(this._maskinput!==null){ this._maskinput.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
-changeChanged(newValue){if(this._maskinput!==null){ this._maskinput.attachChange(newValue);}}
+changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.attachChange(newValue);}}
 blockedChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBusyIndicatorDelay(newValue);}}
@@ -174,14 +174,14 @@ busyIndicatorSizeChanged(newValue){if(this._maskinput!==null){ this._maskinput.s
 visibleChanged(newValue){if(this._maskinput!==null){ this._maskinput.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._maskinput!==null){ this._maskinput.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._maskinput!==null){ this._maskinput.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._maskinput!==null){ this._maskinput.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._maskinput!==null){ this._maskinput.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._maskinput!==null){ this._maskinput.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._maskinput!==null){ this._maskinput.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._maskinput!==null){ this._maskinput.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

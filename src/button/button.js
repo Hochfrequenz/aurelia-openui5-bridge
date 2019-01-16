@@ -151,16 +151,16 @@ if (relation == 'dragdropconfig') {  this._button.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    textChanged(newValue){if(this._button!==null){ this._button.setText(newValue);}}
-typeChanged(newValue){if(this._button!==null){ this._button.setType(newValue);}}
-widthChanged(newValue){if(this._button!==null){ this._button.setWidth(newValue);}}
-enabledChanged(newValue){if(this._button!==null){ this._button.setEnabled(getBooleanFromAttributeValue(newValue));}}
-iconChanged(newValue){if(this._button!==null){ this._button.setIcon(newValue);}}
-iconFirstChanged(newValue){if(this._button!==null){ this._button.setIconFirst(getBooleanFromAttributeValue(newValue));}}
-activeIconChanged(newValue){if(this._button!==null){ this._button.setActiveIcon(newValue);}}
-iconDensityAwareChanged(newValue){if(this._button!==null){ this._button.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
-textDirectionChanged(newValue){if(this._button!==null){ this._button.setTextDirection(newValue);}}
-pressChanged(newValue){if(this._button!==null){ this._button.attachPress(newValue);}}
+    textChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setText(newValue);}}
+typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setType(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setWidth(newValue);}}
+enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setEnabled(getBooleanFromAttributeValue(newValue));}}
+iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setIcon(newValue);}}
+iconFirstChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setIconFirst(getBooleanFromAttributeValue(newValue));}}
+activeIconChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setActiveIcon(newValue);}}
+iconDensityAwareChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
+textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setTextDirection(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.attachPress(newValue);}}
 blockedChanged(newValue){if(this._button!==null){ this._button.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._button!==null){ this._button.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._button!==null){ this._button.setBusyIndicatorDelay(newValue);}}
@@ -168,14 +168,14 @@ busyIndicatorSizeChanged(newValue){if(this._button!==null){ this._button.setBusy
 visibleChanged(newValue){if(this._button!==null){ this._button.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._button!==null){ this._button.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._button!==null){ this._button.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._button!==null){ this._button.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._button!==null){ this._button.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._button!==null){ this._button.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._button!==null){ this._button.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._button!==null){ this._button.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

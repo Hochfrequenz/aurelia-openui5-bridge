@@ -147,13 +147,13 @@ if (relation == 'dragdropconfig') {  this._messagestrip.removeDragDropConfig(chi
       }
       catch(err){}
                                                                             }
-    textChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setText(newValue);}}
-typeChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setType(newValue);}}
-customIconChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setCustomIcon(newValue);}}
-showIconChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setShowIcon(getBooleanFromAttributeValue(newValue));}}
-showCloseButtonChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setShowCloseButton(getBooleanFromAttributeValue(newValue));}}
-enableFormattedTextChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setEnableFormattedText(getBooleanFromAttributeValue(newValue));}}
-closeChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.attachClose(newValue);}}
+    textChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.setText(newValue);}}
+typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.setType(newValue);}}
+customIconChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.setCustomIcon(newValue);}}
+showIconChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.setShowIcon(getBooleanFromAttributeValue(newValue));}}
+showCloseButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.setShowCloseButton(getBooleanFromAttributeValue(newValue));}}
+enableFormattedTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.setEnableFormattedText(getBooleanFromAttributeValue(newValue));}}
+closeChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.attachClose(newValue);}}
 blockedChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBusyIndicatorDelay(newValue);}}
@@ -161,14 +161,14 @@ busyIndicatorSizeChanged(newValue){if(this._messagestrip!==null){ this._messages
 visibleChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

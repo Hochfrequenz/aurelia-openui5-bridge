@@ -339,157 +339,157 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5gridTableColumn.prototype.widthChanged = function widthChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setWidth(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.minWidthChanged = function minWidthChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setMinWidth(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.resizableChanged = function resizableChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setResizable(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5gridTableColumn.prototype.hAlignChanged = function hAlignChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setHAlign(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.sortedChanged = function sortedChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setSorted(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5gridTableColumn.prototype.sortOrderChanged = function sortOrderChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setSortOrder(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.sortPropertyChanged = function sortPropertyChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setSortProperty(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.filteredChanged = function filteredChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setFiltered(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5gridTableColumn.prototype.filterPropertyChanged = function filterPropertyChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setFilterProperty(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.filterValueChanged = function filterValueChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setFilterValue(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.filterOperatorChanged = function filterOperatorChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setFilterOperator(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.defaultFilterOperatorChanged = function defaultFilterOperatorChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setDefaultFilterOperator(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.filterTypeChanged = function filterTypeChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setFilterType(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.groupedChanged = function groupedChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setGrouped(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5gridTableColumn.prototype.visibleChanged = function visibleChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setVisible(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5gridTableColumn.prototype.nameChanged = function nameChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setName(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.showFilterMenuEntryChanged = function showFilterMenuEntryChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setShowFilterMenuEntry(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5gridTableColumn.prototype.showSortMenuEntryChanged = function showSortMenuEntryChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setShowSortMenuEntry(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5gridTableColumn.prototype.headerSpanChanged = function headerSpanChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setHeaderSpan(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.autoResizableChanged = function autoResizableChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.setAutoResizable(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5gridTableColumn.prototype.columnMenuOpenChanged = function columnMenuOpenChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.attachColumnMenuOpen(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.attachValidationError(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.attachParseError(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.attachFormatError(newValue);
                     }
                 };
 
                 Ui5gridTableColumn.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._gridtablecolumn !== null) {
+                    if (newValue != null && newValue != undefined && this._gridtablecolumn !== null) {
                         this._gridtablecolumn.attachModelContextChange(newValue);
                     }
                 };

@@ -305,31 +305,31 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5DynamicPage.prototype.preserveHeaderStateOnScrollChanged = function preserveHeaderStateOnScrollChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.setPreserveHeaderStateOnScroll(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5DynamicPage.prototype.headerExpandedChanged = function headerExpandedChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.setHeaderExpanded(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5DynamicPage.prototype.toggleHeaderOnTitleClickChanged = function toggleHeaderOnTitleClickChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.setToggleHeaderOnTitleClick(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5DynamicPage.prototype.showFooterChanged = function showFooterChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.setShowFooter(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5DynamicPage.prototype.fitContentChanged = function fitContentChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.setFitContent(getBooleanFromAttributeValue(newValue));
                     }
                 };
@@ -371,37 +371,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5DynamicPage.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5DynamicPage.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5DynamicPage.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.attachValidationError(newValue);
                     }
                 };
 
                 Ui5DynamicPage.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.attachParseError(newValue);
                     }
                 };
 
                 Ui5DynamicPage.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.attachFormatError(newValue);
                     }
                 };
 
                 Ui5DynamicPage.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._dynamicpage !== null) {
+                    if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
                         this._dynamicpage.attachModelContextChange(newValue);
                     }
                 };

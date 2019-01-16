@@ -284,25 +284,25 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5TabContainer.prototype.showAddNewButtonChanged = function showAddNewButtonChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.setShowAddNewButton(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5TabContainer.prototype.itemCloseChanged = function itemCloseChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.attachItemClose(newValue);
                     }
                 };
 
                 Ui5TabContainer.prototype.itemSelectChanged = function itemSelectChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.attachItemSelect(newValue);
                     }
                 };
 
                 Ui5TabContainer.prototype.addNewButtonPressChanged = function addNewButtonPressChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.attachAddNewButtonPress(newValue);
                     }
                 };
@@ -344,37 +344,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5TabContainer.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5TabContainer.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5TabContainer.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.attachValidationError(newValue);
                     }
                 };
 
                 Ui5TabContainer.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.attachParseError(newValue);
                     }
                 };
 
                 Ui5TabContainer.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.attachFormatError(newValue);
                     }
                 };
 
                 Ui5TabContainer.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._tabcontainer !== null) {
+                    if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
                         this._tabcontainer.attachModelContextChange(newValue);
                     }
                 };

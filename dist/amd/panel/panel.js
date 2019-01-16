@@ -297,55 +297,55 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Panel.prototype.headerTextChanged = function headerTextChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.setHeaderText(newValue);
             }
         };
 
         Ui5Panel.prototype.widthChanged = function widthChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.setWidth(newValue);
             }
         };
 
         Ui5Panel.prototype.heightChanged = function heightChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.setHeight(newValue);
             }
         };
 
         Ui5Panel.prototype.expandableChanged = function expandableChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.setExpandable((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Panel.prototype.expandedChanged = function expandedChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.setExpanded((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Panel.prototype.expandAnimationChanged = function expandAnimationChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.setExpandAnimation((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Panel.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.setBackgroundDesign(newValue);
             }
         };
 
         Ui5Panel.prototype.accessibleRoleChanged = function accessibleRoleChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.setAccessibleRole(newValue);
             }
         };
 
         Ui5Panel.prototype.expandChanged = function expandChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.attachExpand(newValue);
             }
         };
@@ -387,37 +387,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Panel.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Panel.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Panel.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.attachValidationError(newValue);
             }
         };
 
         Ui5Panel.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.attachParseError(newValue);
             }
         };
 
         Ui5Panel.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.attachFormatError(newValue);
             }
         };
 
         Ui5Panel.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._panel !== null) {
+            if (newValue != null && newValue != undefined && this._panel !== null) {
                 this._panel.attachModelContextChange(newValue);
             }
         };

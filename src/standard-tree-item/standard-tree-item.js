@@ -145,8 +145,8 @@ if (relation == 'dragdropconfig') {  this._standardtreeitem.removeDragDropConfig
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setTitle(newValue);}}
-iconChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setIcon(newValue);}}
+    titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.setTitle(newValue);}}
+iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.setIcon(newValue);}}
 /* inherited from sap.m.TreeItemBase*/
 typeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setType(newValue);}}
 visibleChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
@@ -155,8 +155,8 @@ selectedChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreei
 counterChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setCounter(newValue);}}
 highlightChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setHighlight(newValue);}}
 /* inherited from sap.m.ListItemBase*/
-pressChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachPress(newValue);}}
-detailPressChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachDetailPress(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachPress(newValue);}}
+detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachDetailPress(newValue);}}
 blockedChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusyIndicatorDelay(newValue);}}
@@ -164,14 +164,14 @@ busyIndicatorSizeChanged(newValue){if(this._standardtreeitem!==null){ this._stan
 visibleChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

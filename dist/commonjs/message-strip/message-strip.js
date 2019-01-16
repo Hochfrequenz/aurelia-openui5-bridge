@@ -250,43 +250,43 @@ var Ui5MessageStrip = exports.Ui5MessageStrip = (_dec = (0, _aureliaTemplating.c
     };
 
     Ui5MessageStrip.prototype.textChanged = function textChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.setText(newValue);
         }
     };
 
     Ui5MessageStrip.prototype.typeChanged = function typeChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.setType(newValue);
         }
     };
 
     Ui5MessageStrip.prototype.customIconChanged = function customIconChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.setCustomIcon(newValue);
         }
     };
 
     Ui5MessageStrip.prototype.showIconChanged = function showIconChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.setShowIcon((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5MessageStrip.prototype.showCloseButtonChanged = function showCloseButtonChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.setShowCloseButton((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5MessageStrip.prototype.enableFormattedTextChanged = function enableFormattedTextChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.setEnableFormattedText((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5MessageStrip.prototype.closeChanged = function closeChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.attachClose(newValue);
         }
     };
@@ -328,37 +328,37 @@ var Ui5MessageStrip = exports.Ui5MessageStrip = (_dec = (0, _aureliaTemplating.c
     };
 
     Ui5MessageStrip.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5MessageStrip.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.attachValidationSuccess(newValue);
         }
     };
 
     Ui5MessageStrip.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.attachValidationError(newValue);
         }
     };
 
     Ui5MessageStrip.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.attachParseError(newValue);
         }
     };
 
     Ui5MessageStrip.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.attachFormatError(newValue);
         }
     };
 
     Ui5MessageStrip.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._messagestrip !== null) {
+        if (newValue != null && newValue != undefined && this._messagestrip !== null) {
             this._messagestrip.attachModelContextChange(newValue);
         }
     };

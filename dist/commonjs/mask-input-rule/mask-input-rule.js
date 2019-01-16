@@ -215,43 +215,43 @@ var Ui5MaskInputRule = exports.Ui5MaskInputRule = (_dec = (0, _aureliaTemplating
     };
 
     Ui5MaskInputRule.prototype.maskFormatSymbolChanged = function maskFormatSymbolChanged(newValue) {
-        if (this._maskinputrule !== null) {
+        if (newValue != null && newValue != undefined && this._maskinputrule !== null) {
             this._maskinputrule.setMaskFormatSymbol(newValue);
         }
     };
 
     Ui5MaskInputRule.prototype.regexChanged = function regexChanged(newValue) {
-        if (this._maskinputrule !== null) {
+        if (newValue != null && newValue != undefined && this._maskinputrule !== null) {
             this._maskinputrule.setRegex(newValue);
         }
     };
 
     Ui5MaskInputRule.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._maskinputrule !== null) {
+        if (newValue != null && newValue != undefined && this._maskinputrule !== null) {
             this._maskinputrule.attachValidationSuccess(newValue);
         }
     };
 
     Ui5MaskInputRule.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._maskinputrule !== null) {
+        if (newValue != null && newValue != undefined && this._maskinputrule !== null) {
             this._maskinputrule.attachValidationError(newValue);
         }
     };
 
     Ui5MaskInputRule.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._maskinputrule !== null) {
+        if (newValue != null && newValue != undefined && this._maskinputrule !== null) {
             this._maskinputrule.attachParseError(newValue);
         }
     };
 
     Ui5MaskInputRule.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._maskinputrule !== null) {
+        if (newValue != null && newValue != undefined && this._maskinputrule !== null) {
             this._maskinputrule.attachFormatError(newValue);
         }
     };
 
     Ui5MaskInputRule.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._maskinputrule !== null) {
+        if (newValue != null && newValue != undefined && this._maskinputrule !== null) {
             this._maskinputrule.attachModelContextChange(newValue);
         }
     };

@@ -155,18 +155,18 @@ if (relation == 'dragdropconfig') {  this._link.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    textChanged(newValue){if(this._link!==null){ this._link.setText(newValue);}}
-enabledChanged(newValue){if(this._link!==null){ this._link.setEnabled(getBooleanFromAttributeValue(newValue));}}
-targetChanged(newValue){if(this._link!==null){ this._link.setTarget(newValue);}}
-widthChanged(newValue){if(this._link!==null){ this._link.setWidth(newValue);}}
-hrefChanged(newValue){if(this._link!==null){ this._link.setHref(newValue);}}
-validateUrlChanged(newValue){if(this._link!==null){ this._link.setValidateUrl(getBooleanFromAttributeValue(newValue));}}
-wrappingChanged(newValue){if(this._link!==null){ this._link.setWrapping(getBooleanFromAttributeValue(newValue));}}
-textAlignChanged(newValue){if(this._link!==null){ this._link.setTextAlign(newValue);}}
-textDirectionChanged(newValue){if(this._link!==null){ this._link.setTextDirection(newValue);}}
-subtleChanged(newValue){if(this._link!==null){ this._link.setSubtle(getBooleanFromAttributeValue(newValue));}}
-emphasizedChanged(newValue){if(this._link!==null){ this._link.setEmphasized(getBooleanFromAttributeValue(newValue));}}
-pressChanged(newValue){if(this._link!==null){ this._link.attachPress(newValue);}}
+    textChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setText(newValue);}}
+enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setEnabled(getBooleanFromAttributeValue(newValue));}}
+targetChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setTarget(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setWidth(newValue);}}
+hrefChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setHref(newValue);}}
+validateUrlChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setValidateUrl(getBooleanFromAttributeValue(newValue));}}
+wrappingChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setWrapping(getBooleanFromAttributeValue(newValue));}}
+textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setTextAlign(newValue);}}
+textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setTextDirection(newValue);}}
+subtleChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setSubtle(getBooleanFromAttributeValue(newValue));}}
+emphasizedChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setEmphasized(getBooleanFromAttributeValue(newValue));}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.attachPress(newValue);}}
 blockedChanged(newValue){if(this._link!==null){ this._link.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._link!==null){ this._link.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._link!==null){ this._link.setBusyIndicatorDelay(newValue);}}
@@ -174,14 +174,14 @@ busyIndicatorSizeChanged(newValue){if(this._link!==null){ this._link.setBusyIndi
 visibleChanged(newValue){if(this._link!==null){ this._link.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._link!==null){ this._link.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._link!==null){ this._link.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._link!==null){ this._link.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._link!==null){ this._link.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._link!==null){ this._link.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._link!==null){ this._link.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._link!==null){ this._link.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

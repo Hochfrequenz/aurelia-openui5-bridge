@@ -253,13 +253,13 @@ var Ui5Form = exports.Ui5Form = (_dec = (0, _aureliaTemplating.customElement)('u
     };
 
     Ui5Form.prototype.widthChanged = function widthChanged(newValue) {
-        if (this._form !== null) {
+        if (newValue != null && newValue != undefined && this._form !== null) {
             this._form.setWidth(newValue);
         }
     };
 
     Ui5Form.prototype.editableChanged = function editableChanged(newValue) {
-        if (this._form !== null) {
+        if (newValue != null && newValue != undefined && this._form !== null) {
             this._form.setEditable((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
@@ -301,37 +301,37 @@ var Ui5Form = exports.Ui5Form = (_dec = (0, _aureliaTemplating.customElement)('u
     };
 
     Ui5Form.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._form !== null) {
+        if (newValue != null && newValue != undefined && this._form !== null) {
             this._form.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5Form.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._form !== null) {
+        if (newValue != null && newValue != undefined && this._form !== null) {
             this._form.attachValidationSuccess(newValue);
         }
     };
 
     Ui5Form.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._form !== null) {
+        if (newValue != null && newValue != undefined && this._form !== null) {
             this._form.attachValidationError(newValue);
         }
     };
 
     Ui5Form.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._form !== null) {
+        if (newValue != null && newValue != undefined && this._form !== null) {
             this._form.attachParseError(newValue);
         }
     };
 
     Ui5Form.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._form !== null) {
+        if (newValue != null && newValue != undefined && this._form !== null) {
             this._form.attachFormatError(newValue);
         }
     };
 
     Ui5Form.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._form !== null) {
+        if (newValue != null && newValue != undefined && this._form !== null) {
             this._form.attachModelContextChange(newValue);
         }
     };

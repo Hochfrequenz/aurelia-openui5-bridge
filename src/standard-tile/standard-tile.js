@@ -152,18 +152,18 @@ if (relation == 'dragdropconfig') {  this._standardtile.removeDragDropConfig(chi
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._standardtile!==null){ this._standardtile.setTitle(newValue);}}
-infoChanged(newValue){if(this._standardtile!==null){ this._standardtile.setInfo(newValue);}}
-iconChanged(newValue){if(this._standardtile!==null){ this._standardtile.setIcon(newValue);}}
-activeIconChanged(newValue){if(this._standardtile!==null){ this._standardtile.setActiveIcon(newValue);}}
-numberChanged(newValue){if(this._standardtile!==null){ this._standardtile.setNumber(newValue);}}
-numberUnitChanged(newValue){if(this._standardtile!==null){ this._standardtile.setNumberUnit(newValue);}}
-infoStateChanged(newValue){if(this._standardtile!==null){ this._standardtile.setInfoState(newValue);}}
-typeChanged(newValue){if(this._standardtile!==null){ this._standardtile.setType(newValue);}}
-iconDensityAwareChanged(newValue){if(this._standardtile!==null){ this._standardtile.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
+    titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.setTitle(newValue);}}
+infoChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.setInfo(newValue);}}
+iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.setIcon(newValue);}}
+activeIconChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.setActiveIcon(newValue);}}
+numberChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.setNumber(newValue);}}
+numberUnitChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.setNumberUnit(newValue);}}
+infoStateChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.setInfoState(newValue);}}
+typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.setType(newValue);}}
+iconDensityAwareChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
 removableChanged(newValue){if(this._standardtile!==null){ this._standardtile.setRemovable(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.Tile*/
-pressChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachPress(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.attachPress(newValue);}}
 blockedChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusyIndicatorDelay(newValue);}}
@@ -171,14 +171,14 @@ busyIndicatorSizeChanged(newValue){if(this._standardtile!==null){ this._standard
 visibleChanged(newValue){if(this._standardtile!==null){ this._standardtile.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._standardtile!==null){ this._standardtile.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._standardtile!==null){ this._standardtile.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

@@ -247,49 +247,49 @@ var Ui5ListItemBase = exports.Ui5ListItemBase = (_dec = (0, _aureliaTemplating.c
     };
 
     Ui5ListItemBase.prototype.typeChanged = function typeChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.setType(newValue);
         }
     };
 
     Ui5ListItemBase.prototype.visibleChanged = function visibleChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5ListItemBase.prototype.unreadChanged = function unreadChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.setUnread((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5ListItemBase.prototype.selectedChanged = function selectedChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.setSelected((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5ListItemBase.prototype.counterChanged = function counterChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.setCounter(newValue);
         }
     };
 
     Ui5ListItemBase.prototype.highlightChanged = function highlightChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.setHighlight(newValue);
         }
     };
 
     Ui5ListItemBase.prototype.pressChanged = function pressChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.attachPress(newValue);
         }
     };
 
     Ui5ListItemBase.prototype.detailPressChanged = function detailPressChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.attachDetailPress(newValue);
         }
     };
@@ -331,37 +331,37 @@ var Ui5ListItemBase = exports.Ui5ListItemBase = (_dec = (0, _aureliaTemplating.c
     };
 
     Ui5ListItemBase.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5ListItemBase.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.attachValidationSuccess(newValue);
         }
     };
 
     Ui5ListItemBase.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.attachValidationError(newValue);
         }
     };
 
     Ui5ListItemBase.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.attachParseError(newValue);
         }
     };
 
     Ui5ListItemBase.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.attachFormatError(newValue);
         }
     };
 
     Ui5ListItemBase.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._listitembase !== null) {
+        if (newValue != null && newValue != undefined && this._listitembase !== null) {
             this._listitembase.attachModelContextChange(newValue);
         }
     };

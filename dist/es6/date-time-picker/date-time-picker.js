@@ -163,14 +163,14 @@ if (relation == 'dragdropconfig') {  this._datetimepicker.removeDragDropConfig(c
       }
       catch(err){}
                                                                             }
-    minutesStepChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setMinutesStep(newValue);}}
-secondsStepChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setSecondsStep(newValue);}}
+    minutesStepChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.setMinutesStep(newValue);}}
+secondsStepChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.setSecondsStep(newValue);}}
 displayFormatTypeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setDisplayFormatType(newValue);}}
 secondaryCalendarTypeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setSecondaryCalendarType(newValue);}}
 minDateChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setMinDate(newValue);}}
 maxDateChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setMaxDate(newValue);}}
 /* inherited from sap.m.DatePicker*/
-navigateChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachNavigate(newValue);}}
+navigateChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachNavigate(newValue);}}
 displayFormatChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setDisplayFormat(newValue);}}
 valueFormatChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setValueFormat(newValue);}}
 dateValueChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setDateValue(newValue);}}
@@ -189,7 +189,7 @@ textAlignChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker
 textDirectionChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setTextDirection(newValue);}}
 requiredChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
-changeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachChange(newValue);}}
+changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachChange(newValue);}}
 blockedChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBusyIndicatorDelay(newValue);}}
@@ -197,14 +197,14 @@ busyIndicatorSizeChanged(newValue){if(this._datetimepicker!==null){ this._dateti
 visibleChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

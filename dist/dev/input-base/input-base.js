@@ -305,79 +305,79 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5InputBase.prototype.valueChanged = function valueChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setValue(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.widthChanged = function widthChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setWidth(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.enabledChanged = function enabledChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setEnabled(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5InputBase.prototype.valueStateChanged = function valueStateChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setValueState(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.nameChanged = function nameChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setName(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.placeholderChanged = function placeholderChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setPlaceholder(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.editableChanged = function editableChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setEditable(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5InputBase.prototype.valueStateTextChanged = function valueStateTextChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setValueStateText(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.showValueStateMessageChanged = function showValueStateMessageChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5InputBase.prototype.textAlignChanged = function textAlignChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setTextAlign(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.textDirectionChanged = function textDirectionChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setTextDirection(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.requiredChanged = function requiredChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.setRequired(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5InputBase.prototype.changeChanged = function changeChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.attachChange(newValue);
                     }
                 };
@@ -419,37 +419,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5InputBase.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.attachValidationError(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.attachParseError(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.attachFormatError(newValue);
                     }
                 };
 
                 Ui5InputBase.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._inputbase !== null) {
+                    if (newValue != null && newValue != undefined && this._inputbase !== null) {
                         this._inputbase.attachModelContextChange(newValue);
                     }
                 };

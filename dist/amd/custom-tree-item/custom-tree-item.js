@@ -310,13 +310,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5CustomTreeItem.prototype.pressChanged = function pressChanged(newValue) {
-            if (this._customtreeitem !== null) {
+            if (newValue != null && newValue != undefined && this._customtreeitem !== null) {
                 this._customtreeitem.attachPress(newValue);
             }
         };
 
         Ui5CustomTreeItem.prototype.detailPressChanged = function detailPressChanged(newValue) {
-            if (this._customtreeitem !== null) {
+            if (newValue != null && newValue != undefined && this._customtreeitem !== null) {
                 this._customtreeitem.attachDetailPress(newValue);
             }
         };
@@ -358,37 +358,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5CustomTreeItem.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._customtreeitem !== null) {
+            if (newValue != null && newValue != undefined && this._customtreeitem !== null) {
                 this._customtreeitem.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5CustomTreeItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._customtreeitem !== null) {
+            if (newValue != null && newValue != undefined && this._customtreeitem !== null) {
                 this._customtreeitem.attachValidationSuccess(newValue);
             }
         };
 
         Ui5CustomTreeItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._customtreeitem !== null) {
+            if (newValue != null && newValue != undefined && this._customtreeitem !== null) {
                 this._customtreeitem.attachValidationError(newValue);
             }
         };
 
         Ui5CustomTreeItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._customtreeitem !== null) {
+            if (newValue != null && newValue != undefined && this._customtreeitem !== null) {
                 this._customtreeitem.attachParseError(newValue);
             }
         };
 
         Ui5CustomTreeItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._customtreeitem !== null) {
+            if (newValue != null && newValue != undefined && this._customtreeitem !== null) {
                 this._customtreeitem.attachFormatError(newValue);
             }
         };
 
         Ui5CustomTreeItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._customtreeitem !== null) {
+            if (newValue != null && newValue != undefined && this._customtreeitem !== null) {
                 this._customtreeitem.attachModelContextChange(newValue);
             }
         };

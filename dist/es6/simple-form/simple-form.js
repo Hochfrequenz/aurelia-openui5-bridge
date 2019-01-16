@@ -183,29 +183,29 @@ if (relation == 'dragdropconfig') {  this._simpleform.removeDragDropConfig(child
       }
       catch(err){}
                                                                             }
-    maxContainerColsChanged(newValue){if(this._simpleform!==null){ this._simpleform.setMaxContainerCols(newValue);}}
-minWidthChanged(newValue){if(this._simpleform!==null){ this._simpleform.setMinWidth(newValue);}}
-widthChanged(newValue){if(this._simpleform!==null){ this._simpleform.setWidth(newValue);}}
-editableChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEditable(getBooleanFromAttributeValue(newValue));}}
-labelMinWidthChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelMinWidth(newValue);}}
-layoutChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLayout(newValue);}}
-labelSpanXLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelSpanXL(newValue);}}
-labelSpanLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelSpanL(newValue);}}
-labelSpanMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelSpanM(newValue);}}
-labelSpanSChanged(newValue){if(this._simpleform!==null){ this._simpleform.setLabelSpanS(newValue);}}
-adjustLabelSpanChanged(newValue){if(this._simpleform!==null){ this._simpleform.setAdjustLabelSpan(getBooleanFromAttributeValue(newValue));}}
-emptySpanXLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEmptySpanXL(newValue);}}
-emptySpanLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEmptySpanL(newValue);}}
-emptySpanMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEmptySpanM(newValue);}}
-emptySpanSChanged(newValue){if(this._simpleform!==null){ this._simpleform.setEmptySpanS(newValue);}}
-columnsXLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setColumnsXL(newValue);}}
-columnsLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setColumnsL(newValue);}}
-columnsMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setColumnsM(newValue);}}
-singleContainerFullSizeChanged(newValue){if(this._simpleform!==null){ this._simpleform.setSingleContainerFullSize(getBooleanFromAttributeValue(newValue));}}
-breakpointXLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBreakpointXL(newValue);}}
-breakpointLChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBreakpointL(newValue);}}
-breakpointMChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBreakpointM(newValue);}}
-backgroundDesignChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBackgroundDesign(newValue);}}
+    maxContainerColsChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setMaxContainerCols(newValue);}}
+minWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setMinWidth(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setWidth(newValue);}}
+editableChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setEditable(getBooleanFromAttributeValue(newValue));}}
+labelMinWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setLabelMinWidth(newValue);}}
+layoutChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setLayout(newValue);}}
+labelSpanXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setLabelSpanXL(newValue);}}
+labelSpanLChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setLabelSpanL(newValue);}}
+labelSpanMChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setLabelSpanM(newValue);}}
+labelSpanSChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setLabelSpanS(newValue);}}
+adjustLabelSpanChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setAdjustLabelSpan(getBooleanFromAttributeValue(newValue));}}
+emptySpanXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setEmptySpanXL(newValue);}}
+emptySpanLChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setEmptySpanL(newValue);}}
+emptySpanMChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setEmptySpanM(newValue);}}
+emptySpanSChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setEmptySpanS(newValue);}}
+columnsXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setColumnsXL(newValue);}}
+columnsLChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setColumnsL(newValue);}}
+columnsMChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setColumnsM(newValue);}}
+singleContainerFullSizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setSingleContainerFullSize(getBooleanFromAttributeValue(newValue));}}
+breakpointXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setBreakpointXL(newValue);}}
+breakpointLChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setBreakpointL(newValue);}}
+breakpointMChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setBreakpointM(newValue);}}
+backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setBackgroundDesign(newValue);}}
 blockedChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusyIndicatorDelay(newValue);}}
@@ -213,14 +213,14 @@ busyIndicatorSizeChanged(newValue){if(this._simpleform!==null){ this._simpleform
 visibleChanged(newValue){if(this._simpleform!==null){ this._simpleform.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._simpleform!==null){ this._simpleform.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._simpleform!==null){ this._simpleform.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

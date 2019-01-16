@@ -226,7 +226,7 @@ var Ui5ToolbarSpacer = exports.Ui5ToolbarSpacer = (_dec = (0, _aureliaTemplating
     };
 
     Ui5ToolbarSpacer.prototype.widthChanged = function widthChanged(newValue) {
-        if (this._toolbarspacer !== null) {
+        if (newValue != null && newValue != undefined && this._toolbarspacer !== null) {
             this._toolbarspacer.setWidth(newValue);
         }
     };
@@ -268,37 +268,37 @@ var Ui5ToolbarSpacer = exports.Ui5ToolbarSpacer = (_dec = (0, _aureliaTemplating
     };
 
     Ui5ToolbarSpacer.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._toolbarspacer !== null) {
+        if (newValue != null && newValue != undefined && this._toolbarspacer !== null) {
             this._toolbarspacer.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5ToolbarSpacer.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._toolbarspacer !== null) {
+        if (newValue != null && newValue != undefined && this._toolbarspacer !== null) {
             this._toolbarspacer.attachValidationSuccess(newValue);
         }
     };
 
     Ui5ToolbarSpacer.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._toolbarspacer !== null) {
+        if (newValue != null && newValue != undefined && this._toolbarspacer !== null) {
             this._toolbarspacer.attachValidationError(newValue);
         }
     };
 
     Ui5ToolbarSpacer.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._toolbarspacer !== null) {
+        if (newValue != null && newValue != undefined && this._toolbarspacer !== null) {
             this._toolbarspacer.attachParseError(newValue);
         }
     };
 
     Ui5ToolbarSpacer.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._toolbarspacer !== null) {
+        if (newValue != null && newValue != undefined && this._toolbarspacer !== null) {
             this._toolbarspacer.attachFormatError(newValue);
         }
     };
 
     Ui5ToolbarSpacer.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._toolbarspacer !== null) {
+        if (newValue != null && newValue != undefined && this._toolbarspacer !== null) {
             this._toolbarspacer.attachModelContextChange(newValue);
         }
     };

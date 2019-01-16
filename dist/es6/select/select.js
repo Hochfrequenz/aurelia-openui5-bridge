@@ -166,22 +166,22 @@ if (relation == 'dragdropconfig') {  this._select.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    nameChanged(newValue){if(this._select!==null){ this._select.setName(newValue);}}
-enabledChanged(newValue){if(this._select!==null){ this._select.setEnabled(getBooleanFromAttributeValue(newValue));}}
-widthChanged(newValue){if(this._select!==null){ this._select.setWidth(newValue);}}
-maxWidthChanged(newValue){if(this._select!==null){ this._select.setMaxWidth(newValue);}}
-selectedKeyChanged(newValue){if(this._select!==null){ this._select.setSelectedKey(newValue);}}
-selectedItemIdChanged(newValue){if(this._select!==null){ this._select.setSelectedItemId(newValue);}}
-iconChanged(newValue){if(this._select!==null){ this._select.setIcon(newValue);}}
-typeChanged(newValue){if(this._select!==null){ this._select.setType(newValue);}}
-autoAdjustWidthChanged(newValue){if(this._select!==null){ this._select.setAutoAdjustWidth(getBooleanFromAttributeValue(newValue));}}
-textAlignChanged(newValue){if(this._select!==null){ this._select.setTextAlign(newValue);}}
-textDirectionChanged(newValue){if(this._select!==null){ this._select.setTextDirection(newValue);}}
-valueStateChanged(newValue){if(this._select!==null){ this._select.setValueState(newValue);}}
-valueStateTextChanged(newValue){if(this._select!==null){ this._select.setValueStateText(newValue);}}
-showSecondaryValuesChanged(newValue){if(this._select!==null){ this._select.setShowSecondaryValues(getBooleanFromAttributeValue(newValue));}}
-forceSelectionChanged(newValue){if(this._select!==null){ this._select.setForceSelection(getBooleanFromAttributeValue(newValue));}}
-changeChanged(newValue){if(this._select!==null){ this._select.attachChange(newValue);}}
+    nameChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setName(newValue);}}
+enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setEnabled(getBooleanFromAttributeValue(newValue));}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setWidth(newValue);}}
+maxWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setMaxWidth(newValue);}}
+selectedKeyChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setSelectedKey(newValue);}}
+selectedItemIdChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setSelectedItemId(newValue);}}
+iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setIcon(newValue);}}
+typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setType(newValue);}}
+autoAdjustWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setAutoAdjustWidth(getBooleanFromAttributeValue(newValue));}}
+textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setTextAlign(newValue);}}
+textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setTextDirection(newValue);}}
+valueStateChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setValueState(newValue);}}
+valueStateTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setValueStateText(newValue);}}
+showSecondaryValuesChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setShowSecondaryValues(getBooleanFromAttributeValue(newValue));}}
+forceSelectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setForceSelection(getBooleanFromAttributeValue(newValue));}}
+changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.attachChange(newValue);}}
 blockedChanged(newValue){if(this._select!==null){ this._select.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._select!==null){ this._select.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._select!==null){ this._select.setBusyIndicatorDelay(newValue);}}
@@ -189,14 +189,14 @@ busyIndicatorSizeChanged(newValue){if(this._select!==null){ this._select.setBusy
 visibleChanged(newValue){if(this._select!==null){ this._select.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._select!==null){ this._select.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._select!==null){ this._select.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._select!==null){ this._select.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._select!==null){ this._select.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._select!==null){ this._select.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._select!==null){ this._select.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._select!==null){ this._select.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

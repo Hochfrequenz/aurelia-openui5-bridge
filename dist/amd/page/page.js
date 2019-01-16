@@ -324,73 +324,73 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Page.prototype.titleChanged = function titleChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setTitle(newValue);
             }
         };
 
         Ui5Page.prototype.titleLevelChanged = function titleLevelChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setTitleLevel(newValue);
             }
         };
 
         Ui5Page.prototype.showNavButtonChanged = function showNavButtonChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setShowNavButton((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Page.prototype.showHeaderChanged = function showHeaderChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setShowHeader((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Page.prototype.showSubHeaderChanged = function showSubHeaderChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setShowSubHeader((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Page.prototype.navButtonTooltipChanged = function navButtonTooltipChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setNavButtonTooltip(newValue);
             }
         };
 
         Ui5Page.prototype.enableScrollingChanged = function enableScrollingChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setEnableScrolling((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Page.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setBackgroundDesign(newValue);
             }
         };
 
         Ui5Page.prototype.showFooterChanged = function showFooterChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setShowFooter((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Page.prototype.contentOnlyBusyChanged = function contentOnlyBusyChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setContentOnlyBusy((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Page.prototype.floatingFooterChanged = function floatingFooterChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.setFloatingFooter((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Page.prototype.navButtonPressChanged = function navButtonPressChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.attachNavButtonPress(newValue);
             }
         };
@@ -432,37 +432,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Page.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Page.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Page.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.attachValidationError(newValue);
             }
         };
 
         Ui5Page.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.attachParseError(newValue);
             }
         };
 
         Ui5Page.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.attachFormatError(newValue);
             }
         };
 
         Ui5Page.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._page !== null) {
+            if (newValue != null && newValue != undefined && this._page !== null) {
                 this._page.attachModelContextChange(newValue);
             }
         };

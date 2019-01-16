@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, Ui5SelectDialog;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, Ui5SelectDialog;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5SelectDialog', Ui5SelectDialog = (_dec = customElement('ui5-select-dialog'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = bindable(), _dec27 = computedFrom('_selectdialog'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5SelectDialog', Ui5SelectDialog = (_dec = customElement('ui5-select-dialog'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = bindable(), _dec27 = bindable(), _dec28 = computedFrom('_selectdialog'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5SelectDialog, _Ui5Control);
 
                 function Ui5SelectDialog(element) {
@@ -149,37 +149,39 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'contentHeight', _descriptor12, _this);
 
-                    _initDefineProp(_this, 'confirm', _descriptor13, _this);
+                    _initDefineProp(_this, 'showClearButton', _descriptor13, _this);
 
-                    _initDefineProp(_this, 'search', _descriptor14, _this);
+                    _initDefineProp(_this, 'confirm', _descriptor14, _this);
 
-                    _initDefineProp(_this, 'liveChange', _descriptor15, _this);
+                    _initDefineProp(_this, 'search', _descriptor15, _this);
 
-                    _initDefineProp(_this, 'cancel', _descriptor16, _this);
+                    _initDefineProp(_this, 'liveChange', _descriptor16, _this);
 
-                    _initDefineProp(_this, 'blocked', _descriptor17, _this);
+                    _initDefineProp(_this, 'cancel', _descriptor17, _this);
 
-                    _initDefineProp(_this, 'busy', _descriptor18, _this);
+                    _initDefineProp(_this, 'blocked', _descriptor18, _this);
 
-                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor19, _this);
+                    _initDefineProp(_this, 'busy', _descriptor19, _this);
 
-                    _initDefineProp(_this, 'busyIndicatorSize', _descriptor20, _this);
+                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor20, _this);
 
-                    _initDefineProp(_this, 'visible', _descriptor21, _this);
+                    _initDefineProp(_this, 'busyIndicatorSize', _descriptor21, _this);
 
-                    _initDefineProp(_this, 'fieldGroupIds', _descriptor22, _this);
+                    _initDefineProp(_this, 'visible', _descriptor22, _this);
 
-                    _initDefineProp(_this, 'validateFieldGroup', _descriptor23, _this);
+                    _initDefineProp(_this, 'fieldGroupIds', _descriptor23, _this);
 
-                    _initDefineProp(_this, 'validationSuccess', _descriptor24, _this);
+                    _initDefineProp(_this, 'validateFieldGroup', _descriptor24, _this);
 
-                    _initDefineProp(_this, 'validationError', _descriptor25, _this);
+                    _initDefineProp(_this, 'validationSuccess', _descriptor25, _this);
 
-                    _initDefineProp(_this, 'parseError', _descriptor26, _this);
+                    _initDefineProp(_this, 'validationError', _descriptor26, _this);
 
-                    _initDefineProp(_this, 'formatError', _descriptor27, _this);
+                    _initDefineProp(_this, 'parseError', _descriptor27, _this);
 
-                    _initDefineProp(_this, 'modelContextChange', _descriptor28, _this);
+                    _initDefineProp(_this, 'formatError', _descriptor28, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor29, _this);
 
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
@@ -195,6 +197,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.contentWidth = this.contentWidth;
                     params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
                     params.contentHeight = this.contentHeight;
+                    params.showClearButton = getBooleanFromAttributeValue(this.showClearButton);
                     params.confirm = this.confirm == null ? this.defaultFunc : this.confirm;
                     params.search = this.search == null ? this.defaultFunc : this.search;
                     params.liveChange = this.liveChange == null ? this.defaultFunc : this.liveChange;
@@ -308,73 +311,79 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5SelectDialog.prototype.titleChanged = function titleChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.setTitle(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.noDataTextChanged = function noDataTextChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.setNoDataText(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.multiSelectChanged = function multiSelectChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5SelectDialog.prototype.growingThresholdChanged = function growingThresholdChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.setGrowingThreshold(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.growingChanged = function growingChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.setGrowing(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5SelectDialog.prototype.contentWidthChanged = function contentWidthChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.setContentWidth(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.rememberSelectionsChanged = function rememberSelectionsChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5SelectDialog.prototype.contentHeightChanged = function contentHeightChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.setContentHeight(newValue);
                     }
                 };
 
+                Ui5SelectDialog.prototype.showClearButtonChanged = function showClearButtonChanged(newValue) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
+                        this._selectdialog.setShowClearButton(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
                 Ui5SelectDialog.prototype.confirmChanged = function confirmChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachConfirm(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.searchChanged = function searchChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachSearch(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.liveChangeChanged = function liveChangeChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachLiveChange(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.cancelChanged = function cancelChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachCancel(newValue);
                     }
                 };
@@ -416,37 +425,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5SelectDialog.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachValidationError(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachParseError(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachFormatError(newValue);
                     }
                 };
 
                 Ui5SelectDialog.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._selectdialog !== null) {
+                    if (newValue != null && newValue != undefined && this._selectdialog !== null) {
                         this._selectdialog.attachModelContextChange(newValue);
                     }
                 };
@@ -519,87 +528,92 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return null;
                 }
-            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'confirm', [_dec11], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return this.defaultFunc;
-                }
-            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'search', [_dec12], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return this.defaultFunc;
-                }
-            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'liveChange', [_dec13], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return this.defaultFunc;
-                }
-            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'cancel', [_dec14], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return this.defaultFunc;
-                }
-            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec15], {
+            }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'showClearButton', [_dec11], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec16], {
+            }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'confirm', [_dec12], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'search', [_dec13], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'liveChange', [_dec14], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'cancel', [_dec15], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec16], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec17], {
+            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec17], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return false;
+                }
+            }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec18], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 1000;
                 }
-            }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec18], {
+            }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec19], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'Medium';
                 }
-            }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec19], {
+            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec20], {
                 enumerable: true,
                 initializer: function initializer() {
                     return true;
                 }
-            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec20], {
+            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec21], {
                 enumerable: true,
                 initializer: function initializer() {
                     return '[]';
                 }
-            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec21], {
+            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec22], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec22], {
+            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec23], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec23], {
+            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec24], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec24], {
+            }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec25], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec25], {
+            }), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec26], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec26], {
+            }), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec27], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec27], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec28], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5SelectDialog', Ui5SelectDialog);
         }

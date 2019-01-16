@@ -22,6 +22,7 @@ export class Ui5TableSelectDialog extends Ui5Control{
 @bindable() contentWidth = null;
 @bindable() rememberSelections = false;
 @bindable() contentHeight = null;
+@bindable() showClearButton = false;
 @bindable() confirm = this.defaultFunc;
 @bindable() search = this.defaultFunc;
 @bindable() liveChange = this.defaultFunc;
@@ -62,6 +63,7 @@ params.growingThreshold = this.growingThreshold?parseInt(this.growingThreshold):
 params.contentWidth = this.contentWidth;
 params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
 params.contentHeight = this.contentHeight;
+params.showClearButton = getBooleanFromAttributeValue(this.showClearButton);
 params.confirm = this.confirm==null ? this.defaultFunc: this.confirm;
 params.search = this.search==null ? this.defaultFunc: this.search;
 params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
@@ -159,18 +161,19 @@ if (relation == 'dragdropconfig') {  this._tableselectdialog.removeDragDropConfi
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setTitle(newValue);}}
-noDataTextChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setNoDataText(newValue);}}
-multiSelectChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
-growingChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setGrowing(getBooleanFromAttributeValue(newValue));}}
-growingThresholdChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setGrowingThreshold(newValue);}}
-contentWidthChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setContentWidth(newValue);}}
-rememberSelectionsChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
-contentHeightChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setContentHeight(newValue);}}
-confirmChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachConfirm(newValue);}}
-searchChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachSearch(newValue);}}
-liveChangeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachLiveChange(newValue);}}
-cancelChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachCancel(newValue);}}
+    titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setTitle(newValue);}}
+noDataTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setNoDataText(newValue);}}
+multiSelectChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
+growingChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setGrowing(getBooleanFromAttributeValue(newValue));}}
+growingThresholdChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setGrowingThreshold(newValue);}}
+contentWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setContentWidth(newValue);}}
+rememberSelectionsChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
+contentHeightChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setContentHeight(newValue);}}
+showClearButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setShowClearButton(getBooleanFromAttributeValue(newValue));}}
+confirmChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachConfirm(newValue);}}
+searchChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachSearch(newValue);}}
+liveChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachLiveChange(newValue);}}
+cancelChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachCancel(newValue);}}
 blockedChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorDelay(newValue);}}
@@ -178,14 +181,14 @@ busyIndicatorSizeChanged(newValue){if(this._tableselectdialog!==null){ this._tab
 visibleChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

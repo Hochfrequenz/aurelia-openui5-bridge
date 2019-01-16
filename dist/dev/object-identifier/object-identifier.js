@@ -284,37 +284,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ObjectIdentifier.prototype.titleChanged = function titleChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.setTitle(newValue);
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.textChanged = function textChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.setText(newValue);
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.visibleChanged = function visibleChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.setVisible(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.titleActiveChanged = function titleActiveChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.setTitleActive(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.textDirectionChanged = function textDirectionChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.setTextDirection(newValue);
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.titlePressChanged = function titlePressChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.attachTitlePress(newValue);
                     }
                 };
@@ -356,37 +356,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ObjectIdentifier.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.attachValidationError(newValue);
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.attachParseError(newValue);
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.attachFormatError(newValue);
                     }
                 };
 
                 Ui5ObjectIdentifier.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._objectidentifier !== null) {
+                    if (newValue != null && newValue != undefined && this._objectidentifier !== null) {
                         this._objectidentifier.attachModelContextChange(newValue);
                     }
                 };

@@ -289,7 +289,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ToggleButton.prototype.pressedChanged = function pressedChanged(newValue) {
-                    if (this._togglebutton !== null) {
+                    if (newValue != null && newValue != undefined && this._togglebutton !== null) {
                         this._togglebutton.setPressed(getBooleanFromAttributeValue(newValue));
                     }
                 };
@@ -349,7 +349,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ToggleButton.prototype.pressChanged = function pressChanged(newValue) {
-                    if (this._togglebutton !== null) {
+                    if (newValue != null && newValue != undefined && this._togglebutton !== null) {
                         this._togglebutton.attachPress(newValue);
                     }
                 };
@@ -391,37 +391,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5ToggleButton.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._togglebutton !== null) {
+                    if (newValue != null && newValue != undefined && this._togglebutton !== null) {
                         this._togglebutton.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5ToggleButton.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._togglebutton !== null) {
+                    if (newValue != null && newValue != undefined && this._togglebutton !== null) {
                         this._togglebutton.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5ToggleButton.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._togglebutton !== null) {
+                    if (newValue != null && newValue != undefined && this._togglebutton !== null) {
                         this._togglebutton.attachValidationError(newValue);
                     }
                 };
 
                 Ui5ToggleButton.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._togglebutton !== null) {
+                    if (newValue != null && newValue != undefined && this._togglebutton !== null) {
                         this._togglebutton.attachParseError(newValue);
                     }
                 };
 
                 Ui5ToggleButton.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._togglebutton !== null) {
+                    if (newValue != null && newValue != undefined && this._togglebutton !== null) {
                         this._togglebutton.attachFormatError(newValue);
                     }
                 };
 
                 Ui5ToggleButton.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._togglebutton !== null) {
+                    if (newValue != null && newValue != undefined && this._togglebutton !== null) {
                         this._togglebutton.attachModelContextChange(newValue);
                     }
                 };

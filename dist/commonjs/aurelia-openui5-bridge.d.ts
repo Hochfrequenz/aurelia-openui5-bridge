@@ -144,6 +144,54 @@ export declare class Ui5ActionSheet extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
+export declare class Ui5Breadcrumbs extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  currentLocationText: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  currentLocationTextChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
 export declare class Ui5Bar extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -258,19 +306,21 @@ export declare class Ui5Button extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5Breadcrumbs extends Ui5Control {
+export declare class Ui5Column extends Ui5Element {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  currentLocationText: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
+  width: any;
+  hAlign: any;
+  vAlign: any;
+  styleClass: any;
   visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
+  minScreenWidth: any;
+  demandPopin: any;
+  popinDisplay: any;
+  mergeDuplicates: any;
+  mergeFunctionName: any;
   validationSuccess: any;
   validationError: any;
   parseError: any;
@@ -287,16 +337,16 @@ export declare class Ui5Breadcrumbs extends Ui5Control {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  currentLocationTextChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+  hAlignChanged(newValue?: any): any;
+  vAlignChanged(newValue?: any): any;
+  styleClassChanged(newValue?: any): any;
   visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
+  minScreenWidthChanged(newValue?: any): any;
+  demandPopinChanged(newValue?: any): any;
+  popinDisplayChanged(newValue?: any): any;
+  mergeDuplicatesChanged(newValue?: any): any;
+  mergeFunctionNameChanged(newValue?: any): any;
   
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
@@ -372,117 +422,6 @@ export declare class Ui5ColumnListItem extends Ui5ListItemBase {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-
-/**
- * Adds css classes to a given element only if these classes are not already
- * present. Keeps a record of css classes which actually have been added.
- * This way, they can also be removed in a way which keeps the original classes
- * set by the user.
- * Most useful in attached() and detached() handlers.
- */
-export declare class AttributeManager {
-  addedClasses: any;
-  addedAttributes: any;
-  constructor(element?: any);
-  addAttributes(attrs?: any): any;
-  removeAttributes(attrs?: any): any;
-  addClasses(classes?: any): any;
-  removeClasses(classes?: any): any;
-}
-export declare function getBooleanFromAttributeValue(value?: any): any;
-export declare function showBusyIndicator(delay?: any): any;
-export declare function hideBusyIndicator(): any;
-export declare const constants: any;
-
-/**
-* Fire DOM event on an element
-* @param element The Element which the DOM event will be fired on
-* @param name The Event's name
-* @param data Addition data to attach to an event
-*/
-export declare function fireEvent(element: Element, name: string, data?: any): any;
-
-/**
-* Fire DOM event on an element with the md-on prefix
-* @param element The Element which the DOM event will be fired on
-* @param name The Event's name, without md-on prefix
-* @param data Addition data to attach to an event
-*/
-export declare function fireMaterializeEvent(element: Element, name: string, data?: any): any;
-
-/**
-* Initialize the plugin and respond with a promise
-*/
-export declare function ui5Initialize(debug?: any): any;
-export declare function ui5SetTheme(name?: any, path?: any): any;
-export declare function findUi5DialogElement(name?: any): any;
-export declare function getUi5DialogElement(name?: any): any;
-export declare function showMessageBox(vMessage?: any, mOptions?: any): any;
-
-// https://github.com/jonathantneal/closest/blob/master/closest.js
-export declare function polyfillElementClosest(): any;
-export declare class SmoothScroll {
-  static defaultConfig: any;
-  static inject: any;
-  constructor(animator?: any, router?: any);
-  
-  //    this.scrollTo(this.element.getAttribute("href"),{},document.body);
-  /**
-       * Scroll to an element or named anchor
-       *
-       * @param elementOrHash   element to scroll to or named anchor
-       * @param options         animator options
-       * @param container       the container element (defaults to document.body)
-       *
-       * @returns {Promise} resolved when scrolling is done
-       */
-  scrollTo(elementOrHash?: any, options?: any, container?: any): any;
-  static getOffset(): any;
-}
-export declare function createJSONModel(): any;
-export declare function assignModel(tree?: any, model?: any, templateBinding?: any): any;
-export declare function assignModelFromTemplate(tree?: any, model?: any, treeItem?: any): any;
-export declare class Ui5Container {
-  constructor(element?: any);
-  attached(): any;
-  detached(): any;
-}
-export declare class Ui5CustomData extends Ui5Element {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  key: any;
-  value: any;
-  writeToDom: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  keyChanged(newValue?: any): any;
-  valueChanged(newValue?: any): any;
-  writeToDomChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
 export declare class Ui5Control extends Ui5Element {
   ui5Id: any;
   ui5Class: any;
@@ -527,6 +466,112 @@ export declare class Ui5Control extends Ui5Element {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
+export declare class Ui5CustomData extends Ui5Element {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  key: any;
+  value: any;
+  writeToDom: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  keyChanged(newValue?: any): any;
+  valueChanged(newValue?: any): any;
+  writeToDomChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+
+/**
+ * Adds css classes to a given element only if these classes are not already
+ * present. Keeps a record of css classes which actually have been added.
+ * This way, they can also be removed in a way which keeps the original classes
+ * set by the user.
+ * Most useful in attached() and detached() handlers.
+ */
+export declare class AttributeManager {
+  addedClasses: any;
+  addedAttributes: any;
+  constructor(element?: any);
+  addAttributes(attrs?: any): any;
+  removeAttributes(attrs?: any): any;
+  addClasses(classes?: any): any;
+  removeClasses(classes?: any): any;
+}
+export declare function getBooleanFromAttributeValue(value?: any): any;
+export declare function showBusyIndicator(delay?: any): any;
+export declare function hideBusyIndicator(): any;
+export declare const constants: any;
+
+/**
+* Fire DOM event on an element
+* @param element The Element which the DOM event will be fired on
+* @param name The Event's name
+* @param data Addition data to attach to an event
+*/
+export declare function fireEvent(element: Element, name: string, data?: any): any;
+
+/**
+* Fire DOM event on an element with the md-on prefix
+* @param element The Element which the DOM event will be fired on
+* @param name The Event's name, without md-on prefix
+* @param data Addition data to attach to an event
+*/
+export declare function fireMaterializeEvent(element: Element, name: string, data?: any): any;
+
+/**
+ * Initialize the plugin and respond with a promise
+ */
+export declare function ui5Initialize(debug?: any): any;
+export declare function ui5SetTheme(name?: any, path?: any): any;
+export declare function findUi5DialogElement(name?: any): any;
+export declare function getUi5DialogElement(name?: any): any;
+export declare function showMessageBox(vMessage?: any, mOptions?: any): any;
+
+// https://github.com/jonathantneal/closest/blob/master/closest.js
+export declare function polyfillElementClosest(): any;
+export declare class SmoothScroll {
+  static defaultConfig: any;
+  static inject: any;
+  constructor(animator?: any, router?: any);
+  
+  //    this.scrollTo(this.element.getAttribute("href"),{},document.body);
+  /**
+       * Scroll to an element or named anchor
+       *
+       * @param elementOrHash   element to scroll to or named anchor
+       * @param options         animator options
+       * @param container       the container element (defaults to document.body)
+       *
+       * @returns {Promise} resolved when scrolling is done
+       */
+  scrollTo(elementOrHash?: any, options?: any, container?: any): any;
+  static getOffset(): any;
+}
+export declare function createJSONModel(): any;
+export declare function assignModel(tree?: any, model?: any, templateBinding?: any): any;
+export declare function assignModelFromTemplate(tree?: any, model?: any, treeItem?: any): any;
 export declare class Ui5DatePicker extends Ui5DateTimeField {
   ui5Id: any;
   ui5Class: any;
@@ -621,6 +666,77 @@ export declare class Ui5DatePicker extends Ui5DateTimeField {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
+export declare class Ui5CustomTreeItem extends Ui5TreeItemBase {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  type: any;
+  visible: any;
+  unread: any;
+  selected: any;
+  counter: any;
+  highlight: any;
+  press: any;
+  detailPress: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  
+  /* inherited from sap.m.TreeItemBase*/
+  typeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  unreadChanged(newValue?: any): any;
+  selectedChanged(newValue?: any): any;
+  counterChanged(newValue?: any): any;
+  highlightChanged(newValue?: any): any;
+  
+  /* inherited from sap.m.ListItemBase*/
+  pressChanged(newValue?: any): any;
+  detailPressChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5Container {
+  constructor(element?: any);
+  attached(): any;
+  detached(): any;
+}
 export declare class Ui5DateTimeField extends Ui5InputBase {
   ui5Id: any;
   ui5Class: any;
@@ -694,56 +810,6 @@ export declare class Ui5DateTimeField extends Ui5InputBase {
   
   /* inherited from sap.ui.core.Control*/
   validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5Column extends Ui5Element {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  width: any;
-  hAlign: any;
-  vAlign: any;
-  styleClass: any;
-  visible: any;
-  minScreenWidth: any;
-  demandPopin: any;
-  popinDisplay: any;
-  mergeDuplicates: any;
-  mergeFunctionName: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  widthChanged(newValue?: any): any;
-  hAlignChanged(newValue?: any): any;
-  vAlignChanged(newValue?: any): any;
-  styleClassChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  minScreenWidthChanged(newValue?: any): any;
-  demandPopinChanged(newValue?: any): any;
-  popinDisplayChanged(newValue?: any): any;
-  mergeDuplicatesChanged(newValue?: any): any;
-  mergeFunctionNameChanged(newValue?: any): any;
   
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
@@ -853,12 +919,16 @@ export declare class Ui5DateTimePicker extends Ui5DatePicker {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5DynamicPageHeader extends Ui5Control {
+export declare class Ui5DynamicPage extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  pinnable: any;
+  preserveHeaderStateOnScroll: any;
+  headerExpanded: any;
+  toggleHeaderOnTitleClick: any;
+  showFooter: any;
+  fitContent: any;
   blocked: any;
   busy: any;
   busyIndicatorDelay: any;
@@ -882,7 +952,11 @@ export declare class Ui5DynamicPageHeader extends Ui5Control {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  pinnableChanged(newValue?: any): any;
+  preserveHeaderStateOnScrollChanged(newValue?: any): any;
+  headerExpandedChanged(newValue?: any): any;
+  toggleHeaderOnTitleClickChanged(newValue?: any): any;
+  showFooterChanged(newValue?: any): any;
+  fitContentChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -981,16 +1055,13 @@ export declare class Ui5Dialog extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5DynamicPage extends Ui5Control {
+export declare class Ui5DynamicPageHeader extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  preserveHeaderStateOnScroll: any;
-  headerExpanded: any;
-  toggleHeaderOnTitleClick: any;
-  showFooter: any;
-  fitContent: any;
+  pinnable: any;
+  backgroundDesign: any;
   blocked: any;
   busy: any;
   busyIndicatorDelay: any;
@@ -1014,11 +1085,8 @@ export declare class Ui5DynamicPage extends Ui5Control {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  preserveHeaderStateOnScrollChanged(newValue?: any): any;
-  headerExpandedChanged(newValue?: any): any;
-  toggleHeaderOnTitleClickChanged(newValue?: any): any;
-  showFooterChanged(newValue?: any): any;
-  fitContentChanged(newValue?: any): any;
+  pinnableChanged(newValue?: any): any;
+  backgroundDesignChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -1037,19 +1105,43 @@ export declare class Ui5DynamicPage extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5CustomTreeItem extends Ui5TreeItemBase {
+export declare class Ui5Element extends Ui5ManagedObject {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  type: any;
-  visible: any;
-  unread: any;
-  selected: any;
-  counter: any;
-  highlight: any;
-  press: any;
-  detailPress: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5DynamicPageTitle extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  areaShrinkRatio: any;
+  backgroundDesign: any;
+  stateChange: any;
   blocked: any;
   busy: any;
   busyIndicatorDelay: any;
@@ -1073,18 +1165,9 @@ export declare class Ui5CustomTreeItem extends Ui5TreeItemBase {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  
-  /* inherited from sap.m.TreeItemBase*/
-  typeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  unreadChanged(newValue?: any): any;
-  selectedChanged(newValue?: any): any;
-  counterChanged(newValue?: any): any;
-  highlightChanged(newValue?: any): any;
-  
-  /* inherited from sap.m.ListItemBase*/
-  pressChanged(newValue?: any): any;
-  detailPressChanged(newValue?: any): any;
+  areaShrinkRatioChanged(newValue?: any): any;
+  backgroundDesignChanged(newValue?: any): any;
+  stateChangeChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -1102,6 +1185,22 @@ export declare class Ui5CustomTreeItem extends Ui5TreeItemBase {
   parseErrorChanged(newValue?: any): any;
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5EventProvider extends Ui5Object {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
 }
 export declare class Ui5FeedContent extends Ui5Control {
   ui5Id: any;
@@ -1161,71 +1260,6 @@ export declare class Ui5FeedContent extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5Element extends Ui5ManagedObject {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5FormContainer extends Ui5Element {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  expanded: any;
-  expandable: any;
-  visible: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  expandedChanged(newValue?: any): any;
-  expandableChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
 export declare class Ui5Form extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -1267,6 +1301,74 @@ export declare class Ui5Form extends Ui5Control {
   
   /* inherited from sap.ui.core.Control*/
   validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5FormElement extends Ui5Element {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  visible: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  visibleChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5FormContainer extends Ui5Element {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  expanded: any;
+  expandable: any;
+  visible: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  expandedChanged(newValue?: any): any;
+  expandableChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
   
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
@@ -1380,82 +1482,6 @@ export declare class Ui5FormattedText extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5Grid extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  width: any;
-  vSpacing: any;
-  hSpacing: any;
-  position: any;
-  defaultSpan: any;
-  defaultIndent: any;
-  containerQuery: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  widthChanged(newValue?: any): any;
-  vSpacingChanged(newValue?: any): any;
-  hSpacingChanged(newValue?: any): any;
-  positionChanged(newValue?: any): any;
-  defaultSpanChanged(newValue?: any): any;
-  defaultIndentChanged(newValue?: any): any;
-  containerQueryChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5EventProvider extends Ui5Object {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-}
 export declare class Ui5GenericTile extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -1473,6 +1499,7 @@ export declare class Ui5GenericTile extends Ui5Control {
   scope: any;
   sizeBehavior: any;
   ariaLabel: any;
+  wrappingType: any;
   press: any;
   blocked: any;
   busy: any;
@@ -1509,6 +1536,7 @@ export declare class Ui5GenericTile extends Ui5Control {
   scopeChanged(newValue?: any): any;
   sizeBehaviorChanged(newValue?: any): any;
   ariaLabelChanged(newValue?: any): any;
+  wrappingTypeChanged(newValue?: any): any;
   pressChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
@@ -1519,168 +1547,6 @@ export declare class Ui5GenericTile extends Ui5Control {
   
   /* inherited from sap.ui.core.Control*/
   validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5gridTable extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  width: any;
-  rowHeight: any;
-  columnHeaderHeight: any;
-  columnHeaderVisible: any;
-  visibleRowCount: any;
-  firstVisibleRow: any;
-  selectionMode: any;
-  selectionBehavior: any;
-  selectedIndex: any;
-  editable: any;
-  threshold: any;
-  enableColumnReordering: any;
-  enableGrouping: any;
-  showColumnVisibilityMenu: any;
-  showNoData: any;
-  visibleRowCountMode: any;
-  minAutoRowCount: any;
-  fixedColumnCount: any;
-  fixedRowCount: any;
-  fixedBottomRowCount: any;
-  enableColumnFreeze: any;
-  enableCellFilter: any;
-  showOverlay: any;
-  enableSelectAll: any;
-  enableCustomFilter: any;
-  enableBusyIndicator: any;
-  rowActionCount: any;
-  alternateRowColors: any;
-  rowSelectionChange: any;
-  columnSelect: any;
-  columnResize: any;
-  columnMove: any;
-  sort: any;
-  filter: any;
-  group: any;
-  columnVisibility: any;
-  cellClick: any;
-  beforeOpenContextMenu: any;
-  columnFreeze: any;
-  customFilter: any;
-  firstVisibleRowChanged: any;
-  busyStateChanged: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  widthChanged(newValue?: any): any;
-  rowHeightChanged(newValue?: any): any;
-  columnHeaderHeightChanged(newValue?: any): any;
-  columnHeaderVisibleChanged(newValue?: any): any;
-  visibleRowCountChanged(newValue?: any): any;
-  firstVisibleRowChanged(newValue?: any): any;
-  selectionModeChanged(newValue?: any): any;
-  selectionBehaviorChanged(newValue?: any): any;
-  selectedIndexChanged(newValue?: any): any;
-  editableChanged(newValue?: any): any;
-  thresholdChanged(newValue?: any): any;
-  enableColumnReorderingChanged(newValue?: any): any;
-  enableGroupingChanged(newValue?: any): any;
-  showColumnVisibilityMenuChanged(newValue?: any): any;
-  showNoDataChanged(newValue?: any): any;
-  visibleRowCountModeChanged(newValue?: any): any;
-  minAutoRowCountChanged(newValue?: any): any;
-  fixedColumnCountChanged(newValue?: any): any;
-  fixedRowCountChanged(newValue?: any): any;
-  fixedBottomRowCountChanged(newValue?: any): any;
-  enableColumnFreezeChanged(newValue?: any): any;
-  enableCellFilterChanged(newValue?: any): any;
-  showOverlayChanged(newValue?: any): any;
-  enableSelectAllChanged(newValue?: any): any;
-  enableCustomFilterChanged(newValue?: any): any;
-  enableBusyIndicatorChanged(newValue?: any): any;
-  rowActionCountChanged(newValue?: any): any;
-  alternateRowColorsChanged(newValue?: any): any;
-  rowSelectionChangeChanged(newValue?: any): any;
-  columnSelectChanged(newValue?: any): any;
-  columnResizeChanged(newValue?: any): any;
-  columnMoveChanged(newValue?: any): any;
-  sortChanged(newValue?: any): any;
-  filterChanged(newValue?: any): any;
-  groupChanged(newValue?: any): any;
-  columnVisibilityChanged(newValue?: any): any;
-  cellClickChanged(newValue?: any): any;
-  beforeOpenContextMenuChanged(newValue?: any): any;
-  columnFreezeChanged(newValue?: any): any;
-  customFilterChanged(newValue?: any): any;
-  firstVisibleRowChangedChanged(newValue?: any): any;
-  busyStateChangedChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5FormElement extends Ui5Element {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  visible: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  visibleChanged(newValue?: any): any;
   
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
@@ -1755,6 +1621,198 @@ export declare class Ui5GridData extends Ui5LayoutData {
   linebreakSChanged(newValue?: any): any;
   
   /* inherited from sap.ui.core.LayoutData*/
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5Grid extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  width: any;
+  vSpacing: any;
+  hSpacing: any;
+  position: any;
+  defaultSpan: any;
+  defaultIndent: any;
+  containerQuery: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  widthChanged(newValue?: any): any;
+  vSpacingChanged(newValue?: any): any;
+  hSpacingChanged(newValue?: any): any;
+  positionChanged(newValue?: any): any;
+  defaultSpanChanged(newValue?: any): any;
+  defaultIndentChanged(newValue?: any): any;
+  containerQueryChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5gridTable extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  width: any;
+  rowHeight: any;
+  columnHeaderHeight: any;
+  columnHeaderVisible: any;
+  visibleRowCount: any;
+  firstVisibleRow: any;
+  selectionMode: any;
+  selectionBehavior: any;
+  selectedIndex: any;
+  editable: any;
+  threshold: any;
+  enableColumnReordering: any;
+  enableGrouping: any;
+  showColumnVisibilityMenu: any;
+  showNoData: any;
+  visibleRowCountMode: any;
+  minAutoRowCount: any;
+  fixedColumnCount: any;
+  fixedRowCount: any;
+  fixedBottomRowCount: any;
+  enableColumnFreeze: any;
+  enableCellFilter: any;
+  showOverlay: any;
+  enableSelectAll: any;
+  enableCustomFilter: any;
+  enableBusyIndicator: any;
+  rowActionCount: any;
+  alternateRowColors: any;
+  rowSelectionChange: any;
+  columnSelect: any;
+  columnResize: any;
+  columnMove: any;
+  sort: any;
+  filter: any;
+  group: any;
+  columnVisibility: any;
+  cellClick: any;
+  beforeOpenContextMenu: any;
+  columnFreeze: any;
+  customFilter: any;
+  firstVisibleRowChanged: any;
+  busyStateChanged: any;
+  paste: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  widthChanged(newValue?: any): any;
+  rowHeightChanged(newValue?: any): any;
+  columnHeaderHeightChanged(newValue?: any): any;
+  columnHeaderVisibleChanged(newValue?: any): any;
+  visibleRowCountChanged(newValue?: any): any;
+  firstVisibleRowChanged(newValue?: any): any;
+  selectionModeChanged(newValue?: any): any;
+  selectionBehaviorChanged(newValue?: any): any;
+  selectedIndexChanged(newValue?: any): any;
+  editableChanged(newValue?: any): any;
+  thresholdChanged(newValue?: any): any;
+  enableColumnReorderingChanged(newValue?: any): any;
+  enableGroupingChanged(newValue?: any): any;
+  showColumnVisibilityMenuChanged(newValue?: any): any;
+  showNoDataChanged(newValue?: any): any;
+  visibleRowCountModeChanged(newValue?: any): any;
+  minAutoRowCountChanged(newValue?: any): any;
+  fixedColumnCountChanged(newValue?: any): any;
+  fixedRowCountChanged(newValue?: any): any;
+  fixedBottomRowCountChanged(newValue?: any): any;
+  enableColumnFreezeChanged(newValue?: any): any;
+  enableCellFilterChanged(newValue?: any): any;
+  showOverlayChanged(newValue?: any): any;
+  enableSelectAllChanged(newValue?: any): any;
+  enableCustomFilterChanged(newValue?: any): any;
+  enableBusyIndicatorChanged(newValue?: any): any;
+  rowActionCountChanged(newValue?: any): any;
+  alternateRowColorsChanged(newValue?: any): any;
+  rowSelectionChangeChanged(newValue?: any): any;
+  columnSelectChanged(newValue?: any): any;
+  columnResizeChanged(newValue?: any): any;
+  columnMoveChanged(newValue?: any): any;
+  sortChanged(newValue?: any): any;
+  filterChanged(newValue?: any): any;
+  groupChanged(newValue?: any): any;
+  columnVisibilityChanged(newValue?: any): any;
+  cellClickChanged(newValue?: any): any;
+  beforeOpenContextMenuChanged(newValue?: any): any;
+  columnFreezeChanged(newValue?: any): any;
+  customFilterChanged(newValue?: any): any;
+  firstVisibleRowChangedChanged(newValue?: any): any;
+  busyStateChangedChanged(newValue?: any): any;
+  pasteChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
   validationSuccessChanged(newValue?: any): any;
@@ -1989,6 +2047,62 @@ export declare class Ui5Icon extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
+export declare class Ui5Html extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  content: any;
+  preferDOM: any;
+  sanitizeContent: any;
+  visible: any;
+  afterRendering: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  contentChanged(newValue?: any): any;
+  preferDOMChanged(newValue?: any): any;
+  sanitizeContentChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  afterRenderingChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
 export declare class Ui5gridTableRowSetting extends Ui5Element {
   ui5Id: any;
   ui5Class: any;
@@ -2077,6 +2191,111 @@ export declare class Ui5IconTabBar extends Ui5Control {
   tabDensityModeChanged(newValue?: any): any;
   selectChanged(newValue?: any): any;
   expandChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5IconTabFilter extends Ui5Item {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  count: any;
+  showAll: any;
+  icon: any;
+  iconColor: any;
+  iconDensityAware: any;
+  visible: any;
+  design: any;
+  text: any;
+  enabled: any;
+  textDirection: any;
+  key: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  countChanged(newValue?: any): any;
+  showAllChanged(newValue?: any): any;
+  iconChanged(newValue?: any): any;
+  iconColorChanged(newValue?: any): any;
+  iconDensityAwareChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  designChanged(newValue?: any): any;
+  textChanged(newValue?: any): any;
+  enabledChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
+  keyChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Item*/
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5ImageContent extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  src: any;
+  description: any;
+  press: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  srcChanged(newValue?: any): any;
+  descriptionChanged(newValue?: any): any;
+  pressChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -2213,22 +2432,31 @@ export declare class Ui5Input extends Ui5InputBase {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5IconTabFilter extends Ui5Item {
+export declare class Ui5InputBase extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  count: any;
-  showAll: any;
-  icon: any;
-  iconColor: any;
-  iconDensityAware: any;
-  visible: any;
-  design: any;
-  text: any;
+  value: any;
+  width: any;
   enabled: any;
+  valueState: any;
+  name: any;
+  placeholder: any;
+  editable: any;
+  valueStateText: any;
+  showValueStateMessage: any;
+  textAlign: any;
   textDirection: any;
-  key: any;
+  required: any;
+  change: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
   validationSuccess: any;
   validationError: any;
   parseError: any;
@@ -2245,19 +2473,29 @@ export declare class Ui5IconTabFilter extends Ui5Item {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  countChanged(newValue?: any): any;
-  showAllChanged(newValue?: any): any;
-  iconChanged(newValue?: any): any;
-  iconColorChanged(newValue?: any): any;
-  iconDensityAwareChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  designChanged(newValue?: any): any;
-  textChanged(newValue?: any): any;
+  valueChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
   enabledChanged(newValue?: any): any;
+  valueStateChanged(newValue?: any): any;
+  nameChanged(newValue?: any): any;
+  placeholderChanged(newValue?: any): any;
+  editableChanged(newValue?: any): any;
+  valueStateTextChanged(newValue?: any): any;
+  showValueStateMessageChanged(newValue?: any): any;
+  textAlignChanged(newValue?: any): any;
   textDirectionChanged(newValue?: any): any;
-  keyChanged(newValue?: any): any;
+  requiredChanged(newValue?: any): any;
+  changeChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
   
-  /* inherited from sap.ui.core.Item*/
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
   validationSuccessChanged(newValue?: any): any;
@@ -2317,6 +2555,7 @@ export declare class Ui5Label extends Ui5Control {
   required: any;
   displayOnly: any;
   wrapping: any;
+  wrappingType: any;
   vAlign: any;
   blocked: any;
   busy: any;
@@ -2349,7 +2588,144 @@ export declare class Ui5Label extends Ui5Control {
   requiredChanged(newValue?: any): any;
   displayOnlyChanged(newValue?: any): any;
   wrappingChanged(newValue?: any): any;
+  wrappingTypeChanged(newValue?: any): any;
   vAlignChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5LayoutData extends Ui5Element {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5List extends Ui5ListBase {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  backgroundDesign: any;
+  inset: any;
+  headerText: any;
+  footerText: any;
+  mode: any;
+  width: any;
+  includeItemInSelection: any;
+  showUnread: any;
+  noDataText: any;
+  showNoData: any;
+  enableBusyIndicator: any;
+  modeAnimationOn: any;
+  showSeparators: any;
+  swipeDirection: any;
+  growing: any;
+  growingThreshold: any;
+  growingTriggerText: any;
+  growingScrollToLoad: any;
+  growingDirection: any;
+  rememberSelections: any;
+  keyboardMode: any;
+  sticky: any;
+  selectionChange: any;
+  delete: any;
+  swipe: any;
+  updateStarted: any;
+  updateFinished: any;
+  itemPress: any;
+  beforeOpenContextMenu: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  backgroundDesignChanged(newValue?: any): any;
+  insetChanged(newValue?: any): any;
+  headerTextChanged(newValue?: any): any;
+  footerTextChanged(newValue?: any): any;
+  modeChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+  includeItemInSelectionChanged(newValue?: any): any;
+  showUnreadChanged(newValue?: any): any;
+  noDataTextChanged(newValue?: any): any;
+  showNoDataChanged(newValue?: any): any;
+  enableBusyIndicatorChanged(newValue?: any): any;
+  modeAnimationOnChanged(newValue?: any): any;
+  showSeparatorsChanged(newValue?: any): any;
+  swipeDirectionChanged(newValue?: any): any;
+  growingChanged(newValue?: any): any;
+  growingThresholdChanged(newValue?: any): any;
+  growingTriggerTextChanged(newValue?: any): any;
+  growingScrollToLoadChanged(newValue?: any): any;
+  growingDirectionChanged(newValue?: any): any;
+  rememberSelectionsChanged(newValue?: any): any;
+  keyboardModeChanged(newValue?: any): any;
+  stickyChanged(newValue?: any): any;
+  
+  /* inherited from sap.m.ListBase*/
+  selectionChangeChanged(newValue?: any): any;
+  deleteChanged(newValue?: any): any;
+  swipeChanged(newValue?: any): any;
+  updateStartedChanged(newValue?: any): any;
+  updateFinishedChanged(newValue?: any): any;
+  itemPressChanged(newValue?: any): any;
+  beforeOpenContextMenuChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -2438,42 +2814,11 @@ export declare class Ui5Link extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5LayoutData extends Ui5Element {
+export declare class Ui5ListBase extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5List extends Ui5ListBase {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  backgroundDesign: any;
   inset: any;
   headerText: any;
   footerText: any;
@@ -2494,6 +2839,7 @@ export declare class Ui5List extends Ui5ListBase {
   growingDirection: any;
   rememberSelections: any;
   keyboardMode: any;
+  sticky: any;
   selectionChange: any;
   delete: any;
   swipe: any;
@@ -2524,7 +2870,6 @@ export declare class Ui5List extends Ui5ListBase {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  backgroundDesignChanged(newValue?: any): any;
   insetChanged(newValue?: any): any;
   headerTextChanged(newValue?: any): any;
   footerTextChanged(newValue?: any): any;
@@ -2545,8 +2890,7 @@ export declare class Ui5List extends Ui5ListBase {
   growingDirectionChanged(newValue?: any): any;
   rememberSelectionsChanged(newValue?: any): any;
   keyboardModeChanged(newValue?: any): any;
-  
-  /* inherited from sap.m.ListBase*/
+  stickyChanged(newValue?: any): any;
   selectionChangeChanged(newValue?: any): any;
   deleteChanged(newValue?: any): any;
   swipeChanged(newValue?: any): any;
@@ -2554,130 +2898,6 @@ export declare class Ui5List extends Ui5ListBase {
   updateFinishedChanged(newValue?: any): any;
   itemPressChanged(newValue?: any): any;
   beforeOpenContextMenuChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5InputBase extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  value: any;
-  width: any;
-  enabled: any;
-  valueState: any;
-  name: any;
-  placeholder: any;
-  editable: any;
-  valueStateText: any;
-  showValueStateMessage: any;
-  textAlign: any;
-  textDirection: any;
-  required: any;
-  change: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  valueChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-  enabledChanged(newValue?: any): any;
-  valueStateChanged(newValue?: any): any;
-  nameChanged(newValue?: any): any;
-  placeholderChanged(newValue?: any): any;
-  editableChanged(newValue?: any): any;
-  valueStateTextChanged(newValue?: any): any;
-  showValueStateMessageChanged(newValue?: any): any;
-  textAlignChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
-  requiredChanged(newValue?: any): any;
-  changeChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5ImageContent extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  src: any;
-  description: any;
-  press: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  srcChanged(newValue?: any): any;
-  descriptionChanged(newValue?: any): any;
-  pressChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -2739,220 +2959,6 @@ export declare class Ui5ListItem extends Ui5Item {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5mTitle extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  text: any;
-  level: any;
-  titleStyle: any;
-  width: any;
-  textAlign: any;
-  wrapping: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  textChanged(newValue?: any): any;
-  levelChanged(newValue?: any): any;
-  titleStyleChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-  textAlignChanged(newValue?: any): any;
-  wrappingChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5ListBase extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  inset: any;
-  headerText: any;
-  footerText: any;
-  mode: any;
-  width: any;
-  includeItemInSelection: any;
-  showUnread: any;
-  noDataText: any;
-  showNoData: any;
-  enableBusyIndicator: any;
-  modeAnimationOn: any;
-  showSeparators: any;
-  swipeDirection: any;
-  growing: any;
-  growingThreshold: any;
-  growingTriggerText: any;
-  growingScrollToLoad: any;
-  growingDirection: any;
-  rememberSelections: any;
-  keyboardMode: any;
-  selectionChange: any;
-  delete: any;
-  swipe: any;
-  updateStarted: any;
-  updateFinished: any;
-  itemPress: any;
-  beforeOpenContextMenu: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  insetChanged(newValue?: any): any;
-  headerTextChanged(newValue?: any): any;
-  footerTextChanged(newValue?: any): any;
-  modeChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-  includeItemInSelectionChanged(newValue?: any): any;
-  showUnreadChanged(newValue?: any): any;
-  noDataTextChanged(newValue?: any): any;
-  showNoDataChanged(newValue?: any): any;
-  enableBusyIndicatorChanged(newValue?: any): any;
-  modeAnimationOnChanged(newValue?: any): any;
-  showSeparatorsChanged(newValue?: any): any;
-  swipeDirectionChanged(newValue?: any): any;
-  growingChanged(newValue?: any): any;
-  growingThresholdChanged(newValue?: any): any;
-  growingTriggerTextChanged(newValue?: any): any;
-  growingScrollToLoadChanged(newValue?: any): any;
-  growingDirectionChanged(newValue?: any): any;
-  rememberSelectionsChanged(newValue?: any): any;
-  keyboardModeChanged(newValue?: any): any;
-  selectionChangeChanged(newValue?: any): any;
-  deleteChanged(newValue?: any): any;
-  swipeChanged(newValue?: any): any;
-  updateStartedChanged(newValue?: any): any;
-  updateFinishedChanged(newValue?: any): any;
-  itemPressChanged(newValue?: any): any;
-  beforeOpenContextMenuChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5Html extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  content: any;
-  preferDOM: any;
-  sanitizeContent: any;
-  visible: any;
-  afterRendering: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  contentChanged(newValue?: any): any;
-  preferDOMChanged(newValue?: any): any;
-  sanitizeContentChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  afterRenderingChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
 export declare class Ui5ListItemBase extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -2997,58 +3003,6 @@ export declare class Ui5ListItemBase extends Ui5Control {
   highlightChanged(newValue?: any): any;
   pressChanged(newValue?: any): any;
   detailPressChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5Menu extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  title: any;
-  itemSelected: any;
-  closed: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  titleChanged(newValue?: any): any;
-  itemSelectedChanged(newValue?: any): any;
-  closedChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -3145,6 +3099,236 @@ export declare class Ui5MaskInput extends Ui5InputBase {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
+export declare class Ui5mTitle extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  text: any;
+  level: any;
+  titleStyle: any;
+  width: any;
+  textAlign: any;
+  wrapping: any;
+  wrappingType: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  textChanged(newValue?: any): any;
+  levelChanged(newValue?: any): any;
+  titleStyleChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+  textAlignChanged(newValue?: any): any;
+  wrappingChanged(newValue?: any): any;
+  wrappingTypeChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5MaskInputRule extends Ui5Element {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  maskFormatSymbol: any;
+  regex: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  maskFormatSymbolChanged(newValue?: any): any;
+  regexChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5Menu extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  title: any;
+  itemSelected: any;
+  closed: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  titleChanged(newValue?: any): any;
+  itemSelectedChanged(newValue?: any): any;
+  closedChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5MessageItem extends Ui5Item {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  type: any;
+  title: any;
+  subtitle: any;
+  description: any;
+  markupDescription: any;
+  longtextUrl: any;
+  counter: any;
+  groupName: any;
+  activeTitle: any;
+  text: any;
+  enabled: any;
+  textDirection: any;
+  key: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  typeChanged(newValue?: any): any;
+  titleChanged(newValue?: any): any;
+  subtitleChanged(newValue?: any): any;
+  descriptionChanged(newValue?: any): any;
+  markupDescriptionChanged(newValue?: any): any;
+  longtextUrlChanged(newValue?: any): any;
+  counterChanged(newValue?: any): any;
+  groupNameChanged(newValue?: any): any;
+  activeTitleChanged(newValue?: any): any;
+  textChanged(newValue?: any): any;
+  enabledChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
+  keyChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Item*/
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5ManagedObject extends Ui5EventProvider {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
 export declare class Ui5MenuItem extends Ui5Item {
   ui5Id: any;
   ui5Class: any;
@@ -3196,145 +3380,6 @@ export declare class Ui5MenuItem extends Ui5Item {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5MessageItem extends Ui5Item {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  type: any;
-  title: any;
-  subtitle: any;
-  description: any;
-  markupDescription: any;
-  longtextUrl: any;
-  counter: any;
-  groupName: any;
-  text: any;
-  enabled: any;
-  textDirection: any;
-  key: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  typeChanged(newValue?: any): any;
-  titleChanged(newValue?: any): any;
-  subtitleChanged(newValue?: any): any;
-  descriptionChanged(newValue?: any): any;
-  markupDescriptionChanged(newValue?: any): any;
-  longtextUrlChanged(newValue?: any): any;
-  counterChanged(newValue?: any): any;
-  groupNameChanged(newValue?: any): any;
-  textChanged(newValue?: any): any;
-  enabledChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
-  keyChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Item*/
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5MaskInputRule extends Ui5Element {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  maskFormatSymbol: any;
-  regex: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  maskFormatSymbolChanged(newValue?: any): any;
-  regexChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5DynamicPageTitle extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  areaShrinkRatio: any;
-  stateChange: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  areaShrinkRatioChanged(newValue?: any): any;
-  stateChangeChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
 export declare class Ui5MessageView extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -3349,6 +3394,7 @@ export declare class Ui5MessageView extends Ui5Control {
   listSelect: any;
   longtextLoaded: any;
   urlValidated: any;
+  activeTitlePress: any;
   blocked: any;
   busy: any;
   busyIndicatorDelay: any;
@@ -3381,6 +3427,67 @@ export declare class Ui5MessageView extends Ui5Control {
   listSelectChanged(newValue?: any): any;
   longtextLoadedChanged(newValue?: any): any;
   urlValidatedChanged(newValue?: any): any;
+  activeTitlePressChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5MessageStrip extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  text: any;
+  type: any;
+  customIcon: any;
+  showIcon: any;
+  showCloseButton: any;
+  enableFormattedText: any;
+  close: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  textChanged(newValue?: any): any;
+  typeChanged(newValue?: any): any;
+  customIconChanged(newValue?: any): any;
+  showIconChanged(newValue?: any): any;
+  showCloseButtonChanged(newValue?: any): any;
+  enableFormattedTextChanged(newValue?: any): any;
+  closeChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -3473,33 +3580,11 @@ export declare class Ui5NumericContent extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5MessageStrip extends Ui5Control {
+export declare class Ui5Object {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  text: any;
-  type: any;
-  customIcon: any;
-  showIcon: any;
-  showCloseButton: any;
-  enableFormattedText: any;
-  close: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
   constructor(element?: any);
   UIElement: any;
   fillProperties(params?: any): any;
@@ -3508,30 +3593,6 @@ export declare class Ui5MessageStrip extends Ui5Control {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  textChanged(newValue?: any): any;
-  typeChanged(newValue?: any): any;
-  customIconChanged(newValue?: any): any;
-  showIconChanged(newValue?: any): any;
-  showCloseButtonChanged(newValue?: any): any;
-  enableFormattedTextChanged(newValue?: any): any;
-  closeChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
 }
 export declare class Ui5ObjectIdentifier extends Ui5Control {
   ui5Id: any;
@@ -3711,52 +3772,6 @@ export declare class Ui5OverflowToolbar extends Ui5Toolbar {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5Object {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-}
-export declare class Ui5PaneContainer extends Ui5Element {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  orientation: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  orientationChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
 export declare class Ui5Page extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -3873,6 +3888,170 @@ export declare class Ui5Panel extends Ui5Control {
   backgroundDesignChanged(newValue?: any): any;
   accessibleRoleChanged(newValue?: any): any;
   expandChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5PaneContainer extends Ui5Element {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  orientation: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  orientationChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5ResponsiveGridLayout extends Ui5FormLayout {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  labelSpanXL: any;
+  labelSpanL: any;
+  labelSpanM: any;
+  labelSpanS: any;
+  adjustLabelSpan: any;
+  emptySpanXL: any;
+  emptySpanL: any;
+  emptySpanM: any;
+  emptySpanS: any;
+  columnsXL: any;
+  columnsL: any;
+  columnsM: any;
+  singleContainerFullSize: any;
+  breakpointXL: any;
+  breakpointL: any;
+  breakpointM: any;
+  backgroundDesign: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  labelSpanXLChanged(newValue?: any): any;
+  labelSpanLChanged(newValue?: any): any;
+  labelSpanMChanged(newValue?: any): any;
+  labelSpanSChanged(newValue?: any): any;
+  adjustLabelSpanChanged(newValue?: any): any;
+  emptySpanXLChanged(newValue?: any): any;
+  emptySpanLChanged(newValue?: any): any;
+  emptySpanMChanged(newValue?: any): any;
+  emptySpanSChanged(newValue?: any): any;
+  columnsXLChanged(newValue?: any): any;
+  columnsLChanged(newValue?: any): any;
+  columnsMChanged(newValue?: any): any;
+  singleContainerFullSizeChanged(newValue?: any): any;
+  breakpointXLChanged(newValue?: any): any;
+  breakpointLChanged(newValue?: any): any;
+  breakpointMChanged(newValue?: any): any;
+  backgroundDesignChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.layout.form.FormLayout*/
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5ResponsiveSplitter extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  width: any;
+  height: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  widthChanged(newValue?: any): any;
+  heightChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -4020,6 +4199,84 @@ export declare class Ui5SegmentedButtonItem extends Ui5Item {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
+export declare class Ui5Select extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  name: any;
+  enabled: any;
+  width: any;
+  maxWidth: any;
+  selectedKey: any;
+  selectedItemId: any;
+  icon: any;
+  type: any;
+  autoAdjustWidth: any;
+  textAlign: any;
+  textDirection: any;
+  valueState: any;
+  valueStateText: any;
+  showSecondaryValues: any;
+  forceSelection: any;
+  change: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  nameChanged(newValue?: any): any;
+  enabledChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+  maxWidthChanged(newValue?: any): any;
+  selectedKeyChanged(newValue?: any): any;
+  selectedItemIdChanged(newValue?: any): any;
+  iconChanged(newValue?: any): any;
+  typeChanged(newValue?: any): any;
+  autoAdjustWidthChanged(newValue?: any): any;
+  textAlignChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
+  valueStateChanged(newValue?: any): any;
+  valueStateTextChanged(newValue?: any): any;
+  showSecondaryValuesChanged(newValue?: any): any;
+  forceSelectionChanged(newValue?: any): any;
+  changeChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
 export declare class Ui5SearchField extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -4092,11 +4349,71 @@ export declare class Ui5SearchField extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5ResponsiveGridLayout extends Ui5FormLayout {
+export declare class Ui5SegmentedButton extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
+  width: any;
+  enabled: any;
+  selectedKey: any;
+  selectionChange: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  widthChanged(newValue?: any): any;
+  enabledChanged(newValue?: any): any;
+  selectedKeyChanged(newValue?: any): any;
+  selectionChangeChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5SimpleForm extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  maxContainerCols: any;
+  minWidth: any;
+  width: any;
+  editable: any;
+  labelMinWidth: any;
+  layout: any;
   labelSpanXL: any;
   labelSpanL: any;
   labelSpanM: any;
@@ -4137,6 +4454,12 @@ export declare class Ui5ResponsiveGridLayout extends Ui5FormLayout {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
+  maxContainerColsChanged(newValue?: any): any;
+  minWidthChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+  editableChanged(newValue?: any): any;
+  labelMinWidthChanged(newValue?: any): any;
+  layoutChanged(newValue?: any): any;
   labelSpanXLChanged(newValue?: any): any;
   labelSpanLChanged(newValue?: any): any;
   labelSpanMChanged(newValue?: any): any;
@@ -4154,86 +4477,6 @@ export declare class Ui5ResponsiveGridLayout extends Ui5FormLayout {
   breakpointLChanged(newValue?: any): any;
   breakpointMChanged(newValue?: any): any;
   backgroundDesignChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.layout.form.FormLayout*/
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5Select extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  name: any;
-  enabled: any;
-  width: any;
-  maxWidth: any;
-  selectedKey: any;
-  selectedItemId: any;
-  icon: any;
-  type: any;
-  autoAdjustWidth: any;
-  textAlign: any;
-  textDirection: any;
-  valueState: any;
-  valueStateText: any;
-  showSecondaryValues: any;
-  forceSelection: any;
-  change: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  nameChanged(newValue?: any): any;
-  enabledChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-  maxWidthChanged(newValue?: any): any;
-  selectedKeyChanged(newValue?: any): any;
-  selectedItemIdChanged(newValue?: any): any;
-  iconChanged(newValue?: any): any;
-  typeChanged(newValue?: any): any;
-  autoAdjustWidthChanged(newValue?: any): any;
-  textAlignChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
-  valueStateChanged(newValue?: any): any;
-  valueStateTextChanged(newValue?: any): any;
-  showSecondaryValuesChanged(newValue?: any): any;
-  forceSelectionChanged(newValue?: any): any;
-  changeChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -4322,15 +4565,24 @@ export declare class Ui5Shell extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5SegmentedButton extends Ui5Control {
+export declare class Ui5SelectDialog extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  width: any;
-  enabled: any;
-  selectedKey: any;
-  selectionChange: any;
+  title: any;
+  noDataText: any;
+  multiSelect: any;
+  growingThreshold: any;
+  growing: any;
+  contentWidth: any;
+  rememberSelections: any;
+  contentHeight: any;
+  showClearButton: any;
+  confirm: any;
+  search: any;
+  liveChange: any;
+  cancel: any;
   blocked: any;
   busy: any;
   busyIndicatorDelay: any;
@@ -4354,10 +4606,19 @@ export declare class Ui5SegmentedButton extends Ui5Control {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  widthChanged(newValue?: any): any;
-  enabledChanged(newValue?: any): any;
-  selectedKeyChanged(newValue?: any): any;
-  selectionChangeChanged(newValue?: any): any;
+  titleChanged(newValue?: any): any;
+  noDataTextChanged(newValue?: any): any;
+  multiSelectChanged(newValue?: any): any;
+  growingThresholdChanged(newValue?: any): any;
+  growingChanged(newValue?: any): any;
+  contentWidthChanged(newValue?: any): any;
+  rememberSelectionsChanged(newValue?: any): any;
+  contentHeightChanged(newValue?: any): any;
+  showClearButtonChanged(newValue?: any): any;
+  confirmChanged(newValue?: any): any;
+  searchChanged(newValue?: any): any;
+  liveChangeChanged(newValue?: any): any;
+  cancelChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -4376,13 +4637,16 @@ export declare class Ui5SegmentedButton extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5ResponsiveSplitter extends Ui5Control {
+export declare class Ui5SlideTile extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  width: any;
-  height: any;
+  displayTime: any;
+  transitionTime: any;
+  scope: any;
+  sizeBehavior: any;
+  press: any;
   blocked: any;
   busy: any;
   busyIndicatorDelay: any;
@@ -4406,8 +4670,11 @@ export declare class Ui5ResponsiveSplitter extends Ui5Control {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  widthChanged(newValue?: any): any;
-  heightChanged(newValue?: any): any;
+  displayTimeChanged(newValue?: any): any;
+  transitionTimeChanged(newValue?: any): any;
+  scopeChanged(newValue?: any): any;
+  sizeBehaviorChanged(newValue?: any): any;
+  pressChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -4542,76 +4809,6 @@ export declare class Ui5SplitPane extends Ui5Element {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5SelectDialog extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  title: any;
-  noDataText: any;
-  multiSelect: any;
-  growingThreshold: any;
-  growing: any;
-  contentWidth: any;
-  rememberSelections: any;
-  contentHeight: any;
-  confirm: any;
-  search: any;
-  liveChange: any;
-  cancel: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  titleChanged(newValue?: any): any;
-  noDataTextChanged(newValue?: any): any;
-  multiSelectChanged(newValue?: any): any;
-  growingThresholdChanged(newValue?: any): any;
-  growingChanged(newValue?: any): any;
-  contentWidthChanged(newValue?: any): any;
-  rememberSelectionsChanged(newValue?: any): any;
-  contentHeightChanged(newValue?: any): any;
-  confirmChanged(newValue?: any): any;
-  searchChanged(newValue?: any): any;
-  liveChangeChanged(newValue?: any): any;
-  cancelChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
 export declare class Ui5Splitter extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -4666,21 +4863,22 @@ export declare class Ui5Splitter extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5StandardTreeItem extends Ui5TreeItemBase {
+export declare class Ui5StandardTile extends Ui5Tile {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
   title: any;
+  info: any;
   icon: any;
+  activeIcon: any;
+  number: any;
+  numberUnit: any;
+  infoState: any;
   type: any;
-  visible: any;
-  unread: any;
-  selected: any;
-  counter: any;
-  highlight: any;
+  iconDensityAware: any;
+  removable: any;
   press: any;
-  detailPress: any;
   blocked: any;
   busy: any;
   busyIndicatorDelay: any;
@@ -4705,19 +4903,18 @@ export declare class Ui5StandardTreeItem extends Ui5TreeItemBase {
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
   titleChanged(newValue?: any): any;
+  infoChanged(newValue?: any): any;
   iconChanged(newValue?: any): any;
-  
-  /* inherited from sap.m.TreeItemBase*/
+  activeIconChanged(newValue?: any): any;
+  numberChanged(newValue?: any): any;
+  numberUnitChanged(newValue?: any): any;
+  infoStateChanged(newValue?: any): any;
   typeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  unreadChanged(newValue?: any): any;
-  selectedChanged(newValue?: any): any;
-  counterChanged(newValue?: any): any;
-  highlightChanged(newValue?: any): any;
+  iconDensityAwareChanged(newValue?: any): any;
+  removableChanged(newValue?: any): any;
   
-  /* inherited from sap.m.ListItemBase*/
+  /* inherited from sap.m.Tile*/
   pressChanged(newValue?: any): any;
-  detailPressChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -4822,16 +5019,21 @@ export declare class Ui5StandardListItem extends Ui5ListItemBase {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5SlideTile extends Ui5Control {
+export declare class Ui5StandardTreeItem extends Ui5TreeItemBase {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  displayTime: any;
-  transitionTime: any;
-  scope: any;
-  sizeBehavior: any;
+  title: any;
+  icon: any;
+  type: any;
+  visible: any;
+  unread: any;
+  selected: any;
+  counter: any;
+  highlight: any;
   press: any;
+  detailPress: any;
   blocked: any;
   busy: any;
   busyIndicatorDelay: any;
@@ -4855,11 +5057,20 @@ export declare class Ui5SlideTile extends Ui5Control {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  displayTimeChanged(newValue?: any): any;
-  transitionTimeChanged(newValue?: any): any;
-  scopeChanged(newValue?: any): any;
-  sizeBehaviorChanged(newValue?: any): any;
+  titleChanged(newValue?: any): any;
+  iconChanged(newValue?: any): any;
+  
+  /* inherited from sap.m.TreeItemBase*/
+  typeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  unreadChanged(newValue?: any): any;
+  selectedChanged(newValue?: any): any;
+  counterChanged(newValue?: any): any;
+  highlightChanged(newValue?: any): any;
+  
+  /* inherited from sap.m.ListItemBase*/
   pressChanged(newValue?: any): any;
+  detailPressChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -4921,44 +5132,6 @@ export declare class Ui5SuggestionItem extends Ui5Item {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5TabContainerItem extends Ui5Element {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  name: any;
-  key: any;
-  modified: any;
-  itemPropertyChanged: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  nameChanged(newValue?: any): any;
-  keyChanged(newValue?: any): any;
-  modifiedChanged(newValue?: any): any;
-  itemPropertyChangedChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
 export declare class Ui5Switch extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -5010,6 +5183,44 @@ export declare class Ui5Switch extends Ui5Control {
   
   /* inherited from sap.ui.core.Control*/
   validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5TabContainerItem extends Ui5Element {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  name: any;
+  key: any;
+  modified: any;
+  itemPropertyChanged: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  nameChanged(newValue?: any): any;
+  keyChanged(newValue?: any): any;
+  modifiedChanged(newValue?: any): any;
+  itemPropertyChangedChanged(newValue?: any): any;
   
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
@@ -5083,8 +5294,9 @@ export declare class Ui5Table extends Ui5ListBase {
   showOverlay: any;
   alternateRowColors: any;
   popinLayout: any;
-  sticky: any;
+  contextualWidth: any;
   beforeOpenContextMenu: any;
+  paste: any;
   inset: any;
   headerText: any;
   footerText: any;
@@ -5105,6 +5317,7 @@ export declare class Ui5Table extends Ui5ListBase {
   growingDirection: any;
   rememberSelections: any;
   keyboardMode: any;
+  sticky: any;
   selectionChange: any;
   delete: any;
   swipe: any;
@@ -5140,8 +5353,9 @@ export declare class Ui5Table extends Ui5ListBase {
   showOverlayChanged(newValue?: any): any;
   alternateRowColorsChanged(newValue?: any): any;
   popinLayoutChanged(newValue?: any): any;
-  stickyChanged(newValue?: any): any;
+  contextualWidthChanged(newValue?: any): any;
   beforeOpenContextMenuChanged(newValue?: any): any;
+  pasteChanged(newValue?: any): any;
   insetChanged(newValue?: any): any;
   headerTextChanged(newValue?: any): any;
   footerTextChanged(newValue?: any): any;
@@ -5162,6 +5376,7 @@ export declare class Ui5Table extends Ui5ListBase {
   growingDirectionChanged(newValue?: any): any;
   rememberSelectionsChanged(newValue?: any): any;
   keyboardModeChanged(newValue?: any): any;
+  stickyChanged(newValue?: any): any;
   
   /* inherited from sap.m.ListBase*/
   selectionChangeChanged(newValue?: any): any;
@@ -5171,6 +5386,140 @@ export declare class Ui5Table extends Ui5ListBase {
   updateFinishedChanged(newValue?: any): any;
   itemPressChanged(newValue?: any): any;
   beforeOpenContextMenuChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5Text extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  text: any;
+  textDirection: any;
+  wrapping: any;
+  wrappingType: any;
+  textAlign: any;
+  width: any;
+  maxLines: any;
+  renderWhitespace: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  textChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
+  wrappingChanged(newValue?: any): any;
+  wrappingTypeChanged(newValue?: any): any;
+  textAlignChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
+  maxLinesChanged(newValue?: any): any;
+  renderWhitespaceChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5TableSelectDialog extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  title: any;
+  noDataText: any;
+  multiSelect: any;
+  growing: any;
+  growingThreshold: any;
+  contentWidth: any;
+  rememberSelections: any;
+  contentHeight: any;
+  showClearButton: any;
+  confirm: any;
+  search: any;
+  liveChange: any;
+  cancel: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  titleChanged(newValue?: any): any;
+  noDataTextChanged(newValue?: any): any;
+  multiSelectChanged(newValue?: any): any;
+  growingChanged(newValue?: any): any;
+  growingThresholdChanged(newValue?: any): any;
+  contentWidthChanged(newValue?: any): any;
+  rememberSelectionsChanged(newValue?: any): any;
+  contentHeightChanged(newValue?: any): any;
+  showClearButtonChanged(newValue?: any): any;
+  confirmChanged(newValue?: any): any;
+  searchChanged(newValue?: any): any;
+  liveChangeChanged(newValue?: any): any;
+  cancelChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -5283,66 +5632,6 @@ export declare class Ui5TextArea extends Ui5InputBase {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5Text extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  text: any;
-  textDirection: any;
-  wrapping: any;
-  textAlign: any;
-  width: any;
-  maxLines: any;
-  renderWhitespace: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  textChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
-  wrappingChanged(newValue?: any): any;
-  textAlignChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-  maxLinesChanged(newValue?: any): any;
-  renderWhitespaceChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
 export declare class Ui5TileContainer extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
@@ -5385,6 +5674,62 @@ export declare class Ui5TileContainer extends Ui5Control {
   tileMoveChanged(newValue?: any): any;
   tileDeleteChanged(newValue?: any): any;
   tileAddChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5TileContent extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  footer: any;
+  footerColor: any;
+  unit: any;
+  disabled: any;
+  frameType: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  footerChanged(newValue?: any): any;
+  footerColorChanged(newValue?: any): any;
+  unitChanged(newValue?: any): any;
+  disabledChanged(newValue?: any): any;
+  frameTypeChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -5453,76 +5798,6 @@ export declare class Ui5Tile extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5StandardTile extends Ui5Tile {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  title: any;
-  info: any;
-  icon: any;
-  activeIcon: any;
-  number: any;
-  numberUnit: any;
-  infoState: any;
-  type: any;
-  iconDensityAware: any;
-  removable: any;
-  press: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  titleChanged(newValue?: any): any;
-  infoChanged(newValue?: any): any;
-  iconChanged(newValue?: any): any;
-  activeIconChanged(newValue?: any): any;
-  numberChanged(newValue?: any): any;
-  numberUnitChanged(newValue?: any): any;
-  infoStateChanged(newValue?: any): any;
-  typeChanged(newValue?: any): any;
-  iconDensityAwareChanged(newValue?: any): any;
-  removableChanged(newValue?: any): any;
-  
-  /* inherited from sap.m.Tile*/
-  pressChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
 export declare class Ui5Title extends Ui5Element {
   ui5Id: any;
   ui5Class: any;
@@ -5552,62 +5827,6 @@ export declare class Ui5Title extends Ui5Element {
   iconChanged(newValue?: any): any;
   levelChanged(newValue?: any): any;
   emphasizedChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5TileContent extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  footer: any;
-  footerColor: any;
-  unit: any;
-  disabled: any;
-  frameType: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  footerChanged(newValue?: any): any;
-  footerColorChanged(newValue?: any): any;
-  unitChanged(newValue?: any): any;
-  disabledChanged(newValue?: any): any;
-  frameTypeChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
   
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
@@ -5687,113 +5906,8 @@ export declare class Ui5ToggleButton extends Ui5Button {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5ToolbarSpacer extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  width: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  widthChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5Toolbar extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  width: any;
-  active: any;
-  enabled: any;
-  height: any;
-  design: any;
-  style: any;
-  press: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  widthChanged(newValue?: any): any;
-  activeChanged(newValue?: any): any;
-  enabledChanged(newValue?: any): any;
-  heightChanged(newValue?: any): any;
-  designChanged(newValue?: any): any;
-  styleChanged(newValue?: any): any;
-  pressChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
+export declare class Ui5ToastService {
+  show(message?: any, displayLength?: any): any;
 }
 export declare class Ui5TreeItemBase extends Ui5ListItemBase {
   ui5Id: any;
@@ -5885,6 +5999,7 @@ export declare class Ui5Tree extends Ui5ListBase {
   growingDirection: any;
   rememberSelections: any;
   keyboardMode: any;
+  sticky: any;
   selectionChange: any;
   delete: any;
   swipe: any;
@@ -5936,6 +6051,7 @@ export declare class Ui5Tree extends Ui5ListBase {
   growingDirectionChanged(newValue?: any): any;
   rememberSelectionsChanged(newValue?: any): any;
   keyboardModeChanged(newValue?: any): any;
+  stickyChanged(newValue?: any): any;
   
   /* inherited from sap.m.ListBase*/
   selectionChangeChanged(newValue?: any): any;
@@ -6061,6 +6177,219 @@ export declare class Ui5UploadCollection extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
+export declare class Ui5UploadCollectionItem extends Ui5Element {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  documentId: any;
+  fileName: any;
+  mimeType: any;
+  thumbnailUrl: any;
+  url: any;
+  enableEdit: any;
+  enableDelete: any;
+  visibleEdit: any;
+  visibleDelete: any;
+  ariaLabelForPicture: any;
+  selected: any;
+  press: any;
+  deletePress: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  documentIdChanged(newValue?: any): any;
+  fileNameChanged(newValue?: any): any;
+  mimeTypeChanged(newValue?: any): any;
+  thumbnailUrlChanged(newValue?: any): any;
+  urlChanged(newValue?: any): any;
+  enableEditChanged(newValue?: any): any;
+  enableDeleteChanged(newValue?: any): any;
+  visibleEditChanged(newValue?: any): any;
+  visibleDeleteChanged(newValue?: any): any;
+  ariaLabelForPictureChanged(newValue?: any): any;
+  selectedChanged(newValue?: any): any;
+  pressChanged(newValue?: any): any;
+  deletePressChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5ToolbarSpacer extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  width: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  widthChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5Toolbar extends Ui5Control {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  width: any;
+  active: any;
+  enabled: any;
+  height: any;
+  design: any;
+  style: any;
+  press: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  widthChanged(newValue?: any): any;
+  activeChanged(newValue?: any): any;
+  enabledChanged(newValue?: any): any;
+  heightChanged(newValue?: any): any;
+  designChanged(newValue?: any): any;
+  styleChanged(newValue?: any): any;
+  pressChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
+export declare class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem {
+  ui5Id: any;
+  ui5Class: any;
+  ui5Tooltip: any;
+  prevId: any;
+  multiSelect: any;
+  filterDetailItemsAggregationChange: any;
+  selected: any;
+  itemPropertyChanged: any;
+  text: any;
+  enabled: any;
+  textDirection: any;
+  key: any;
+  validationSuccess: any;
+  validationError: any;
+  parseError: any;
+  formatError: any;
+  modelContextChange: any;
+  
+  /* inherited from sap.ui.base.EventProvider*/
+  /* inherited from sap.ui.base.Object*/
+  constructor(element?: any);
+  UIElement: any;
+  fillProperties(params?: any): any;
+  defaultFunc(): any;
+  attached(): any;
+  detached(): any;
+  addChild(child?: any, elem?: any, afterElement?: any): any;
+  removeChildByRelation(child?: any, relation?: any): any;
+  multiSelectChanged(newValue?: any): any;
+  filterDetailItemsAggregationChangeChanged(newValue?: any): any;
+  selectedChanged(newValue?: any): any;
+  
+  /* inherited from sap.m.ViewSettingsItem*/
+  itemPropertyChangedChanged(newValue?: any): any;
+  textChanged(newValue?: any): any;
+  enabledChanged(newValue?: any): any;
+  textDirectionChanged(newValue?: any): any;
+  keyChanged(newValue?: any): any;
+  
+  /* inherited from sap.ui.core.Item*/
+  /* inherited from sap.ui.core.Element*/
+  /* inherited from sap.ui.base.ManagedObject*/
+  validationSuccessChanged(newValue?: any): any;
+  validationErrorChanged(newValue?: any): any;
+  parseErrorChanged(newValue?: any): any;
+  formatErrorChanged(newValue?: any): any;
+  modelContextChangeChanged(newValue?: any): any;
+}
 export declare class Ui5UploadCollectionParameter extends Ui5Element {
   ui5Id: any;
   ui5Class: any;
@@ -6086,56 +6415,6 @@ export declare class Ui5UploadCollectionParameter extends Ui5Element {
   removeChildByRelation(child?: any, relation?: any): any;
   nameChanged(newValue?: any): any;
   valueChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5VerticalLayout extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  width: any;
-  enabled: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  widthChanged(newValue?: any): any;
-  enabledChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
   
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
@@ -6207,19 +6486,20 @@ export declare class Ui5ViewSettingsDialog extends Ui5Control {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem {
+export declare class Ui5VerticalLayout extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
-  multiSelect: any;
-  filterDetailItemsAggregationChange: any;
-  selected: any;
-  itemPropertyChanged: any;
-  text: any;
+  width: any;
   enabled: any;
-  textDirection: any;
-  key: any;
+  blocked: any;
+  busy: any;
+  busyIndicatorDelay: any;
+  busyIndicatorSize: any;
+  visible: any;
+  fieldGroupIds: any;
+  validateFieldGroup: any;
   validationSuccess: any;
   validationError: any;
   parseError: any;
@@ -6236,18 +6516,18 @@ export declare class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem {
   detached(): any;
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
-  multiSelectChanged(newValue?: any): any;
-  filterDetailItemsAggregationChangeChanged(newValue?: any): any;
-  selectedChanged(newValue?: any): any;
-  
-  /* inherited from sap.m.ViewSettingsItem*/
-  itemPropertyChangedChanged(newValue?: any): any;
-  textChanged(newValue?: any): any;
+  widthChanged(newValue?: any): any;
   enabledChanged(newValue?: any): any;
-  textDirectionChanged(newValue?: any): any;
-  keyChanged(newValue?: any): any;
+  blockedChanged(newValue?: any): any;
+  busyChanged(newValue?: any): any;
+  busyIndicatorDelayChanged(newValue?: any): any;
+  busyIndicatorSizeChanged(newValue?: any): any;
+  visibleChanged(newValue?: any): any;
+  fieldGroupIdsChanged(newValue?: any): any;
   
-  /* inherited from sap.ui.core.Item*/
+  /* inherited from sap.ui.core.Control*/
+  validateFieldGroupChanged(newValue?: any): any;
+  
   /* inherited from sap.ui.core.Element*/
   /* inherited from sap.ui.base.ManagedObject*/
   validationSuccessChanged(newValue?: any): any;
@@ -6256,23 +6536,17 @@ export declare class Ui5ViewSettingsFilterItem extends Ui5ViewSettingsItem {
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
 }
-export declare class Ui5TableSelectDialog extends Ui5Control {
+export declare class Ui5WizardStep extends Ui5Control {
   ui5Id: any;
   ui5Class: any;
   ui5Tooltip: any;
   prevId: any;
   title: any;
-  noDataText: any;
-  multiSelect: any;
-  growing: any;
-  growingThreshold: any;
-  contentWidth: any;
-  rememberSelections: any;
-  contentHeight: any;
-  confirm: any;
-  search: any;
-  liveChange: any;
-  cancel: any;
+  icon: any;
+  validated: any;
+  optional: any;
+  complete: any;
+  activate: any;
   blocked: any;
   busy: any;
   busyIndicatorDelay: any;
@@ -6297,17 +6571,11 @@ export declare class Ui5TableSelectDialog extends Ui5Control {
   addChild(child?: any, elem?: any, afterElement?: any): any;
   removeChildByRelation(child?: any, relation?: any): any;
   titleChanged(newValue?: any): any;
-  noDataTextChanged(newValue?: any): any;
-  multiSelectChanged(newValue?: any): any;
-  growingChanged(newValue?: any): any;
-  growingThresholdChanged(newValue?: any): any;
-  contentWidthChanged(newValue?: any): any;
-  rememberSelectionsChanged(newValue?: any): any;
-  contentHeightChanged(newValue?: any): any;
-  confirmChanged(newValue?: any): any;
-  searchChanged(newValue?: any): any;
-  liveChangeChanged(newValue?: any): any;
-  cancelChanged(newValue?: any): any;
+  iconChanged(newValue?: any): any;
+  validatedChanged(newValue?: any): any;
+  optionalChanged(newValue?: any): any;
+  completeChanged(newValue?: any): any;
+  activateChanged(newValue?: any): any;
   blockedChanged(newValue?: any): any;
   busyChanged(newValue?: any): any;
   busyIndicatorDelayChanged(newValue?: any): any;
@@ -6429,240 +6697,4 @@ export declare class Ui5Wizard extends Ui5Control {
   parseErrorChanged(newValue?: any): any;
   formatErrorChanged(newValue?: any): any;
   modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5WizardStep extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  title: any;
-  icon: any;
-  validated: any;
-  optional: any;
-  complete: any;
-  activate: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  titleChanged(newValue?: any): any;
-  iconChanged(newValue?: any): any;
-  validatedChanged(newValue?: any): any;
-  optionalChanged(newValue?: any): any;
-  completeChanged(newValue?: any): any;
-  activateChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5ManagedObject extends Ui5EventProvider {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5SimpleForm extends Ui5Control {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  maxContainerCols: any;
-  minWidth: any;
-  width: any;
-  editable: any;
-  labelMinWidth: any;
-  layout: any;
-  labelSpanXL: any;
-  labelSpanL: any;
-  labelSpanM: any;
-  labelSpanS: any;
-  adjustLabelSpan: any;
-  emptySpanXL: any;
-  emptySpanL: any;
-  emptySpanM: any;
-  emptySpanS: any;
-  columnsXL: any;
-  columnsL: any;
-  columnsM: any;
-  singleContainerFullSize: any;
-  breakpointXL: any;
-  breakpointL: any;
-  breakpointM: any;
-  backgroundDesign: any;
-  blocked: any;
-  busy: any;
-  busyIndicatorDelay: any;
-  busyIndicatorSize: any;
-  visible: any;
-  fieldGroupIds: any;
-  validateFieldGroup: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  maxContainerColsChanged(newValue?: any): any;
-  minWidthChanged(newValue?: any): any;
-  widthChanged(newValue?: any): any;
-  editableChanged(newValue?: any): any;
-  labelMinWidthChanged(newValue?: any): any;
-  layoutChanged(newValue?: any): any;
-  labelSpanXLChanged(newValue?: any): any;
-  labelSpanLChanged(newValue?: any): any;
-  labelSpanMChanged(newValue?: any): any;
-  labelSpanSChanged(newValue?: any): any;
-  adjustLabelSpanChanged(newValue?: any): any;
-  emptySpanXLChanged(newValue?: any): any;
-  emptySpanLChanged(newValue?: any): any;
-  emptySpanMChanged(newValue?: any): any;
-  emptySpanSChanged(newValue?: any): any;
-  columnsXLChanged(newValue?: any): any;
-  columnsLChanged(newValue?: any): any;
-  columnsMChanged(newValue?: any): any;
-  singleContainerFullSizeChanged(newValue?: any): any;
-  breakpointXLChanged(newValue?: any): any;
-  breakpointLChanged(newValue?: any): any;
-  breakpointMChanged(newValue?: any): any;
-  backgroundDesignChanged(newValue?: any): any;
-  blockedChanged(newValue?: any): any;
-  busyChanged(newValue?: any): any;
-  busyIndicatorDelayChanged(newValue?: any): any;
-  busyIndicatorSizeChanged(newValue?: any): any;
-  visibleChanged(newValue?: any): any;
-  fieldGroupIdsChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Control*/
-  validateFieldGroupChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5UploadCollectionItem extends Ui5Element {
-  ui5Id: any;
-  ui5Class: any;
-  ui5Tooltip: any;
-  prevId: any;
-  documentId: any;
-  fileName: any;
-  mimeType: any;
-  thumbnailUrl: any;
-  url: any;
-  enableEdit: any;
-  enableDelete: any;
-  visibleEdit: any;
-  visibleDelete: any;
-  ariaLabelForPicture: any;
-  selected: any;
-  press: any;
-  deletePress: any;
-  validationSuccess: any;
-  validationError: any;
-  parseError: any;
-  formatError: any;
-  modelContextChange: any;
-  
-  /* inherited from sap.ui.base.EventProvider*/
-  /* inherited from sap.ui.base.Object*/
-  constructor(element?: any);
-  UIElement: any;
-  fillProperties(params?: any): any;
-  defaultFunc(): any;
-  attached(): any;
-  detached(): any;
-  addChild(child?: any, elem?: any, afterElement?: any): any;
-  removeChildByRelation(child?: any, relation?: any): any;
-  documentIdChanged(newValue?: any): any;
-  fileNameChanged(newValue?: any): any;
-  mimeTypeChanged(newValue?: any): any;
-  thumbnailUrlChanged(newValue?: any): any;
-  urlChanged(newValue?: any): any;
-  enableEditChanged(newValue?: any): any;
-  enableDeleteChanged(newValue?: any): any;
-  visibleEditChanged(newValue?: any): any;
-  visibleDeleteChanged(newValue?: any): any;
-  ariaLabelForPictureChanged(newValue?: any): any;
-  selectedChanged(newValue?: any): any;
-  pressChanged(newValue?: any): any;
-  deletePressChanged(newValue?: any): any;
-  
-  /* inherited from sap.ui.core.Element*/
-  /* inherited from sap.ui.base.ManagedObject*/
-  validationSuccessChanged(newValue?: any): any;
-  validationErrorChanged(newValue?: any): any;
-  parseErrorChanged(newValue?: any): any;
-  formatErrorChanged(newValue?: any): any;
-  modelContextChangeChanged(newValue?: any): any;
-}
-export declare class Ui5ToastService {
-  show(message?: any, displayLength?: any): any;
 }

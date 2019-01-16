@@ -127,14 +127,14 @@ if (relation == 'dragdropconfig') {  this._panecontainer.removeDragDropConfig(ch
       }
       catch(err){}
                                                                             }
-    orientationChanged(newValue){if(this._panecontainer!==null){ this._panecontainer.setOrientation(newValue);}}
+    orientationChanged(newValue){if(newValue!=null && newValue!=undefined && this._panecontainer!==null){ this._panecontainer.setOrientation(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._panecontainer!==null){ this._panecontainer.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._panecontainer!==null){ this._panecontainer.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._panecontainer!==null){ this._panecontainer.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._panecontainer!==null){ this._panecontainer.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._panecontainer!==null){ this._panecontainer.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._panecontainer!==null){ this._panecontainer.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._panecontainer!==null){ this._panecontainer.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._panecontainer!==null){ this._panecontainer.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._panecontainer!==null){ this._panecontainer.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._panecontainer!==null){ this._panecontainer.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

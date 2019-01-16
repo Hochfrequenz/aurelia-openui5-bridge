@@ -252,13 +252,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5ListItem.prototype.iconChanged = function iconChanged(newValue) {
-            if (this._listitem !== null) {
+            if (newValue != null && newValue != undefined && this._listitem !== null) {
                 this._listitem.setIcon(newValue);
             }
         };
 
         Ui5ListItem.prototype.additionalTextChanged = function additionalTextChanged(newValue) {
-            if (this._listitem !== null) {
+            if (newValue != null && newValue != undefined && this._listitem !== null) {
                 this._listitem.setAdditionalText(newValue);
             }
         };
@@ -288,31 +288,31 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5ListItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._listitem !== null) {
+            if (newValue != null && newValue != undefined && this._listitem !== null) {
                 this._listitem.attachValidationSuccess(newValue);
             }
         };
 
         Ui5ListItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._listitem !== null) {
+            if (newValue != null && newValue != undefined && this._listitem !== null) {
                 this._listitem.attachValidationError(newValue);
             }
         };
 
         Ui5ListItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._listitem !== null) {
+            if (newValue != null && newValue != undefined && this._listitem !== null) {
                 this._listitem.attachParseError(newValue);
             }
         };
 
         Ui5ListItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._listitem !== null) {
+            if (newValue != null && newValue != undefined && this._listitem !== null) {
                 this._listitem.attachFormatError(newValue);
             }
         };
 
         Ui5ListItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._listitem !== null) {
+            if (newValue != null && newValue != undefined && this._listitem !== null) {
                 this._listitem.attachModelContextChange(newValue);
             }
         };

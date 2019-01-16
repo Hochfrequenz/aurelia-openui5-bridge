@@ -22,6 +22,7 @@ export class Ui5Label extends Ui5Control{
 @bindable() required = false;
 @bindable() displayOnly = false;
 @bindable() wrapping = false;
+@bindable() wrappingType = 'Normal';
 @bindable() vAlign = 'Inherit';
 /* inherited from sap.ui.core.Control*/
 @bindable() blocked = false;
@@ -59,6 +60,7 @@ params.width = this.width;
 params.required = getBooleanFromAttributeValue(this.required);
 params.displayOnly = getBooleanFromAttributeValue(this.displayOnly);
 params.wrapping = getBooleanFromAttributeValue(this.wrapping);
+params.wrappingType = this.wrappingType;
 params.vAlign = this.vAlign;
             
                                             super.fillProperties(params);   
@@ -149,15 +151,16 @@ if (relation == 'dragdropconfig') {  this._label.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    designChanged(newValue){if(this._label!==null){ this._label.setDesign(newValue);}}
-textChanged(newValue){if(this._label!==null){ this._label.setText(newValue);}}
-textAlignChanged(newValue){if(this._label!==null){ this._label.setTextAlign(newValue);}}
-textDirectionChanged(newValue){if(this._label!==null){ this._label.setTextDirection(newValue);}}
-widthChanged(newValue){if(this._label!==null){ this._label.setWidth(newValue);}}
-requiredChanged(newValue){if(this._label!==null){ this._label.setRequired(getBooleanFromAttributeValue(newValue));}}
-displayOnlyChanged(newValue){if(this._label!==null){ this._label.setDisplayOnly(getBooleanFromAttributeValue(newValue));}}
-wrappingChanged(newValue){if(this._label!==null){ this._label.setWrapping(getBooleanFromAttributeValue(newValue));}}
-vAlignChanged(newValue){if(this._label!==null){ this._label.setVAlign(newValue);}}
+    designChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setDesign(newValue);}}
+textChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setText(newValue);}}
+textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setTextAlign(newValue);}}
+textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setTextDirection(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setWidth(newValue);}}
+requiredChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setRequired(getBooleanFromAttributeValue(newValue));}}
+displayOnlyChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setDisplayOnly(getBooleanFromAttributeValue(newValue));}}
+wrappingChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setWrapping(getBooleanFromAttributeValue(newValue));}}
+wrappingTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setWrappingType(newValue);}}
+vAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setVAlign(newValue);}}
 blockedChanged(newValue){if(this._label!==null){ this._label.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._label!==null){ this._label.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorDelay(newValue);}}
@@ -165,14 +168,14 @@ busyIndicatorSizeChanged(newValue){if(this._label!==null){ this._label.setBusyIn
 visibleChanged(newValue){if(this._label!==null){ this._label.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._label!==null){ this._label.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._label!==null){ this._label.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._label!==null){ this._label.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._label!==null){ this._label.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._label!==null){ this._label.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._label!==null){ this._label.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._label!==null){ this._label.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

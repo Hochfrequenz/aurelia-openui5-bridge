@@ -20,6 +20,7 @@ export class Ui5mTitle extends Ui5Control{
 @bindable() width = null;
 @bindable() textAlign = 'Initial';
 @bindable() wrapping = false;
+@bindable() wrappingType = 'Normal';
 /* inherited from sap.ui.core.Control*/
 @bindable() blocked = false;
 @bindable() busy = false;
@@ -54,6 +55,7 @@ params.titleStyle = this.titleStyle;
 params.width = this.width;
 params.textAlign = this.textAlign;
 params.wrapping = getBooleanFromAttributeValue(this.wrapping);
+params.wrappingType = this.wrappingType;
             
                                             super.fillProperties(params);   
         }
@@ -143,12 +145,13 @@ if (relation == 'dragdropconfig') {  this._mtitle.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    textChanged(newValue){if(this._mtitle!==null){ this._mtitle.setText(newValue);}}
-levelChanged(newValue){if(this._mtitle!==null){ this._mtitle.setLevel(newValue);}}
-titleStyleChanged(newValue){if(this._mtitle!==null){ this._mtitle.setTitleStyle(newValue);}}
-widthChanged(newValue){if(this._mtitle!==null){ this._mtitle.setWidth(newValue);}}
-textAlignChanged(newValue){if(this._mtitle!==null){ this._mtitle.setTextAlign(newValue);}}
-wrappingChanged(newValue){if(this._mtitle!==null){ this._mtitle.setWrapping(getBooleanFromAttributeValue(newValue));}}
+    textChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setText(newValue);}}
+levelChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setLevel(newValue);}}
+titleStyleChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setTitleStyle(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setWidth(newValue);}}
+textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setTextAlign(newValue);}}
+wrappingChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setWrapping(getBooleanFromAttributeValue(newValue));}}
+wrappingTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setWrappingType(newValue);}}
 blockedChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusyIndicatorDelay(newValue);}}
@@ -156,14 +159,14 @@ busyIndicatorSizeChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusy
 visibleChanged(newValue){if(this._mtitle!==null){ this._mtitle.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._mtitle!==null){ this._mtitle.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._mtitle!==null){ this._mtitle.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._mtitle!==null){ this._mtitle.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._mtitle!==null){ this._mtitle.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._mtitle!==null){ this._mtitle.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._mtitle!==null){ this._mtitle.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._mtitle!==null){ this._mtitle.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

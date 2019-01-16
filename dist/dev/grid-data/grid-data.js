@@ -315,157 +315,157 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5GridData.prototype.spanChanged = function spanChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setSpan(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.spanXLChanged = function spanXLChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setSpanXL(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.spanLChanged = function spanLChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setSpanL(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.spanMChanged = function spanMChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setSpanM(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.spanSChanged = function spanSChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setSpanS(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.indentChanged = function indentChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setIndent(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.indentXLChanged = function indentXLChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setIndentXL(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.indentLChanged = function indentLChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setIndentL(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.indentMChanged = function indentMChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setIndentM(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.indentSChanged = function indentSChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setIndentS(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.visibleXLChanged = function visibleXLChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setVisibleXL(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5GridData.prototype.visibleLChanged = function visibleLChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setVisibleL(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5GridData.prototype.visibleMChanged = function visibleMChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setVisibleM(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5GridData.prototype.visibleSChanged = function visibleSChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setVisibleS(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5GridData.prototype.moveBackwardsChanged = function moveBackwardsChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setMoveBackwards(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.moveForwardChanged = function moveForwardChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setMoveForward(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.linebreakChanged = function linebreakChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setLinebreak(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5GridData.prototype.linebreakXLChanged = function linebreakXLChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setLinebreakXL(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5GridData.prototype.linebreakLChanged = function linebreakLChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setLinebreakL(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5GridData.prototype.linebreakMChanged = function linebreakMChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setLinebreakM(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5GridData.prototype.linebreakSChanged = function linebreakSChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.setLinebreakS(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5GridData.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.attachValidationError(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.attachParseError(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.attachFormatError(newValue);
                     }
                 };
 
                 Ui5GridData.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._griddata !== null) {
+                    if (newValue != null && newValue != undefined && this._griddata !== null) {
                         this._griddata.attachModelContextChange(newValue);
                     }
                 };

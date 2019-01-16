@@ -300,79 +300,79 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5SearchField.prototype.valueChanged = function valueChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setValue(newValue);
             }
         };
 
         Ui5SearchField.prototype.widthChanged = function widthChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setWidth(newValue);
             }
         };
 
         Ui5SearchField.prototype.enabledChanged = function enabledChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SearchField.prototype.visibleChanged = function visibleChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SearchField.prototype.maxLengthChanged = function maxLengthChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setMaxLength(newValue);
             }
         };
 
         Ui5SearchField.prototype.placeholderChanged = function placeholderChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setPlaceholder(newValue);
             }
         };
 
         Ui5SearchField.prototype.showRefreshButtonChanged = function showRefreshButtonChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setShowRefreshButton((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SearchField.prototype.refreshButtonTooltipChanged = function refreshButtonTooltipChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setRefreshButtonTooltip(newValue);
             }
         };
 
         Ui5SearchField.prototype.showSearchButtonChanged = function showSearchButtonChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setShowSearchButton((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SearchField.prototype.enableSuggestionsChanged = function enableSuggestionsChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.setEnableSuggestions((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SearchField.prototype.searchChanged = function searchChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.attachSearch(newValue);
             }
         };
 
         Ui5SearchField.prototype.liveChangeChanged = function liveChangeChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.attachLiveChange(newValue);
             }
         };
 
         Ui5SearchField.prototype.suggestChanged = function suggestChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.attachSuggest(newValue);
             }
         };
@@ -414,37 +414,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5SearchField.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5SearchField.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.attachValidationSuccess(newValue);
             }
         };
 
         Ui5SearchField.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.attachValidationError(newValue);
             }
         };
 
         Ui5SearchField.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.attachParseError(newValue);
             }
         };
 
         Ui5SearchField.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.attachFormatError(newValue);
             }
         };
 
         Ui5SearchField.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._searchfield !== null) {
+            if (newValue != null && newValue != undefined && this._searchfield !== null) {
                 this._searchfield.attachModelContextChange(newValue);
             }
         };

@@ -116,11 +116,11 @@ params.modelContextChange = this.modelContextChange==null ? this.defaultFunc: th
       }
       catch(err){}
                                                                             }
-    validationSuccessChanged(newValue){if(this._managedobject!==null){ this._managedobject.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._managedobject!==null){ this._managedobject.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._managedobject!==null){ this._managedobject.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._managedobject!==null){ this._managedobject.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._managedobject!==null){ this._managedobject.attachModelContextChange(newValue);}}
+    validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._managedobject!==null){ this._managedobject.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._managedobject!==null){ this._managedobject.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._managedobject!==null){ this._managedobject.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._managedobject!==null){ this._managedobject.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._managedobject!==null){ this._managedobject.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

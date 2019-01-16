@@ -244,43 +244,43 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
     };
 
     Ui5IconTabFilter.prototype.countChanged = function countChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.setCount(newValue);
         }
     };
 
     Ui5IconTabFilter.prototype.showAllChanged = function showAllChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.setShowAll((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5IconTabFilter.prototype.iconChanged = function iconChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.setIcon(newValue);
         }
     };
 
     Ui5IconTabFilter.prototype.iconColorChanged = function iconColorChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.setIconColor(newValue);
         }
     };
 
     Ui5IconTabFilter.prototype.iconDensityAwareChanged = function iconDensityAwareChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.setIconDensityAware((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5IconTabFilter.prototype.visibleChanged = function visibleChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.setVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5IconTabFilter.prototype.designChanged = function designChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.setDesign(newValue);
         }
     };
@@ -310,31 +310,31 @@ var Ui5IconTabFilter = exports.Ui5IconTabFilter = (_dec = (0, _aureliaTemplating
     };
 
     Ui5IconTabFilter.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.attachValidationSuccess(newValue);
         }
     };
 
     Ui5IconTabFilter.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.attachValidationError(newValue);
         }
     };
 
     Ui5IconTabFilter.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.attachParseError(newValue);
         }
     };
 
     Ui5IconTabFilter.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.attachFormatError(newValue);
         }
     };
 
     Ui5IconTabFilter.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._icontabfilter !== null) {
+        if (newValue != null && newValue != undefined && this._icontabfilter !== null) {
             this._icontabfilter.attachModelContextChange(newValue);
         }
     };

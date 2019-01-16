@@ -284,43 +284,43 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Wizard.prototype.widthChanged = function widthChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.setWidth(newValue);
             }
         };
 
         Ui5Wizard.prototype.heightChanged = function heightChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.setHeight(newValue);
             }
         };
 
         Ui5Wizard.prototype.showNextButtonChanged = function showNextButtonChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.setShowNextButton((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Wizard.prototype.finishButtonTextChanged = function finishButtonTextChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.setFinishButtonText(newValue);
             }
         };
 
         Ui5Wizard.prototype.enableBranchingChanged = function enableBranchingChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.setEnableBranching((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5Wizard.prototype.stepActivateChanged = function stepActivateChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachStepActivate(newValue);
             }
         };
 
         Ui5Wizard.prototype.completeChanged = function completeChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachComplete(newValue);
             }
         };
@@ -362,37 +362,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5Wizard.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5Wizard.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachValidationSuccess(newValue);
             }
         };
 
         Ui5Wizard.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachValidationError(newValue);
             }
         };
 
         Ui5Wizard.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachParseError(newValue);
             }
         };
 
         Ui5Wizard.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachFormatError(newValue);
             }
         };
 
         Ui5Wizard.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._wizard !== null) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachModelContextChange(newValue);
             }
         };

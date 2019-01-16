@@ -244,31 +244,31 @@ var Ui5SlideTile = exports.Ui5SlideTile = (_dec = (0, _aureliaTemplating.customE
     };
 
     Ui5SlideTile.prototype.displayTimeChanged = function displayTimeChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.setDisplayTime(newValue);
         }
     };
 
     Ui5SlideTile.prototype.transitionTimeChanged = function transitionTimeChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.setTransitionTime(newValue);
         }
     };
 
     Ui5SlideTile.prototype.scopeChanged = function scopeChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.setScope(newValue);
         }
     };
 
     Ui5SlideTile.prototype.sizeBehaviorChanged = function sizeBehaviorChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.setSizeBehavior(newValue);
         }
     };
 
     Ui5SlideTile.prototype.pressChanged = function pressChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.attachPress(newValue);
         }
     };
@@ -310,37 +310,37 @@ var Ui5SlideTile = exports.Ui5SlideTile = (_dec = (0, _aureliaTemplating.customE
     };
 
     Ui5SlideTile.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5SlideTile.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.attachValidationSuccess(newValue);
         }
     };
 
     Ui5SlideTile.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.attachValidationError(newValue);
         }
     };
 
     Ui5SlideTile.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.attachParseError(newValue);
         }
     };
 
     Ui5SlideTile.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.attachFormatError(newValue);
         }
     };
 
     Ui5SlideTile.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._slidetile !== null) {
+        if (newValue != null && newValue != undefined && this._slidetile !== null) {
             this._slidetile.attachModelContextChange(newValue);
         }
     };

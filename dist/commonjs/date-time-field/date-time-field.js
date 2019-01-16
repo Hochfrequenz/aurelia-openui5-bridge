@@ -261,25 +261,25 @@ var Ui5DateTimeField = exports.Ui5DateTimeField = (_dec = (0, _aureliaTemplating
     };
 
     Ui5DateTimeField.prototype.displayFormatChanged = function displayFormatChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.setDisplayFormat(newValue);
         }
     };
 
     Ui5DateTimeField.prototype.valueFormatChanged = function valueFormatChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.setValueFormat(newValue);
         }
     };
 
     Ui5DateTimeField.prototype.dateValueChanged = function dateValueChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.setDateValue(newValue);
         }
     };
 
     Ui5DateTimeField.prototype.initialFocusedDateValueChanged = function initialFocusedDateValueChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.setInitialFocusedDateValue(newValue);
         }
     };
@@ -357,7 +357,7 @@ var Ui5DateTimeField = exports.Ui5DateTimeField = (_dec = (0, _aureliaTemplating
     };
 
     Ui5DateTimeField.prototype.changeChanged = function changeChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.attachChange(newValue);
         }
     };
@@ -399,37 +399,37 @@ var Ui5DateTimeField = exports.Ui5DateTimeField = (_dec = (0, _aureliaTemplating
     };
 
     Ui5DateTimeField.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5DateTimeField.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.attachValidationSuccess(newValue);
         }
     };
 
     Ui5DateTimeField.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.attachValidationError(newValue);
         }
     };
 
     Ui5DateTimeField.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.attachParseError(newValue);
         }
     };
 
     Ui5DateTimeField.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.attachFormatError(newValue);
         }
     };
 
     Ui5DateTimeField.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._datetimefield !== null) {
+        if (newValue != null && newValue != undefined && this._datetimefield !== null) {
             this._datetimefield.attachModelContextChange(newValue);
         }
     };

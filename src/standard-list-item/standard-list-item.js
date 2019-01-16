@@ -162,17 +162,17 @@ if (relation == 'dragdropconfig') {  this._standardlistitem.removeDragDropConfig
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setTitle(newValue);}}
-descriptionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setDescription(newValue);}}
-iconChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setIcon(newValue);}}
-iconInsetChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setIconInset(getBooleanFromAttributeValue(newValue));}}
-iconDensityAwareChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
-activeIconChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setActiveIcon(newValue);}}
-infoChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setInfo(newValue);}}
-infoStateChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setInfoState(newValue);}}
-adaptTitleSizeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setAdaptTitleSize(getBooleanFromAttributeValue(newValue));}}
-titleTextDirectionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setTitleTextDirection(newValue);}}
-infoTextDirectionChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setInfoTextDirection(newValue);}}
+    titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setTitle(newValue);}}
+descriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setDescription(newValue);}}
+iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setIcon(newValue);}}
+iconInsetChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setIconInset(getBooleanFromAttributeValue(newValue));}}
+iconDensityAwareChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
+activeIconChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setActiveIcon(newValue);}}
+infoChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setInfo(newValue);}}
+infoStateChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setInfoState(newValue);}}
+adaptTitleSizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setAdaptTitleSize(getBooleanFromAttributeValue(newValue));}}
+titleTextDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setTitleTextDirection(newValue);}}
+infoTextDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setInfoTextDirection(newValue);}}
 typeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setType(newValue);}}
 visibleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
 unreadChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setUnread(getBooleanFromAttributeValue(newValue));}}
@@ -180,8 +180,8 @@ selectedChanged(newValue){if(this._standardlistitem!==null){ this._standardlisti
 counterChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setCounter(newValue);}}
 highlightChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setHighlight(newValue);}}
 /* inherited from sap.m.ListItemBase*/
-pressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachPress(newValue);}}
-detailPressChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachDetailPress(newValue);}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachPress(newValue);}}
+detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachDetailPress(newValue);}}
 blockedChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorDelay(newValue);}}
@@ -189,14 +189,14 @@ busyIndicatorSizeChanged(newValue){if(this._standardlistitem!==null){ this._stan
 visibleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

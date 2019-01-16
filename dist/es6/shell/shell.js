@@ -157,18 +157,18 @@ if (relation == 'dragdropconfig') {  this._shell.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._shell!==null){ this._shell.setTitle(newValue);}}
-logoChanged(newValue){if(this._shell!==null){ this._shell.setLogo(newValue);}}
-showLogoutChanged(newValue){if(this._shell!==null){ this._shell.setShowLogout(getBooleanFromAttributeValue(newValue));}}
-headerRightTextChanged(newValue){if(this._shell!==null){ this._shell.setHeaderRightText(newValue);}}
-appWidthLimitedChanged(newValue){if(this._shell!==null){ this._shell.setAppWidthLimited(getBooleanFromAttributeValue(newValue));}}
-backgroundColorChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundColor(newValue);}}
-backgroundImageChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundImage(newValue);}}
-backgroundRepeatChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundRepeat(getBooleanFromAttributeValue(newValue));}}
-backgroundOpacityChanged(newValue){if(this._shell!==null){ this._shell.setBackgroundOpacity(newValue);}}
-homeIconChanged(newValue){if(this._shell!==null){ this._shell.setHomeIcon(newValue);}}
-titleLevelChanged(newValue){if(this._shell!==null){ this._shell.setTitleLevel(newValue);}}
-logoutChanged(newValue){if(this._shell!==null){ this._shell.attachLogout(newValue);}}
+    titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setTitle(newValue);}}
+logoChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setLogo(newValue);}}
+showLogoutChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setShowLogout(getBooleanFromAttributeValue(newValue));}}
+headerRightTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setHeaderRightText(newValue);}}
+appWidthLimitedChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setAppWidthLimited(getBooleanFromAttributeValue(newValue));}}
+backgroundColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setBackgroundColor(newValue);}}
+backgroundImageChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setBackgroundImage(newValue);}}
+backgroundRepeatChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setBackgroundRepeat(getBooleanFromAttributeValue(newValue));}}
+backgroundOpacityChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setBackgroundOpacity(newValue);}}
+homeIconChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setHomeIcon(newValue);}}
+titleLevelChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setTitleLevel(newValue);}}
+logoutChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.attachLogout(newValue);}}
 blockedChanged(newValue){if(this._shell!==null){ this._shell.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._shell!==null){ this._shell.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorDelay(newValue);}}
@@ -176,14 +176,14 @@ busyIndicatorSizeChanged(newValue){if(this._shell!==null){ this._shell.setBusyIn
 visibleChanged(newValue){if(this._shell!==null){ this._shell.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._shell!==null){ this._shell.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._shell!==null){ this._shell.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._shell!==null){ this._shell.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._shell!==null){ this._shell.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._shell!==null){ this._shell.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._shell!==null){ this._shell.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._shell!==null){ this._shell.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

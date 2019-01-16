@@ -17,6 +17,7 @@ export class Ui5Text extends Ui5Control{
         @bindable() text = '';
 @bindable() textDirection = 'Inherit';
 @bindable() wrapping = true;
+@bindable() wrappingType = 'Normal';
 @bindable() textAlign = 'Begin';
 @bindable() width = null;
 @bindable() maxLines = null;
@@ -52,6 +53,7 @@ export class Ui5Text extends Ui5Control{
                                         params.text = (this.text != null && this.text.length>0) ? this.text : this.element.getElementsByTagName("customData")[0].innerText.trim();
 params.textDirection = this.textDirection;
 params.wrapping = getBooleanFromAttributeValue(this.wrapping);
+params.wrappingType = this.wrappingType;
 params.textAlign = this.textAlign;
 params.width = this.width;
 params.maxLines = this.maxLines?parseInt(this.maxLines):0;
@@ -145,13 +147,14 @@ if (relation == 'dragdropconfig') {  this._text.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    textChanged(newValue){if(this._text!==null){ this._text.setText(newValue);}}
-textDirectionChanged(newValue){if(this._text!==null){ this._text.setTextDirection(newValue);}}
-wrappingChanged(newValue){if(this._text!==null){ this._text.setWrapping(getBooleanFromAttributeValue(newValue));}}
-textAlignChanged(newValue){if(this._text!==null){ this._text.setTextAlign(newValue);}}
-widthChanged(newValue){if(this._text!==null){ this._text.setWidth(newValue);}}
-maxLinesChanged(newValue){if(this._text!==null){ this._text.setMaxLines(newValue);}}
-renderWhitespaceChanged(newValue){if(this._text!==null){ this._text.setRenderWhitespace(getBooleanFromAttributeValue(newValue));}}
+    textChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setText(newValue);}}
+textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setTextDirection(newValue);}}
+wrappingChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setWrapping(getBooleanFromAttributeValue(newValue));}}
+wrappingTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setWrappingType(newValue);}}
+textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setTextAlign(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setWidth(newValue);}}
+maxLinesChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setMaxLines(newValue);}}
+renderWhitespaceChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setRenderWhitespace(getBooleanFromAttributeValue(newValue));}}
 blockedChanged(newValue){if(this._text!==null){ this._text.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._text!==null){ this._text.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorDelay(newValue);}}
@@ -159,14 +162,14 @@ busyIndicatorSizeChanged(newValue){if(this._text!==null){ this._text.setBusyIndi
 visibleChanged(newValue){if(this._text!==null){ this._text.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._text!==null){ this._text.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._text!==null){ this._text.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._text!==null){ this._text.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._text!==null){ this._text.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._text!==null){ this._text.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._text!==null){ this._text.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._text!==null){ this._text.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

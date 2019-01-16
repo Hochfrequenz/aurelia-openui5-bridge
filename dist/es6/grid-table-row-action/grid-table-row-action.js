@@ -135,7 +135,7 @@ if (relation == 'dragdropconfig') {  this._gridtablerowaction.removeDragDropConf
       }
       catch(err){}
                                                                             }
-    visibleChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setVisible(getBooleanFromAttributeValue(newValue));}}
+    visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowaction!==null){ this._gridtablerowaction.setVisible(getBooleanFromAttributeValue(newValue));}}
 blockedChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusyIndicatorDelay(newValue);}}
@@ -143,14 +143,14 @@ busyIndicatorSizeChanged(newValue){if(this._gridtablerowaction!==null){ this._gr
 visibleChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowaction!==null){ this._gridtablerowaction.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowaction!==null){ this._gridtablerowaction.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowaction!==null){ this._gridtablerowaction.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowaction!==null){ this._gridtablerowaction.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowaction!==null){ this._gridtablerowaction.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowaction!==null){ this._gridtablerowaction.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

@@ -275,7 +275,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Breadcrumbs.prototype.currentLocationTextChanged = function currentLocationTextChanged(newValue) {
-                    if (this._breadcrumbs !== null) {
+                    if (newValue != null && newValue != undefined && this._breadcrumbs !== null) {
                         this._breadcrumbs.setCurrentLocationText(newValue);
                     }
                 };
@@ -317,37 +317,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Breadcrumbs.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._breadcrumbs !== null) {
+                    if (newValue != null && newValue != undefined && this._breadcrumbs !== null) {
                         this._breadcrumbs.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5Breadcrumbs.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._breadcrumbs !== null) {
+                    if (newValue != null && newValue != undefined && this._breadcrumbs !== null) {
                         this._breadcrumbs.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5Breadcrumbs.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._breadcrumbs !== null) {
+                    if (newValue != null && newValue != undefined && this._breadcrumbs !== null) {
                         this._breadcrumbs.attachValidationError(newValue);
                     }
                 };
 
                 Ui5Breadcrumbs.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._breadcrumbs !== null) {
+                    if (newValue != null && newValue != undefined && this._breadcrumbs !== null) {
                         this._breadcrumbs.attachParseError(newValue);
                     }
                 };
 
                 Ui5Breadcrumbs.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._breadcrumbs !== null) {
+                    if (newValue != null && newValue != undefined && this._breadcrumbs !== null) {
                         this._breadcrumbs.attachFormatError(newValue);
                     }
                 };
 
                 Ui5Breadcrumbs.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._breadcrumbs !== null) {
+                    if (newValue != null && newValue != undefined && this._breadcrumbs !== null) {
                         this._breadcrumbs.attachModelContextChange(newValue);
                     }
                 };

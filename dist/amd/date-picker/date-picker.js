@@ -310,31 +310,31 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5DatePicker.prototype.displayFormatTypeChanged = function displayFormatTypeChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.setDisplayFormatType(newValue);
             }
         };
 
         Ui5DatePicker.prototype.secondaryCalendarTypeChanged = function secondaryCalendarTypeChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.setSecondaryCalendarType(newValue);
             }
         };
 
         Ui5DatePicker.prototype.minDateChanged = function minDateChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.setMinDate(newValue);
             }
         };
 
         Ui5DatePicker.prototype.maxDateChanged = function maxDateChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.setMaxDate(newValue);
             }
         };
 
         Ui5DatePicker.prototype.navigateChanged = function navigateChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.attachNavigate(newValue);
             }
         };
@@ -436,7 +436,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5DatePicker.prototype.changeChanged = function changeChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.attachChange(newValue);
             }
         };
@@ -478,37 +478,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5DatePicker.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5DatePicker.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.attachValidationSuccess(newValue);
             }
         };
 
         Ui5DatePicker.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.attachValidationError(newValue);
             }
         };
 
         Ui5DatePicker.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.attachParseError(newValue);
             }
         };
 
         Ui5DatePicker.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.attachFormatError(newValue);
             }
         };
 
         Ui5DatePicker.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._datepicker !== null) {
+            if (newValue != null && newValue != undefined && this._datepicker !== null) {
                 this._datepicker.attachModelContextChange(newValue);
             }
         };

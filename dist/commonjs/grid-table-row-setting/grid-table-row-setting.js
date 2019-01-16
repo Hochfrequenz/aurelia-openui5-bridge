@@ -212,37 +212,37 @@ var Ui5gridTableRowSetting = exports.Ui5gridTableRowSetting = (_dec = (0, _aurel
     };
 
     Ui5gridTableRowSetting.prototype.highlightChanged = function highlightChanged(newValue) {
-        if (this._gridtablerowsetting !== null) {
+        if (newValue != null && newValue != undefined && this._gridtablerowsetting !== null) {
             this._gridtablerowsetting.setHighlight(newValue);
         }
     };
 
     Ui5gridTableRowSetting.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._gridtablerowsetting !== null) {
+        if (newValue != null && newValue != undefined && this._gridtablerowsetting !== null) {
             this._gridtablerowsetting.attachValidationSuccess(newValue);
         }
     };
 
     Ui5gridTableRowSetting.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._gridtablerowsetting !== null) {
+        if (newValue != null && newValue != undefined && this._gridtablerowsetting !== null) {
             this._gridtablerowsetting.attachValidationError(newValue);
         }
     };
 
     Ui5gridTableRowSetting.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._gridtablerowsetting !== null) {
+        if (newValue != null && newValue != undefined && this._gridtablerowsetting !== null) {
             this._gridtablerowsetting.attachParseError(newValue);
         }
     };
 
     Ui5gridTableRowSetting.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._gridtablerowsetting !== null) {
+        if (newValue != null && newValue != undefined && this._gridtablerowsetting !== null) {
             this._gridtablerowsetting.attachFormatError(newValue);
         }
     };
 
     Ui5gridTableRowSetting.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._gridtablerowsetting !== null) {
+        if (newValue != null && newValue != undefined && this._gridtablerowsetting !== null) {
             this._gridtablerowsetting.attachModelContextChange(newValue);
         }
     };

@@ -97,9 +97,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _dec34, _dec35, _dec36, _dec37, _dec38, _dec39, _dec40, _dec41, _dec42, _dec43, _dec44, _dec45, _dec46, _dec47, _dec48, _dec49, _dec50, _dec51, _dec52, _dec53, _dec54, _dec55, _dec56, _dec57, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31, _descriptor32, _descriptor33, _descriptor34, _descriptor35, _descriptor36, _descriptor37, _descriptor38, _descriptor39, _descriptor40, _descriptor41, _descriptor42, _descriptor43, _descriptor44, _descriptor45, _descriptor46, _descriptor47, _descriptor48, _descriptor49, _descriptor50, _descriptor51, _descriptor52, _descriptor53, _descriptor54, _descriptor55, _descriptor56, _descriptor57, _descriptor58;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _dec34, _dec35, _dec36, _dec37, _dec38, _dec39, _dec40, _dec41, _dec42, _dec43, _dec44, _dec45, _dec46, _dec47, _dec48, _dec49, _dec50, _dec51, _dec52, _dec53, _dec54, _dec55, _dec56, _dec57, _dec58, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31, _descriptor32, _descriptor33, _descriptor34, _descriptor35, _descriptor36, _descriptor37, _descriptor38, _descriptor39, _descriptor40, _descriptor41, _descriptor42, _descriptor43, _descriptor44, _descriptor45, _descriptor46, _descriptor47, _descriptor48, _descriptor49, _descriptor50, _descriptor51, _descriptor52, _descriptor53, _descriptor54, _descriptor55, _descriptor56, _descriptor57, _descriptor58, _descriptor59;
 
-    var Ui5gridTable = exports.Ui5gridTable = (_dec = (0, _aureliaTemplating.customElement)('ui5-grid-table'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaTemplating.bindable)(), _dec27 = (0, _aureliaTemplating.bindable)(), _dec28 = (0, _aureliaTemplating.bindable)(), _dec29 = (0, _aureliaTemplating.bindable)(), _dec30 = (0, _aureliaTemplating.bindable)(), _dec31 = (0, _aureliaTemplating.bindable)(), _dec32 = (0, _aureliaTemplating.bindable)(), _dec33 = (0, _aureliaTemplating.bindable)(), _dec34 = (0, _aureliaTemplating.bindable)(), _dec35 = (0, _aureliaTemplating.bindable)(), _dec36 = (0, _aureliaTemplating.bindable)(), _dec37 = (0, _aureliaTemplating.bindable)(), _dec38 = (0, _aureliaTemplating.bindable)(), _dec39 = (0, _aureliaTemplating.bindable)(), _dec40 = (0, _aureliaTemplating.bindable)(), _dec41 = (0, _aureliaTemplating.bindable)(), _dec42 = (0, _aureliaTemplating.bindable)(), _dec43 = (0, _aureliaTemplating.bindable)(), _dec44 = (0, _aureliaTemplating.bindable)(), _dec45 = (0, _aureliaTemplating.bindable)(), _dec46 = (0, _aureliaTemplating.bindable)(), _dec47 = (0, _aureliaTemplating.bindable)(), _dec48 = (0, _aureliaTemplating.bindable)(), _dec49 = (0, _aureliaTemplating.bindable)(), _dec50 = (0, _aureliaTemplating.bindable)(), _dec51 = (0, _aureliaTemplating.bindable)(), _dec52 = (0, _aureliaTemplating.bindable)(), _dec53 = (0, _aureliaTemplating.bindable)(), _dec54 = (0, _aureliaTemplating.bindable)(), _dec55 = (0, _aureliaTemplating.bindable)(), _dec56 = (0, _aureliaTemplating.bindable)(), _dec57 = (0, _aureliaFramework.computedFrom)('_gridtable'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+    var Ui5gridTable = exports.Ui5gridTable = (_dec = (0, _aureliaTemplating.customElement)('ui5-grid-table'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaTemplating.bindable)(), _dec20 = (0, _aureliaTemplating.bindable)(), _dec21 = (0, _aureliaTemplating.bindable)(), _dec22 = (0, _aureliaTemplating.bindable)(), _dec23 = (0, _aureliaTemplating.bindable)(), _dec24 = (0, _aureliaTemplating.bindable)(), _dec25 = (0, _aureliaTemplating.bindable)(), _dec26 = (0, _aureliaTemplating.bindable)(), _dec27 = (0, _aureliaTemplating.bindable)(), _dec28 = (0, _aureliaTemplating.bindable)(), _dec29 = (0, _aureliaTemplating.bindable)(), _dec30 = (0, _aureliaTemplating.bindable)(), _dec31 = (0, _aureliaTemplating.bindable)(), _dec32 = (0, _aureliaTemplating.bindable)(), _dec33 = (0, _aureliaTemplating.bindable)(), _dec34 = (0, _aureliaTemplating.bindable)(), _dec35 = (0, _aureliaTemplating.bindable)(), _dec36 = (0, _aureliaTemplating.bindable)(), _dec37 = (0, _aureliaTemplating.bindable)(), _dec38 = (0, _aureliaTemplating.bindable)(), _dec39 = (0, _aureliaTemplating.bindable)(), _dec40 = (0, _aureliaTemplating.bindable)(), _dec41 = (0, _aureliaTemplating.bindable)(), _dec42 = (0, _aureliaTemplating.bindable)(), _dec43 = (0, _aureliaTemplating.bindable)(), _dec44 = (0, _aureliaTemplating.bindable)(), _dec45 = (0, _aureliaTemplating.bindable)(), _dec46 = (0, _aureliaTemplating.bindable)(), _dec47 = (0, _aureliaTemplating.bindable)(), _dec48 = (0, _aureliaTemplating.bindable)(), _dec49 = (0, _aureliaTemplating.bindable)(), _dec50 = (0, _aureliaTemplating.bindable)(), _dec51 = (0, _aureliaTemplating.bindable)(), _dec52 = (0, _aureliaTemplating.bindable)(), _dec53 = (0, _aureliaTemplating.bindable)(), _dec54 = (0, _aureliaTemplating.bindable)(), _dec55 = (0, _aureliaTemplating.bindable)(), _dec56 = (0, _aureliaTemplating.bindable)(), _dec57 = (0, _aureliaTemplating.bindable)(), _dec58 = (0, _aureliaFramework.computedFrom)('_gridtable'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
         _inherits(Ui5gridTable, _Ui5Control);
 
         function Ui5gridTable(element) {
@@ -203,29 +203,31 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'busyStateChanged', _descriptor46, _this);
 
-            _initDefineProp(_this, 'blocked', _descriptor47, _this);
+            _initDefineProp(_this, 'paste', _descriptor47, _this);
 
-            _initDefineProp(_this, 'busy', _descriptor48, _this);
+            _initDefineProp(_this, 'blocked', _descriptor48, _this);
 
-            _initDefineProp(_this, 'busyIndicatorDelay', _descriptor49, _this);
+            _initDefineProp(_this, 'busy', _descriptor49, _this);
 
-            _initDefineProp(_this, 'busyIndicatorSize', _descriptor50, _this);
+            _initDefineProp(_this, 'busyIndicatorDelay', _descriptor50, _this);
 
-            _initDefineProp(_this, 'visible', _descriptor51, _this);
+            _initDefineProp(_this, 'busyIndicatorSize', _descriptor51, _this);
 
-            _initDefineProp(_this, 'fieldGroupIds', _descriptor52, _this);
+            _initDefineProp(_this, 'visible', _descriptor52, _this);
 
-            _initDefineProp(_this, 'validateFieldGroup', _descriptor53, _this);
+            _initDefineProp(_this, 'fieldGroupIds', _descriptor53, _this);
 
-            _initDefineProp(_this, 'validationSuccess', _descriptor54, _this);
+            _initDefineProp(_this, 'validateFieldGroup', _descriptor54, _this);
 
-            _initDefineProp(_this, 'validationError', _descriptor55, _this);
+            _initDefineProp(_this, 'validationSuccess', _descriptor55, _this);
 
-            _initDefineProp(_this, 'parseError', _descriptor56, _this);
+            _initDefineProp(_this, 'validationError', _descriptor56, _this);
 
-            _initDefineProp(_this, 'formatError', _descriptor57, _this);
+            _initDefineProp(_this, 'parseError', _descriptor57, _this);
 
-            _initDefineProp(_this, 'modelContextChange', _descriptor58, _this);
+            _initDefineProp(_this, 'formatError', _descriptor58, _this);
+
+            _initDefineProp(_this, 'modelContextChange', _descriptor59, _this);
 
             _this.element = element;
             _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -275,6 +277,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.customFilter = this.customFilter == null ? this.defaultFunc : this.customFilter;
             params.firstVisibleRowChanged = this.firstVisibleRowChanged == null ? this.defaultFunc : this.firstVisibleRowChanged;
             params.busyStateChanged = this.busyStateChanged == null ? this.defaultFunc : this.busyStateChanged;
+            params.paste = this.paste == null ? this.defaultFunc : this.paste;
 
             _Ui5Control.prototype.fillProperties.call(this, params);
         };
@@ -438,254 +441,260 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5gridTable.prototype.widthChanged = function widthChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setWidth(newValue);
             }
         };
 
         Ui5gridTable.prototype.rowHeightChanged = function rowHeightChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setRowHeight(newValue);
             }
         };
 
         Ui5gridTable.prototype.columnHeaderHeightChanged = function columnHeaderHeightChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setColumnHeaderHeight(newValue);
             }
         };
 
         Ui5gridTable.prototype.columnHeaderVisibleChanged = function columnHeaderVisibleChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setColumnHeaderVisible((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.visibleRowCountChanged = function visibleRowCountChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setVisibleRowCount(newValue);
             }
         };
 
         Ui5gridTable.prototype.firstVisibleRowChanged = function firstVisibleRowChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setFirstVisibleRow(newValue);
             }
         };
 
         Ui5gridTable.prototype.selectionModeChanged = function selectionModeChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setSelectionMode(newValue);
             }
         };
 
         Ui5gridTable.prototype.selectionBehaviorChanged = function selectionBehaviorChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setSelectionBehavior(newValue);
             }
         };
 
         Ui5gridTable.prototype.selectedIndexChanged = function selectedIndexChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setSelectedIndex(newValue);
             }
         };
 
         Ui5gridTable.prototype.editableChanged = function editableChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setEditable((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.thresholdChanged = function thresholdChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setThreshold(newValue);
             }
         };
 
         Ui5gridTable.prototype.enableColumnReorderingChanged = function enableColumnReorderingChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setEnableColumnReordering((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.enableGroupingChanged = function enableGroupingChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setEnableGrouping((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.showColumnVisibilityMenuChanged = function showColumnVisibilityMenuChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setShowColumnVisibilityMenu((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.showNoDataChanged = function showNoDataChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setShowNoData((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.visibleRowCountModeChanged = function visibleRowCountModeChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setVisibleRowCountMode(newValue);
             }
         };
 
         Ui5gridTable.prototype.minAutoRowCountChanged = function minAutoRowCountChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setMinAutoRowCount(newValue);
             }
         };
 
         Ui5gridTable.prototype.fixedColumnCountChanged = function fixedColumnCountChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setFixedColumnCount(newValue);
             }
         };
 
         Ui5gridTable.prototype.fixedRowCountChanged = function fixedRowCountChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setFixedRowCount(newValue);
             }
         };
 
         Ui5gridTable.prototype.fixedBottomRowCountChanged = function fixedBottomRowCountChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setFixedBottomRowCount(newValue);
             }
         };
 
         Ui5gridTable.prototype.enableColumnFreezeChanged = function enableColumnFreezeChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setEnableColumnFreeze((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.enableCellFilterChanged = function enableCellFilterChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setEnableCellFilter((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.showOverlayChanged = function showOverlayChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setShowOverlay((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.enableSelectAllChanged = function enableSelectAllChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setEnableSelectAll((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.enableCustomFilterChanged = function enableCustomFilterChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setEnableCustomFilter((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.enableBusyIndicatorChanged = function enableBusyIndicatorChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setEnableBusyIndicator((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.rowActionCountChanged = function rowActionCountChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setRowActionCount(newValue);
             }
         };
 
         Ui5gridTable.prototype.alternateRowColorsChanged = function alternateRowColorsChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.setAlternateRowColors((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5gridTable.prototype.rowSelectionChangeChanged = function rowSelectionChangeChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachRowSelectionChange(newValue);
             }
         };
 
         Ui5gridTable.prototype.columnSelectChanged = function columnSelectChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachColumnSelect(newValue);
             }
         };
 
         Ui5gridTable.prototype.columnResizeChanged = function columnResizeChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachColumnResize(newValue);
             }
         };
 
         Ui5gridTable.prototype.columnMoveChanged = function columnMoveChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachColumnMove(newValue);
             }
         };
 
         Ui5gridTable.prototype.sortChanged = function sortChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachSort(newValue);
             }
         };
 
         Ui5gridTable.prototype.filterChanged = function filterChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachFilter(newValue);
             }
         };
 
         Ui5gridTable.prototype.groupChanged = function groupChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachGroup(newValue);
             }
         };
 
         Ui5gridTable.prototype.columnVisibilityChanged = function columnVisibilityChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachColumnVisibility(newValue);
             }
         };
 
         Ui5gridTable.prototype.cellClickChanged = function cellClickChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachCellClick(newValue);
             }
         };
 
         Ui5gridTable.prototype.beforeOpenContextMenuChanged = function beforeOpenContextMenuChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachBeforeOpenContextMenu(newValue);
             }
         };
 
         Ui5gridTable.prototype.columnFreezeChanged = function columnFreezeChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachColumnFreeze(newValue);
             }
         };
 
         Ui5gridTable.prototype.customFilterChanged = function customFilterChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachCustomFilter(newValue);
             }
         };
 
         Ui5gridTable.prototype.firstVisibleRowChangedChanged = function firstVisibleRowChangedChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachFirstVisibleRowChanged(newValue);
             }
         };
 
         Ui5gridTable.prototype.busyStateChangedChanged = function busyStateChangedChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachBusyStateChanged(newValue);
+            }
+        };
+
+        Ui5gridTable.prototype.pasteChanged = function pasteChanged(newValue) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
+                this._gridtable.attachPaste(newValue);
             }
         };
 
@@ -726,37 +735,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5gridTable.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5gridTable.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachValidationSuccess(newValue);
             }
         };
 
         Ui5gridTable.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachValidationError(newValue);
             }
         };
 
         Ui5gridTable.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachParseError(newValue);
             }
         };
 
         Ui5gridTable.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachFormatError(newValue);
             }
         };
 
         Ui5gridTable.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._gridtable !== null) {
+            if (newValue != null && newValue != undefined && this._gridtable !== null) {
                 this._gridtable.attachModelContextChange(newValue);
             }
         };
@@ -999,65 +1008,70 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor47 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec45], {
+    }), _descriptor47 = _applyDecoratedDescriptor(_class2.prototype, 'paste', [_dec45], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
+        }
+    }), _descriptor48 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec46], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor48 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec46], {
+    }), _descriptor49 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec47], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor49 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec47], {
+    }), _descriptor50 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec48], {
         enumerable: true,
         initializer: function initializer() {
             return 1000;
         }
-    }), _descriptor50 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec48], {
+    }), _descriptor51 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec49], {
         enumerable: true,
         initializer: function initializer() {
             return 'Medium';
         }
-    }), _descriptor51 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec49], {
+    }), _descriptor52 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec50], {
         enumerable: true,
         initializer: function initializer() {
             return true;
         }
-    }), _descriptor52 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec50], {
+    }), _descriptor53 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec51], {
         enumerable: true,
         initializer: function initializer() {
             return '[]';
         }
-    }), _descriptor53 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec51], {
+    }), _descriptor54 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec52], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor54 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec52], {
+    }), _descriptor55 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec53], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor55 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec53], {
+    }), _descriptor56 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec54], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor56 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec54], {
+    }), _descriptor57 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec55], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor57 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec55], {
+    }), _descriptor58 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec56], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor58 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec56], {
+    }), _descriptor59 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec57], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec57], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec58], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

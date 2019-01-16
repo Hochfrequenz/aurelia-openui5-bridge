@@ -250,43 +250,43 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5SplitPane.prototype.demandPaneChanged = function demandPaneChanged(newValue) {
-            if (this._splitpane !== null) {
+            if (newValue != null && newValue != undefined && this._splitpane !== null) {
                 this._splitpane.setDemandPane((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
         Ui5SplitPane.prototype.requiredParentWidthChanged = function requiredParentWidthChanged(newValue) {
-            if (this._splitpane !== null) {
+            if (newValue != null && newValue != undefined && this._splitpane !== null) {
                 this._splitpane.setRequiredParentWidth(newValue);
             }
         };
 
         Ui5SplitPane.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._splitpane !== null) {
+            if (newValue != null && newValue != undefined && this._splitpane !== null) {
                 this._splitpane.attachValidationSuccess(newValue);
             }
         };
 
         Ui5SplitPane.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._splitpane !== null) {
+            if (newValue != null && newValue != undefined && this._splitpane !== null) {
                 this._splitpane.attachValidationError(newValue);
             }
         };
 
         Ui5SplitPane.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._splitpane !== null) {
+            if (newValue != null && newValue != undefined && this._splitpane !== null) {
                 this._splitpane.attachParseError(newValue);
             }
         };
 
         Ui5SplitPane.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._splitpane !== null) {
+            if (newValue != null && newValue != undefined && this._splitpane !== null) {
                 this._splitpane.attachFormatError(newValue);
             }
         };
 
         Ui5SplitPane.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._splitpane !== null) {
+            if (newValue != null && newValue != undefined && this._splitpane !== null) {
                 this._splitpane.attachModelContextChange(newValue);
             }
         };

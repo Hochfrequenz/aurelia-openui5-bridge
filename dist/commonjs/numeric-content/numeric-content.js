@@ -265,85 +265,85 @@ var Ui5NumericContent = exports.Ui5NumericContent = (_dec = (0, _aureliaTemplati
     };
 
     Ui5NumericContent.prototype.animateTextChangeChanged = function animateTextChangeChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setAnimateTextChange((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5NumericContent.prototype.formatterValueChanged = function formatterValueChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setFormatterValue((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5NumericContent.prototype.iconChanged = function iconChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setIcon(newValue);
         }
     };
 
     Ui5NumericContent.prototype.iconDescriptionChanged = function iconDescriptionChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setIconDescription(newValue);
         }
     };
 
     Ui5NumericContent.prototype.indicatorChanged = function indicatorChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setIndicator(newValue);
         }
     };
 
     Ui5NumericContent.prototype.nullifyValueChanged = function nullifyValueChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setNullifyValue((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5NumericContent.prototype.scaleChanged = function scaleChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setScale(newValue);
         }
     };
 
     Ui5NumericContent.prototype.truncateValueToChanged = function truncateValueToChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setTruncateValueTo(newValue);
         }
     };
 
     Ui5NumericContent.prototype.valueChanged = function valueChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setValue(newValue);
         }
     };
 
     Ui5NumericContent.prototype.valueColorChanged = function valueColorChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setValueColor(newValue);
         }
     };
 
     Ui5NumericContent.prototype.widthChanged = function widthChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setWidth(newValue);
         }
     };
 
     Ui5NumericContent.prototype.withMarginChanged = function withMarginChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setWithMargin((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5NumericContent.prototype.stateChanged = function stateChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.setState(newValue);
         }
     };
 
     Ui5NumericContent.prototype.pressChanged = function pressChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.attachPress(newValue);
         }
     };
@@ -385,37 +385,37 @@ var Ui5NumericContent = exports.Ui5NumericContent = (_dec = (0, _aureliaTemplati
     };
 
     Ui5NumericContent.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5NumericContent.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.attachValidationSuccess(newValue);
         }
     };
 
     Ui5NumericContent.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.attachValidationError(newValue);
         }
     };
 
     Ui5NumericContent.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.attachParseError(newValue);
         }
     };
 
     Ui5NumericContent.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.attachFormatError(newValue);
         }
     };
 
     Ui5NumericContent.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._numericcontent !== null) {
+        if (newValue != null && newValue != undefined && this._numericcontent !== null) {
             this._numericcontent.attachModelContextChange(newValue);
         }
     };

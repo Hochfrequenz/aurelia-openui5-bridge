@@ -149,13 +149,13 @@ if (relation == 'dragdropconfig') {  this._wizard.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    widthChanged(newValue){if(this._wizard!==null){ this._wizard.setWidth(newValue);}}
-heightChanged(newValue){if(this._wizard!==null){ this._wizard.setHeight(newValue);}}
-showNextButtonChanged(newValue){if(this._wizard!==null){ this._wizard.setShowNextButton(getBooleanFromAttributeValue(newValue));}}
-finishButtonTextChanged(newValue){if(this._wizard!==null){ this._wizard.setFinishButtonText(newValue);}}
-enableBranchingChanged(newValue){if(this._wizard!==null){ this._wizard.setEnableBranching(getBooleanFromAttributeValue(newValue));}}
-stepActivateChanged(newValue){if(this._wizard!==null){ this._wizard.attachStepActivate(newValue);}}
-completeChanged(newValue){if(this._wizard!==null){ this._wizard.attachComplete(newValue);}}
+    widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.setWidth(newValue);}}
+heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.setHeight(newValue);}}
+showNextButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.setShowNextButton(getBooleanFromAttributeValue(newValue));}}
+finishButtonTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.setFinishButtonText(newValue);}}
+enableBranchingChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.setEnableBranching(getBooleanFromAttributeValue(newValue));}}
+stepActivateChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachStepActivate(newValue);}}
+completeChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachComplete(newValue);}}
 blockedChanged(newValue){if(this._wizard!==null){ this._wizard.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._wizard!==null){ this._wizard.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._wizard!==null){ this._wizard.setBusyIndicatorDelay(newValue);}}
@@ -163,14 +163,14 @@ busyIndicatorSizeChanged(newValue){if(this._wizard!==null){ this._wizard.setBusy
 visibleChanged(newValue){if(this._wizard!==null){ this._wizard.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._wizard!==null){ this._wizard.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._wizard!==null){ this._wizard.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._wizard!==null){ this._wizard.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._wizard!==null){ this._wizard.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._wizard!==null){ this._wizard.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._wizard!==null){ this._wizard.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._wizard!==null){ this._wizard.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

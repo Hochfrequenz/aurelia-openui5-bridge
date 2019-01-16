@@ -282,13 +282,13 @@ var Ui5DateTimePicker = exports.Ui5DateTimePicker = (_dec = (0, _aureliaTemplati
     };
 
     Ui5DateTimePicker.prototype.minutesStepChanged = function minutesStepChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.setMinutesStep(newValue);
         }
     };
 
     Ui5DateTimePicker.prototype.secondsStepChanged = function secondsStepChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.setSecondsStep(newValue);
         }
     };
@@ -318,7 +318,7 @@ var Ui5DateTimePicker = exports.Ui5DateTimePicker = (_dec = (0, _aureliaTemplati
     };
 
     Ui5DateTimePicker.prototype.navigateChanged = function navigateChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.attachNavigate(newValue);
         }
     };
@@ -420,7 +420,7 @@ var Ui5DateTimePicker = exports.Ui5DateTimePicker = (_dec = (0, _aureliaTemplati
     };
 
     Ui5DateTimePicker.prototype.changeChanged = function changeChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.attachChange(newValue);
         }
     };
@@ -462,37 +462,37 @@ var Ui5DateTimePicker = exports.Ui5DateTimePicker = (_dec = (0, _aureliaTemplati
     };
 
     Ui5DateTimePicker.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5DateTimePicker.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.attachValidationSuccess(newValue);
         }
     };
 
     Ui5DateTimePicker.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.attachValidationError(newValue);
         }
     };
 
     Ui5DateTimePicker.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.attachParseError(newValue);
         }
     };
 
     Ui5DateTimePicker.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.attachFormatError(newValue);
         }
     };
 
     Ui5DateTimePicker.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._datetimepicker !== null) {
+        if (newValue != null && newValue != undefined && this._datetimepicker !== null) {
             this._datetimepicker.attachModelContextChange(newValue);
         }
     };

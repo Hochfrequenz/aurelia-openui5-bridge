@@ -56,6 +56,7 @@ export class Ui5gridTable extends Ui5Control{
 @bindable() customFilter = this.defaultFunc;
 @bindable() firstVisibleRowChanged = this.defaultFunc;
 @bindable() busyStateChanged = this.defaultFunc;
+@bindable() paste = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() blocked = false;
 @bindable() busy = false;
@@ -126,6 +127,7 @@ params.columnFreeze = this.columnFreeze==null ? this.defaultFunc: this.columnFre
 params.customFilter = this.customFilter==null ? this.defaultFunc: this.customFilter;
 params.firstVisibleRowChanged = this.firstVisibleRowChanged==null ? this.defaultFunc: this.firstVisibleRowChanged;
 params.busyStateChanged = this.busyStateChanged==null ? this.defaultFunc: this.busyStateChanged;
+params.paste = this.paste==null ? this.defaultFunc: this.paste;
             
                                             super.fillProperties(params);   
         }
@@ -235,48 +237,49 @@ if (relation == 'dragdropconfig') {  this._gridtable.removeDragDropConfig(child)
       }
       catch(err){}
                                                                             }
-    widthChanged(newValue){if(this._gridtable!==null){ this._gridtable.setWidth(newValue);}}
-rowHeightChanged(newValue){if(this._gridtable!==null){ this._gridtable.setRowHeight(newValue);}}
-columnHeaderHeightChanged(newValue){if(this._gridtable!==null){ this._gridtable.setColumnHeaderHeight(newValue);}}
-columnHeaderVisibleChanged(newValue){if(this._gridtable!==null){ this._gridtable.setColumnHeaderVisible(getBooleanFromAttributeValue(newValue));}}
-visibleRowCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setVisibleRowCount(newValue);}}
-firstVisibleRowChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFirstVisibleRow(newValue);}}
-selectionModeChanged(newValue){if(this._gridtable!==null){ this._gridtable.setSelectionMode(newValue);}}
-selectionBehaviorChanged(newValue){if(this._gridtable!==null){ this._gridtable.setSelectionBehavior(newValue);}}
-selectedIndexChanged(newValue){if(this._gridtable!==null){ this._gridtable.setSelectedIndex(newValue);}}
-editableChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEditable(getBooleanFromAttributeValue(newValue));}}
-thresholdChanged(newValue){if(this._gridtable!==null){ this._gridtable.setThreshold(newValue);}}
-enableColumnReorderingChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableColumnReordering(getBooleanFromAttributeValue(newValue));}}
-enableGroupingChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableGrouping(getBooleanFromAttributeValue(newValue));}}
-showColumnVisibilityMenuChanged(newValue){if(this._gridtable!==null){ this._gridtable.setShowColumnVisibilityMenu(getBooleanFromAttributeValue(newValue));}}
-showNoDataChanged(newValue){if(this._gridtable!==null){ this._gridtable.setShowNoData(getBooleanFromAttributeValue(newValue));}}
-visibleRowCountModeChanged(newValue){if(this._gridtable!==null){ this._gridtable.setVisibleRowCountMode(newValue);}}
-minAutoRowCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setMinAutoRowCount(newValue);}}
-fixedColumnCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFixedColumnCount(newValue);}}
-fixedRowCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFixedRowCount(newValue);}}
-fixedBottomRowCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFixedBottomRowCount(newValue);}}
-enableColumnFreezeChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableColumnFreeze(getBooleanFromAttributeValue(newValue));}}
-enableCellFilterChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableCellFilter(getBooleanFromAttributeValue(newValue));}}
-showOverlayChanged(newValue){if(this._gridtable!==null){ this._gridtable.setShowOverlay(getBooleanFromAttributeValue(newValue));}}
-enableSelectAllChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableSelectAll(getBooleanFromAttributeValue(newValue));}}
-enableCustomFilterChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableCustomFilter(getBooleanFromAttributeValue(newValue));}}
-enableBusyIndicatorChanged(newValue){if(this._gridtable!==null){ this._gridtable.setEnableBusyIndicator(getBooleanFromAttributeValue(newValue));}}
-rowActionCountChanged(newValue){if(this._gridtable!==null){ this._gridtable.setRowActionCount(newValue);}}
-alternateRowColorsChanged(newValue){if(this._gridtable!==null){ this._gridtable.setAlternateRowColors(getBooleanFromAttributeValue(newValue));}}
-rowSelectionChangeChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachRowSelectionChange(newValue);}}
-columnSelectChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnSelect(newValue);}}
-columnResizeChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnResize(newValue);}}
-columnMoveChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnMove(newValue);}}
-sortChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachSort(newValue);}}
-filterChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachFilter(newValue);}}
-groupChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachGroup(newValue);}}
-columnVisibilityChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnVisibility(newValue);}}
-cellClickChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachCellClick(newValue);}}
-beforeOpenContextMenuChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachBeforeOpenContextMenu(newValue);}}
-columnFreezeChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachColumnFreeze(newValue);}}
-customFilterChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachCustomFilter(newValue);}}
-firstVisibleRowChangedChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachFirstVisibleRowChanged(newValue);}}
-busyStateChangedChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachBusyStateChanged(newValue);}}
+    widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setWidth(newValue);}}
+rowHeightChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setRowHeight(newValue);}}
+columnHeaderHeightChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setColumnHeaderHeight(newValue);}}
+columnHeaderVisibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setColumnHeaderVisible(getBooleanFromAttributeValue(newValue));}}
+visibleRowCountChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setVisibleRowCount(newValue);}}
+firstVisibleRowChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setFirstVisibleRow(newValue);}}
+selectionModeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setSelectionMode(newValue);}}
+selectionBehaviorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setSelectionBehavior(newValue);}}
+selectedIndexChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setSelectedIndex(newValue);}}
+editableChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEditable(getBooleanFromAttributeValue(newValue));}}
+thresholdChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setThreshold(newValue);}}
+enableColumnReorderingChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEnableColumnReordering(getBooleanFromAttributeValue(newValue));}}
+enableGroupingChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEnableGrouping(getBooleanFromAttributeValue(newValue));}}
+showColumnVisibilityMenuChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setShowColumnVisibilityMenu(getBooleanFromAttributeValue(newValue));}}
+showNoDataChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setShowNoData(getBooleanFromAttributeValue(newValue));}}
+visibleRowCountModeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setVisibleRowCountMode(newValue);}}
+minAutoRowCountChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setMinAutoRowCount(newValue);}}
+fixedColumnCountChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setFixedColumnCount(newValue);}}
+fixedRowCountChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setFixedRowCount(newValue);}}
+fixedBottomRowCountChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setFixedBottomRowCount(newValue);}}
+enableColumnFreezeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEnableColumnFreeze(getBooleanFromAttributeValue(newValue));}}
+enableCellFilterChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEnableCellFilter(getBooleanFromAttributeValue(newValue));}}
+showOverlayChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setShowOverlay(getBooleanFromAttributeValue(newValue));}}
+enableSelectAllChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEnableSelectAll(getBooleanFromAttributeValue(newValue));}}
+enableCustomFilterChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEnableCustomFilter(getBooleanFromAttributeValue(newValue));}}
+enableBusyIndicatorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEnableBusyIndicator(getBooleanFromAttributeValue(newValue));}}
+rowActionCountChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setRowActionCount(newValue);}}
+alternateRowColorsChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setAlternateRowColors(getBooleanFromAttributeValue(newValue));}}
+rowSelectionChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachRowSelectionChange(newValue);}}
+columnSelectChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachColumnSelect(newValue);}}
+columnResizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachColumnResize(newValue);}}
+columnMoveChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachColumnMove(newValue);}}
+sortChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachSort(newValue);}}
+filterChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachFilter(newValue);}}
+groupChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachGroup(newValue);}}
+columnVisibilityChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachColumnVisibility(newValue);}}
+cellClickChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachCellClick(newValue);}}
+beforeOpenContextMenuChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachBeforeOpenContextMenu(newValue);}}
+columnFreezeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachColumnFreeze(newValue);}}
+customFilterChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachCustomFilter(newValue);}}
+firstVisibleRowChangedChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachFirstVisibleRowChanged(newValue);}}
+busyStateChangedChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachBusyStateChanged(newValue);}}
+pasteChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachPaste(newValue);}}
 blockedChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusyIndicatorDelay(newValue);}}
@@ -284,14 +287,14 @@ busyIndicatorSizeChanged(newValue){if(this._gridtable!==null){ this._gridtable.s
 visibleChanged(newValue){if(this._gridtable!==null){ this._gridtable.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._gridtable!==null){ this._gridtable.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._gridtable!==null){ this._gridtable.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

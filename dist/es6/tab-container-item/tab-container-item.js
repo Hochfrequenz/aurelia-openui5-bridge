@@ -133,17 +133,17 @@ if (relation == 'dragdropconfig') {  this._tabcontaineritem.removeDragDropConfig
       }
       catch(err){}
                                                                             }
-    nameChanged(newValue){if(this._tabcontaineritem!==null){ this._tabcontaineritem.setName(newValue);}}
-keyChanged(newValue){if(this._tabcontaineritem!==null){ this._tabcontaineritem.setKey(newValue);}}
-modifiedChanged(newValue){if(this._tabcontaineritem!==null){ this._tabcontaineritem.setModified(getBooleanFromAttributeValue(newValue));}}
-itemPropertyChangedChanged(newValue){if(this._tabcontaineritem!==null){ this._tabcontaineritem.attachItemPropertyChanged(newValue);}}
+    nameChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.setName(newValue);}}
+keyChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.setKey(newValue);}}
+modifiedChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.setModified(getBooleanFromAttributeValue(newValue));}}
+itemPropertyChangedChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.attachItemPropertyChanged(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._tabcontaineritem!==null){ this._tabcontaineritem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._tabcontaineritem!==null){ this._tabcontaineritem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._tabcontaineritem!==null){ this._tabcontaineritem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._tabcontaineritem!==null){ this._tabcontaineritem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._tabcontaineritem!==null){ this._tabcontaineritem.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

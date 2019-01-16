@@ -177,23 +177,23 @@ if (relation == 'dragdropconfig') {  this._dialog.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    iconChanged(newValue){if(this._dialog!==null){ this._dialog.setIcon(newValue);}}
-titleChanged(newValue){if(this._dialog!==null){ this._dialog.setTitle(newValue);}}
-showHeaderChanged(newValue){if(this._dialog!==null){ this._dialog.setShowHeader(getBooleanFromAttributeValue(newValue));}}
-typeChanged(newValue){if(this._dialog!==null){ this._dialog.setType(newValue);}}
-stateChanged(newValue){if(this._dialog!==null){ this._dialog.setState(newValue);}}
-stretchChanged(newValue){if(this._dialog!==null){ this._dialog.setStretch(getBooleanFromAttributeValue(newValue));}}
-contentWidthChanged(newValue){if(this._dialog!==null){ this._dialog.setContentWidth(newValue);}}
-contentHeightChanged(newValue){if(this._dialog!==null){ this._dialog.setContentHeight(newValue);}}
-horizontalScrollingChanged(newValue){if(this._dialog!==null){ this._dialog.setHorizontalScrolling(getBooleanFromAttributeValue(newValue));}}
-verticalScrollingChanged(newValue){if(this._dialog!==null){ this._dialog.setVerticalScrolling(getBooleanFromAttributeValue(newValue));}}
-resizableChanged(newValue){if(this._dialog!==null){ this._dialog.setResizable(getBooleanFromAttributeValue(newValue));}}
-draggableChanged(newValue){if(this._dialog!==null){ this._dialog.setDraggable(getBooleanFromAttributeValue(newValue));}}
-escapeHandlerChanged(newValue){if(this._dialog!==null){ this._dialog.setEscapeHandler(newValue);}}
-beforeOpenChanged(newValue){if(this._dialog!==null){ this._dialog.attachBeforeOpen(newValue);}}
-afterOpenChanged(newValue){if(this._dialog!==null){ this._dialog.attachAfterOpen(newValue);}}
-beforeCloseChanged(newValue){if(this._dialog!==null){ this._dialog.attachBeforeClose(newValue);}}
-afterCloseChanged(newValue){if(this._dialog!==null){ this._dialog.attachAfterClose(newValue);}}
+    iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setIcon(newValue);}}
+titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setTitle(newValue);}}
+showHeaderChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setShowHeader(getBooleanFromAttributeValue(newValue));}}
+typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setType(newValue);}}
+stateChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setState(newValue);}}
+stretchChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setStretch(getBooleanFromAttributeValue(newValue));}}
+contentWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setContentWidth(newValue);}}
+contentHeightChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setContentHeight(newValue);}}
+horizontalScrollingChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setHorizontalScrolling(getBooleanFromAttributeValue(newValue));}}
+verticalScrollingChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setVerticalScrolling(getBooleanFromAttributeValue(newValue));}}
+resizableChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setResizable(getBooleanFromAttributeValue(newValue));}}
+draggableChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setDraggable(getBooleanFromAttributeValue(newValue));}}
+escapeHandlerChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setEscapeHandler(newValue);}}
+beforeOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachBeforeOpen(newValue);}}
+afterOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachAfterOpen(newValue);}}
+beforeCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachBeforeClose(newValue);}}
+afterCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachAfterClose(newValue);}}
 blockedChanged(newValue){if(this._dialog!==null){ this._dialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dialog!==null){ this._dialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dialog!==null){ this._dialog.setBusyIndicatorDelay(newValue);}}
@@ -201,14 +201,14 @@ busyIndicatorSizeChanged(newValue){if(this._dialog!==null){ this._dialog.setBusy
 visibleChanged(newValue){if(this._dialog!==null){ this._dialog.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._dialog!==null){ this._dialog.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._dialog!==null){ this._dialog.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._dialog!==null){ this._dialog.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._dialog!==null){ this._dialog.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._dialog!==null){ this._dialog.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._dialog!==null){ this._dialog.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._dialog!==null){ this._dialog.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

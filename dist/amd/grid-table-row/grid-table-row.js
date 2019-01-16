@@ -244,31 +244,31 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5gridTableRow.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._gridtablerow !== null) {
+            if (newValue != null && newValue != undefined && this._gridtablerow !== null) {
                 this._gridtablerow.attachValidationSuccess(newValue);
             }
         };
 
         Ui5gridTableRow.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._gridtablerow !== null) {
+            if (newValue != null && newValue != undefined && this._gridtablerow !== null) {
                 this._gridtablerow.attachValidationError(newValue);
             }
         };
 
         Ui5gridTableRow.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._gridtablerow !== null) {
+            if (newValue != null && newValue != undefined && this._gridtablerow !== null) {
                 this._gridtablerow.attachParseError(newValue);
             }
         };
 
         Ui5gridTableRow.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._gridtablerow !== null) {
+            if (newValue != null && newValue != undefined && this._gridtablerow !== null) {
                 this._gridtablerow.attachFormatError(newValue);
             }
         };
 
         Ui5gridTableRow.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._gridtablerow !== null) {
+            if (newValue != null && newValue != undefined && this._gridtablerow !== null) {
                 this._gridtablerow.attachModelContextChange(newValue);
             }
         };

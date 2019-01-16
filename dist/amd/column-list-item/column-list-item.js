@@ -277,7 +277,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5ColumnListItem.prototype.vAlignChanged = function vAlignChanged(newValue) {
-            if (this._columnlistitem !== null) {
+            if (newValue != null && newValue != undefined && this._columnlistitem !== null) {
                 this._columnlistitem.setVAlign(newValue);
             }
         };
@@ -319,13 +319,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5ColumnListItem.prototype.pressChanged = function pressChanged(newValue) {
-            if (this._columnlistitem !== null) {
+            if (newValue != null && newValue != undefined && this._columnlistitem !== null) {
                 this._columnlistitem.attachPress(newValue);
             }
         };
 
         Ui5ColumnListItem.prototype.detailPressChanged = function detailPressChanged(newValue) {
-            if (this._columnlistitem !== null) {
+            if (newValue != null && newValue != undefined && this._columnlistitem !== null) {
                 this._columnlistitem.attachDetailPress(newValue);
             }
         };
@@ -367,37 +367,37 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5ColumnListItem.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-            if (this._columnlistitem !== null) {
+            if (newValue != null && newValue != undefined && this._columnlistitem !== null) {
                 this._columnlistitem.attachValidateFieldGroup(newValue);
             }
         };
 
         Ui5ColumnListItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._columnlistitem !== null) {
+            if (newValue != null && newValue != undefined && this._columnlistitem !== null) {
                 this._columnlistitem.attachValidationSuccess(newValue);
             }
         };
 
         Ui5ColumnListItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._columnlistitem !== null) {
+            if (newValue != null && newValue != undefined && this._columnlistitem !== null) {
                 this._columnlistitem.attachValidationError(newValue);
             }
         };
 
         Ui5ColumnListItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._columnlistitem !== null) {
+            if (newValue != null && newValue != undefined && this._columnlistitem !== null) {
                 this._columnlistitem.attachParseError(newValue);
             }
         };
 
         Ui5ColumnListItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._columnlistitem !== null) {
+            if (newValue != null && newValue != undefined && this._columnlistitem !== null) {
                 this._columnlistitem.attachFormatError(newValue);
             }
         };
 
         Ui5ColumnListItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._columnlistitem !== null) {
+            if (newValue != null && newValue != undefined && this._columnlistitem !== null) {
                 this._columnlistitem.attachModelContextChange(newValue);
             }
         };

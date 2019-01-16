@@ -3,7 +3,7 @@
 System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-framework', '../common/attributeManager', '../common/attributes', '../control/control'], function (_export, _context) {
     "use strict";
 
-    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, Ui5GenericTile;
+    var bindable, customElement, noView, inject, computedFrom, AttributeManager, getBooleanFromAttributeValue, Ui5Control, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, Ui5GenericTile;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -113,7 +113,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
             }();
 
-            _export('Ui5GenericTile', Ui5GenericTile = (_dec = customElement('ui5-generic-tile'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = bindable(), _dec27 = bindable(), _dec28 = computedFrom('_generictile'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
+            _export('Ui5GenericTile', Ui5GenericTile = (_dec = customElement('ui5-generic-tile'), _dec2 = inject(Element), _dec3 = bindable(), _dec4 = bindable(), _dec5 = bindable(), _dec6 = bindable(), _dec7 = bindable(), _dec8 = bindable(), _dec9 = bindable(), _dec10 = bindable(), _dec11 = bindable(), _dec12 = bindable(), _dec13 = bindable(), _dec14 = bindable(), _dec15 = bindable(), _dec16 = bindable(), _dec17 = bindable(), _dec18 = bindable(), _dec19 = bindable(), _dec20 = bindable(), _dec21 = bindable(), _dec22 = bindable(), _dec23 = bindable(), _dec24 = bindable(), _dec25 = bindable(), _dec26 = bindable(), _dec27 = bindable(), _dec28 = bindable(), _dec29 = computedFrom('_generictile'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Control) {
                 _inherits(Ui5GenericTile, _Ui5Control);
 
                 function Ui5GenericTile(element) {
@@ -157,31 +157,33 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'ariaLabel', _descriptor16, _this);
 
-                    _initDefineProp(_this, 'press', _descriptor17, _this);
+                    _initDefineProp(_this, 'wrappingType', _descriptor17, _this);
 
-                    _initDefineProp(_this, 'blocked', _descriptor18, _this);
+                    _initDefineProp(_this, 'press', _descriptor18, _this);
 
-                    _initDefineProp(_this, 'busy', _descriptor19, _this);
+                    _initDefineProp(_this, 'blocked', _descriptor19, _this);
 
-                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor20, _this);
+                    _initDefineProp(_this, 'busy', _descriptor20, _this);
 
-                    _initDefineProp(_this, 'busyIndicatorSize', _descriptor21, _this);
+                    _initDefineProp(_this, 'busyIndicatorDelay', _descriptor21, _this);
 
-                    _initDefineProp(_this, 'visible', _descriptor22, _this);
+                    _initDefineProp(_this, 'busyIndicatorSize', _descriptor22, _this);
 
-                    _initDefineProp(_this, 'fieldGroupIds', _descriptor23, _this);
+                    _initDefineProp(_this, 'visible', _descriptor23, _this);
 
-                    _initDefineProp(_this, 'validateFieldGroup', _descriptor24, _this);
+                    _initDefineProp(_this, 'fieldGroupIds', _descriptor24, _this);
 
-                    _initDefineProp(_this, 'validationSuccess', _descriptor25, _this);
+                    _initDefineProp(_this, 'validateFieldGroup', _descriptor25, _this);
 
-                    _initDefineProp(_this, 'validationError', _descriptor26, _this);
+                    _initDefineProp(_this, 'validationSuccess', _descriptor26, _this);
 
-                    _initDefineProp(_this, 'parseError', _descriptor27, _this);
+                    _initDefineProp(_this, 'validationError', _descriptor27, _this);
 
-                    _initDefineProp(_this, 'formatError', _descriptor28, _this);
+                    _initDefineProp(_this, 'parseError', _descriptor28, _this);
 
-                    _initDefineProp(_this, 'modelContextChange', _descriptor29, _this);
+                    _initDefineProp(_this, 'formatError', _descriptor29, _this);
+
+                    _initDefineProp(_this, 'modelContextChange', _descriptor30, _this);
 
                     _this.element = element;
                     _this.attributeManager = new AttributeManager(_this.element);
@@ -201,6 +203,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.scope = this.scope;
                     params.sizeBehavior = this.sizeBehavior;
                     params.ariaLabel = this.ariaLabel;
+                    params.wrappingType = this.wrappingType;
                     params.press = this.press == null ? this.defaultFunc : this.press;
 
                     _Ui5Control.prototype.fillProperties.call(this, params);
@@ -317,79 +320,85 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5GenericTile.prototype.modeChanged = function modeChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setMode(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.headerChanged = function headerChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setHeader(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.subheaderChanged = function subheaderChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setSubheader(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.failedTextChanged = function failedTextChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setFailedText(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.frameTypeChanged = function frameTypeChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setFrameType(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.backgroundImageChanged = function backgroundImageChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setBackgroundImage(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.headerImageChanged = function headerImageChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setHeaderImage(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.stateChanged = function stateChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setState(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.imageDescriptionChanged = function imageDescriptionChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setImageDescription(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.scopeChanged = function scopeChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setScope(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.sizeBehaviorChanged = function sizeBehaviorChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setSizeBehavior(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.ariaLabelChanged = function ariaLabelChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.setAriaLabel(newValue);
                     }
                 };
 
+                Ui5GenericTile.prototype.wrappingTypeChanged = function wrappingTypeChanged(newValue) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
+                        this._generictile.setWrappingType(newValue);
+                    }
+                };
+
                 Ui5GenericTile.prototype.pressChanged = function pressChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.attachPress(newValue);
                     }
                 };
@@ -431,37 +440,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5GenericTile.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.attachValidationError(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.attachParseError(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.attachFormatError(newValue);
                     }
                 };
 
                 Ui5GenericTile.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._generictile !== null) {
+                    if (newValue != null && newValue != undefined && this._generictile !== null) {
                         this._generictile.attachModelContextChange(newValue);
                     }
                 };
@@ -554,72 +563,77 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return null;
                 }
-            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec15], {
+            }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'wrappingType', [_dec15], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return 'Normal';
+                }
+            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec16], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec16], {
+            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec17], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec17], {
+            }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec18], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec18], {
+            }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorDelay', [_dec19], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 1000;
                 }
-            }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec19], {
+            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'busyIndicatorSize', [_dec20], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'Medium';
                 }
-            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec20], {
+            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'visible', [_dec21], {
                 enumerable: true,
                 initializer: function initializer() {
                     return true;
                 }
-            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec21], {
+            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'fieldGroupIds', [_dec22], {
                 enumerable: true,
                 initializer: function initializer() {
                     return '[]';
                 }
-            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec22], {
+            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'validateFieldGroup', [_dec23], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec23], {
+            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec24], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec24], {
+            }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec25], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec25], {
+            }), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec26], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec26], {
+            }), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec27], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec27], {
+            }), _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec28], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
                 }
-            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec28], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec29], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('Ui5GenericTile', Ui5GenericTile);
         }

@@ -139,9 +139,9 @@ if (relation == 'dragdropconfig') {  this._menu.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._menu!==null){ this._menu.setTitle(newValue);}}
-itemSelectedChanged(newValue){if(this._menu!==null){ this._menu.attachItemSelected(newValue);}}
-closedChanged(newValue){if(this._menu!==null){ this._menu.attachClosed(newValue);}}
+    titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.setTitle(newValue);}}
+itemSelectedChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachItemSelected(newValue);}}
+closedChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachClosed(newValue);}}
 blockedChanged(newValue){if(this._menu!==null){ this._menu.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._menu!==null){ this._menu.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._menu!==null){ this._menu.setBusyIndicatorDelay(newValue);}}
@@ -149,14 +149,14 @@ busyIndicatorSizeChanged(newValue){if(this._menu!==null){ this._menu.setBusyIndi
 visibleChanged(newValue){if(this._menu!==null){ this._menu.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._menu!==null){ this._menu.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._menu!==null){ this._menu.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._menu!==null){ this._menu.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._menu!==null){ this._menu.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._menu!==null){ this._menu.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._menu!==null){ this._menu.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._menu!==null){ this._menu.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

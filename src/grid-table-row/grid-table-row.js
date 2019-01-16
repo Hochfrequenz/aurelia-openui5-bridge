@@ -127,11 +127,11 @@ if (relation == 'dragdropconfig') {  this._gridtablerow.removeDragDropConfig(chi
                                                                             }
     /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._gridtablerow!==null){ this._gridtablerow.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerow!==null){ this._gridtablerow.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerow!==null){ this._gridtablerow.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerow!==null){ this._gridtablerow.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerow!==null){ this._gridtablerow.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerow!==null){ this._gridtablerow.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

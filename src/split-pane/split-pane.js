@@ -129,15 +129,15 @@ if (relation == 'dragdropconfig') {  this._splitpane.removeDragDropConfig(child)
       }
       catch(err){}
                                                                             }
-    demandPaneChanged(newValue){if(this._splitpane!==null){ this._splitpane.setDemandPane(getBooleanFromAttributeValue(newValue));}}
-requiredParentWidthChanged(newValue){if(this._splitpane!==null){ this._splitpane.setRequiredParentWidth(newValue);}}
+    demandPaneChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitpane!==null){ this._splitpane.setDemandPane(getBooleanFromAttributeValue(newValue));}}
+requiredParentWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitpane!==null){ this._splitpane.setRequiredParentWidth(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._splitpane!==null){ this._splitpane.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitpane!==null){ this._splitpane.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitpane!==null){ this._splitpane.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitpane!==null){ this._splitpane.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitpane!==null){ this._splitpane.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitpane!==null){ this._splitpane.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

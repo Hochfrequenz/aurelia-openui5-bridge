@@ -244,43 +244,43 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         };
 
         Ui5UploadCollectionParameter.prototype.nameChanged = function nameChanged(newValue) {
-            if (this._uploadcollectionparameter !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollectionparameter !== null) {
                 this._uploadcollectionparameter.setName(newValue);
             }
         };
 
         Ui5UploadCollectionParameter.prototype.valueChanged = function valueChanged(newValue) {
-            if (this._uploadcollectionparameter !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollectionparameter !== null) {
                 this._uploadcollectionparameter.setValue(newValue);
             }
         };
 
         Ui5UploadCollectionParameter.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-            if (this._uploadcollectionparameter !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollectionparameter !== null) {
                 this._uploadcollectionparameter.attachValidationSuccess(newValue);
             }
         };
 
         Ui5UploadCollectionParameter.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-            if (this._uploadcollectionparameter !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollectionparameter !== null) {
                 this._uploadcollectionparameter.attachValidationError(newValue);
             }
         };
 
         Ui5UploadCollectionParameter.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-            if (this._uploadcollectionparameter !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollectionparameter !== null) {
                 this._uploadcollectionparameter.attachParseError(newValue);
             }
         };
 
         Ui5UploadCollectionParameter.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-            if (this._uploadcollectionparameter !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollectionparameter !== null) {
                 this._uploadcollectionparameter.attachFormatError(newValue);
             }
         };
 
         Ui5UploadCollectionParameter.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-            if (this._uploadcollectionparameter !== null) {
+            if (newValue != null && newValue != undefined && this._uploadcollectionparameter !== null) {
                 this._uploadcollectionparameter.attachModelContextChange(newValue);
             }
         };

@@ -163,11 +163,11 @@ if (relation == 'dragdropconfig') {  this._datepicker.removeDragDropConfig(child
       }
       catch(err){}
                                                                             }
-    displayFormatTypeChanged(newValue){if(this._datepicker!==null){ this._datepicker.setDisplayFormatType(newValue);}}
-secondaryCalendarTypeChanged(newValue){if(this._datepicker!==null){ this._datepicker.setSecondaryCalendarType(newValue);}}
-minDateChanged(newValue){if(this._datepicker!==null){ this._datepicker.setMinDate(newValue);}}
-maxDateChanged(newValue){if(this._datepicker!==null){ this._datepicker.setMaxDate(newValue);}}
-navigateChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachNavigate(newValue);}}
+    displayFormatTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.setDisplayFormatType(newValue);}}
+secondaryCalendarTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.setSecondaryCalendarType(newValue);}}
+minDateChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.setMinDate(newValue);}}
+maxDateChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.setMaxDate(newValue);}}
+navigateChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachNavigate(newValue);}}
 displayFormatChanged(newValue){if(this._datepicker!==null){ this._datepicker.setDisplayFormat(newValue);}}
 valueFormatChanged(newValue){if(this._datepicker!==null){ this._datepicker.setValueFormat(newValue);}}
 dateValueChanged(newValue){if(this._datepicker!==null){ this._datepicker.setDateValue(newValue);}}
@@ -186,7 +186,7 @@ textAlignChanged(newValue){if(this._datepicker!==null){ this._datepicker.setText
 textDirectionChanged(newValue){if(this._datepicker!==null){ this._datepicker.setTextDirection(newValue);}}
 requiredChanged(newValue){if(this._datepicker!==null){ this._datepicker.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
-changeChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachChange(newValue);}}
+changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachChange(newValue);}}
 blockedChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusyIndicatorDelay(newValue);}}
@@ -194,14 +194,14 @@ busyIndicatorSizeChanged(newValue){if(this._datepicker!==null){ this._datepicker
 visibleChanged(newValue){if(this._datepicker!==null){ this._datepicker.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._datepicker!==null){ this._datepicker.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._datepicker!==null){ this._datepicker.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

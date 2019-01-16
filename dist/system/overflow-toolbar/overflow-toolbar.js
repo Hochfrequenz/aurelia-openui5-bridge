@@ -322,7 +322,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5OverflowToolbar.prototype.pressChanged = function pressChanged(newValue) {
-                    if (this._overflowtoolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._overflowtoolbar !== null) {
                         this._overflowtoolbar.attachPress(newValue);
                     }
                 };
@@ -364,37 +364,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5OverflowToolbar.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._overflowtoolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._overflowtoolbar !== null) {
                         this._overflowtoolbar.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5OverflowToolbar.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._overflowtoolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._overflowtoolbar !== null) {
                         this._overflowtoolbar.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5OverflowToolbar.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._overflowtoolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._overflowtoolbar !== null) {
                         this._overflowtoolbar.attachValidationError(newValue);
                     }
                 };
 
                 Ui5OverflowToolbar.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._overflowtoolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._overflowtoolbar !== null) {
                         this._overflowtoolbar.attachParseError(newValue);
                     }
                 };
 
                 Ui5OverflowToolbar.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._overflowtoolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._overflowtoolbar !== null) {
                         this._overflowtoolbar.attachFormatError(newValue);
                     }
                 };
 
                 Ui5OverflowToolbar.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._overflowtoolbar !== null) {
+                    if (newValue != null && newValue != undefined && this._overflowtoolbar !== null) {
                         this._overflowtoolbar.attachModelContextChange(newValue);
                     }
                 };

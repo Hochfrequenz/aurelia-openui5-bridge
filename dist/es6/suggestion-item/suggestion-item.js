@@ -132,8 +132,8 @@ if (relation == 'dragdropconfig') {  this._suggestionitem.removeDragDropConfig(c
       }
       catch(err){}
                                                                             }
-    iconChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.setIcon(newValue);}}
-descriptionChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.setDescription(newValue);}}
+    iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._suggestionitem!==null){ this._suggestionitem.setIcon(newValue);}}
+descriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._suggestionitem!==null){ this._suggestionitem.setDescription(newValue);}}
 textChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.setText(newValue);}}
 enabledChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.setEnabled(getBooleanFromAttributeValue(newValue));}}
 textDirectionChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.setTextDirection(newValue);}}
@@ -141,11 +141,11 @@ keyChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.setKe
 /* inherited from sap.ui.core.Item*/
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._suggestionitem!==null){ this._suggestionitem.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._suggestionitem!==null){ this._suggestionitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._suggestionitem!==null){ this._suggestionitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._suggestionitem!==null){ this._suggestionitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._suggestionitem!==null){ this._suggestionitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._suggestionitem!==null){ this._suggestionitem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

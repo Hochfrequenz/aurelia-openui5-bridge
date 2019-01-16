@@ -155,26 +155,26 @@ if (relation == 'dragdropconfig') {  this._uploadcollectionitem.removeDragDropCo
       }
       catch(err){}
                                                                             }
-    documentIdChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setDocumentId(newValue);}}
-fileNameChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setFileName(newValue);}}
-mimeTypeChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setMimeType(newValue);}}
-thumbnailUrlChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setThumbnailUrl(newValue);}}
-urlChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setUrl(newValue);}}
-enableEditChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setEnableEdit(getBooleanFromAttributeValue(newValue));}}
-enableDeleteChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setEnableDelete(getBooleanFromAttributeValue(newValue));}}
-visibleEditChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setVisibleEdit(getBooleanFromAttributeValue(newValue));}}
-visibleDeleteChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setVisibleDelete(getBooleanFromAttributeValue(newValue));}}
-ariaLabelForPictureChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setAriaLabelForPicture(newValue);}}
-selectedChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.setSelected(getBooleanFromAttributeValue(newValue));}}
-pressChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachPress(newValue);}}
-deletePressChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachDeletePress(newValue);}}
+    documentIdChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setDocumentId(newValue);}}
+fileNameChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setFileName(newValue);}}
+mimeTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setMimeType(newValue);}}
+thumbnailUrlChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setThumbnailUrl(newValue);}}
+urlChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setUrl(newValue);}}
+enableEditChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setEnableEdit(getBooleanFromAttributeValue(newValue));}}
+enableDeleteChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setEnableDelete(getBooleanFromAttributeValue(newValue));}}
+visibleEditChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setVisibleEdit(getBooleanFromAttributeValue(newValue));}}
+visibleDeleteChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setVisibleDelete(getBooleanFromAttributeValue(newValue));}}
+ariaLabelForPictureChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setAriaLabelForPicture(newValue);}}
+selectedChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.setSelected(getBooleanFromAttributeValue(newValue));}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachPress(newValue);}}
+deletePressChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachDeletePress(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollectionitem!==null){ this._uploadcollectionitem.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

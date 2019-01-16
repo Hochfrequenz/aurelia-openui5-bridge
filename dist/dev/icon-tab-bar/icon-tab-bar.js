@@ -323,85 +323,85 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5IconTabBar.prototype.expandableChanged = function expandableChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setExpandable(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5IconTabBar.prototype.expandedChanged = function expandedChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setExpanded(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5IconTabBar.prototype.selectedKeyChanged = function selectedKeyChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setSelectedKey(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.upperCaseChanged = function upperCaseChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setUpperCase(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5IconTabBar.prototype.stretchContentHeightChanged = function stretchContentHeightChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setStretchContentHeight(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5IconTabBar.prototype.applyContentPaddingChanged = function applyContentPaddingChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setApplyContentPadding(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5IconTabBar.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setBackgroundDesign(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.headerModeChanged = function headerModeChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setHeaderMode(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.showOverflowSelectListChanged = function showOverflowSelectListChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setShowOverflowSelectList(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5IconTabBar.prototype.headerBackgroundDesignChanged = function headerBackgroundDesignChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setHeaderBackgroundDesign(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.enableTabReorderingChanged = function enableTabReorderingChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setEnableTabReordering(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5IconTabBar.prototype.tabDensityModeChanged = function tabDensityModeChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.setTabDensityMode(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.selectChanged = function selectChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.attachSelect(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.expandChanged = function expandChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.attachExpand(newValue);
                     }
                 };
@@ -443,37 +443,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5IconTabBar.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.attachValidationError(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.attachParseError(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.attachFormatError(newValue);
                     }
                 };
 
                 Ui5IconTabBar.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._icontabbar !== null) {
+                    if (newValue != null && newValue != undefined && this._icontabbar !== null) {
                         this._icontabbar.attachModelContextChange(newValue);
                     }
                 };

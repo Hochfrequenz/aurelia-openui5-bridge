@@ -241,37 +241,37 @@ var Ui5ObjectNumber = exports.Ui5ObjectNumber = (_dec = (0, _aureliaTemplating.c
     };
 
     Ui5ObjectNumber.prototype.numberChanged = function numberChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.setNumber(newValue);
         }
     };
 
     Ui5ObjectNumber.prototype.emphasizedChanged = function emphasizedChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.setEmphasized((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5ObjectNumber.prototype.stateChanged = function stateChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.setState(newValue);
         }
     };
 
     Ui5ObjectNumber.prototype.unitChanged = function unitChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.setUnit(newValue);
         }
     };
 
     Ui5ObjectNumber.prototype.textDirectionChanged = function textDirectionChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.setTextDirection(newValue);
         }
     };
 
     Ui5ObjectNumber.prototype.textAlignChanged = function textAlignChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.setTextAlign(newValue);
         }
     };
@@ -313,37 +313,37 @@ var Ui5ObjectNumber = exports.Ui5ObjectNumber = (_dec = (0, _aureliaTemplating.c
     };
 
     Ui5ObjectNumber.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5ObjectNumber.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.attachValidationSuccess(newValue);
         }
     };
 
     Ui5ObjectNumber.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.attachValidationError(newValue);
         }
     };
 
     Ui5ObjectNumber.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.attachParseError(newValue);
         }
     };
 
     Ui5ObjectNumber.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.attachFormatError(newValue);
         }
     };
 
     Ui5ObjectNumber.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._objectnumber !== null) {
+        if (newValue != null && newValue != undefined && this._objectnumber !== null) {
             this._objectnumber.attachModelContextChange(newValue);
         }
     };

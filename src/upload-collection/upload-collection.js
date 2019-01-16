@@ -193,32 +193,32 @@ if (relation == 'dragdropconfig') {  this._uploadcollection.removeDragDropConfig
       }
       catch(err){}
                                                                             }
-    fileTypeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setFileType(newValue);}}
-maximumFilenameLengthChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setMaximumFilenameLength(newValue);}}
-maximumFileSizeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setMaximumFileSize(newValue);}}
-mimeTypeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setMimeType(newValue);}}
-multipleChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setMultiple(getBooleanFromAttributeValue(newValue));}}
-noDataTextChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setNoDataText(newValue);}}
-noDataDescriptionChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setNoDataDescription(newValue);}}
-sameFilenameAllowedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setSameFilenameAllowed(getBooleanFromAttributeValue(newValue));}}
-showSeparatorsChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setShowSeparators(newValue);}}
-uploadEnabledChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setUploadEnabled(getBooleanFromAttributeValue(newValue));}}
-uploadUrlChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setUploadUrl(newValue);}}
-instantUploadChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setInstantUpload(getBooleanFromAttributeValue(newValue));}}
-numberOfAttachmentsTextChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setNumberOfAttachmentsText(newValue);}}
-modeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setMode(newValue);}}
-uploadButtonInvisibleChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setUploadButtonInvisible(getBooleanFromAttributeValue(newValue));}}
-terminationEnabledChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setTerminationEnabled(getBooleanFromAttributeValue(newValue));}}
-changeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachChange(newValue);}}
-fileDeletedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachFileDeleted(newValue);}}
-filenameLengthExceedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachFilenameLengthExceed(newValue);}}
-fileRenamedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachFileRenamed(newValue);}}
-fileSizeExceedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachFileSizeExceed(newValue);}}
-typeMissmatchChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachTypeMissmatch(newValue);}}
-uploadCompleteChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachUploadComplete(newValue);}}
-uploadTerminatedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachUploadTerminated(newValue);}}
-beforeUploadStartsChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachBeforeUploadStarts(newValue);}}
-selectionChangeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachSelectionChange(newValue);}}
+    fileTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setFileType(newValue);}}
+maximumFilenameLengthChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setMaximumFilenameLength(newValue);}}
+maximumFileSizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setMaximumFileSize(newValue);}}
+mimeTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setMimeType(newValue);}}
+multipleChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setMultiple(getBooleanFromAttributeValue(newValue));}}
+noDataTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setNoDataText(newValue);}}
+noDataDescriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setNoDataDescription(newValue);}}
+sameFilenameAllowedChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setSameFilenameAllowed(getBooleanFromAttributeValue(newValue));}}
+showSeparatorsChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setShowSeparators(newValue);}}
+uploadEnabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setUploadEnabled(getBooleanFromAttributeValue(newValue));}}
+uploadUrlChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setUploadUrl(newValue);}}
+instantUploadChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setInstantUpload(getBooleanFromAttributeValue(newValue));}}
+numberOfAttachmentsTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setNumberOfAttachmentsText(newValue);}}
+modeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setMode(newValue);}}
+uploadButtonInvisibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setUploadButtonInvisible(getBooleanFromAttributeValue(newValue));}}
+terminationEnabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.setTerminationEnabled(getBooleanFromAttributeValue(newValue));}}
+changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachChange(newValue);}}
+fileDeletedChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachFileDeleted(newValue);}}
+filenameLengthExceedChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachFilenameLengthExceed(newValue);}}
+fileRenamedChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachFileRenamed(newValue);}}
+fileSizeExceedChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachFileSizeExceed(newValue);}}
+typeMissmatchChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachTypeMissmatch(newValue);}}
+uploadCompleteChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachUploadComplete(newValue);}}
+uploadTerminatedChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachUploadTerminated(newValue);}}
+beforeUploadStartsChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachBeforeUploadStarts(newValue);}}
+selectionChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachSelectionChange(newValue);}}
 blockedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusyIndicatorDelay(newValue);}}
@@ -226,14 +226,14 @@ busyIndicatorSizeChanged(newValue){if(this._uploadcollection!==null){ this._uplo
 visibleChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

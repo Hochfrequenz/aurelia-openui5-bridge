@@ -23,6 +23,7 @@ export class Ui5MessageView extends Ui5Control{
 @bindable() listSelect = this.defaultFunc;
 @bindable() longtextLoaded = this.defaultFunc;
 @bindable() urlValidated = this.defaultFunc;
+@bindable() activeTitlePress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
 @bindable() blocked = false;
 @bindable() busy = false;
@@ -60,6 +61,7 @@ params.itemSelect = this.itemSelect==null ? this.defaultFunc: this.itemSelect;
 params.listSelect = this.listSelect==null ? this.defaultFunc: this.listSelect;
 params.longtextLoaded = this.longtextLoaded==null ? this.defaultFunc: this.longtextLoaded;
 params.urlValidated = this.urlValidated==null ? this.defaultFunc: this.urlValidated;
+params.activeTitlePress = this.activeTitlePress==null ? this.defaultFunc: this.activeTitlePress;
             
                                             super.fillProperties(params);   
         }
@@ -153,15 +155,16 @@ if (relation == 'dragdropconfig') {  this._messageview.removeDragDropConfig(chil
       }
       catch(err){}
                                                                             }
-    asyncDescriptionHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncDescriptionHandler(newValue);}}
-asyncURLHandlerChanged(newValue){if(this._messageview!==null){ this._messageview.setAsyncURLHandler(newValue);}}
-groupItemsChanged(newValue){if(this._messageview!==null){ this._messageview.setGroupItems(getBooleanFromAttributeValue(newValue));}}
-showDetailsPageHeaderChanged(newValue){if(this._messageview!==null){ this._messageview.setShowDetailsPageHeader(getBooleanFromAttributeValue(newValue));}}
-afterOpenChanged(newValue){if(this._messageview!==null){ this._messageview.attachAfterOpen(newValue);}}
-itemSelectChanged(newValue){if(this._messageview!==null){ this._messageview.attachItemSelect(newValue);}}
-listSelectChanged(newValue){if(this._messageview!==null){ this._messageview.attachListSelect(newValue);}}
-longtextLoadedChanged(newValue){if(this._messageview!==null){ this._messageview.attachLongtextLoaded(newValue);}}
-urlValidatedChanged(newValue){if(this._messageview!==null){ this._messageview.attachUrlValidated(newValue);}}
+    asyncDescriptionHandlerChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.setAsyncDescriptionHandler(newValue);}}
+asyncURLHandlerChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.setAsyncURLHandler(newValue);}}
+groupItemsChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.setGroupItems(getBooleanFromAttributeValue(newValue));}}
+showDetailsPageHeaderChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.setShowDetailsPageHeader(getBooleanFromAttributeValue(newValue));}}
+afterOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachAfterOpen(newValue);}}
+itemSelectChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachItemSelect(newValue);}}
+listSelectChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachListSelect(newValue);}}
+longtextLoadedChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachLongtextLoaded(newValue);}}
+urlValidatedChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachUrlValidated(newValue);}}
+activeTitlePressChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachActiveTitlePress(newValue);}}
 blockedChanged(newValue){if(this._messageview!==null){ this._messageview.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._messageview!==null){ this._messageview.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._messageview!==null){ this._messageview.setBusyIndicatorDelay(newValue);}}
@@ -169,14 +172,14 @@ busyIndicatorSizeChanged(newValue){if(this._messageview!==null){ this._messagevi
 visibleChanged(newValue){if(this._messageview!==null){ this._messageview.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._messageview!==null){ this._messageview.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._messageview!==null){ this._messageview.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._messageview!==null){ this._messageview.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._messageview!==null){ this._messageview.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._messageview!==null){ this._messageview.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._messageview!==null){ this._messageview.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._messageview!==null){ this._messageview.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

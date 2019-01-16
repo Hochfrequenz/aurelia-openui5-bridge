@@ -166,35 +166,35 @@ if (relation == 'dragdropconfig') {  this._griddata.removeDragDropConfig(child);
       }
       catch(err){}
                                                                             }
-    spanChanged(newValue){if(this._griddata!==null){ this._griddata.setSpan(newValue);}}
-spanXLChanged(newValue){if(this._griddata!==null){ this._griddata.setSpanXL(newValue);}}
-spanLChanged(newValue){if(this._griddata!==null){ this._griddata.setSpanL(newValue);}}
-spanMChanged(newValue){if(this._griddata!==null){ this._griddata.setSpanM(newValue);}}
-spanSChanged(newValue){if(this._griddata!==null){ this._griddata.setSpanS(newValue);}}
-indentChanged(newValue){if(this._griddata!==null){ this._griddata.setIndent(newValue);}}
-indentXLChanged(newValue){if(this._griddata!==null){ this._griddata.setIndentXL(newValue);}}
-indentLChanged(newValue){if(this._griddata!==null){ this._griddata.setIndentL(newValue);}}
-indentMChanged(newValue){if(this._griddata!==null){ this._griddata.setIndentM(newValue);}}
-indentSChanged(newValue){if(this._griddata!==null){ this._griddata.setIndentS(newValue);}}
-visibleXLChanged(newValue){if(this._griddata!==null){ this._griddata.setVisibleXL(getBooleanFromAttributeValue(newValue));}}
-visibleLChanged(newValue){if(this._griddata!==null){ this._griddata.setVisibleL(getBooleanFromAttributeValue(newValue));}}
-visibleMChanged(newValue){if(this._griddata!==null){ this._griddata.setVisibleM(getBooleanFromAttributeValue(newValue));}}
-visibleSChanged(newValue){if(this._griddata!==null){ this._griddata.setVisibleS(getBooleanFromAttributeValue(newValue));}}
-moveBackwardsChanged(newValue){if(this._griddata!==null){ this._griddata.setMoveBackwards(newValue);}}
-moveForwardChanged(newValue){if(this._griddata!==null){ this._griddata.setMoveForward(newValue);}}
-linebreakChanged(newValue){if(this._griddata!==null){ this._griddata.setLinebreak(getBooleanFromAttributeValue(newValue));}}
-linebreakXLChanged(newValue){if(this._griddata!==null){ this._griddata.setLinebreakXL(getBooleanFromAttributeValue(newValue));}}
-linebreakLChanged(newValue){if(this._griddata!==null){ this._griddata.setLinebreakL(getBooleanFromAttributeValue(newValue));}}
-linebreakMChanged(newValue){if(this._griddata!==null){ this._griddata.setLinebreakM(getBooleanFromAttributeValue(newValue));}}
-linebreakSChanged(newValue){if(this._griddata!==null){ this._griddata.setLinebreakS(getBooleanFromAttributeValue(newValue));}}
+    spanChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setSpan(newValue);}}
+spanXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setSpanXL(newValue);}}
+spanLChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setSpanL(newValue);}}
+spanMChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setSpanM(newValue);}}
+spanSChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setSpanS(newValue);}}
+indentChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setIndent(newValue);}}
+indentXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setIndentXL(newValue);}}
+indentLChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setIndentL(newValue);}}
+indentMChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setIndentM(newValue);}}
+indentSChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setIndentS(newValue);}}
+visibleXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setVisibleXL(getBooleanFromAttributeValue(newValue));}}
+visibleLChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setVisibleL(getBooleanFromAttributeValue(newValue));}}
+visibleMChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setVisibleM(getBooleanFromAttributeValue(newValue));}}
+visibleSChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setVisibleS(getBooleanFromAttributeValue(newValue));}}
+moveBackwardsChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setMoveBackwards(newValue);}}
+moveForwardChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setMoveForward(newValue);}}
+linebreakChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setLinebreak(getBooleanFromAttributeValue(newValue));}}
+linebreakXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setLinebreakXL(getBooleanFromAttributeValue(newValue));}}
+linebreakLChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setLinebreakL(getBooleanFromAttributeValue(newValue));}}
+linebreakMChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setLinebreakM(getBooleanFromAttributeValue(newValue));}}
+linebreakSChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.setLinebreakS(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.ui.core.LayoutData*/
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._griddata!==null){ this._griddata.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._griddata!==null){ this._griddata.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._griddata!==null){ this._griddata.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._griddata!==null){ this._griddata.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._griddata!==null){ this._griddata.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._griddata!==null){ this._griddata.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

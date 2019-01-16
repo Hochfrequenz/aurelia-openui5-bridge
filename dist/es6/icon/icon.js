@@ -161,21 +161,21 @@ if (relation == 'dragdropconfig') {  this._icon.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    srcChanged(newValue){if(this._icon!==null){ this._icon.setSrc(newValue);}}
-sizeChanged(newValue){if(this._icon!==null){ this._icon.setSize(newValue);}}
-colorChanged(newValue){if(this._icon!==null){ this._icon.setColor(newValue);}}
-hoverColorChanged(newValue){if(this._icon!==null){ this._icon.setHoverColor(newValue);}}
-activeColorChanged(newValue){if(this._icon!==null){ this._icon.setActiveColor(newValue);}}
-widthChanged(newValue){if(this._icon!==null){ this._icon.setWidth(newValue);}}
-heightChanged(newValue){if(this._icon!==null){ this._icon.setHeight(newValue);}}
-backgroundColorChanged(newValue){if(this._icon!==null){ this._icon.setBackgroundColor(newValue);}}
-hoverBackgroundColorChanged(newValue){if(this._icon!==null){ this._icon.setHoverBackgroundColor(newValue);}}
-activeBackgroundColorChanged(newValue){if(this._icon!==null){ this._icon.setActiveBackgroundColor(newValue);}}
-decorativeChanged(newValue){if(this._icon!==null){ this._icon.setDecorative(getBooleanFromAttributeValue(newValue));}}
-useIconTooltipChanged(newValue){if(this._icon!==null){ this._icon.setUseIconTooltip(getBooleanFromAttributeValue(newValue));}}
-altChanged(newValue){if(this._icon!==null){ this._icon.setAlt(newValue);}}
-noTabStopChanged(newValue){if(this._icon!==null){ this._icon.setNoTabStop(getBooleanFromAttributeValue(newValue));}}
-pressChanged(newValue){if(this._icon!==null){ this._icon.attachPress(newValue);}}
+    srcChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setSrc(newValue);}}
+sizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setSize(newValue);}}
+colorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setColor(newValue);}}
+hoverColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setHoverColor(newValue);}}
+activeColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setActiveColor(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setWidth(newValue);}}
+heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setHeight(newValue);}}
+backgroundColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setBackgroundColor(newValue);}}
+hoverBackgroundColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setHoverBackgroundColor(newValue);}}
+activeBackgroundColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setActiveBackgroundColor(newValue);}}
+decorativeChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setDecorative(getBooleanFromAttributeValue(newValue));}}
+useIconTooltipChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setUseIconTooltip(getBooleanFromAttributeValue(newValue));}}
+altChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setAlt(newValue);}}
+noTabStopChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setNoTabStop(getBooleanFromAttributeValue(newValue));}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.attachPress(newValue);}}
 blockedChanged(newValue){if(this._icon!==null){ this._icon.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._icon!==null){ this._icon.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._icon!==null){ this._icon.setBusyIndicatorDelay(newValue);}}
@@ -183,14 +183,14 @@ busyIndicatorSizeChanged(newValue){if(this._icon!==null){ this._icon.setBusyIndi
 visibleChanged(newValue){if(this._icon!==null){ this._icon.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._icon!==null){ this._icon.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._icon!==null){ this._icon.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._icon!==null){ this._icon.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._icon!==null){ this._icon.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._icon!==null){ this._icon.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._icon!==null){ this._icon.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._icon!==null){ this._icon.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

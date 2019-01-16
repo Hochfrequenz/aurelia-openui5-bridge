@@ -22,6 +22,7 @@ export class Ui5SelectDialog extends Ui5Control{
 @bindable() contentWidth = null;
 @bindable() rememberSelections = false;
 @bindable() contentHeight = null;
+@bindable() showClearButton = false;
 @bindable() confirm = this.defaultFunc;
 @bindable() search = this.defaultFunc;
 @bindable() liveChange = this.defaultFunc;
@@ -62,6 +63,7 @@ params.growing = getBooleanFromAttributeValue(this.growing);
 params.contentWidth = this.contentWidth;
 params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
 params.contentHeight = this.contentHeight;
+params.showClearButton = getBooleanFromAttributeValue(this.showClearButton);
 params.confirm = this.confirm==null ? this.defaultFunc: this.confirm;
 params.search = this.search==null ? this.defaultFunc: this.search;
 params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
@@ -157,18 +159,19 @@ if (relation == 'dragdropconfig') {  this._selectdialog.removeDragDropConfig(chi
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setTitle(newValue);}}
-noDataTextChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setNoDataText(newValue);}}
-multiSelectChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
-growingThresholdChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setGrowingThreshold(newValue);}}
-growingChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setGrowing(getBooleanFromAttributeValue(newValue));}}
-contentWidthChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setContentWidth(newValue);}}
-rememberSelectionsChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
-contentHeightChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setContentHeight(newValue);}}
-confirmChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachConfirm(newValue);}}
-searchChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachSearch(newValue);}}
-liveChangeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachLiveChange(newValue);}}
-cancelChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachCancel(newValue);}}
+    titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setTitle(newValue);}}
+noDataTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setNoDataText(newValue);}}
+multiSelectChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setMultiSelect(getBooleanFromAttributeValue(newValue));}}
+growingThresholdChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setGrowingThreshold(newValue);}}
+growingChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setGrowing(getBooleanFromAttributeValue(newValue));}}
+contentWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setContentWidth(newValue);}}
+rememberSelectionsChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
+contentHeightChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setContentHeight(newValue);}}
+showClearButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setShowClearButton(getBooleanFromAttributeValue(newValue));}}
+confirmChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachConfirm(newValue);}}
+searchChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachSearch(newValue);}}
+liveChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachLiveChange(newValue);}}
+cancelChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachCancel(newValue);}}
 blockedChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusyIndicatorDelay(newValue);}}
@@ -176,14 +179,14 @@ busyIndicatorSizeChanged(newValue){if(this._selectdialog!==null){ this._selectdi
 visibleChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

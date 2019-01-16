@@ -125,14 +125,14 @@ if (relation == 'dragdropconfig') {  this._gridtablerowsetting.removeDragDropCon
       }
       catch(err){}
                                                                             }
-    highlightChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.setHighlight(newValue);}}
+    highlightChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.setHighlight(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

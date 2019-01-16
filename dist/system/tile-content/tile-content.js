@@ -287,31 +287,31 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5TileContent.prototype.footerChanged = function footerChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.setFooter(newValue);
                     }
                 };
 
                 Ui5TileContent.prototype.footerColorChanged = function footerColorChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.setFooterColor(newValue);
                     }
                 };
 
                 Ui5TileContent.prototype.unitChanged = function unitChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.setUnit(newValue);
                     }
                 };
 
                 Ui5TileContent.prototype.disabledChanged = function disabledChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.setDisabled(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5TileContent.prototype.frameTypeChanged = function frameTypeChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.setFrameType(newValue);
                     }
                 };
@@ -353,37 +353,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5TileContent.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5TileContent.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5TileContent.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.attachValidationError(newValue);
                     }
                 };
 
                 Ui5TileContent.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.attachParseError(newValue);
                     }
                 };
 
                 Ui5TileContent.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.attachFormatError(newValue);
                     }
                 };
 
                 Ui5TileContent.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._tilecontent !== null) {
+                    if (newValue != null && newValue != undefined && this._tilecontent !== null) {
                         this._tilecontent.attachModelContextChange(newValue);
                     }
                 };

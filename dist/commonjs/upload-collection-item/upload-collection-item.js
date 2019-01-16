@@ -266,109 +266,109 @@ var Ui5UploadCollectionItem = exports.Ui5UploadCollectionItem = (_dec = (0, _aur
     };
 
     Ui5UploadCollectionItem.prototype.documentIdChanged = function documentIdChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setDocumentId(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.fileNameChanged = function fileNameChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setFileName(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.mimeTypeChanged = function mimeTypeChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setMimeType(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.thumbnailUrlChanged = function thumbnailUrlChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setThumbnailUrl(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.urlChanged = function urlChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setUrl(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.enableEditChanged = function enableEditChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setEnableEdit((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5UploadCollectionItem.prototype.enableDeleteChanged = function enableDeleteChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setEnableDelete((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5UploadCollectionItem.prototype.visibleEditChanged = function visibleEditChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setVisibleEdit((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5UploadCollectionItem.prototype.visibleDeleteChanged = function visibleDeleteChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setVisibleDelete((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5UploadCollectionItem.prototype.ariaLabelForPictureChanged = function ariaLabelForPictureChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setAriaLabelForPicture(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.selectedChanged = function selectedChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.setSelected((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5UploadCollectionItem.prototype.pressChanged = function pressChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.attachPress(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.deletePressChanged = function deletePressChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.attachDeletePress(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.attachValidationSuccess(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.attachValidationError(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.attachParseError(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.attachFormatError(newValue);
         }
     };
 
     Ui5UploadCollectionItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._uploadcollectionitem !== null) {
+        if (newValue != null && newValue != undefined && this._uploadcollectionitem !== null) {
             this._uploadcollectionitem.attachModelContextChange(newValue);
         }
     };

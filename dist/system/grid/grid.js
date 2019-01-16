@@ -293,43 +293,43 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Grid.prototype.widthChanged = function widthChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.setWidth(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.vSpacingChanged = function vSpacingChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.setVSpacing(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.hSpacingChanged = function hSpacingChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.setHSpacing(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.positionChanged = function positionChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.setPosition(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.defaultSpanChanged = function defaultSpanChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.setDefaultSpan(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.defaultIndentChanged = function defaultIndentChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.setDefaultIndent(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.containerQueryChanged = function containerQueryChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.setContainerQuery(getBooleanFromAttributeValue(newValue));
                     }
                 };
@@ -371,37 +371,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5Grid.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.attachValidateFieldGroup(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.attachValidationError(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.attachParseError(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.attachFormatError(newValue);
                     }
                 };
 
                 Ui5Grid.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._grid !== null) {
+                    if (newValue != null && newValue != undefined && this._grid !== null) {
                         this._grid.attachModelContextChange(newValue);
                     }
                 };

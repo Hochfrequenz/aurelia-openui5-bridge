@@ -250,25 +250,25 @@ var Ui5SegmentedButton = exports.Ui5SegmentedButton = (_dec = (0, _aureliaTempla
     };
 
     Ui5SegmentedButton.prototype.widthChanged = function widthChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.setWidth(newValue);
         }
     };
 
     Ui5SegmentedButton.prototype.enabledChanged = function enabledChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.setEnabled((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
     Ui5SegmentedButton.prototype.selectedKeyChanged = function selectedKeyChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.setSelectedKey(newValue);
         }
     };
 
     Ui5SegmentedButton.prototype.selectionChangeChanged = function selectionChangeChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.attachSelectionChange(newValue);
         }
     };
@@ -310,37 +310,37 @@ var Ui5SegmentedButton = exports.Ui5SegmentedButton = (_dec = (0, _aureliaTempla
     };
 
     Ui5SegmentedButton.prototype.validateFieldGroupChanged = function validateFieldGroupChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.attachValidateFieldGroup(newValue);
         }
     };
 
     Ui5SegmentedButton.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.attachValidationSuccess(newValue);
         }
     };
 
     Ui5SegmentedButton.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.attachValidationError(newValue);
         }
     };
 
     Ui5SegmentedButton.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.attachParseError(newValue);
         }
     };
 
     Ui5SegmentedButton.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.attachFormatError(newValue);
         }
     };
 
     Ui5SegmentedButton.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-        if (this._segmentedbutton !== null) {
+        if (newValue != null && newValue != undefined && this._segmentedbutton !== null) {
             this._segmentedbutton.attachModelContextChange(newValue);
         }
     };

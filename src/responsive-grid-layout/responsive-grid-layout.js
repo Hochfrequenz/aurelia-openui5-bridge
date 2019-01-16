@@ -165,22 +165,22 @@ if (relation == 'dragdropconfig') {  this._responsivegridlayout.removeDragDropCo
       }
       catch(err){}
                                                                             }
-    labelSpanXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanXL(newValue);}}
-labelSpanLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanL(newValue);}}
-labelSpanMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanM(newValue);}}
-labelSpanSChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanS(newValue);}}
-adjustLabelSpanChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setAdjustLabelSpan(getBooleanFromAttributeValue(newValue));}}
-emptySpanXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanXL(newValue);}}
-emptySpanLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanL(newValue);}}
-emptySpanMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanM(newValue);}}
-emptySpanSChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanS(newValue);}}
-columnsXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsXL(newValue);}}
-columnsLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsL(newValue);}}
-columnsMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsM(newValue);}}
-singleContainerFullSizeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setSingleContainerFullSize(getBooleanFromAttributeValue(newValue));}}
-breakpointXLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointXL(newValue);}}
-breakpointLChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointL(newValue);}}
-breakpointMChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointM(newValue);}}
+    labelSpanXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanXL(newValue);}}
+labelSpanLChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanL(newValue);}}
+labelSpanMChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanM(newValue);}}
+labelSpanSChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setLabelSpanS(newValue);}}
+adjustLabelSpanChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setAdjustLabelSpan(getBooleanFromAttributeValue(newValue));}}
+emptySpanXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanXL(newValue);}}
+emptySpanLChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanL(newValue);}}
+emptySpanMChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanM(newValue);}}
+emptySpanSChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setEmptySpanS(newValue);}}
+columnsXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsXL(newValue);}}
+columnsLChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsL(newValue);}}
+columnsMChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setColumnsM(newValue);}}
+singleContainerFullSizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setSingleContainerFullSize(getBooleanFromAttributeValue(newValue));}}
+breakpointXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointXL(newValue);}}
+breakpointLChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointL(newValue);}}
+breakpointMChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointM(newValue);}}
 backgroundDesignChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBackgroundDesign(newValue);}}
 /* inherited from sap.ui.layout.form.FormLayout*/
 blockedChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBlocked(getBooleanFromAttributeValue(newValue));}}
@@ -190,14 +190,14 @@ busyIndicatorSizeChanged(newValue){if(this._responsivegridlayout!==null){ this._
 visibleChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

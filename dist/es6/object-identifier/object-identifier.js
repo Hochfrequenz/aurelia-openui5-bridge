@@ -143,12 +143,12 @@ if (relation == 'dragdropconfig') {  this._objectidentifier.removeDragDropConfig
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setTitle(newValue);}}
-textChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setText(newValue);}}
-visibleChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setVisible(getBooleanFromAttributeValue(newValue));}}
-titleActiveChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setTitleActive(getBooleanFromAttributeValue(newValue));}}
-textDirectionChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setTextDirection(newValue);}}
-titlePressChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.attachTitlePress(newValue);}}
+    titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.setTitle(newValue);}}
+textChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.setText(newValue);}}
+visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.setVisible(getBooleanFromAttributeValue(newValue));}}
+titleActiveChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.setTitleActive(getBooleanFromAttributeValue(newValue));}}
+textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.setTextDirection(newValue);}}
+titlePressChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.attachTitlePress(newValue);}}
 blockedChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusyIndicatorDelay(newValue);}}
@@ -156,14 +156,14 @@ busyIndicatorSizeChanged(newValue){if(this._objectidentifier!==null){ this._obje
 visibleChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

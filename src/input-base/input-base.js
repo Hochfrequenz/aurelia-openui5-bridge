@@ -157,19 +157,19 @@ if (relation == 'dragdropconfig') {  this._inputbase.removeDragDropConfig(child)
       }
       catch(err){}
                                                                             }
-    valueChanged(newValue){if(this._inputbase!==null){ this._inputbase.setValue(newValue);}}
-widthChanged(newValue){if(this._inputbase!==null){ this._inputbase.setWidth(newValue);}}
-enabledChanged(newValue){if(this._inputbase!==null){ this._inputbase.setEnabled(getBooleanFromAttributeValue(newValue));}}
-valueStateChanged(newValue){if(this._inputbase!==null){ this._inputbase.setValueState(newValue);}}
-nameChanged(newValue){if(this._inputbase!==null){ this._inputbase.setName(newValue);}}
-placeholderChanged(newValue){if(this._inputbase!==null){ this._inputbase.setPlaceholder(newValue);}}
-editableChanged(newValue){if(this._inputbase!==null){ this._inputbase.setEditable(getBooleanFromAttributeValue(newValue));}}
-valueStateTextChanged(newValue){if(this._inputbase!==null){ this._inputbase.setValueStateText(newValue);}}
-showValueStateMessageChanged(newValue){if(this._inputbase!==null){ this._inputbase.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));}}
-textAlignChanged(newValue){if(this._inputbase!==null){ this._inputbase.setTextAlign(newValue);}}
-textDirectionChanged(newValue){if(this._inputbase!==null){ this._inputbase.setTextDirection(newValue);}}
-requiredChanged(newValue){if(this._inputbase!==null){ this._inputbase.setRequired(getBooleanFromAttributeValue(newValue));}}
-changeChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachChange(newValue);}}
+    valueChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setValue(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setWidth(newValue);}}
+enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setEnabled(getBooleanFromAttributeValue(newValue));}}
+valueStateChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setValueState(newValue);}}
+nameChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setName(newValue);}}
+placeholderChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setPlaceholder(newValue);}}
+editableChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setEditable(getBooleanFromAttributeValue(newValue));}}
+valueStateTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setValueStateText(newValue);}}
+showValueStateMessageChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setShowValueStateMessage(getBooleanFromAttributeValue(newValue));}}
+textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setTextAlign(newValue);}}
+textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setTextDirection(newValue);}}
+requiredChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setRequired(getBooleanFromAttributeValue(newValue));}}
+changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.attachChange(newValue);}}
 blockedChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusyIndicatorDelay(newValue);}}
@@ -177,14 +177,14 @@ busyIndicatorSizeChanged(newValue){if(this._inputbase!==null){ this._inputbase.s
 visibleChanged(newValue){if(this._inputbase!==null){ this._inputbase.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._inputbase!==null){ this._inputbase.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._inputbase!==null){ this._inputbase.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

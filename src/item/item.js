@@ -131,17 +131,17 @@ if (relation == 'dragdropconfig') {  this._item.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    textChanged(newValue){if(this._item!==null){ this._item.setText(newValue);}}
-enabledChanged(newValue){if(this._item!==null){ this._item.setEnabled(getBooleanFromAttributeValue(newValue));}}
-textDirectionChanged(newValue){if(this._item!==null){ this._item.setTextDirection(newValue);}}
-keyChanged(newValue){if(this._item!==null){ this._item.setKey(newValue);}}
+    textChanged(newValue){if(newValue!=null && newValue!=undefined && this._item!==null){ this._item.setText(newValue);}}
+enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._item!==null){ this._item.setEnabled(getBooleanFromAttributeValue(newValue));}}
+textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._item!==null){ this._item.setTextDirection(newValue);}}
+keyChanged(newValue){if(newValue!=null && newValue!=undefined && this._item!==null){ this._item.setKey(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._item!==null){ this._item.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._item!==null){ this._item.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._item!==null){ this._item.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._item!==null){ this._item.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._item!==null){ this._item.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._item!==null){ this._item.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._item!==null){ this._item.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._item!==null){ this._item.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._item!==null){ this._item.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._item!==null){ this._item.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

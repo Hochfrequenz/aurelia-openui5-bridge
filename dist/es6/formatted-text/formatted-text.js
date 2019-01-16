@@ -141,11 +141,11 @@ if (relation == 'dragdropconfig') {  this._formattedtext.removeDragDropConfig(ch
       }
       catch(err){}
                                                                             }
-    htmlTextChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setHtmlText(newValue);}}
-widthChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setWidth(newValue);}}
-convertLinksToAnchorTagsChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setConvertLinksToAnchorTags(newValue);}}
-convertedLinksDefaultTargetChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setConvertedLinksDefaultTarget(newValue);}}
-heightChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setHeight(newValue);}}
+    htmlTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.setHtmlText(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.setWidth(newValue);}}
+convertLinksToAnchorTagsChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.setConvertLinksToAnchorTags(newValue);}}
+convertedLinksDefaultTargetChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.setConvertedLinksDefaultTarget(newValue);}}
+heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.setHeight(newValue);}}
 blockedChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusyIndicatorDelay(newValue);}}
@@ -153,14 +153,14 @@ busyIndicatorSizeChanged(newValue){if(this._formattedtext!==null){ this._formatt
 visibleChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 

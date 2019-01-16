@@ -284,37 +284,37 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5MenuItem.prototype.iconChanged = function iconChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.setIcon(newValue);
                     }
                 };
 
                 Ui5MenuItem.prototype.visibleChanged = function visibleChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.setVisible(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5MenuItem.prototype.startsSectionChanged = function startsSectionChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.setStartsSection(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
                 Ui5MenuItem.prototype.pressChanged = function pressChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.attachPress(newValue);
                     }
                 };
 
                 Ui5MenuItem.prototype.propertyChangedChanged = function propertyChangedChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.attachPropertyChanged(newValue);
                     }
                 };
 
                 Ui5MenuItem.prototype.aggregationChangedChanged = function aggregationChangedChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.attachAggregationChanged(newValue);
                     }
                 };
@@ -344,31 +344,31 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 };
 
                 Ui5MenuItem.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.attachValidationSuccess(newValue);
                     }
                 };
 
                 Ui5MenuItem.prototype.validationErrorChanged = function validationErrorChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.attachValidationError(newValue);
                     }
                 };
 
                 Ui5MenuItem.prototype.parseErrorChanged = function parseErrorChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.attachParseError(newValue);
                     }
                 };
 
                 Ui5MenuItem.prototype.formatErrorChanged = function formatErrorChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.attachFormatError(newValue);
                     }
                 };
 
                 Ui5MenuItem.prototype.modelContextChangeChanged = function modelContextChangeChanged(newValue) {
-                    if (this._menuitem !== null) {
+                    if (newValue != null && newValue != undefined && this._menuitem !== null) {
                         this._menuitem.attachModelContextChange(newValue);
                     }
                 };

@@ -157,14 +157,14 @@ if (relation == 'dragdropconfig') {  this._viewsettingsdialog.removeDragDropConf
       }
       catch(err){}
                                                                             }
-    titleChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setTitle(newValue);}}
-sortDescendingChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setSortDescending(getBooleanFromAttributeValue(newValue));}}
-groupDescendingChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setGroupDescending(getBooleanFromAttributeValue(newValue));}}
-filterSearchOperatorChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setFilterSearchOperator(newValue);}}
-confirmChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachConfirm(newValue);}}
-cancelChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachCancel(newValue);}}
-resetFiltersChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachResetFilters(newValue);}}
-filterDetailPageOpenedChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachFilterDetailPageOpened(newValue);}}
+    titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.setTitle(newValue);}}
+sortDescendingChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.setSortDescending(getBooleanFromAttributeValue(newValue));}}
+groupDescendingChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.setGroupDescending(getBooleanFromAttributeValue(newValue));}}
+filterSearchOperatorChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.setFilterSearchOperator(newValue);}}
+confirmChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachConfirm(newValue);}}
+cancelChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachCancel(newValue);}}
+resetFiltersChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachResetFilters(newValue);}}
+filterDetailPageOpenedChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachFilterDetailPageOpened(newValue);}}
 blockedChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBusyIndicatorDelay(newValue);}}
@@ -172,14 +172,14 @@ busyIndicatorSizeChanged(newValue){if(this._viewsettingsdialog!==null){ this._vi
 visibleChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setVisible(getBooleanFromAttributeValue(newValue));}}
 fieldGroupIdsChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setFieldGroupIds(newValue);}}
 /* inherited from sap.ui.core.Control*/
-validateFieldGroupChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachValidateFieldGroup(newValue);}}
+validateFieldGroupChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachValidateFieldGroup(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
-validationSuccessChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachValidationSuccess(newValue);}}
-validationErrorChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachValidationError(newValue);}}
-parseErrorChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachParseError(newValue);}}
-formatErrorChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachFormatError(newValue);}}
-modelContextChangeChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachModelContextChange(newValue);}}
+validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachValidationSuccess(newValue);}}
+validationErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachValidationError(newValue);}}
+parseErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachParseError(newValue);}}
+formatErrorChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachFormatError(newValue);}}
+modelContextChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachModelContextChange(newValue);}}
 /* inherited from sap.ui.base.EventProvider*/
 /* inherited from sap.ui.base.Object*/
 
