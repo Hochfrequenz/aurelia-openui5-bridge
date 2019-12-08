@@ -81,7 +81,7 @@
     "gulp-babel": "6",
     "gulp-bump": "^3.0.0",
     "gulp-concat": "^2.6.0",
-    "gulp-conventional-changelog": "^1.1.0",
+    "gulp-conventional-changelog": "^2.0.28",
     "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^4.0.0",
     "gulp-insert": "^0.5.0",
