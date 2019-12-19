@@ -27,7 +27,6 @@ export class Ui5StandardTile extends Ui5Tile{
 @bindable() removable = true;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -164,7 +163,6 @@ iconDensityAwareChanged(newValue){if(newValue!=null && newValue!=undefined && th
 removableChanged(newValue){if(this._standardtile!==null){ this._standardtile.setRemovable(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.Tile*/
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtile!==null){ this._standardtile.attachPress(newValue);}}
-blockedChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._standardtile!==null){ this._standardtile.setBusyIndicatorSize(newValue);}}

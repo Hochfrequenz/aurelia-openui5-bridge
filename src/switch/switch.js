@@ -22,7 +22,6 @@ export class Ui5Switch extends Ui5Control{
 @bindable() type = 'Default';
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -152,7 +151,6 @@ enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._switc
 nameChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.setName(newValue);}}
 typeChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.setType(newValue);}}
 changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._switch!==null){ this._switch.attachChange(newValue);}}
-blockedChanged(newValue){if(this._switch!==null){ this._switch.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._switch!==null){ this._switch.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._switch!==null){ this._switch.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._switch!==null){ this._switch.setBusyIndicatorSize(newValue);}}

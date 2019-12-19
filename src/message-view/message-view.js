@@ -18,14 +18,12 @@ export class Ui5MessageView extends Ui5Control{
 @bindable() asyncURLHandler = null;
 @bindable() groupItems = false;
 @bindable() showDetailsPageHeader = true;
-@bindable() afterOpen = this.defaultFunc;
 @bindable() itemSelect = this.defaultFunc;
 @bindable() listSelect = this.defaultFunc;
 @bindable() longtextLoaded = this.defaultFunc;
 @bindable() urlValidated = this.defaultFunc;
 @bindable() activeTitlePress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -56,7 +54,6 @@ export class Ui5MessageView extends Ui5Control{
 params.asyncURLHandler = this.asyncURLHandler;
 params.groupItems = getBooleanFromAttributeValue(this.groupItems);
 params.showDetailsPageHeader = getBooleanFromAttributeValue(this.showDetailsPageHeader);
-params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
 params.itemSelect = this.itemSelect==null ? this.defaultFunc: this.itemSelect;
 params.listSelect = this.listSelect==null ? this.defaultFunc: this.listSelect;
 params.longtextLoaded = this.longtextLoaded==null ? this.defaultFunc: this.longtextLoaded;
@@ -159,13 +156,11 @@ if (relation == 'dragdropconfig') {  this._messageview.removeDragDropConfig(chil
 asyncURLHandlerChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.setAsyncURLHandler(newValue);}}
 groupItemsChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.setGroupItems(getBooleanFromAttributeValue(newValue));}}
 showDetailsPageHeaderChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.setShowDetailsPageHeader(getBooleanFromAttributeValue(newValue));}}
-afterOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachAfterOpen(newValue);}}
 itemSelectChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachItemSelect(newValue);}}
 listSelectChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachListSelect(newValue);}}
 longtextLoadedChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachLongtextLoaded(newValue);}}
 urlValidatedChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachUrlValidated(newValue);}}
 activeTitlePressChanged(newValue){if(newValue!=null && newValue!=undefined && this._messageview!==null){ this._messageview.attachActiveTitlePress(newValue);}}
-blockedChanged(newValue){if(this._messageview!==null){ this._messageview.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._messageview!==null){ this._messageview.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._messageview!==null){ this._messageview.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._messageview!==null){ this._messageview.setBusyIndicatorSize(newValue);}}

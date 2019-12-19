@@ -16,6 +16,7 @@ export class Ui5Select extends Ui5Control{
          @bindable prevId = null;
         @bindable() name = '';
 @bindable() enabled = true;
+@bindable() editable = true;
 @bindable() width = 'auto';
 @bindable() maxWidth = '100%';
 @bindable() selectedKey = '';
@@ -29,9 +30,9 @@ export class Ui5Select extends Ui5Control{
 @bindable() valueStateText = '';
 @bindable() showSecondaryValues = false;
 @bindable() forceSelection = true;
+@bindable() wrapItemsText = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -60,6 +61,7 @@ export class Ui5Select extends Ui5Control{
         fillProperties(params){
                                         params.name = this.name;
 params.enabled = getBooleanFromAttributeValue(this.enabled);
+params.editable = getBooleanFromAttributeValue(this.editable);
 params.width = this.width;
 params.maxWidth = this.maxWidth;
 params.selectedKey = this.selectedKey;
@@ -73,6 +75,7 @@ params.valueState = this.valueState;
 params.valueStateText = this.valueStateText;
 params.showSecondaryValues = getBooleanFromAttributeValue(this.showSecondaryValues);
 params.forceSelection = getBooleanFromAttributeValue(this.forceSelection);
+params.wrapItemsText = getBooleanFromAttributeValue(this.wrapItemsText);
 params.change = this.change==null ? this.defaultFunc: this.change;
             
                                             super.fillProperties(params);   
@@ -168,6 +171,7 @@ if (relation == 'dragdropconfig') {  this._select.removeDragDropConfig(child);}
                                                                             }
     nameChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setName(newValue);}}
 enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setEnabled(getBooleanFromAttributeValue(newValue));}}
+editableChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setEditable(getBooleanFromAttributeValue(newValue));}}
 widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setWidth(newValue);}}
 maxWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setMaxWidth(newValue);}}
 selectedKeyChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setSelectedKey(newValue);}}
@@ -181,8 +185,8 @@ valueStateChanged(newValue){if(newValue!=null && newValue!=undefined && this._se
 valueStateTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setValueStateText(newValue);}}
 showSecondaryValuesChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setShowSecondaryValues(getBooleanFromAttributeValue(newValue));}}
 forceSelectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setForceSelection(getBooleanFromAttributeValue(newValue));}}
+wrapItemsTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.setWrapItemsText(getBooleanFromAttributeValue(newValue));}}
 changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._select!==null){ this._select.attachChange(newValue);}}
-blockedChanged(newValue){if(this._select!==null){ this._select.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._select!==null){ this._select.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._select!==null){ this._select.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._select!==null){ this._select.setBusyIndicatorSize(newValue);}}

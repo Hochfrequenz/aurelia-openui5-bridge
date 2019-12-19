@@ -19,7 +19,6 @@ export class Ui5Splitter extends Ui5Control{
 @bindable() height = '100%';
 @bindable() resize = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -145,7 +144,6 @@ if (relation == 'dragdropconfig') {  this._splitter.removeDragDropConfig(child);
 widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.setWidth(newValue);}}
 heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.setHeight(newValue);}}
 resizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitter!==null){ this._splitter.attachResize(newValue);}}
-blockedChanged(newValue){if(this._splitter!==null){ this._splitter.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._splitter!==null){ this._splitter.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._splitter!==null){ this._splitter.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._splitter!==null){ this._splitter.setBusyIndicatorSize(newValue);}}

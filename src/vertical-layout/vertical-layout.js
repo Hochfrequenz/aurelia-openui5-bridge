@@ -17,7 +17,6 @@ export class Ui5VerticalLayout extends Ui5Control{
         @bindable() width = null;
 @bindable() enabled = true;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -139,7 +138,6 @@ if (relation == 'dragdropconfig') {  this._verticallayout.removeDragDropConfig(c
                                                                             }
     widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._verticallayout!==null){ this._verticallayout.setWidth(newValue);}}
 enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._verticallayout!==null){ this._verticallayout.setEnabled(getBooleanFromAttributeValue(newValue));}}
-blockedChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._verticallayout!==null){ this._verticallayout.setBusyIndicatorSize(newValue);}}

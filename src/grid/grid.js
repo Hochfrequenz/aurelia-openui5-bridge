@@ -22,7 +22,6 @@ export class Ui5Grid extends Ui5Control{
 @bindable() defaultIndent = 'XL0 L0 M0 S0';
 @bindable() containerQuery = false;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -154,7 +153,6 @@ positionChanged(newValue){if(newValue!=null && newValue!=undefined && this._grid
 defaultSpanChanged(newValue){if(newValue!=null && newValue!=undefined && this._grid!==null){ this._grid.setDefaultSpan(newValue);}}
 defaultIndentChanged(newValue){if(newValue!=null && newValue!=undefined && this._grid!==null){ this._grid.setDefaultIndent(newValue);}}
 containerQueryChanged(newValue){if(newValue!=null && newValue!=undefined && this._grid!==null){ this._grid.setContainerQuery(getBooleanFromAttributeValue(newValue));}}
-blockedChanged(newValue){if(this._grid!==null){ this._grid.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._grid!==null){ this._grid.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._grid!==null){ this._grid.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._grid!==null){ this._grid.setBusyIndicatorSize(newValue);}}

@@ -14,7 +14,8 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        /* inherited from sap.m.Toolbar*/
+        @bindable() asyncMode = false;
+/* inherited from sap.m.Toolbar*/
 @bindable() width = null;
 @bindable() active = false;
 @bindable() enabled = true;
@@ -23,7 +24,6 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
 @bindable() style = 'Standard';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -50,7 +50,8 @@ export class Ui5OverflowToolbar extends Ui5Toolbar{
             return this._overflowtoolbar;
           }
         fillProperties(params){
-                                                    
+                                        params.asyncMode = getBooleanFromAttributeValue(this.asyncMode);
+            
                                             super.fillProperties(params);   
         }
         defaultFunc() {
@@ -141,7 +142,8 @@ if (relation == 'dragdropconfig') {  this._overflowtoolbar.removeDragDropConfig(
       }
       catch(err){}
                                                                             }
-    widthChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setWidth(newValue);}}
+    asyncModeChanged(newValue){if(newValue!=null && newValue!=undefined && this._overflowtoolbar!==null){ this._overflowtoolbar.setAsyncMode(getBooleanFromAttributeValue(newValue));}}
+widthChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setWidth(newValue);}}
 activeChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setActive(getBooleanFromAttributeValue(newValue));}}
 enabledChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setEnabled(getBooleanFromAttributeValue(newValue));}}
 heightChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setHeight(newValue);}}
@@ -149,7 +151,6 @@ designChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.
 styleChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setStyle(newValue);}}
 /* inherited from sap.m.Toolbar*/
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._overflowtoolbar!==null){ this._overflowtoolbar.attachPress(newValue);}}
-blockedChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._overflowtoolbar!==null){ this._overflowtoolbar.setBusyIndicatorSize(newValue);}}

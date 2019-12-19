@@ -18,7 +18,6 @@ export class Ui5Menu extends Ui5Control{
 @bindable() itemSelected = this.defaultFunc;
 @bindable() closed = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -142,7 +141,6 @@ if (relation == 'dragdropconfig') {  this._menu.removeDragDropConfig(child);}
     titleChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.setTitle(newValue);}}
 itemSelectedChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachItemSelected(newValue);}}
 closedChanged(newValue){if(newValue!=null && newValue!=undefined && this._menu!==null){ this._menu.attachClosed(newValue);}}
-blockedChanged(newValue){if(this._menu!==null){ this._menu.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._menu!==null){ this._menu.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._menu!==null){ this._menu.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._menu!==null){ this._menu.setBusyIndicatorSize(newValue);}}

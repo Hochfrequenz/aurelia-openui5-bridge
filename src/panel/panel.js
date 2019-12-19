@@ -24,7 +24,6 @@ export class Ui5Panel extends Ui5Control{
 @bindable() accessibleRole = 'Form';
 @bindable() expand = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -164,7 +163,6 @@ expandAnimationChanged(newValue){if(newValue!=null && newValue!=undefined && thi
 backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setBackgroundDesign(newValue);}}
 accessibleRoleChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.setAccessibleRole(newValue);}}
 expandChanged(newValue){if(newValue!=null && newValue!=undefined && this._panel!==null){ this._panel.attachExpand(newValue);}}
-blockedChanged(newValue){if(this._panel!==null){ this._panel.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._panel!==null){ this._panel.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._panel!==null){ this._panel.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._panel!==null){ this._panel.setBusyIndicatorSize(newValue);}}

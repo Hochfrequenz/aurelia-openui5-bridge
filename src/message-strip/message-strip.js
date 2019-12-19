@@ -22,7 +22,6 @@ export class Ui5MessageStrip extends Ui5Control{
 @bindable() enableFormattedText = false;
 @bindable() close = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -154,7 +153,6 @@ showIconChanged(newValue){if(newValue!=null && newValue!=undefined && this._mess
 showCloseButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.setShowCloseButton(getBooleanFromAttributeValue(newValue));}}
 enableFormattedTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.setEnableFormattedText(getBooleanFromAttributeValue(newValue));}}
 closeChanged(newValue){if(newValue!=null && newValue!=undefined && this._messagestrip!==null){ this._messagestrip.attachClose(newValue);}}
-blockedChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._messagestrip!==null){ this._messagestrip.setBusyIndicatorSize(newValue);}}

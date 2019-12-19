@@ -22,7 +22,6 @@ export class Ui5gridTable extends Ui5Control{
 @bindable() firstVisibleRow = 0;
 @bindable() selectionMode = 'MultiToggle';
 @bindable() selectionBehavior = 'RowSelector';
-@bindable() selectedIndex = -1;
 @bindable() editable = true;
 @bindable() threshold = 100;
 @bindable() enableColumnReordering = true;
@@ -58,7 +57,6 @@ export class Ui5gridTable extends Ui5Control{
 @bindable() busyStateChanged = this.defaultFunc;
 @bindable() paste = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -93,7 +91,6 @@ params.visibleRowCount = this.visibleRowCount?parseInt(this.visibleRowCount):0;
 params.firstVisibleRow = this.firstVisibleRow?parseInt(this.firstVisibleRow):0;
 params.selectionMode = this.selectionMode;
 params.selectionBehavior = this.selectionBehavior;
-params.selectedIndex = this.selectedIndex?parseInt(this.selectedIndex):0;
 params.editable = getBooleanFromAttributeValue(this.editable);
 params.threshold = this.threshold?parseInt(this.threshold):0;
 params.enableColumnReordering = getBooleanFromAttributeValue(this.enableColumnReordering);
@@ -206,6 +203,7 @@ if (elem.localName == 'nodata') { this._gridtable.setNoData(child); return elem.
 if (elem.localName == 'rowactiontemplate') { this._gridtable.setRowActionTemplate(child); return elem.localName;}
 if (elem.localName == 'rowsettingstemplate') { this._gridtable.setRowSettingsTemplate(child); return elem.localName;}
 if (elem.localName == 'contextmenu') { this._gridtable.setContextMenu(child); return elem.localName;}
+if (elem.localName == 'plugins') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertPlugin(child, _index); else this._gridtable.addPlugin(child, 0);  return elem.localName; }
 if (elem.localName == 'tooltip') { this._gridtable.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._gridtable.insertCustomData(child, _index); else this._gridtable.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._gridtable.setLayoutData(child); return elem.localName;}
@@ -228,6 +226,7 @@ if (relation == 'nodata') {  this._gridtable.destroyNoData(child); }
 if (relation == 'rowactiontemplate') {  this._gridtable.destroyRowActionTemplate(child); }
 if (relation == 'rowsettingstemplate') {  this._gridtable.destroyRowSettingsTemplate(child); }
 if (relation == 'contextmenu') {  this._gridtable.destroyContextMenu(child); }
+if (relation == 'plugins') {  this._gridtable.removePlugin(child);}
 if (relation == 'tooltip') {  this._gridtable.destroyTooltip(child); }
 if (relation == 'customdata') {  this._gridtable.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._gridtable.destroyLayoutData(child); }
@@ -245,7 +244,6 @@ visibleRowCountChanged(newValue){if(newValue!=null && newValue!=undefined && thi
 firstVisibleRowChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setFirstVisibleRow(newValue);}}
 selectionModeChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setSelectionMode(newValue);}}
 selectionBehaviorChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setSelectionBehavior(newValue);}}
-selectedIndexChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setSelectedIndex(newValue);}}
 editableChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEditable(getBooleanFromAttributeValue(newValue));}}
 thresholdChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setThreshold(newValue);}}
 enableColumnReorderingChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.setEnableColumnReordering(getBooleanFromAttributeValue(newValue));}}
@@ -280,7 +278,6 @@ customFilterChanged(newValue){if(newValue!=null && newValue!=undefined && this._
 firstVisibleRowChangedChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachFirstVisibleRowChanged(newValue);}}
 busyStateChangedChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachBusyStateChanged(newValue);}}
 pasteChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtable!==null){ this._gridtable.attachPaste(newValue);}}
-blockedChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._gridtable!==null){ this._gridtable.setBusyIndicatorSize(newValue);}}

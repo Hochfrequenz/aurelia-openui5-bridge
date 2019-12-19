@@ -25,7 +25,6 @@ export class Ui5Label extends Ui5Control{
 @bindable() wrappingType = 'Normal';
 @bindable() vAlign = 'Inherit';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -161,7 +160,6 @@ displayOnlyChanged(newValue){if(newValue!=null && newValue!=undefined && this._l
 wrappingChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setWrapping(getBooleanFromAttributeValue(newValue));}}
 wrappingTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setWrappingType(newValue);}}
 vAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._label!==null){ this._label.setVAlign(newValue);}}
-blockedChanged(newValue){if(this._label!==null){ this._label.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._label!==null){ this._label.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._label!==null){ this._label.setBusyIndicatorSize(newValue);}}

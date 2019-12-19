@@ -14,18 +14,17 @@ export class Ui5Button extends Ui5Control{
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() text = null;
+        @bindable() text = '';
 @bindable() type = 'Default';
 @bindable() width = null;
 @bindable() enabled = true;
-@bindable() icon = null;
+@bindable() icon = '';
 @bindable() iconFirst = true;
 @bindable() activeIcon = null;
 @bindable() iconDensityAware = true;
 @bindable() textDirection = 'Inherit';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -161,7 +160,6 @@ activeIconChanged(newValue){if(newValue!=null && newValue!=undefined && this._bu
 iconDensityAwareChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setIconDensityAware(getBooleanFromAttributeValue(newValue));}}
 textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.setTextDirection(newValue);}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._button!==null){ this._button.attachPress(newValue);}}
-blockedChanged(newValue){if(this._button!==null){ this._button.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._button!==null){ this._button.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._button!==null){ this._button.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._button!==null){ this._button.setBusyIndicatorSize(newValue);}}

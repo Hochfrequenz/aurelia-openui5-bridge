@@ -22,7 +22,6 @@ export class Ui5mTitle extends Ui5Control{
 @bindable() wrapping = false;
 @bindable() wrappingType = 'Normal';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -152,7 +151,6 @@ widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!
 textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setTextAlign(newValue);}}
 wrappingChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setWrapping(getBooleanFromAttributeValue(newValue));}}
 wrappingTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._mtitle!==null){ this._mtitle.setWrappingType(newValue);}}
-blockedChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._mtitle!==null){ this._mtitle.setBusyIndicatorSize(newValue);}}

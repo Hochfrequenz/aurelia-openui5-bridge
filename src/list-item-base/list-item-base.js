@@ -20,10 +20,11 @@ export class Ui5ListItemBase extends Ui5Control{
 @bindable() selected = false;
 @bindable() counter = null;
 @bindable() highlight = 'None';
+@bindable() highlightText = '';
+@bindable() navigated = false;
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -56,6 +57,8 @@ params.unread = getBooleanFromAttributeValue(this.unread);
 params.selected = getBooleanFromAttributeValue(this.selected);
 params.counter = this.counter?parseInt(this.counter):0;
 params.highlight = this.highlight;
+params.highlightText = this.highlightText;
+params.navigated = getBooleanFromAttributeValue(this.navigated);
 params.press = this.press==null ? this.defaultFunc: this.press;
 params.detailPress = this.detailPress==null ? this.defaultFunc: this.detailPress;
             
@@ -153,9 +156,10 @@ unreadChanged(newValue){if(newValue!=null && newValue!=undefined && this._listit
 selectedChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setSelected(getBooleanFromAttributeValue(newValue));}}
 counterChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setCounter(newValue);}}
 highlightChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setHighlight(newValue);}}
+highlightTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setHighlightText(newValue);}}
+navigatedChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.setNavigated(getBooleanFromAttributeValue(newValue));}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachPress(newValue);}}
 detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._listitembase!==null){ this._listitembase.attachDetailPress(newValue);}}
-blockedChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._listitembase!==null){ this._listitembase.setBusyIndicatorSize(newValue);}}

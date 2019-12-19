@@ -20,7 +20,6 @@ export class Ui5FormattedText extends Ui5Control{
 @bindable() convertedLinksDefaultTarget = '_blank';
 @bindable() height = null;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -146,7 +145,6 @@ widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._formatt
 convertLinksToAnchorTagsChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.setConvertLinksToAnchorTags(newValue);}}
 convertedLinksDefaultTargetChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.setConvertedLinksDefaultTarget(newValue);}}
 heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._formattedtext!==null){ this._formattedtext.setHeight(newValue);}}
-blockedChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._formattedtext!==null){ this._formattedtext.setBusyIndicatorSize(newValue);}}

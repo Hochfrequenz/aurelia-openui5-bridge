@@ -21,6 +21,7 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
 @bindable() secondaryCalendarType = null;
 @bindable() minDate = null;
 @bindable() maxDate = null;
+@bindable() showFooter = false;
 @bindable() navigate = this.defaultFunc;
 /* inherited from sap.m.DateTimeField*/
 @bindable() displayFormat = null;
@@ -42,7 +43,6 @@ export class Ui5DateTimePicker extends Ui5DatePicker{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -169,6 +169,7 @@ displayFormatTypeChanged(newValue){if(this._datetimepicker!==null){ this._dateti
 secondaryCalendarTypeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setSecondaryCalendarType(newValue);}}
 minDateChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setMinDate(newValue);}}
 maxDateChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setMaxDate(newValue);}}
+showFooterChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setShowFooter(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.DatePicker*/
 navigateChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachNavigate(newValue);}}
 displayFormatChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setDisplayFormat(newValue);}}
@@ -190,7 +191,6 @@ textDirectionChanged(newValue){if(this._datetimepicker!==null){ this._datetimepi
 requiredChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimepicker!==null){ this._datetimepicker.attachChange(newValue);}}
-blockedChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._datetimepicker!==null){ this._datetimepicker.setBusyIndicatorSize(newValue);}}

@@ -27,9 +27,9 @@ export class Ui5GenericTile extends Ui5Control{
 @bindable() sizeBehavior = 'Responsive';
 @bindable() ariaLabel = null;
 @bindable() wrappingType = 'Normal';
+@bindable() width = null;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -69,6 +69,7 @@ params.scope = this.scope;
 params.sizeBehavior = this.sizeBehavior;
 params.ariaLabel = this.ariaLabel;
 params.wrappingType = this.wrappingType;
+params.width = this.width;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
                                             super.fillProperties(params);   
@@ -176,8 +177,8 @@ scopeChanged(newValue){if(newValue!=null && newValue!=undefined && this._generic
 sizeBehaviorChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setSizeBehavior(newValue);}}
 ariaLabelChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setAriaLabel(newValue);}}
 wrappingTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setWrappingType(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.setWidth(newValue);}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._generictile!==null){ this._generictile.attachPress(newValue);}}
-blockedChanged(newValue){if(this._generictile!==null){ this._generictile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._generictile!==null){ this._generictile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._generictile!==null){ this._generictile.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._generictile!==null){ this._generictile.setBusyIndicatorSize(newValue);}}

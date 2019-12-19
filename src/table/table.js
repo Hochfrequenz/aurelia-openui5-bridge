@@ -52,7 +52,6 @@ export class Ui5Table extends Ui5ListBase{
 @bindable() itemPress = this.defaultFunc;
 @bindable() beforeOpenContextMenu = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -225,7 +224,6 @@ updateStartedChanged(newValue){if(newValue!=null && newValue!=undefined && this.
 updateFinishedChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachUpdateFinished(newValue);}}
 itemPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachItemPress(newValue);}}
 beforeOpenContextMenuChanged(newValue){if(newValue!=null && newValue!=undefined && this._table!==null){ this._table.attachBeforeOpenContextMenu(newValue);}}
-blockedChanged(newValue){if(this._table!==null){ this._table.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._table!==null){ this._table.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._table!==null){ this._table.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._table!==null){ this._table.setBusyIndicatorSize(newValue);}}

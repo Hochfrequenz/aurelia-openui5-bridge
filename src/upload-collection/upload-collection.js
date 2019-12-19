@@ -41,7 +41,6 @@ export class Ui5UploadCollection extends Ui5Control{
 @bindable() beforeUploadStarts = this.defaultFunc;
 @bindable() selectionChange = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -219,7 +218,6 @@ uploadCompleteChanged(newValue){if(newValue!=null && newValue!=undefined && this
 uploadTerminatedChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachUploadTerminated(newValue);}}
 beforeUploadStartsChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachBeforeUploadStarts(newValue);}}
 selectionChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._uploadcollection!==null){ this._uploadcollection.attachSelectionChange(newValue);}}
-blockedChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._uploadcollection!==null){ this._uploadcollection.setBusyIndicatorSize(newValue);}}

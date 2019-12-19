@@ -16,7 +16,6 @@ export class Ui5FormLayout extends Ui5Control{
          @bindable prevId = null;
         @bindable() backgroundDesign = 'Translucent';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -134,7 +133,6 @@ if (relation == 'dragdropconfig') {  this._formlayout.removeDragDropConfig(child
       catch(err){}
                                                                             }
     backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._formlayout!==null){ this._formlayout.setBackgroundDesign(newValue);}}
-blockedChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._formlayout!==null){ this._formlayout.setBusyIndicatorSize(newValue);}}

@@ -24,7 +24,6 @@ export class Ui5ActionSheet extends Ui5Control{
 @bindable() afterClose = this.defaultFunc;
 @bindable() cancelButtonPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -160,7 +159,6 @@ afterOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._act
 beforeCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachBeforeClose(newValue);}}
 afterCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachAfterClose(newValue);}}
 cancelButtonPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._actionsheet!==null){ this._actionsheet.attachCancelButtonPress(newValue);}}
-blockedChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._actionsheet!==null){ this._actionsheet.setBusyIndicatorSize(newValue);}}

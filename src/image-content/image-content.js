@@ -18,7 +18,6 @@ export class Ui5ImageContent extends Ui5Control{
 @bindable() description = null;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -140,7 +139,6 @@ if (relation == 'dragdropconfig') {  this._imagecontent.removeDragDropConfig(chi
     srcChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.setSrc(newValue);}}
 descriptionChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.setDescription(newValue);}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._imagecontent!==null){ this._imagecontent.attachPress(newValue);}}
-blockedChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._imagecontent!==null){ this._imagecontent.setBusyIndicatorSize(newValue);}}

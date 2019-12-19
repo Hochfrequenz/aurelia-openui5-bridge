@@ -21,10 +21,11 @@ export class Ui5TreeItemBase extends Ui5ListItemBase{
 @bindable() selected = false;
 @bindable() counter = null;
 @bindable() highlight = 'None';
+@bindable() highlightText = '';
+@bindable() navigated = false;
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -146,10 +147,11 @@ unreadChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setUnr
 selectedChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setSelected(getBooleanFromAttributeValue(newValue));}}
 counterChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setCounter(newValue);}}
 highlightChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setHighlight(newValue);}}
+highlightTextChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setHighlightText(newValue);}}
+navigatedChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setNavigated(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachPress(newValue);}}
 detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._treeitembase!==null){ this._treeitembase.attachDetailPress(newValue);}}
-blockedChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._treeitembase!==null){ this._treeitembase.setBusyIndicatorSize(newValue);}}

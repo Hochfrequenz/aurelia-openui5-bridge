@@ -30,7 +30,6 @@ export class Ui5Icon extends Ui5Control{
 @bindable() noTabStop = false;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -176,7 +175,6 @@ useIconTooltipChanged(newValue){if(newValue!=null && newValue!=undefined && this
 altChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setAlt(newValue);}}
 noTabStopChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.setNoTabStop(getBooleanFromAttributeValue(newValue));}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._icon!==null){ this._icon.attachPress(newValue);}}
-blockedChanged(newValue){if(this._icon!==null){ this._icon.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._icon!==null){ this._icon.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._icon!==null){ this._icon.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._icon!==null){ this._icon.setBusyIndicatorSize(newValue);}}

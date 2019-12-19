@@ -21,7 +21,6 @@ export class Ui5ObjectNumber extends Ui5Control{
 @bindable() textDirection = 'Inherit';
 @bindable() textAlign = 'Begin';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -149,7 +148,6 @@ stateChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectn
 unitChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.setUnit(newValue);}}
 textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.setTextDirection(newValue);}}
 textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectnumber!==null){ this._objectnumber.setTextAlign(newValue);}}
-blockedChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._objectnumber!==null){ this._objectnumber.setBusyIndicatorSize(newValue);}}

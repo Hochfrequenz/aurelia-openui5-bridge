@@ -28,7 +28,6 @@ export class Ui5InputBase extends Ui5Control{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -170,7 +169,6 @@ textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._inp
 textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setTextDirection(newValue);}}
 requiredChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.setRequired(getBooleanFromAttributeValue(newValue));}}
 changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._inputbase!==null){ this._inputbase.attachChange(newValue);}}
-blockedChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._inputbase!==null){ this._inputbase.setBusyIndicatorSize(newValue);}}

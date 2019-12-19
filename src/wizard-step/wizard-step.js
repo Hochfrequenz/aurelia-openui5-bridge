@@ -21,7 +21,6 @@ export class Ui5WizardStep extends Ui5Control{
 @bindable() complete = this.defaultFunc;
 @bindable() activate = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -151,7 +150,6 @@ validatedChanged(newValue){if(newValue!=null && newValue!=undefined && this._wiz
 optionalChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizardstep!==null){ this._wizardstep.setOptional(getBooleanFromAttributeValue(newValue));}}
 completeChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizardstep!==null){ this._wizardstep.attachComplete(newValue);}}
 activateChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizardstep!==null){ this._wizardstep.attachActivate(newValue);}}
-blockedChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._wizardstep!==null){ this._wizardstep.setBusyIndicatorSize(newValue);}}

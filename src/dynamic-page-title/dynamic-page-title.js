@@ -18,7 +18,6 @@ export class Ui5DynamicPageTitle extends Ui5Control{
 @bindable() backgroundDesign = null;
 @bindable() stateChange = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -124,6 +123,7 @@ if (elem.localName == 'navigationactions') { var _index = afterElement?Math.floo
 if (elem.localName == 'content') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpagetitle.insertContent(child, _index); else this._dynamicpagetitle.addContent(child, 0);  return elem.localName; }
 if (elem.localName == 'snappedcontent') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpagetitle.insertSnappedContent(child, _index); else this._dynamicpagetitle.addSnappedContent(child, 0);  return elem.localName; }
 if (elem.localName == 'expandedcontent') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpagetitle.insertExpandedContent(child, _index); else this._dynamicpagetitle.addExpandedContent(child, 0);  return elem.localName; }
+if (elem.localName == 'snappedtitleonmobile') { this._dynamicpagetitle.setSnappedTitleOnMobile(child); return elem.localName;}
 if (elem.localName == 'breadcrumbs') { this._dynamicpagetitle.setBreadcrumbs(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._dynamicpagetitle.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpagetitle.insertCustomData(child, _index); else this._dynamicpagetitle.addCustomData(child, 0);  return elem.localName; }
@@ -145,6 +145,7 @@ if (relation == 'navigationactions') {  this._dynamicpagetitle.removeNavigationA
 if (relation == 'content') {  this._dynamicpagetitle.removeContent(child);}
 if (relation == 'snappedcontent') {  this._dynamicpagetitle.removeSnappedContent(child);}
 if (relation == 'expandedcontent') {  this._dynamicpagetitle.removeExpandedContent(child);}
+if (relation == 'snappedtitleonmobile') {  this._dynamicpagetitle.destroySnappedTitleOnMobile(child); }
 if (relation == 'breadcrumbs') {  this._dynamicpagetitle.destroyBreadcrumbs(child); }
 if (relation == 'tooltip') {  this._dynamicpagetitle.destroyTooltip(child); }
 if (relation == 'customdata') {  this._dynamicpagetitle.removeCustomData(child);}
@@ -158,7 +159,6 @@ if (relation == 'dragdropconfig') {  this._dynamicpagetitle.removeDragDropConfig
     areaShrinkRatioChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.setAreaShrinkRatio(newValue);}}
 backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBackgroundDesign(newValue);}}
 stateChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpagetitle!==null){ this._dynamicpagetitle.attachStateChange(newValue);}}
-blockedChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._dynamicpagetitle!==null){ this._dynamicpagetitle.setBusyIndicatorSize(newValue);}}

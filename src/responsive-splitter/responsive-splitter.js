@@ -17,7 +17,6 @@ export class Ui5ResponsiveSplitter extends Ui5Control{
         @bindable() width = '100%';
 @bindable() height = '100%';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -139,7 +138,6 @@ if (relation == 'dragdropconfig') {  this._responsivesplitter.removeDragDropConf
                                                                             }
     widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.setWidth(newValue);}}
 heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivesplitter!==null){ this._responsivesplitter.setHeight(newValue);}}
-blockedChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._responsivesplitter!==null){ this._responsivesplitter.setBusyIndicatorSize(newValue);}}

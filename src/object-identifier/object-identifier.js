@@ -21,7 +21,6 @@ export class Ui5ObjectIdentifier extends Ui5Control{
 @bindable() textDirection = 'Inherit';
 @bindable() titlePress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -149,7 +148,6 @@ visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._objec
 titleActiveChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.setTitleActive(getBooleanFromAttributeValue(newValue));}}
 textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.setTextDirection(newValue);}}
 titlePressChanged(newValue){if(newValue!=null && newValue!=undefined && this._objectidentifier!==null){ this._objectidentifier.attachTitlePress(newValue);}}
-blockedChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._objectidentifier!==null){ this._objectidentifier.setBusyIndicatorSize(newValue);}}
