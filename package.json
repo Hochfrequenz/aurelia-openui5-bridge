@@ -94,7 +94,7 @@
     "jasmine-core": "^2.99.1",
     "jspm": "0.16.53",
     "jspm-git": "^0.6.1",
-    "karma": "^2.0.5",
+    "karma": "^5.0.5",
     "karma-babel-preprocessor": "6",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage": "^1.1.2",
