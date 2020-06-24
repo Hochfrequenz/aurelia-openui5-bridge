@@ -29,7 +29,6 @@ export class Ui5IconTabBar extends Ui5Control{
 @bindable() select = this.defaultFunc;
 @bindable() expand = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -178,7 +177,6 @@ enableTabReorderingChanged(newValue){if(newValue!=null && newValue!=undefined &&
 tabDensityModeChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.setTabDensityMode(newValue);}}
 selectChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachSelect(newValue);}}
 expandChanged(newValue){if(newValue!=null && newValue!=undefined && this._icontabbar!==null){ this._icontabbar.attachExpand(newValue);}}
-blockedChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._icontabbar!==null){ this._icontabbar.setBusyIndicatorSize(newValue);}}

@@ -116,9 +116,9 @@ var Ui5GenericTile = exports.Ui5GenericTile = (_dec = (0, _aureliaTemplating.cus
 
         _initDefineProp(_this, 'wrappingType', _descriptor17, _this);
 
-        _initDefineProp(_this, 'press', _descriptor18, _this);
+        _initDefineProp(_this, 'width', _descriptor18, _this);
 
-        _initDefineProp(_this, 'blocked', _descriptor19, _this);
+        _initDefineProp(_this, 'press', _descriptor19, _this);
 
         _initDefineProp(_this, 'busy', _descriptor20, _this);
 
@@ -161,6 +161,7 @@ var Ui5GenericTile = exports.Ui5GenericTile = (_dec = (0, _aureliaTemplating.cus
         params.sizeBehavior = this.sizeBehavior;
         params.ariaLabel = this.ariaLabel;
         params.wrappingType = this.wrappingType;
+        params.width = this.width;
         params.press = this.press == null ? this.defaultFunc : this.press;
 
         _Ui5Control.prototype.fillProperties.call(this, params);
@@ -354,15 +355,15 @@ var Ui5GenericTile = exports.Ui5GenericTile = (_dec = (0, _aureliaTemplating.cus
         }
     };
 
-    Ui5GenericTile.prototype.pressChanged = function pressChanged(newValue) {
+    Ui5GenericTile.prototype.widthChanged = function widthChanged(newValue) {
         if (newValue != null && newValue != undefined && this._generictile !== null) {
-            this._generictile.attachPress(newValue);
+            this._generictile.setWidth(newValue);
         }
     };
 
-    Ui5GenericTile.prototype.blockedChanged = function blockedChanged(newValue) {
-        if (this._generictile !== null) {
-            this._generictile.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    Ui5GenericTile.prototype.pressChanged = function pressChanged(newValue) {
+        if (newValue != null && newValue != undefined && this._generictile !== null) {
+            this._generictile.attachPress(newValue);
         }
     };
 
@@ -525,15 +526,15 @@ var Ui5GenericTile = exports.Ui5GenericTile = (_dec = (0, _aureliaTemplating.cus
     initializer: function initializer() {
         return 'Normal';
     }
-}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec16], {
+}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec16], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec17], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
-    }
-}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec17], {
-    enumerable: true,
-    initializer: function initializer() {
-        return false;
     }
 }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec18], {
     enumerable: true,

@@ -20,7 +20,6 @@ export class Ui5TileContent extends Ui5Control{
 @bindable() disabled = false;
 @bindable() frameType = 'Auto';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -148,7 +147,6 @@ footerColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._t
 unitChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontent!==null){ this._tilecontent.setUnit(newValue);}}
 disabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontent!==null){ this._tilecontent.setDisabled(getBooleanFromAttributeValue(newValue));}}
 frameTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontent!==null){ this._tilecontent.setFrameType(newValue);}}
-blockedChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._tilecontent!==null){ this._tilecontent.setBusyIndicatorSize(newValue);}}

@@ -25,6 +25,7 @@ export class Ui5StandardListItem extends Ui5ListItemBase{
 @bindable() adaptTitleSize = true;
 @bindable() titleTextDirection = 'Inherit';
 @bindable() infoTextDirection = 'Inherit';
+@bindable() wrapping = false;
 /* inherited from sap.m.ListItemBase*/
 @bindable() type = 'Inactive';
 @bindable() visible = true;
@@ -32,10 +33,11 @@ export class Ui5StandardListItem extends Ui5ListItemBase{
 @bindable() selected = false;
 @bindable() counter = null;
 @bindable() highlight = 'None';
+@bindable() highlightText = '';
+@bindable() navigated = false;
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -73,6 +75,7 @@ params.infoState = this.infoState;
 params.adaptTitleSize = getBooleanFromAttributeValue(this.adaptTitleSize);
 params.titleTextDirection = this.titleTextDirection;
 params.infoTextDirection = this.infoTextDirection;
+params.wrapping = getBooleanFromAttributeValue(this.wrapping);
             
                                             super.fillProperties(params);   
         }
@@ -173,16 +176,18 @@ infoStateChanged(newValue){if(newValue!=null && newValue!=undefined && this._sta
 adaptTitleSizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setAdaptTitleSize(getBooleanFromAttributeValue(newValue));}}
 titleTextDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setTitleTextDirection(newValue);}}
 infoTextDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setInfoTextDirection(newValue);}}
+wrappingChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.setWrapping(getBooleanFromAttributeValue(newValue));}}
 typeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setType(newValue);}}
 visibleChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setVisible(getBooleanFromAttributeValue(newValue));}}
 unreadChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setUnread(getBooleanFromAttributeValue(newValue));}}
 selectedChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setSelected(getBooleanFromAttributeValue(newValue));}}
 counterChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setCounter(newValue);}}
 highlightChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setHighlight(newValue);}}
+highlightTextChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setHighlightText(newValue);}}
+navigatedChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setNavigated(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachPress(newValue);}}
 detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardlistitem!==null){ this._standardlistitem.attachDetailPress(newValue);}}
-blockedChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._standardlistitem!==null){ this._standardlistitem.setBusyIndicatorSize(newValue);}}

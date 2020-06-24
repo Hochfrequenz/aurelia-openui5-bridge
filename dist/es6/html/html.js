@@ -20,7 +20,6 @@ export class Ui5Html extends Ui5Control{
 @bindable() visible = true;
 @bindable() afterRendering = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -146,7 +145,6 @@ preferDOMChanged(newValue){if(newValue!=null && newValue!=undefined && this._htm
 sanitizeContentChanged(newValue){if(newValue!=null && newValue!=undefined && this._html!==null){ this._html.setSanitizeContent(getBooleanFromAttributeValue(newValue));}}
 visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._html!==null){ this._html.setVisible(getBooleanFromAttributeValue(newValue));}}
 afterRenderingChanged(newValue){if(newValue!=null && newValue!=undefined && this._html!==null){ this._html.attachAfterRendering(newValue);}}
-blockedChanged(newValue){if(this._html!==null){ this._html.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._html!==null){ this._html.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._html!==null){ this._html.setBusyIndicatorSize(newValue);}}

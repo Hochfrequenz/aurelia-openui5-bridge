@@ -129,13 +129,13 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'enableBranching', _descriptor9, _this);
 
-            _initDefineProp(_this, 'lastStep', _descriptor10, _this);
+            _initDefineProp(_this, 'backgroundDesign', _descriptor10, _this);
 
-            _initDefineProp(_this, 'stepActivate', _descriptor11, _this);
+            _initDefineProp(_this, 'lastStep', _descriptor11, _this);
 
-            _initDefineProp(_this, 'complete', _descriptor12, _this);
+            _initDefineProp(_this, 'stepActivate', _descriptor12, _this);
 
-            _initDefineProp(_this, 'blocked', _descriptor13, _this);
+            _initDefineProp(_this, 'complete', _descriptor13, _this);
 
             _initDefineProp(_this, 'busy', _descriptor14, _this);
 
@@ -170,6 +170,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.showNextButton = (0, _attributes.getBooleanFromAttributeValue)(this.showNextButton);
             params.finishButtonText = this.finishButtonText;
             params.enableBranching = (0, _attributes.getBooleanFromAttributeValue)(this.enableBranching);
+            params.backgroundDesign = this.backgroundDesign;
             params.stepActivate = this.stepActivate == null ? this.defaultFunc : this.stepActivate;
             params.complete = this.complete == null ? this.defaultFunc : this.complete;
 
@@ -313,6 +314,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             }
         };
 
+        Ui5Wizard.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
+            if (newValue != null && newValue != undefined && this._wizard !== null) {
+                this._wizard.setBackgroundDesign(newValue);
+            }
+        };
+
         Ui5Wizard.prototype.stepActivateChanged = function stepActivateChanged(newValue) {
             if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachStepActivate(newValue);
@@ -322,12 +329,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         Ui5Wizard.prototype.completeChanged = function completeChanged(newValue) {
             if (newValue != null && newValue != undefined && this._wizard !== null) {
                 this._wizard.attachComplete(newValue);
-            }
-        };
-
-        Ui5Wizard.prototype.blockedChanged = function blockedChanged(newValue) {
-            if (this._wizard !== null) {
-                this._wizard.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
@@ -450,25 +451,25 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'lastStep', [_dec8], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'backgroundDesign', [_dec8], {
+        enumerable: true,
+        initializer: function initializer() {
+            return 'Standard';
+        }
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'lastStep', [_dec9], {
         enumerable: true,
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'stepActivate', [_dec9], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'stepActivate', [_dec10], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'complete', [_dec10], {
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'complete', [_dec11], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
-        }
-    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec11], {
-        enumerable: true,
-        initializer: function initializer() {
-            return false;
         }
     }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec12], {
         enumerable: true,

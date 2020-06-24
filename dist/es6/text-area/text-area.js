@@ -39,7 +39,6 @@ export class Ui5TextArea extends Ui5InputBase{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -191,7 +190,6 @@ textDirectionChanged(newValue){if(this._textarea!==null){ this._textarea.setText
 requiredChanged(newValue){if(this._textarea!==null){ this._textarea.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._textarea!==null){ this._textarea.attachChange(newValue);}}
-blockedChanged(newValue){if(this._textarea!==null){ this._textarea.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._textarea!==null){ this._textarea.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._textarea!==null){ this._textarea.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._textarea!==null){ this._textarea.setBusyIndicatorSize(newValue);}}

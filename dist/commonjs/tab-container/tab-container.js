@@ -92,13 +92,13 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
 
         _initDefineProp(_this, 'showAddNewButton', _descriptor5, _this);
 
-        _initDefineProp(_this, 'itemClose', _descriptor6, _this);
+        _initDefineProp(_this, 'backgroundDesign', _descriptor6, _this);
 
-        _initDefineProp(_this, 'itemSelect', _descriptor7, _this);
+        _initDefineProp(_this, 'itemClose', _descriptor7, _this);
 
-        _initDefineProp(_this, 'addNewButtonPress', _descriptor8, _this);
+        _initDefineProp(_this, 'itemSelect', _descriptor8, _this);
 
-        _initDefineProp(_this, 'blocked', _descriptor9, _this);
+        _initDefineProp(_this, 'addNewButtonPress', _descriptor9, _this);
 
         _initDefineProp(_this, 'busy', _descriptor10, _this);
 
@@ -129,6 +129,7 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
 
     Ui5TabContainer.prototype.fillProperties = function fillProperties(params) {
         params.showAddNewButton = (0, _attributes.getBooleanFromAttributeValue)(this.showAddNewButton);
+        params.backgroundDesign = this.backgroundDesign;
         params.itemClose = this.itemClose == null ? this.defaultFunc : this.itemClose;
         params.itemSelect = this.itemSelect == null ? this.defaultFunc : this.itemSelect;
         params.addNewButtonPress = this.addNewButtonPress == null ? this.defaultFunc : this.addNewButtonPress;
@@ -246,6 +247,12 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
         }
     };
 
+    Ui5TabContainer.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
+        if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
+            this._tabcontainer.setBackgroundDesign(newValue);
+        }
+    };
+
     Ui5TabContainer.prototype.itemCloseChanged = function itemCloseChanged(newValue) {
         if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
             this._tabcontainer.attachItemClose(newValue);
@@ -261,12 +268,6 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
     Ui5TabContainer.prototype.addNewButtonPressChanged = function addNewButtonPressChanged(newValue) {
         if (newValue != null && newValue != undefined && this._tabcontainer !== null) {
             this._tabcontainer.attachAddNewButtonPress(newValue);
-        }
-    };
-
-    Ui5TabContainer.prototype.blockedChanged = function blockedChanged(newValue) {
-        if (this._tabcontainer !== null) {
-            this._tabcontainer.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
@@ -369,25 +370,25 @@ var Ui5TabContainer = exports.Ui5TabContainer = (_dec = (0, _aureliaTemplating.c
     initializer: function initializer() {
         return false;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'itemClose', [_dec4], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'backgroundDesign', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'List';
+    }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'itemClose', [_dec5], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'itemSelect', [_dec5], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'itemSelect', [_dec6], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'addNewButtonPress', [_dec6], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'addNewButtonPress', [_dec7], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
-    }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec7], {
-    enumerable: true,
-    initializer: function initializer() {
-        return false;
     }
 }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec8], {
     enumerable: true,

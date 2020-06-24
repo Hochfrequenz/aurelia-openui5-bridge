@@ -19,7 +19,6 @@ export class Ui5SegmentedButton extends Ui5Control{
 @bindable() selectedKey = '';
 @bindable() selectionChange = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -148,7 +147,6 @@ if (relation == 'dragdropconfig') {  this._segmentedbutton.removeDragDropConfig(
 enabledChanged(newValue){if(newValue!=null && newValue!=undefined && this._segmentedbutton!==null){ this._segmentedbutton.setEnabled(getBooleanFromAttributeValue(newValue));}}
 selectedKeyChanged(newValue){if(newValue!=null && newValue!=undefined && this._segmentedbutton!==null){ this._segmentedbutton.setSelectedKey(newValue);}}
 selectionChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._segmentedbutton!==null){ this._segmentedbutton.attachSelectionChange(newValue);}}
-blockedChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._segmentedbutton!==null){ this._segmentedbutton.setBusyIndicatorSize(newValue);}}

@@ -16,7 +16,6 @@ export class Ui5ToolbarSpacer extends Ui5Control{
          @bindable prevId = null;
         @bindable() width = '';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -134,7 +133,6 @@ if (relation == 'dragdropconfig') {  this._toolbarspacer.removeDragDropConfig(ch
       catch(err){}
                                                                             }
     widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbarspacer!==null){ this._toolbarspacer.setWidth(newValue);}}
-blockedChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._toolbarspacer!==null){ this._toolbarspacer.setBusyIndicatorSize(newValue);}}

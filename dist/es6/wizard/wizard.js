@@ -19,11 +19,11 @@ export class Ui5Wizard extends Ui5Control{
 @bindable() showNextButton = true;
 @bindable() finishButtonText = 'Review';
 @bindable() enableBranching = false;
+@bindable() backgroundDesign = 'Standard';
 @bindable() lastStep = false;
 @bindable() stepActivate = this.defaultFunc;
 @bindable() complete = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -55,6 +55,7 @@ params.height = this.height;
 params.showNextButton = getBooleanFromAttributeValue(this.showNextButton);
 params.finishButtonText = this.finishButtonText;
 params.enableBranching = getBooleanFromAttributeValue(this.enableBranching);
+params.backgroundDesign = this.backgroundDesign;
 params.stepActivate = this.stepActivate==null ? this.defaultFunc: this.stepActivate;
 params.complete = this.complete==null ? this.defaultFunc: this.complete;
             
@@ -154,9 +155,9 @@ heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard
 showNextButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.setShowNextButton(getBooleanFromAttributeValue(newValue));}}
 finishButtonTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.setFinishButtonText(newValue);}}
 enableBranchingChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.setEnableBranching(getBooleanFromAttributeValue(newValue));}}
+backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.setBackgroundDesign(newValue);}}
 stepActivateChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachStepActivate(newValue);}}
 completeChanged(newValue){if(newValue!=null && newValue!=undefined && this._wizard!==null){ this._wizard.attachComplete(newValue);}}
-blockedChanged(newValue){if(this._wizard!==null){ this._wizard.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._wizard!==null){ this._wizard.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._wizard!==null){ this._wizard.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._wizard!==null){ this._wizard.setBusyIndicatorSize(newValue);}}

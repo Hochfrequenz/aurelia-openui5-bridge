@@ -7,7 +7,7 @@ exports.Ui5Column = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -70,7 +70,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement)('ui5-column'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaFramework.computedFrom)('_column'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
+var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement)('ui5-column'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaTemplating.bindable)(), _dec16 = (0, _aureliaTemplating.bindable)(), _dec17 = (0, _aureliaTemplating.bindable)(), _dec18 = (0, _aureliaTemplating.bindable)(), _dec19 = (0, _aureliaFramework.computedFrom)('_column'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
     _inherits(Ui5Column, _Ui5Element);
 
     function Ui5Column(element) {
@@ -110,15 +110,17 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
 
         _initDefineProp(_this, 'mergeFunctionName', _descriptor14, _this);
 
-        _initDefineProp(_this, 'validationSuccess', _descriptor15, _this);
+        _initDefineProp(_this, 'sortIndicator', _descriptor15, _this);
 
-        _initDefineProp(_this, 'validationError', _descriptor16, _this);
+        _initDefineProp(_this, 'validationSuccess', _descriptor16, _this);
 
-        _initDefineProp(_this, 'parseError', _descriptor17, _this);
+        _initDefineProp(_this, 'validationError', _descriptor17, _this);
 
-        _initDefineProp(_this, 'formatError', _descriptor18, _this);
+        _initDefineProp(_this, 'parseError', _descriptor18, _this);
 
-        _initDefineProp(_this, 'modelContextChange', _descriptor19, _this);
+        _initDefineProp(_this, 'formatError', _descriptor19, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor20, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -136,6 +138,7 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
         params.popinDisplay = this.popinDisplay;
         params.mergeDuplicates = (0, _attributes.getBooleanFromAttributeValue)(this.mergeDuplicates);
         params.mergeFunctionName = this.mergeFunctionName;
+        params.sortIndicator = this.sortIndicator;
 
         _Ui5Element.prototype.fillProperties.call(this, params);
     };
@@ -310,6 +313,12 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
         }
     };
 
+    Ui5Column.prototype.sortIndicatorChanged = function sortIndicatorChanged(newValue) {
+        if (newValue != null && newValue != undefined && this._column !== null) {
+            this._column.setSortIndicator(newValue);
+        }
+    };
+
     Ui5Column.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
         if (newValue != null && newValue != undefined && this._column !== null) {
             this._column.attachValidationSuccess(newValue);
@@ -418,29 +427,34 @@ var Ui5Column = exports.Ui5Column = (_dec = (0, _aureliaTemplating.customElement
     initializer: function initializer() {
         return 'getText';
     }
-}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec13], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'sortIndicator', [_dec13], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'None';
+    }
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec14], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec14], {
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec15], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec15], {
+}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec16], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec16], {
+}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec17], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec17], {
+}), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec18], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec18], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec19], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

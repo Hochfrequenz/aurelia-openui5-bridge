@@ -97,9 +97,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12;
 
-    var Ui5gridTableRowSetting = exports.Ui5gridTableRowSetting = (_dec = (0, _aureliaTemplating.customElement)('ui5-grid-table-row-setting'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaFramework.computedFrom)('_gridtablerowsetting'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
+    var Ui5gridTableRowSetting = exports.Ui5gridTableRowSetting = (_dec = (0, _aureliaTemplating.customElement)('ui5-grid-table-row-setting'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaFramework.computedFrom)('_gridtablerowsetting'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
         _inherits(Ui5gridTableRowSetting, _Ui5Element);
 
         function Ui5gridTableRowSetting(element) {
@@ -121,15 +121,19 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'highlight', _descriptor5, _this);
 
-            _initDefineProp(_this, 'validationSuccess', _descriptor6, _this);
+            _initDefineProp(_this, 'highlightText', _descriptor6, _this);
 
-            _initDefineProp(_this, 'validationError', _descriptor7, _this);
+            _initDefineProp(_this, 'navigated', _descriptor7, _this);
 
-            _initDefineProp(_this, 'parseError', _descriptor8, _this);
+            _initDefineProp(_this, 'validationSuccess', _descriptor8, _this);
 
-            _initDefineProp(_this, 'formatError', _descriptor9, _this);
+            _initDefineProp(_this, 'validationError', _descriptor9, _this);
 
-            _initDefineProp(_this, 'modelContextChange', _descriptor10, _this);
+            _initDefineProp(_this, 'parseError', _descriptor10, _this);
+
+            _initDefineProp(_this, 'formatError', _descriptor11, _this);
+
+            _initDefineProp(_this, 'modelContextChange', _descriptor12, _this);
 
             _this.element = element;
             _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -138,6 +142,8 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
         Ui5gridTableRowSetting.prototype.fillProperties = function fillProperties(params) {
             params.highlight = this.highlight;
+            params.highlightText = this.highlightText;
+            params.navigated = (0, _attributes.getBooleanFromAttributeValue)(this.navigated);
 
             _Ui5Element.prototype.fillProperties.call(this, params);
         };
@@ -246,6 +252,18 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             }
         };
 
+        Ui5gridTableRowSetting.prototype.highlightTextChanged = function highlightTextChanged(newValue) {
+            if (newValue != null && newValue != undefined && this._gridtablerowsetting !== null) {
+                this._gridtablerowsetting.setHighlightText(newValue);
+            }
+        };
+
+        Ui5gridTableRowSetting.prototype.navigatedChanged = function navigatedChanged(newValue) {
+            if (newValue != null && newValue != undefined && this._gridtablerowsetting !== null) {
+                this._gridtablerowsetting.setNavigated((0, _attributes.getBooleanFromAttributeValue)(newValue));
+            }
+        };
+
         Ui5gridTableRowSetting.prototype.validationSuccessChanged = function validationSuccessChanged(newValue) {
             if (newValue != null && newValue != undefined && this._gridtablerowsetting !== null) {
                 this._gridtablerowsetting.attachValidationSuccess(newValue);
@@ -309,30 +327,40 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return 'None';
         }
-    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec4], {
+    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'highlightText', [_dec4], {
+        enumerable: true,
+        initializer: function initializer() {
+            return '';
+        }
+    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'navigated', [_dec5], {
+        enumerable: true,
+        initializer: function initializer() {
+            return false;
+        }
+    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec6], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec5], {
+    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec7], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec6], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec8], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec7], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec9], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec8], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec10], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec9], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+    }), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec11], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
 });

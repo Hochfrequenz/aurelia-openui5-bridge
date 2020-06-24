@@ -38,7 +38,6 @@ export class Ui5SimpleForm extends Ui5Control{
 @bindable() breakpointM = 600;
 @bindable() backgroundDesign = 'Translucent';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -206,7 +205,6 @@ breakpointXLChanged(newValue){if(newValue!=null && newValue!=undefined && this._
 breakpointLChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setBreakpointL(newValue);}}
 breakpointMChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setBreakpointM(newValue);}}
 backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._simpleform!==null){ this._simpleform.setBackgroundDesign(newValue);}}
-blockedChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._simpleform!==null){ this._simpleform.setBusyIndicatorSize(newValue);}}

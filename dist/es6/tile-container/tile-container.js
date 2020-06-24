@@ -22,7 +22,6 @@ export class Ui5TileContainer extends Ui5Control{
 @bindable() tileDelete = this.defaultFunc;
 @bindable() tileAdd = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -154,7 +153,6 @@ allowAddChanged(newValue){if(newValue!=null && newValue!=undefined && this._tile
 tileMoveChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachTileMove(newValue);}}
 tileDeleteChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachTileDelete(newValue);}}
 tileAddChanged(newValue){if(newValue!=null && newValue!=undefined && this._tilecontainer!==null){ this._tilecontainer.attachTileAdd(newValue);}}
-blockedChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._tilecontainer!==null){ this._tilecontainer.setBusyIndicatorSize(newValue);}}

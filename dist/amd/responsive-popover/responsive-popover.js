@@ -147,15 +147,15 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'resizable', _descriptor18, _this);
 
-            _initDefineProp(_this, 'beforeOpen', _descriptor19, _this);
+            _initDefineProp(_this, 'titleAlignment', _descriptor19, _this);
 
-            _initDefineProp(_this, 'afterOpen', _descriptor20, _this);
+            _initDefineProp(_this, 'beforeOpen', _descriptor20, _this);
 
-            _initDefineProp(_this, 'beforeClose', _descriptor21, _this);
+            _initDefineProp(_this, 'afterOpen', _descriptor21, _this);
 
-            _initDefineProp(_this, 'afterClose', _descriptor22, _this);
+            _initDefineProp(_this, 'beforeClose', _descriptor22, _this);
 
-            _initDefineProp(_this, 'blocked', _descriptor23, _this);
+            _initDefineProp(_this, 'afterClose', _descriptor23, _this);
 
             _initDefineProp(_this, 'busy', _descriptor24, _this);
 
@@ -199,6 +199,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.verticalScrolling = (0, _attributes.getBooleanFromAttributeValue)(this.verticalScrolling);
             params.showCloseButton = (0, _attributes.getBooleanFromAttributeValue)(this.showCloseButton);
             params.resizable = (0, _attributes.getBooleanFromAttributeValue)(this.resizable);
+            params.titleAlignment = this.titleAlignment;
             params.beforeOpen = this.beforeOpen == null ? this.defaultFunc : this.beforeOpen;
             params.afterOpen = this.afterOpen == null ? this.defaultFunc : this.afterOpen;
             params.beforeClose = this.beforeClose == null ? this.defaultFunc : this.beforeClose;
@@ -419,6 +420,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             }
         };
 
+        Ui5ResponsivePopover.prototype.titleAlignmentChanged = function titleAlignmentChanged(newValue) {
+            if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
+                this._responsivepopover.setTitleAlignment(newValue);
+            }
+        };
+
         Ui5ResponsivePopover.prototype.beforeOpenChanged = function beforeOpenChanged(newValue) {
             if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                 this._responsivepopover.attachBeforeOpen(newValue);
@@ -440,12 +447,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         Ui5ResponsivePopover.prototype.afterCloseChanged = function afterCloseChanged(newValue) {
             if (newValue != null && newValue != undefined && this._responsivepopover !== null) {
                 this._responsivepopover.attachAfterClose(newValue);
-            }
-        };
-
-        Ui5ResponsivePopover.prototype.blockedChanged = function blockedChanged(newValue) {
-            if (this._responsivepopover !== null) {
-                this._responsivepopover.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
@@ -613,30 +614,30 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'beforeOpen', [_dec17], {
+    }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'titleAlignment', [_dec17], {
+        enumerable: true,
+        initializer: function initializer() {
+            return 'Auto';
+        }
+    }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'beforeOpen', [_dec18], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'afterOpen', [_dec18], {
+    }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'afterOpen', [_dec19], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, 'beforeClose', [_dec19], {
+    }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'beforeClose', [_dec20], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'afterClose', [_dec20], {
+    }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'afterClose', [_dec21], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
-        }
-    }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec21], {
-        enumerable: true,
-        initializer: function initializer() {
-            return false;
         }
     }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec22], {
         enumerable: true,

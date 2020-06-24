@@ -127,9 +127,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'showFooter', _descriptor8, _this);
 
-            _initDefineProp(_this, 'fitContent', _descriptor9, _this);
+            _initDefineProp(_this, 'backgroundDesign', _descriptor9, _this);
 
-            _initDefineProp(_this, 'blocked', _descriptor10, _this);
+            _initDefineProp(_this, 'fitContent', _descriptor10, _this);
 
             _initDefineProp(_this, 'busy', _descriptor11, _this);
 
@@ -163,6 +163,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.headerExpanded = (0, _attributes.getBooleanFromAttributeValue)(this.headerExpanded);
             params.toggleHeaderOnTitleClick = (0, _attributes.getBooleanFromAttributeValue)(this.toggleHeaderOnTitleClick);
             params.showFooter = (0, _attributes.getBooleanFromAttributeValue)(this.showFooter);
+            params.backgroundDesign = this.backgroundDesign;
             params.fitContent = (0, _attributes.getBooleanFromAttributeValue)(this.fitContent);
 
             _Ui5Control.prototype.fillProperties.call(this, params);
@@ -239,6 +240,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                     if (elem.localName == 'footer') {
                         this._dynamicpage.setFooter(child);return elem.localName;
                     }
+                    if (elem.localName == 'landmarkinfo') {
+                        this._dynamicpage.setLandmarkInfo(child);return elem.localName;
+                    }
                     if (elem.localName == 'tooltip') {
                         this._dynamicpage.setTooltip(child);return elem.localName;
                     }
@@ -271,6 +275,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
                 }
                 if (relation == 'footer') {
                     this._dynamicpage.destroyFooter(child);
+                }
+                if (relation == 'landmarkinfo') {
+                    this._dynamicpage.destroyLandmarkInfo(child);
                 }
                 if (relation == 'tooltip') {
                     this._dynamicpage.destroyTooltip(child);
@@ -314,15 +321,15 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             }
         };
 
-        Ui5DynamicPage.prototype.fitContentChanged = function fitContentChanged(newValue) {
+        Ui5DynamicPage.prototype.backgroundDesignChanged = function backgroundDesignChanged(newValue) {
             if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
-                this._dynamicpage.setFitContent((0, _attributes.getBooleanFromAttributeValue)(newValue));
+                this._dynamicpage.setBackgroundDesign(newValue);
             }
         };
 
-        Ui5DynamicPage.prototype.blockedChanged = function blockedChanged(newValue) {
-            if (this._dynamicpage !== null) {
-                this._dynamicpage.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        Ui5DynamicPage.prototype.fitContentChanged = function fitContentChanged(newValue) {
+            if (newValue != null && newValue != undefined && this._dynamicpage !== null) {
+                this._dynamicpage.setFitContent((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
@@ -440,12 +447,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'fitContent', [_dec7], {
+    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'backgroundDesign', [_dec7], {
         enumerable: true,
         initializer: function initializer() {
-            return false;
+            return 'Standard';
         }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec8], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'fitContent', [_dec8], {
         enumerable: true,
         initializer: function initializer() {
             return false;

@@ -23,12 +23,15 @@ export class Ui5SelectDialog extends Ui5Control{
 @bindable() rememberSelections = false;
 @bindable() contentHeight = null;
 @bindable() showClearButton = false;
+@bindable() confirmButtonText = null;
+@bindable() draggable = false;
+@bindable() resizable = false;
+@bindable() titleAlignment = 'Auto';
 @bindable() confirm = this.defaultFunc;
 @bindable() search = this.defaultFunc;
 @bindable() liveChange = this.defaultFunc;
 @bindable() cancel = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -64,6 +67,10 @@ params.contentWidth = this.contentWidth;
 params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
 params.contentHeight = this.contentHeight;
 params.showClearButton = getBooleanFromAttributeValue(this.showClearButton);
+params.confirmButtonText = this.confirmButtonText;
+params.draggable = getBooleanFromAttributeValue(this.draggable);
+params.resizable = getBooleanFromAttributeValue(this.resizable);
+params.titleAlignment = this.titleAlignment;
 params.confirm = this.confirm==null ? this.defaultFunc: this.confirm;
 params.search = this.search==null ? this.defaultFunc: this.search;
 params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
@@ -168,11 +175,14 @@ contentWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._
 rememberSelectionsChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
 contentHeightChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setContentHeight(newValue);}}
 showClearButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setShowClearButton(getBooleanFromAttributeValue(newValue));}}
+confirmButtonTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setConfirmButtonText(newValue);}}
+draggableChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setDraggable(getBooleanFromAttributeValue(newValue));}}
+resizableChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setResizable(getBooleanFromAttributeValue(newValue));}}
+titleAlignmentChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.setTitleAlignment(newValue);}}
 confirmChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachConfirm(newValue);}}
 searchChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachSearch(newValue);}}
 liveChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachLiveChange(newValue);}}
 cancelChanged(newValue){if(newValue!=null && newValue!=undefined && this._selectdialog!==null){ this._selectdialog.attachCancel(newValue);}}
-blockedChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._selectdialog!==null){ this._selectdialog.setBusyIndicatorSize(newValue);}}

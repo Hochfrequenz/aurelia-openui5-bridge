@@ -31,6 +31,7 @@ export class Ui5Input extends Ui5InputBase{
 @bindable() textFormatter = '';
 @bindable() suggestionRowValidator = '';
 @bindable() enableSuggestionsHighlighting = true;
+@bindable() autocomplete = true;
 @bindable() liveChange = this.defaultFunc;
 @bindable() valueHelpRequest = this.defaultFunc;
 @bindable() suggest = this.defaultFunc;
@@ -51,7 +52,6 @@ export class Ui5Input extends Ui5InputBase{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -95,6 +95,7 @@ params.textFormatMode = this.textFormatMode;
 params.textFormatter = this.textFormatter;
 params.suggestionRowValidator = this.suggestionRowValidator;
 params.enableSuggestionsHighlighting = getBooleanFromAttributeValue(this.enableSuggestionsHighlighting);
+params.autocomplete = getBooleanFromAttributeValue(this.autocomplete);
 params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
 params.valueHelpRequest = this.valueHelpRequest==null ? this.defaultFunc: this.valueHelpRequest;
 params.suggest = this.suggest==null ? this.defaultFunc: this.suggest;
@@ -214,6 +215,7 @@ textFormatModeChanged(newValue){if(newValue!=null && newValue!=undefined && this
 textFormatterChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setTextFormatter(newValue);}}
 suggestionRowValidatorChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setSuggestionRowValidator(newValue);}}
 enableSuggestionsHighlightingChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setEnableSuggestionsHighlighting(getBooleanFromAttributeValue(newValue));}}
+autocompleteChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.setAutocomplete(getBooleanFromAttributeValue(newValue));}}
 liveChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachLiveChange(newValue);}}
 valueHelpRequestChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachValueHelpRequest(newValue);}}
 suggestChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachSuggest(newValue);}}
@@ -233,7 +235,6 @@ textDirectionChanged(newValue){if(this._input!==null){ this._input.setTextDirect
 requiredChanged(newValue){if(this._input!==null){ this._input.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._input!==null){ this._input.attachChange(newValue);}}
-blockedChanged(newValue){if(this._input!==null){ this._input.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._input!==null){ this._input.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._input!==null){ this._input.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._input!==null){ this._input.setBusyIndicatorSize(newValue);}}

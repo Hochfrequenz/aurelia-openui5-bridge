@@ -121,27 +121,27 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'pressed', _descriptor5, _this);
 
-            _initDefineProp(_this, 'text', _descriptor6, _this);
+            _initDefineProp(_this, 'press', _descriptor6, _this);
 
-            _initDefineProp(_this, 'type', _descriptor7, _this);
+            _initDefineProp(_this, 'text', _descriptor7, _this);
 
-            _initDefineProp(_this, 'width', _descriptor8, _this);
+            _initDefineProp(_this, 'type', _descriptor8, _this);
 
-            _initDefineProp(_this, 'enabled', _descriptor9, _this);
+            _initDefineProp(_this, 'width', _descriptor9, _this);
 
-            _initDefineProp(_this, 'icon', _descriptor10, _this);
+            _initDefineProp(_this, 'enabled', _descriptor10, _this);
 
-            _initDefineProp(_this, 'iconFirst', _descriptor11, _this);
+            _initDefineProp(_this, 'icon', _descriptor11, _this);
 
-            _initDefineProp(_this, 'activeIcon', _descriptor12, _this);
+            _initDefineProp(_this, 'iconFirst', _descriptor12, _this);
 
-            _initDefineProp(_this, 'iconDensityAware', _descriptor13, _this);
+            _initDefineProp(_this, 'activeIcon', _descriptor13, _this);
 
-            _initDefineProp(_this, 'textDirection', _descriptor14, _this);
+            _initDefineProp(_this, 'iconDensityAware', _descriptor14, _this);
 
-            _initDefineProp(_this, 'press', _descriptor15, _this);
+            _initDefineProp(_this, 'textDirection', _descriptor15, _this);
 
-            _initDefineProp(_this, 'blocked', _descriptor16, _this);
+            _initDefineProp(_this, 'press', _descriptor16, _this);
 
             _initDefineProp(_this, 'busy', _descriptor17, _this);
 
@@ -172,6 +172,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
         Ui5ToggleButton.prototype.fillProperties = function fillProperties(params) {
             params.pressed = (0, _attributes.getBooleanFromAttributeValue)(this.pressed);
+            params.press = this.press == null ? this.defaultFunc : this.press;
 
             _Ui5Button.prototype.fillProperties.call(this, params);
         };
@@ -280,6 +281,12 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             }
         };
 
+        Ui5ToggleButton.prototype.pressChanged = function pressChanged(newValue) {
+            if (newValue != null && newValue != undefined && this._togglebutton !== null) {
+                this._togglebutton.attachPress(newValue);
+            }
+        };
+
         Ui5ToggleButton.prototype.textChanged = function textChanged(newValue) {
             if (this._togglebutton !== null) {
                 this._togglebutton.setText(newValue);
@@ -337,12 +344,6 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         Ui5ToggleButton.prototype.pressChanged = function pressChanged(newValue) {
             if (newValue != null && newValue != undefined && this._togglebutton !== null) {
                 this._togglebutton.attachPress(newValue);
-            }
-        };
-
-        Ui5ToggleButton.prototype.blockedChanged = function blockedChanged(newValue) {
-            if (this._togglebutton !== null) {
-                this._togglebutton.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
             }
         };
 
@@ -445,60 +446,60 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return false;
         }
-    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec4], {
-        enumerable: true,
-        initializer: function initializer() {
-            return null;
-        }
-    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_dec5], {
-        enumerable: true,
-        initializer: function initializer() {
-            return 'Default';
-        }
-    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec6], {
-        enumerable: true,
-        initializer: function initializer() {
-            return null;
-        }
-    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec7], {
-        enumerable: true,
-        initializer: function initializer() {
-            return true;
-        }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec8], {
-        enumerable: true,
-        initializer: function initializer() {
-            return null;
-        }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'iconFirst', [_dec9], {
-        enumerable: true,
-        initializer: function initializer() {
-            return true;
-        }
-    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'activeIcon', [_dec10], {
-        enumerable: true,
-        initializer: function initializer() {
-            return null;
-        }
-    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'iconDensityAware', [_dec11], {
-        enumerable: true,
-        initializer: function initializer() {
-            return true;
-        }
-    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec12], {
-        enumerable: true,
-        initializer: function initializer() {
-            return 'Inherit';
-        }
-    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec13], {
+    }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec4], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
         }
-    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec14], {
+    }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'text', [_dec5], {
         enumerable: true,
         initializer: function initializer() {
-            return false;
+            return '';
+        }
+    }), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_dec6], {
+        enumerable: true,
+        initializer: function initializer() {
+            return 'Default';
+        }
+    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec7], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec8], {
+        enumerable: true,
+        initializer: function initializer() {
+            return true;
+        }
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec9], {
+        enumerable: true,
+        initializer: function initializer() {
+            return '';
+        }
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'iconFirst', [_dec10], {
+        enumerable: true,
+        initializer: function initializer() {
+            return true;
+        }
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'activeIcon', [_dec11], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'iconDensityAware', [_dec12], {
+        enumerable: true,
+        initializer: function initializer() {
+            return true;
+        }
+    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec13], {
+        enumerable: true,
+        initializer: function initializer() {
+            return 'Inherit';
+        }
+    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec14], {
+        enumerable: true,
+        initializer: function initializer() {
+            return this.defaultFunc;
         }
     }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec15], {
         enumerable: true,

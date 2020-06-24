@@ -14,8 +14,7 @@ export class Ui5Control extends Ui5Element{
          @bindable ui5Class = null;
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
-        @bindable() blocked = false;
-@bindable() busy = false;
+        @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
 @bindable() visible = true;
@@ -41,8 +40,7 @@ export class Ui5Control extends Ui5Element{
             return this._control;
           }
         fillProperties(params){
-                                        params.blocked = getBooleanFromAttributeValue(this.blocked);
-params.busy = getBooleanFromAttributeValue(this.busy);
+                                        params.busy = getBooleanFromAttributeValue(this.busy);
 params.busyIndicatorDelay = this.busyIndicatorDelay?parseInt(this.busyIndicatorDelay):0;
 params.busyIndicatorSize = this.busyIndicatorSize;
 params.visible = getBooleanFromAttributeValue(this.visible);
@@ -137,8 +135,7 @@ if (relation == 'dragdropconfig') {  this._control.removeDragDropConfig(child);}
       }
       catch(err){}
                                                                             }
-    blockedChanged(newValue){if(newValue!=null && newValue!=undefined && this._control!==null){ this._control.setBlocked(getBooleanFromAttributeValue(newValue));}}
-busyChanged(newValue){if(newValue!=null && newValue!=undefined && this._control!==null){ this._control.setBusy(getBooleanFromAttributeValue(newValue));}}
+    busyChanged(newValue){if(newValue!=null && newValue!=undefined && this._control!==null){ this._control.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(newValue!=null && newValue!=undefined && this._control!==null){ this._control.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._control!==null){ this._control.setBusyIndicatorSize(newValue);}}
 visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._control!==null){ this._control.setVisible(getBooleanFromAttributeValue(newValue));}}

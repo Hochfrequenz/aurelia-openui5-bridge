@@ -18,9 +18,9 @@ export class Ui5SlideTile extends Ui5Control{
 @bindable() transitionTime = 500;
 @bindable() scope = 'Display';
 @bindable() sizeBehavior = 'Responsive';
+@bindable() width = null;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -51,6 +51,7 @@ export class Ui5SlideTile extends Ui5Control{
 params.transitionTime = this.transitionTime?parseInt(this.transitionTime):0;
 params.scope = this.scope;
 params.sizeBehavior = this.sizeBehavior;
+params.width = this.width;
 params.press = this.press==null ? this.defaultFunc: this.press;
             
                                             super.fillProperties(params);   
@@ -147,8 +148,8 @@ if (relation == 'dragdropconfig') {  this._slidetile.removeDragDropConfig(child)
 transitionTimeChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.setTransitionTime(newValue);}}
 scopeChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.setScope(newValue);}}
 sizeBehaviorChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.setSizeBehavior(newValue);}}
+widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.setWidth(newValue);}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._slidetile!==null){ this._slidetile.attachPress(newValue);}}
-blockedChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._slidetile!==null){ this._slidetile.setBusyIndicatorSize(newValue);}}

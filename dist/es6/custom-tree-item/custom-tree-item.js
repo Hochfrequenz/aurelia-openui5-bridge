@@ -22,10 +22,11 @@ export class Ui5CustomTreeItem extends Ui5TreeItemBase{
 @bindable() selected = false;
 @bindable() counter = null;
 @bindable() highlight = 'None';
+@bindable() highlightText = '';
+@bindable() navigated = false;
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -150,10 +151,11 @@ unreadChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.se
 selectedChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setSelected(getBooleanFromAttributeValue(newValue));}}
 counterChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setCounter(newValue);}}
 highlightChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setHighlight(newValue);}}
+highlightTextChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setHighlightText(newValue);}}
+navigatedChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setNavigated(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._customtreeitem!==null){ this._customtreeitem.attachPress(newValue);}}
 detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._customtreeitem!==null){ this._customtreeitem.attachDetailPress(newValue);}}
-blockedChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._customtreeitem!==null){ this._customtreeitem.setBusyIndicatorSize(newValue);}}

@@ -27,12 +27,13 @@ export class Ui5Dialog extends Ui5Control{
 @bindable() resizable = false;
 @bindable() draggable = false;
 @bindable() escapeHandler = null;
+@bindable() closeOnNavigation = true;
+@bindable() titleAlignment = 'Auto';
 @bindable() beforeOpen = this.defaultFunc;
 @bindable() afterOpen = this.defaultFunc;
 @bindable() beforeClose = this.defaultFunc;
 @bindable() afterClose = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -72,6 +73,8 @@ params.verticalScrolling = getBooleanFromAttributeValue(this.verticalScrolling);
 params.resizable = getBooleanFromAttributeValue(this.resizable);
 params.draggable = getBooleanFromAttributeValue(this.draggable);
 params.escapeHandler = this.escapeHandler;
+params.closeOnNavigation = getBooleanFromAttributeValue(this.closeOnNavigation);
+params.titleAlignment = this.titleAlignment;
 params.beforeOpen = this.beforeOpen==null ? this.defaultFunc: this.beforeOpen;
 params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
 params.beforeClose = this.beforeClose==null ? this.defaultFunc: this.beforeClose;
@@ -190,11 +193,12 @@ verticalScrollingChanged(newValue){if(newValue!=null && newValue!=undefined && t
 resizableChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setResizable(getBooleanFromAttributeValue(newValue));}}
 draggableChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setDraggable(getBooleanFromAttributeValue(newValue));}}
 escapeHandlerChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setEscapeHandler(newValue);}}
+closeOnNavigationChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setCloseOnNavigation(getBooleanFromAttributeValue(newValue));}}
+titleAlignmentChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.setTitleAlignment(newValue);}}
 beforeOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachBeforeOpen(newValue);}}
 afterOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachAfterOpen(newValue);}}
 beforeCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachBeforeClose(newValue);}}
 afterCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._dialog!==null){ this._dialog.attachAfterClose(newValue);}}
-blockedChanged(newValue){if(this._dialog!==null){ this._dialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dialog!==null){ this._dialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dialog!==null){ this._dialog.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._dialog!==null){ this._dialog.setBusyIndicatorSize(newValue);}}

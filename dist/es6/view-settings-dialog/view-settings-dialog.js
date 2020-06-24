@@ -18,12 +18,13 @@ export class Ui5ViewSettingsDialog extends Ui5Control{
 @bindable() sortDescending = false;
 @bindable() groupDescending = false;
 @bindable() filterSearchOperator = 'StartsWith';
+@bindable() titleAlignment = 'Auto';
 @bindable() confirm = this.defaultFunc;
 @bindable() cancel = this.defaultFunc;
 @bindable() resetFilters = this.defaultFunc;
+@bindable() reset = this.defaultFunc;
 @bindable() filterDetailPageOpened = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -54,9 +55,11 @@ export class Ui5ViewSettingsDialog extends Ui5Control{
 params.sortDescending = getBooleanFromAttributeValue(this.sortDescending);
 params.groupDescending = getBooleanFromAttributeValue(this.groupDescending);
 params.filterSearchOperator = this.filterSearchOperator;
+params.titleAlignment = this.titleAlignment;
 params.confirm = this.confirm==null ? this.defaultFunc: this.confirm;
 params.cancel = this.cancel==null ? this.defaultFunc: this.cancel;
 params.resetFilters = this.resetFilters==null ? this.defaultFunc: this.resetFilters;
+params.reset = this.reset==null ? this.defaultFunc: this.reset;
 params.filterDetailPageOpened = this.filterDetailPageOpened==null ? this.defaultFunc: this.filterDetailPageOpened;
             
                                             super.fillProperties(params);   
@@ -161,11 +164,12 @@ if (relation == 'dragdropconfig') {  this._viewsettingsdialog.removeDragDropConf
 sortDescendingChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.setSortDescending(getBooleanFromAttributeValue(newValue));}}
 groupDescendingChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.setGroupDescending(getBooleanFromAttributeValue(newValue));}}
 filterSearchOperatorChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.setFilterSearchOperator(newValue);}}
+titleAlignmentChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.setTitleAlignment(newValue);}}
 confirmChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachConfirm(newValue);}}
 cancelChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachCancel(newValue);}}
 resetFiltersChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachResetFilters(newValue);}}
+resetChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachReset(newValue);}}
 filterDetailPageOpenedChanged(newValue){if(newValue!=null && newValue!=undefined && this._viewsettingsdialog!==null){ this._viewsettingsdialog.attachFilterDetailPageOpened(newValue);}}
-blockedChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._viewsettingsdialog!==null){ this._viewsettingsdialog.setBusyIndicatorSize(newValue);}}

@@ -15,6 +15,8 @@ export class Ui5gridTableRowSetting extends Ui5Element{
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() highlight = 'None';
+@bindable() highlightText = '';
+@bindable() navigated = false;
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
 @bindable() validationSuccess = this.defaultFunc;
@@ -36,6 +38,8 @@ export class Ui5gridTableRowSetting extends Ui5Element{
           }
         fillProperties(params){
                                         params.highlight = this.highlight;
+params.highlightText = this.highlightText;
+params.navigated = getBooleanFromAttributeValue(this.navigated);
             
                                             super.fillProperties(params);   
         }
@@ -126,6 +130,8 @@ if (relation == 'dragdropconfig') {  this._gridtablerowsetting.removeDragDropCon
       catch(err){}
                                                                             }
     highlightChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.setHighlight(newValue);}}
+highlightTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.setHighlightText(newValue);}}
+navigatedChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.setNavigated(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
 validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowsetting!==null){ this._gridtablerowsetting.attachValidationSuccess(newValue);}}

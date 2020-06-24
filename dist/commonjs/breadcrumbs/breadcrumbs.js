@@ -92,7 +92,7 @@ var Ui5Breadcrumbs = exports.Ui5Breadcrumbs = (_dec = (0, _aureliaTemplating.cus
 
         _initDefineProp(_this, 'currentLocationText', _descriptor5, _this);
 
-        _initDefineProp(_this, 'blocked', _descriptor6, _this);
+        _initDefineProp(_this, 'separatorStyle', _descriptor6, _this);
 
         _initDefineProp(_this, 'busy', _descriptor7, _this);
 
@@ -123,6 +123,7 @@ var Ui5Breadcrumbs = exports.Ui5Breadcrumbs = (_dec = (0, _aureliaTemplating.cus
 
     Ui5Breadcrumbs.prototype.fillProperties = function fillProperties(params) {
         params.currentLocationText = this.currentLocationText;
+        params.separatorStyle = this.separatorStyle;
 
         _Ui5Control.prototype.fillProperties.call(this, params);
     };
@@ -237,9 +238,9 @@ var Ui5Breadcrumbs = exports.Ui5Breadcrumbs = (_dec = (0, _aureliaTemplating.cus
         }
     };
 
-    Ui5Breadcrumbs.prototype.blockedChanged = function blockedChanged(newValue) {
-        if (this._breadcrumbs !== null) {
-            this._breadcrumbs.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    Ui5Breadcrumbs.prototype.separatorStyleChanged = function separatorStyleChanged(newValue) {
+        if (newValue != null && newValue != undefined && this._breadcrumbs !== null) {
+            this._breadcrumbs.setSeparatorStyle(newValue);
         }
     };
 
@@ -342,10 +343,10 @@ var Ui5Breadcrumbs = exports.Ui5Breadcrumbs = (_dec = (0, _aureliaTemplating.cus
     initializer: function initializer() {
         return null;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec4], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'separatorStyle', [_dec4], {
     enumerable: true,
     initializer: function initializer() {
-        return false;
+        return 'Slash';
     }
 }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec5], {
     enumerable: true,

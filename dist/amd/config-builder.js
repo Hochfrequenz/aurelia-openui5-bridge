@@ -21,7 +21,7 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     }
 
     ConfigBuilder.prototype.useAll = function useAll() {
-      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMaskInput().useToggleButton().useTree().useMenu().useSplitter().usePanel().useTextArea().useGridTable();
+      return this.usePage().useBar().useContainer().useHtml().useButton().useTiles().useGrid().useText().useWizard().useForm().useLabel().useInput().useDatePicker().useTitle().useLayoutData().useSelect().useTable().useTabs().useLayout().useDynamicPage().useLink().useBreadcrumbs().useSegmentedButton().useDialog().useList().useIcon().useActionSheet().useTableSelectDialog().useSelectDialog().useUploadCollection().useViewSettingsDialog().useSplitContainer().useMessageView().useMessageStrip().useMaskInput().useToggleButton().useTree().useMenu().useSplitter().usePanel().useTextArea().useGridTable();
     };
 
     ConfigBuilder.prototype.useLink = function useLink() {
@@ -236,6 +236,11 @@ define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
     ConfigBuilder.prototype.useMessageView = function useMessageView() {
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./message-view/message-view'));
       this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./message-item/message-item'));
+      return this;
+    };
+
+    ConfigBuilder.prototype.useMessageStrip = function useMessageStrip() {
+      this.globalResources.push(_aureliaPal.PLATFORM.moduleName('./message-strip/message-strip'));
       return this;
     };
 

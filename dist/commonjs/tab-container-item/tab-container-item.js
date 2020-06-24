@@ -7,7 +7,7 @@ exports.Ui5TabContainerItem = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -70,7 +70,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-tab-container-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaFramework.computedFrom)('_tabcontaineritem'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
+var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemplating.customElement)('ui5-tab-container-item'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element), _dec3 = (0, _aureliaTemplating.bindable)(), _dec4 = (0, _aureliaTemplating.bindable)(), _dec5 = (0, _aureliaTemplating.bindable)(), _dec6 = (0, _aureliaTemplating.bindable)(), _dec7 = (0, _aureliaTemplating.bindable)(), _dec8 = (0, _aureliaTemplating.bindable)(), _dec9 = (0, _aureliaTemplating.bindable)(), _dec10 = (0, _aureliaTemplating.bindable)(), _dec11 = (0, _aureliaTemplating.bindable)(), _dec12 = (0, _aureliaTemplating.bindable)(), _dec13 = (0, _aureliaTemplating.bindable)(), _dec14 = (0, _aureliaTemplating.bindable)(), _dec15 = (0, _aureliaFramework.computedFrom)('_tabcontaineritem'), _dec(_class = _dec2(_class = (_class2 = function (_Ui5Element) {
     _inherits(Ui5TabContainerItem, _Ui5Element);
 
     function Ui5TabContainerItem(element) {
@@ -92,21 +92,27 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
 
         _initDefineProp(_this, 'name', _descriptor5, _this);
 
-        _initDefineProp(_this, 'key', _descriptor6, _this);
+        _initDefineProp(_this, 'additionalText', _descriptor6, _this);
 
-        _initDefineProp(_this, 'modified', _descriptor7, _this);
+        _initDefineProp(_this, 'icon', _descriptor7, _this);
 
-        _initDefineProp(_this, 'itemPropertyChanged', _descriptor8, _this);
+        _initDefineProp(_this, 'iconTooltip', _descriptor8, _this);
 
-        _initDefineProp(_this, 'validationSuccess', _descriptor9, _this);
+        _initDefineProp(_this, 'key', _descriptor9, _this);
 
-        _initDefineProp(_this, 'validationError', _descriptor10, _this);
+        _initDefineProp(_this, 'modified', _descriptor10, _this);
 
-        _initDefineProp(_this, 'parseError', _descriptor11, _this);
+        _initDefineProp(_this, 'itemPropertyChanged', _descriptor11, _this);
 
-        _initDefineProp(_this, 'formatError', _descriptor12, _this);
+        _initDefineProp(_this, 'validationSuccess', _descriptor12, _this);
 
-        _initDefineProp(_this, 'modelContextChange', _descriptor13, _this);
+        _initDefineProp(_this, 'validationError', _descriptor13, _this);
+
+        _initDefineProp(_this, 'parseError', _descriptor14, _this);
+
+        _initDefineProp(_this, 'formatError', _descriptor15, _this);
+
+        _initDefineProp(_this, 'modelContextChange', _descriptor16, _this);
 
         _this.element = element;
         _this.attributeManager = new _attributeManager.AttributeManager(_this.element);
@@ -115,6 +121,9 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
 
     Ui5TabContainerItem.prototype.fillProperties = function fillProperties(params) {
         params.name = this.name;
+        params.additionalText = this.additionalText;
+        params.icon = this.icon;
+        params.iconTooltip = this.iconTooltip;
         params.key = this.key;
         params.modified = (0, _attributes.getBooleanFromAttributeValue)(this.modified);
         params.itemPropertyChanged = this.itemPropertyChanged == null ? this.defaultFunc : this.itemPropertyChanged;
@@ -232,6 +241,24 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
         }
     };
 
+    Ui5TabContainerItem.prototype.additionalTextChanged = function additionalTextChanged(newValue) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
+            this._tabcontaineritem.setAdditionalText(newValue);
+        }
+    };
+
+    Ui5TabContainerItem.prototype.iconChanged = function iconChanged(newValue) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
+            this._tabcontaineritem.setIcon(newValue);
+        }
+    };
+
+    Ui5TabContainerItem.prototype.iconTooltipChanged = function iconTooltipChanged(newValue) {
+        if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
+            this._tabcontaineritem.setIconTooltip(newValue);
+        }
+    };
+
     Ui5TabContainerItem.prototype.keyChanged = function keyChanged(newValue) {
         if (newValue != null && newValue != undefined && this._tabcontaineritem !== null) {
             this._tabcontaineritem.setKey(newValue);
@@ -313,44 +340,59 @@ var Ui5TabContainerItem = exports.Ui5TabContainerItem = (_dec = (0, _aureliaTemp
     initializer: function initializer() {
         return '';
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'key', [_dec4], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'additionalText', [_dec4], {
+    enumerable: true,
+    initializer: function initializer() {
+        return '';
+    }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'icon', [_dec5], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'modified', [_dec5], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'iconTooltip', [_dec6], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'key', [_dec7], {
+    enumerable: true,
+    initializer: function initializer() {
+        return null;
+    }
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'modified', [_dec8], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'itemPropertyChanged', [_dec6], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'itemPropertyChanged', [_dec9], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec7], {
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'validationSuccess', [_dec10], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec8], {
+}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'validationError', [_dec11], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec9], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, 'parseError', [_dec12], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec10], {
+}), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, 'formatError', [_dec13], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec11], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'modelContextChange', [_dec14], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
     }
-}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec12], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);
+}), _applyDecoratedDescriptor(_class2.prototype, 'UIElement', [_dec15], Object.getOwnPropertyDescriptor(_class2.prototype, 'UIElement'), _class2.prototype)), _class2)) || _class) || _class);

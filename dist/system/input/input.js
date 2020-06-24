@@ -167,43 +167,43 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'enableSuggestionsHighlighting', _descriptor21, _this);
 
-                    _initDefineProp(_this, 'liveChange', _descriptor22, _this);
+                    _initDefineProp(_this, 'autocomplete', _descriptor22, _this);
 
-                    _initDefineProp(_this, 'valueHelpRequest', _descriptor23, _this);
+                    _initDefineProp(_this, 'liveChange', _descriptor23, _this);
 
-                    _initDefineProp(_this, 'suggest', _descriptor24, _this);
+                    _initDefineProp(_this, 'valueHelpRequest', _descriptor24, _this);
 
-                    _initDefineProp(_this, 'suggestionItemSelected', _descriptor25, _this);
+                    _initDefineProp(_this, 'suggest', _descriptor25, _this);
 
-                    _initDefineProp(_this, 'submit', _descriptor26, _this);
+                    _initDefineProp(_this, 'suggestionItemSelected', _descriptor26, _this);
 
-                    _initDefineProp(_this, 'value', _descriptor27, _this);
+                    _initDefineProp(_this, 'submit', _descriptor27, _this);
 
-                    _initDefineProp(_this, 'width', _descriptor28, _this);
+                    _initDefineProp(_this, 'value', _descriptor28, _this);
 
-                    _initDefineProp(_this, 'enabled', _descriptor29, _this);
+                    _initDefineProp(_this, 'width', _descriptor29, _this);
 
-                    _initDefineProp(_this, 'valueState', _descriptor30, _this);
+                    _initDefineProp(_this, 'enabled', _descriptor30, _this);
 
-                    _initDefineProp(_this, 'name', _descriptor31, _this);
+                    _initDefineProp(_this, 'valueState', _descriptor31, _this);
 
-                    _initDefineProp(_this, 'placeholder', _descriptor32, _this);
+                    _initDefineProp(_this, 'name', _descriptor32, _this);
 
-                    _initDefineProp(_this, 'editable', _descriptor33, _this);
+                    _initDefineProp(_this, 'placeholder', _descriptor33, _this);
 
-                    _initDefineProp(_this, 'valueStateText', _descriptor34, _this);
+                    _initDefineProp(_this, 'editable', _descriptor34, _this);
 
-                    _initDefineProp(_this, 'showValueStateMessage', _descriptor35, _this);
+                    _initDefineProp(_this, 'valueStateText', _descriptor35, _this);
 
-                    _initDefineProp(_this, 'textAlign', _descriptor36, _this);
+                    _initDefineProp(_this, 'showValueStateMessage', _descriptor36, _this);
 
-                    _initDefineProp(_this, 'textDirection', _descriptor37, _this);
+                    _initDefineProp(_this, 'textAlign', _descriptor37, _this);
 
-                    _initDefineProp(_this, 'required', _descriptor38, _this);
+                    _initDefineProp(_this, 'textDirection', _descriptor38, _this);
 
-                    _initDefineProp(_this, 'change', _descriptor39, _this);
+                    _initDefineProp(_this, 'required', _descriptor39, _this);
 
-                    _initDefineProp(_this, 'blocked', _descriptor40, _this);
+                    _initDefineProp(_this, 'change', _descriptor40, _this);
 
                     _initDefineProp(_this, 'busy', _descriptor41, _this);
 
@@ -250,6 +250,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.textFormatter = this.textFormatter;
                     params.suggestionRowValidator = this.suggestionRowValidator;
                     params.enableSuggestionsHighlighting = getBooleanFromAttributeValue(this.enableSuggestionsHighlighting);
+                    params.autocomplete = getBooleanFromAttributeValue(this.autocomplete);
                     params.liveChange = this.liveChange == null ? this.defaultFunc : this.liveChange;
                     params.valueHelpRequest = this.valueHelpRequest == null ? this.defaultFunc : this.valueHelpRequest;
                     params.suggest = this.suggest == null ? this.defaultFunc : this.suggest;
@@ -485,6 +486,12 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     }
                 };
 
+                Ui5Input.prototype.autocompleteChanged = function autocompleteChanged(newValue) {
+                    if (newValue != null && newValue != undefined && this._input !== null) {
+                        this._input.setAutocomplete(getBooleanFromAttributeValue(newValue));
+                    }
+                };
+
                 Ui5Input.prototype.liveChangeChanged = function liveChangeChanged(newValue) {
                     if (newValue != null && newValue != undefined && this._input !== null) {
                         this._input.attachLiveChange(newValue);
@@ -590,12 +597,6 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 Ui5Input.prototype.changeChanged = function changeChanged(newValue) {
                     if (newValue != null && newValue != undefined && this._input !== null) {
                         this._input.attachChange(newValue);
-                    }
-                };
-
-                Ui5Input.prototype.blockedChanged = function blockedChanged(newValue) {
-                    if (this._input !== null) {
-                        this._input.setBlocked(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
@@ -778,100 +779,100 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return true;
                 }
-            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'liveChange', [_dec20], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return this.defaultFunc;
-                }
-            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'valueHelpRequest', [_dec21], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return this.defaultFunc;
-                }
-            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'suggest', [_dec22], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return this.defaultFunc;
-                }
-            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'suggestionItemSelected', [_dec23], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return this.defaultFunc;
-                }
-            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'submit', [_dec24], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return this.defaultFunc;
-                }
-            }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec25], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return null;
-                }
-            }), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec26], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return null;
-                }
-            }), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec27], {
+            }), _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, 'autocomplete', [_dec20], {
                 enumerable: true,
                 initializer: function initializer() {
                     return true;
                 }
-            }), _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, 'valueState', [_dec28], {
+            }), _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, 'liveChange', [_dec21], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, 'valueHelpRequest', [_dec22], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, 'suggest', [_dec23], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, 'suggestionItemSelected', [_dec24], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, 'submit', [_dec25], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return this.defaultFunc;
+                }
+            }), _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec26], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec27], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return null;
+                }
+            }), _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec28], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, 'valueState', [_dec29], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'None';
                 }
-            }), _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, 'name', [_dec29], {
+            }), _descriptor32 = _applyDecoratedDescriptor(_class2.prototype, 'name', [_dec30], {
                 enumerable: true,
                 initializer: function initializer() {
                     return null;
                 }
-            }), _descriptor32 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_dec30], {
+            }), _descriptor33 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_dec31], {
                 enumerable: true,
                 initializer: function initializer() {
                     return null;
                 }
-            }), _descriptor33 = _applyDecoratedDescriptor(_class2.prototype, 'editable', [_dec31], {
+            }), _descriptor34 = _applyDecoratedDescriptor(_class2.prototype, 'editable', [_dec32], {
                 enumerable: true,
                 initializer: function initializer() {
                     return true;
                 }
-            }), _descriptor34 = _applyDecoratedDescriptor(_class2.prototype, 'valueStateText', [_dec32], {
+            }), _descriptor35 = _applyDecoratedDescriptor(_class2.prototype, 'valueStateText', [_dec33], {
                 enumerable: true,
                 initializer: function initializer() {
                     return null;
                 }
-            }), _descriptor35 = _applyDecoratedDescriptor(_class2.prototype, 'showValueStateMessage', [_dec33], {
+            }), _descriptor36 = _applyDecoratedDescriptor(_class2.prototype, 'showValueStateMessage', [_dec34], {
                 enumerable: true,
                 initializer: function initializer() {
                     return true;
                 }
-            }), _descriptor36 = _applyDecoratedDescriptor(_class2.prototype, 'textAlign', [_dec34], {
+            }), _descriptor37 = _applyDecoratedDescriptor(_class2.prototype, 'textAlign', [_dec35], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'Initial';
                 }
-            }), _descriptor37 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec35], {
+            }), _descriptor38 = _applyDecoratedDescriptor(_class2.prototype, 'textDirection', [_dec36], {
                 enumerable: true,
                 initializer: function initializer() {
                     return 'Inherit';
                 }
-            }), _descriptor38 = _applyDecoratedDescriptor(_class2.prototype, 'required', [_dec36], {
+            }), _descriptor39 = _applyDecoratedDescriptor(_class2.prototype, 'required', [_dec37], {
                 enumerable: true,
                 initializer: function initializer() {
                     return false;
                 }
-            }), _descriptor39 = _applyDecoratedDescriptor(_class2.prototype, 'change', [_dec37], {
+            }), _descriptor40 = _applyDecoratedDescriptor(_class2.prototype, 'change', [_dec38], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
-                }
-            }), _descriptor40 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec38], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return false;
                 }
             }), _descriptor41 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec39], {
                 enumerable: true,

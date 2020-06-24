@@ -127,9 +127,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'sizeBehavior', _descriptor8, _this);
 
-            _initDefineProp(_this, 'press', _descriptor9, _this);
+            _initDefineProp(_this, 'width', _descriptor9, _this);
 
-            _initDefineProp(_this, 'blocked', _descriptor10, _this);
+            _initDefineProp(_this, 'press', _descriptor10, _this);
 
             _initDefineProp(_this, 'busy', _descriptor11, _this);
 
@@ -163,6 +163,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.transitionTime = this.transitionTime ? parseInt(this.transitionTime) : 0;
             params.scope = this.scope;
             params.sizeBehavior = this.sizeBehavior;
+            params.width = this.width;
             params.press = this.press == null ? this.defaultFunc : this.press;
 
             _Ui5Control.prototype.fillProperties.call(this, params);
@@ -296,15 +297,15 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             }
         };
 
-        Ui5SlideTile.prototype.pressChanged = function pressChanged(newValue) {
+        Ui5SlideTile.prototype.widthChanged = function widthChanged(newValue) {
             if (newValue != null && newValue != undefined && this._slidetile !== null) {
-                this._slidetile.attachPress(newValue);
+                this._slidetile.setWidth(newValue);
             }
         };
 
-        Ui5SlideTile.prototype.blockedChanged = function blockedChanged(newValue) {
-            if (this._slidetile !== null) {
-                this._slidetile.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        Ui5SlideTile.prototype.pressChanged = function pressChanged(newValue) {
+            if (newValue != null && newValue != undefined && this._slidetile !== null) {
+                this._slidetile.attachPress(newValue);
             }
         };
 
@@ -422,15 +423,15 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return 'Responsive';
         }
-    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec7], {
+    }), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec7], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec8], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
-        }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec8], {
-        enumerable: true,
-        initializer: function initializer() {
-            return false;
         }
     }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec9], {
         enumerable: true,

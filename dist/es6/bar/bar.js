@@ -16,7 +16,6 @@ export class Ui5Bar extends Ui5Control{
          @bindable prevId = null;
         @bindable() design = 'Auto';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -140,7 +139,6 @@ if (relation == 'dragdropconfig') {  this._bar.removeDragDropConfig(child);}
       catch(err){}
                                                                             }
     designChanged(newValue){if(newValue!=null && newValue!=undefined && this._bar!==null){ this._bar.setDesign(newValue);}}
-blockedChanged(newValue){if(this._bar!==null){ this._bar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._bar!==null){ this._bar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._bar!==null){ this._bar.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._bar!==null){ this._bar.setBusyIndicatorSize(newValue);}}

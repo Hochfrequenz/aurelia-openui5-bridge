@@ -112,9 +112,9 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
 
         _initDefineProp(_this, 'floatingFooter', _descriptor15, _this);
 
-        _initDefineProp(_this, 'navButtonPress', _descriptor16, _this);
+        _initDefineProp(_this, 'titleAlignment', _descriptor16, _this);
 
-        _initDefineProp(_this, 'blocked', _descriptor17, _this);
+        _initDefineProp(_this, 'navButtonPress', _descriptor17, _this);
 
         _initDefineProp(_this, 'busy', _descriptor18, _this);
 
@@ -155,6 +155,7 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
         params.showFooter = (0, _attributes.getBooleanFromAttributeValue)(this.showFooter);
         params.contentOnlyBusy = (0, _attributes.getBooleanFromAttributeValue)(this.contentOnlyBusy);
         params.floatingFooter = (0, _attributes.getBooleanFromAttributeValue)(this.floatingFooter);
+        params.titleAlignment = this.titleAlignment;
         params.navButtonPress = this.navButtonPress == null ? this.defaultFunc : this.navButtonPress;
 
         _Ui5Control.prototype.fillProperties.call(this, params);
@@ -360,15 +361,15 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
         }
     };
 
-    Ui5Page.prototype.navButtonPressChanged = function navButtonPressChanged(newValue) {
+    Ui5Page.prototype.titleAlignmentChanged = function titleAlignmentChanged(newValue) {
         if (newValue != null && newValue != undefined && this._page !== null) {
-            this._page.attachNavButtonPress(newValue);
+            this._page.setTitleAlignment(newValue);
         }
     };
 
-    Ui5Page.prototype.blockedChanged = function blockedChanged(newValue) {
-        if (this._page !== null) {
-            this._page.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
+    Ui5Page.prototype.navButtonPressChanged = function navButtonPressChanged(newValue) {
+        if (newValue != null && newValue != undefined && this._page !== null) {
+            this._page.attachNavButtonPress(newValue);
         }
     };
 
@@ -521,15 +522,15 @@ var Ui5Page = exports.Ui5Page = (_dec = (0, _aureliaTemplating.customElement)('u
     initializer: function initializer() {
         return false;
     }
-}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonPress', [_dec14], {
+}), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, 'titleAlignment', [_dec14], {
+    enumerable: true,
+    initializer: function initializer() {
+        return 'Auto';
+    }
+}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'navButtonPress', [_dec15], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
-    }
-}), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec15], {
-    enumerable: true,
-    initializer: function initializer() {
-        return false;
     }
 }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec16], {
     enumerable: true,

@@ -28,12 +28,12 @@ export class Ui5ResponsivePopover extends Ui5Control{
 @bindable() verticalScrolling = true;
 @bindable() showCloseButton = true;
 @bindable() resizable = false;
+@bindable() titleAlignment = 'Auto';
 @bindable() beforeOpen = this.defaultFunc;
 @bindable() afterOpen = this.defaultFunc;
 @bindable() beforeClose = this.defaultFunc;
 @bindable() afterClose = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -74,6 +74,7 @@ params.horizontalScrolling = getBooleanFromAttributeValue(this.horizontalScrolli
 params.verticalScrolling = getBooleanFromAttributeValue(this.verticalScrolling);
 params.showCloseButton = getBooleanFromAttributeValue(this.showCloseButton);
 params.resizable = getBooleanFromAttributeValue(this.resizable);
+params.titleAlignment = this.titleAlignment;
 params.beforeOpen = this.beforeOpen==null ? this.defaultFunc: this.beforeOpen;
 params.afterOpen = this.afterOpen==null ? this.defaultFunc: this.afterOpen;
 params.beforeClose = this.beforeClose==null ? this.defaultFunc: this.beforeClose;
@@ -191,11 +192,11 @@ horizontalScrollingChanged(newValue){if(newValue!=null && newValue!=undefined &&
 verticalScrollingChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setVerticalScrolling(getBooleanFromAttributeValue(newValue));}}
 showCloseButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setShowCloseButton(getBooleanFromAttributeValue(newValue));}}
 resizableChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setResizable(getBooleanFromAttributeValue(newValue));}}
+titleAlignmentChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.setTitleAlignment(newValue);}}
 beforeOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachBeforeOpen(newValue);}}
 afterOpenChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachAfterOpen(newValue);}}
 beforeCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachBeforeClose(newValue);}}
 afterCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivepopover!==null){ this._responsivepopover.attachAfterClose(newValue);}}
-blockedChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._responsivepopover!==null){ this._responsivepopover.setBusyIndicatorSize(newValue);}}

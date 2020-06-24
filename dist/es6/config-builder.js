@@ -43,6 +43,7 @@ export class ConfigBuilder {
       .useViewSettingsDialog()
       .useSplitContainer()
       .useMessageView()
+      .useMessageStrip()
       .useMaskInput()
       .useToggleButton()
       .useTree()
@@ -195,7 +196,7 @@ export class ConfigBuilder {
   useDialog(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./dialog/dialog'));
     this.globalResources.push(PLATFORM.moduleName('./responsive-popover/responsive-popover'));
-    
+
     return this;
   }
   useIcon(): ConfigBuilder {
@@ -233,6 +234,10 @@ export class ConfigBuilder {
   useMessageView(): ConfigBuilder {
     this.globalResources.push(PLATFORM.moduleName('./message-view/message-view'));
     this.globalResources.push(PLATFORM.moduleName('./message-item/message-item'));
+    return this;
+  }
+  useMessageStrip(): ConfigBuilder {
+    this.globalResources.push(PLATFORM.moduleName('./message-strip/message-strip'));
     return this;
   }
   useMaskInput(): ConfigBuilder {

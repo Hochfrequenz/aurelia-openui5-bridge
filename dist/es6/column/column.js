@@ -24,6 +24,7 @@ export class Ui5Column extends Ui5Element{
 @bindable() popinDisplay = 'Block';
 @bindable() mergeDuplicates = false;
 @bindable() mergeFunctionName = 'getText';
+@bindable() sortIndicator = 'None';
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
 @bindable() validationSuccess = this.defaultFunc;
@@ -54,6 +55,7 @@ params.demandPopin = getBooleanFromAttributeValue(this.demandPopin);
 params.popinDisplay = this.popinDisplay;
 params.mergeDuplicates = getBooleanFromAttributeValue(this.mergeDuplicates);
 params.mergeFunctionName = this.mergeFunctionName;
+params.sortIndicator = this.sortIndicator;
             
                                             super.fillProperties(params);   
         }
@@ -157,6 +159,7 @@ demandPopinChanged(newValue){if(newValue!=null && newValue!=undefined && this._c
 popinDisplayChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setPopinDisplay(newValue);}}
 mergeDuplicatesChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setMergeDuplicates(getBooleanFromAttributeValue(newValue));}}
 mergeFunctionNameChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setMergeFunctionName(newValue);}}
+sortIndicatorChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.setSortIndicator(newValue);}}
 /* inherited from sap.ui.core.Element*/
 /* inherited from sap.ui.base.ManagedObject*/
 validationSuccessChanged(newValue){if(newValue!=null && newValue!=undefined && this._column!==null){ this._column.attachValidationSuccess(newValue);}}

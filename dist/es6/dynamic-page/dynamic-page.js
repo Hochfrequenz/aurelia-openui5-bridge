@@ -18,9 +18,9 @@ export class Ui5DynamicPage extends Ui5Control{
 @bindable() headerExpanded = true;
 @bindable() toggleHeaderOnTitleClick = true;
 @bindable() showFooter = false;
+@bindable() backgroundDesign = 'Standard';
 @bindable() fitContent = false;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -51,6 +51,7 @@ export class Ui5DynamicPage extends Ui5Control{
 params.headerExpanded = getBooleanFromAttributeValue(this.headerExpanded);
 params.toggleHeaderOnTitleClick = getBooleanFromAttributeValue(this.toggleHeaderOnTitleClick);
 params.showFooter = getBooleanFromAttributeValue(this.showFooter);
+params.backgroundDesign = this.backgroundDesign;
 params.fitContent = getBooleanFromAttributeValue(this.fitContent);
             
                                             super.fillProperties(params);   
@@ -124,6 +125,7 @@ params.fitContent = getBooleanFromAttributeValue(this.fitContent);
 if (elem.localName == 'header') { this._dynamicpage.setHeader(child); return elem.localName;}
 if (elem.localName == 'content') { this._dynamicpage.setContent(child); return elem.localName;}
 if (elem.localName == 'footer') { this._dynamicpage.setFooter(child); return elem.localName;}
+if (elem.localName == 'landmarkinfo') { this._dynamicpage.setLandmarkInfo(child); return elem.localName;}
 if (elem.localName == 'tooltip') { this._dynamicpage.setTooltip(child); return elem.localName;}
 if (elem.localName == 'customdata') { var _index = afterElement?Math.floor(afterElement+1):null; if (_index)this._dynamicpage.insertCustomData(child, _index); else this._dynamicpage.addCustomData(child, 0);  return elem.localName; }
 if (elem.localName == 'layoutdata') { this._dynamicpage.setLayoutData(child); return elem.localName;}
@@ -140,6 +142,7 @@ if (elem.localName == 'dragdropconfig') { var _index = afterElement?Math.floor(a
 if (relation == 'header') {  this._dynamicpage.destroyHeader(child); }
 if (relation == 'content') {  this._dynamicpage.destroyContent(child); }
 if (relation == 'footer') {  this._dynamicpage.destroyFooter(child); }
+if (relation == 'landmarkinfo') {  this._dynamicpage.destroyLandmarkInfo(child); }
 if (relation == 'tooltip') {  this._dynamicpage.destroyTooltip(child); }
 if (relation == 'customdata') {  this._dynamicpage.removeCustomData(child);}
 if (relation == 'layoutdata') {  this._dynamicpage.destroyLayoutData(child); }
@@ -153,8 +156,8 @@ if (relation == 'dragdropconfig') {  this._dynamicpage.removeDragDropConfig(chil
 headerExpandedChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpage!==null){ this._dynamicpage.setHeaderExpanded(getBooleanFromAttributeValue(newValue));}}
 toggleHeaderOnTitleClickChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpage!==null){ this._dynamicpage.setToggleHeaderOnTitleClick(getBooleanFromAttributeValue(newValue));}}
 showFooterChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpage!==null){ this._dynamicpage.setShowFooter(getBooleanFromAttributeValue(newValue));}}
+backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpage!==null){ this._dynamicpage.setBackgroundDesign(newValue);}}
 fitContentChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpage!==null){ this._dynamicpage.setFitContent(getBooleanFromAttributeValue(newValue));}}
-blockedChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._dynamicpage!==null){ this._dynamicpage.setBusyIndicatorSize(newValue);}}

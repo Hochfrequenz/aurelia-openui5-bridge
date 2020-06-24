@@ -145,9 +145,9 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
 
             _initDefineProp(_this, 'wrappingType', _descriptor17, _this);
 
-            _initDefineProp(_this, 'press', _descriptor18, _this);
+            _initDefineProp(_this, 'width', _descriptor18, _this);
 
-            _initDefineProp(_this, 'blocked', _descriptor19, _this);
+            _initDefineProp(_this, 'press', _descriptor19, _this);
 
             _initDefineProp(_this, 'busy', _descriptor20, _this);
 
@@ -190,6 +190,7 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             params.sizeBehavior = this.sizeBehavior;
             params.ariaLabel = this.ariaLabel;
             params.wrappingType = this.wrappingType;
+            params.width = this.width;
             params.press = this.press == null ? this.defaultFunc : this.press;
 
             _Ui5Control.prototype.fillProperties.call(this, params);
@@ -383,15 +384,15 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
             }
         };
 
-        Ui5GenericTile.prototype.pressChanged = function pressChanged(newValue) {
+        Ui5GenericTile.prototype.widthChanged = function widthChanged(newValue) {
             if (newValue != null && newValue != undefined && this._generictile !== null) {
-                this._generictile.attachPress(newValue);
+                this._generictile.setWidth(newValue);
             }
         };
 
-        Ui5GenericTile.prototype.blockedChanged = function blockedChanged(newValue) {
-            if (this._generictile !== null) {
-                this._generictile.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        Ui5GenericTile.prototype.pressChanged = function pressChanged(newValue) {
+            if (newValue != null && newValue != undefined && this._generictile !== null) {
+                this._generictile.attachPress(newValue);
             }
         };
 
@@ -554,15 +555,15 @@ define(['exports', 'aurelia-templating', 'aurelia-dependency-injection', 'aureli
         initializer: function initializer() {
             return 'Normal';
         }
-    }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec16], {
+    }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec16], {
+        enumerable: true,
+        initializer: function initializer() {
+            return null;
+        }
+    }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec17], {
         enumerable: true,
         initializer: function initializer() {
             return this.defaultFunc;
-        }
-    }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec17], {
-        enumerable: true,
-        initializer: function initializer() {
-            return false;
         }
     }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec18], {
         enumerable: true,

@@ -17,7 +17,6 @@ export class Ui5DynamicPageHeader extends Ui5Control{
         @bindable() pinnable = true;
 @bindable() backgroundDesign = null;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -139,7 +138,6 @@ if (relation == 'dragdropconfig') {  this._dynamicpageheader.removeDragDropConfi
                                                                             }
     pinnableChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpageheader!==null){ this._dynamicpageheader.setPinnable(getBooleanFromAttributeValue(newValue));}}
 backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._dynamicpageheader!==null){ this._dynamicpageheader.setBackgroundDesign(newValue);}}
-blockedChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._dynamicpageheader!==null){ this._dynamicpageheader.setBusyIndicatorSize(newValue);}}

@@ -27,7 +27,6 @@ export class Ui5Link extends Ui5Control{
 @bindable() emphasized = false;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -167,7 +166,6 @@ textDirectionChanged(newValue){if(newValue!=null && newValue!=undefined && this.
 subtleChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setSubtle(getBooleanFromAttributeValue(newValue));}}
 emphasizedChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.setEmphasized(getBooleanFromAttributeValue(newValue));}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._link!==null){ this._link.attachPress(newValue);}}
-blockedChanged(newValue){if(this._link!==null){ this._link.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._link!==null){ this._link.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._link!==null){ this._link.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._link!==null){ this._link.setBusyIndicatorSize(newValue);}}

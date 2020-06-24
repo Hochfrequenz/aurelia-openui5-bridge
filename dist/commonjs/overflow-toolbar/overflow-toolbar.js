@@ -90,21 +90,21 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
 
         _initDefineProp(_this, 'prevId', _descriptor4, _this);
 
-        _initDefineProp(_this, 'width', _descriptor5, _this);
+        _initDefineProp(_this, 'asyncMode', _descriptor5, _this);
 
-        _initDefineProp(_this, 'active', _descriptor6, _this);
+        _initDefineProp(_this, 'width', _descriptor6, _this);
 
-        _initDefineProp(_this, 'enabled', _descriptor7, _this);
+        _initDefineProp(_this, 'active', _descriptor7, _this);
 
-        _initDefineProp(_this, 'height', _descriptor8, _this);
+        _initDefineProp(_this, 'enabled', _descriptor8, _this);
 
-        _initDefineProp(_this, 'design', _descriptor9, _this);
+        _initDefineProp(_this, 'height', _descriptor9, _this);
 
-        _initDefineProp(_this, 'style', _descriptor10, _this);
+        _initDefineProp(_this, 'design', _descriptor10, _this);
 
-        _initDefineProp(_this, 'press', _descriptor11, _this);
+        _initDefineProp(_this, 'style', _descriptor11, _this);
 
-        _initDefineProp(_this, 'blocked', _descriptor12, _this);
+        _initDefineProp(_this, 'press', _descriptor12, _this);
 
         _initDefineProp(_this, 'busy', _descriptor13, _this);
 
@@ -134,6 +134,7 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
     }
 
     Ui5OverflowToolbar.prototype.fillProperties = function fillProperties(params) {
+        params.asyncMode = (0, _attributes.getBooleanFromAttributeValue)(this.asyncMode);
 
         _Ui5Toolbar.prototype.fillProperties.call(this, params);
     };
@@ -242,6 +243,12 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
         } catch (err) {}
     };
 
+    Ui5OverflowToolbar.prototype.asyncModeChanged = function asyncModeChanged(newValue) {
+        if (newValue != null && newValue != undefined && this._overflowtoolbar !== null) {
+            this._overflowtoolbar.setAsyncMode((0, _attributes.getBooleanFromAttributeValue)(newValue));
+        }
+    };
+
     Ui5OverflowToolbar.prototype.widthChanged = function widthChanged(newValue) {
         if (this._overflowtoolbar !== null) {
             this._overflowtoolbar.setWidth(newValue);
@@ -281,12 +288,6 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
     Ui5OverflowToolbar.prototype.pressChanged = function pressChanged(newValue) {
         if (newValue != null && newValue != undefined && this._overflowtoolbar !== null) {
             this._overflowtoolbar.attachPress(newValue);
-        }
-    };
-
-    Ui5OverflowToolbar.prototype.blockedChanged = function blockedChanged(newValue) {
-        if (this._overflowtoolbar !== null) {
-            this._overflowtoolbar.setBlocked((0, _attributes.getBooleanFromAttributeValue)(newValue));
         }
     };
 
@@ -384,45 +385,45 @@ var Ui5OverflowToolbar = exports.Ui5OverflowToolbar = (_dec = (0, _aureliaTempla
     initializer: function initializer() {
         return null;
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec3], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'asyncMode', [_dec3], {
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'width', [_dec4], {
     enumerable: true,
     initializer: function initializer() {
         return null;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'active', [_dec4], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'active', [_dec5], {
     enumerable: true,
     initializer: function initializer() {
         return false;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec5], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'enabled', [_dec6], {
     enumerable: true,
     initializer: function initializer() {
         return true;
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'height', [_dec6], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'height', [_dec7], {
     enumerable: true,
     initializer: function initializer() {
         return '';
     }
-}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'design', [_dec7], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'design', [_dec8], {
     enumerable: true,
     initializer: function initializer() {
         return 'Auto';
     }
-}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'style', [_dec8], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'style', [_dec9], {
     enumerable: true,
     initializer: function initializer() {
         return 'Standard';
     }
-}), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec9], {
+}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec10], {
     enumerable: true,
     initializer: function initializer() {
         return this.defaultFunc;
-    }
-}), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec10], {
-    enumerable: true,
-    initializer: function initializer() {
-        return false;
     }
 }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec11], {
     enumerable: true,

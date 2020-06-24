@@ -159,9 +159,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'state', _descriptor17, _this);
 
-                    _initDefineProp(_this, 'press', _descriptor18, _this);
+                    _initDefineProp(_this, 'adaptiveFontSize', _descriptor18, _this);
 
-                    _initDefineProp(_this, 'blocked', _descriptor19, _this);
+                    _initDefineProp(_this, 'press', _descriptor19, _this);
 
                     _initDefineProp(_this, 'busy', _descriptor20, _this);
 
@@ -204,6 +204,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     params.width = this.width;
                     params.withMargin = getBooleanFromAttributeValue(this.withMargin);
                     params.state = this.state;
+                    params.adaptiveFontSize = getBooleanFromAttributeValue(this.adaptiveFontSize);
                     params.press = this.press == null ? this.defaultFunc : this.press;
 
                     _Ui5Control.prototype.fillProperties.call(this, params);
@@ -385,15 +386,15 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     }
                 };
 
-                Ui5NumericContent.prototype.pressChanged = function pressChanged(newValue) {
+                Ui5NumericContent.prototype.adaptiveFontSizeChanged = function adaptiveFontSizeChanged(newValue) {
                     if (newValue != null && newValue != undefined && this._numericcontent !== null) {
-                        this._numericcontent.attachPress(newValue);
+                        this._numericcontent.setAdaptiveFontSize(getBooleanFromAttributeValue(newValue));
                     }
                 };
 
-                Ui5NumericContent.prototype.blockedChanged = function blockedChanged(newValue) {
-                    if (this._numericcontent !== null) {
-                        this._numericcontent.setBlocked(getBooleanFromAttributeValue(newValue));
+                Ui5NumericContent.prototype.pressChanged = function pressChanged(newValue) {
+                    if (newValue != null && newValue != undefined && this._numericcontent !== null) {
+                        this._numericcontent.attachPress(newValue);
                     }
                 };
 
@@ -529,7 +530,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
             }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, 'truncateValueTo', [_dec10], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return 4;
+                    return null;
                 }
             }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec11], {
                 enumerable: true,
@@ -556,15 +557,15 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return 'Loaded';
                 }
-            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec16], {
+            }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, 'adaptiveFontSize', [_dec16], {
+                enumerable: true,
+                initializer: function initializer() {
+                    return true;
+                }
+            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'press', [_dec17], {
                 enumerable: true,
                 initializer: function initializer() {
                     return this.defaultFunc;
-                }
-            }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec17], {
-                enumerable: true,
-                initializer: function initializer() {
-                    return false;
                 }
             }), _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec18], {
                 enumerable: true,

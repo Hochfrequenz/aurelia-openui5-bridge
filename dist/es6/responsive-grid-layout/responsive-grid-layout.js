@@ -33,7 +33,6 @@ export class Ui5ResponsiveGridLayout extends Ui5FormLayout{
 /* inherited from sap.ui.layout.form.FormLayout*/
 @bindable() backgroundDesign = 'Translucent';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -183,7 +182,6 @@ breakpointLChanged(newValue){if(newValue!=null && newValue!=undefined && this._r
 breakpointMChanged(newValue){if(newValue!=null && newValue!=undefined && this._responsivegridlayout!==null){ this._responsivegridlayout.setBreakpointM(newValue);}}
 backgroundDesignChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBackgroundDesign(newValue);}}
 /* inherited from sap.ui.layout.form.FormLayout*/
-blockedChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._responsivegridlayout!==null){ this._responsivegridlayout.setBusyIndicatorSize(newValue);}}

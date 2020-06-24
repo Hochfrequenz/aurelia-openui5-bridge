@@ -16,7 +16,6 @@ export class Ui5gridTableRowAction extends Ui5Control{
          @bindable prevId = null;
         @bindable() visible = true;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -136,7 +135,6 @@ if (relation == 'dragdropconfig') {  this._gridtablerowaction.removeDragDropConf
       catch(err){}
                                                                             }
     visibleChanged(newValue){if(newValue!=null && newValue!=undefined && this._gridtablerowaction!==null){ this._gridtablerowaction.setVisible(getBooleanFromAttributeValue(newValue));}}
-blockedChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._gridtablerowaction!==null){ this._gridtablerowaction.setBusyIndicatorSize(newValue);}}

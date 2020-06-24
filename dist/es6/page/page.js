@@ -25,9 +25,9 @@ export class Ui5Page extends Ui5Control{
 @bindable() showFooter = true;
 @bindable() contentOnlyBusy = false;
 @bindable() floatingFooter = false;
+@bindable() titleAlignment = 'Auto';
 @bindable() navButtonPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -65,6 +65,7 @@ params.backgroundDesign = this.backgroundDesign;
 params.showFooter = getBooleanFromAttributeValue(this.showFooter);
 params.contentOnlyBusy = getBooleanFromAttributeValue(this.contentOnlyBusy);
 params.floatingFooter = getBooleanFromAttributeValue(this.floatingFooter);
+params.titleAlignment = this.titleAlignment;
 params.navButtonPress = this.navButtonPress==null ? this.defaultFunc: this.navButtonPress;
             
                                             super.fillProperties(params);   
@@ -178,8 +179,8 @@ backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && th
 showFooterChanged(newValue){if(newValue!=null && newValue!=undefined && this._page!==null){ this._page.setShowFooter(getBooleanFromAttributeValue(newValue));}}
 contentOnlyBusyChanged(newValue){if(newValue!=null && newValue!=undefined && this._page!==null){ this._page.setContentOnlyBusy(getBooleanFromAttributeValue(newValue));}}
 floatingFooterChanged(newValue){if(newValue!=null && newValue!=undefined && this._page!==null){ this._page.setFloatingFooter(getBooleanFromAttributeValue(newValue));}}
+titleAlignmentChanged(newValue){if(newValue!=null && newValue!=undefined && this._page!==null){ this._page.setTitleAlignment(newValue);}}
 navButtonPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._page!==null){ this._page.attachNavButtonPress(newValue);}}
-blockedChanged(newValue){if(this._page!==null){ this._page.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._page!==null){ this._page.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._page!==null){ this._page.setBusyIndicatorSize(newValue);}}

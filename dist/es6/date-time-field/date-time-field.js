@@ -33,7 +33,6 @@ export class Ui5DateTimeField extends Ui5InputBase{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -171,7 +170,6 @@ textDirectionChanged(newValue){if(this._datetimefield!==null){ this._datetimefie
 requiredChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datetimefield!==null){ this._datetimefield.attachChange(newValue);}}
-blockedChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._datetimefield!==null){ this._datetimefield.setBusyIndicatorSize(newValue);}}

@@ -33,7 +33,6 @@ export class Ui5SplitContainer extends Ui5Control{
 @bindable() detailNavigate = this.defaultFunc;
 @bindable() afterDetailNavigate = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -189,7 +188,6 @@ beforeMasterCloseChanged(newValue){if(newValue!=null && newValue!=undefined && t
 afterMasterCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitcontainer!==null){ this._splitcontainer.attachAfterMasterClose(newValue);}}
 detailNavigateChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitcontainer!==null){ this._splitcontainer.attachDetailNavigate(newValue);}}
 afterDetailNavigateChanged(newValue){if(newValue!=null && newValue!=undefined && this._splitcontainer!==null){ this._splitcontainer.attachAfterDetailNavigate(newValue);}}
-blockedChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._splitcontainer!==null){ this._splitcontainer.setBusyIndicatorSize(newValue);}}

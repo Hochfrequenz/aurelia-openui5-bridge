@@ -15,19 +15,19 @@ export class Ui5ToggleButton extends Ui5Button{
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() pressed = false;
+@bindable() press = this.defaultFunc;
 /* inherited from sap.m.Button*/
-@bindable() text = null;
+@bindable() text = '';
 @bindable() type = 'Default';
 @bindable() width = null;
 @bindable() enabled = true;
-@bindable() icon = null;
+@bindable() icon = '';
 @bindable() iconFirst = true;
 @bindable() activeIcon = null;
 @bindable() iconDensityAware = true;
 @bindable() textDirection = 'Inherit';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -55,6 +55,7 @@ export class Ui5ToggleButton extends Ui5Button{
           }
         fillProperties(params){
                                         params.pressed = getBooleanFromAttributeValue(this.pressed);
+params.press = this.press==null ? this.defaultFunc: this.press;
             
                                             super.fillProperties(params);   
         }
@@ -145,6 +146,7 @@ if (relation == 'dragdropconfig') {  this._togglebutton.removeDragDropConfig(chi
       catch(err){}
                                                                             }
     pressedChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.setPressed(getBooleanFromAttributeValue(newValue));}}
+pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.attachPress(newValue);}}
 textChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setText(newValue);}}
 typeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setType(newValue);}}
 widthChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setWidth(newValue);}}
@@ -156,7 +158,6 @@ iconDensityAwareChanged(newValue){if(this._togglebutton!==null){ this._togglebut
 textDirectionChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setTextDirection(newValue);}}
 /* inherited from sap.m.Button*/
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._togglebutton!==null){ this._togglebutton.attachPress(newValue);}}
-blockedChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._togglebutton!==null){ this._togglebutton.setBusyIndicatorSize(newValue);}}

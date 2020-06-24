@@ -21,15 +21,15 @@ export class Ui5NumericContent extends Ui5Control{
 @bindable() indicator = 'None';
 @bindable() nullifyValue = true;
 @bindable() scale = null;
-@bindable() truncateValueTo = 4;
+@bindable() truncateValueTo = null;
 @bindable() value = null;
 @bindable() valueColor = 'Neutral';
 @bindable() width = null;
 @bindable() withMargin = true;
 @bindable() state = 'Loaded';
+@bindable() adaptiveFontSize = true;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -69,6 +69,7 @@ params.valueColor = this.valueColor;
 params.width = this.width;
 params.withMargin = getBooleanFromAttributeValue(this.withMargin);
 params.state = this.state;
+params.adaptiveFontSize = getBooleanFromAttributeValue(this.adaptiveFontSize);
 params.press = this.press==null ? this.defaultFunc: this.press;
             
                                             super.fillProperties(params);   
@@ -172,8 +173,8 @@ valueColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._nu
 widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setWidth(newValue);}}
 withMarginChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setWithMargin(getBooleanFromAttributeValue(newValue));}}
 stateChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setState(newValue);}}
+adaptiveFontSizeChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.setAdaptiveFontSize(getBooleanFromAttributeValue(newValue));}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._numericcontent!==null){ this._numericcontent.attachPress(newValue);}}
-blockedChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._numericcontent!==null){ this._numericcontent.setBusyIndicatorSize(newValue);}}

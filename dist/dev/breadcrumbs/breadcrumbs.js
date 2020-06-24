@@ -135,7 +135,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                     _initDefineProp(_this, 'currentLocationText', _descriptor5, _this);
 
-                    _initDefineProp(_this, 'blocked', _descriptor6, _this);
+                    _initDefineProp(_this, 'separatorStyle', _descriptor6, _this);
 
                     _initDefineProp(_this, 'busy', _descriptor7, _this);
 
@@ -166,6 +166,7 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
 
                 Ui5Breadcrumbs.prototype.fillProperties = function fillProperties(params) {
                     params.currentLocationText = this.currentLocationText;
+                    params.separatorStyle = this.separatorStyle;
 
                     _Ui5Control.prototype.fillProperties.call(this, params);
                 };
@@ -280,9 +281,9 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                     }
                 };
 
-                Ui5Breadcrumbs.prototype.blockedChanged = function blockedChanged(newValue) {
-                    if (this._breadcrumbs !== null) {
-                        this._breadcrumbs.setBlocked(getBooleanFromAttributeValue(newValue));
+                Ui5Breadcrumbs.prototype.separatorStyleChanged = function separatorStyleChanged(newValue) {
+                    if (newValue != null && newValue != undefined && this._breadcrumbs !== null) {
+                        this._breadcrumbs.setSeparatorStyle(newValue);
                     }
                 };
 
@@ -385,10 +386,10 @@ System.register(['aurelia-templating', 'aurelia-dependency-injection', 'aurelia-
                 initializer: function initializer() {
                     return null;
                 }
-            }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'blocked', [_dec4], {
+            }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'separatorStyle', [_dec4], {
                 enumerable: true,
                 initializer: function initializer() {
-                    return false;
+                    return 'Slash';
                 }
             }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'busy', [_dec5], {
                 enumerable: true,

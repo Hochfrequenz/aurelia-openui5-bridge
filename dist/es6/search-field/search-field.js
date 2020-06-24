@@ -28,7 +28,6 @@ export class Ui5SearchField extends Ui5Control{
 @bindable() liveChange = this.defaultFunc;
 @bindable() suggest = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -173,7 +172,6 @@ enableSuggestionsChanged(newValue){if(newValue!=null && newValue!=undefined && t
 searchChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachSearch(newValue);}}
 liveChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachLiveChange(newValue);}}
 suggestChanged(newValue){if(newValue!=null && newValue!=undefined && this._searchfield!==null){ this._searchfield.attachSuggest(newValue);}}
-blockedChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._searchfield!==null){ this._searchfield.setBusyIndicatorSize(newValue);}}

@@ -22,7 +22,6 @@ export class Ui5Toolbar extends Ui5Control{
 @bindable() style = 'Standard';
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -154,7 +153,6 @@ heightChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolba
 designChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.setDesign(newValue);}}
 styleChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.setStyle(newValue);}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._toolbar!==null){ this._toolbar.attachPress(newValue);}}
-blockedChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._toolbar!==null){ this._toolbar.setBusyIndicatorSize(newValue);}}

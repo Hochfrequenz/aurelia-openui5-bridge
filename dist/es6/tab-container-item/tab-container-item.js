@@ -15,6 +15,9 @@ export class Ui5TabContainerItem extends Ui5Element{
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() name = '';
+@bindable() additionalText = '';
+@bindable() icon = null;
+@bindable() iconTooltip = null;
 @bindable() key = null;
 @bindable() modified = false;
 @bindable() itemPropertyChanged = this.defaultFunc;
@@ -39,6 +42,9 @@ export class Ui5TabContainerItem extends Ui5Element{
           }
         fillProperties(params){
                                         params.name = this.name;
+params.additionalText = this.additionalText;
+params.icon = this.icon;
+params.iconTooltip = this.iconTooltip;
 params.key = this.key;
 params.modified = getBooleanFromAttributeValue(this.modified);
 params.itemPropertyChanged = this.itemPropertyChanged==null ? this.defaultFunc: this.itemPropertyChanged;
@@ -134,6 +140,9 @@ if (relation == 'dragdropconfig') {  this._tabcontaineritem.removeDragDropConfig
       catch(err){}
                                                                             }
     nameChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.setName(newValue);}}
+additionalTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.setAdditionalText(newValue);}}
+iconChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.setIcon(newValue);}}
+iconTooltipChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.setIconTooltip(newValue);}}
 keyChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.setKey(newValue);}}
 modifiedChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.setModified(getBooleanFromAttributeValue(newValue));}}
 itemPropertyChangedChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontaineritem!==null){ this._tabcontaineritem.attachItemPropertyChanged(newValue);}}

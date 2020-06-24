@@ -21,7 +21,6 @@ export class Ui5FeedContent extends Ui5Control{
 @bindable() truncateValueTo = 4;
 @bindable() press = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -149,7 +148,6 @@ valueChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcon
 valueColorChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.setValueColor(newValue);}}
 truncateValueToChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.setTruncateValueTo(newValue);}}
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._feedcontent!==null){ this._feedcontent.attachPress(newValue);}}
-blockedChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._feedcontent!==null){ this._feedcontent.setBusyIndicatorSize(newValue);}}

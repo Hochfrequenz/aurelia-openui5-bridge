@@ -17,7 +17,6 @@ export class Ui5Form extends Ui5Control{
         @bindable() width = null;
 @bindable() editable = false;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -145,7 +144,6 @@ if (relation == 'dragdropconfig') {  this._form.removeDragDropConfig(child);}
                                                                             }
     widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.setWidth(newValue);}}
 editableChanged(newValue){if(newValue!=null && newValue!=undefined && this._form!==null){ this._form.setEditable(getBooleanFromAttributeValue(newValue));}}
-blockedChanged(newValue){if(this._form!==null){ this._form.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._form!==null){ this._form.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._form!==null){ this._form.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._form!==null){ this._form.setBusyIndicatorSize(newValue);}}

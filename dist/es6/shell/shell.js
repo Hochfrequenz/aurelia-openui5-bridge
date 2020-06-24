@@ -27,7 +27,6 @@ export class Ui5Shell extends Ui5Control{
 @bindable() titleLevel = 'H1';
 @bindable() logout = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -169,7 +168,6 @@ backgroundOpacityChanged(newValue){if(newValue!=null && newValue!=undefined && t
 homeIconChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setHomeIcon(newValue);}}
 titleLevelChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.setTitleLevel(newValue);}}
 logoutChanged(newValue){if(newValue!=null && newValue!=undefined && this._shell!==null){ this._shell.attachLogout(newValue);}}
-blockedChanged(newValue){if(this._shell!==null){ this._shell.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._shell!==null){ this._shell.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._shell!==null){ this._shell.setBusyIndicatorSize(newValue);}}

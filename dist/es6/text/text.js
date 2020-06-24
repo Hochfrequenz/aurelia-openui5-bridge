@@ -23,7 +23,6 @@ export class Ui5Text extends Ui5Control{
 @bindable() maxLines = null;
 @bindable() renderWhitespace = false;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -155,7 +154,6 @@ textAlignChanged(newValue){if(newValue!=null && newValue!=undefined && this._tex
 widthChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setWidth(newValue);}}
 maxLinesChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setMaxLines(newValue);}}
 renderWhitespaceChanged(newValue){if(newValue!=null && newValue!=undefined && this._text!==null){ this._text.setRenderWhitespace(getBooleanFromAttributeValue(newValue));}}
-blockedChanged(newValue){if(this._text!==null){ this._text.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._text!==null){ this._text.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._text!==null){ this._text.setBusyIndicatorSize(newValue);}}

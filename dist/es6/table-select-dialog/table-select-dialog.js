@@ -23,12 +23,15 @@ export class Ui5TableSelectDialog extends Ui5Control{
 @bindable() rememberSelections = false;
 @bindable() contentHeight = null;
 @bindable() showClearButton = false;
+@bindable() confirmButtonText = null;
+@bindable() draggable = false;
+@bindable() resizable = false;
+@bindable() titleAlignment = 'Auto';
 @bindable() confirm = this.defaultFunc;
 @bindable() search = this.defaultFunc;
 @bindable() liveChange = this.defaultFunc;
 @bindable() cancel = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -64,6 +67,10 @@ params.contentWidth = this.contentWidth;
 params.rememberSelections = getBooleanFromAttributeValue(this.rememberSelections);
 params.contentHeight = this.contentHeight;
 params.showClearButton = getBooleanFromAttributeValue(this.showClearButton);
+params.confirmButtonText = this.confirmButtonText;
+params.draggable = getBooleanFromAttributeValue(this.draggable);
+params.resizable = getBooleanFromAttributeValue(this.resizable);
+params.titleAlignment = this.titleAlignment;
 params.confirm = this.confirm==null ? this.defaultFunc: this.confirm;
 params.search = this.search==null ? this.defaultFunc: this.search;
 params.liveChange = this.liveChange==null ? this.defaultFunc: this.liveChange;
@@ -170,11 +177,14 @@ contentWidthChanged(newValue){if(newValue!=null && newValue!=undefined && this._
 rememberSelectionsChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setRememberSelections(getBooleanFromAttributeValue(newValue));}}
 contentHeightChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setContentHeight(newValue);}}
 showClearButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setShowClearButton(getBooleanFromAttributeValue(newValue));}}
+confirmButtonTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setConfirmButtonText(newValue);}}
+draggableChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setDraggable(getBooleanFromAttributeValue(newValue));}}
+resizableChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setResizable(getBooleanFromAttributeValue(newValue));}}
+titleAlignmentChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.setTitleAlignment(newValue);}}
 confirmChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachConfirm(newValue);}}
 searchChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachSearch(newValue);}}
 liveChangeChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachLiveChange(newValue);}}
 cancelChanged(newValue){if(newValue!=null && newValue!=undefined && this._tableselectdialog!==null){ this._tableselectdialog.attachCancel(newValue);}}
-blockedChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._tableselectdialog!==null){ this._tableselectdialog.setBusyIndicatorSize(newValue);}}

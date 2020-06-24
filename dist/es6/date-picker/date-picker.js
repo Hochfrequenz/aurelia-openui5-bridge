@@ -18,6 +18,7 @@ export class Ui5DatePicker extends Ui5DateTimeField{
 @bindable() secondaryCalendarType = null;
 @bindable() minDate = null;
 @bindable() maxDate = null;
+@bindable() showFooter = false;
 @bindable() navigate = this.defaultFunc;
 /* inherited from sap.m.DateTimeField*/
 @bindable() displayFormat = null;
@@ -39,7 +40,6 @@ export class Ui5DatePicker extends Ui5DateTimeField{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -70,6 +70,7 @@ export class Ui5DatePicker extends Ui5DateTimeField{
 params.secondaryCalendarType = this.secondaryCalendarType;
 params.minDate = this.minDate;
 params.maxDate = this.maxDate;
+params.showFooter = getBooleanFromAttributeValue(this.showFooter);
 params.navigate = this.navigate==null ? this.defaultFunc: this.navigate;
             
                                             super.fillProperties(params);   
@@ -167,6 +168,7 @@ if (relation == 'dragdropconfig') {  this._datepicker.removeDragDropConfig(child
 secondaryCalendarTypeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.setSecondaryCalendarType(newValue);}}
 minDateChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.setMinDate(newValue);}}
 maxDateChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.setMaxDate(newValue);}}
+showFooterChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.setShowFooter(getBooleanFromAttributeValue(newValue));}}
 navigateChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachNavigate(newValue);}}
 displayFormatChanged(newValue){if(this._datepicker!==null){ this._datepicker.setDisplayFormat(newValue);}}
 valueFormatChanged(newValue){if(this._datepicker!==null){ this._datepicker.setValueFormat(newValue);}}
@@ -187,7 +189,6 @@ textDirectionChanged(newValue){if(this._datepicker!==null){ this._datepicker.set
 requiredChanged(newValue){if(this._datepicker!==null){ this._datepicker.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._datepicker!==null){ this._datepicker.attachChange(newValue);}}
-blockedChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._datepicker!==null){ this._datepicker.setBusyIndicatorSize(newValue);}}

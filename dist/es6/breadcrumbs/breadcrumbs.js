@@ -15,8 +15,8 @@ export class Ui5Breadcrumbs extends Ui5Control{
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() currentLocationText = null;
+@bindable() separatorStyle = 'Slash';
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -44,6 +44,7 @@ export class Ui5Breadcrumbs extends Ui5Control{
           }
         fillProperties(params){
                                         params.currentLocationText = this.currentLocationText;
+params.separatorStyle = this.separatorStyle;
             
                                             super.fillProperties(params);   
         }
@@ -136,7 +137,7 @@ if (relation == 'dragdropconfig') {  this._breadcrumbs.removeDragDropConfig(chil
       catch(err){}
                                                                             }
     currentLocationTextChanged(newValue){if(newValue!=null && newValue!=undefined && this._breadcrumbs!==null){ this._breadcrumbs.setCurrentLocationText(newValue);}}
-blockedChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBlocked(getBooleanFromAttributeValue(newValue));}}
+separatorStyleChanged(newValue){if(newValue!=null && newValue!=undefined && this._breadcrumbs!==null){ this._breadcrumbs.setSeparatorStyle(newValue);}}
 busyChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._breadcrumbs!==null){ this._breadcrumbs.setBusyIndicatorSize(newValue);}}

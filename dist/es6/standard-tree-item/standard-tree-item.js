@@ -24,10 +24,11 @@ export class Ui5StandardTreeItem extends Ui5TreeItemBase{
 @bindable() selected = false;
 @bindable() counter = null;
 @bindable() highlight = 'None';
+@bindable() highlightText = '';
+@bindable() navigated = false;
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -154,10 +155,11 @@ unreadChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeite
 selectedChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setSelected(getBooleanFromAttributeValue(newValue));}}
 counterChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setCounter(newValue);}}
 highlightChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setHighlight(newValue);}}
+highlightTextChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setHighlightText(newValue);}}
+navigatedChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setNavigated(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachPress(newValue);}}
 detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._standardtreeitem!==null){ this._standardtreeitem.attachDetailPress(newValue);}}
-blockedChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._standardtreeitem!==null){ this._standardtreeitem.setBusyIndicatorSize(newValue);}}

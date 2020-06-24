@@ -15,11 +15,11 @@ export class Ui5TabContainer extends Ui5Control{
          @bindable ui5Tooltip = null;
          @bindable prevId = null;
         @bindable() showAddNewButton = false;
+@bindable() backgroundDesign = 'List';
 @bindable() itemClose = this.defaultFunc;
 @bindable() itemSelect = this.defaultFunc;
 @bindable() addNewButtonPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -47,6 +47,7 @@ export class Ui5TabContainer extends Ui5Control{
           }
         fillProperties(params){
                                         params.showAddNewButton = getBooleanFromAttributeValue(this.showAddNewButton);
+params.backgroundDesign = this.backgroundDesign;
 params.itemClose = this.itemClose==null ? this.defaultFunc: this.itemClose;
 params.itemSelect = this.itemSelect==null ? this.defaultFunc: this.itemSelect;
 params.addNewButtonPress = this.addNewButtonPress==null ? this.defaultFunc: this.addNewButtonPress;
@@ -142,10 +143,10 @@ if (relation == 'dragdropconfig') {  this._tabcontainer.removeDragDropConfig(chi
       catch(err){}
                                                                             }
     showAddNewButtonChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontainer!==null){ this._tabcontainer.setShowAddNewButton(getBooleanFromAttributeValue(newValue));}}
+backgroundDesignChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontainer!==null){ this._tabcontainer.setBackgroundDesign(newValue);}}
 itemCloseChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontainer!==null){ this._tabcontainer.attachItemClose(newValue);}}
 itemSelectChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontainer!==null){ this._tabcontainer.attachItemSelect(newValue);}}
 addNewButtonPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._tabcontainer!==null){ this._tabcontainer.attachAddNewButtonPress(newValue);}}
-blockedChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._tabcontainer!==null){ this._tabcontainer.setBusyIndicatorSize(newValue);}}

@@ -22,10 +22,11 @@ export class Ui5ColumnListItem extends Ui5ListItemBase{
 @bindable() selected = false;
 @bindable() counter = null;
 @bindable() highlight = 'None';
+@bindable() highlightText = '';
+@bindable() navigated = false;
 @bindable() press = this.defaultFunc;
 @bindable() detailPress = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -151,10 +152,11 @@ unreadChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.se
 selectedChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setSelected(getBooleanFromAttributeValue(newValue));}}
 counterChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setCounter(newValue);}}
 highlightChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setHighlight(newValue);}}
+highlightTextChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setHighlightText(newValue);}}
+navigatedChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setNavigated(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.ListItemBase*/
 pressChanged(newValue){if(newValue!=null && newValue!=undefined && this._columnlistitem!==null){ this._columnlistitem.attachPress(newValue);}}
 detailPressChanged(newValue){if(newValue!=null && newValue!=undefined && this._columnlistitem!==null){ this._columnlistitem.attachDetailPress(newValue);}}
-blockedChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._columnlistitem!==null){ this._columnlistitem.setBusyIndicatorSize(newValue);}}

@@ -31,7 +31,6 @@ export class Ui5MaskInput extends Ui5InputBase{
 @bindable() required = false;
 @bindable() change = this.defaultFunc;
 /* inherited from sap.ui.core.Control*/
-@bindable() blocked = false;
 @bindable() busy = false;
 @bindable() busyIndicatorDelay = 1000;
 @bindable() busyIndicatorSize = 'Medium';
@@ -167,7 +166,6 @@ textDirectionChanged(newValue){if(this._maskinput!==null){ this._maskinput.setTe
 requiredChanged(newValue){if(this._maskinput!==null){ this._maskinput.setRequired(getBooleanFromAttributeValue(newValue));}}
 /* inherited from sap.m.InputBase*/
 changeChanged(newValue){if(newValue!=null && newValue!=undefined && this._maskinput!==null){ this._maskinput.attachChange(newValue);}}
-blockedChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBlocked(getBooleanFromAttributeValue(newValue));}}
 busyChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBusy(getBooleanFromAttributeValue(newValue));}}
 busyIndicatorDelayChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBusyIndicatorDelay(newValue);}}
 busyIndicatorSizeChanged(newValue){if(this._maskinput!==null){ this._maskinput.setBusyIndicatorSize(newValue);}}
